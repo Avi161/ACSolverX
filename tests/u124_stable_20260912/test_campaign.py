@@ -169,11 +169,14 @@ def test_c20_pinch_is_round_trip():
         assert rec["B*Dinv"]["cyclic_of_Dinv"]
     depth = c20.depth1_pinch_roundtrips(2)
     counts = depth["counts"]
-    assert counts["all_round_trip"]
+    assert counts["all_rewrites_allowed"]
     assert counts["other"] == 0
     assert counts["empty_on_D_slot"] == 0
-    assert counts["empty_on_B_slot"] == 10
-    assert counts["unique"] - counts["valid_pinch_children"] == 10
+    assert counts["n_no_pinch"] == 10
+    assert counts["no_pinch_all_keep_D"]
+    assert counts["no_pinch_min_len"] > 14
+    assert len(depth["no_pinch_children"]) == 10
+    assert all(row["keeps_D"] for row in depth["no_pinch_children"])
     donor = c20.serialize_whitehead(c20.D)
     assert not donor["primitive"]
     assert not donor["first_kind_primitive"]

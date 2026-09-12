@@ -2,97 +2,157 @@
   "summary": {
     "round_trip_ok": true,
     "n_checked": 6,
+    "claim_scope": "displayed identities any n>=2 by free cancellation; neighbourhood n=2..7",
+    "pinch_is_not_an_ac_move": true,
     "D_primitive": false,
     "D_whitehead_min": 7,
     "D_first_kind_primitive": false,
     "D_first_kind_min": 7,
+    "B_first_kind_minima": {
+      "2": 7,
+      "3": 9,
+      "4": 11,
+      "5": 13,
+      "6": 15,
+      "7": 17
+    },
     "D_nielsen_found": false,
     "D_nielsen_states": 8001,
+    "depth1_all_rewrites_allowed": true,
     "depth1_all_round_trip": true,
     "depth1_other_residues": 0,
+    "depth1_no_pinch_all_keep_D": true,
     "depth1_counts": {
       "2": {
+        "raw": 196,
         "unique": 116,
         "valid_pinch_children": 106,
-        "cyclic_D": 72,
-        "cyclic_Dinv": 24,
+        "pinch_applications": 232,
+        "cyclic_D": 87,
+        "cyclic_Dinv": 29,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 116,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 116,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 17,
+        "no_pinch_max_len": 19,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
       "3": {
+        "raw": 252,
         "unique": 156,
         "valid_pinch_children": 146,
-        "cyclic_D": 102,
-        "cyclic_Dinv": 34,
+        "pinch_applications": 312,
+        "cyclic_D": 117,
+        "cyclic_Dinv": 39,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 156,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 156,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 19,
+        "no_pinch_max_len": 21,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
       "4": {
+        "raw": 308,
         "unique": 196,
         "valid_pinch_children": 186,
-        "cyclic_D": 132,
-        "cyclic_Dinv": 44,
+        "pinch_applications": 392,
+        "cyclic_D": 147,
+        "cyclic_Dinv": 49,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 196,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 196,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 21,
+        "no_pinch_max_len": 23,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
       "5": {
+        "raw": 364,
         "unique": 236,
         "valid_pinch_children": 226,
-        "cyclic_D": 162,
-        "cyclic_Dinv": 54,
+        "pinch_applications": 472,
+        "cyclic_D": 177,
+        "cyclic_Dinv": 59,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 236,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 236,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 23,
+        "no_pinch_max_len": 25,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
       "6": {
+        "raw": 420,
         "unique": 276,
         "valid_pinch_children": 266,
-        "cyclic_D": 192,
-        "cyclic_Dinv": 64,
+        "pinch_applications": 552,
+        "cyclic_D": 207,
+        "cyclic_Dinv": 69,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 276,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 276,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 25,
+        "no_pinch_max_len": 27,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
       "7": {
+        "raw": 476,
         "unique": 316,
         "valid_pinch_children": 306,
-        "cyclic_D": 222,
-        "cyclic_Dinv": 74,
+        "pinch_applications": 632,
+        "cyclic_D": 237,
+        "cyclic_Dinv": 79,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 316,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 316,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 27,
+        "no_pinch_max_len": 29,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       }
     },
@@ -103,7 +163,7 @@
     "any_stored_primitive": false,
     "solved_u124": 0
   },
-  "statement": "For n=2..7, the first valid associated-subgroup pinch on each of the freely reduced products D\u00b7B, B\u00b7D, D\u00b7B^{-1}, B\u00b7D^{-1} returns a cyclic conjugate of D or D^{-1}. This is an AC2 round trip, not Britton progress on D.",
+  "statement": "For n>=2 the four displayed freely reduced products D\u00b7B, B\u00b7D, D\u00b7B^{-1}, B\u00b7D^{-1} satisfy: each listed associated-subgroup rewrite returns a cyclic conjugate of D or D^{-1}. This is equality modulo B (a BS/Britton preflight), not an AC1\u2013AC5 move. For n=2..7, every valid pinch occurrence on both rows of every canon_pair-unique depth-1 AC2 child rewrites to cyclic D, D^{-1}, B, B^{-1}, or empty; empty occurs only on the B slot.",
   "identities": [
     {
       "n": 2,
@@ -404,110 +464,1016 @@
     {
       "n": 2,
       "counts": {
+        "raw": 196,
         "unique": 116,
         "valid_pinch_children": 106,
-        "cyclic_D": 72,
-        "cyclic_Dinv": 24,
+        "pinch_applications": 232,
+        "cyclic_D": 87,
+        "cyclic_Dinv": 29,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 116,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 116,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 17,
+        "no_pinch_max_len": 19,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
-      "residues": []
+      "residues": [],
+      "no_pinch_children": [
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXUxuuuXU",
+          "len": 17,
+          "keeps_D": true,
+          "r2_len": 10,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 17
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXUxxUXuuuX",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 19
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xuXXXuuXUU",
+          "len": 17,
+          "keeps_D": true,
+          "r2_len": 10,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 3,
+            "k2": 0,
+            "new_len": 17
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxuXXXXUUXuu",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 4,
+            "k2": 4,
+            "new_len": 19
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxuXXXuXUUXu",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 4,
+            "k2": 5,
+            "new_len": 19
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXUxxUUxuu",
+          "len": 17,
+          "keeps_D": true,
+          "r2_len": 10,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 17
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXUxxxuuxUU",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 19
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXUxxUxuuxU",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 19
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxuXXXuxUUUx",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 4,
+            "k2": 0,
+            "new_len": 19
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxuXXUUUxu",
+          "len": 17,
+          "keeps_D": true,
+          "r2_len": 10,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 4,
+            "k2": 6,
+            "new_len": 17
+          }
+        }
+      ],
+      "uniqueness": "canon_pair cyclic/inverse then slot order"
     },
     {
       "n": 3,
       "counts": {
+        "raw": 252,
         "unique": 156,
         "valid_pinch_children": 146,
-        "cyclic_D": 102,
-        "cyclic_Dinv": 34,
+        "pinch_applications": 312,
+        "cyclic_D": 117,
+        "cyclic_Dinv": 39,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 156,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 156,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 19,
+        "no_pinch_max_len": 21,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
-      "residues": []
+      "residues": [],
+      "no_pinch_children": [
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXUxxuuuXU",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 19
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXUxxxUXuuuX",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 21
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxuXXXXuuXUU",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 4,
+            "k2": 0,
+            "new_len": 19
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxuXXXXXUUXuu",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 5,
+            "k2": 4,
+            "new_len": 21
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxuXXXXuXUUXu",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 5,
+            "k2": 5,
+            "new_len": 21
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXUxxxUUxuu",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 19
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXUxxxxuuxUU",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 21
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXUxxxUxuuxU",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 21
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxuXXXXuxUUUx",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 5,
+            "k2": 0,
+            "new_len": 21
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxuXXXUUUxu",
+          "len": 19,
+          "keeps_D": true,
+          "r2_len": 12,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 5,
+            "k2": 6,
+            "new_len": 19
+          }
+        }
+      ],
+      "uniqueness": "canon_pair cyclic/inverse then slot order"
     },
     {
       "n": 4,
       "counts": {
+        "raw": 308,
         "unique": 196,
         "valid_pinch_children": 186,
-        "cyclic_D": 132,
-        "cyclic_Dinv": 44,
+        "pinch_applications": 392,
+        "cyclic_D": 147,
+        "cyclic_Dinv": 49,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 196,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 196,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 21,
+        "no_pinch_max_len": 23,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
-      "residues": []
+      "residues": [],
+      "no_pinch_children": [
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXUxxxuuuXU",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 21
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXUxxxxUXuuuX",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 23
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxuXXXXXuuXUU",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 5,
+            "k2": 0,
+            "new_len": 21
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxuXXXXXXUUXuu",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 6,
+            "k2": 4,
+            "new_len": 23
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxuXXXXXuXUUXu",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 6,
+            "k2": 5,
+            "new_len": 23
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXUxxxxUUxuu",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 21
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXUxxxxxuuxUU",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 23
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXUxxxxUxuuxU",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 23
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxuXXXXXuxUUUx",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 6,
+            "k2": 0,
+            "new_len": 23
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxuXXXXUUUxu",
+          "len": 21,
+          "keeps_D": true,
+          "r2_len": 14,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 6,
+            "k2": 6,
+            "new_len": 21
+          }
+        }
+      ],
+      "uniqueness": "canon_pair cyclic/inverse then slot order"
     },
     {
       "n": 5,
       "counts": {
+        "raw": 364,
         "unique": 236,
         "valid_pinch_children": 226,
-        "cyclic_D": 162,
-        "cyclic_Dinv": 54,
+        "pinch_applications": 472,
+        "cyclic_D": 177,
+        "cyclic_Dinv": 59,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 236,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 236,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 23,
+        "no_pinch_max_len": 25,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
-      "residues": []
+      "residues": [],
+      "no_pinch_children": [
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXUxxxxuuuXU",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 23
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXUxxxxxUXuuuX",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 25
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxuXXXXXXuuXUU",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 6,
+            "k2": 0,
+            "new_len": 23
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxuXXXXXXXUUXuu",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 7,
+            "k2": 4,
+            "new_len": 25
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxuXXXXXXuXUUXu",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 7,
+            "k2": 5,
+            "new_len": 25
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXUxxxxxUUxuu",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 23
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXUxxxxxxuuxUU",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 25
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXUxxxxxUxuuxU",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 25
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxuXXXXXXuxUUUx",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 7,
+            "k2": 0,
+            "new_len": 25
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxuXXXXXUUUxu",
+          "len": 23,
+          "keeps_D": true,
+          "r2_len": 16,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 7,
+            "k2": 6,
+            "new_len": 23
+          }
+        }
+      ],
+      "uniqueness": "canon_pair cyclic/inverse then slot order"
     },
     {
       "n": 6,
       "counts": {
+        "raw": 420,
         "unique": 276,
         "valid_pinch_children": 266,
-        "cyclic_D": 192,
-        "cyclic_Dinv": 64,
+        "pinch_applications": 552,
+        "cyclic_D": 207,
+        "cyclic_Dinv": 69,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 276,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 276,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 25,
+        "no_pinch_max_len": 27,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
-      "residues": []
+      "residues": [],
+      "no_pinch_children": [
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXXUxxxxxuuuXU",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 25
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXXUxxxxxxUXuuuX",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 27
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxuXXXXXXXuuXUU",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 7,
+            "k2": 0,
+            "new_len": 25
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxxuXXXXXXXXUUXuu",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 8,
+            "k2": 4,
+            "new_len": 27
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxxuXXXXXXXuXUUXu",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 8,
+            "k2": 5,
+            "new_len": 27
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXUxxxxxxUUxuu",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 25
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXXUxxxxxxxuuxUU",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 27
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXXUxxxxxxUxuuxU",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 27
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxxuXXXXXXXuxUUUx",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 8,
+            "k2": 0,
+            "new_len": 27
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxxuXXXXXXUUUxu",
+          "len": 25,
+          "keeps_D": true,
+          "r2_len": 18,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 8,
+            "k2": 6,
+            "new_len": 25
+          }
+        }
+      ],
+      "uniqueness": "canon_pair cyclic/inverse then slot order"
     },
     {
       "n": 7,
       "counts": {
+        "raw": 476,
         "unique": 316,
         "valid_pinch_children": 306,
-        "cyclic_D": 222,
-        "cyclic_Dinv": 74,
+        "pinch_applications": 632,
+        "cyclic_D": 237,
+        "cyclic_Dinv": 79,
         "cyclic_B": 0,
         "cyclic_Binv": 0,
-        "empty": 10,
+        "empty": 316,
         "empty_on_D_slot": 0,
-        "empty_on_B_slot": 10,
+        "empty_on_B_slot": 316,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
+        "n_no_pinch": 10,
+        "no_pinch_all_keep_D": true,
+        "no_pinch_min_len": 27,
+        "no_pinch_max_len": 29,
+        "all_rewrites_allowed": true,
         "all_round_trip": true
       },
-      "residues": []
+      "residues": [],
+      "no_pinch_children": [
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXXXUxxxxxxuuuXU",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 1,
+            "new_len": 27
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXXXUxxxxxxxUXuuuX",
+          "len": 29,
+          "keeps_D": true,
+          "r2_len": 22,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 29
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxxuXXXXXXXXuuXUU",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 8,
+            "k2": 0,
+            "new_len": 27
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxxxuXXXXXXXXXUUXuu",
+          "len": 29,
+          "keeps_D": true,
+          "r2_len": 22,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 9,
+            "k2": 4,
+            "new_len": 29
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxxxuXXXXXXXXuXUUXu",
+          "len": 29,
+          "keeps_D": true,
+          "r2_len": 22,
+          "move": {
+            "target": 2,
+            "jsign": 1,
+            "k1": 9,
+            "k2": 5,
+            "new_len": 29
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXXUxxxxxxxUUxuu",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 0,
+            "k2": 5,
+            "new_len": 27
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXXXUxxxxxxxxuuxUU",
+          "len": 29,
+          "keeps_D": true,
+          "r2_len": 22,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 2,
+            "new_len": 29
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "XXXXXXXXUxxxxxxxUxuuxU",
+          "len": 29,
+          "keeps_D": true,
+          "r2_len": 22,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 1,
+            "k2": 3,
+            "new_len": 29
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxxxuXXXXXXXXuxUUUx",
+          "len": 29,
+          "keeps_D": true,
+          "r2_len": 22,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 9,
+            "k2": 0,
+            "new_len": 29
+          }
+        },
+        {
+          "r1": "XuuuXUU",
+          "r2": "xxxxxxxuXXXXXXXUUUxu",
+          "len": 27,
+          "keeps_D": true,
+          "r2_len": 20,
+          "move": {
+            "target": 2,
+            "jsign": -1,
+            "k1": 9,
+            "k2": 6,
+            "new_len": 27
+          }
+        }
+      ],
+      "uniqueness": "canon_pair cyclic/inverse then slot order"
     }
   ],
   "probes": {
@@ -1658,8 +2624,10 @@
     "any_stored_primitive": false
   },
   "notes": [
+    "The associated-subgroup rewrite is not an AC1\u2013AC5 move.",
     "A valid pinch on D\u00b7B that is B's own BS pinch is not a C5 finish.",
-    "Depth-1 AC2 valid pinches are classified after one rewrite; residues listed if any after_cyc is not cyclic of D/D^{-1}/B/B^{-1}.",
+    "Uniqueness is canon_pair (cyclic/inverse of each row, then slot order).",
+    "No-pinch children are serialized with lengths; they keep D.",
     "Whitehead Aut / generator swap are C1 and are not expanded.",
     "Incoming C16 still has two Lemma-11 uses. Not a U124 solve."
   ]

@@ -127,11 +127,11 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
   pinch exponent `{−1}`; depth-1 AC2 reports valid pinches that C20
   shows are not progress.
 - **C20**: one associated-subgroup pinch after displayed `D·B^{±1}`
-  returns cyclic `D` or `D⁻¹`. The whole unique depth-1 AC2
-  neighbourhood is the same: every valid-pinch child pinches back to
-  `D`/`D⁻¹`, or the `B` row pinches to empty. Ten remaining children
-  keep `D` and lengthen `B`. Uniform on `n=2..7`.
-- C12 does not fire: `D` has Whitehead minimum 7 even with first-kind
-  permutations. Not a U124 solve.
+  returns cyclic `D` or `D⁻¹` (equality modulo `B`, not an AC move).
+  For `n=2..7` every valid pinch on the `canon_pair`-unique depth-1
+  AC2 neighbourhood rewrites to `D`/`D⁻¹` or empty on the `B` slot.
+  Ten remaining children keep `D` and lengthen `B`. C12 does not fire
+  (Whitehead minima 7 for `D` and `2n+3` for `B_n`).
+  `ingest/advisor_wave5.md` REVISE applied.
 - Still **0/124**. No certificate JSONL rows.
 

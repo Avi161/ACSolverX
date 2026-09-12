@@ -189,17 +189,49 @@ def classify_after_pinch(after_cyc: str, n: int) -> str:
     return "other"
 
 
-def depth1_pinch_roundtrips(n: int) -> dict:
-    """Every unique depth-1 AC2 child with a valid associated-subgroup pinch.
+def apply_all_valid_pinches(word: str, n: int) -> list[dict]:
+    """Every valid associated-subgroup rewrite on this spelling, not just the first."""
+    out = []
+    for occ in pinch_occurrences(word):
+        if not esc.associated_bs_pinch(occ["k"], occ["left"], occ["right"], n):
+            continue
+        after = rewrite_bs_pinch(occ, n)
+        rec = {
+            "k": occ["k"],
+            "left": occ["left"],
+            "right": occ["right"],
+            "start": occ["start"],
+        }
+        if after is None:
+            rec.update({"ok": False, "class": "pinch_failed"})
+        else:
+            after_cyc = cyc_reduce(after)
+            rec.update(
+                {
+                    "ok": True,
+                    "after_cyc": after_cyc,
+                    "class": classify_after_pinch(after_cyc, n),
+                }
+            )
+        out.append(rec)
+    return out
 
-    One pinch is applied to each newly valid row. A return to D or D^{-1}
-    is a round trip; anything else is recorded as a residue.
+
+def depth1_pinch_roundtrips(n: int) -> dict:
+    """Depth-1 ordinary AC2 neighbourhood of ⟨D, B⟩, n fixed.
+
+    Uniqueness is `canon_pair` (cyclic/inverse canonicalization of both
+    rows, then slot order). Every valid pinch occurrence on both rows of
+    every unique representative is rewritten. Raw children are counted
+    but not separately classified.
     """
     r1, r2 = D, esc.c19_identity(n)["product"]
     seen = set()
     counts = {
+        "raw": 0,
         "unique": 0,
         "valid_pinch_children": 0,
+        "pinch_applications": 0,
         "cyclic_D": 0,
         "cyclic_Dinv": 0,
         "cyclic_B": 0,
@@ -209,57 +241,82 @@ def depth1_pinch_roundtrips(n: int) -> dict:
         "empty_on_B_slot": 0,
         "other": 0,
         "pinch_failed": 0,
+        "disallowed_rewrites": 0,
     }
     residues = []
+    no_pinch = []
+    allowed = {"cyclic_D", "cyclic_Dinv", "cyclic_B", "cyclic_Binv", "empty"}
     for a, b, move in children(r1, r2):
+        counts["raw"] += 1
         key = canon_pair(a, b)
         if key in seen:
             continue
         seen.add(key)
         counts["unique"] += 1
+        child_had_valid = False
+        child_keeps_d = tw.same_cyclic(a, D)
         for word, slot in ((a, "r1"), (b, "r2")):
-            pinches = esc.split_stable_pinches(word, "u")
-            if not any(
-                esc.associated_bs_pinch(p["k"], p["left"], p["right"], n)
-                for p in pinches
-            ):
+            rewrites = apply_all_valid_pinches(word, n)
+            if not rewrites:
                 continue
+            child_had_valid = True
+            for rec in rewrites:
+                counts["pinch_applications"] += 1
+                if not rec["ok"]:
+                    counts["pinch_failed"] += 1
+                    counts["disallowed_rewrites"] += 1
+                    continue
+                klass = rec["class"]
+                counts[klass] += 1
+                if klass == "empty":
+                    counts["empty_on_D_slot" if slot == "r1" else "empty_on_B_slot"] += 1
+                    if slot == "r1":
+                        counts["disallowed_rewrites"] += 1
+                elif klass not in allowed:
+                    counts["disallowed_rewrites"] += 1
+                if klass == "other" and len(residues) < 12:
+                    residues.append(
+                        {
+                            "slot": slot,
+                            "word": word,
+                            "after_cyc": rec.get("after_cyc"),
+                            "k": rec["k"],
+                            "class": klass,
+                            "move": move,
+                        }
+                    )
+        if child_had_valid:
             counts["valid_pinch_children"] += 1
-            applied = apply_first_valid_pinch(word, n)
-            if not applied["ok"]:
-                counts["pinch_failed"] += 1
-                residues.append(
-                    {
-                        "slot": slot,
-                        "word": word,
-                        "class": "pinch_failed",
-                        "move": move,
-                    }
-                )
-                continue
-            klass = classify_after_pinch(applied["after_cyc"], n)
-            counts[klass] += 1
-            if klass == "empty":
-                counts["empty_on_D_slot" if slot == "r1" else "empty_on_B_slot"] += 1
-            if klass == "other" and len(residues) < 12:
-                residues.append(
-                    {
-                        "slot": slot,
-                        "word": word,
-                        "after_cyc": applied["after_cyc"],
-                        "k": applied["k"],
-                        "class": klass,
-                        "move": move,
-                    }
-                )
-            break
-    counts["all_round_trip"] = (
-        counts["other"] == 0
+        elif len(no_pinch) < 20:
+            no_pinch.append(
+                {
+                    "r1": a,
+                    "r2": b,
+                    "len": len(cyc_reduce(a)) + len(cyc_reduce(b)),
+                    "keeps_D": child_keeps_d,
+                    "r2_len": len(cyc_reduce(b)),
+                    "move": move,
+                }
+            )
+    counts["n_no_pinch"] = counts["unique"] - counts["valid_pinch_children"]
+    counts["no_pinch_all_keep_D"] = all(row["keeps_D"] for row in no_pinch) if no_pinch else False
+    counts["no_pinch_min_len"] = min((row["len"] for row in no_pinch), default=None)
+    counts["no_pinch_max_len"] = max((row["len"] for row in no_pinch), default=None)
+    counts["all_rewrites_allowed"] = (
+        counts["disallowed_rewrites"] == 0
+        and counts["other"] == 0
         and counts["pinch_failed"] == 0
         and counts["empty_on_D_slot"] == 0
         and counts["valid_pinch_children"] > 0
     )
-    return {"n": n, "counts": counts, "residues": residues}
+    counts["all_round_trip"] = counts["all_rewrites_allowed"]
+    return {
+        "n": n,
+        "counts": counts,
+        "residues": residues,
+        "no_pinch_children": no_pinch,
+        "uniqueness": "canon_pair cyclic/inverse then slot order",
+    }
 
 
 def conjugator_to_cyclic_core(word: str) -> tuple[str, str]:
@@ -561,17 +618,30 @@ def main() -> dict:
     depth1 = [depth1_pinch_roundtrips(n) for n in range(2, 8)]
     probes = family_probe()
     other_residues = sum(r["counts"]["other"] for r in depth1)
+    b_mins = {
+        r["n"]: r["C19_B_whitehead"]["first_kind_minimum_total"]
+        for r in probes["family"]
+    }
     summary = {
         "round_trip_ok": round_ok,
         "n_checked": len(identities),
+        "claim_scope": "displayed identities any n>=2 by free cancellation; neighbourhood n=2..7",
+        "pinch_is_not_an_ac_move": True,
         "D_primitive": probes["D_whitehead"]["primitive"],
         "D_whitehead_min": probes["D_whitehead"]["minimum_total"],
         "D_first_kind_primitive": probes["D_whitehead"]["first_kind_primitive"],
         "D_first_kind_min": probes["D_whitehead"]["first_kind_minimum_total"],
+        "B_first_kind_minima": b_mins,
         "D_nielsen_found": (probes["D_whitehead"].get("nielsen") or {}).get("found"),
         "D_nielsen_states": (probes["D_whitehead"].get("nielsen") or {}).get("states"),
+        "depth1_all_rewrites_allowed": all(
+            r["counts"]["all_rewrites_allowed"] for r in depth1
+        ),
         "depth1_all_round_trip": all(r["counts"]["all_round_trip"] for r in depth1),
         "depth1_other_residues": other_residues,
+        "depth1_no_pinch_all_keep_D": all(
+            r["counts"]["no_pinch_all_keep_D"] for r in depth1
+        ),
         "depth1_counts": {r["n"]: r["counts"] for r in depth1},
         "any_S_c12_finish": probes["any_S_c12_finish"],
         "any_C19_c12_finish": probes["any_C19_c12_finish"],
@@ -583,18 +653,22 @@ def main() -> dict:
     report = {
         "summary": summary,
         "statement": (
-            "For n=2..7, the first valid associated-subgroup pinch on each of "
-            "the freely reduced products D·B, B·D, D·B^{-1}, B·D^{-1} returns "
-            "a cyclic conjugate of D or D^{-1}. This is an AC2 round trip, "
-            "not Britton progress on D."
+            "For n>=2 the four displayed freely reduced products D·B, B·D, "
+            "D·B^{-1}, B·D^{-1} satisfy: each listed associated-subgroup "
+            "rewrite returns a cyclic conjugate of D or D^{-1}. This is "
+            "equality modulo B (a BS/Britton preflight), not an AC1–AC5 "
+            "move. For n=2..7, every valid pinch occurrence on both rows of "
+            "every canon_pair-unique depth-1 AC2 child rewrites to cyclic D, "
+            "D^{-1}, B, B^{-1}, or empty; empty occurs only on the B slot."
         ),
         "identities": identities,
         "depth1_pinches": depth1,
         "probes": probes,
         "notes": [
+            "The associated-subgroup rewrite is not an AC1–AC5 move.",
             "A valid pinch on D·B that is B's own BS pinch is not a C5 finish.",
-            "Depth-1 AC2 valid pinches are classified after one rewrite; residues "
-            "listed if any after_cyc is not cyclic of D/D^{-1}/B/B^{-1}.",
+            "Uniqueness is canon_pair (cyclic/inverse of each row, then slot order).",
+            "No-pinch children are serialized with lengths; they keep D.",
             "Whitehead Aut / generator swap are C1 and are not expanded.",
             "Incoming C16 still has two Lemma-11 uses. Not a U124 solve.",
         ],
@@ -606,6 +680,8 @@ def main() -> dict:
     print(f"wrote {path}")
     if not round_ok:
         raise SystemExit(2)
+    if not summary["depth1_all_rewrites_allowed"]:
+        raise SystemExit(3)
     return report
 
 

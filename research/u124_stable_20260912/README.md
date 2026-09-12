@@ -66,7 +66,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
    is coordinator-replayed in `code/theory_wave1_replay.py`. C19 is an
    elementary length-3 drop on the δ=−1 C16 endpoint; C20 shows that
-   depth-1 AC2 plus one Britton pinch on that pair is a round trip.
+   a Britton preflight after depth-1 AC2 on that pair returns `D` or
+   `D^{-1}` (not an AC move, not C5 progress).
    Still 0/124.
 
 ## File ownership
