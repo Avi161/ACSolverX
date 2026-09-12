@@ -526,3 +526,41 @@ def test_c27_archival_k4_identities():
         assert summary["independent_checker"] is False
         assert summary["solved_u124"] == 0
 
+
+def test_c28_depth2_ac2_identities():
+    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(CODE))
+    import c28_depth2_ac2 as c28  # type: ignore
+    import ms_template_identities as ms  # type: ignore
+    from experiments.equivalence_classes.lib.words import cyc_reduce, inv, rot
+    from u124_census import one_occurrence_cyclic, two_block_shape
+
+    for a, b in (("x", "Yxx"), ("xyxy", "YX"), ("YXXXYxx", "YYYYXyyyx")):
+        aa, bb = rot(a, 1), rot(inv(b), 2)
+        assert c28.concat_cyc(aa, bb) == cyc_reduce(aa + bb)
+        assert c28.one_occ_reduced(cyc_reduce(a)) == one_occurrence_cyclic(a)
+        assert c28.two_block_reduced(cyc_reduce(a)) == two_block_shape(a)
+    assert c28.children_agree("x", "xy")
+    assert c28.children_agree(*ms.parametric_p(2, -1))
+    ctrl = c28.planted()
+    assert ctrl["ok"]
+    assert ctrl["hit"]["depth"] == 1
+    assert ctrl["hit"]["drop"] > 0
+    assert ctrl["miss_drop"] == 0
+    rec = c28.scan_depth2("P[2,-1]", *ms.parametric_p(2, -1))
+    assert rec["n_d1_unique"] > 0
+    assert rec["n_d1_drop_unique"] == 0
+    json_path = ROOT / "research/u124_stable_20260912/tables/c28_depth2_ac2.json"
+    if json_path.exists():
+        artifact = json.loads(json_path.read_text())
+        summary = artifact["summary"]
+        assert summary["planted_ok"]
+        assert summary["children_fast_agrees"]
+        assert summary["parametric_n"] == 36
+        assert summary["initial_n_rows"] == 124
+        assert summary["initial_n_changed_from_best"] == 36
+        assert summary["independent_checker"] is False
+        assert summary["solved_u124"] == 0
+        assert summary["d2_counts_are_unique_presentations"]
+        assert summary["d2_raw_is_enumerated_edges"]
+

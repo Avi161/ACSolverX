@@ -1075,7 +1075,7 @@ prefix of the displayed factor. C27.2 is restore-preserving AC3+AC2
 as in C22. No C0.
 
 **What this does not rule out.** Depth ≥ 2 AC2 on archival or best
-spellings. `k=L1+2t` for `t≥2` or for cells with `L1≠2`. `L1≥8`.
+spellings (C28). `k=L1+2t` for `t≥2` or for cells with `L1≠2`. `L1≥8`.
 Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Longer conjugators. Materializing
 Lemma 11.
 
@@ -1085,5 +1085,34 @@ Lemma 11.
 **Audit.** `code/c27_archival_k4.py`, `tables/c27_archival_k4.json`.
 Same-code replay plus planted AC2 and typed-4-tuple controls.
 `independent_checker=false`. `ingest/advisor_wave12.md` **APPROVE**.
+
+---
+
+## C28. Depth-2 ordinary AC2 on archival initial and parametric families — IDENTITY-CHECKED NEGATIVE (census pending)
+
+**C28.1.** Depth ≤ 2 in the C13/C27.1 neighbourhood: each step is
+**one AC2**, with cyclic orientations of both factors realized as AC3
+by a prefix (not a longer AC3–AC2 composite). Unique depth-1 children
+are scored against the input (a replay of C27.1 / C13), then each is
+expanded once. Unique grandchildren are scored for strict cyclic-length
+drop versus the input, new one-occurrence, and new two-block–both. On
+the 36 μ-floor rows, a child or grandchild whose cyclic length is at
+most the stored best length is compared by `canon_pair` to the
+best-table spelling.
+
+**Expansion.** Two ordinary AC2 steps; rotations are AC3 by a prefix.
+No Aut, no C0. A length drop would be a two-move AC1–AC3 path.
+
+**What this does not rule out.** Depth ≥ 3. Heap search. `k=L1+2t`
+for `t≥2`. `L1≥8`. Gate 1 `ξ` at `k≥7`. C15 `k≥5`. Lemma 11.
+
+**U124.** All 124 archival initial rows and parametric `P`/`Q`/Family A
+(`n=2..7`). **Not a solve** unless a drop is found and expanded.
+
+**Audit.** `code/c28_depth2_ac2.py`, `tables/c28_depth2_ac2.json`.
+`children_fast` is junction cyclic reduction, checked equal to
+`elementary_ac2_scan.children` including move triples. Same-code
+replay plus planted `⟨x,xy⟩` / `⟨x,y⟩`. `independent_checker=false`.
+Census not yet run.
 
 
