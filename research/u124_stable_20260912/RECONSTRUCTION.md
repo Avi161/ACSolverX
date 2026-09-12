@@ -245,8 +245,15 @@ SURF notes prioritized **algorithmic** progress and treated length ≤ 12 as a p
 ## Wave 15 (C29 YXXyxYx family, 2026-09-12)
 
 - Eleven best-table rows with donor `YXXyxYx`: `y ≡ D^{-1}`, `L1=1`,
-  even `k` impossible, `k=1` blocked by `|D|=7`. k=3 nine-config census
-  not yet run. Still **0/124**. No certificate JSONL rows.
+  even `k` impossible, `k=1` blocked by `|D|=7`. k=3 nine-config census:
+  `1,650,843` typed Cartesian products, equal to typed size, observed
+  min length 7, no hit on `{y, Xyx, xyX}`. A hit would have been a
+  normal-closure candidate, not a C12 primitive. Five companions are
+  C7 Aut-minimal P floors; that Aut-orbit is not a solve. The free
+  identity `D · Xyx = YXXyxx` is not an AC2. Defining word `x` has
+  companion-dependent L1 ∈ {2,…,7} and is leftover. Still **0/124**.
+  No certificate JSONL rows. `independent_checker=false`.
+  Advisor audit pending.
 
 
 

@@ -1137,33 +1137,45 @@ in 50s slices under the 60s process guard.
 
 ---
 
-## C29. `YXXyxYx` family: `y ≡ D^{-1}` then k=3 ncl — IDENTITY-CHECKED NEGATIVE (census pending)
+## C29. `YXXyxYx` family: `y ≡ D^{-1}` then k=3 ncl — IDENTITY-CHECKED NEGATIVE
 
 **C29.1 (abelian).** Compact donor `D = YXXyxYx` has exponent `(0,-1)`
 and cyclic length 7. On every unimodular companion the unique
 combination of `y` (and of `{Xyx, xyX}`) against `(D, C)` is
 `(α,β)=(-1,0)`, so `L1=1`. Even `k` is abelian-impossible. `k=1` is
 blocked by `|D|=7`. Five companions are the C7 Aut-minimal floors
-`Y^n X y^2 x^2` (`n=3..7`); that Aut-orbit is not a solve.
+`Y^n X y^2 x^2` (`n=3..7`): aca_120, 34, 58, 81, 97; that Aut-orbit is
+not a solve.
 
 **C29.2 (k=3 nine-config).** Same signed-type Cartesian products as
 C23/C25.3, with `R^+ = D^{-1}` and `S = C`, prefix/one-letter
 conjugators, per-type unique conjugates. Targets `{y, Xyx, xyX}`.
-Inverse class by reversing and inverting factors. Census not yet run.
+Inverse class by reversing and inverting factors. Typed Cartesian
+enumeration: `1,650,843` products, equal to the typed size, observed
+minimum free length 7 on every row, none equal to a target. Per-row
+products: aca_0 181917; aca_3 152361; aca_34 126225; aca_36 126225;
+aca_53 181917; aca_58 152361; aca_81 181917; aca_97 215109; aca_118
+103293; aca_119 126225; aca_120 103293. Counts are nine-config typed
+sizes after per-type unique conjugates, not `|F|^3`. Observed
+minimum 7 is a census fact, not a length theorem. None of the eleven
+companions is `bs_mm1_shape`.
 
 **Expansion.** Restore-preserving AC3+AC2 as in C22. No C0. A hit would
-be a **normal-closure candidate**, not a C12 primitive. The free
-identity `D · x^{-1}yx = YXXyxx` is not an AC2.
+be a **normal-closure candidate**, not a C12 primitive or an
+AC-reachable generator. The free identity `D · x^{-1}yx = YXXyxx` is
+not an AC2 (`Xyx` is not a donor; same caveat as C22.6).
 
-**What this does not rule out.** `k=5,7,…`. Longer conjugators.
-Defining word `x` (L1 varies by companion). Depth ≥ 3 AC2. Lemma 11.
+**What this does not rule out.** `k=5,7,…`. Longer conjugators,
+including conjugators involving `u`. Defining word `x` (companion
+L1 ∈ {2,…,7}; leftover C30). Depth ≥ 3 AC2. Lemma 11. An explicit
+AC1–AC5 path from a future ncl hit.
 
 **U124.** Eleven best-table rows aca_0,3,34,36,53,58,81,97,118,119,120.
-**Not a solve.**
+**Not a solve.** Bounded negative for this typed k=3 pool.
 
 **Audit.** `code/c29_yxx_family.py`, `tables/c29_yxx_family.json`.
-Same-code replay plus planted nine-config control.
-`independent_checker=false`. Census not yet run.
+Same-code deterministic replay plus planted nine-config control.
+`independent_checker=false`. Advisor audit pending.
 
 
 

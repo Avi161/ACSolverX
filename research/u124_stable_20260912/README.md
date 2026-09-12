@@ -70,7 +70,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
    C27: `.../code/c27_archival_k4.py`. C28:
    `.../code/c28_depth2_ac2.py` (re-run under the 60s guard until
    `census_complete`; each invocation resumes for 50s). C29:
-   `.../code/c29_yxx_family.py`.
+   `.../code/c29_yxx_family.py` (full census) or `--annotate-existing`.
+   Do not re-run the 1.65M nine-config census.
 5. Treat only independently replayed certificates as progress.
 6. Advisor reviews live in `ingest/advisor_*.md`. Theory drafts live in
    `ingest/theory_*.md` until they pass independent replay. Catalogue C16–C18
@@ -105,7 +106,8 @@ Worktrees for study (read-only): `/tmp/acx-worktrees/{proofs,theorem,leftover,fa
     124 archival initial rows (36 μ-floor spellings included; 19,066,394
     unique grandchildren, 0 length drops) and on parametric P/Q/Family A
     (36 pairs). Advisor REVISE applied. C29: `YXXyxYx` family `y ≡ D^{-1}`
-    (`L1=1`); k=3 census pending. Still 0/124.
+    (`L1=1`); k=3 nine-config misses (`1,650,843` products, observed
+    min length 7, no hit). Still 0/124.
 
 ## File ownership
 

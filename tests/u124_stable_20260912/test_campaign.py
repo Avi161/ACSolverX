@@ -593,19 +593,42 @@ def test_c29_yxx_family_identities():
     bridge = c29.free_bridge()
     assert bridge["product_is_YXXyxx"]
     assert bridge["not_an_ac2"]
+    ab = c29.abelian_row("aca_120", "YYYXyyxx")
+    assert ab["y_L1"] == 1
+    assert ab["y_combo"]["a"] == -1 and ab["y_combo"]["b"] == 0
+    assert ab["Xyx_same_as_y"] and ab["xyX_same_as_y"]
+    assert ab["k1_len_obstruction"] and ab["even_k_forbidden"]
+    assert ab["is_p_floor_companion"]
+    assert ab["x_L1"] == 2
     json_path = ROOT / "research/u124_stable_20260912/tables/c29_yxx_family.json"
-    if json_path.exists():
-        artifact = json.loads(json_path.read_text())
-        summary = artifact["summary"]
-        assert summary["n_rows"] == 11
-        assert summary["all_y_L1_1"]
-        assert summary["all_y_combo_minus_one_zero"]
-        assert summary["planted_ok"]
-        assert summary["independent_checker"] is False
-        assert summary["solved_u124"] == 0
-        if "three_n_products" in summary and summary["three_n_products"]:
-            assert not summary["three_any_hit"]
-            assert summary["three_products_equal_typed"]
-            assert summary["three_all_min_len_ge_7"]
-            assert summary["n_p_floor_companions"] == 5
+    artifact = json.loads(json_path.read_text())
+    summary = artifact["summary"]
+    assert summary["n_rows"] == 11
+    assert summary["all_y_L1_1"]
+    assert summary["all_y_combo_minus_one_zero"]
+    assert summary["planted_ok"]
+    assert summary["independent_checker"] is False
+    assert summary["solved_u124"] == 0
+    assert not summary["three_any_hit"]
+    assert summary["three_products_equal_typed"]
+    assert summary["three_all_min_len_ge_7"]
+    assert summary["three_min_len"] == 7
+    assert summary["three_n_products"] == 1_650_843
+    assert summary["three_n_typed_tuples"] == 1_650_843
+    assert summary["n_p_floor_companions"] == 5
+    assert summary["counts_are_nine_config_cartesian"]
+    per_row = {row["id"]: row["n_products"] for row in artifact["three_factor"]}
+    assert per_row == {
+        "aca_0": 181917,
+        "aca_3": 152361,
+        "aca_34": 126225,
+        "aca_36": 126225,
+        "aca_53": 181917,
+        "aca_58": 152361,
+        "aca_81": 181917,
+        "aca_97": 215109,
+        "aca_118": 103293,
+        "aca_119": 126225,
+        "aca_120": 103293,
+    }
 
