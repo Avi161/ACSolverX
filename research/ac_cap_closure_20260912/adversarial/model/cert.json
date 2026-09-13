@@ -1,0 +1,74 @@
+{
+ "initial": [
+  "xy",
+  "xxxxyyy"
+ ],
+ "cap": 7,
+ "closed": false,
+ "solved": true,
+ "states": 249,
+ "max_states": 300000,
+ "min_total_length_seen": 2,
+ "frontier_size_at_stop": 144,
+ "seconds": 0.0017300879999311292,
+ "nodes_per_second": 60690.55447132158,
+ "popped": 105,
+ "budget_exhausted": false,
+ "engine": "capbfs-numba",
+ "path": [
+  {
+   "i": 1,
+   "j": 0,
+   "e": -1,
+   "a": 0,
+   "p": 0,
+   "w": ""
+  },
+  {
+   "i": 1,
+   "j": 0,
+   "e": -1,
+   "a": 0,
+   "p": 0,
+   "w": ""
+  },
+  {
+   "i": 1,
+   "j": 0,
+   "e": -1,
+   "a": 0,
+   "p": 0,
+   "w": ""
+  },
+  {
+   "i": 1,
+   "j": 0,
+   "e": -1,
+   "a": 0,
+   "p": 0,
+   "w": ""
+  }
+ ],
+ "path_states": [
+  [
+   "xy",
+   "xxxxyyy"
+  ],
+  [
+   "xy",
+   "xxxyy"
+  ],
+  [
+   "xy",
+   "xxy"
+  ],
+  [
+   "x",
+   "xy"
+  ],
+  [
+   "x",
+   "y"
+  ]
+ ]
+}
