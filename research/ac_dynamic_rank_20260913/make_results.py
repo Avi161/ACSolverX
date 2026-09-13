@@ -69,8 +69,8 @@ def main(files):
                        f' | {tot["uns"]} | {tot["ver"]} | | {tot["cpu"]:,.1f} |')
         # per-row table
         out.append('\n### Per row (pops to solve; `-` = unsolved at the budget)\n')
-        out.append('| row | bin | r1, r2 | L | greedy nodes (1M budget) | ' + ' | '.join(arms) + ' | dyn path (defs/elims/prods, max rank) |')
-        out.append('|---|---:|---|---:|---:|' + '---:|' * len(arms) + '---|')
+        out.append('| row | bin | r1, r2 | L | greedy nodes (1M budget) | ' + ' | '.join(arms) + ' | dyn min L | dyn path (defs/elims/prods, max rank) |')
+        out.append('|---|---:|---|---:|---:|' + '---:|' * len(arms) + '---:|---|')
         by = defaultdict(dict)
         for r in ladder:
             by[r['name']][r['arm']] = r
@@ -88,7 +88,8 @@ def main(files):
                 c = dyn['certificate']
                 cert = f"{c['steps']} ({c['defines']}/{c['eliminates']}/{c['products']}, {c['max_rank']})"
             out.append(f"| {n} | {any_r['bin']} | `{any_r['r1']}`, `{any_r['r2']}` | {any_r['root_length']} | "
-                       f"{any_r['greedy_nodes_1M'] if any_r['greedy_nodes_1M'] is not None else '-'} | " + ' | '.join(cells) + f' | {cert} |')
+                       f"{any_r['greedy_nodes_1M'] if any_r['greedy_nodes_1M'] is not None else '-'} | " + ' | '.join(cells) +
+                       f" | {dyn['min_total_length'] if dyn else '-'} | {cert} |")
     if u124:
         out.append('\n## U124 rows\n')
         for arm in sorted({r['arm'] for r in u124}):
@@ -124,8 +125,19 @@ def main(files):
             }
             for name, f in feats.items():
                 a = [f(r) for r in ur]; b = [f(r) for r in lr]; c = [f(r) for r in hard]
-                out.append(f'| {arm} | {name} | {auc(a, b):.3f} | {auc(a, c):.3f} | {sum(a)/len(a):.2f} | {sum(b)/len(b):.2f} | '
+                out.append(f'| {arm} | {name} | {auc(a, b):.4f} | {auc(a, c):.4f} | {sum(a)/len(a):.2f} | {sum(b)/len(b):.2f} | '
                            f'{(sum(c)/len(c)) if c else float("nan"):.2f} |')
+            ratio = lambda r: r['min_total_length'] / r['root_length']
+            out.append(f'\n### Threshold on `min total length / L` (arm `{arm}`)\n')
+            out.append('| threshold t | solved rows with ratio < t (of %d) | solved bins 6-9 with ratio < t (of %d) | U124 rows with ratio < t (of %d) |' % (len(lr), len(hard), len(ur)))
+            out.append('|---:|---:|---:|---:|')
+            for t in (0.70, 0.75, 0.78, 0.80, 0.81, 0.85, 0.90, 1.00):
+                out.append(f'| {t:.2f} | {sum(ratio(r) < t for r in lr)} | {sum(ratio(r) < t for r in hard)} | {sum(ratio(r) < t for r in ur)} |')
+            out.append(f'\nU124 ratio range: {min(map(ratio, ur)):.3f} .. {max(map(ratio, ur)):.3f}; '
+                       f'solved-ladder ratio range: {min(map(ratio, lr)):.3f} .. {max(map(ratio, lr)):.3f} '
+                       f'(unsolved solved-ladder rows only: {min(ratio(r) for r in lr if not r["solved"]):.3f} .. {max(ratio(r) for r in lr if not r["solved"]):.3f}).')
+            out.append('\nU124 shortening `L - min total length` histogram: ' +
+                       ', '.join(f'{k}: {v}' for k, v in sorted(__import__("collections").Counter(r["root_length"] - r["min_total_length"] for r in ur).items())))
     print('\n'.join(out))
 
 

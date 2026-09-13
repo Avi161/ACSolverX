@@ -76,6 +76,16 @@ def job(args):
                 'cpu_seconds': res['cpu_seconds'], 'wall_seconds': time.time() - t0,
                 'params': res['params'], 'root_relabel': None if prefix else D.json_relabel(res['root_relabel']),
                 'path': None, 'verified': None})
+    if row['panel'] == 'u124' and not res['solved']:
+        rec['min_state'] = [list(w) for w in res['min_state']]
+        rec['min_path'] = D.json_path(res['min_path'])
+        try:
+            V.replay(rec['root'], json.loads(json.dumps(rec['min_path'])), rec['params']['min_uses'],
+                     D.json_relabel(res['root_relabel']), rec['min_state'])
+            rec['min_verified'] = True
+        except V.Failure as e:
+            rec['min_verified'] = False
+            rec['min_error'] = str(e)
     if arm == 'tri':
         rec['tri_root'] = [list(w) for w in start]
         rec['tri_rank'] = len(start)

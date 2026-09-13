@@ -90,3 +90,20 @@ rows (bins 7-8) close at 16 exactly like U124. MS(n, w) with n >= 7 has a relato
 2n+3 >= 17 and is out of reach in this spelling (4 U124 rows, 12 solved rows). Minimal caps
 are far below the mrl=48 the heuristic certificates use. Records and tables in
 `research/ac_cap_closure_20260912/records/separator/`.
+
+### [2026-09-13] Definitions and eliminations as search moves beat fixed-rank search, and the reachable compression separates U124 from every solved row
+[MECHANISM] `research/ac_dynamic_rank_20260913/dynrank.py` searches presentations of any rank
+with three moves: ordinary rotation products, `define` (new generator for a repeated digram,
+rank+1) and `eliminate` (a generator occurring once in some relator is substituted away,
+rank-1); the solve condition is the empty presentation, and define/eliminate are stable AC
+composites (Lemma 11 of arXiv:2408.15332), so a certificate proves *stable* AC-triviality
+with those steps unexpanded. At 2,000 pops the dynamic arm solves 42/60 ladder rows against
+34/60 for the same engine held at rank two (12 rows in bins 5-9 only the dynamic arm solves,
+including two bin-9 rows that plain greedy needs 574k nodes for; 4 bin-5 rows only the
+control solves) and 25/60 for a search from the all-triangle root with a fixed dictionary:
+triangulating and then searching hurts, letting the dictionary change throughout helps.
+No U124 row solves (0/124). The feature `min total length reached / L` is a near-perfect
+separator: every U124 row stays at >= 0.80 of its length (the same floor the 3-hour
+shortening campaign hit on the same four rows), every solved row drops to <= 0.80 (59/60
+strictly below, hard bins 6-9 all <= 0.762) within the same 2,000 pops. Empirical, not a
+proof: the exhaustive dynamic-rank closure explodes (>100k states at zero slack for bin 4).

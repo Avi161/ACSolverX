@@ -163,9 +163,11 @@ def apply_relabel(ws, rl):
     return norm(out)
 
 
-def replay(root, path, min_uses=2, root_relabel=None):
+def replay(root, path, min_uses=2, root_relabel=None, target=None):
     """Replay a certificate; raises ``Failure``.  ``root`` is a list of words,
-    ``root_relabel`` the renaming applied to the root before the first step."""
+    ``root_relabel`` the renaming applied to the root before the first step.
+    With ``target`` given the path must end at that presentation (a shortening
+    witness) instead of at the empty presentation."""
     state = apply_relabel(norm(tuple(tuple(w) for w in root)), root_relabel)
     n_def = n_elim = n_prod = 0
     max_rank = len(state)
@@ -191,7 +193,10 @@ def replay(root, path, min_uses=2, root_relabel=None):
             raise Failure(f'step {step_no} ({kind}): replayed state differs from stored state')
         state = child
         max_rank = max(max_rank, len(state))
-    if state != ():
+    if target is not None:
+        if state != norm(tuple(tuple(w) for w in target)):
+            raise Failure('path does not end at the stated target')
+    elif state != ():
         raise Failure('path does not end at the empty presentation')
     return {'steps': len(path), 'products': n_prod, 'defines': n_def, 'eliminates': n_elim,
             'max_rank': max_rank}

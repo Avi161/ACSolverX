@@ -1,0 +1,13 @@
+[1/13      32s]    aca_6 bin=None dyn            solved=False verified=None pops= 2000 states= 179955 minL=16 maxrank=6 path=None cpu=  31.3s
+[2/13      33s]    aca_5 bin=None dyn            solved=False verified=None pops= 2000 states= 181317 minL=16 maxrank=5 path=None cpu=  32.0s
+[3/13      73s]   aca_15 bin=None dyn            solved=False verified=None pops= 2000 states= 215209 minL=16 maxrank=5 path=None cpu=  38.7s
+[4/13      79s]    aca_8 bin=None dyn            solved=False verified=None pops= 2000 states= 306698 minL=14 maxrank=5 path=None cpu=  44.0s
+[5/13     113s]   aca_26 bin=None dyn            solved=False verified=None pops= 2000 states= 185066 minL=16 maxrank=5 path=None cpu=  32.6s
+[6/13     123s]   aca_25 bin=None dyn            solved=False verified=None pops= 2000 states= 286582 minL=16 maxrank=6 path=None cpu=  48.5s
+[7/13     146s]   aca_28 bin=None dyn            solved=False verified=None pops= 2000 states= 182827 minL=16 maxrank=5 path=None cpu=  31.9s
+[8/13     159s]   aca_29 bin=None dyn            solved=False verified=None pops= 2000 states= 227904 minL=15 maxrank=5 path=None cpu=  34.9s
+[9/13     177s]   aca_30 bin=None dyn            solved=False verified=None pops= 2000 states= 184023 minL=15 maxrank=5 path=None cpu=  30.0s
+[10/13     187s]   aca_31 bin=None dyn            solved=False verified=None pops= 2000 states= 146275 minL=15 maxrank=5 path=None cpu=  25.5s
+[11/13     219s]   aca_53 bin=None dyn            solved=False verified=None pops= 2000 states= 176636 minL=16 maxrank=5 path=None cpu=  31.7s
+[12/13     233s]   aca_35 bin=None dyn            solved=False verified=None pops= 2000 states= 315444 minL=17 maxrank=5 path=None cpu=  53.9s
+[13/13     268s]   aca_66 bin=None dyn            solved=False verified=None pops= 2000 states= 268394 minL=17 maxrank=5 path=None cpu=  48.8s

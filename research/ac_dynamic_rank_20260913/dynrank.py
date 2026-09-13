@@ -441,6 +441,7 @@ def best_first(root, *, cap, ceiling, pops, allow_define=True, allow_eliminate=T
     popped = generated = 0
     solved = None
     best_len = total_length(key)
+    best_idx = 0
     max_rank = len(key)
     if len(key) == 0:
         solved = 0
@@ -460,24 +461,29 @@ def best_first(root, *, cap, ceiling, pops, allow_define=True, allow_eliminate=T
             seen[ckey] = len(records)
             records.append({'words': ckey, 'parent': index, 'event': event, 'relabel': rl})
             child = len(records) - 1
-            best_len = min(best_len, total_length(ckey))
+            if total_length(ckey) < best_len:
+                best_len, best_idx = total_length(ckey), child
             max_rank = max(max_rank, len(ckey))
             if len(ckey) == 0:
                 solved = child
                 break
             heapq.heappush(heap, (prio(ckey), child))
-    path = None
-    if solved is not None:
-        path = []
-        idx = solved
+
+    def path_to(target):
+        out = []
+        idx = target
         while records[idx]['parent'] is not None:
             rec = records[idx]
-            path.append({'event': rec['event'], 'relabel': rec['relabel'], 'after': rec['words']})
+            out.append({'event': rec['event'], 'relabel': rec['relabel'], 'after': rec['words']})
             idx = rec['parent']
-        path.reverse()
+        out.reverse()
+        return out
+
+    path = path_to(solved) if solved is not None else None
     return {'root': root, 'root_relabel': relabel_event, 'root_key': key,
             'solved': solved is not None, 'pops': popped, 'generated': generated,
             'states': len(records), 'min_total_length': best_len, 'max_rank': max_rank,
+            'min_state': records[best_idx]['words'], 'min_path': path_to(best_idx),
             'path_length': len(path) if path is not None else None, 'path': path,
             'cpu_seconds': time.process_time() - t0,
             'params': {'cap': cap, 'ceiling': ceiling, 'pops': pops, 'allow_define': allow_define,
