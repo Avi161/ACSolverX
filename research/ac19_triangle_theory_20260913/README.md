@@ -19,6 +19,7 @@ counted benchmark on the frozen hard panel and easy controls.
 | `verify.py` | independent replayer: re-derives the lemma checks and replays every arm's path with separate word code |
 | `make_results.py` | renders the tables in `RESULTS.md` from the JSON records |
 | `bench_cap45_p60.json`, `bench_cap6_p60.json` | the records |
+| `separator_probe.py`, `separator_probe.json` | the 60-row solved ladder vs the 124 U124 rows through the same pipeline; AUC per feature (no separation) |
 | `RESULTS.md` | the numbers and the conclusion |
 
 Reproduce (from the repository root):
@@ -29,6 +30,7 @@ python3 run_panel.py --caps 4,5 --pops 60 --beam 48 --out bench_cap45_p60.json
 python3 run_panel.py --caps 6   --pops 60 --beam 48 --out bench_cap6_p60.json
 python3 verify.py bench_cap45_p60.json bench_cap6_p60.json
 python3 make_results.py bench_cap45_p60.json bench_cap6_p60.json
+python3 separator_probe.py
 ```
 
 Scope: fixed rank, fixed declared basis, ordinary AC normal-product

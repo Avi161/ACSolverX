@@ -10,6 +10,43 @@ import make_results
 HERE = Path(__file__).resolve().parent
 
 
+def separator_section():
+    path = HERE / 'separator_probe.json'
+    if not path.exists():
+        return ''
+    rep = json.loads(path.read_text())
+    c = rep['counts']
+    lines = [f"| feature | AUC U124 vs solved bins 6–9 | AUC U124 vs all solved | mean U124 | mean solved 6–9 | mean all solved |",
+             "|---|---:|---:|---:|---:|---:|"]
+    for t in rep['separability']:
+        lines.append(f"| `{t['feature']}` | {t['auc_u124_vs_solved_hard']:.3f} | {t['auc_u124_vs_solved_all']:.3f} | "
+                     f"{t['mean_u124']:.2f} | {t['mean_solved_hard']:.2f} | {t['mean_solved_all']:.2f} |")
+    rows = rep['rows']
+    u = [r for r in rows if r['group'] == 'u124']; s = [r for r in rows if r['group'] == 'solved']
+    ident = sum(r['root_all_triangle'] and r['root_digram_disjoint'] and not r['search_bigon'] and not r['search_unit'] for r in u)
+    ident_s = sum(r['root_all_triangle'] and r['root_digram_disjoint'] and not r['search_bigon'] and not r['search_unit'] for r in s if r['bin'] >= 6)
+    return f"""
+## Can rank-raising separate solved-but-hard rows from U124? No
+
+`separator_probe.py` pushes the {c['solved_all']}-row solved MS benchmark ladder
+(`benchmark/subsets/benchmark_subset_60.csv`, difficulty bins 0–9, {c['solved_hard_bins_6_9']} rows in
+bins 6–9) and the {c['u124']} U124 representatives through the identical pipeline:
+triangulate, static root features, coupling search at cap {rep['parameters']['cap']} with
+{rep['parameters']['pops']} pops and beam {rep['parameters']['beam']}. AUC is the probability that a U124 row scores
+above a solved row (0.5 = no separation).
+
+{chr(10).join(lines)}
+
+Every root feature is identical across the two groups: {ident} of {len(u)} U124 roots and
+{ident_s} of {c['solved_hard_bins_6_9']} hard solved roots are all-triangle, digram-disjoint, with zero coupling and
+no bigon or unit within the search. The only features with AUC away from 0.5
+(`rank`, `cap4_children`, `search_states`) track total length, and on that axis
+U124 is *shorter* than the hard solved rows (`rank2_length` AUC 0.114). Nothing
+produced by raising rank distinguishes an unsolved row from a solved-but-hard one.
+Wall time {rep['wall_seconds']:.0f} s for all {len(rows)} rows.
+"""
+
+
 def main(bench_paths, census_path):
     tables, reports = make_results.render(bench_paths)
     census = json.loads(Path(census_path).read_text())['summary']
@@ -107,6 +144,7 @@ its score ranks by maximum relator length and never pops a state containing a
 relator longer than four within {pops[0]} pops; the `coupling` arm does climb into
 longer relators.
 
+{separator_section()}
 ## Honest limits
 
 * Budgets are deliberately small ({pops[0]} pops, beam {beams[0]}); the earlier campaign

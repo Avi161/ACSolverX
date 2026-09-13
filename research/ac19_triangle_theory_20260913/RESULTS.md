@@ -105,6 +105,45 @@ its score ranks by maximum relator length and never pops a state containing a
 relator longer than four within 60 pops; the `coupling` arm does climb into
 longer relators.
 
+
+## Can rank-raising separate solved-but-hard rows from U124? No
+
+`separator_probe.py` pushes the 60-row solved MS benchmark ladder
+(`benchmark/subsets/benchmark_subset_60.csv`, difficulty bins 0–9, 24 rows in
+bins 6–9) and the 124 U124 representatives through the identical pipeline:
+triangulate, static root features, coupling search at cap 5 with
+30 pops and beam 32. AUC is the probability that a U124 row scores
+above a solved row (0.5 = no separation).
+
+| feature | AUC U124 vs solved bins 6–9 | AUC U124 vs all solved | mean U124 | mean solved 6–9 | mean all solved |
+|---|---:|---:|---:|---:|---:|
+| `rank2_length` | 0.114 | 0.450 | 19.00 | 23.04 | 19.32 |
+| `rank` | 0.556 | 0.741 | 9.45 | 9.17 | 8.10 |
+| `definitions` | 0.556 | 0.741 | 7.45 | 7.17 | 6.10 |
+| `prep_units` | 0.560 | 0.758 | 105.50 | 99.54 | 79.37 |
+| `root_min_relator` | 0.500 | 0.533 | 3.00 | 3.00 | 2.92 |
+| `root_all_triangle` | 0.500 | 0.533 | 1.00 | 1.00 | 0.93 |
+| `root_digram_disjoint` | 0.500 | 0.500 | 1.00 | 1.00 | 1.00 |
+| `root_coupling_pairs` | 0.500 | 0.500 | 0.00 | 0.00 | 0.00 |
+| `root_coupling_digrams` | 0.500 | 0.500 | 0.00 | 0.00 | 0.00 |
+| `cap4_children` | 0.620 | 0.759 | 130.55 | 120.17 | 106.53 |
+| `cap4_distinct_quartics` | 0.620 | 0.761 | 32.64 | 30.04 | 26.40 |
+| `search_bigon` | 0.500 | 0.467 | 0.00 | 0.00 | 0.07 |
+| `search_unit` | 0.500 | 0.492 | 0.00 | 0.00 | 0.02 |
+| `search_best_coupling_pairs` | 0.490 | 0.666 | 32.60 | 32.62 | 26.15 |
+| `search_states` | 0.608 | 0.707 | 1207.23 | 1097.75 | 936.63 |
+| `search_pops` | 0.500 | 0.533 | 30.00 | 30.00 | 28.07 |
+| `search_rotation_products` | 0.519 | 0.725 | 93780.35 | 89663.33 | 67738.27 |
+| `search_shortest_relator` | 0.500 | 0.533 | 3.00 | 3.00 | 2.92 |
+
+Every root feature is identical across the two groups: 124 of 124 U124 roots and
+24 of 24 hard solved roots are all-triangle, digram-disjoint, with zero coupling and
+no bigon or unit within the search. The only features with AUC away from 0.5
+(`rank`, `cap4_children`, `search_states`) track total length, and on that axis
+U124 is *shorter* than the hard solved rows (`rank2_length` AUC 0.114). Nothing
+produced by raising rank distinguishes an unsolved row from a solved-but-hard one.
+Wall time 574 s for all 184 rows.
+
 ## Honest limits
 
 * Budgets are deliberately small (60 pops, beam 48); the earlier campaign
