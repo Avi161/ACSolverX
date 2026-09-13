@@ -241,6 +241,13 @@ def _bfs_kernel(start_k1, start_k2, cap, max_states,
     capn = 1 << 12
     if capn > max_states:
         capn = max_states
+    if capn < 1:
+        # The root is always written, so the node arrays must hold at least one
+        # entry even when max_states <= 0 (numba has bounds checking off, so a
+        # zero-length allocation here would be a silent out-of-bounds write).
+        # The budget test below still trips on the first child, so the run
+        # returns states=1, budget_exhausted=True -- what the reference does.
+        capn = 1
     nk1 = np.empty(capn, np.int64)
     nk2 = np.empty(capn, np.int64)
     nl1 = np.empty(capn, np.int64)
@@ -606,6 +613,7 @@ def main(argv=None):
                 if args.limit and len(rows) >= args.limit:
                     break
         out = open(args.out, "w") if args.out else sys.stdout
+        errors = []
         try:
             for name, r1, r2 in rows:
                 for cap in caps:
@@ -613,6 +621,7 @@ def main(argv=None):
                         res = bfs(r1, r2, cap, args.max_states, stop)
                     except ValueError as exc:
                         res = {"initial": [r1, r2], "cap": cap, "error": str(exc)}
+                        errors.append((name, r1, r2, cap, str(exc)))
                     res["name"] = name
                     res["r1"] = r1
                     res["r2"] = r2
@@ -621,6 +630,17 @@ def main(argv=None):
         finally:
             if args.out:
                 out.close()
+        if errors:
+            # A rejected row is still written (as an ``error`` record) so the
+            # batch is complete, but the exit status must report it: a sweep
+            # that only checks the status must not mistake "this cap produced
+            # nothing" for "this cap is closed".
+            for name, r1, r2, cap, msg in errors:
+                sys.stderr.write("ERROR %s %s,%s cap=%d: %s\n"
+                                 % (name or "-", r1, r2, cap, msg))
+            sys.stderr.write("%d of %d (row, cap) runs failed\n"
+                             % (len(errors), len(rows) * len(caps)))
+            return 1
         return 0
 
     if not (args.r1 and args.r2 and args.cap):

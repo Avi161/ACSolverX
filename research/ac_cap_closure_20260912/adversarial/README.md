@@ -30,6 +30,15 @@ connector bound), canonical form under the letter order `y < Y < x < X`.
 | `refcerts.jsonl`, `cert.json`, `t.json` | certificates produced by the *reference* engine and the tampering inputs fed to `verify_path.py` | — |
 | `pytest.out` | the module's own suite as it stood when reviewed (57 tests) | — |
 
+## `code/` — attack on the implementation
+
+The code reviewer's scripts are in `code/` (see the README there): an
+independent rediscovery of the packing defect and its exact threshold, a
+worst-case stress of the patched cap-16 boundary, fast-vs-reference
+differentials at caps 10–16, and the reproductions of the three small defects
+fixed in section 6.3 (`max_states <= 0`, `frontier_size_at_stop`, the batch
+exit status).
+
 The defect these scripts found is fixed in the shipped module (`MAX_CAP = 16`,
 test (g)); the scripts were written against the pre-fix engine, so the
 `cap > 16` probes will now raise `ValueError` from `bfs` (the ones that call

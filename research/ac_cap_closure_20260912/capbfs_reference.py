@@ -218,6 +218,7 @@ def bfs(r1, r2, cap, max_states=1_000_000, stop_when_solved=True):
     solved_state = start if start == TRIVIAL else None
     min_total = len(start[0]) + len(start[1])
     popped = 0
+    expanded = 0                          # states whose neighbourhood is DONE
     closed = True
     budget_hit = False
 
@@ -243,6 +244,7 @@ def bfs(r1, r2, cap, max_states=1_000_000, stop_when_solved=True):
                     solved_state = child
             if budget_hit:
                 break
+            expanded += 1
         if budget_hit:
             break
     if frontier and not budget_hit:
@@ -257,7 +259,12 @@ def bfs(r1, r2, cap, max_states=1_000_000, stop_when_solved=True):
         "states": len(seen),
         "max_states": max_states,
         "min_total_length_seen": min_total,
-        "frontier_size_at_stop": len(frontier),
+        # Discovered but not fully expanded, i.e. what is still queued: the
+        # unprocessed remainder of the interrupted level PLUS everything
+        # discovered beyond it.  ``len(frontier)`` would count only the next
+        # level, which differs from ``capbfs``'s ``count - head`` on
+        # budget-exhausted runs; the two engines must agree field by field.
+        "frontier_size_at_stop": len(seen) - expanded,
         "seconds": seconds,
         "nodes_per_second": (popped / seconds) if seconds > 0 else 0.0,
         "popped": popped,

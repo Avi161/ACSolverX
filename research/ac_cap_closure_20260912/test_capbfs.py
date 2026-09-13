@@ -5,8 +5,9 @@
 (a) fast engine == pure-Python reference, as state sets, on 30 random
     AC-trivial presentations at caps 6..10;
 (b) a CLOSED component really is closed: every reference-generated neighbour of
-    every member is a member; and (b2) the bounded-connector move set coincides
-    with brute-force AC2 over all conjugators up to length 4;
+    every member is a member; and (b2) brute-force AC2 over all conjugators
+    ``|u| <= 4`` is contained in the model's move set always, and equal to it
+    on the six chosen (state, cap) pairs;
 (c) component(cap c) is a subset of component(cap c + 1);
 (d) three short AC19 rows: find the minimal cap that solves and verify the
     certificate with ``verify_path``;
@@ -15,12 +16,18 @@
 (g) the packing boundary: caps above 16 are refused, and at cap 16 with two
     length-16 relators (a 32-letter unreduced product, the most the int64
     accumulator holds) the kernel's first layer equals the reference neighbour
-    set; ``verify_path`` refuses an input with nothing to verify.
+    set; ``verify_path`` refuses an input with nothing to verify;
+(h) the two engines agree field by field -- in particular on
+    ``frontier_size_at_stop``, which they used to compute differently on
+    budget-exhausted runs;
+(i) degenerate budgets (``max_states <= 0``) still allocate room for the root;
+(j) batch mode reports a refused row in its exit status.
 """
 
 from __future__ import annotations
 
 import csv
+import json
 import os
 import random
 import sys
@@ -168,6 +175,29 @@ def test_b2_move_set_is_the_full_ac2_move_set(r1, r2, cap):
     for max_u in range(0, 5):
         assert _brute_neighbours(state, cap, max_u) <= model
     assert model == _brute_neighbours(state, cap, 4)
+
+
+def test_b2_containment_is_the_general_direction_equality_is_not():
+    """Only ``brute(|u| <= U) subset model`` is general.
+
+    Equality at a given ``U`` is a property of the (state, cap) pair, not a
+    theorem: the model admits connectors of length up to
+    ``(c - |r_i| - |r_j|) // 2``, so whenever that bound exceeds ``U`` the
+    brute-force set can be a STRICT subset.  ``{x, y}`` at cap 12 allows
+    ``|w| <= 5``, and brute force only catches up at ``|u| <= 5``.  Containment,
+    which is the direction the soundness argument needs, never fails.
+    """
+    state = ref.canon_pair(ref.str_to_word("x"), ref.str_to_word("y"))
+    model = ref.neighbour_set(state, 12)
+    sizes = []
+    for max_u in range(0, 6):
+        brute = _brute_neighbours(state, 12, max_u)
+        assert brute <= model, "brute force escaped the model at |u| <= %d" % max_u
+        sizes.append(len(brute))
+    assert sizes[4] < len(model), (
+        "expected |u| <= 4 to be a strict subset here; got %d == %d"
+        % (sizes[4], len(model)))
+    assert sizes[5] == len(model)
 
 
 # --------------------------------------------------------------------------
@@ -354,12 +384,110 @@ def test_g_first_layer_is_exact_at_the_32_letter_boundary(seed):
     assert kids == expected
 
 
+def test_g_packing_invariant_is_stated_by_the_constant():
+    """The 32-letter accumulator is what fixes the cap.
+
+    With an empty connector a move concatenates ``|r_i| + |r_j| <= 2 * cap``
+    letters before any cyclic reduction, and the accumulator is exact to 32,
+    so ``2 * MAX_CAP <= 32`` is the invariant the guard enforces.
+    """
+    assert 2 * capbfs.MAX_CAP <= 32
+    assert 2 * (capbfs.MAX_CAP + 1) > 32, "MAX_CAP is smaller than the packing allows"
+
+
+# --------------------------------------------------------------------------
+# (h) the two engines agree field by field, including on interrupted runs
+# --------------------------------------------------------------------------
+@pytest.mark.parametrize("max_states", [5, 50, 200, 1000, 5000])
+@pytest.mark.parametrize("stop_when_solved", [False, True])
+def test_h_budget_exhausted_fields_match_the_reference(max_states, stop_when_solved):
+    """``frontier_size_at_stop`` means the same thing in both engines.
+
+    It is the number of discovered states whose neighbourhood has NOT been
+    fully expanded -- the unprocessed remainder of the interrupted level plus
+    everything found beyond it -- not the size of the next level.  The two
+    used to disagree on budget-exhausted runs (fast ``count - head`` vs
+    reference ``len(frontier)``), so a consumer diffing the two engines' JSON
+    saw a spurious difference.
+    """
+    fast = capbfs.bfs(AK3[0], AK3[1], 12, max_states, stop_when_solved,
+                      collect_states=True)
+    slow = ref.bfs(AK3[0], AK3[1], 12, max_states, stop_when_solved)
+    assert capbfs.state_key_strings(fast) == ref.state_key_strings(slow)
+    for field in ("states", "popped", "closed", "solved", "budget_exhausted",
+                  "min_total_length_seen", "frontier_size_at_stop"):
+        assert fast[field] == slow[field], (
+            "%s: fast %r vs reference %r" % (field, fast[field], slow[field]))
+    assert fast["budget_exhausted"]
+    assert fast["frontier_size_at_stop"] == fast["states"] - fast["popped"] + 1
+
+
+@pytest.mark.parametrize("r1,r2,cap,stop_when_solved", [
+    (AK3[0], AK3[1], 9, False),
+    (AK3[0], AK3[1], 9, True),
+    ("xyXY", "x", 7, False),
+    ("YXXyx", "YYXyX", 6, True),      # solved: stops at the end of a level
+    ("x", "y", 8, True),              # already trivial: nothing is expanded
+])
+def test_h_frontier_matches_on_closed_and_solved_runs(r1, r2, cap, stop_when_solved):
+    fast = capbfs.bfs(r1, r2, cap, 1_000_000, stop_when_solved)
+    slow = ref.bfs(r1, r2, cap, 1_000_000, stop_when_solved)
+    for field in ("states", "popped", "closed", "solved", "budget_exhausted",
+                  "min_total_length_seen", "frontier_size_at_stop"):
+        assert fast[field] == slow[field], (
+            "%s: fast %r vs reference %r" % (field, fast[field], slow[field]))
+    if fast["closed"]:
+        assert fast["frontier_size_at_stop"] == 0
+
+
+# --------------------------------------------------------------------------
+# (i) degenerate budgets do not write outside the node arrays
+# --------------------------------------------------------------------------
+@pytest.mark.parametrize("max_states", [0, -1, 1, 2])
+def test_i_degenerate_max_states(max_states):
+    """``max_states <= 0`` used to allocate zero-length node arrays and then
+    write the root into them; numba has bounds checking off, so those were
+    silent out-of-bounds heap writes.  The root must always fit, and the run
+    must report the same thing the reference does."""
+    fast = capbfs.bfs(AK3[0], AK3[1], 12, max_states, True)
+    slow = ref.bfs(AK3[0], AK3[1], 12, max_states, True)
+    assert fast["states"] == slow["states"] == max(1, max_states)
+    assert fast["budget_exhausted"] and slow["budget_exhausted"]
+    assert not fast["closed"] and not slow["closed"]
+    assert fast["frontier_size_at_stop"] == slow["frontier_size_at_stop"]
+    assert fast["frontier_size_at_stop"] == max(1, max_states)
+    assert fast["min_total_length_seen"] == slow["min_total_length_seen"]
+
+
+# --------------------------------------------------------------------------
+# (j) the CLI reports a refused row in its exit status
+# --------------------------------------------------------------------------
+def test_j_batch_mode_exit_status_reports_refused_rows(tmp_path, capsys):
+    """A batch sweep that only checks the exit status must not mistake
+    "this cap produced nothing" for "this cap is closed"."""
+    src = tmp_path / "rows.csv"
+    src.write_text("name,r1,r2\nak3,%s,%s\n" % AK3)
+    out = tmp_path / "out.jsonl"
+
+    rc = capbfs.main(["--csv", str(src), "--caps", "17,9",
+                      "--out", str(out), "--max-states", "100000"])
+    lines = [json.loads(l) for l in out.read_text().splitlines() if l.strip()]
+    assert len(lines) == 2
+    assert lines[0]["cap"] == 17 and "error" in lines[0]
+    assert lines[1]["cap"] == 9 and lines[1]["states"] == AK3_SIZES[9]
+    assert rc == 1, "a refused cap must not exit 0"
+    assert "ERROR" in capsys.readouterr().err
+
+    rc_ok = capbfs.main(["--csv", str(src), "--caps", "9",
+                         "--out", str(out), "--max-states", "100000"])
+    assert rc_ok == 0
+
+
 def test_g_verify_path_refuses_an_input_with_nothing_to_verify(tmp_path):
     unsolved = capbfs.json_ready(capbfs.bfs(AK3[0], AK3[1], 9, 100_000, True))
     assert not unsolved["solved"]
     solved = capbfs.json_ready(capbfs.bfs("YXXyx", "YYXyX", 5, 100_000, True))
     assert solved["solved"]
-    import json
     empty = tmp_path / "unsolved.jsonl"
     empty.write_text(json.dumps(unsolved) + "\n")
     full = tmp_path / "solved.json"

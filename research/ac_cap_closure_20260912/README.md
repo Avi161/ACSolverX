@@ -147,8 +147,19 @@ intermediate presentation has both relators of length ≤ c. Hence
 `test_capbfs.py::test_b2_move_set_is_the_full_ac2_move_set` checks the ⊇
 direction computationally as well: for six states it enumerates *all*
 conjugators `u` with `|u| ≤ 4`, all rotations of `±r_i` and of `±r_j`, and both
-signs, and finds the resulting neighbour set equal (not merely contained) to
-the model's.
+signs, and finds the resulting brute-force neighbour set **contained** in the
+model's — and, on those six `(state, cap)` pairs, equal to it.
+
+Read that equality as a property of the six pairs, not as a theorem. Only the
+containment `brute(|u| ≤ U) ⊆ model` is general (it is the ⊇ direction above,
+restricted to short conjugators); brute force at a fixed `U` can be a *strict*
+subset, because the model admits connectors up to
+`⌊(c − |r_i| − |r_j|)/2⌋`, which may exceed `U`. At `{x, y}` with `c = 12` that
+bound is 5 and the brute sets have sizes 4, 4, 16, 48, 152 for `|u| ≤ 0…4`
+against the model's 472, with equality only from `|u| ≤ 5`
+(`test_b2_containment_is_the_general_direction_equality_is_not`). What the
+argument in this section establishes — and what the suite checks in the
+saturated cases — is that nothing escapes the model, at any conjugator length.
 
 ### 1.5 Search
 
@@ -191,6 +202,13 @@ and, when solved, additionally
   `[r1, r2]` string pairs, canonicalised, starting at `initial` and ending at
   `["x", "y"]`.
 
+`frontier_size_at_stop` is the number of discovered states whose neighbourhood
+was **not** fully expanded: the unprocessed remainder of the interrupted level
+plus everything discovered beyond it (`states − popped + 1` on a
+budget-exhausted run, `0` on a CLOSED one). It is **not** the size of the next
+level; both engines compute this same quantity, so the two JSON outputs can be
+diffed field by field (test (h)).
+
 ---
 
 ## 2. Files
@@ -200,7 +218,7 @@ and, when solved, additionally
 | `capbfs.py` | the fast engine (numba, nopython) plus the CLI |
 | `capbfs_reference.py` | pure-Python oracle: tuples of signed ints, no packing, no tricks |
 | `verify_path.py` | independent certificate replayer (plain Python strings; imports neither engine) |
-| `test_capbfs.py` | pytest suite (a)–(f) |
+| `test_capbfs.py` | pytest suite (a)–(j) |
 
 ### Representation used by the fast engine
 
@@ -264,6 +282,13 @@ Other flags: `--no-stop-when-solved` (keep expanding after `{x, y}` is found —
 use this when you want the full component of a solvable presentation),
 `--limit N` (first `N` CSV rows).
 
+**Exit status.** Single-presentation mode propagates a rejected input as an
+exception (status 1). Batch mode keeps going — a refused `(row, cap)` is
+written as an `{"initial", "cap", "error"}` record so the output stays
+one line per `(row, cap)` — but it prints every rejection to stderr and
+**exits 1**, so a sweep that only checks the status cannot mistake "this cap
+produced nothing" for "this cap is closed" (test (j)).
+
 Verify certificates (works on both `.json` and `.jsonl`, skips unsolved rows):
 
 ```
@@ -291,6 +316,13 @@ single-threaded.
 ### AK(3) = `(xxxYYYY, xyxYXY)`
 
 `--no-stop-when-solved` is irrelevant here: the trivial state is never reached.
+
+Re-measured after the section 6.3 fixes: every state count below is
+reproduced exactly (caps 12–16: 42,856 / 172,192 / 339,056 / 1,254,188 /
+2,333,976, all CLOSED with `frontier_size_at_stop = 0`), and the timings move
+by a few per cent with machine load — 1.45 s, 6.73 s, 14.18 s, 60.6 s, 120.0 s
+on the re-run, i.e. 29,504 / 25,570 / 23,909 / 20,712 / 19,454 popped nodes/s.
+The ≥ 20,000 nodes/s target at cap 14 is met with margin in every run.
 
 | cap | states | closed | solved | seconds | popped nodes/s |
 |---:|---:|:--|:--|---:|---:|
@@ -364,7 +396,7 @@ nothing about paths through longer relators, stable moves or higher rank.
 ### Test suite
 
 `pytest research/ac_cap_closure_20260912/test_capbfs.py` — all tests pass
-(67 tests, ≈ 60 s on this machine), covering
+(89 tests, ≈ 95 s on this machine), covering
 
 * **(a)** 30 random AC-trivial presentations (built by random AC moves from
   `(x, y)` with relator lengths ≤ 8, seed 12345) × caps 6–10: the fast and the
@@ -372,8 +404,11 @@ nothing about paths through longer relators, stable moves or higher rank.
   `states` / `solved` / `closed` / `min_total_length_seen` agree;
 * **(b)** for four CLOSED components, every neighbour of every member, computed
   by the *reference* generator, is again a member;
-* **(b2)** the bounded-connector move set equals brute-force AC2 over all
-  conjugators `|u| ≤ 4` and all rotations of `±r_i`, `±r_j`;
+* **(b2)** brute-force AC2 over all conjugators `|u| ≤ 4` and all rotations of
+  `±r_i`, `±r_j` is contained in the bounded-connector move set — always — and
+  equal to it on the six chosen `(state, cap)` pairs; a companion test pins the
+  case where containment is strict (`{x, y}` at cap 12, equality only from
+  `|u| ≤ 5`), so the equality is not misread as a theorem;
 * **(c)** `component(cap c) ⊆ component(cap c+1)` for three families;
 * **(d)** minimal solving caps for three AC19 rows, with certificates replayed
   by `verify_path.py`, plus a negative control (a certificate with one rotation
@@ -385,8 +420,19 @@ nothing about paths through longer relators, stable moves or higher rank.
   constructed states with two length-16 relators at cap 16 (every move
   concatenates exactly 32 letters, the most the accumulator holds, and the
   construction guarantees a nonempty first layer) the kernel's children of the
-  root equal the reference neighbour set; and `verify_path` returns 3 on an
-  input with nothing to verify, 0 with `--allow-empty`.
+  root equal the reference neighbour set; `2·MAX_CAP ≤ 32 < 2·(MAX_CAP+1)` is
+  asserted, so the constant cannot drift away from the packing invariant; and
+  `verify_path` returns 3 on an input with nothing to verify, 0 with
+  `--allow-empty`;
+* **(h)** the two engines agree field by field — `states`, `popped`, `closed`,
+  `solved`, `budget_exhausted`, `min_total_length_seen` and
+  `frontier_size_at_stop` — on budget-exhausted runs (five budgets × both
+  stop modes) as well as on CLOSED, SOLVED and already-trivial runs;
+* **(i)** `max_states ≤ 0` still allocates room for the root and returns what
+  the reference returns (one state, `budget_exhausted`), instead of writing
+  the root past the end of zero-length node arrays;
+* **(j)** batch mode writes an `error` record for a refused `(row, cap)` **and**
+  exits 1, while an all-good batch exits 0.
 
 ---
 
@@ -506,10 +552,78 @@ Fix: `bfs` refuses any cap above `MAX_CAP = 16`, the packing paragraph in
 section 2 says why, and test (g) pins the first layer against the reference at
 the 32-letter boundary. Every number in this document was already at a cap ≤ 16.
 
-### 6.3 The code: review in progress
+### 6.3 The code: three small defects, fixed; the numbers reproduce
 
-The code-focused reviewer had not finished when this revision was committed
-(it had reproduced the AK(3) cap-16 component, 2,333,976 states, on the fixed
-module and re-run the 67-test suite green). Its scripts and final report are
-added under `adversarial/code/` in the follow-up commit, and this section is
-rewritten from that report.
+The code-focused reviewer worked against the module as delivered and, in
+parallel, against the patched tree. Its scripts are under `adversarial/code/`.
+
+**Independently confirmed.** The packing defect of section 6.2 was found a
+second time, from the other side (`probe5.py`, `probe16.py`: the threshold is
+exactly `|r_i| + |r_j| = 33`, i.e. cap ≥ 17 — 0 diverging moves in 4.3 M
+evaluations at sums 30–32, first divergence at 33), and the patched boundary
+was stressed deliberately rather than randomly: 400 constructed 16/16 pairs
+whose every move concatenates exactly 32 letters and then cyclically reduces
+8–15 rounds, 204,800 moves compared as reduced words *and* as packed canonical
+keys, 0 divergences (`cap16.py`). The fast-vs-reference differential was also
+extended through the band the suite never covered: 468 `(presentation, cap)`
+pairs at caps 10–12 (`diff1012.py`) and 5,815 full CLOSED components at caps
+13–16 (`diff1316.py`), 0 mismatches, plus 12 adversarial inputs — single-letter
+relators, `r1 = r2`, `r1 = r2^-1`, `cap = 1`, a cap below `|r_1| + |r_2|` —
+all agreeing (`adv.py`). Every published number reproduced: the AK(3) table,
+the cap-16 headline component (2,333,976 states, 113.7 s, ≈ 530 MB peak RSS),
+monotonicity across caps 9–14, ≥ 20,000 popped nodes/s at cap 14, and the
+CLI/certificate round trip (`ak16.py`, `mono.py`, `thr.py`).
+
+**Fixed here.** Three defects, none of which can change a published number
+(all are outside the search itself or outside the caps used), but each of which
+could mislead a later consumer:
+
+1. *`max_states ≤ 0` wrote outside the node arrays.* The kernel clamped its
+   initial node capacity to `max_states`, so `max_states = 0` allocated
+   ten zero-length arrays and then wrote the root into them. numba has bounds
+   checking off, so these were silent heap writes past the end; the run still
+   returned `states = 1, budget_exhausted = true`, which hid it. The capacity
+   is now floored at 1 (the root always fits), the budget still trips on the
+   first child, and test (i) pins the result against the reference.
+2. *`frontier_size_at_stop` meant different things in the two engines.* On a
+   budget-exhausted run `capbfs` returned `count − head` (the unprocessed
+   remainder of the interrupted level plus everything beyond it) while
+   `capbfs_reference` returned `len(frontier)` (only the next level) — e.g. 46
+   vs 11 at `max_states = 50`. Nothing published was affected (§5 only uses the
+   field on CLOSED runs, where both were 0), but the two engines' JSON could not
+   be diffed field by field. The reference now reports the same quantity
+   (`len(seen) − expanded`), and test (h) compares every field on budget,
+   CLOSED, SOLVED and already-trivial runs.
+3. *Batch mode swallowed a rejected cap.* `--csv` caught the `ValueError` from
+   a refused cap, wrote it as an `error` record and still exited 0, so a cap
+   sweep checking only the exit status would read "this cap produced nothing"
+   as "this cap is closed". The batch still completes and still writes the
+   record, but now prints each rejection to stderr and exits 1 (test (j)).
+
+**Wording corrected.** README §1.4 said the brute-force AC2 neighbour set at
+`|u| ≤ 4` is "equal (not merely contained)" to the model's. That equality holds
+at the six `(state, cap)` pairs the test uses, but it is not general: whenever
+the model's connector bound `⌊(c − |r_i| − |r_j|)/2⌋` exceeds 4, brute force at
+`|u| ≤ 4` is a strict subset (at `{x, y}`, `c = 12`: 152 vs 472, equality only
+from `|u| ≤ 5`). Only the containment direction is a theorem, and it is the one
+the soundness argument needs; §1.4 now says so and
+`test_b2_containment_is_the_general_direction_equality_is_not` pins the strict
+case. The reviewer found no escape from the model at any `|u| ≤ 6` on eight
+`(state, cap)` pairs (`model.py`).
+
+**Still true after the fixes**: `verify_path.py` rejects all ten tamperings of
+a certificate and accepts certificates produced by the *other* engine, and the
+"nothing to verify" leniency is gone (status 3 unless `--allow-empty`).
+
+**What was and was not re-verified after the fixes.** The three fixes and the
+wording change were made by a separate fixer pass that reproduced each finding
+first, then re-ran the whole suite (89 tests green) and the reviewer's own
+`budget.py` / `adv.py` reproductions against the fixed tree. A further
+independent re-verification pass was scheduled but did not run (it was cut off
+by a usage limit), so the post-fix evidence is the fixer's runs plus a
+maintainer re-run of the full suite — 89 passed in 85 s, throughput 23,700
+popped nodes/s at cap 14 — not a third reviewer. The engine's exactness at
+caps ≤ 16, which is what every published number rests on, is unaffected by
+the three fixes (none touches the move evaluation) and remains covered by the
+reviewer's pre-fix differentials in section 6.3 and by tests (a), (e), (g)
+and (h).

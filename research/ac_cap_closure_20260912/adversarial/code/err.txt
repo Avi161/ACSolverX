@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/user/ACSolverX/research/ac_cap_closure_20260912/capbfs.py", line 638, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/user/ACSolverX/research/ac_cap_closure_20260912/capbfs.py", line 628, in main
+    res = json_ready(bfs(args.r1, args.r2, args.cap, args.max_states, stop))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ACSolverX/research/ac_cap_closure_20260912/capbfs.py", line 501, in bfs
+    raise ValueError(
+ValueError: cap must be in 1..16: the packed accumulator is exact only while the unreduced product of a move has at most 32 letters
