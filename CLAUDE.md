@@ -68,3 +68,13 @@ not proven converged), and the exact `Aut(F₂)` step between 261 and 124 is
 **168** — no change of variables does better than 168. Derivation and the
 machine-checked merges are in `results/equivalence_classes/EQUIVALENCE_FINDING.md`
 on the research branches; `docs/BRANCH_MAP.md` says which branch holds what.
+
+### [2026-09-13] At an all-triangle root a unit is parity-forbidden and a bigon needs a shared digram
+[MECHANISM] Products of two length-3 cyclic words have even length, so a fixed-rank
+search from a triangulated root cannot make a unit in one move; a length-2 relator
+needs two relators sharing a cyclic digram modulo (u,v)->(v^-1,u^-1); every one of
+the 255 all-triangle roots in a 400-row AC19 sample is digram-disjoint, as are all four
+hard rows (the other 145 roots already carry a length<=2 relator from preprocessing).
+Score by digram coupling, not total length (constant 3r), and never read an empty
+cap-3/cap-4 neighbourhood as a budget problem. See
+`research/ac19_triangle_theory_20260913/THEORY.md`.

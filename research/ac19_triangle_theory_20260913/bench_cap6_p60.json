@@ -1,0 +1,7419 @@
+{
+  "schema": "ac19_triangle_coupling_benchmark_v1",
+  "panel_sha256": "667e4d19474755a779e6fc0ec8554d1353535df497c7e670a6c54a37131d742f",
+  "easy_sha256": "d5c2ba68ff958ffff31a1233b282d83829aecf0b7612a47c55ecf55a5f7767ae",
+  "theory_sha256": "f7024146ed539caaf35fd8de59eb7ae8bcbbcb1771a5a3d3f2699a763d0e170a",
+  "search_sha256": "6dff243148629973b79eaabebba661b2f196fc5dc8bb469323a2557800dc9ce6",
+  "script_sha256": "e940ff818e03fb682206d70e3716f41fbf340a413e036ff46125c2fdbef3cde2",
+  "parameters": {
+    "caps": [
+      6
+    ],
+    "pop_budget": 60,
+    "beam": 48,
+    "orderings": [
+      "coupling",
+      "structural"
+    ]
+  },
+  "summary": {
+    "rows": 16,
+    "hard_rows": 4,
+    "easy_rows": 12,
+    "roots_digram_disjoint": 14,
+    "hard_roots_digram_disjoint": 4,
+    "rows_with_bigon": 5,
+    "hard_rows_with_bigon": 0,
+    "rows_with_unit": 4,
+    "preprocessing_units": 829,
+    "rotation_products": 2588768,
+    "heap_pops": 1920,
+    "discovered_states": 401882,
+    "search_cpu_seconds": 475.0765858190001,
+    "total_wall_seconds": 476.5689761790004
+  },
+  "scope": "fixed-rank ordinary AC normal-product substitutions only; triangulation counted as preprocessing, never as a solve",
+  "rows": [
+    {
+      "name": "ac19_15866",
+      "panel": "hard",
+      "rank2_pair": [
+        "YXXXyXYx",
+        "YXyxxxyxx"
+      ],
+      "rank2_length": 17,
+      "triangle_state": [
+        [
+          -8,
+          -7,
+          -1
+        ],
+        [
+          -8,
+          -1,
+          -2
+        ],
+        [
+          -7,
+          -5,
+          2
+        ],
+        [
+          -6,
+          -5,
+          -2
+        ],
+        [
+          -6,
+          -3,
+          4
+        ],
+        [
+          -5,
+          -3,
+          -4
+        ],
+        [
+          -4,
+          -2,
+          -1
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 8,
+      "triangle_length": 24,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "preprocessing_cpu_seconds": 0.0010977969999999976,
+      "preprocessing_wall_seconds": 0.0010975790000884444,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 8,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 4549,
+          "rotation_products": 194512,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 28,
+          "best_coupling_digrams": 62,
+          "first_coupled_state": [
+            [
+              -8,
+              -7,
+              -1,
+              -8,
+              -1,
+              -2
+            ],
+            [
+              -8,
+              -1,
+              -2
+            ],
+            [
+              -7,
+              -5,
+              2
+            ],
+            [
+              -6,
+              -5,
+              -2
+            ],
+            [
+              -6,
+              -3,
+              4
+            ],
+            [
+              -5,
+              -3,
+              -4
+            ],
+            [
+              -4,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 8.277116902,
+          "wall_seconds": 8.29033824399994
+        },
+        {
+          "ordering": "structural",
+          "rank": 8,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 38984,
+          "rotation_products": 66404,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 8,
+          "best_coupling_digrams": 9,
+          "first_coupled_state": [
+            [
+              -8,
+              -7,
+              -1,
+              -8,
+              -1,
+              -2
+            ],
+            [
+              -8,
+              -1,
+              -2
+            ],
+            [
+              -7,
+              -5,
+              2
+            ],
+            [
+              -6,
+              -5,
+              -2
+            ],
+            [
+              -6,
+              -3,
+              4
+            ],
+            [
+              -5,
+              -3,
+              -4
+            ],
+            [
+              -4,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 54.225327595,
+          "wall_seconds": 54.24544963800008
+        }
+      ]
+    },
+    {
+      "name": "ac19_25244",
+      "panel": "hard",
+      "rank2_pair": [
+        "YYXXyxx",
+        "YYxYxYXXX"
+      ],
+      "rank2_length": 16,
+      "triangle_state": [
+        [
+          -8,
+          -4,
+          3
+        ],
+        [
+          -8,
+          3,
+          2
+        ],
+        [
+          -7,
+          -6,
+          -1
+        ],
+        [
+          -7,
+          -4,
+          -3
+        ],
+        [
+          -6,
+          -5,
+          -5
+        ],
+        [
+          -5,
+          1,
+          -2
+        ],
+        [
+          -4,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 8,
+      "triangle_length": 24,
+      "definitions": 6,
+      "preprocessing_units": 79,
+      "preprocessing_cpu_seconds": 0.0011622749999986581,
+      "preprocessing_wall_seconds": 0.0011626150003394287,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 8,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 4310,
+          "rotation_products": 200620,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 28,
+          "best_coupling_digrams": 60,
+          "first_coupled_state": [
+            [
+              -8,
+              -4,
+              3,
+              -8,
+              3,
+              2
+            ],
+            [
+              -8,
+              3,
+              2
+            ],
+            [
+              -7,
+              -6,
+              -1
+            ],
+            [
+              -7,
+              -4,
+              -3
+            ],
+            [
+              -6,
+              -5,
+              -5
+            ],
+            [
+              -5,
+              1,
+              -2
+            ],
+            [
+              -4,
+              -2,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 7.894151566000005,
+          "wall_seconds": 7.912779949000196
+        },
+        {
+          "ordering": "structural",
+          "rank": 8,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 39482,
+          "rotation_products": 66404,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 7,
+          "best_coupling_digrams": 9,
+          "first_coupled_state": [
+            [
+              -8,
+              -4,
+              3,
+              -8,
+              3,
+              2
+            ],
+            [
+              -8,
+              3,
+              2
+            ],
+            [
+              -7,
+              -6,
+              -1
+            ],
+            [
+              -7,
+              -4,
+              -3
+            ],
+            [
+              -6,
+              -5,
+              -5
+            ],
+            [
+              -5,
+              1,
+              -2
+            ],
+            [
+              -4,
+              -2,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 55.223897748,
+          "wall_seconds": 55.269279563000055
+        }
+      ]
+    },
+    {
+      "name": "ac19_44158",
+      "panel": "hard",
+      "rank2_pair": [
+        "YYXXXyX",
+        "YXyxxxxYXXXyx"
+      ],
+      "rank2_length": 20,
+      "triangle_state": [
+        [
+          -9,
+          -8,
+          3
+        ],
+        [
+          -9,
+          4,
+          2
+        ],
+        [
+          -8,
+          -7,
+          1
+        ],
+        [
+          -7,
+          -6,
+          3
+        ],
+        [
+          -6,
+          -5,
+          2
+        ],
+        [
+          -6,
+          2,
+          1
+        ],
+        [
+          -5,
+          -3,
+          -4
+        ],
+        [
+          -4,
+          -2,
+          -1
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 9,
+      "triangle_length": 27,
+      "definitions": 7,
+      "preprocessing_units": 92,
+      "preprocessing_cpu_seconds": 0.001573923999998783,
+      "preprocessing_wall_seconds": 0.0015740439998808142,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 9,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 6354,
+          "rotation_products": 261744,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 36,
+          "best_coupling_digrams": 84,
+          "first_coupled_state": [
+            [
+              -9,
+              -8,
+              3,
+              -9,
+              4,
+              2
+            ],
+            [
+              -9,
+              4,
+              2
+            ],
+            [
+              -8,
+              -7,
+              1
+            ],
+            [
+              -7,
+              -6,
+              3
+            ],
+            [
+              -6,
+              -5,
+              2
+            ],
+            [
+              -6,
+              2,
+              1
+            ],
+            [
+              -5,
+              -3,
+              -4
+            ],
+            [
+              -4,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 14.380432955000003,
+          "wall_seconds": 14.380817919000037
+        },
+        {
+          "ordering": "structural",
+          "rank": 9,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 52884,
+          "rotation_products": 84524,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 8,
+          "best_coupling_digrams": 9,
+          "first_coupled_state": [
+            [
+              -9,
+              -8,
+              3,
+              -9,
+              4,
+              2
+            ],
+            [
+              -9,
+              4,
+              2
+            ],
+            [
+              -8,
+              -7,
+              1
+            ],
+            [
+              -7,
+              -6,
+              3
+            ],
+            [
+              -6,
+              -5,
+              2
+            ],
+            [
+              -6,
+              2,
+              1
+            ],
+            [
+              -5,
+              -3,
+              -4
+            ],
+            [
+              -4,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 96.31564545199998,
+          "wall_seconds": 96.3411334919997
+        }
+      ]
+    },
+    {
+      "name": "ac19_66724",
+      "panel": "hard",
+      "rank2_pair": [
+        "YXXyXyxx",
+        "YYYxxxxYYxx"
+      ],
+      "rank2_length": 19,
+      "triangle_state": [
+        [
+          -7,
+          -5,
+          -1
+        ],
+        [
+          -7,
+          -4,
+          -2
+        ],
+        [
+          -6,
+          -6,
+          5
+        ],
+        [
+          -6,
+          2,
+          -4
+        ],
+        [
+          -5,
+          -2,
+          -3
+        ],
+        [
+          -4,
+          -3,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 7,
+      "triangle_length": 21,
+      "definitions": 5,
+      "preprocessing_units": 60,
+      "preprocessing_cpu_seconds": 0.000986839000006512,
+      "preprocessing_wall_seconds": 0.0009874329998638132,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 7,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 2976,
+          "rotation_products": 150416,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 21,
+          "best_coupling_digrams": 44,
+          "first_coupled_state": [
+            [
+              -7,
+              -5,
+              -1,
+              -7,
+              -4,
+              -2
+            ],
+            [
+              -7,
+              -4,
+              -2
+            ],
+            [
+              -6,
+              -6,
+              5
+            ],
+            [
+              -6,
+              2,
+              -4
+            ],
+            [
+              -5,
+              -2,
+              -3
+            ],
+            [
+              -4,
+              -3,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 4.4603225479999935,
+          "wall_seconds": 4.460522365000088
+        },
+        {
+          "ordering": "structural",
+          "rank": 7,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 26682,
+          "rotation_products": 51052,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 8,
+          "best_coupling_digrams": 9,
+          "first_coupled_state": [
+            [
+              -7,
+              -5,
+              -1,
+              -7,
+              -4,
+              -2
+            ],
+            [
+              -7,
+              -4,
+              -2
+            ],
+            [
+              -6,
+              -6,
+              5
+            ],
+            [
+              -6,
+              2,
+              -4
+            ],
+            [
+              -5,
+              -2,
+              -3
+            ],
+            [
+              -4,
+              -3,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 28.236486421999984,
+          "wall_seconds": 28.262749880999763
+        }
+      ]
+    },
+    {
+      "name": "ac19_41",
+      "panel": "easy",
+      "rank2_pair": [
+        "YYXXYx",
+        "YYYXyyx"
+      ],
+      "rank2_length": 13,
+      "triangle_state": [
+        [
+          -6,
+          -4,
+          -1
+        ],
+        [
+          -6,
+          -1,
+          2
+        ],
+        [
+          -5,
+          -4,
+          -3
+        ],
+        [
+          -5,
+          2,
+          -1
+        ],
+        [
+          -4,
+          1,
+          -3
+        ],
+        [
+          -3,
+          -2,
+          -2
+        ]
+      ],
+      "rank": 6,
+      "triangle_length": 18,
+      "definitions": 4,
+      "preprocessing_units": 45,
+      "preprocessing_cpu_seconds": 0.0006453620000002047,
+      "preprocessing_wall_seconds": 0.000645060999886482,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 2158,
+          "rotation_products": 107724,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 15,
+          "best_coupling_digrams": 36,
+          "first_coupled_state": [
+            [
+              -6,
+              -4,
+              -1,
+              -6,
+              -1,
+              2
+            ],
+            [
+              -6,
+              -1,
+              2
+            ],
+            [
+              -5,
+              -4,
+              -3
+            ],
+            [
+              -5,
+              2,
+              -1
+            ],
+            [
+              -4,
+              1,
+              -3
+            ],
+            [
+              -3,
+              -2,
+              -2
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 2.6380280050000238,
+          "wall_seconds": 2.6380818289999297
+        },
+        {
+          "ordering": "structural",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 19617,
+          "rotation_products": 35760,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 6,
+          "best_coupling_digrams": 8,
+          "first_coupled_state": [
+            [
+              -6,
+              -4,
+              -1,
+              -6,
+              -1,
+              2
+            ],
+            [
+              -6,
+              -1,
+              2
+            ],
+            [
+              -5,
+              -4,
+              -3
+            ],
+            [
+              -5,
+              2,
+              -1
+            ],
+            [
+              -4,
+              1,
+              -3
+            ],
+            [
+              -3,
+              -2,
+              -2
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 15.357361346999994,
+          "wall_seconds": 15.357608182000149
+        }
+      ]
+    },
+    {
+      "name": "ac19_42",
+      "panel": "easy",
+      "rank2_pair": [
+        "YYXXyx",
+        "YXXXyxx"
+      ],
+      "rank2_length": 13,
+      "triangle_state": [
+        [
+          -6,
+          -4,
+          1
+        ],
+        [
+          -6,
+          2,
+          2
+        ],
+        [
+          -5,
+          -4,
+          -3
+        ],
+        [
+          -5,
+          1,
+          2
+        ],
+        [
+          -4,
+          -2,
+          -3
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 6,
+      "triangle_length": 18,
+      "definitions": 4,
+      "preprocessing_units": 45,
+      "preprocessing_cpu_seconds": 0.0007003360000226166,
+      "preprocessing_wall_seconds": 0.0007007460003478627,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 2118,
+          "rotation_products": 108144,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 15,
+          "best_coupling_digrams": 39,
+          "first_coupled_state": [
+            [
+              -6,
+              -4,
+              1,
+              -6,
+              2,
+              2
+            ],
+            [
+              -6,
+              2,
+              2
+            ],
+            [
+              -5,
+              -4,
+              -3
+            ],
+            [
+              -5,
+              1,
+              2
+            ],
+            [
+              -4,
+              -2,
+              -3
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 2.641012978000049,
+          "wall_seconds": 2.641185704000236
+        },
+        {
+          "ordering": "structural",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 19646,
+          "rotation_products": 35760,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 6,
+          "best_coupling_digrams": 8,
+          "first_coupled_state": [
+            [
+              -6,
+              -4,
+              1,
+              -6,
+              2,
+              2
+            ],
+            [
+              -6,
+              2,
+              2
+            ],
+            [
+              -5,
+              -4,
+              -3
+            ],
+            [
+              -5,
+              1,
+              2
+            ],
+            [
+              -4,
+              -2,
+              -3
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 15.253861212000004,
+          "wall_seconds": 15.259238410999842
+        }
+      ]
+    },
+    {
+      "name": "ac19_43",
+      "panel": "easy",
+      "rank2_pair": [
+        "YYXXYx",
+        "YYYxyyX"
+      ],
+      "rank2_length": 13,
+      "triangle_state": [
+        [
+          -5,
+          -4,
+          -1
+        ],
+        [
+          -5,
+          -2,
+          3
+        ],
+        [
+          -5,
+          2,
+          1
+        ],
+        [
+          -4,
+          -3,
+          -1
+        ],
+        [
+          -3,
+          -2,
+          -2
+        ]
+      ],
+      "rank": 5,
+      "triangle_length": 15,
+      "definitions": 3,
+      "preprocessing_units": 32,
+      "preprocessing_cpu_seconds": 0.0005002750000357992,
+      "preprocessing_wall_seconds": 0.0005006269998375501,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 5,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 1332,
+          "rotation_products": 75148,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 10,
+          "best_coupling_digrams": 30,
+          "first_coupled_state": [
+            [
+              -5,
+              -4,
+              -1,
+              -5,
+              -2,
+              3
+            ],
+            [
+              -5,
+              -2,
+              3
+            ],
+            [
+              -5,
+              2,
+              1
+            ],
+            [
+              -4,
+              -3,
+              -1
+            ],
+            [
+              -3,
+              -2,
+              -2
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 1.4196881279999616,
+          "wall_seconds": 1.419745925999905
+        },
+        {
+          "ordering": "structural",
+          "rank": 5,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 3976,
+          "rotation_products": 5804,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 6,
+          "best_coupling_digrams": 8,
+          "first_coupled_state": [
+            [
+              -5,
+              -4,
+              -1,
+              -5,
+              -2,
+              3
+            ],
+            [
+              -5,
+              -2,
+              3
+            ],
+            [
+              -5,
+              2,
+              1
+            ],
+            [
+              -4,
+              -3,
+              -1
+            ],
+            [
+              -3,
+              -2,
+              -2
+            ]
+          ],
+          "bigon_found": true,
+          "unit_found": true,
+          "endpoint": [
+            [
+              -5,
+              -4,
+              -1
+            ],
+            [
+              -5,
+              1,
+              -3
+            ],
+            [
+              -5,
+              2,
+              1
+            ],
+            [
+              -5,
+              3
+            ],
+            [
+              -2
+            ]
+          ],
+          "events": [
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -3,
+                  -1
+                ],
+                [
+                  -3,
+                  -2,
+                  -2
+                ]
+              ],
+              "target": 4,
+              "factors": [
+                {
+                  "donor_index": 2,
+                  "sign": 1,
+                  "conjugator": [
+                    -5,
+                    2,
+                    3
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -3,
+                -2,
+                -2,
+                -3,
+                1,
+                -5,
+                2,
+                3
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -3,
+                  -1
+                ],
+                [
+                  -3,
+                  -2,
+                  -2,
+                  -3,
+                  1,
+                  -5,
+                  2,
+                  3
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  -3,
+                  1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -3,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 1,
+                "donor_cut": 2,
+                "target_rotation": [
+                  -2,
+                  -2,
+                  -3
+                ],
+                "donor_rotation": [
+                  1,
+                  -5,
+                  2
+                ],
+                "canonical_product": [
+                  -5,
+                  -2,
+                  -3,
+                  1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  -3,
+                  1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -3,
+                  -1
+                ]
+              ],
+              "target": 1,
+              "factors": [
+                {
+                  "donor_index": 2,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -2,
+                -3,
+                1,
+                -3,
+                2,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  -3,
+                  1,
+                  -3,
+                  2,
+                  5
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -3,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -3,
+                  -1
+                ],
+                [
+                  -3,
+                  -3,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  -2,
+                  -3,
+                  1
+                ],
+                "donor_rotation": [
+                  -3,
+                  2,
+                  5
+                ],
+                "canonical_product": [
+                  -3,
+                  -3,
+                  1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -3,
+                  -1
+                ],
+                [
+                  -3,
+                  -3,
+                  1
+                ]
+              ],
+              "target": 3,
+              "factors": [
+                {
+                  "donor_index": 4,
+                  "sign": -1,
+                  "conjugator": [
+                    4
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -4,
+                -3,
+                -1,
+                -4,
+                -1,
+                3,
+                3,
+                4
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -3,
+                  -1,
+                  -4,
+                  -1,
+                  3,
+                  3,
+                  4
+                ],
+                [
+                  -3,
+                  -3,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -1,
+                  3,
+                  -1
+                ],
+                [
+                  -3,
+                  -3,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 1,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -3,
+                  -1,
+                  -4
+                ],
+                "donor_rotation": [
+                  -1,
+                  3,
+                  3
+                ],
+                "canonical_product": [
+                  -4,
+                  -1,
+                  3,
+                  -1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -1,
+                  3,
+                  -1
+                ],
+                [
+                  -3,
+                  -3,
+                  1
+                ]
+              ],
+              "target": 3,
+              "factors": [
+                {
+                  "donor_index": 0,
+                  "sign": -1,
+                  "conjugator": [
+                    1,
+                    4
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -4,
+                -1,
+                3,
+                -1,
+                5,
+                1,
+                4
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -4,
+                  -1,
+                  3,
+                  -1,
+                  5,
+                  1,
+                  4
+                ],
+                [
+                  -3,
+                  -3,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  1,
+                  -3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -3,
+                  -3,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 2,
+                "target_rotation": [
+                  -4,
+                  -1,
+                  3,
+                  -1
+                ],
+                "donor_rotation": [
+                  5,
+                  1,
+                  4
+                ],
+                "canonical_product": [
+                  -5,
+                  1,
+                  -3
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  1,
+                  -3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -3,
+                  -3,
+                  1
+                ]
+              ],
+              "target": 4,
+              "factors": [
+                {
+                  "donor_index": 2,
+                  "sign": -1,
+                  "conjugator": [
+                    3
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -3,
+                -3,
+                5,
+                3
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  1,
+                  -3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -3,
+                  -3,
+                  5,
+                  3
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  1,
+                  -3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -5,
+                  3
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 1,
+                "target_rotation": [
+                  -3,
+                  -3,
+                  1
+                ],
+                "donor_rotation": [
+                  -1,
+                  5,
+                  3
+                ],
+                "canonical_product": [
+                  -5,
+                  3
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  1,
+                  -3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -5,
+                  3
+                ]
+              ],
+              "target": 1,
+              "factors": [
+                {
+                  "donor_index": 4,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -2,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  -2,
+                  5
+                ],
+                [
+                  -5,
+                  1,
+                  -3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -5,
+                  3
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -1
+                ],
+                [
+                  -5,
+                  1,
+                  -3
+                ],
+                [
+                  -5,
+                  2,
+                  1
+                ],
+                [
+                  -5,
+                  3
+                ],
+                [
+                  -2
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  -2,
+                  3
+                ],
+                "donor_rotation": [
+                  -3,
+                  5
+                ],
+                "canonical_product": [
+                  -2
+                ]
+              },
+              "charged_units": 1
+            }
+          ],
+          "shortest_relator_seen": 1,
+          "cpu_seconds": 1.9970034799999894,
+          "wall_seconds": 1.997158655000021
+        }
+      ]
+    },
+    {
+      "name": "ac19_44",
+      "panel": "easy",
+      "rank2_pair": [
+        "YYXXyx",
+        "YXXyxxx"
+      ],
+      "rank2_length": 13,
+      "triangle_state": [
+        [
+          -5,
+          -4,
+          2
+        ],
+        [
+          -5,
+          2,
+          -1
+        ],
+        [
+          -5,
+          3,
+          -1
+        ],
+        [
+          -4,
+          -3,
+          2
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 5,
+      "triangle_length": 15,
+      "definitions": 3,
+      "preprocessing_units": 31,
+      "preprocessing_cpu_seconds": 0.00047615300002235017,
+      "preprocessing_wall_seconds": 0.0004763240003740066,
+      "root_digram_disjoint": false,
+      "root_coupling": [
+        1,
+        1
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 5,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 2830,
+          "rotation_products": 35716,
+          "initial_digram_disjoint": false,
+          "best_coupling_pairs": 10,
+          "best_coupling_digrams": 29,
+          "first_coupled_state": [
+            [
+              -5,
+              -4,
+              2,
+              -5,
+              2,
+              -1
+            ],
+            [
+              -5,
+              2,
+              -1
+            ],
+            [
+              -5,
+              3,
+              -1
+            ],
+            [
+              -4,
+              -3,
+              2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": true,
+          "unit_found": true,
+          "endpoint": [
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -5,
+              2,
+              -1
+            ],
+            [
+              -4
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ],
+            [
+              -3,
+              2
+            ]
+          ],
+          "events": [
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  -1
+                ],
+                [
+                  -5,
+                  3,
+                  -1
+                ],
+                [
+                  -4,
+                  -3,
+                  2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                3,
+                -2,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  -1
+                ],
+                [
+                  -5,
+                  3,
+                  -2,
+                  5
+                ],
+                [
+                  -4,
+                  -3,
+                  2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  -1
+                ],
+                [
+                  -4,
+                  -3,
+                  2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  3,
+                  -1
+                ],
+                "donor_rotation": [
+                  1,
+                  -2,
+                  5
+                ],
+                "canonical_product": [
+                  -3,
+                  2
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  -1
+                ],
+                [
+                  -4,
+                  -3,
+                  2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 4,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -4
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  -1
+                ],
+                [
+                  -4
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  -1
+                ],
+                [
+                  -4
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -4,
+                  -3,
+                  2
+                ],
+                "donor_rotation": [
+                  -2,
+                  3
+                ],
+                "canonical_product": [
+                  -4
+                ]
+              },
+              "charged_units": 1
+            }
+          ],
+          "shortest_relator_seen": 1,
+          "cpu_seconds": 1.8240739920000237,
+          "wall_seconds": 1.8241658000001735
+        },
+        {
+          "ordering": "structural",
+          "rank": 5,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 3393,
+          "rotation_products": 4688,
+          "initial_digram_disjoint": false,
+          "best_coupling_pairs": 5,
+          "best_coupling_digrams": 5,
+          "first_coupled_state": [
+            [
+              -5,
+              -4,
+              2,
+              -5,
+              2,
+              -1
+            ],
+            [
+              -5,
+              2,
+              -1
+            ],
+            [
+              -5,
+              3,
+              -1
+            ],
+            [
+              -4,
+              -3,
+              2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": true,
+          "unit_found": true,
+          "endpoint": [
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -5,
+              3,
+              -1
+            ],
+            [
+              -4
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ],
+            [
+              -3,
+              2
+            ]
+          ],
+          "events": [
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  -1
+                ],
+                [
+                  -5,
+                  3,
+                  -1
+                ],
+                [
+                  -4,
+                  -3,
+                  2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "target": 1,
+              "factors": [
+                {
+                  "donor_index": 2,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                2,
+                -3,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  -3,
+                  5
+                ],
+                [
+                  -5,
+                  3,
+                  -1
+                ],
+                [
+                  -4,
+                  -3,
+                  2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  3,
+                  -1
+                ],
+                [
+                  -4,
+                  -3,
+                  2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  2,
+                  -1
+                ],
+                "donor_rotation": [
+                  1,
+                  -3,
+                  5
+                ],
+                "canonical_product": [
+                  -3,
+                  2
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  3,
+                  -1
+                ],
+                [
+                  -4,
+                  -3,
+                  2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 4,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -4
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  3,
+                  -1
+                ],
+                [
+                  -4
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  3,
+                  -1
+                ],
+                [
+                  -4
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -4,
+                  -3,
+                  2
+                ],
+                "donor_rotation": [
+                  -2,
+                  3
+                ],
+                "canonical_product": [
+                  -4
+                ]
+              },
+              "charged_units": 1
+            }
+          ],
+          "shortest_relator_seen": 1,
+          "cpu_seconds": 1.645170367999981,
+          "wall_seconds": 1.645319911000115
+        }
+      ]
+    },
+    {
+      "name": "ac19_45",
+      "panel": "easy",
+      "rank2_pair": [
+        "YYXXXyX",
+        "YXXXyxx"
+      ],
+      "rank2_length": 14,
+      "triangle_state": [
+        [
+          -6,
+          -5,
+          2
+        ],
+        [
+          -6,
+          -3
+        ],
+        [
+          -6,
+          -1,
+          -2
+        ],
+        [
+          -5,
+          -4,
+          2
+        ],
+        [
+          -4,
+          -3,
+          1
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 6,
+      "triangle_length": 17,
+      "definitions": 4,
+      "preprocessing_units": 43,
+      "preprocessing_cpu_seconds": 0.0005895310000028076,
+      "preprocessing_wall_seconds": 0.0005890339998586569,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 2067,
+          "rotation_products": 89320,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 15,
+          "best_coupling_digrams": 36,
+          "first_coupled_state": [
+            [
+              -6,
+              -5,
+              2,
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -1,
+              -2
+            ],
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -4,
+              -3,
+              1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": true,
+          "unit_found": false,
+          "endpoint": [
+            [
+              -6,
+              -5,
+              2,
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -1,
+              -2
+            ],
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -4,
+              -3,
+              1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "events": [
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "target": 0,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": 1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -6,
+                -5,
+                2,
+                -6,
+                -3
+              ],
+              "raw_after": [
+                [
+                  -6,
+                  -5,
+                  2,
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -6,
+                  -5,
+                  2,
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -6,
+                  -5,
+                  2
+                ],
+                "donor_rotation": [
+                  -6,
+                  -3
+                ],
+                "canonical_product": [
+                  -6,
+                  -5,
+                  2,
+                  -6,
+                  -3
+                ]
+              },
+              "charged_units": 1
+            }
+          ],
+          "shortest_relator_seen": 2,
+          "cpu_seconds": 2.371265720999986,
+          "wall_seconds": 2.3902140000000145
+        },
+        {
+          "ordering": "structural",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 25533,
+          "rotation_products": 30776,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 5,
+          "best_coupling_digrams": 8,
+          "first_coupled_state": [
+            [
+              -6,
+              -5,
+              2,
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -1,
+              -2
+            ],
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -4,
+              -3,
+              1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": true,
+          "unit_found": false,
+          "endpoint": [
+            [
+              -6,
+              -5,
+              2,
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -1,
+              -2
+            ],
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -4,
+              -3,
+              1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "events": [
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "target": 0,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": 1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -6,
+                -5,
+                2,
+                -6,
+                -3
+              ],
+              "raw_after": [
+                [
+                  -6,
+                  -5,
+                  2,
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -6,
+                  -5,
+                  2,
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -6,
+                  -5,
+                  2
+                ],
+                "donor_rotation": [
+                  -6,
+                  -3
+                ],
+                "canonical_product": [
+                  -6,
+                  -5,
+                  2,
+                  -6,
+                  -3
+                ]
+              },
+              "charged_units": 1
+            }
+          ],
+          "shortest_relator_seen": 2,
+          "cpu_seconds": 19.516839668999978,
+          "wall_seconds": 19.54789403199993
+        }
+      ]
+    },
+    {
+      "name": "ac19_46",
+      "panel": "easy",
+      "rank2_pair": [
+        "YYXXXyx",
+        "YXXXyxx"
+      ],
+      "rank2_length": 14,
+      "triangle_state": [
+        [
+          -6,
+          -5,
+          2
+        ],
+        [
+          -6,
+          -3
+        ],
+        [
+          -6,
+          1,
+          -2
+        ],
+        [
+          -5,
+          -4,
+          2
+        ],
+        [
+          -4,
+          -3,
+          1
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 6,
+      "triangle_length": 17,
+      "definitions": 4,
+      "preprocessing_units": 43,
+      "preprocessing_cpu_seconds": 0.0007050070000218511,
+      "preprocessing_wall_seconds": 0.0007053080003061041,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 2464,
+          "rotation_products": 85032,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 15,
+          "best_coupling_digrams": 41,
+          "first_coupled_state": [
+            [
+              -6,
+              -5,
+              2,
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -3
+            ],
+            [
+              -6,
+              1,
+              -2
+            ],
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -4,
+              -3,
+              1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": true,
+          "unit_found": false,
+          "endpoint": [
+            [
+              -6,
+              -5,
+              2,
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -3
+            ],
+            [
+              -6,
+              1,
+              -2
+            ],
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -4,
+              -3,
+              1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "events": [
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "target": 0,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": 1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -6,
+                -5,
+                2,
+                -6,
+                -3
+              ],
+              "raw_after": [
+                [
+                  -6,
+                  -5,
+                  2,
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -6,
+                  -5,
+                  2,
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -6,
+                  -5,
+                  2
+                ],
+                "donor_rotation": [
+                  -6,
+                  -3
+                ],
+                "canonical_product": [
+                  -6,
+                  -5,
+                  2,
+                  -6,
+                  -3
+                ]
+              },
+              "charged_units": 1
+            }
+          ],
+          "shortest_relator_seen": 2,
+          "cpu_seconds": 2.8375807730000133,
+          "wall_seconds": 2.8403471399997215
+        },
+        {
+          "ordering": "structural",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 5785,
+          "rotation_products": 7532,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 5,
+          "best_coupling_digrams": 6,
+          "first_coupled_state": [
+            [
+              -6,
+              -5,
+              2,
+              -6,
+              -3
+            ],
+            [
+              -6,
+              -3
+            ],
+            [
+              -6,
+              1,
+              -2
+            ],
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -4,
+              -3,
+              1
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": true,
+          "unit_found": true,
+          "endpoint": [
+            [
+              -6,
+              -3
+            ],
+            [
+              -5,
+              -4,
+              2
+            ],
+            [
+              -4,
+              -3,
+              1
+            ],
+            [
+              -3,
+              2,
+              -1
+            ],
+            [
+              -2
+            ],
+            [
+              -2,
+              -1
+            ]
+          ],
+          "events": [
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  1,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -6,
+                1,
+                -2,
+                3,
+                6
+              ],
+              "raw_after": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -6,
+                  1,
+                  -2,
+                  3,
+                  6
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -6,
+                  1,
+                  -2
+                ],
+                "donor_rotation": [
+                  3,
+                  6
+                ],
+                "canonical_product": [
+                  -3,
+                  2,
+                  -1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ]
+              ],
+              "target": 4,
+              "factors": [
+                {
+                  "donor_index": 5,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -3,
+                -1,
+                -2,
+                3
+              ],
+              "raw_after": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  -1,
+                  -2,
+                  3
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "donor_rotation": [
+                  1,
+                  -2,
+                  3
+                ],
+                "canonical_product": [
+                  -2,
+                  -1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -6,
+                  -5,
+                  2
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "target": 0,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -6,
+                -5,
+                2,
+                3,
+                6
+              ],
+              "raw_after": [
+                [
+                  -6,
+                  -5,
+                  2,
+                  3,
+                  6
+                ],
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -6,
+                  -5,
+                  2
+                ],
+                "donor_rotation": [
+                  3,
+                  6
+                ],
+                "canonical_product": [
+                  -5,
+                  2,
+                  3
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 5,
+                  "sign": 1,
+                  "conjugator": [
+                    -2,
+                    5
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                2,
+                3,
+                -5,
+                -1,
+                -2,
+                5
+              ],
+              "raw_after": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  2,
+                  3,
+                  -5,
+                  -1,
+                  -2,
+                  5
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 1,
+                "donor_cut": 1,
+                "target_rotation": [
+                  2,
+                  3,
+                  -5
+                ],
+                "donor_rotation": [
+                  -1,
+                  -2
+                ],
+                "canonical_product": [
+                  -5,
+                  -1,
+                  3
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 3,
+                  "sign": 1,
+                  "conjugator": [
+                    -4
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -4
+              ],
+              "raw_after": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -5,
+                  -4
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 1,
+                "target_rotation": [
+                  -5,
+                  -1,
+                  3
+                ],
+                "donor_rotation": [
+                  -3,
+                  1,
+                  -4
+                ],
+                "canonical_product": [
+                  -5,
+                  -4
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "target": 1,
+              "factors": [
+                {
+                  "donor_index": 2,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -4,
+                -2,
+                4,
+                5
+              ],
+              "raw_after": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  5
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -6,
+                  -3
+                ],
+                [
+                  -5,
+                  -4,
+                  2
+                ],
+                [
+                  -4,
+                  -3,
+                  1
+                ],
+                [
+                  -3,
+                  2,
+                  -1
+                ],
+                [
+                  -2
+                ],
+                [
+                  -2,
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  -4
+                ],
+                "donor_rotation": [
+                  -2,
+                  4,
+                  5
+                ],
+                "canonical_product": [
+                  -2
+                ]
+              },
+              "charged_units": 1
+            }
+          ],
+          "shortest_relator_seen": 1,
+          "cpu_seconds": 3.9915255930000058,
+          "wall_seconds": 3.9937659489996804
+        }
+      ]
+    },
+    {
+      "name": "ac19_47",
+      "panel": "easy",
+      "rank2_pair": [
+        "YYXXyXX",
+        "YXXXyxx"
+      ],
+      "rank2_length": 14,
+      "triangle_state": [
+        [
+          -5,
+          -4,
+          -2
+        ],
+        [
+          -5,
+          -3,
+          2
+        ],
+        [
+          -5,
+          -1,
+          3
+        ],
+        [
+          -4,
+          -3,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 5,
+      "triangle_length": 15,
+      "definitions": 3,
+      "preprocessing_units": 32,
+      "preprocessing_cpu_seconds": 0.0005419710000182931,
+      "preprocessing_wall_seconds": 0.0005432930001916247,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 5,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 1282,
+          "rotation_products": 73320,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 10,
+          "best_coupling_digrams": 29,
+          "first_coupled_state": [
+            [
+              -5,
+              -4,
+              -2,
+              -5,
+              -3,
+              2
+            ],
+            [
+              -5,
+              -3,
+              2
+            ],
+            [
+              -5,
+              -1,
+              3
+            ],
+            [
+              -4,
+              -3,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 1.36514792600002,
+          "wall_seconds": 1.3652027349999116
+        },
+        {
+          "ordering": "structural",
+          "rank": 5,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 11363,
+          "rotation_products": 24384,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 5,
+          "best_coupling_digrams": 6,
+          "first_coupled_state": [
+            [
+              -5,
+              -4,
+              -2,
+              -5,
+              -3,
+              2
+            ],
+            [
+              -5,
+              -3,
+              2
+            ],
+            [
+              -5,
+              -1,
+              3
+            ],
+            [
+              -4,
+              -3,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 6.36962005700002,
+          "wall_seconds": 6.370498414999929
+        }
+      ]
+    },
+    {
+      "name": "ac19_48",
+      "panel": "easy",
+      "rank2_pair": [
+        "YYXXyxx",
+        "YXXXyxx"
+      ],
+      "rank2_length": 14,
+      "triangle_state": [
+        [
+          -5,
+          -4,
+          -2
+        ],
+        [
+          -5,
+          -2,
+          3
+        ],
+        [
+          -5,
+          -1,
+          3
+        ],
+        [
+          -4,
+          -3,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 5,
+      "triangle_length": 15,
+      "definitions": 3,
+      "preprocessing_units": 31,
+      "preprocessing_cpu_seconds": 0.0004433659999563133,
+      "preprocessing_wall_seconds": 0.00044306499967206037,
+      "root_digram_disjoint": false,
+      "root_coupling": [
+        1,
+        1
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 5,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 2571,
+          "rotation_products": 38784,
+          "initial_digram_disjoint": false,
+          "best_coupling_pairs": 10,
+          "best_coupling_digrams": 32,
+          "first_coupled_state": [
+            [
+              -5,
+              -4,
+              -2,
+              -5,
+              -2,
+              3
+            ],
+            [
+              -5,
+              -2,
+              3
+            ],
+            [
+              -5,
+              -1,
+              3
+            ],
+            [
+              -4,
+              -3,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": true,
+          "unit_found": true,
+          "endpoint": [
+            [
+              -5,
+              -4,
+              -4,
+              -2,
+              1,
+              1
+            ],
+            [
+              -5,
+              -4,
+              -2,
+              1,
+              1,
+              3
+            ],
+            [
+              -4,
+              -2,
+              1,
+              1,
+              1,
+              -2
+            ],
+            [
+              -2
+            ],
+            [
+              -2,
+              1
+            ]
+          ],
+          "events": [
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -1,
+                2,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  -1,
+                  2,
+                  5
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  -1,
+                  3
+                ],
+                "donor_rotation": [
+                  -3,
+                  2,
+                  5
+                ],
+                "canonical_product": [
+                  -2,
+                  1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 3,
+              "factors": [
+                {
+                  "donor_index": 0,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -3,
+                -1,
+                -1,
+                2,
+                4,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1,
+                  2,
+                  4,
+                  5
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "donor_rotation": [
+                  2,
+                  4,
+                  5
+                ],
+                "canonical_product": [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 3,
+              "factors": [
+                {
+                  "donor_index": 0,
+                  "sign": -1,
+                  "conjugator": [
+                    4
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -4,
+                -3,
+                -2,
+                -4,
+                2,
+                4,
+                5,
+                4
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2,
+                  -4,
+                  2,
+                  4,
+                  5,
+                  4
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 1,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -3,
+                  -2,
+                  -4
+                ],
+                "donor_rotation": [
+                  2,
+                  4,
+                  5
+                ],
+                "canonical_product": [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 3,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -2,
+                -1,
+                -1,
+                2,
+                4,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ],
+                [
+                  -5,
+                  -2,
+                  -1,
+                  -1,
+                  2,
+                  4,
+                  5
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  -2,
+                  3
+                ],
+                "donor_rotation": [
+                  -3,
+                  -1,
+                  -1,
+                  2,
+                  4,
+                  5
+                ],
+                "canonical_product": [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 0,
+              "factors": [
+                {
+                  "donor_index": 3,
+                  "sign": 1,
+                  "conjugator": [
+                    -4,
+                    -2,
+                    1,
+                    1
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -4,
+                -4,
+                -2,
+                1,
+                1
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 4,
+                "target_rotation": [
+                  -5,
+                  -4,
+                  -2
+                ],
+                "donor_rotation": [
+                  2,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                "canonical_product": [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -4,
+                -2,
+                4,
+                2,
+                -1,
+                -1,
+                2,
+                4,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  -1,
+                  -1,
+                  2,
+                  4,
+                  5
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -4,
+                  1,
+                  1,
+                  -2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  -4,
+                  -2,
+                  4,
+                  2,
+                  3
+                ],
+                "donor_rotation": [
+                  -3,
+                  -1,
+                  -1,
+                  2,
+                  4,
+                  5
+                ],
+                "canonical_product": [
+                  -4,
+                  1,
+                  1,
+                  -2
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -4,
+                  1,
+                  1,
+                  -2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 3,
+              "factors": [
+                {
+                  "donor_index": 4,
+                  "sign": 1,
+                  "conjugator": [
+                    4
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -4,
+                1,
+                1,
+                -2,
+                -4,
+                -2,
+                1,
+                4
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -4,
+                  1,
+                  1,
+                  -2,
+                  -4,
+                  -2,
+                  1,
+                  4
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  -2
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 1,
+                "donor_cut": 0,
+                "target_rotation": [
+                  1,
+                  1,
+                  -2,
+                  -4
+                ],
+                "donor_rotation": [
+                  -2,
+                  1
+                ],
+                "canonical_product": [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  -2
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  -2
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 3,
+              "factors": [
+                {
+                  "donor_index": 4,
+                  "sign": 1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -4,
+                -2,
+                1,
+                1,
+                1
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  -2
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  -2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  2
+                ],
+                "donor_rotation": [
+                  -2,
+                  1
+                ],
+                "canonical_product": [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  -2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 3,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -4,
+                -2,
+                1,
+                1,
+                1,
+                2,
+                -1,
+                -1,
+                -1,
+                2,
+                4
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  2,
+                  -1,
+                  -1,
+                  -1,
+                  2,
+                  4
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  -2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -4,
+                  -2,
+                  1,
+                  1
+                ],
+                [
+                  -5,
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  3
+                ],
+                [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  -2
+                ],
+                [
+                  -2
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -4,
+                  -2,
+                  1,
+                  1,
+                  1
+                ],
+                "donor_rotation": [
+                  2,
+                  -1,
+                  -1,
+                  -1,
+                  2,
+                  4
+                ],
+                "canonical_product": [
+                  -2
+                ]
+              },
+              "charged_units": 1
+            }
+          ],
+          "shortest_relator_seen": 1,
+          "cpu_seconds": 1.7511836940000194,
+          "wall_seconds": 1.751287448000312
+        },
+        {
+          "ordering": "structural",
+          "rank": 5,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 3741,
+          "rotation_products": 5172,
+          "initial_digram_disjoint": false,
+          "best_coupling_pairs": 5,
+          "best_coupling_digrams": 6,
+          "first_coupled_state": [
+            [
+              -5,
+              -4,
+              -2,
+              -5,
+              -2,
+              3
+            ],
+            [
+              -5,
+              -2,
+              3
+            ],
+            [
+              -5,
+              -1,
+              3
+            ],
+            [
+              -4,
+              -3,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": true,
+          "unit_found": true,
+          "endpoint": [
+            [
+              -5,
+              -1,
+              3
+            ],
+            [
+              -4,
+              1
+            ],
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -2,
+              1
+            ],
+            [
+              -1
+            ]
+          ],
+          "events": [
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -2,
+                  3
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "target": 1,
+              "factors": [
+                {
+                  "donor_index": 2,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -2,
+                1,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -2,
+                  1,
+                  5
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  -2,
+                  3
+                ],
+                "donor_rotation": [
+                  -3,
+                  1,
+                  5
+                ],
+                "canonical_product": [
+                  -2,
+                  1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 3,
+              "factors": [
+                {
+                  "donor_index": 4,
+                  "sign": 1,
+                  "conjugator": [
+                    3
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -3,
+                -1,
+                -1,
+                -3,
+                -2,
+                1,
+                3
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -1,
+                  -1,
+                  -3,
+                  -2,
+                  1,
+                  3
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 1,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -1,
+                  -1,
+                  -3
+                ],
+                "donor_rotation": [
+                  -2,
+                  1
+                ],
+                "canonical_product": [
+                  -3,
+                  -2,
+                  -1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 3,
+                  "sign": -1,
+                  "conjugator": [
+                    1
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -4,
+                1
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 1,
+                "target_rotation": [
+                  -4,
+                  -3,
+                  -2
+                ],
+                "donor_rotation": [
+                  2,
+                  3,
+                  1
+                ],
+                "canonical_product": [
+                  -4,
+                  1
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -4,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 0,
+              "factors": [
+                {
+                  "donor_index": 2,
+                  "sign": -1,
+                  "conjugator": [
+                    5
+                  ]
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -4,
+                -2,
+                -5,
+                -1,
+                4,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -4,
+                  -2,
+                  -5,
+                  -1,
+                  4,
+                  5
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -1,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 1,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -4,
+                  -2,
+                  -5
+                ],
+                "donor_rotation": [
+                  -1,
+                  4
+                ],
+                "canonical_product": [
+                  -5,
+                  -1,
+                  -2
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -1,
+                  -2
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 0,
+              "factors": [
+                {
+                  "donor_index": 1,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -5,
+                -1,
+                -2,
+                -3,
+                1,
+                5
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -1,
+                  -2,
+                  -3,
+                  1,
+                  5
+                ],
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -5,
+                  -1,
+                  -2
+                ],
+                "donor_rotation": [
+                  -3,
+                  1,
+                  5
+                ],
+                "canonical_product": [
+                  -3,
+                  -2
+                ]
+              },
+              "charged_units": 1
+            },
+            {
+              "kind": "normal_product_substitution",
+              "before": [
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "target": 2,
+              "factors": [
+                {
+                  "donor_index": 3,
+                  "sign": -1,
+                  "conjugator": []
+                }
+              ],
+              "raw_target_after": [
+                -3,
+                -2,
+                1,
+                2,
+                3
+              ],
+              "raw_after": [
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2,
+                  1,
+                  2,
+                  3
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ]
+              ],
+              "after": [
+                [
+                  -5,
+                  -1,
+                  3
+                ],
+                [
+                  -4,
+                  1
+                ],
+                [
+                  -3,
+                  -2,
+                  -1
+                ],
+                [
+                  -2,
+                  1
+                ],
+                [
+                  -1
+                ]
+              ],
+              "cyclic_product_witness": {
+                "target_cut": 0,
+                "donor_cut": 0,
+                "target_rotation": [
+                  -3,
+                  -2
+                ],
+                "donor_rotation": [
+                  1,
+                  2,
+                  3
+                ],
+                "canonical_product": [
+                  -1
+                ]
+              },
+              "charged_units": 1
+            }
+          ],
+          "shortest_relator_seen": 1,
+          "cpu_seconds": 1.8501931140000352,
+          "wall_seconds": 1.8502334170002541
+        }
+      ]
+    },
+    {
+      "name": "ac19_50",
+      "panel": "easy",
+      "rank2_pair": [
+        "YYXXXyx",
+        "YXXyxxx"
+      ],
+      "rank2_length": 14,
+      "triangle_state": [
+        [
+          -6,
+          -5,
+          1
+        ],
+        [
+          -6,
+          -2,
+          -2
+        ],
+        [
+          -5,
+          -4,
+          1
+        ],
+        [
+          -5,
+          2,
+          3
+        ],
+        [
+          -4,
+          -2,
+          -3
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 6,
+      "triangle_length": 18,
+      "definitions": 4,
+      "preprocessing_units": 45,
+      "preprocessing_cpu_seconds": 0.0006359729999871888,
+      "preprocessing_wall_seconds": 0.0006360450001920981,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 2223,
+          "rotation_products": 109584,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 15,
+          "best_coupling_digrams": 42,
+          "first_coupled_state": [
+            [
+              -6,
+              -5,
+              1,
+              -6,
+              -2,
+              -2
+            ],
+            [
+              -6,
+              -2,
+              -2
+            ],
+            [
+              -5,
+              -4,
+              1
+            ],
+            [
+              -5,
+              2,
+              3
+            ],
+            [
+              -4,
+              -2,
+              -3
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 2.8208099270000275,
+          "wall_seconds": 2.8208817469999303
+        },
+        {
+          "ordering": "structural",
+          "rank": 6,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 16706,
+          "rotation_products": 37412,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 7,
+          "best_coupling_digrams": 9,
+          "first_coupled_state": [
+            [
+              -6,
+              -5,
+              1,
+              -6,
+              -2,
+              -2
+            ],
+            [
+              -6,
+              -2,
+              -2
+            ],
+            [
+              -5,
+              -4,
+              1
+            ],
+            [
+              -5,
+              2,
+              3
+            ],
+            [
+              -4,
+              -2,
+              -3
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 13.039626171000009,
+          "wall_seconds": 13.076179371999842
+        }
+      ]
+    },
+    {
+      "name": "ac19_51",
+      "panel": "easy",
+      "rank2_pair": [
+        "YXXXyxx",
+        "YYXXXXyX"
+      ],
+      "rank2_length": 15,
+      "triangle_state": [
+        [
+          -7,
+          -6,
+          -3
+        ],
+        [
+          -7,
+          -2,
+          -2
+        ],
+        [
+          -6,
+          -4,
+          -1
+        ],
+        [
+          -5,
+          -4,
+          -3
+        ],
+        [
+          -5,
+          1,
+          2
+        ],
+        [
+          -4,
+          -2,
+          -3
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 7,
+      "triangle_length": 21,
+      "definitions": 5,
+      "preprocessing_units": 59,
+      "preprocessing_cpu_seconds": 0.0008988759999510876,
+      "preprocessing_wall_seconds": 0.0008990569999696163,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 7,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 3203,
+          "rotation_products": 147668,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 21,
+          "best_coupling_digrams": 47,
+          "first_coupled_state": [
+            [
+              -7,
+              -6,
+              -3,
+              -7,
+              -2,
+              -2
+            ],
+            [
+              -7,
+              -2,
+              -2
+            ],
+            [
+              -6,
+              -4,
+              -1
+            ],
+            [
+              -5,
+              -4,
+              -3
+            ],
+            [
+              -5,
+              1,
+              2
+            ],
+            [
+              -4,
+              -2,
+              -3
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 4.775821416000042,
+          "wall_seconds": 4.792058768000061
+        },
+        {
+          "ordering": "structural",
+          "rank": 7,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 26927,
+          "rotation_products": 50748,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 8,
+          "best_coupling_digrams": 9,
+          "first_coupled_state": [
+            [
+              -7,
+              -6,
+              -3,
+              -7,
+              -2,
+              -2
+            ],
+            [
+              -7,
+              -2,
+              -2
+            ],
+            [
+              -6,
+              -4,
+              -1
+            ],
+            [
+              -5,
+              -4,
+              -3
+            ],
+            [
+              -5,
+              1,
+              2
+            ],
+            [
+              -4,
+              -2,
+              -3
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 28.63479726999998,
+          "wall_seconds": 28.765709397000137
+        }
+      ]
+    },
+    {
+      "name": "ac19_52",
+      "panel": "easy",
+      "rank2_pair": [
+        "YXXXyxx",
+        "YYXXXXyx"
+      ],
+      "rank2_length": 15,
+      "triangle_state": [
+        [
+          -7,
+          -6,
+          -3
+        ],
+        [
+          -7,
+          -2,
+          -2
+        ],
+        [
+          -6,
+          -4,
+          1
+        ],
+        [
+          -5,
+          -4,
+          -3
+        ],
+        [
+          -5,
+          1,
+          2
+        ],
+        [
+          -4,
+          -2,
+          -3
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 7,
+      "triangle_length": 21,
+      "definitions": 5,
+      "preprocessing_units": 59,
+      "preprocessing_cpu_seconds": 0.0008570410000174888,
+      "preprocessing_wall_seconds": 0.0008579390000704734,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 7,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 3236,
+          "rotation_products": 149520,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 21,
+          "best_coupling_digrams": 47,
+          "first_coupled_state": [
+            [
+              -7,
+              -6,
+              -3,
+              -7,
+              -2,
+              -2
+            ],
+            [
+              -7,
+              -2,
+              -2
+            ],
+            [
+              -6,
+              -4,
+              1
+            ],
+            [
+              -5,
+              -4,
+              -3
+            ],
+            [
+              -5,
+              1,
+              2
+            ],
+            [
+              -4,
+              -2,
+              -3
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 4.81264971600001,
+          "wall_seconds": 4.822303189000195
+        },
+        {
+          "ordering": "structural",
+          "rank": 7,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 29798,
+          "rotation_products": 49392,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 6,
+          "best_coupling_digrams": 7,
+          "first_coupled_state": [
+            [
+              -7,
+              -6,
+              -3,
+              -7,
+              -2,
+              -2
+            ],
+            [
+              -7,
+              -2,
+              -2
+            ],
+            [
+              -6,
+              -4,
+              1
+            ],
+            [
+              -5,
+              -4,
+              -3
+            ],
+            [
+              -5,
+              1,
+              2
+            ],
+            [
+              -4,
+              -2,
+              -3
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 31.77357169999999,
+          "wall_seconds": 32.83969436000007
+        }
+      ]
+    },
+    {
+      "name": "ac19_54",
+      "panel": "easy",
+      "rank2_pair": [
+        "YXXXyxx",
+        "YYYXyyxx"
+      ],
+      "rank2_length": 15,
+      "triangle_state": [
+        [
+          -7,
+          -5,
+          4
+        ],
+        [
+          -7,
+          4,
+          -1
+        ],
+        [
+          -6,
+          -5,
+          -2
+        ],
+        [
+          -6,
+          -1,
+          3
+        ],
+        [
+          -5,
+          -3,
+          -2
+        ],
+        [
+          -4,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1
+        ]
+      ],
+      "rank": 7,
+      "triangle_length": 21,
+      "definitions": 5,
+      "preprocessing_units": 59,
+      "preprocessing_cpu_seconds": 0.0008905390000109037,
+      "preprocessing_wall_seconds": 0.0008904920000532002,
+      "root_digram_disjoint": true,
+      "root_coupling": [
+        0,
+        0
+      ],
+      "all_relators_at_most_three": true,
+      "arms": [
+        {
+          "ordering": "coupling",
+          "rank": 7,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 3074,
+          "rotation_products": 156600,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 21,
+          "best_coupling_digrams": 48,
+          "first_coupled_state": [
+            [
+              -7,
+              -5,
+              4,
+              -7,
+              4,
+              -1
+            ],
+            [
+              -7,
+              4,
+              -1
+            ],
+            [
+              -6,
+              -5,
+              -2
+            ],
+            [
+              -6,
+              -1,
+              3
+            ],
+            [
+              -5,
+              -3,
+              -2
+            ],
+            [
+              -4,
+              -2,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 4.779436505999968,
+          "wall_seconds": 4.780477709000024
+        },
+        {
+          "ordering": "structural",
+          "rank": 7,
+          "relator_cap": 6,
+          "pop_budget": 60,
+          "beam": 48,
+          "heap_pops": 60,
+          "discovered_states": 30618,
+          "rotation_products": 49104,
+          "initial_digram_disjoint": true,
+          "best_coupling_pairs": 6,
+          "best_coupling_digrams": 8,
+          "first_coupled_state": [
+            [
+              -7,
+              -5,
+              4,
+              -7,
+              4,
+              -1
+            ],
+            [
+              -7,
+              4,
+              -1
+            ],
+            [
+              -6,
+              -5,
+              -2
+            ],
+            [
+              -6,
+              -1,
+              3
+            ],
+            [
+              -5,
+              -3,
+              -2
+            ],
+            [
+              -4,
+              -2,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1
+            ]
+          ],
+          "bigon_found": false,
+          "unit_found": false,
+          "endpoint": null,
+          "events": [],
+          "shortest_relator_seen": 3,
+          "cpu_seconds": 32.596935868,
+          "wall_seconds": 32.59881057799976
+        }
+      ]
+    }
+  ]
+}

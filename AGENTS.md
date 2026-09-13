@@ -365,3 +365,13 @@ for every row instead admits a nontrivial C2 quotient.
 [WORKS] Store it as deterministic gzip (`gzip -n -9`), make consumers stream
 the archive, and record the SHA-256 of the decompressed JSONL. Before staging a
 research batch, scan every intended file for the remote's size limit.
+
+### [2026-09-13] At an all-triangle root a unit is parity-forbidden and a bigon needs a shared digram
+[MECHANISM] Products of two length-3 cyclic words have even length, so a fixed-rank
+search from a triangulated root cannot make a unit in one move; a length-2 relator
+needs two relators sharing a cyclic digram modulo (u,v)->(v^-1,u^-1); every one of
+the 255 all-triangle roots in a 400-row AC19 sample is digram-disjoint, as are all four
+hard rows (the other 145 roots already carry a length<=2 relator from preprocessing).
+Score by digram coupling, not total length (constant 3r), and never read an empty
+cap-3/cap-4 neighbourhood as a budget problem. See
+`research/ac19_triangle_theory_20260913/THEORY.md`.

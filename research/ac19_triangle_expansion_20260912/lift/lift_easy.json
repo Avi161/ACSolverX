@@ -1,0 +1,2448 @@
+{
+ "schema": "ac19_triangle_lift_v1",
+ "label": "easy_control_panel",
+ "inputs_sha256": {
+  "hard_solved_panel.jsonl": "667e4d19474755a779e6fc0ec8554d1353535df497c7e670a6c54a37131d742f",
+  "s20_panel_records.jsonl": "ee99044b5f8fdd1edec996b4f6cdabcc39472ada7e96788a4db493a1e9b593e4",
+  "easy_control_panel.jsonl": "d5c2ba68ff958ffff31a1233b282d83829aecf0b7612a47c55ecf55a5f7767ae",
+  "AC19_extended_aut_min.csv": "7e220253bd0d950378d6ca6944be46ff4b77e49f30067b9ff6c6c6da82f64ae2",
+  "high_rank_triangles.py": "144329a7d0bd3b01c19c48ac6f873cfa8c4c5127377cbd2b2caae69d24ede148",
+  "high_rank_ac_search.py": "d3e9ec72620ab15ab0253209f917ed8c6d03e941714360c8909811699fa453b9",
+  "lift_common.py": "a3890f2d9da2f621828a51f072742c45d645b65719eac200084edc8807065c83"
+ },
+ "rows": [
+  {
+   "name": "ac19_51",
+   "arm": "easy_plain_s20",
+   "steps": [
+    {
+     "words": [
+      "YYXXXXyX",
+      "YXXXyxx"
+     ],
+     "total_length": 15,
+     "max_relator_length": 8,
+     "triangle_words": [
+      "G7G6G3",
+      "G7YY",
+      "G6G4X",
+      "G5G4G3",
+      "G5xy",
+      "G4YG3",
+      "G3XX"
+     ],
+     "rank": 7,
+     "definition_count": 5,
+     "triangles": 7,
+     "charged_units": 59,
+     "definitions": [
+      "XX",
+      "Yxx",
+      "XXyxx",
+      "XXyX",
+      "xYxxxx"
+     ],
+     "definition_keys": [
+      "XX",
+      "Yxx",
+      "XXYxx",
+      "XXyX",
+      "XXXXyX"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      5,
+      4,
+      6
+     ],
+     "step": 0,
+     "state": [
+      "YXXXyxx",
+      "YYXXXXyX"
+     ],
+     "shared_with_previous": 5,
+     "dictionary_changed": false,
+     "shared_with_initial": 5,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 3,
+     "encoded_optimal_max": 3,
+     "encoded_greedy_per_relator": [
+      3,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      3,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXYXyX",
+      "YXXXyxx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G7G4g3",
+      "G7g3y",
+      "G6G5y",
+      "G6yx",
+      "G5G4G3",
+      "G4YX",
+      "G3XX"
+     ],
+     "rank": 7,
+     "definition_count": 5,
+     "triangles": 7,
+     "charged_units": 60,
+     "definitions": [
+      "XX",
+      "YX",
+      "xyxx",
+      "XXYXy",
+      "xyXX"
+     ],
+     "definition_keys": [
+      "XX",
+      "YX",
+      "XXYX",
+      "Yxyxx",
+      "xxYX"
+     ],
+     "definition_lengths": [
+      2,
+      2,
+      4,
+      5,
+      4
+     ],
+     "step": 1,
+     "state": [
+      "YXyXYXX",
+      "YXXXyxx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      6,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      6,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXXyxx",
+      "YXyXXXYx"
+     ],
+     "total_length": 15,
+     "max_relator_length": 8,
+     "triangle_words": [
+      "G7G4y",
+      "G7yg3",
+      "G6G5G4",
+      "G6yG5",
+      "G5Yx",
+      "G4G3x",
+      "G3XX"
+     ],
+     "rank": 7,
+     "definition_count": 5,
+     "triangles": 7,
+     "charged_units": 58,
+     "definitions": [
+      "XX",
+      "xxx",
+      "Yx",
+      "XyXXX",
+      "XXXy"
+     ],
+     "definition_keys": [
+      "XX",
+      "XXX",
+      "Yx",
+      "XyXXX",
+      "Yxxx"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      2,
+      5,
+      4
+     ],
+     "step": 2,
+     "state": [
+      "YXXXyxx",
+      "YXyXXXYx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 7,
+     "encoded_optimal_max": 7,
+     "encoded_greedy_per_relator": [
+      3,
+      7
+     ],
+     "encoded_optimal_per_relator": [
+      3,
+      7
+     ]
+    },
+    {
+     "words": [
+      "YXXXXyXYx",
+      "YXXXyxx"
+     ],
+     "total_length": 16,
+     "max_relator_length": 9,
+     "triangle_words": [
+      "G8G7Y",
+      "G8yX",
+      "G7G6G3",
+      "G6G4X",
+      "G5G4G3",
+      "G5xy",
+      "G4YG3",
+      "G3XX"
+     ],
+     "rank": 8,
+     "definition_count": 6,
+     "triangles": 8,
+     "charged_units": 73,
+     "definitions": [
+      "XX",
+      "Yxx",
+      "XXyxx",
+      "XXyX",
+      "xYxxxx",
+      "XXXXyXY"
+     ],
+     "definition_keys": [
+      "XX",
+      "Yxx",
+      "XXYxx",
+      "XXyX",
+      "XXXXyX",
+      "XXXXyXY"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      5,
+      4,
+      6,
+      7
+     ],
+     "step": 3,
+     "state": [
+      "YXXXyxx",
+      "YXXXXyXYx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 5,
+     "new_vs_initial": 1,
+     "encoded_greedy_max": 4,
+     "encoded_optimal_max": 4,
+     "encoded_greedy_per_relator": [
+      4,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      4,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXYXyX",
+      "YXXXyxx"
+     ],
+     "total_length": 13,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G3G3",
+      "G6yX",
+      "G5G4G3",
+      "G5yG4",
+      "G4XX",
+      "G3YX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 44,
+     "definitions": [
+      "YX",
+      "XX",
+      "xxxy",
+      "xyxy"
+     ],
+     "definition_keys": [
+      "YX",
+      "XX",
+      "YXXX",
+      "YXYX"
+     ],
+     "definition_lengths": [
+      2,
+      2,
+      4,
+      4
+     ],
+     "step": 4,
+     "state": [
+      "YXYXyX",
+      "YXXXyxx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      6,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      6,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXXYxxyX",
+      "YXXXyxx"
+     ],
+     "total_length": 16,
+     "max_relator_length": 9,
+     "triangle_words": [
+      "G7G6Y",
+      "G7Yg3",
+      "G6G5x",
+      "G5YG4",
+      "G5g3Y",
+      "G4G3x",
+      "G3XX"
+     ],
+     "rank": 7,
+     "definition_count": 5,
+     "triangles": 7,
+     "charged_units": 56,
+     "definitions": [
+      "XX",
+      "xxx",
+      "YXXX",
+      "xxxyx",
+      "XYXXXY"
+     ],
+     "definition_keys": [
+      "XX",
+      "XXX",
+      "YXXX",
+      "XYXXX",
+      "XYXXXY"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     "step": 5,
+     "state": [
+      "YXXXyxx",
+      "YXXyxxxyx"
+     ],
+     "shared_with_previous": 2,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      5,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXXYXyx",
+      "YXXXyxx"
+     ],
+     "total_length": 15,
+     "max_relator_length": 8,
+     "triangle_words": [
+      "G6G5g4",
+      "G6XY",
+      "G5G3G4",
+      "G5yG3",
+      "G4YX",
+      "G3XX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 43,
+     "definitions": [
+      "XX",
+      "YX",
+      "xxxy",
+      "YXXXYX"
+     ],
+     "definition_keys": [
+      "XX",
+      "YX",
+      "YXXX",
+      "YXXXYX"
+     ],
+     "definition_lengths": [
+      2,
+      2,
+      4,
+      6
+     ],
+     "step": 6,
+     "state": [
+      "YXXXyxx",
+      "YXyxYXXX"
+     ],
+     "shared_with_previous": 2,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 7,
+     "encoded_optimal_max": 7,
+     "encoded_greedy_per_relator": [
+      7,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      7,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YYXyX",
+      "YXXXyxx"
+     ],
+     "total_length": 12,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G4g3",
+      "G6g3y",
+      "G5G4y",
+      "G5yX",
+      "G4YX",
+      "G3XX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 45,
+     "definitions": [
+      "XX",
+      "YX",
+      "xyy",
+      "xyXX"
+     ],
+     "definition_keys": [
+      "XX",
+      "YX",
+      "YYX",
+      "xxYX"
+     ],
+     "definition_lengths": [
+      2,
+      2,
+      3,
+      4
+     ],
+     "step": 7,
+     "state": [
+      "YYXyX",
+      "YXXXyxx"
+     ],
+     "shared_with_previous": 2,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      5,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXYxxyX",
+      "YXXXyxx"
+     ],
+     "total_length": 15,
+     "max_relator_length": 8,
+     "triangle_words": [
+      "G7G6Y",
+      "G7Xg3",
+      "G6G3Y",
+      "G5G4Y",
+      "G5xG4",
+      "G4G3y",
+      "G3XX"
+     ],
+     "rank": 7,
+     "definition_count": 5,
+     "triangles": 7,
+     "charged_units": 56,
+     "definitions": [
+      "XX",
+      "xxy",
+      "YXXY",
+      "xxY",
+      "yXXY"
+     ],
+     "definition_keys": [
+      "XX",
+      "YXX",
+      "YXXY",
+      "xxY",
+      "yXXY"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      3,
+      4
+     ],
+     "step": 8,
+     "state": [
+      "YXXXyxx",
+      "YXXYxxyX"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 4,
+     "encoded_optimal_max": 4,
+     "encoded_greedy_per_relator": [
+      4,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      4,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXYXyx",
+      "YXXXyxx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G7G4g3",
+      "G7g3y",
+      "G6G5y",
+      "G6yX",
+      "G5G4G3",
+      "G4YX",
+      "G3XX"
+     ],
+     "rank": 7,
+     "definition_count": 5,
+     "triangles": 7,
+     "charged_units": 60,
+     "definitions": [
+      "XX",
+      "YX",
+      "xyxx",
+      "XXYXy",
+      "xyXX"
+     ],
+     "definition_keys": [
+      "XX",
+      "YX",
+      "XXYX",
+      "Yxyxx",
+      "xxYX"
+     ],
+     "definition_lengths": [
+      2,
+      2,
+      4,
+      5,
+      4
+     ],
+     "step": 9,
+     "state": [
+      "YXyxYXX",
+      "YXXXyxx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      6,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      6,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXXyxx",
+      "YXyXYx"
+     ],
+     "total_length": 13,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G5x",
+      "G6xy",
+      "G5G4x",
+      "G4G3x",
+      "G4YG3",
+      "G3Yx"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 40,
+     "definitions": [
+      "Yx",
+      "Xyx",
+      "XYxx",
+      "XXyxx"
+     ],
+     "definition_keys": [
+      "Yx",
+      "XYx",
+      "XYxx",
+      "XXYxx"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "step": 10,
+     "state": [
+      "YXyXYx",
+      "YXXXyxx"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      3,
+      6
+     ],
+     "encoded_optimal_per_relator": [
+      3,
+      6
+     ]
+    },
+    {
+     "words": [
+      "YXYxxyX",
+      "YXXXyxx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G5x",
+      "G6g4y",
+      "G5YX",
+      "G5g3g4",
+      "G4YG3",
+      "G3XX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 43,
+     "definitions": [
+      "XX",
+      "Yxx",
+      "YX",
+      "xyx"
+     ],
+     "definition_keys": [
+      "XX",
+      "Yxx",
+      "YX",
+      "XYX"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      2,
+      3
+     ],
+     "step": 11,
+     "state": [
+      "YXYxxyX",
+      "YXXXyxx"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": true,
+     "shared_with_initial": 2,
+     "new_vs_initial": 2,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      5,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXYXyx",
+      "YXYxxyX"
+     ],
+     "total_length": 13,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G5G4X",
+      "G5g3Y",
+      "G4G3X",
+      "G4g3y",
+      "G3YX"
+     ],
+     "rank": 5,
+     "definition_count": 3,
+     "triangles": 5,
+     "charged_units": 29,
+     "definitions": [
+      "YX",
+      "xyX",
+      "xYXX"
+     ],
+     "definition_keys": [
+      "YX",
+      "xYX",
+      "xYXX"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4
+     ],
+     "step": 12,
+     "state": [
+      "YXYXyx",
+      "YXYxxyX"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      6,
+      5
+     ],
+     "encoded_optimal_per_relator": [
+      6,
+      5
+     ]
+    },
+    {
+     "words": [
+      "YXYXyx",
+      "YXXYx"
+     ],
+     "total_length": 11,
+     "max_relator_length": 6,
+     "triangle_words": [
+      "G4G3X",
+      "G4XY",
+      "G4g3y",
+      "G3YX"
+     ],
+     "rank": 4,
+     "definition_count": 2,
+     "triangles": 4,
+     "charged_units": 18,
+     "definitions": [
+      "YX",
+      "xyX"
+     ],
+     "definition_keys": [
+      "YX",
+      "xYX"
+     ],
+     "definition_lengths": [
+      2,
+      3
+     ],
+     "step": 13,
+     "state": [
+      "YXXYx",
+      "YXYXyx"
+     ],
+     "shared_with_previous": 2,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 2,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      6,
+      4
+     ],
+     "encoded_optimal_per_relator": [
+      6,
+      4
+     ]
+    },
+    {
+     "words": [
+      "YYXYX",
+      "YXYXyx"
+     ],
+     "total_length": 11,
+     "max_relator_length": 6,
+     "triangle_words": [
+      "G4G3G3",
+      "G4Y",
+      "G4yx",
+      "G3YX"
+     ],
+     "rank": 4,
+     "definition_count": 2,
+     "triangles": 3,
+     "charged_units": 16,
+     "definitions": [
+      "YX",
+      "xyxy"
+     ],
+     "definition_keys": [
+      "YX",
+      "YXYX"
+     ],
+     "definition_lengths": [
+      2,
+      4
+     ],
+     "step": 14,
+     "state": [
+      "YYXYX",
+      "YXYXyx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 2,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      5,
+      6
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      6
+     ]
+    },
+    {
+     "words": [
+      "YYX",
+      "YYXYX"
+     ],
+     "total_length": 8,
+     "max_relator_length": 5,
+     "triangle_words": [
+      "G3G3y",
+      "G3YX",
+      "G3y"
+     ],
+     "rank": 3,
+     "definition_count": 1,
+     "triangles": 2,
+     "charged_units": 6,
+     "definitions": [
+      "YX"
+     ],
+     "definition_keys": [
+      "YX"
+     ],
+     "definition_lengths": [
+      2
+     ],
+     "step": 15,
+     "state": [
+      "YYX",
+      "YYXYX"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 1,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      3,
+      5
+     ],
+     "encoded_optimal_per_relator": [
+      3,
+      5
+     ]
+    },
+    {
+     "words": [
+      "YYX",
+      "YX"
+     ],
+     "total_length": 5,
+     "max_relator_length": 3,
+     "triangle_words": [
+      "YYX",
+      "YX"
+     ],
+     "rank": 2,
+     "definition_count": 0,
+     "triangles": 1,
+     "charged_units": 0,
+     "definitions": [],
+     "definition_keys": [],
+     "definition_lengths": [],
+     "step": 16,
+     "state": [
+      "YX",
+      "YYX"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 3,
+     "encoded_optimal_max": 3,
+     "encoded_greedy_per_relator": [
+      3,
+      2
+     ],
+     "encoded_optimal_per_relator": [
+      3,
+      2
+     ]
+    },
+    {
+     "words": [
+      "Y",
+      "YX"
+     ],
+     "total_length": 3,
+     "max_relator_length": 2,
+     "triangle_words": [
+      "Y",
+      "YX"
+     ],
+     "rank": 2,
+     "definition_count": 0,
+     "triangles": 0,
+     "charged_units": 0,
+     "definitions": [],
+     "definition_keys": [],
+     "definition_lengths": [],
+     "step": 17,
+     "state": [
+      "Y",
+      "YX"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": false,
+     "shared_with_initial": 0,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 2,
+     "encoded_optimal_max": 2,
+     "encoded_greedy_per_relator": [
+      1,
+      2
+     ],
+     "encoded_optimal_per_relator": [
+      1,
+      2
+     ]
+    },
+    {
+     "words": [
+      "Y",
+      "X"
+     ],
+     "total_length": 2,
+     "max_relator_length": 1,
+     "triangle_words": [
+      "Y",
+      "X"
+     ],
+     "rank": 2,
+     "definition_count": 0,
+     "triangles": 0,
+     "charged_units": 0,
+     "definitions": [],
+     "definition_keys": [],
+     "definition_lengths": [],
+     "step": 18,
+     "state": [
+      "Y",
+      "X"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": false,
+     "shared_with_initial": 0,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 1,
+     "encoded_optimal_max": 1,
+     "encoded_greedy_per_relator": [
+      1,
+      1
+     ],
+     "encoded_optimal_per_relator": [
+      1,
+      1
+     ]
+    }
+   ],
+   "summary": {
+    "path_states": 19,
+    "path_moves": 18,
+    "max_rank2_total_length": 16,
+    "max_rank2_relator_length": 9,
+    "dictionary_change_steps": 16,
+    "dictionary_change_fraction": 0.8888888888888888,
+    "longest_unchanged_run": 3,
+    "distinct_definitions_on_path": 29,
+    "min_rank": 2,
+    "max_rank": 8,
+    "mean_rank": 5.368421052631579,
+    "initial_rank": 7,
+    "initial_dictionary_size": 5,
+    "min_over_path_encoded_optimal_max": 1,
+    "max_over_path_encoded_optimal_max": 7,
+    "min_over_path_encoded_greedy_max": 1,
+    "max_over_path_encoded_greedy_max": 7,
+    "steps_encodable_within_cap_4": 6,
+    "steps_encodable_within_cap_5": 10,
+    "steps_encodable_within_cap_6": 17,
+    "steps_exceeding_cap_6": 2,
+    "fraction_exceeding_cap_6": 0.10526315789473684,
+    "first_step_exceeding_cap_4": 1,
+    "first_step_exceeding_cap_5": 1,
+    "first_step_exceeding_cap_6": 2,
+    "interior_states": 16,
+    "min_interior_encoded_optimal_max": 3,
+    "max_interior_encoded_optimal_max": 7,
+    "steps_above_initial_rank": 1,
+    "steps_below_initial_rank": 12,
+    "steps_at_initial_rank": 6,
+    "rank_change_steps": 10,
+    "rank_change_fraction": 0.5555555555555556,
+    "mean_shared_with_initial": 1.105263157894737,
+    "steps_with_dictionary_equal_to_initial": 1
+   },
+   "wall_seconds": 0.014379012000063085
+  },
+  {
+   "name": "ac19_54",
+   "arm": "easy_plain_s20",
+   "steps": [
+    {
+     "words": [
+      "YYYXyyxx",
+      "YXXXyxx"
+     ],
+     "total_length": 15,
+     "max_relator_length": 8,
+     "triangle_words": [
+      "G7G5g4",
+      "G7g4X",
+      "G6G5Y",
+      "G6Xg3",
+      "G5G3Y",
+      "G4YY",
+      "G3XX"
+     ],
+     "rank": 7,
+     "definition_count": 5,
+     "triangles": 7,
+     "charged_units": 59,
+     "definitions": [
+      "XX",
+      "YY",
+      "xxY",
+      "yXXY",
+      "yXXYY"
+     ],
+     "definition_keys": [
+      "XX",
+      "YY",
+      "xxY",
+      "yXXY",
+      "yXXYY"
+     ],
+     "definition_lengths": [
+      2,
+      2,
+      3,
+      4,
+      5
+     ],
+     "step": 0,
+     "state": [
+      "YXXXyxx",
+      "YYYXyyxx"
+     ],
+     "shared_with_previous": 5,
+     "dictionary_changed": false,
+     "shared_with_initial": 5,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 3,
+     "encoded_optimal_max": 3,
+     "encoded_greedy_per_relator": [
+      3,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      3,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YYXyxxx",
+      "YXXXyxx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G7G6Y",
+      "G7Yx",
+      "G6G4X",
+      "G5G4Y",
+      "G5Xg3",
+      "G4G3Y",
+      "G3XX"
+     ],
+     "rank": 7,
+     "definition_count": 5,
+     "triangles": 7,
+     "charged_units": 58,
+     "definitions": [
+      "XX",
+      "xxY",
+      "yXXY",
+      "yXXX",
+      "xxxYY"
+     ],
+     "definition_keys": [
+      "XX",
+      "xxY",
+      "yXXY",
+      "xxxY",
+      "xxxYY"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      4,
+      5
+     ],
+     "step": 1,
+     "state": [
+      "YYXyxxx",
+      "YXXXyxx"
+     ],
+     "shared_with_previous": 3,
+     "dictionary_changed": true,
+     "shared_with_initial": 3,
+     "new_vs_initial": 2,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      5,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YYxxyx",
+      "YXXXyxx"
+     ],
+     "total_length": 13,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G4y",
+      "G6yx",
+      "G5G4G3",
+      "G5xy",
+      "G4YG3",
+      "G3XX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 45,
+     "definitions": [
+      "XX",
+      "Yxx",
+      "XXyxx",
+      "XXyy"
+     ],
+     "definition_keys": [
+      "XX",
+      "Yxx",
+      "XXYxx",
+      "YYxx"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      5,
+      4
+     ],
+     "step": 2,
+     "state": [
+      "YYxxyx",
+      "YXXXyxx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 4,
+     "encoded_optimal_max": 4,
+     "encoded_greedy_per_relator": [
+      4,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      4,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXXyxx",
+      "YXyxYxx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G5y",
+      "G6yX",
+      "G5xG4",
+      "G5g3y",
+      "G4G3Y",
+      "G3XX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 43,
+     "definitions": [
+      "XX",
+      "xxY",
+      "xyXX",
+      "xxYXy"
+     ],
+     "definition_keys": [
+      "XX",
+      "xxY",
+      "xxYX",
+      "YxyXX"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "step": 3,
+     "state": [
+      "YXyxYxx",
+      "YXXXyxx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 2,
+     "new_vs_initial": 2,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      3,
+      5
+     ],
+     "encoded_optimal_per_relator": [
+      3,
+      5
+     ]
+    },
+    {
+     "words": [
+      "YXXyXXyx",
+      "YXyxYxx"
+     ],
+     "total_length": 15,
+     "max_relator_length": 8,
+     "triangle_words": [
+      "G6G4Y",
+      "G6Xg3",
+      "G5G4G4",
+      "G5xY",
+      "G4XG3",
+      "G3Yx"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 41,
+     "definitions": [
+      "Yx",
+      "XXy",
+      "YxxYxx",
+      "YxxY"
+     ],
+     "definition_keys": [
+      "Yx",
+      "Yxx",
+      "YxxYxx",
+      "YxxY"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      6,
+      4
+     ],
+     "step": 4,
+     "state": [
+      "YXyxYxx",
+      "YXXyXXyx"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      5,
+      5
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      5
+     ]
+    },
+    {
+     "words": [
+      "YXyxYxx",
+      "YxYxxxx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G4g3",
+      "G6XX",
+      "G5G4x",
+      "G5g3y",
+      "G4G3X",
+      "G3Yx"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 42,
+     "definitions": [
+      "Yx",
+      "XyX",
+      "xYxx",
+      "xYxYx"
+     ],
+     "definition_keys": [
+      "Yx",
+      "XyX",
+      "XXyX",
+      "XyXyX"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "step": 5,
+     "state": [
+      "YXyxYxx",
+      "YxYxxxx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      5,
+      4
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      4
+     ]
+    },
+    {
+     "words": [
+      "YXyXXXyx",
+      "YXyxYxx"
+     ],
+     "total_length": 15,
+     "max_relator_length": 8,
+     "triangle_words": [
+      "G6G5g3",
+      "G6g4X",
+      "G5xY",
+      "G5g4g3",
+      "G4G3X",
+      "G3Yx"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 41,
+     "definitions": [
+      "Yx",
+      "XyX",
+      "xY",
+      "yXYx"
+     ],
+     "definition_keys": [
+      "Yx",
+      "XyX",
+      "xY",
+      "XyxY"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      2,
+      4
+     ],
+     "step": 6,
+     "state": [
+      "YXyxYxx",
+      "YXyXXXyx"
+     ],
+     "shared_with_previous": 2,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      6,
+      5
+     ],
+     "encoded_optimal_per_relator": [
+      6,
+      5
+     ]
+    },
+    {
+     "words": [
+      "YXyxYxx",
+      "YxxYxxx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G5G4x",
+      "G5g3y",
+      "G5g4",
+      "G4G3X",
+      "G3Yx"
+     ],
+     "rank": 5,
+     "definition_count": 3,
+     "triangles": 4,
+     "charged_units": 27,
+     "definitions": [
+      "Yx",
+      "XyX",
+      "xYxx"
+     ],
+     "definition_keys": [
+      "Yx",
+      "XyX",
+      "XXyX"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4
+     ],
+     "step": 7,
+     "state": [
+      "YXyxYxx",
+      "YxxYxxx"
+     ],
+     "shared_with_previous": 2,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      5,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YxxYxxx",
+      "Yxxx"
+     ],
+     "total_length": 11,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G4G4X",
+      "G4G3Y",
+      "G4X",
+      "G3XX"
+     ],
+     "rank": 4,
+     "definition_count": 2,
+     "triangles": 3,
+     "charged_units": 14,
+     "definitions": [
+      "XX",
+      "xxY"
+     ],
+     "definition_keys": [
+      "XX",
+      "xxY"
+     ],
+     "definition_lengths": [
+      2,
+      3
+     ],
+     "step": 8,
+     "state": [
+      "Yxxx",
+      "YxxYxxx"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": true,
+     "shared_with_initial": 2,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 3,
+     "encoded_optimal_max": 3,
+     "encoded_greedy_per_relator": [
+      3,
+      2
+     ],
+     "encoded_optimal_per_relator": [
+      3,
+      2
+     ]
+    },
+    {
+     "words": [
+      "Yxx",
+      "Yxxx"
+     ],
+     "total_length": 7,
+     "max_relator_length": 4,
+     "triangle_words": [
+      "G3Y",
+      "G3Yx",
+      "G3XX"
+     ],
+     "rank": 3,
+     "definition_count": 1,
+     "triangles": 2,
+     "charged_units": 6,
+     "definitions": [
+      "XX"
+     ],
+     "definition_keys": [
+      "XX"
+     ],
+     "definition_lengths": [
+      2
+     ],
+     "step": 9,
+     "state": [
+      "Yxx",
+      "Yxxx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 2,
+     "encoded_optimal_max": 2,
+     "encoded_greedy_per_relator": [
+      1,
+      2
+     ],
+     "encoded_optimal_per_relator": [
+      1,
+      2
+     ]
+    },
+    {
+     "words": [
+      "Yxx",
+      "X"
+     ],
+     "total_length": 4,
+     "max_relator_length": 3,
+     "triangle_words": [
+      "Yxx",
+      "X"
+     ],
+     "rank": 2,
+     "definition_count": 0,
+     "triangles": 1,
+     "charged_units": 0,
+     "definitions": [],
+     "definition_keys": [],
+     "definition_lengths": [],
+     "step": 10,
+     "state": [
+      "X",
+      "Yxx"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 1,
+     "encoded_optimal_max": 1,
+     "encoded_greedy_per_relator": [
+      1,
+      1
+     ],
+     "encoded_optimal_per_relator": [
+      1,
+      1
+     ]
+    },
+    {
+     "words": [
+      "Yx",
+      "X"
+     ],
+     "total_length": 3,
+     "max_relator_length": 2,
+     "triangle_words": [
+      "Yx",
+      "X"
+     ],
+     "rank": 2,
+     "definition_count": 0,
+     "triangles": 0,
+     "charged_units": 0,
+     "definitions": [],
+     "definition_keys": [],
+     "definition_lengths": [],
+     "step": 11,
+     "state": [
+      "X",
+      "Yx"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": false,
+     "shared_with_initial": 0,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 2,
+     "encoded_optimal_max": 2,
+     "encoded_greedy_per_relator": [
+      2,
+      1
+     ],
+     "encoded_optimal_per_relator": [
+      2,
+      1
+     ]
+    },
+    {
+     "words": [
+      "Y",
+      "X"
+     ],
+     "total_length": 2,
+     "max_relator_length": 1,
+     "triangle_words": [
+      "Y",
+      "X"
+     ],
+     "rank": 2,
+     "definition_count": 0,
+     "triangles": 0,
+     "charged_units": 0,
+     "definitions": [],
+     "definition_keys": [],
+     "definition_lengths": [],
+     "step": 12,
+     "state": [
+      "Y",
+      "X"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": false,
+     "shared_with_initial": 0,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 1,
+     "encoded_optimal_max": 1,
+     "encoded_greedy_per_relator": [
+      1,
+      1
+     ],
+     "encoded_optimal_per_relator": [
+      1,
+      1
+     ]
+    }
+   ],
+   "summary": {
+    "path_states": 13,
+    "path_moves": 12,
+    "max_rank2_total_length": 15,
+    "max_rank2_relator_length": 8,
+    "dictionary_change_steps": 10,
+    "dictionary_change_fraction": 0.8333333333333334,
+    "longest_unchanged_run": 3,
+    "distinct_definitions_on_path": 20,
+    "min_rank": 2,
+    "max_rank": 7,
+    "mean_rank": 4.769230769230769,
+    "initial_rank": 7,
+    "initial_dictionary_size": 5,
+    "min_over_path_encoded_optimal_max": 1,
+    "max_over_path_encoded_optimal_max": 6,
+    "min_over_path_encoded_greedy_max": 1,
+    "max_over_path_encoded_greedy_max": 6,
+    "steps_encodable_within_cap_4": 7,
+    "steps_encodable_within_cap_5": 12,
+    "steps_encodable_within_cap_6": 13,
+    "steps_exceeding_cap_6": 0,
+    "fraction_exceeding_cap_6": 0.0,
+    "first_step_exceeding_cap_4": 1,
+    "first_step_exceeding_cap_5": 6,
+    "first_step_exceeding_cap_6": null,
+    "interior_states": 10,
+    "min_interior_encoded_optimal_max": 2,
+    "max_interior_encoded_optimal_max": 6,
+    "steps_above_initial_rank": 0,
+    "steps_below_initial_rank": 11,
+    "steps_at_initial_rank": 2,
+    "rank_change_steps": 5,
+    "rank_change_fraction": 0.4166666666666667,
+    "mean_shared_with_initial": 1.0769230769230769,
+    "steps_with_dictionary_equal_to_initial": 1
+   },
+   "wall_seconds": 0.008496775000139678
+  },
+  {
+   "name": "ac19_50",
+   "arm": "easy_plain_s20",
+   "steps": [
+    {
+     "words": [
+      "YYXXXyx",
+      "YXXyxxx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G5x",
+      "G6YY",
+      "G5G4x",
+      "G5yg3",
+      "G4YG3",
+      "G3XX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 45,
+     "definitions": [
+      "XX",
+      "Yxx",
+      "XXyx",
+      "XYxxx"
+     ],
+     "definition_keys": [
+      "XX",
+      "Yxx",
+      "XYxx",
+      "XYxxx"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "step": 0,
+     "state": [
+      "YYXXXyx",
+      "YXXyxxx"
+     ],
+     "shared_with_previous": 4,
+     "dictionary_changed": false,
+     "shared_with_initial": 4,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 3,
+     "encoded_optimal_max": 3,
+     "encoded_greedy_per_relator": [
+      3,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      3,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YYXyXX",
+      "YXXyxxx"
+     ],
+     "total_length": 13,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G4X",
+      "G6g3y",
+      "G5G4Y",
+      "G5xy",
+      "G4G3Y",
+      "G3XX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 45,
+     "definitions": [
+      "XX",
+      "xxY",
+      "yXXY",
+      "yXXX"
+     ],
+     "definition_keys": [
+      "XX",
+      "xxY",
+      "yXXY",
+      "xxxY"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      4
+     ],
+     "step": 1,
+     "state": [
+      "YYXyXX",
+      "YXXyxxx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      5,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXYXyx",
+      "YXXyxxx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G5G4",
+      "G6xy",
+      "G5G3G4",
+      "G5XY",
+      "G4G3y",
+      "G3XX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 44,
+     "definitions": [
+      "XX",
+      "xxy",
+      "XY",
+      "yxYXX"
+     ],
+     "definition_keys": [
+      "XX",
+      "YXX",
+      "XY",
+      "xxyXY"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      2,
+      5
+     ],
+     "step": 2,
+     "state": [
+      "YXyxYXX",
+      "YXXyxxx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      6,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      6,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXXYXyx",
+      "YXXYxyXX"
+     ],
+     "total_length": 15,
+     "max_relator_length": 8,
+     "triangle_words": [
+      "G6G5X",
+      "G6G4y",
+      "G5G3x",
+      "G5yG4",
+      "G4G3X",
+      "G3YX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 41,
+     "definitions": [
+      "YX",
+      "xyX",
+      "xyx",
+      "XYXX"
+     ],
+     "definition_keys": [
+      "YX",
+      "xYX",
+      "XYX",
+      "XYXX"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      3,
+      4
+     ],
+     "step": 3,
+     "state": [
+      "YXyxYXX",
+      "YXyxxyxx"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      6,
+      6
+     ],
+     "encoded_optimal_per_relator": [
+      6,
+      6
+     ]
+    },
+    {
+     "words": [
+      "YXYXXXX",
+      "YXXYXyx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G6G4g3",
+      "G6xx",
+      "G5G4y",
+      "G5G3X",
+      "G4G3x",
+      "G3YX"
+     ],
+     "rank": 6,
+     "definition_count": 4,
+     "triangles": 6,
+     "charged_units": 42,
+     "definitions": [
+      "YX",
+      "xyx",
+      "XYXy",
+      "XYXYX"
+     ],
+     "definition_keys": [
+      "YX",
+      "XYX",
+      "Yxyx",
+      "XYXYX"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      5
+     ],
+     "step": 4,
+     "state": [
+      "YXYXXXX",
+      "YXyxYXX"
+     ],
+     "shared_with_previous": 2,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 4,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      5,
+      6
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      6
+     ]
+    },
+    {
+     "words": [
+      "YXXYXyx",
+      "YXXXYxyX"
+     ],
+     "total_length": 15,
+     "max_relator_length": 8,
+     "triangle_words": [
+      "G7G6g3",
+      "G7xx",
+      "G6G4y",
+      "G5G4X",
+      "G5YG3",
+      "G4G3X",
+      "G3YX"
+     ],
+     "rank": 7,
+     "definition_count": 5,
+     "triangles": 7,
+     "charged_units": 54,
+     "definitions": [
+      "YX",
+      "xyX",
+      "xYXX",
+      "xYXy",
+      "YxyXYX"
+     ],
+     "definition_keys": [
+      "YX",
+      "xYX",
+      "xYXX",
+      "YxyX",
+      "YxyXYX"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4,
+      4,
+      6
+     ],
+     "step": 5,
+     "state": [
+      "YXyxYXX",
+      "YXyxxxyx"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 5,
+     "encoded_greedy_max": 7,
+     "encoded_optimal_max": 7,
+     "encoded_greedy_per_relator": [
+      6,
+      7
+     ],
+     "encoded_optimal_per_relator": [
+      6,
+      7
+     ]
+    },
+    {
+     "words": [
+      "YXXYXXX",
+      "YXXYXyx"
+     ],
+     "total_length": 14,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G5G4y",
+      "G5G3X",
+      "G4G4X",
+      "G4G3x",
+      "G3YX"
+     ],
+     "rank": 5,
+     "definition_count": 3,
+     "triangles": 5,
+     "charged_units": 27,
+     "definitions": [
+      "YX",
+      "xyx",
+      "XYXy"
+     ],
+     "definition_keys": [
+      "YX",
+      "XYX",
+      "Yxyx"
+     ],
+     "definition_lengths": [
+      2,
+      3,
+      4
+     ],
+     "step": 6,
+     "state": [
+      "YXyxYXX",
+      "YXXYXXX"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 3,
+     "encoded_greedy_max": 6,
+     "encoded_optimal_max": 6,
+     "encoded_greedy_per_relator": [
+      5,
+      6
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      6
+     ]
+    },
+    {
+     "words": [
+      "YXXYXXX",
+      "YXXX"
+     ],
+     "total_length": 11,
+     "max_relator_length": 7,
+     "triangle_words": [
+      "G4G4X",
+      "G4X",
+      "G4yG3",
+      "G3XX"
+     ],
+     "rank": 4,
+     "definition_count": 2,
+     "triangles": 3,
+     "charged_units": 14,
+     "definitions": [
+      "XX",
+      "yxx"
+     ],
+     "definition_keys": [
+      "XX",
+      "XXY"
+     ],
+     "definition_lengths": [
+      2,
+      3
+     ],
+     "step": 7,
+     "state": [
+      "YXXX",
+      "YXXYXXX"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 1,
+     "encoded_greedy_max": 5,
+     "encoded_optimal_max": 5,
+     "encoded_greedy_per_relator": [
+      5,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      5,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXX",
+      "YXXX"
+     ],
+     "total_length": 7,
+     "max_relator_length": 4,
+     "triangle_words": [
+      "G3XX",
+      "G3xy",
+      "G3y"
+     ],
+     "rank": 3,
+     "definition_count": 1,
+     "triangles": 2,
+     "charged_units": 6,
+     "definitions": [
+      "XX"
+     ],
+     "definition_keys": [
+      "XX"
+     ],
+     "definition_lengths": [
+      2
+     ],
+     "step": 8,
+     "state": [
+      "YXX",
+      "YXXX"
+     ],
+     "shared_with_previous": 1,
+     "dictionary_changed": true,
+     "shared_with_initial": 1,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 3,
+     "encoded_optimal_max": 3,
+     "encoded_greedy_per_relator": [
+      2,
+      3
+     ],
+     "encoded_optimal_per_relator": [
+      2,
+      3
+     ]
+    },
+    {
+     "words": [
+      "YXX",
+      "X"
+     ],
+     "total_length": 4,
+     "max_relator_length": 3,
+     "triangle_words": [
+      "YXX",
+      "X"
+     ],
+     "rank": 2,
+     "definition_count": 0,
+     "triangles": 1,
+     "charged_units": 0,
+     "definitions": [],
+     "definition_keys": [],
+     "definition_lengths": [],
+     "step": 9,
+     "state": [
+      "X",
+      "YXX"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": true,
+     "shared_with_initial": 0,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 2,
+     "encoded_optimal_max": 2,
+     "encoded_greedy_per_relator": [
+      2,
+      1
+     ],
+     "encoded_optimal_per_relator": [
+      2,
+      1
+     ]
+    },
+    {
+     "words": [
+      "YX",
+      "X"
+     ],
+     "total_length": 3,
+     "max_relator_length": 2,
+     "triangle_words": [
+      "YX",
+      "X"
+     ],
+     "rank": 2,
+     "definition_count": 0,
+     "triangles": 0,
+     "charged_units": 0,
+     "definitions": [],
+     "definition_keys": [],
+     "definition_lengths": [],
+     "step": 10,
+     "state": [
+      "X",
+      "YX"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": false,
+     "shared_with_initial": 0,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 2,
+     "encoded_optimal_max": 2,
+     "encoded_greedy_per_relator": [
+      2,
+      1
+     ],
+     "encoded_optimal_per_relator": [
+      2,
+      1
+     ]
+    },
+    {
+     "words": [
+      "Y",
+      "X"
+     ],
+     "total_length": 2,
+     "max_relator_length": 1,
+     "triangle_words": [
+      "Y",
+      "X"
+     ],
+     "rank": 2,
+     "definition_count": 0,
+     "triangles": 0,
+     "charged_units": 0,
+     "definitions": [],
+     "definition_keys": [],
+     "definition_lengths": [],
+     "step": 11,
+     "state": [
+      "Y",
+      "X"
+     ],
+     "shared_with_previous": 0,
+     "dictionary_changed": false,
+     "shared_with_initial": 0,
+     "new_vs_initial": 0,
+     "encoded_greedy_max": 1,
+     "encoded_optimal_max": 1,
+     "encoded_greedy_per_relator": [
+      1,
+      1
+     ],
+     "encoded_optimal_per_relator": [
+      1,
+      1
+     ]
+    }
+   ],
+   "summary": {
+    "path_states": 12,
+    "path_moves": 11,
+    "max_rank2_total_length": 15,
+    "max_rank2_relator_length": 8,
+    "dictionary_change_steps": 9,
+    "dictionary_change_fraction": 0.8181818181818182,
+    "longest_unchanged_run": 3,
+    "distinct_definitions_on_path": 20,
+    "min_rank": 2,
+    "max_rank": 7,
+    "mean_rank": 4.583333333333333,
+    "initial_rank": 6,
+    "initial_dictionary_size": 4,
+    "min_over_path_encoded_optimal_max": 1,
+    "max_over_path_encoded_optimal_max": 7,
+    "min_over_path_encoded_greedy_max": 1,
+    "max_over_path_encoded_greedy_max": 7,
+    "steps_encodable_within_cap_4": 5,
+    "steps_encodable_within_cap_5": 7,
+    "steps_encodable_within_cap_6": 11,
+    "steps_exceeding_cap_6": 1,
+    "fraction_exceeding_cap_6": 0.08333333333333333,
+    "first_step_exceeding_cap_4": 1,
+    "first_step_exceeding_cap_5": 2,
+    "first_step_exceeding_cap_6": 5,
+    "interior_states": 9,
+    "min_interior_encoded_optimal_max": 3,
+    "max_interior_encoded_optimal_max": 7,
+    "steps_above_initial_rank": 1,
+    "steps_below_initial_rank": 6,
+    "steps_at_initial_rank": 5,
+    "rank_change_steps": 5,
+    "rank_change_fraction": 0.45454545454545453,
+    "mean_shared_with_initial": 0.6666666666666666,
+    "steps_with_dictionary_equal_to_initial": 1
+   },
+   "wall_seconds": 0.006852612000102454
+  }
+ ]
+}
