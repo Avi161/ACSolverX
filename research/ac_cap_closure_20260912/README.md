@@ -219,6 +219,9 @@ diffed field by field (test (h)).
 | `capbfs_reference.py` | pure-Python oracle: tuples of signed ints, no packing, no tricks |
 | `verify_path.py` | independent certificate replayer (plain Python strings; imports neither engine) |
 | `test_capbfs.py` | pytest suite (a)–(j) |
+| `run_min_cap.py` | cap ladder per CSV row: closure records below the minimal solving cap (or budget) |
+| `make_separator.py` | reduces ladders to one line per row; the tables in section 4 |
+| `records/` | exact JSONL records of every run quoted in section 4 |
 
 ### Representation used by the fast engine
 
@@ -392,6 +395,74 @@ cap 10 (`|r_1| + |r_2| = 14`, and no admissible cancellation lands at or below
 9), and their cap-16 components are about 6.5 × smaller than AK(3)'s. This is
 a statement about short trivialisations only — see section 5 — and says
 nothing about paths through longer relators, stable moves or higher rank.
+
+### Minimal solving cap as a separator: every U124 row that fits is closed at 16, most solved rows are not
+
+The user-level question behind this module is whether some cheap, exact test
+tells the 124 unsolved Miller–Schupp classes apart from the solved-but-hard
+ones. Rank-raising does not (`research/ac19_triangle_theory_20260913/`). The
+cap-bounded closure does, up to a stated limit. `run_min_cap.py` walks every
+row up its cap ladder — from its floor (the longer relator) to 16, stopping at
+the first cap that SOLVES or exhausts the 5,000,000-state budget — and
+`make_separator.py` reduces the ladders to one line per row. Exact records:
+`records/separator/u124_caps_le16.jsonl` (745 runs),
+`records/separator/solved60_caps_le16.jsonl` (78 runs, every one of the 45
+solved certificates replayed by `verify_path.py`), `summary.json`, `TABLES.md`.
+
+**Scope limit first.** The engine's cap is 16, so a row enters the ladder only
+if its longer relator has length ≤ 16. In this spelling the `MS(n, w)` rows
+with `n ≥ 7` have a defining relator of length `2n + 3 ≥ 17`: **4 of the 124
+U124 rows** (`aca_101`–`aca_104`) and **12 of the 60 solved-ladder rows** (one
+each in bins 0 and 6, two in bin 7, four in each of bins 8 and 9) are out of
+reach and are simply absent below.
+
+**U124 (120 of 124 rows).** Every admissible cap up to 16 gives a CLOSED,
+unsolved component; no budget was ever exhausted. Total cost 329 CPU-s, of
+which 190 s is AK(3) (`aca_115`) alone; the median row costs 0.02 s because a
+long start leaves almost no room under the cap (`aca_123`, total length 17,
+has 124 states at cap 14). So for 120 of the 124 classes: **no AC
+trivialisation exists in which every intermediate relator has length ≤ 16.**
+The largest components after AK(3): `aca_116` 357,952, `aca_118` 321,680,
+`aca_117` 319,212, `aca_8` 227,028 states at cap 16.
+
+**Solved ladder (48 of 60 rows).** 45 solve within cap 16 and their minimal
+cap tracks the difficulty bin; 3 do not (bins 7, 8, 8: rows `596`, `605`,
+`610`), and those three are, under this test, indistinguishable from U124 —
+each closes at cap 16 with 51,192 states. Total cost 389 CPU-s (median 2.1 s,
+maximum 56 s).
+
+| bin | rows in reach | minimal solving caps | closed at 16 |
+|---:|---:|---|---:|
+| 0 | 5 | 5, 7, 9, 11, 15 | 0 |
+| 1 | 6 | 8, 8, 8, 8, 8, 15 | 0 |
+| 2 | 6 | 8, 8, 8, 9, 10, 11 | 0 |
+| 3 | 6 | 9, 9, 10, 10, 10, 13 | 0 |
+| 4 | 6 | 10, 11, 13, 13, 14, 15 | 0 |
+| 5 | 6 | 12, 12, 12, 12, 14, 15 | 0 |
+| 6 | 5 | 14, 14, 14, 14, 15 | 0 |
+| 7 | 4 | 13, 13, 13 | 1 |
+| 8 | 2 | — | 2 |
+| 9 | 2 | 15, 15 | 0 |
+
+So the test is exact in one direction and strong in the other: a row that
+solves within the cap is AC-trivial with a replayable certificate; a row that
+closes at 16 is either unsolved (all 120 reachable U124 rows) or a solved row
+whose every trivialisation needs a relator longer than 16 (3 of 48). What it
+costs is bounded — under four minutes for the worst row (AK(3)), seconds for
+almost everything else — and what it cannot do is reach the `n ≥ 7` family at
+all. A sharper separator would need either a longer packing (two words per
+relator, cap 32) or a different spelling of those rows.
+
+Three side remarks. (i) The minimal caps of the solved rows are far below the
+relator lengths their heuristic certificates reach: bin-6 rows solve at cap
+14–15 with 25–92 moves, where the `S20_MK2` runs used a per-relator cap of 48.
+(ii) Two bin-9 rows (`634`, `635`) solve at cap 15 in 40 moves each, so
+"bin 9" measures heuristic-search effort, not peak relator length.
+(iii) The three closed-at-16 rows `596`, `605`, `610` have the *same*
+cap-16 component — the three enumerated state sets are identical (51,192
+states, checked set-for-set) — so under the cap they are one AC class, not
+three independent misses: exactly one reachable solved class needs a relator
+longer than 16.
 
 ### Test suite
 

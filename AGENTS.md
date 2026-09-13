@@ -375,3 +375,15 @@ hard rows (the other 145 roots already carry a length<=2 relator from preprocess
 Score by digram coupling, not total length (constant 3r), and never read an empty
 cap-3/cap-4 neighbourhood as a budget problem. See
 `research/ac19_triangle_theory_20260913/THEORY.md`.
+
+### [2026-09-13] Cap-bounded exhaustive closure separates U124 from solved rows better than any structural feature, but not perfectly
+[MECHANISM] `research/ac_cap_closure_20260912/capbfs.py` enumerates the whole rank-2 AC
+component under a per-relator length cap (exact to cap 16 only: the int64 accumulator holds
+32 letters, so never trust a cap above 16). Every one of the 120 U124 rows whose relators fit
+is CLOSED and unsolved at every cap <= 16 (329 CPU-s in total, AK(3) is 190 s of it); of the
+48 solved-ladder rows that fit, 45 solve within cap 16 with a replayable certificate and their
+minimal cap rises with the difficulty bin (bin 0: 5-11, bin 6: 14-15, bin 9: 15), while 3 hard
+rows (bins 7-8) close at 16 exactly like U124. MS(n, w) with n >= 7 has a relator of length
+2n+3 >= 17 and is out of reach in this spelling (4 U124 rows, 12 solved rows). Minimal caps
+are far below the mrl=48 the heuristic certificates use. Records and tables in
+`research/ac_cap_closure_20260912/records/separator/`.
