@@ -1,0 +1,11 @@
+lad0/b0    L= 7 d=0 solved=True  closed=False budget=False states=     20 maxrank= 3 path=2 wall=   0.0s
+lad77/b1   L=13 d=0 solved=True  closed=False budget=False states=    922 maxrank= 4 path=5 wall=   0.9s
+lad247/b2  L=15 d=0 solved=True  closed=False budget=False states=  30282 maxrank= 5 path=6 wall=  24.6s
+lad203/b3  L=14 d=0 solved=True  closed=False budget=False states=  14906 maxrank= 5 path=11 wall=  17.8s
+lad546/b4  L=19 d=0 solved=False closed=False budget=True  states= 100000 maxrank= 6 path=None wall= 312.7s
+lad538/b5  L=18 d=0 solved=False closed=False budget=True  states= 100000 maxrank= 5 path=None wall= 298.0s
+aca_115    L=13 d=0 solved=False closed=True  budget=False states=      1 maxrank= 2 path=None wall=   0.0s
+aca_115    L=13 d=1 solved=False closed=True  budget=False states=      6 maxrank= 3 path=None wall=   0.0s
+aca_115    L=13 d=2 solved=False closed=True  budget=False states=  12656 maxrank= 4 path=None wall=  57.1s
+
+[exited with code 144]

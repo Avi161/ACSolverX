@@ -1,0 +1,180 @@
+[1/180       0s]        0 bin=0 ctrl           solved=True  verified=True pops=    3 states=     27 minL= 0 maxrank=2 path=3 cpu=   0.0s
+[2/180       0s]        0 bin=0 dyn            solved=True  verified=True pops=    2 states=     25 minL= 0 maxrank=3 path=2 cpu=   0.0s
+[3/180       0s]        0 bin=0 dyn_norelabel  solved=True  verified=True pops=    2 states=     25 minL= 0 maxrank=3 path=2 cpu=   0.0s
+[4/180       0s]      496 bin=0 ctrl           solved=True  verified=True pops=    4 states=     83 minL= 0 maxrank=2 path=4 cpu=   0.0s
+[5/180       0s]      496 bin=0 dyn_norelabel  solved=True  verified=True pops=    2 states=     10 minL= 0 maxrank=3 path=2 cpu=   0.0s
+[6/180       0s]      496 bin=0 dyn            solved=True  verified=True pops=    2 states=     10 minL= 0 maxrank=3 path=2 cpu=   0.0s
+[7/180       0s]      521 bin=0 dyn            solved=True  verified=True pops=    2 states=     10 minL= 0 maxrank=3 path=2 cpu=   0.0s
+[8/180       0s]      521 bin=0 dyn_norelabel  solved=True  verified=True pops=    2 states=     10 minL= 0 maxrank=3 path=2 cpu=   0.0s
+[9/180       0s]      323 bin=0 dyn            solved=True  verified=True pops=    2 states=     12 minL= 0 maxrank=3 path=2 cpu=   0.0s
+[10/180       0s]      323 bin=0 dyn_norelabel  solved=True  verified=True pops=    2 states=     12 minL= 0 maxrank=3 path=2 cpu=   0.0s
+[11/180       0s]      323 bin=0 ctrl           solved=True  verified=True pops=    4 states=     99 minL= 0 maxrank=2 path=4 cpu=   0.0s
+[12/180       0s]      521 bin=0 ctrl           solved=True  verified=True pops=    4 states=    105 minL= 0 maxrank=2 path=4 cpu=   0.0s
+[13/180       0s]      228 bin=0 ctrl           solved=True  verified=True pops=    6 states=    253 minL= 0 maxrank=2 path=5 cpu=   0.0s
+[14/180       0s]      455 bin=0 dyn            solved=True  verified=True pops=    3 states=     19 minL= 0 maxrank=3 path=3 cpu=   0.0s
+[15/180       0s]      228 bin=0 dyn_norelabel  solved=True  verified=True pops=    5 states=    235 minL= 0 maxrank=4 path=5 cpu=   0.0s
+[16/180       0s]      228 bin=0 dyn            solved=True  verified=True pops=    5 states=    235 minL= 0 maxrank=4 path=5 cpu=   0.0s
+[17/180       0s]      455 bin=0 dyn_norelabel  solved=True  verified=True pops=    3 states=     19 minL= 0 maxrank=3 path=3 cpu=   0.0s
+[18/180       0s]       77 bin=1 dyn_norelabel  solved=True  verified=True pops=    9 states=    347 minL= 0 maxrank=4 path=7 cpu=   0.0s
+[19/180       0s]      455 bin=0 ctrl           solved=True  verified=True pops=    9 states=    439 minL= 0 maxrank=2 path=9 cpu=   0.0s
+[20/180       0s]       77 bin=1 ctrl           solved=True  verified=True pops=   10 states=    428 minL= 0 maxrank=2 path=8 cpu=   0.0s
+[21/180       0s]       43 bin=1 ctrl           solved=True  verified=True pops=    9 states=    341 minL= 0 maxrank=2 path=9 cpu=   0.0s
+[22/180       0s]       77 bin=1 dyn            solved=True  verified=True pops=    9 states=    346 minL= 0 maxrank=4 path=7 cpu=   0.0s
+[23/180       0s]      141 bin=1 ctrl           solved=True  verified=True pops=   11 states=    485 minL= 0 maxrank=2 path=10 cpu=   0.0s
+[24/180       0s]       43 bin=1 dyn_norelabel  solved=True  verified=True pops=    8 states=    335 minL= 0 maxrank=4 path=7 cpu=   0.0s
+[25/180       0s]      141 bin=1 dyn_norelabel  solved=True  verified=True pops=   10 states=    431 minL= 0 maxrank=4 path=7 cpu=   0.0s
+[26/180       0s]      141 bin=1 dyn            solved=True  verified=True pops=   10 states=    429 minL= 0 maxrank=4 path=7 cpu=   0.1s
+[27/180       0s]       48 bin=1 dyn_norelabel  solved=True  verified=True pops=    8 states=    284 minL= 0 maxrank=4 path=7 cpu=   0.0s
+[28/180       0s]       48 bin=1 dyn            solved=True  verified=True pops=   10 states=    474 minL= 0 maxrank=4 path=7 cpu=   0.1s
+[29/180       0s]       43 bin=1 dyn            solved=True  verified=True pops=   10 states=    524 minL= 0 maxrank=4 path=7 cpu=   0.1s
+[30/180       0s]       48 bin=1 ctrl           solved=True  verified=True pops=   16 states=    848 minL= 0 maxrank=2 path=11 cpu=   0.0s
+[31/180       0s]      155 bin=1 ctrl           solved=True  verified=True pops=   16 states=    848 minL= 0 maxrank=2 path=12 cpu=   0.0s
+[32/180       0s]      155 bin=1 dyn_norelabel  solved=True  verified=True pops=   17 states=    903 minL= 0 maxrank=4 path=8 cpu=   0.1s
+[33/180       0s]      155 bin=1 dyn            solved=True  verified=True pops=   17 states=    897 minL= 0 maxrank=4 path=8 cpu=   0.1s
+[34/180       0s]      247 bin=2 ctrl           solved=True  verified=True pops=   33 states=   2156 minL= 0 maxrank=2 path=10 cpu=   0.1s
+[35/180       1s]      505 bin=1 ctrl           solved=True  verified=True pops=   34 states=   3158 minL= 0 maxrank=2 path=21 cpu=   0.2s
+[36/180       1s]      247 bin=2 dyn            solved=True  verified=True pops=   17 states=    786 minL= 0 maxrank=4 path=10 cpu=   0.1s
+[37/180       1s]      247 bin=2 dyn_norelabel  solved=True  verified=True pops=   17 states=    790 minL= 0 maxrank=4 path=10 cpu=   0.0s
+[38/180       1s]      217 bin=2 dyn            solved=True  verified=True pops=   15 states=    679 minL= 0 maxrank=4 path=9 cpu=   0.1s
+[39/180       1s]      217 bin=2 ctrl           solved=True  verified=True pops=   49 states=   3726 minL= 0 maxrank=2 path=14 cpu=   0.2s
+[40/180       1s]      217 bin=2 dyn_norelabel  solved=True  verified=True pops=   18 states=    832 minL= 0 maxrank=4 path=10 cpu=   0.1s
+[41/180       1s]      201 bin=2 dyn            solved=True  verified=True pops=   17 states=    799 minL= 0 maxrank=4 path=10 cpu=   0.1s
+[42/180       1s]      201 bin=2 dyn_norelabel  solved=True  verified=True pops=   21 states=   1009 minL= 0 maxrank=4 path=11 cpu=   0.1s
+[43/180       1s]      201 bin=2 ctrl           solved=True  verified=True pops=   56 states=   4459 minL= 0 maxrank=2 path=16 cpu=   0.2s
+[44/180       1s]      288 bin=2 dyn            solved=True  verified=True pops=   25 states=   1112 minL= 0 maxrank=4 path=14 cpu=   0.2s
+[45/180       2s]      288 bin=2 dyn_norelabel  solved=True  verified=True pops=   26 states=   1172 minL= 0 maxrank=4 path=14 cpu=   0.1s
+[46/180       2s]      288 bin=2 ctrl           solved=True  verified=True pops=  100 states=   8943 minL= 0 maxrank=2 path=18 cpu=   0.5s
+[47/180       2s]      367 bin=2 dyn            solved=True  verified=True pops=   32 states=   3316 minL= 0 maxrank=5 path=18 cpu=   0.4s
+[48/180       2s]      367 bin=2 ctrl           solved=True  verified=True pops=   86 states=   8904 minL= 0 maxrank=2 path=21 cpu=   0.6s
+[49/180       2s]      367 bin=2 dyn_norelabel  solved=True  verified=True pops=   32 states=   3542 minL= 0 maxrank=5 path=18 cpu=   0.2s
+[50/180       3s]      331 bin=2 dyn            solved=True  verified=True pops=   14 states=    719 minL= 0 maxrank=4 path=12 cpu=   0.1s
+[51/180       3s]      331 bin=2 dyn_norelabel  solved=True  verified=True pops=   15 states=    776 minL= 0 maxrank=4 path=12 cpu=   0.0s
+[52/180       3s]      203 bin=3 ctrl           solved=True  verified=True pops=   98 states=   8710 minL= 0 maxrank=2 path=17 cpu=   0.5s
+[53/180       3s]      203 bin=3 dyn            solved=True  verified=True pops=   22 states=   1031 minL= 0 maxrank=4 path=13 cpu=   0.1s
+[54/180       3s]      203 bin=3 dyn_norelabel  solved=True  verified=True pops=   21 states=    981 minL= 0 maxrank=4 path=13 cpu=   0.1s
+[55/180       3s]      331 bin=2 ctrl           solved=True  verified=True pops=  105 states=   9791 minL= 0 maxrank=2 path=25 cpu=   0.6s
+[56/180       4s]      265 bin=3 dyn            solved=True  verified=True pops=   25 states=   1274 minL= 0 maxrank=5 path=15 cpu=   0.2s
+[57/180       4s]      265 bin=3 dyn_norelabel  solved=True  verified=True pops=   22 states=   1135 minL= 0 maxrank=4 path=15 cpu=   0.1s
+[58/180       4s]      265 bin=3 ctrl           solved=True  verified=True pops=  100 states=   8943 minL= 0 maxrank=2 path=22 cpu=   0.5s
+[59/180       6s]      579 bin=3 ctrl           solved=True  verified=True pops=  135 states=  18687 minL= 0 maxrank=2 path=27 cpu=   1.6s
+[60/180       8s]      505 bin=1 dyn            solved=True  verified=True pops=  463 states=  34803 minL= 0 maxrank=5 path=30 cpu=   5.6s
+[61/180      10s]      505 bin=1 dyn_norelabel  solved=True  verified=True pops= 1197 states=  97154 minL= 0 maxrank=5 path=34 cpu=   6.9s
+[62/180      10s]      327 bin=3 ctrl           solved=True  verified=True pops=  204 states=  22216 minL= 0 maxrank=2 path=30 cpu=   1.4s
+[63/180      12s]      327 bin=3 dyn            solved=True  verified=True pops=  210 states=  12153 minL= 0 maxrank=4 path=18 cpu=   1.9s
+[64/180      13s]      327 bin=3 dyn_norelabel  solved=True  verified=True pops=  421 states=  28342 minL= 0 maxrank=4 path=18 cpu=   1.9s
+[65/180      14s]      333 bin=3 ctrl           solved=True  verified=True pops=  215 states=  24396 minL= 0 maxrank=2 path=38 cpu=   1.6s
+[66/180      20s]      333 bin=3 dyn            solved=True  verified=True pops=  488 states=  34390 minL= 0 maxrank=4 path=22 cpu=   5.3s
+[67/180      21s]      333 bin=3 dyn_norelabel  solved=True  verified=True pops=  895 states=  69397 minL= 0 maxrank=4 path=22 cpu=   4.6s
+[68/180      22s]      380 bin=3 ctrl           solved=True  verified=True pops=  239 states=  27897 minL= 0 maxrank=2 path=42 cpu=   1.8s
+[69/180      29s]      380 bin=3 dyn_norelabel  solved=True  verified=True pops=  963 states=  77883 minL= 0 maxrank=5 path=24 cpu=   5.3s
+[70/180      30s]      380 bin=3 dyn            solved=True  verified=True pops=  507 states=  38828 minL= 0 maxrank=5 path=24 cpu=   6.0s
+[71/180      31s]      579 bin=3 dyn_norelabel  solved=False verified=None pops= 2000 states= 232846 minL=17 maxrank=5 path=None cpu=  17.4s
+[72/180      32s]      579 bin=3 dyn            solved=True  verified=True pops= 1013 states= 122852 minL= 0 maxrank=5 path=21 cpu=  21.7s
+[73/180      33s]      546 bin=4 dyn            solved=True  verified=True pops=  158 states=  23287 minL= 0 maxrank=5 path=20 cpu=   3.2s
+[74/180      33s]      548 bin=4 dyn            solved=True  verified=True pops=   31 states=   1693 minL= 0 maxrank=5 path=13 cpu=   0.2s
+[75/180      34s]      548 bin=4 dyn_norelabel  solved=True  verified=True pops=   35 states=   2090 minL= 0 maxrank=5 path=13 cpu=   0.1s
+[76/180      34s]      546 bin=4 dyn_norelabel  solved=True  verified=True pops=  298 states=  49408 minL= 0 maxrank=5 path=20 cpu=   2.1s
+[77/180      36s]      533 bin=4 ctrl           solved=True  verified=True pops=  239 states=  27897 minL= 0 maxrank=2 path=46 cpu=   1.8s
+[78/180      38s]      546 bin=4 ctrl           solved=True  verified=True pops=  370 states=  63025 minL= 0 maxrank=2 path=25 cpu=   6.1s
+[79/180      40s]      548 bin=4 ctrl           solved=True  verified=True pops=  478 states=  69309 minL= 0 maxrank=2 path=27 cpu=   5.5s
+[80/180      41s]      589 bin=4 dyn            solved=True  verified=True pops=  100 states=   5901 minL= 0 maxrank=5 path=35 cpu=   1.0s
+[81/180      42s]      533 bin=4 dyn            solved=True  verified=True pops=  515 states=  38600 minL= 0 maxrank=5 path=25 cpu=   5.9s
+[82/180      42s]      589 bin=4 dyn_norelabel  solved=True  verified=True pops=  104 states=   7418 minL= 0 maxrank=5 path=30 cpu=   0.6s
+[83/180      42s]      533 bin=4 dyn_norelabel  solved=True  verified=True pops=  934 states=  75652 minL= 0 maxrank=5 path=25 cpu=   4.7s
+[84/180      42s]      580 bin=4 dyn_norelabel  solved=True  verified=True pops=   48 states=   4438 minL= 0 maxrank=5 path=26 cpu=   0.3s
+[85/180      42s]      580 bin=4 dyn            solved=True  verified=True pops=   45 states=   3973 minL= 0 maxrank=5 path=26 cpu=   0.6s
+[86/180      44s]      589 bin=4 ctrl           solved=True  verified=True pops=  342 states=  49852 minL= 0 maxrank=2 path=35 cpu=   4.0s
+[87/180      53s]      609 bin=4 dyn            solved=True  verified=True pops=  635 states=  50753 minL= 0 maxrank=6 path=51 cpu=   8.0s
+[88/180      54s]      580 bin=4 ctrl           solved=True  verified=True pops=  560 states=  69184 minL= 0 maxrank=2 path=48 cpu=   9.3s
+[89/180      55s]      609 bin=4 dyn_norelabel  solved=True  verified=True pops= 1170 states= 122036 minL= 0 maxrank=6 path=51 cpu=   7.2s
+[90/180      60s]      538 bin=5 dyn            solved=True  verified=True pops=  434 states=  26582 minL= 0 maxrank=5 path=18 cpu=   4.5s
+[91/180      64s]      609 bin=4 ctrl           solved=True  verified=True pops= 1149 states= 193385 minL= 0 maxrank=2 path=64 cpu=  16.7s
+[92/180      70s]      538 bin=5 dyn_norelabel  solved=True  verified=True pops= 1948 states= 143377 minL= 0 maxrank=5 path=23 cpu=  10.8s
+[93/180      77s]      606 bin=5 dyn            solved=True  verified=True pops=  548 states=  58990 minL= 0 maxrank=6 path=48 cpu=  10.8s
+[94/180      86s]      606 bin=5 dyn_norelabel  solved=True  verified=True pops= 1380 states= 143761 minL= 0 maxrank=6 path=32 cpu=  12.0s
+[95/180      99s]      538 bin=5 ctrl           solved=False verified=None pops= 2000 states= 367103 minL=14 maxrank=2 path=None cpu=  35.0s
+[96/180     101s]      544 bin=5 ctrl           solved=True  verified=True pops= 1441 states= 244020 minL= 0 maxrank=2 path=78 cpu=  22.2s
+[97/180     103s]      606 bin=5 ctrl           solved=False verified=None pops= 2000 states= 172934 minL=14 maxrank=2 path=None cpu=  36.3s
+[98/180     109s]      544 bin=5 dyn_norelabel  solved=False verified=None pops= 2000 states= 118510 minL=15 maxrank=5 path=None cpu=   9.8s
+[99/180     119s]      549 bin=5 ctrl           solved=True  verified=True pops= 1013 states= 166381 minL= 0 maxrank=2 path=79 cpu=  14.1s
+[100/180     120s]      544 bin=5 dyn            solved=False verified=None pops= 2000 states= 201006 minL=15 maxrank=5 path=None cpu=  31.5s
+[101/180     126s]      549 bin=5 dyn_norelabel  solved=False verified=None pops= 2000 states= 234136 minL=15 maxrank=5 path=None cpu=  14.7s
+[102/180     140s]      543 bin=5 ctrl           solved=True  verified=True pops= 1445 states= 244928 minL= 0 maxrank=2 path=84 cpu=  21.4s
+[103/180     142s]      549 bin=5 dyn            solved=False verified=None pops= 2000 states= 212421 minL=15 maxrank=5 path=None cpu=  35.1s
+[104/180     145s]      543 bin=5 dyn_norelabel  solved=False verified=None pops= 2000 states= 317482 minL=15 maxrank=5 path=None cpu=  18.4s
+[105/180     151s]      543 bin=5 dyn            solved=False verified=None pops= 2000 states= 187269 minL=15 maxrank=5 path=None cpu=  30.5s
+[106/180     159s]      565 bin=5 ctrl           solved=True  verified=True pops= 1299 states= 221297 minL= 0 maxrank=2 path=148 cpu=  18.9s
+[107/180     165s]      565 bin=5 dyn_norelabel  solved=False verified=None pops= 2000 states= 354910 minL=16 maxrank=5 path=None cpu=  19.6s
+[108/180     171s]      602 bin=6 dyn            solved=True  verified=True pops=  949 states=  71428 minL= 0 maxrank=5 path=54 cpu=  11.3s
+[109/180     178s]      602 bin=6 dyn_norelabel  solved=False verified=None pops= 2000 states= 175346 minL=14 maxrank=5 path=None cpu=  12.6s
+[110/180     183s]      565 bin=5 dyn            solved=False verified=None pops= 2000 states= 240473 minL=16 maxrank=5 path=None cpu=  40.1s
+[111/180     185s]      632 bin=6 dyn            solved=True  verified=True pops=  463 states=  41918 minL= 0 maxrank=5 path=46 cpu=   6.3s
+[112/180     186s]      632 bin=6 dyn_norelabel  solved=True  verified=True pops=  578 states=  55608 minL= 0 maxrank=5 path=46 cpu=   3.2s
+[113/180     196s]      602 bin=6 ctrl           solved=False verified=None pops= 2000 states= 409394 minL=15 maxrank=2 path=None cpu=  43.6s
+[114/180     197s]      573 bin=6 dyn            solved=True  verified=True pops=  616 states=  75242 minL= 0 maxrank=5 path=36 cpu=  10.3s
+[115/180     204s]      573 bin=6 dyn_norelabel  solved=True  verified=True pops= 1101 states= 147609 minL= 0 maxrank=5 path=34 cpu=   7.1s
+[116/180     218s]      632 bin=6 ctrl           solved=False verified=None pops= 2000 states= 424209 minL=15 maxrank=2 path=None cpu=  45.6s
+[117/180     227s]      573 bin=6 ctrl           solved=False verified=None pops= 2000 states= 300083 minL=17 maxrank=2 path=None cpu=  41.5s
+[118/180     239s]      586 bin=6 dyn_norelabel  solved=False verified=None pops= 2000 states= 378985 minL=16 maxrank=5 path=None cpu=  20.4s
+[119/180     239s]      586 bin=6 ctrl           solved=False verified=None pops= 2000 states= 309137 minL=17 maxrank=2 path=None cpu=  41.7s
+[120/180     244s]      586 bin=6 dyn            solved=False verified=None pops= 2000 states= 228687 minL=16 maxrank=5 path=None cpu=  39.0s
+[121/180     256s]      581 bin=6 dyn_norelabel  solved=False verified=None pops= 2000 states= 273684 minL=17 maxrank=5 path=None cpu=  16.8s
+[122/180     269s]      581 bin=6 ctrl           solved=False verified=None pops= 2000 states= 309137 minL=17 maxrank=2 path=None cpu=  41.0s
+[123/180     275s]      581 bin=6 dyn            solved=False verified=None pops= 2000 states= 213016 minL=16 maxrank=5 path=None cpu=  35.7s
+[124/180     287s]      575 bin=6 dyn_norelabel  solved=False verified=None pops= 2000 states= 314682 minL=16 maxrank=5 path=None cpu=  18.0s
+[125/180     287s]      575 bin=6 ctrl           solved=False verified=None pops= 2000 states= 434086 minL=16 maxrank=2 path=None cpu=  42.8s
+[126/180     294s]      575 bin=6 dyn            solved=False verified=None pops= 2000 states= 219484 minL=16 maxrank=5 path=None cpu=  37.2s
+[127/180     295s]      568 bin=7 dyn_norelabel  solved=True  verified=True pops= 1097 states= 147555 minL= 0 maxrank=5 path=35 cpu=   7.2s
+[128/180     298s]      568 bin=7 dyn            solved=True  verified=True pops=  607 states=  74482 minL= 0 maxrank=5 path=37 cpu=  10.1s
+[129/180     305s]      578 bin=7 dyn            solved=True  verified=True pops=  619 states=  75505 minL= 0 maxrank=5 path=44 cpu=  10.5s
+[130/180     306s]      578 bin=7 dyn_norelabel  solved=True  verified=True pops= 1235 states= 161351 minL= 0 maxrank=5 path=42 cpu=   7.7s
+[131/180     315s]      583 bin=7 dyn            solved=True  verified=True pops=  541 states=  62626 minL= 0 maxrank=5 path=32 cpu=   8.5s
+[132/180     317s]      568 bin=7 ctrl           solved=False verified=None pops= 2000 states= 411647 minL=15 maxrank=2 path=None cpu=  41.0s
+[133/180     322s]      583 bin=7 dyn_norelabel  solved=True  verified=True pops= 1087 states= 146861 minL= 0 maxrank=5 path=32 cpu=   7.0s
+[134/180     332s]      578 bin=7 ctrl           solved=False verified=None pops= 2000 states= 252965 minL=15 maxrank=2 path=None cpu=  37.4s
+[135/180     337s]      628 bin=7 dyn            solved=True  verified=True pops=  799 states=  93457 minL= 0 maxrank=6 path=76 cpu=  15.0s
+[136/180     343s]      583 bin=7 ctrl           solved=False verified=None pops= 2000 states= 252965 minL=15 maxrank=2 path=None cpu=  36.9s
+[137/180     345s]      628 bin=7 dyn_norelabel  solved=True  verified=True pops= 1521 states= 203365 minL= 0 maxrank=6 path=80 cpu=  13.0s
+[138/180     351s]      628 bin=7 ctrl           solved=False verified=None pops= 2000 states=  83987 minL=21 maxrank=2 path=None cpu=  33.9s
+[139/180     363s]      633 bin=7 dyn_norelabel  solved=False verified=None pops= 2000 states= 232849 minL=18 maxrank=6 path=None cpu=  18.0s
+[140/180     371s]      633 bin=7 ctrl           solved=False verified=None pops= 2000 states=  83985 minL=21 maxrank=2 path=None cpu=  34.3s
+[141/180     371s]      633 bin=7 dyn            solved=True  verified=True pops= 1557 states= 167027 minL= 0 maxrank=6 path=101 cpu=  28.4s
+[142/180     396s]      596 bin=7 ctrl           solved=False verified=None pops= 2000 states= 434270 minL=18 maxrank=2 path=None cpu=  44.4s
+[143/180     399s]      596 bin=7 dyn_norelabel  solved=False verified=None pops= 2000 states= 523192 minL=17 maxrank=6 path=None cpu=  26.7s
+[144/180     408s]      605 bin=8 ctrl           solved=False verified=None pops= 2000 states= 165568 minL=19 maxrank=2 path=None cpu=  35.8s
+[145/180     418s]      605 bin=8 dyn_norelabel  solved=False verified=None pops= 2000 states= 301329 minL=18 maxrank=6 path=None cpu=  19.4s
+[146/180     443s]      596 bin=7 dyn            solved=False verified=None pops= 2000 states= 487946 minL=16 maxrank=6 path=None cpu=  78.7s
+[147/180     444s]      610 bin=8 ctrl           solved=False verified=None pops= 2000 states= 165568 minL=19 maxrank=2 path=None cpu=  36.5s
+[148/180     460s]      610 bin=8 dyn            solved=False verified=None pops= 2000 states= 238198 minL=16 maxrank=6 path=None cpu=  40.9s
+[149/180     467s]      610 bin=8 dyn_norelabel  solved=False verified=None pops= 2000 states= 399969 minL=18 maxrank=6 path=None cpu=  23.2s
+[150/180     477s]      605 bin=8 dyn            solved=False verified=None pops= 2000 states= 497869 minL=17 maxrank=6 path=None cpu=  79.4s
+[151/180     481s]      625 bin=8 ctrl           solved=False verified=None pops= 2000 states= 239298 minL=19 maxrank=2 path=None cpu=  36.7s
+[152/180     490s]      625 bin=8 dyn_norelabel  solved=False verified=None pops= 2000 states= 440092 minL=17 maxrank=6 path=None cpu=  22.6s
+[153/180     500s]      625 bin=8 dyn            solved=False verified=None pops= 2000 states= 235743 minL=17 maxrank=6 path=None cpu=  39.7s
+[154/180     513s]      622 bin=8 dyn_norelabel  solved=False verified=None pops= 2000 states= 437595 minL=17 maxrank=6 path=None cpu=  22.6s
+[155/180     514s]      622 bin=8 ctrl           solved=False verified=None pops= 2000 states= 239310 minL=19 maxrank=2 path=None cpu=  36.5s
+[156/180     523s]      622 bin=8 dyn            solved=False verified=None pops= 2000 states= 235528 minL=17 maxrank=6 path=None cpu=  41.0s
+[157/180     536s]      624 bin=8 dyn_norelabel  solved=False verified=None pops= 2000 states= 437578 minL=17 maxrank=6 path=None cpu=  22.3s
+[158/180     537s]      624 bin=8 ctrl           solved=False verified=None pops= 2000 states= 194057 minL=19 maxrank=2 path=None cpu=  36.2s
+[159/180     553s]      624 bin=8 dyn            solved=False verified=None pops= 2000 states= 235596 minL=17 maxrank=6 path=None cpu=  39.6s
+[160/180     559s]      623 bin=8 ctrl           solved=False verified=None pops= 2000 states= 194049 minL=19 maxrank=2 path=None cpu=  36.0s
+[161/180     560s]      623 bin=8 dyn_norelabel  solved=False verified=None pops= 2000 states= 439917 minL=17 maxrank=6 path=None cpu=  22.4s
+[162/180     570s]      634 bin=9 dyn            solved=True  verified=True pops=  650 states=  73388 minL= 0 maxrank=6 path=69 cpu=  11.0s
+[163/180     572s]      634 bin=9 dyn_norelabel  solved=True  verified=True pops= 1604 states= 213765 minL= 0 maxrank=6 path=77 cpu=  12.2s
+[164/180     577s]      623 bin=8 dyn            solved=False verified=None pops= 2000 states= 235925 minL=17 maxrank=6 path=None cpu=  39.8s
+[165/180     582s]      635 bin=9 dyn            solved=True  verified=True pops=  612 states=  68913 minL= 0 maxrank=5 path=63 cpu=  10.1s
+[166/180     586s]      635 bin=9 dyn_norelabel  solved=True  verified=True pops= 1244 states= 165601 minL= 0 maxrank=5 path=68 cpu=   9.1s
+[167/180     600s]      634 bin=9 ctrl           solved=False verified=None pops= 2000 states= 454045 minL=17 maxrank=2 path=None cpu=  45.8s
+[168/180     617s]      635 bin=9 ctrl           solved=False verified=None pops= 2000 states= 454053 minL=17 maxrank=2 path=None cpu=  45.9s
+[169/180     617s]      637 bin=9 ctrl           solved=False verified=None pops= 2000 states=  73351 minL=21 maxrank=2 path=None cpu=  34.2s
+[170/180     622s]      637 bin=9 dyn_norelabel  solved=False verified=None pops= 2000 states= 440377 minL=17 maxrank=6 path=None cpu=  22.5s
+[171/180     627s]      637 bin=9 dyn            solved=False verified=None pops= 2000 states= 236544 minL=17 maxrank=6 path=None cpu=  39.9s
+[172/180     645s]      639 bin=9 dyn_norelabel  solved=False verified=None pops= 2000 states= 416623 minL=17 maxrank=6 path=None cpu=  22.1s
+[173/180     651s]      639 bin=9 ctrl           solved=False verified=None pops= 2000 states=  73354 minL=21 maxrank=2 path=None cpu=  33.9s
+[174/180     659s]      639 bin=9 dyn            solved=False verified=None pops= 2000 states= 239167 minL=17 maxrank=6 path=None cpu=  41.3s
+[175/180     661s]      638 bin=9 ctrl           solved=False verified=None pops= 2000 states=  69397 minL=21 maxrank=2 path=None cpu=  34.0s
+[176/180     670s]      638 bin=9 dyn_norelabel  solved=False verified=None pops= 2000 states= 296211 minL=17 maxrank=6 path=None cpu=  18.7s
+[177/180     686s]      638 bin=9 dyn            solved=False verified=None pops= 2000 states= 234152 minL=17 maxrank=6 path=None cpu=  39.8s
+[178/180     693s]      636 bin=9 dyn_norelabel  solved=False verified=None pops= 2000 states= 439481 minL=17 maxrank=6 path=None cpu=  22.6s
+[179/180     693s]      636 bin=9 ctrl           solved=False verified=None pops= 2000 states=  69397 minL=21 maxrank=2 path=None cpu=  34.4s
+[180/180     702s]      636 bin=9 dyn            solved=False verified=None pops= 2000 states= 235273 minL=17 maxrank=6 path=None cpu=  39.8s
