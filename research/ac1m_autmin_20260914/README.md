@@ -25,6 +25,22 @@ of AC1M's orbits occur in AC19.
 | in AC19_extended and in AC1M | 66,611 | 1,087,594 AC1M rows (95.73 %) |
 | in AC19_extended only | 6,168 | 6,029 of them come only from the length > 19 tail of the extended file, 20 only from the 634 MS rows, 104 only from length-≤ 19 rows |
 
+### AC19_extended versus AC1M, orbit by orbit
+
+| | orbits | rows |
+|---|---:|---:|
+| shared | **66,611** (91.5 % of the extended file's 72,779, 93.5 % of AC1M's 71,283) | 147,171 extended rows (93.9 %), 1,087,594 AC1M rows (95.7 %) |
+| extended only | **6,168** | 9,591 rows |
+| AC1M only | **4,672** | 48,560 rows, minimal length 15: 2, 16: 17, 17: 196, 18: 474, 19: 3,983 |
+
+The 6,168 extended-only orbits split by Aut-minimal length: **5,591 have minimal length
+≥ 20** and cannot be in AC1M at all (every AC1M orbit has minimal length ≤ 19); they come
+from the length > 19 tail of the file (5,573), from the 634 MS rows (16) or both (2).  The
+other **577 have minimal length ≤ 19** and are simply absent from AC1M: 104 orbits with
+members only among length-≤ 19 rows (the 117 of `AC19.txt` above, minus those the tail
+also hits), 456 whose only members are length > 19 rows that shorten to ≤ 19 under
+automorphisms, 13 mixed, and 4 from the MS rows.
+
 Literal overlap (presentations equal up to rotation, inversion and relator order, no
 automorphism): 73,739 AC1M rows are AC19 rows, and 56,692 of the 140,535 AC19 rows occur
 verbatim in AC1M; AC1M holds 943,083 distinct presentations.
