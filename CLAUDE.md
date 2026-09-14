@@ -126,3 +126,13 @@ search (parent-chain cycle check, frontier-only dedup, beams) solves 1.5% of the
 visited-state memory is indispensable, hashing is not.
 [TRAP] A dynamic-rank state that is skipped for a budget-share rule must be deferred (second
 heap), never dropped: dropping it lost 6 of the 41 hard rows.
+
+### [2026-09-14] AC1M is not the Aut-orbit closure of AC19: 71,283 orbits against 66,561, overlapping in 66,444
+[MECHANISM] Exact Aut(F2) canonicalisation (`autcanon_fast.aut_min`, Whitehead peak reduction plus
+lex-min of the closed minimal level set) of every row: `AC19.txt` 140,535 rows -> 66,561 orbits,
+`AC19_extended.txt` 156,762 -> 72,779 (reproduces the shipped census exactly), `AC1M.txt.gz`
+1,136,154 -> 71,283 orbits, every one with Aut-minimal length <= 19 and >= 4 members. 66,444
+orbits are shared (99.8% of AC19's, 93.2% of AC1M's); 117 AC19 orbits (378 short rows) have no
+AC1M member and 4,839 AC1M orbits (50,459 rows, minimal length 15-19) have no AC19 member. So
+"solved the AC19 Aut-min census" does not cover AC1M; treat AC1M's 71,283 orbits as a separate
+benchmark. Records and method in `research/ac1m_autmin_20260914/`.
