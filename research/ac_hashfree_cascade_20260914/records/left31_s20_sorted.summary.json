@@ -1,0 +1,19 @@
+{
+  "rows": 31,
+  "solved": 0,
+  "verified": 0,
+  "params": {
+    "budget": 1000,
+    "width": 8,
+    "score": "s20",
+    "gates": true,
+    "pair_descent": true,
+    "engine": "bestfirst",
+    "ancestors": 0,
+    "closed_set": "sorted",
+    "frontier_dedup": false,
+    "nielsen": true,
+    "perms": false
+  },
+  "elapsed": 83.32418489099973
+}

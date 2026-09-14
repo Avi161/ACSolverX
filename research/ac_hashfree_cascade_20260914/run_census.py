@@ -43,7 +43,7 @@ def job(arg):
     t = time.perf_counter()
     if params.get('engine') == 'hybrid':
         res = hfhybrid.solve(pair, budget=params['budget'], penalty=params['penalty'], cap=params['cap'],
-                             slack=params['slack'])
+                             slack=params['slack'], dyn_max=params.get('dyn_max'), dyn_ratio=params.get('dyn_ratio'))
         seconds = time.perf_counter() - t
         rec = dict(name=row['name'], r1=row['r1'], r2=row['r2'], solved=res['solved'], stage=res['stage'],
                    units=res['units'], path_length=res.get('path_length'), max_rank=res.get('max_rank'),
@@ -95,6 +95,8 @@ def main():
     ap.add_argument('--perms', action='store_true', help='canonicalise under the 8 signed permutations')
     ap.add_argument('--gate-when', default='pop', choices=('pop', 'generated'))
     ap.add_argument('--penalty', type=int, default=5)
+    ap.add_argument('--dyn-max', type=int, default=0, help='0 = unlimited')
+    ap.add_argument('--dyn-ratio', type=float, default=0.5, help='0 = unlimited')
     ap.add_argument('--cap', type=int, default=8)
     ap.add_argument('--slack', type=int, default=8)
     ap.add_argument('--no-gates', action='store_true')
@@ -104,7 +106,8 @@ def main():
     args = ap.parse_args()
     rows = load_rows(args)
     if args.engine == 'hybrid':
-        params = dict(engine='hybrid', budget=args.budget, penalty=args.penalty, cap=args.cap, slack=args.slack)
+        params = dict(engine='hybrid', budget=args.budget, penalty=args.penalty, cap=args.cap, slack=args.slack,
+                      dyn_max=args.dyn_max or None, dyn_ratio=args.dyn_ratio or None)
     else:
         params = dict(budget=args.budget, width=args.width, score=args.score,
                   gates=not args.no_gates, pair_descent=not args.no_pair_descent,

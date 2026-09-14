@@ -1,0 +1,104 @@
+# Results: a hash-free, table-free solver for the AC19 Aut-minimal census and MS-640
+
+All numbers below are from records in `records/` (JSONL with certificates, one row per
+presentation); every solved row's certificate was replayed by an independent verifier
+before it was written (`verified` counts).  Budget is 1,000 work units per row (one
+per popped state, accepted automorphism, image evaluation or substitution move).
+Machine: this session's 4-core container, CPython 3.11, numba 0.63; MS-640 timings are
+single-core with `NUMBA_NUM_THREADS=1`.
+
+## Headline
+
+| set | rows | census policy (hashed closed set + BS tables) | this solver, rank-two engine (`fast`) | this solver, final (`hybrid`, penalty 5) |
+|---|---:|---:|---:|---:|
+| AC19 Aut-minimal census | 72,779 | 72,052 | 72,738 | **__CENSUS_HYBRID__** |
+| the policy's 727 leftovers | 727 | 0 | 696 (673 without permutation canonicalisation) | **727** |
+| the 9 rows unsolved by every fixed-basis arm at 10M nodes | 9 | 0 | 9 (7 at ≤ 318 units; 2 need permutation canonicalisation, 440–545) | 9 |
+| random census sample (seed 1) | 2,000 | — | 1,997 | 2,000 |
+| MS-640, 1,000 units | 640 | 640 (cascade) | 640 | 640 |
+
+MS-640 timing on one core (search only / whole batch including verification and
+serialisation): cascade 2.36 s / 6.32 s (recorded in
+`results/heuristic_search/goal_frontiers/MS640_RESULTS.md`); rank-two engine
+3.01 s / 7.11 s, at most 283 units on a row (cascade: 404); hybrid __MS640_HYBRID__.
+
+Certificate scope in the hybrid census run: __CENSUS_R2__ rows have ordinary rank-two
+certificates (products and automorphism transport, expanded to AC moves by the
+repository's existing decoder contract); __CENSUS_STABLE__ rows use `define`/`eliminate`
+steps and are therefore certificates of *stable* AC-triviality of a trivial-group
+presentation (Lemma 11 of arXiv:2408.15332, composites not expanded), exactly as in
+`research/ac_dynamic_rank_20260913`.  Every one of the 727 leftovers and of the 41
+rows the rank-two engine could not finish at 1,000 units has a rank-two certificate at
+a larger budget: `records/left31_fast_hash_perms_b20k.jsonl` (the 31 hardest, 1,094–10,080
+units, all replayed) and `records/census41_fast_v2.jsonl`.
+
+## What each ingredient buys (the 727 policy leftovers, 1,000 units)
+
+| engine | closed set | Nielsen edges | signed-perm canonical | solved / rows | record |
+|---|---|---|---|---:|---|
+| best-first, length | none (parent chain only) | no | no | 9 / 604 | `records/controls/u727_memoryless_bestfirst_len_partial604.jsonl` |
+| beam 8, length | none | no | no | 9 / 604 | `records/controls/u727_memoryless_beam8_len_partial604.jsonl` |
+| best-first, length | sorted array | no | no | 31 / 180 | `records/controls/u727_sorted_nonielsen_len_partial180.jsonl` |
+| best-first, length | sorted array | **yes** | no | **673 / 727** | `records/u727_bf_len_sorted_nielsen.jsonl` |
+| … the 54 left, with signed perms | sorted array | yes | **yes** | 23 / 54 | `records/left54_perms.jsonl` |
+| hybrid (rank two + define/eliminate), penalty 5 | sorted arrays | yes | yes | **727 / 727** | `records/hy727_p5.jsonl` |
+
+Two facts settle the "no hashing" question empirically.  (1) Memory of visited states
+is indispensable at this budget: without it best-first and beams thrash on the
+inverse-move and commuting-move duplicates and solve 1.5% of the leftovers; a
+parent-chain cycle check of any depth and frontier-only deduplication do not help
+(`records/…` and the session tests).  (2) That memory does not need a hash table: a
+block-sorted array with bisection reproduces the hashed control pop for pop (identical
+unit counts on every tested row, pinned in `test_hfcascade.py`).
+
+The single largest gain is the four Nielsen maps as search edges (31/180 → 673/727 on
+the same engine).  The Aut-minimal spelling sits at the bottom of a length well
+(`ORIGINALS_AT_10M.md`, `WORKED_EXAMPLE.md` on branch
+`claude/ac19-leftover-solver-notebook-6yan6d`); with basis changes as edges, seven of
+the nine 10M-node failures solve in 137–318 units.
+
+## Dynamic rank on the residue
+
+The 41 rows the rank-two engine leaves at 1,000 units need 1,094–10,080 rank-two units
+(length ordering; S20 ordering 829–9,994).  The dynamic-rank search of
+`research/ac_dynamic_rank_20260913` (cap 8, ceiling L+8, generator-permutation
+canonical form, length priority) solves 40 of them within 650 pops
+(`records/dyn_census41_p1000.jsonl`), but on its own it is weaker than the rank-two
+engine elsewhere (213/300 of the leftovers and 689/800 of the sample at 1,000 pops,
+partial runs in `records/controls/`).  The hybrid keeps the rank-two engine's
+behaviour and adds the dynamic moves to the same frontier; the one parameter is the
+priority penalty per generator above two:
+
+| penalty | 41 rank-two leftovers | 7 pinch-family rows (`YYXXyxx` donors) | all 727 |
+|---:|---:|---:|---:|
+| 2 | 41 | 0 | — |
+| 4 | 41 | 0 | 720 |
+| **5** | **41** | **7** | **727** |
+| 6 | 32 | 7 | — |
+| 8 | 2 | 7 | — |
+
+A small penalty lets rank-three states crowd out rank-two states that a length-ordered
+search needs to reach the pinch structure; a large one delays the dynamic moves past
+the budget.  Five is the value that solves everything measured; it was chosen on these
+rows and then applied unchanged to the whole census and to MS-640.
+
+## The 727 leftovers, structurally
+
+`analyse727.py`: none has a primitive relator; 88 have a conjugation-shaped relator
+`g^a h^p g^-a h^q` (56 of them `x^-2 y x^2 = y^2`, a squared stable letter that the
+census tables cannot see); 639 are generic 4–12-syllable pairs; plain length-first greedy
+with a hashed closed set solves 333 of them within 10,000 nodes.
+
+## Caveats
+
+* The solver was developed against the census policy's leftovers; the full census and
+  MS-640 were each run once with the final configuration (no per-set tuning except the
+  penalty chosen as described).
+* `define`/`eliminate` certificates are stable-AC certificates conditional on the
+  trivial-group hypothesis, which holds for every AC19 row by construction (the set was
+  enumerated and greedy-solved); they are not rank-two AC paths.  Rank-two paths exist
+  for all 727 leftovers at ≤ 10,080 units.
+* Units are heterogeneous (pops of different ranks, evaluations, moves), as in the
+  census policy; wall times are reported alongside.
+* The rank-two kernel canonicalises exactly as the repository's `canon_pair`; the
+  verifier uses its own implementation and compares canonically.

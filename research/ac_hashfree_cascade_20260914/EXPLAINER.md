@@ -100,15 +100,38 @@ Measured on `unsolved.csv` (script in the session record, reproduced by
   relators 25–49 letters long (`ac19_orig_10m/WORKED_EXAMPLE.md` on the
   `claude/ac19-leftover-solver-notebook-6yan6d` branch).
 
-## 4. What `hfcascade.py` does differently
+## 4. What the new solver does differently
 
-Same certificate contract, no closed set, no table.  Stages A–D are documented in
-the module docstring; in one sentence each: strict Whitehead descent of the pair;
-strict Whitehead descent of ONE relator followed by letter deletion when it reaches
-length 1 (the primitive theorem, with no length restriction on the companion);
-Britton pinching driven by a PARSED conjugation form `g^a h^p g^-a h^q` for any
-`a, p, q` (this is what generalises the BS(1,2) rewrite of the MS-640 cascade and
-the consecutive-BS tables of the census to powered stable letters and arbitrary
-exponent pairs); and a width-`w` beam descent whose only memory is the chain of
-parent references and whose per-level deduplication is a sort.  The results of
-running it are in `RESULTS.md`.
+Same certificate contract, no hash map, no table.  The final procedure (`hfhybrid.solve`,
+one tuned parameter) is:
+
+1. **Whitehead descent** of the pair and of each relator (strict cyclic-length
+   decrease under the four Nielsen maps); a relator that reaches one letter, or that
+   contains one generator exactly once, finishes the pair by substitution (the
+   primitive-donor theorem compiled into products: replace every occurrence of the
+   letter in the companion, the companion becomes the other generator by
+   abelianisation, delete the letters of the donor).
+2. **Pinch cascade** for a relator parsed as `g^a h^p g^-a h^q` (any `a`, `p`, `q`;
+   this generalises both the BS(1,2) rewrite of the MS-640 cascade and the
+   consecutive-BS tables of the census policy): an exponent-level dry run decides
+   applicability for free, each rule use is one product move.
+3. **One best-first search, one budget, no closed-set hashing.**  Rank-two states
+   are canonical under rotation, inversion, relator order and the eight signed
+   generator permutations; their children are the seam-cancelling rotation products
+   (the repository's compiled kernel) **and the four Nielsen maps** (recorded as
+   automorphism steps).  Every popped rank-two state also offers `define` children
+   (a new generator for a repeated cyclic digram), higher-rank states are expanded
+   with capped products, `define`, `eliminate` and Nielsen transvections, and a child
+   that returns to rank two re-enters the rank-two path.  Priority is total length
+   plus five letters per generator above two.  The closed set is a block-sorted
+   array searched by bisection, tested when a state is popped.  Gates 1-2 are tried
+   on every generated rank-two child.
+4. One unit per popped state, per accepted map, per image evaluation and per
+   substitution move; nothing else is charged.
+
+Why it works where the census policy stalled: the Nielsen edges let the search leave
+the Aut-minimal spelling, which sits at the bottom of a length well; seven of the nine
+rows that resisted 10,000,000 fixed-basis nodes solve in at most 318 units once basis
+changes are search edges.  The define/eliminate moves supply the last few rows, whose
+rank-two certificates need 1,100 to 10,000 units: in rank three or four they are
+reached in a few hundred.  The results are in `RESULTS.md`.

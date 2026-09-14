@@ -62,7 +62,8 @@ def _dedup_sorted(items):
 
 
 def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True, perms=True,
-           allow_define=True, allow_eliminate=True, min_uses=2, gates=True, gate_when='generated'):
+           allow_define=True, allow_eliminate=True, min_uses=2, gates=True, gate_when='generated',
+           dyn_max=None, dyn_ratio=None):
     """Best-first hybrid search from run.state; returns (solved, steps, info)."""
     F = H._fast_setup()
     np, expand, arrs, transform, pack, unpack = (F['np'], F['expand'], F['arrs'], F['transform'],
@@ -81,7 +82,8 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
             root_key = pack(root_pair)
     # node = (repr, parent, step, kind)
     root = (root_key, None, None, 'r2')
-    heap = [(float(len(root_key) - 1), 0, 0, root)]
+    heap = [(float(len(root_key) - 1), 0, 0, root)]      # rank-two frontier
+    dheap = []                                            # higher-rank frontier
     counter = 0
     seen_r2 = H.SortedBlocks(b'')
     seen_dyn = H.SortedBlocks(((),))
@@ -143,8 +145,15 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
             raise _Done()
 
     try:
-        while heap and pops < budget:
-            _, depth, _, node = heapq.heappop(heap)
+        while (heap or dheap) and pops < budget:
+            allowed = bool(dheap) and (dyn_max is None or dyn_pops < dyn_max) and (
+                dyn_ratio is None or dyn_pops <= dyn_ratio * (pops - dyn_pops) + 20)
+            if allowed and (not heap or dheap[0][0] <= heap[0][0]):
+                _, depth, _, node = heapq.heappop(dheap)
+            elif heap:
+                _, depth, _, node = heapq.heappop(heap)
+            else:
+                break                             # only deferred higher-rank states remain
             repr_, parent, step, kind = node
             if kind == 'r2':
                 if not seen_r2.add(repr_):
@@ -203,7 +212,7 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
                         cstep = {'kind': 'dyn', 'event': event, 'relabel': rl, 'after': ckey}
                         counter += 1
                         max_rank = max(max_rank, len(ckey))
-                        push(heap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
+                        push(dheap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
                                     (ckey, node, cstep, 'dyn')))
             else:
                 words = repr_
@@ -231,7 +240,7 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
                         raise AssertionError('rank fell below two')
                     else:
                         max_rank = max(max_rank, len(ckey))
-                        push(heap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
+                        push(dheap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
                                     (ckey, node, cstep, 'dyn')))
     except _Done:
         if 'steps' in result:
@@ -239,10 +248,13 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
     return False, [], dict(pops=min(pops, budget), max_rank=max_rank, dyn_pops=dyn_pops)
 
 
-def solve(pair, budget=1000, penalty=5, **kw):
+def solve(pair, budget=1000, penalty=5, dyn_max=None, dyn_ratio=0.5, **kw):
     """Stages A-C of hfcascade, then the hybrid search with the remaining budget.
-    `penalty` (letters per generator above two, default 5) is the one tuned parameter."""
+    `penalty` (letters per generator above two) and `dyn_max` (at most that many popped
+    higher-rank states, None for no limit) are the tuned parameters."""
     kw['penalty'] = penalty
+    kw['dyn_max'] = dyn_max
+    kw['dyn_ratio'] = dyn_ratio
     run = H.Run(pair, budget)
     try:
         if H.is_terminal(run.state):

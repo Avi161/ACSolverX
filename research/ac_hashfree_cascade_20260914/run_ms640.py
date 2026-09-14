@@ -35,6 +35,7 @@ def main():
     ap.add_argument('--no-perms', action='store_true')
     ap.add_argument('--no-nielsen', action='store_true')
     ap.add_argument('--penalty', type=int, default=5)
+    ap.add_argument('--dyn-ratio', type=float, default=0.5)
     args = ap.parse_args()
     try:
         import numba
@@ -42,7 +43,7 @@ def main():
     except Exception:
         pass
     if args.engine == 'hybrid':
-        params = dict(budget=args.budget, penalty=args.penalty)
+        params = dict(budget=args.budget, penalty=args.penalty, dyn_ratio=args.dyn_ratio or None)
         solver = hfhybrid.solve
         replay = hfhybrid.verify_hybrid
     else:

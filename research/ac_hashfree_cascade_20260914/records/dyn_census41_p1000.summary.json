@@ -1,0 +1,15 @@
+{
+  "rows": 41,
+  "solved": 40,
+  "verified": 40,
+  "params": {
+    "cap": 8,
+    "slack": 8,
+    "priority": "length",
+    "relabel": true,
+    "allow_define": true,
+    "allow_eliminate": true
+  },
+  "pops": 1000,
+  "elapsed": 66.45714638799927
+}
