@@ -2,8 +2,10 @@
 unit budget and verify every certificate.
 
 Sources: `--src` a flat integer file (one presentation per line, 2k slots, letters
-1/-1/2/-2 = x/X/y/Y, 0 padding; `.gz` accepted), or `--census` a CSV(.gz) with columns
-name,r1,r2 (an Aut-minimal census).  Output: JSONL(.gz) records; with `--compact` the
+1/-1/2/-2 = x/X/y/Y, 0 padding; `.gz` accepted), `--census` a CSV(.gz) with columns
+name,r1,r2 (an Aut-minimal census), or `--pairs` a JSONL(.gz) of earlier records, of
+which only the `name`, `r1` and `r2` fields are read (re-running a named subset at a
+different budget).  Output: JSONL(.gz) records; with `--compact` the
 per-row record drops the certificate unless the row is unsolved or needed at least
 `--keep-above` units (the full certificate is still verified in-process before the row
 is written)."""
@@ -42,7 +44,11 @@ def base_name(out):
 
 
 def load_rows(args):
-    if args.census:
+    if args.pairs:
+        opener = gzip.open if args.pairs.suffix == '.gz' else open
+        with opener(args.pairs, 'rt') as f:
+            rows = [(r['name'], (r['r1'], r['r2'])) for r in (json.loads(l) for l in f if l.strip())]
+    elif args.census:
         opener = gzip.open if args.census.suffix == '.gz' else open
         with opener(args.census, 'rt') as f:
             rows = [(r['name'], (r['r1'], r['r2'])) for r in csv.DictReader(f)]
@@ -102,6 +108,7 @@ def main():
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument('--src', type=Path)
     g.add_argument('--census', type=Path)
+    g.add_argument('--pairs', type=Path, help='JSONL(.gz) of records; name/r1/r2 are read')
     ap.add_argument('--prefix', default='row')
     ap.add_argument('--out', type=Path, required=True, help='.jsonl or .jsonl.gz')
     ap.add_argument('--offset', type=int, default=0)
@@ -138,7 +145,7 @@ def main():
             if (i + 1) % args.every == 0 or i + 1 == len(rows):
                 print(json.dumps(dict(rows=i + 1, solved=solved, verified=verified, unsolved=len(unsolved),
                                       elapsed=round(time.perf_counter() - t0, 1))), flush=True)
-    summary = dict(source=str(args.census or args.src), rows=len(rows), solved=solved, verified=verified,
+    summary = dict(source=str(args.pairs or args.census or args.src), rows=len(rows), solved=solved, verified=verified,
                    unsolved=unsolved, params=params, elapsed=time.perf_counter() - t0,
                    skipped_already_run=len(skipped),
                    skipped_solved_there=sum(1 for x in skipped if x[5]),

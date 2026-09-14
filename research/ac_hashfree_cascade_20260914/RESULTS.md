@@ -17,8 +17,8 @@ single-core with `NUMBA_NUM_THREADS=1`.
 | random census sample (seed 1) | 2,000 | — | 1,997 | 2,000 (`records/final3_s2000.jsonl`) |
 | MS-640, 1,000 units | 640 | 640 (cascade) | 640 | 640 (2.22 s search, 5.76 s batch under the cascade's protocol, one core) |
 | the whole `data/AC19_extended.txt` file, every row in its ORIGINAL spelling (not the Aut-minimal representative) | 156,762 | — | — | **156,762** (`records/final3_extended.jsonl.gz`, median 31 units, 99th percentile 125, max 954; 177 s wall on 4 workers) |
-| AC1M Aut-minimal census (`research/ac1m_autmin_20260914/records/AC1M_aut_min.csv.gz`) | 71,283 | — | — | **71,281** (`records/final3_ac1m_reps.jsonl.gz`; the 2 misses solve at 1,035 and 1,138 units) |
-| the whole `data/AC1M.txt.gz` file, every row in its ORIGINAL spelling | 1,136,154 | — | — | **1,136,135** (19 misses, all in the same 2 orbits, all solve at 1,040–1,153 units) |
+| AC1M Aut-minimal census (`research/ac1m_autmin_20260914/records/AC1M_aut_min.csv.gz`) | 71,283 | — | — | **71,281** (`records/final3_ac1m_reps.jsonl.gz`; the 2 misses solve at 1,035 and 1,138 units, and 71,283 / 71,283 at 10,000 units) |
+| the whole `data/AC1M.txt.gz` file, every row in its ORIGINAL spelling | 1,136,154 | — | — | **1,136,135** (19 misses, all in the same 2 orbits, all solve at 1,040–1,153 units, so 1,136,154 / 1,136,154 at 10,000 units) |
 
 MS-640 timing on one core, measured the way the cascade measured itself (search clock
 around the solver only; the batch clock includes verification by two independent
@@ -93,6 +93,27 @@ line: 1,138 and 1,035 units, rank-two certificates of 65 and 61 steps
 members of those two orbits (lengths 19–29); every one solves at 1,040–1,153 units with a
 rank-two certificate (`records/final3_ac1m_raw_unsolved19_b5000.jsonl`).  No other orbit
 of AC1M has a member that misses the budget from its own spelling.
+
+### The 21 over-budget presentations at 10,000 units
+
+All 21 were re-run in one batch with the budget raised tenfold and nothing else changed
+(`run_file.py --pairs ... --budget 10000`, `records/final3_ac1m_21_b10000.jsonl`):
+
+| | |
+|---|---:|
+| solved | **21 / 21** |
+| verified in-process and independently replayed (`verify_all.py`) | 21 / 21 |
+| certificate kind | 21 rank-two (`explicit_rank2`), max rank 4, stage H |
+| units | 1,035 min, 1,143 median, 1,153 max |
+| certificate length | 61-69 steps |
+| wall clock, 4 workers | 82 s including two numba warm-ups of 42 s |
+
+Every unit count is identical to the earlier budget-2,000 and budget-5,000 runs, which is
+the expected result and not a separate confirmation: the search is deterministic and the
+budget only decides when it gives up, so the extra 9,000 units buy nothing beyond the
+~150 the rows were short of.  The point of the run is the negative one -- raising the
+budget exposes no instability, no stable-certificate fallback and no rank growth: the
+same 21 rank-two paths come back.
 
 Wall clock on the 4-worker pool, verification included: 78 s for the representatives,
 1,131 s for the 1,056,376 raw rows (4,177 CPU-s of search, at most 2.7 s on a row).

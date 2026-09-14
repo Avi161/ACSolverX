@@ -1,0 +1,22 @@
+{
+  "source": "/tmp/claude-0/-home-user-ACSolverX/bb9b8f6b-3f21-5a5d-83e9-f34cbf1c43ae/scratchpad/runs/ac1m_21.jsonl",
+  "rows": 21,
+  "solved": 21,
+  "verified": 21,
+  "unsolved": [],
+  "params": {
+    "engine": "hybrid",
+    "budget": 10000,
+    "penalty": 5,
+    "cap": 8,
+    "slack": 8,
+    "dyn_max": null,
+    "dyn_ratio": 0.5,
+    "compact": false,
+    "keep_above": 500
+  },
+  "elapsed": 82.26526559299998,
+  "skipped_already_run": 0,
+  "skipped_solved_there": 0,
+  "skipped_by_file": {}
+}
