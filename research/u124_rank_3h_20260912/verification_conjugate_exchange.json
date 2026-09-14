@@ -1,0 +1,432 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "signed_high_label_cases": [
+      {
+        "root_exponent": -2,
+        "charged": 200,
+        "candidate_chains_replayed": 19
+      },
+      {
+        "root_exponent": 2,
+        "charged": 200,
+        "candidate_chains_replayed": 15
+      }
+    ],
+    "chains_with_forced_base_removal": 32,
+    "chains_with_uphill_base_removal": 25,
+    "chains_with_recompression": 28,
+    "unnormalized_input_budget_controls": [
+      {
+        "allowance": 0,
+        "charged": 0,
+        "candidate_chains_replayed": 0
+      },
+      {
+        "allowance": 1,
+        "charged": 1,
+        "candidate_chains_replayed": 0
+      },
+      {
+        "allowance": 2,
+        "charged": 2,
+        "candidate_chains_replayed": 0
+      },
+      {
+        "allowance": 10,
+        "charged": 10,
+        "candidate_chains_replayed": 4
+      },
+      {
+        "allowance": 100,
+        "charged": 100,
+        "candidate_chains_replayed": 10
+      }
+    ],
+    "census_searches": 0,
+    "known_triviality": "The companion x*y^11 and the consecutive BS(4,5) donor force y=x=1; all other rows are definitions or singleton relators."
+  },
+  "pilot": {
+    "status": "PASS",
+    "file": "conjugate_exchange_all33.json",
+    "sha256": "aedece6dc5587f01a133db351718d3f352064e10c3fa20a0593aabf0ff28a420",
+    "rows": [
+      {
+        "name": "aca_37",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 17,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_38",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 17,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_39",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_40",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_41",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_42",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_46",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_47",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_49",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_50",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_51",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_52",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_62",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_63",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_64",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_65",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_68",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_69",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_70",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_73",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_74",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_89",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_91",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_92",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_93",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_94",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_96",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_101",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_102",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_103",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_104",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_113",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_114",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      }
+    ],
+    "new_probe_work_units": 33000,
+    "full_seed_files_historical_discovery_units": 21806,
+    "seed_work_included_in_new_probe_budget": false,
+    "new_strict_gains_beyond_available_seeds": 0,
+    "historical_verifier_provenance": {
+      "executed_sha256": "2cb8e4afe7761ffd5b66e81c1ebfdfcfb74fe1c9f70523520c94fb1a7c103028",
+      "current_sha256": "25ac7d1be59d89d1c62c1c6f696b4873aeda9bf408964184dc68a2abe767cdf0",
+      "matches_current": false,
+      "scope": "Historical verifier hash retained; every saved event is checked again with current independent verifier."
+    }
+  },
+  "source_sha256": "2383d376b09a90296409bdfec12d55832eff6a32e1741120afc6acf868ecb38d",
+  "verifier_sha256": "25ac7d1be59d89d1c62c1c6f696b4873aeda9bf408964184dc68a2abe767cdf0"
+}

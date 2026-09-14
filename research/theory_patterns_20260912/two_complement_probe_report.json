@@ -1,0 +1,3866 @@
+{
+  "status": "bounded_two_complement_feasibility_complete",
+  "rows": [
+    {
+      "input": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "input_length": 13,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YXYxyx",
+        "YYYYxxx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          1
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          1
+        ],
+        [
+          1,
+          "X",
+          2
+        ],
+        [
+          1,
+          "Y",
+          0
+        ],
+        [
+          1,
+          "y",
+          0
+        ],
+        [
+          2,
+          "Y",
+          2
+        ],
+        [
+          2,
+          "x",
+          1
+        ],
+        [
+          2,
+          "y",
+          2
+        ]
+      ],
+      "join_is_full": false,
+      "image_limit": 1000,
+      "projected": null,
+      "status": "join_not_full",
+      "image_evaluations": 0,
+      "image_evaluation_counts": {},
+      "name": "aca_115"
+    },
+    {
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYYXyyX",
+        "YXXXyxx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": {
+        "pair": [
+          "yyxYxyxYx",
+          "XyXYYxxyXYXX"
+        ],
+        "total_length": 21,
+        "determinant": -1,
+        "exact_pair_match": false,
+        "cyclic_inverse_permutation_match": false,
+        "aut_comparison": "verified_distinct_Aut_orbits_by_rank2_Whitehead_minimum",
+        "aut_witness": null,
+        "terminal_macro": null,
+        "solve_implication_verified": false,
+        "length_is_not_an_admissible_stable_minimum": false,
+        "bounded_projected_Nielsen": {
+          "start": [
+            "XXXyXYYxxyXY",
+            "XYXyXYYXy"
+          ],
+          "endpoint": [
+            "XXXyXYYxxyXY",
+            "XYXyXYYXy"
+          ],
+          "total_length": 21,
+          "steps": [],
+          "strict_descent_exhausted": true
+        },
+        "complete_Whitehead_length_sweeps": [
+          {
+            "input": [
+              "XXXyXYYxxyXY",
+              "XYXyXYYXy"
+            ],
+            "candidates": [
+              {
+                "images": {
+                  "x": "xy",
+                  "y": "y"
+                },
+                "image_pair": [
+                  "XXYYXXYYY",
+                  "XXYYxyxyXYYXYXY"
+                ],
+                "total_length": 24
+              },
+              {
+                "images": {
+                  "x": "xY",
+                  "y": "y"
+                },
+                "image_pair": [
+                  "XXyXyXyyXYYxYxy",
+                  "XXyyXYXyy"
+                ],
+                "total_length": 24
+              },
+              {
+                "images": {
+                  "x": "yx",
+                  "y": "y"
+                },
+                "image_pair": [
+                  "XXYYXXYYY",
+                  "XXYYxyxyXYYXYXY"
+                ],
+                "total_length": 24
+              },
+              {
+                "images": {
+                  "x": "Yx",
+                  "y": "y"
+                },
+                "image_pair": [
+                  "XXyXyXyyXYYxYxy",
+                  "XXyyXYXyy"
+                ],
+                "total_length": 24
+              },
+              {
+                "images": {
+                  "x": "x",
+                  "y": "yx"
+                },
+                "image_pair": [
+                  "XXXyXYXYxxyXY",
+                  "XYXYXyXYXy"
+                ],
+                "total_length": 23
+              },
+              {
+                "images": {
+                  "x": "x",
+                  "y": "yX"
+                },
+                "image_pair": [
+                  "XXXyXYxYxxyXY",
+                  "XYXyXYxYXy"
+                ],
+                "total_length": 23
+              },
+              {
+                "images": {
+                  "x": "x",
+                  "y": "xy"
+                },
+                "image_pair": [
+                  "XXXyXYXYxxyXY",
+                  "XYXYXyXYXy"
+                ],
+                "total_length": 23
+              },
+              {
+                "images": {
+                  "x": "x",
+                  "y": "Xy"
+                },
+                "image_pair": [
+                  "XXXyXYxYxxyXY",
+                  "XYXyXYxYXy"
+                ],
+                "total_length": 23
+              }
+            ]
+          }
+        ],
+        "aut_minimum_length": 21,
+        "stable_equivalence_verified": true,
+        "cheap_terminal_observations": [
+          {
+            "word": "yyxYxyxYx",
+            "signed_letter_counts": {
+              "x": 4,
+              "X": 0,
+              "y": 3,
+              "Y": 2
+            },
+            "cyclic_letter_changes": 8,
+            "absolute_generator_counts": {
+              "x": 4,
+              "y": 5
+            }
+          },
+          {
+            "word": "XyXYYxxyXYXX",
+            "signed_letter_counts": {
+              "x": 2,
+              "X": 5,
+              "y": 2,
+              "Y": 3
+            },
+            "cyclic_letter_changes": 8,
+            "absolute_generator_counts": {
+              "x": 7,
+              "y": 5
+            }
+          }
+        ]
+      },
+      "search": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "uurtUturtUt",
+          "TuTRUUttuTRUsTT",
+          "TuTRUUttuTRUsT",
+          "uurtUt"
+        ],
+        "inverse_domain_basis": [
+          "UrUUrTsuRuTs",
+          "UrTsTsTsutSt",
+          "St",
+          "uRu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              1,
+              0
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          }
+        ],
+        "verified": true,
+        "popped_states": 13,
+        "generated_candidates": 456,
+        "seen_image_tuples": 389,
+        "guards": {},
+        "best_image_length": 2
+      },
+      "status": "marked_kernel_basis_found",
+      "image_evaluations": 984,
+      "image_evaluation_counts": {
+        "row_inverse_images": 460,
+        "multiplication_candidate_images": 456,
+        "terminal_marking_inverse_images": 2,
+        "kernel_projection_word_images": 2,
+        "signed_permutation_comparison_word_images": 16,
+        "projected_Nielsen_word_images": 16,
+        "post_Nielsen_signed_permutation_word_images": 16,
+        "Whitehead_sweep_witness_capture_word_images": 16
+      },
+      "name": "aca_116",
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "uurtUturtUt",
+          "TuTRUUttuTRUsTT"
+        ],
+        "kernel_basis": [
+          "uurtUturtUt",
+          "TuTRUUttuTRUsTT",
+          "TuTRUUttuTRUsT",
+          "uurtUt"
+        ],
+        "inverse_basis": [
+          "UrUUrTsuRuTs",
+          "UrTsTsTsutSt",
+          "St",
+          "uRu"
+        ],
+        "Q": [
+          "yyxYxyxYx",
+          "XyXYYxxyXYXX"
+        ],
+        "P": [
+          "YYYXyyX",
+          "YXXXyxx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YrYYrXsyRyXs",
+          "YrXsXsXsyxSx",
+          "Sx",
+          "yRy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYYXyyX",
+          "YXXXyxx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      }
+    },
+    {
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "input_length": 15,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXyxx",
+        "YYYxyXyX",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "uttRURUTT",
+          "T",
+          "tturTTU",
+          "TSUtturTTUt"
+        ],
+        "inverse_domain_basis": [
+          "trtssRTSS",
+          "trttSUs",
+          "S",
+          "TRT"
+        ],
+        "images": [
+          "",
+          "X",
+          "Y",
+          "YxY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          }
+        ],
+        "verified": true,
+        "popped_states": 12,
+        "generated_candidates": 498,
+        "seen_image_tuples": 445,
+        "guards": {},
+        "best_image_length": 5
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_1"
+    },
+    {
+      "input": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "input_length": 16,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXYYx",
+        "YXXXyxxYx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          1
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          1
+        ],
+        [
+          1,
+          "X",
+          2
+        ],
+        [
+          1,
+          "Y",
+          0
+        ],
+        [
+          1,
+          "y",
+          0
+        ],
+        [
+          2,
+          "X",
+          3
+        ],
+        [
+          2,
+          "x",
+          1
+        ],
+        [
+          3,
+          "X",
+          4
+        ],
+        [
+          3,
+          "Y",
+          4
+        ],
+        [
+          3,
+          "x",
+          2
+        ],
+        [
+          4,
+          "x",
+          3
+        ],
+        [
+          4,
+          "y",
+          3
+        ]
+      ],
+      "join_is_full": false,
+      "image_limit": 1000,
+      "projected": null,
+      "status": "join_not_full",
+      "image_evaluations": 0,
+      "image_evaluation_counts": {},
+      "name": "aca_13"
+    },
+    {
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "input_length": 17,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXyx",
+        "YYYYYxyXXyX",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "turTuusttRUtRUTT",
+          "turTurTTSUUtRUT",
+          "urTTSUUtRUT",
+          "U"
+        ],
+        "inverse_domain_basis": [
+          "usrsTRS",
+          "uutSTsrsTsr",
+          "RS",
+          "U"
+        ],
+        "images": [
+          "",
+          "X",
+          "Y",
+          "YY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 457,
+        "guards": {},
+        "best_image_length": 4
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_30"
+    },
+    {
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "input_length": 18,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXXyxyx",
+        "YYxYXXyyX",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "T",
+          "TuTSUttRUTTT",
+          "TustUt",
+          "U"
+        ],
+        "inverse_domain_basis": [
+          "urrrSTR",
+          "uRtrUr",
+          "R",
+          "U"
+        ],
+        "images": [
+          "X",
+          "Y",
+          "YX",
+          "YY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 473,
+        "guards": {},
+        "best_image_length": 6
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_55"
+    },
+    {
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "input_length": 19,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "utRUTRUTT",
+          "T",
+          "tturTU",
+          "utRUTTustttturTUT"
+        ],
+        "inverse_domain_basis": [
+          "trtssRTS",
+          "trttuSTss",
+          "S",
+          "TRT"
+        ],
+        "images": [
+          "",
+          "X",
+          "Y",
+          "XyXYYY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          }
+        ],
+        "verified": true,
+        "popped_states": 12,
+        "generated_candidates": 498,
+        "seen_image_tuples": 448,
+        "guards": {},
+        "best_image_length": 8
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_80"
+    },
+    {
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "input_length": 20,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          1
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          1
+        ],
+        [
+          1,
+          "X",
+          2
+        ],
+        [
+          1,
+          "Y",
+          0
+        ],
+        [
+          1,
+          "y",
+          0
+        ],
+        [
+          2,
+          "X",
+          3
+        ],
+        [
+          2,
+          "x",
+          1
+        ],
+        [
+          3,
+          "Y",
+          3
+        ],
+        [
+          3,
+          "x",
+          2
+        ],
+        [
+          3,
+          "y",
+          3
+        ]
+      ],
+      "join_is_full": false,
+      "image_limit": 1000,
+      "projected": null,
+      "status": "join_not_full",
+      "image_evaluations": 0,
+      "image_evaluation_counts": {},
+      "name": "aca_59"
+    },
+    {
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "input_length": 21,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          1
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          1
+        ],
+        [
+          1,
+          "X",
+          2
+        ],
+        [
+          1,
+          "Y",
+          0
+        ],
+        [
+          1,
+          "y",
+          0
+        ],
+        [
+          2,
+          "X",
+          3
+        ],
+        [
+          2,
+          "x",
+          1
+        ],
+        [
+          3,
+          "X",
+          4
+        ],
+        [
+          3,
+          "Y",
+          5
+        ],
+        [
+          3,
+          "x",
+          2
+        ],
+        [
+          4,
+          "X",
+          6
+        ],
+        [
+          4,
+          "x",
+          3
+        ],
+        [
+          5,
+          "x",
+          6
+        ],
+        [
+          5,
+          "y",
+          3
+        ],
+        [
+          6,
+          "X",
+          5
+        ],
+        [
+          6,
+          "x",
+          4
+        ]
+      ],
+      "join_is_full": false,
+      "image_limit": 1000,
+      "projected": null,
+      "status": "join_not_full",
+      "image_evaluations": 0,
+      "image_evaluation_counts": {},
+      "name": "aca_79"
+    },
+    {
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "input_length": 22,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "T",
+          "urTUttttt",
+          "U",
+          "ust"
+        ],
+        "inverse_domain_basis": [
+          "tsrrrrrTR",
+          "tur",
+          "R",
+          "T"
+        ],
+        "images": [
+          "X",
+          "Y",
+          "YY",
+          "XyxxyyxY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 474,
+        "guards": {},
+        "best_image_length": 12
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_82"
+    },
+    {
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "T",
+          "U",
+          "tuuusTT",
+          "tuuusurt"
+        ],
+        "inverse_domain_basis": [
+          "srrTur",
+          "sssrtRR",
+          "R",
+          "S"
+        ],
+        "images": [
+          "X",
+          "YY",
+          "XXY",
+          "XYxxy"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 477,
+        "guards": {},
+        "best_image_length": 11
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_109"
+    },
+    {
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "input_length": 24,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          1
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          1
+        ],
+        [
+          1,
+          "X",
+          3
+        ],
+        [
+          1,
+          "Y",
+          0
+        ],
+        [
+          1,
+          "x",
+          2
+        ],
+        [
+          1,
+          "y",
+          0
+        ],
+        [
+          2,
+          "X",
+          1
+        ],
+        [
+          2,
+          "Y",
+          4
+        ],
+        [
+          2,
+          "y",
+          4
+        ],
+        [
+          3,
+          "Y",
+          5
+        ],
+        [
+          3,
+          "x",
+          1
+        ],
+        [
+          4,
+          "X",
+          6
+        ],
+        [
+          4,
+          "Y",
+          2
+        ],
+        [
+          4,
+          "y",
+          2
+        ],
+        [
+          5,
+          "X",
+          7
+        ],
+        [
+          5,
+          "y",
+          3
+        ],
+        [
+          6,
+          "Y",
+          7
+        ],
+        [
+          6,
+          "x",
+          4
+        ],
+        [
+          7,
+          "x",
+          5
+        ],
+        [
+          7,
+          "y",
+          6
+        ]
+      ],
+      "join_is_full": false,
+      "image_limit": 1000,
+      "projected": null,
+      "status": "join_not_full",
+      "image_evaluations": 0,
+      "image_evaluation_counts": {},
+      "name": "aca_108"
+    },
+    {
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "T",
+          "tSUUUUTuuu",
+          "U",
+          "rT"
+        ],
+        "inverse_domain_basis": [
+          "uR",
+          "ttttrTTTSR",
+          "R",
+          "T"
+        ],
+        "images": [
+          "X",
+          "Y",
+          "YY",
+          "YXXXYxY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 476,
+        "guards": {},
+        "best_image_length": 11
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_101"
+    },
+    {
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYYXyyx",
+        "YXXXyxx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "TutRUttSurTUTT",
+          "tutRUsTTurTUt",
+          "urTUt",
+          "U"
+        ],
+        "inverse_domain_basis": [
+          "utsrURS",
+          "tsrsrsTRSRS",
+          "RS",
+          "U"
+        ],
+        "images": [
+          "",
+          "X",
+          "Y",
+          "YY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              1,
+              0
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 438,
+        "guards": {},
+        "best_image_length": 4
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_117"
+    },
+    {
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "input_length": 15,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YXXXyxx",
+        "YYYXXyyX",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "TTuTSUttRustUT",
+          "uTSUrTTustUtt",
+          "ustUtt",
+          "U"
+        ],
+        "inverse_domain_basis": [
+          "tsrsrsTRSRS",
+          "utsrsrUsr",
+          "RS",
+          "U"
+        ],
+        "images": [
+          "",
+          "X",
+          "Y",
+          "YY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 439,
+        "guards": {},
+        "best_image_length": 4
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_9"
+    },
+    {
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "T",
+          "TTTRUTTT",
+          "U",
+          "TSUT"
+        ],
+        "inverse_domain_basis": [
+          "trrrSrrr",
+          "trUr",
+          "R",
+          "T"
+        ],
+        "images": [
+          "X",
+          "Y",
+          "YY",
+          "YXYxyXY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 472,
+        "guards": {},
+        "best_image_length": 11
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_67"
+    },
+    {
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "input_length": 22,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "T",
+          "urtUttttt",
+          "U",
+          "SUT"
+        ],
+        "inverse_domain_basis": [
+          "tsrrrrrTr",
+          "trU",
+          "R",
+          "T"
+        ],
+        "images": [
+          "X",
+          "Y",
+          "YY",
+          "XyxYYXXY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              1,
+              0
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 474,
+        "guards": {},
+        "best_image_length": 12
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_86"
+    },
+    {
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 21,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "T",
+          "TTTRUTTTT",
+          "U",
+          "TSUT"
+        ],
+        "inverse_domain_basis": [
+          "trrrrSrrr",
+          "trUr",
+          "R",
+          "T"
+        ],
+        "images": [
+          "X",
+          "Y",
+          "YY",
+          "YXyxYXY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 474,
+        "guards": {},
+        "best_image_length": 11
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_106"
+    },
+    {
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "input_length": 19,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "T",
+          "U",
+          "tturTT",
+          "TTTTSU"
+        ],
+        "inverse_domain_basis": [
+          "srrtRR",
+          "sUrrrr",
+          "R",
+          "S"
+        ],
+        "images": [
+          "X",
+          "YY",
+          "XXy",
+          "xYXX"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 475,
+        "guards": {},
+        "best_image_length": 10
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_54"
+    },
+    {
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "input_length": 19,
+      "complements": [
+        "x",
+        "yy"
+      ],
+      "initial_image_tuple": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx",
+        "x",
+        "yy"
+      ],
+      "full_fold_graph": [
+        [
+          0,
+          "X",
+          0
+        ],
+        [
+          0,
+          "Y",
+          0
+        ],
+        [
+          0,
+          "x",
+          0
+        ],
+        [
+          0,
+          "y",
+          0
+        ]
+      ],
+      "join_is_full": true,
+      "image_limit": 1000,
+      "projected": null,
+      "search": {
+        "status": "image_budget",
+        "domain_basis": [
+          "uTRUTTTTRUTTT",
+          "T",
+          "ttturtU",
+          "tSUTRUTT"
+        ],
+        "inverse_domain_basis": [
+          "trtsssRTs",
+          "trttrSUS",
+          "S",
+          "TRT"
+        ],
+        "images": [
+          "",
+          "X",
+          "Y",
+          "YXYXYxY"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              0,
+              2,
+              3
+            ]
+          }
+        ],
+        "verified": true,
+        "popped_states": 11,
+        "generated_candidates": 498,
+        "seen_image_tuples": 450,
+        "guards": {},
+        "best_image_length": 9
+      },
+      "status": "image_budget",
+      "image_evaluations": 1000,
+      "image_evaluation_counts": {
+        "row_inverse_images": 502,
+        "multiplication_candidate_images": 498
+      },
+      "name": "aca_5"
+    }
+  ],
+  "source_inventory_sha256": "87dc867395bd32523f05ec3974d031cdf2f335da846a6b2e2a9c03066689447a",
+  "script_sha256": "4ebb70fd05a098dbc43f3d308600ab40c3c453ad3ae2ad09f02b6be527e4cfbb",
+  "source_graph_script_sha256": "a4530f0724b716b8c1fef9c5252cb94fc7e9d6d25e604677a0243f683f2a86ce",
+  "panel_ids": [
+    "aca_115",
+    "aca_116",
+    "aca_1",
+    "aca_13",
+    "aca_30",
+    "aca_55",
+    "aca_80",
+    "aca_59",
+    "aca_79",
+    "aca_82",
+    "aca_109",
+    "aca_108",
+    "aca_101",
+    "aca_117",
+    "aca_9",
+    "aca_67",
+    "aca_86",
+    "aca_106",
+    "aca_54",
+    "aca_5"
+  ],
+  "counts": {
+    "join_not_full": 5,
+    "marked_kernel_basis_found": 1,
+    "image_budget": 14
+  },
+  "total_image_evaluations": 14984,
+  "maximum_image_evaluations": 1000,
+  "projected_pair_ids": [
+    "aca_116"
+  ],
+  "terminal_candidate_ids": [],
+  "new_solve_ids": [],
+  "certified_length_gain_ids": [],
+  "cpu_seconds": 0.096081,
+  "wall_seconds_including_cooling": 1.2425142920110375,
+  "method": "Fixed complements x,y^2; full fold first; total noncyclic-image-length heap of marked Nielsen row moves. Image tuples deduplicated modulo recorded row inversions/permutations. No ambient or cyclic conjugation during Nielsen search. Empty donors/targets skipped as a bounded heuristic.",
+  "budget": "At most1000 evaluated candidate word images per original input including candidate multiplication, inversion normalization, terminal signs, kernel projections and signed-permutation comparisons. Graph folds and symbolic domain-certificate/inverse verification are outside the candidate-word-image unit. No y^3 followup. Projected followup counts each of both word images per Nielsen map.",
+  "scope": "One projected pair has a separately proved theorem-backed stable equivalence through a marked rank4 tuple, possibly rank5 internally. It is longer than the original and unsolved. No ordinary equivalence or solve is claimed. Fourteen image-budget failures do not reject Nielsen feasibility.",
+  "continuation": {
+    "description": "Only aca116 saved projected pair continued; no Nielsen prefix or rejected row rerun. At most three projected strict Nielsen rounds plus signed permutations within remaining64 word images.",
+    "prior_script_sha256": "c4be0da751e8e163f054d4b2ef01acd9097f9e1151471a329dc201623d8cf729",
+    "additional_word_images": 32,
+    "additional_cpu_seconds": 0.00028100000000000347,
+    "additional_wall_seconds": 0.0002799578942358494,
+    "Whitehead_capture_word_images": 16,
+    "Whitehead_capture_cpu_seconds": 0.00013499999999999623
+  },
+  "stable_equivalence_theorem": {
+    "hypothesis": "The original balanced input presents the trivial group; verified marked free basis and inverse with kernel images empty and lifts images x,y.",
+    "bridge": "Q + unit r,s rows -> (r,s,W1,W2) -> marked ambient basis change -> (A,B) after unit kernel rows clear and destabilize.",
+    "maximum_displayed_rank": 4,
+    "maximum_rank_with_ambient_helper": 5,
+    "ordinary_equivalence": false,
+    "proof_scope": "General proof in two_complement_probe_report.md; established known-trivial-group stable ambient lemma.",
+    "marked_instance_ids": [
+      "aca_116"
+    ]
+  },
+  "independent_checks": {
+    "status": "pass",
+    "checker_sha256": "9045b8523f55886b61d0f76b701149fa16e2f77a60aed4c0c1a52c39c38002a1",
+    "saved_rows_replayed": 20,
+    "join_rejected": 5,
+    "basis_verified": 15,
+    "projected_verified": 1,
+    "planted_controls": 4,
+    "tiny_budget_controls": 8,
+    "corruptions_rejected": 3,
+    "cpu_seconds": 0.016632999999999995
+  },
+  "stable_equivalent_projected_ids": [
+    "aca_116"
+  ],
+  "verified_different_Aut_orbit_ids": [
+    "aca_116"
+  ],
+  "minimum_image_work_to_projected_pair": 936,
+  "remaining_shared_work_aca116": 16,
+  "ordinary_continuation_audit": {
+    "source_report_sha256": "f0c3bc6b92db0ba7f1c21344d108753e4059bc600606f997521bd6099e9ba3b6",
+    "status": "independently_replayed",
+    "ordinary_substitution_steps": 5,
+    "states": [
+      [
+        "YYXyXYXyX",
+        "YYxxyXYXXXyX"
+      ],
+      [
+        "YYXyXYXyX",
+        "YXXyxYxxxyX"
+      ],
+      [
+        "YXXyxYxxxyX",
+        "YXyXYxxyXYXX"
+      ],
+      [
+        "YXXYxxyXX",
+        "YXXyxYxxxyX"
+      ],
+      [
+        "YXXYxxyXX",
+        "YXYxxxyXXX"
+      ],
+      [
+        "YXYxyxxyX",
+        "YXXYxxyXX"
+      ]
+    ],
+    "endpoint": [
+      "YXYxyxxyX",
+      "YXXYxxyXX"
+    ],
+    "minimum_prefix_total_length": 18,
+    "original_input_length": 14,
+    "new_original_length_gain": false,
+    "combined_heterogeneous_work_units": 1000
+  }
+}

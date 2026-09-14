@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "rows_joined_to_exact_saved_rank2_and_CURRENT_words": 124,
+  "lineage_segments_checked": 118,
+  "rejected_corruptions": [
+    "omitted_defining_relator",
+    "wrong_template_sign",
+    "invalid_rotation_cut",
+    "determinant_in_place_of_triviality",
+    "duplicated_relator_in_equivalence",
+    "corrupted_basis_inverse",
+    "self_donor_elementary_move",
+    "discontinuous_saved_suffix",
+    "wrong_final_boundary",
+    "stale_prior_source_pointer"
+  ],
+  "flat_events_replayed": 265,
+  "source_total": 2356,
+  "endpoint_total": 2162,
+  "certificate_sha256": "68ea84ad1ce414286699da2be06061f15cb6dc3723a20507449f84c254fc640e",
+  "manifest_sha256": "902ea544366b3058a04f398d4c9678e3e00733428443e22de9987932e235c411",
+  "script_sha256": "f6f3a54646edf3cae9def3740fbea52bf27234319add5fc2a401a0ed8a25532b",
+  "exporter_sha256": "608283bab84b5eb039a8407a8c0bb51400a68e26a1c00b2e40a87f53ccd4c674",
+  "census_searches": 0
+}

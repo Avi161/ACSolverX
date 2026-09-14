@@ -1,0 +1,15 @@
+{
+  "seed": 1,
+  "AC1M": {
+    "rows": 2000,
+    "fast_vs_slow_mismatches": 0,
+    "witness_failures": 0,
+    "seconds": 8.8
+  },
+  "AC19_extended": {
+    "rows": 1000,
+    "fast_vs_slow_mismatches": 0,
+    "witness_failures": 0,
+    "seconds": 4.4
+  }
+}

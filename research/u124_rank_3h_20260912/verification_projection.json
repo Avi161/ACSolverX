@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "exact_current_winner_ids": [
+    "aca_101",
+    "aca_106",
+    "aca_111",
+    "aca_43",
+    "aca_44",
+    "aca_5",
+    "aca_56",
+    "aca_67",
+    "aca_72",
+    "aca_75",
+    "aca_79",
+    "aca_80",
+    "aca_83",
+    "aca_84",
+    "aca_87",
+    "aca_88",
+    "aca_95",
+    "aca_99"
+  ],
+  "direct_projections": 61,
+  "neutral_projections": 3,
+  "all_direct_singleton_pivots_present_once": true,
+  "signed_returns_replayed": 23,
+  "new_charged_units": [
+    879,
+    1658
+  ],
+  "new_endpoint_gains": 0,
+  "census_reruns": 0,
+  "source_hashes": {
+    "theory_projection_panel.json": "7eb1a601886c33573654870e2db233485308143556fc001107ab89e1fdf82ac4",
+    "theory_projection_neutral_panel.json": "dfc9b59ee582218e6190ac519634ca00a35f02f7772250f087f484b572af0424"
+  },
+  "scope": "Replays all64 saved projection paths and their exact current prefixes. Closure completion is checked against the frozen cleanup loop, which requires an unchanged tuple with complete Whitehead and peeling scans; scans were not rerun. Imported shorter prefixes are distinguished from longer projected endpoints. The neutral orbit is not exhausted."
+}

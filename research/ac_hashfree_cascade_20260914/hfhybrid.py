@@ -1,0 +1,357 @@
+"""Hybrid hash-free search: the rank-two fast engine plus dynamic-rank moves, one frontier.
+
+Rank-two states are packed keys expanded by the compiled kernel exactly as in
+`hfcascade.stage_fast` (seam-cancelling products, four Nielsen maps, canonical under the
+eight signed permutations, finishing gates at pop).  In addition every popped rank-two
+state offers `define` children (a new generator for a repeated cyclic digram) and every
+higher-rank state is expanded with the dynamic-rank moves of
+research/ac_dynamic_rank_20260913 (capped products, define, eliminate) plus Nielsen
+transvections.  A higher-rank child that returns to rank two re-enters the fast path.
+The frontier is one heap ordered by total length plus `penalty` per generator above
+two; the closed sets are block-sorted arrays (comparison only).  One unit per popped
+state, whatever its rank.
+
+Certificate steps: rank-two steps as in hfcascade ('substitution', 'automorphism');
+dynamic steps as {'kind': 'dyn', 'event', 'relabel', 'after'} in the int-word format of
+dynrank.  `verify_hybrid` replays both kinds with the two independent verifiers.
+Certificate scope: a certificate without 'dyn' steps is an ordinary rank-two AC
+certificate (with automorphism transport); one with 'dyn' steps proves stable
+AC-triviality of a trivial-group presentation (define/eliminate are Lemma-11
+composites, unexpanded).
+"""
+from __future__ import annotations
+
+import heapq
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from research.ac_dynamic_rank_20260913 import dynrank as D  # noqa: E402
+from research.ac_dynamic_rank_20260913 import verify as DV  # noqa: E402
+from research.ac_hashfree_cascade_20260914 import hfcascade as H  # noqa: E402
+from research.ac_hashfree_cascade_20260914 import verify as SV  # noqa: E402
+from research.ac_hashfree_cascade_20260914.hfunified import nielsen_children  # noqa: E402
+
+_LETTER = {'x': 1, 'y': 2}
+
+
+def pair_to_words(pair):
+    return D.normalize(tuple(D.parse(w) for w in pair))
+
+
+def words_to_pair(words):
+    if len(words) != 2:
+        raise ValueError('not rank two')
+    return H.canon_pair(D.render(words[0]), D.render(words[1]))
+
+
+_DIGRAM_CLASS = {}
+for _a in 'xXyY':
+    for _b in 'xXyY':
+        _d = _a + _b
+        _inv = _b.swapcase() + _a.swapcase()
+        _DIGRAM_CLASS[_d] = min(_d, _inv)
+
+
+def _max_digram_uses(state):
+    """Largest number of cyclic occurrences of one digram class in the pair (a define's
+    best case saves that many letters and adds three)."""
+    counts = {}
+    for w in state:
+        if len(w) < 2:
+            continue
+        ww = w + w[0]
+        for i in range(len(w)):
+            c = _DIGRAM_CLASS[ww[i:i + 2]]
+            counts[c] = counts.get(c, 0) + 1
+    return max(counts.values(), default=0)
+
+
+def _dedup_sorted(items):
+    """Deduplicate (state, event) pairs by sorting on the state (no hashing)."""
+    items = sorted(items, key=lambda t: t[0])
+    out = []
+    prev = None
+    for state, event in items:
+        if state == prev:
+            continue
+        prev = state
+        out.append((state, event))
+    return out
+
+
+def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True, perms=True,
+           allow_define=True, allow_eliminate=True, min_uses=2, gates=True, gate_when='generated',
+           dyn_max=None, dyn_ratio=None):
+    """Best-first hybrid search from run.state; returns (solved, steps, info)."""
+    F = H._fast_setup()
+    np, expand, arrs, transform, pack, unpack = (F['np'], F['expand'], F['arrs'], F['transform'],
+                                                  F['pack'], F['unpack'])
+    upto, weights, _ = F['cfgs']['length']
+    root_pair = run.state
+    ceiling = H.total_length(root_pair) + slack
+    root_key = pack(root_pair)
+    prefix = []
+    if perms:
+        best, img = H._perm_key(root_key, transform, np)
+        if best != root_key:
+            prefix.append({'kind': 'automorphism', 'images': H._IMAGES_FAST[img]})
+            root_pair = H.canon_pair(H.apply_hom(root_pair[0], H._IMAGES_FAST[img]),
+                                     H.apply_hom(root_pair[1], H._IMAGES_FAST[img]))
+            root_key = pack(root_pair)
+    # node = (repr, parent, step, kind)
+    root = (root_key, None, None, 'r2')
+    heap = [(float(len(root_key) - 1), 0, 0, root)]      # rank-two frontier
+    dheap = []                                            # higher-rank frontier
+    counter = 0
+    seen_r2 = H.SortedBlocks(b'')
+    seen_dyn = H.SortedBlocks(((),))
+    pops = 0
+    max_rank = 2
+    dyn_pops = 0
+    push = heapq.heappush
+
+    def chain_steps(node):
+        out = []                       # built backwards; each node's steps reversed too
+        while node[1] is not None:
+            repr_, parent, step, kind = node
+            mine = []
+            if kind == 'r2':
+                perm = None
+                if isinstance(step, tuple) and len(step) == 2 and isinstance(step[1], (dict, type(None))) \
+                        and not (len(step) == 3):
+                    step, perm = step
+                if isinstance(step, tuple) and len(step) == 3 and step[0] == 'dyn':
+                    _, ev, perm0 = step
+                    mine.append(ev)
+                    if perm0 is not None:
+                        mine.append({'kind': 'automorphism', 'images': perm0})
+                elif isinstance(step, dict):
+                    mine.append({'kind': 'automorphism', 'images': dict(step)})
+                else:
+                    mine.append({'kind': 'substitution', 'move': '_'.join(map(str, step))})
+                if perm is not None:
+                    mine.append({'kind': 'automorphism', 'images': perm})
+            else:
+                mine.append(step)
+            out.extend(reversed(mine))
+            node = parent
+        out.reverse()
+        return prefix + out
+
+    class _Done(Exception):
+        pass
+
+    result = {}
+
+    def try_finish(node, state):
+        """Gates on a rank-two state; charges their units; raises _Done on success."""
+        nonlocal pops
+        if H.is_terminal(state):
+            result['steps'] = chain_steps(node)
+            raise _Done()
+        if not (gates and H.gate_applicable(state)):
+            return
+        gate_run = H.Run(state, budget - pops)
+        try:
+            ok = H.run_gates(gate_run)
+        except H.Budget:
+            pops = budget
+            raise _Done()
+        pops += gate_run.units
+        if ok:
+            result['steps'] = chain_steps(node) + gate_run.steps
+            raise _Done()
+
+    try:
+        while (heap or dheap) and pops < budget:
+            allowed = bool(dheap) and (dyn_max is None or dyn_pops < dyn_max) and (
+                dyn_ratio is None or dyn_pops <= dyn_ratio * (pops - dyn_pops) + 20)
+            if allowed and (not heap or dheap[0][0] <= heap[0][0]):
+                _, depth, _, node = heapq.heappop(dheap)
+            elif heap:
+                _, depth, _, node = heapq.heappop(heap)
+            else:
+                break                             # only deferred higher-rank states remain
+            repr_, parent, step, kind = node
+            if kind == 'r2' and perms and parent is not None:
+                # signed-permutation canonical form, computed once here rather than for
+                # every generated child; the permutation joins the step
+                canon, img = H._perm_key(repr_, transform, np)
+                if img != 4:
+                    node = (canon, parent, (step, H._IMAGES_FAST[img]), 'r2')
+                    repr_, step = canon, node[2]
+            if kind == 'defs':
+                # expand the deferred define children of a rank-two state (child
+                # generation, not an expansion: no charge)
+                words = pair_to_words(step)
+                for cw, event in _dedup_sorted(D.defines(words, min_uses)):
+                    if D.total_length(cw) > ceiling:
+                        continue
+                    ckey, rl = D.make_key(cw, relabel)
+                    cstep = {'kind': 'dyn', 'event': event, 'relabel': rl, 'after': ckey}
+                    counter += 1
+                    max_rank = max(max_rank, len(ckey))
+                    push(dheap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
+                                 (ckey, parent, cstep, 'dyn')))
+                continue
+            if kind == 'r2':
+                if not seen_r2.add(repr_):
+                    continue
+            else:
+                if not seen_dyn.add(repr_):
+                    continue
+            pops += 1
+            depth += 1
+            if kind == 'r2':
+                key = repr_
+                state = unpack(key)
+                if gate_when == 'pop' and parent is not None:
+                    try_finish(node, state)
+                elif H.is_terminal(state):
+                    result['steps'] = chain_steps(node)
+                    raise _Done()
+                a, b = arrs(key)
+                blob, offs, lens, _, scores, _, _, moves, count = expand(a, b, len(key) - 1, True, upto, weights, True, True)
+                raw = blob.tobytes()
+                offs = offs.tolist()
+                lens = lens.tolist()
+                scores = scores.tolist()
+                moves = moves.tolist()
+                for i in range(count):
+                    o = offs[i]
+                    child = raw[o:o + lens[i]]
+                    counter += 1
+                    cnode = (child, node, tuple(moves[i]), 'r2')
+                    if gate_when == 'generated' and H.gate_precheck_key(child):
+                        try_finish(cnode, unpack(child))
+                    push(heap, (scores[i], depth, counter, cnode))
+                if nielsen:
+                    codes = np.frombuffer(key, dtype=np.uint8)
+                    for t in range(4):
+                        child = transform(codes, t).tobytes()
+                        counter += 1
+                        cnode = (child, node, H.NIELSEN[t], 'r2')
+                        if gate_when == 'generated' and H.gate_precheck_key(child):
+                            try_finish(cnode, unpack(child))
+                        push(heap, (float(len(child) - 1), depth, counter, cnode))
+                if allow_define:
+                    # deferred: the define children of this state are enumerated only when
+                    # the higher-rank frontier is served at the priority the best of them
+                    # would have (total length minus the saved letters plus three, plus
+                    # the penalty for the new generator)
+                    counter += 1
+                    lower = float(len(key) - 1 - _max_digram_uses(state) + 3 + penalty)
+                    push(dheap, (lower, depth, counter, (None, node, state, 'defs')))
+            else:
+                words = repr_
+                dyn_pops += 1
+                edges = D.children(words, cap=cap, ceiling=ceiling, allow_define=allow_define,
+                                   allow_eliminate=allow_eliminate, min_uses=min_uses)
+                if nielsen:
+                    edges = edges + [(c, e) for c, e in nielsen_children(words) if D.total_length(c) <= ceiling]
+                for cw, event in _dedup_sorted(edges):
+                    ckey, rl = D.make_key(cw, relabel)
+                    cstep = {'kind': 'dyn', 'event': event, 'relabel': rl, 'after': ckey}
+                    counter += 1
+                    if len(ckey) == 2:
+                        k2 = pack(words_to_pair(ckey))
+                        cnode = (k2, node, ('dyn', cstep, None), 'r2')
+                        if gate_when == 'generated' and H.gate_precheck_key(k2):
+                            try_finish(cnode, unpack(k2))
+                        push(heap, (float(len(k2) - 1), depth, counter, cnode))
+                    elif len(ckey) < 2:
+                        raise AssertionError('rank fell below two')
+                    else:
+                        max_rank = max(max_rank, len(ckey))
+                        push(dheap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
+                                    (ckey, node, cstep, 'dyn')))
+    except _Done:
+        if 'steps' in result:
+            return True, result['steps'], dict(pops=min(pops, budget), max_rank=max_rank, dyn_pops=dyn_pops)
+    return False, [], dict(pops=min(pops, budget), max_rank=max_rank, dyn_pops=dyn_pops)
+
+
+def solve(pair, budget=1000, penalty=5, dyn_max=None, dyn_ratio=0.5, **kw):
+    """Stages A-C of hfcascade, then the hybrid search with the remaining budget.
+    `penalty` (letters per generator above two) and `dyn_max` (at most that many popped
+    higher-rank states, None for no limit) are the tuned parameters."""
+    kw['penalty'] = penalty
+    kw['dyn_max'] = dyn_max
+    kw['dyn_ratio'] = dyn_ratio
+    run = H.Run(pair, budget)
+    try:
+        if H.is_terminal(run.state):
+            return dict(solved=True, stage='terminal', units=1, steps=[], explicit_rank2=True)
+        H.stage_pair_descent(run)
+        for index in range(2):
+            if H.stage_primitive(run, index):
+                return dict(solved=True, stage='B', units=run.units, steps=run.steps, explicit_rank2=True)
+        if H.try_pinch_gates(run):
+            return dict(solved=True, stage='C', units=run.units, steps=run.steps, explicit_rank2=True)
+    except H.Budget:
+        return dict(solved=False, stage=None, units=budget, steps=[], explicit_rank2=None)
+    solved, steps, info = search(run, budget=budget - run.units, **kw)
+    units = run.units + info['pops']
+    all_steps = run.steps + steps
+    return dict(solved=solved, stage='H' if solved else None, units=min(units, budget), steps=all_steps if solved else [],
+                explicit_rank2=(not any(s['kind'] == 'dyn' for s in all_steps)) if solved else None,
+                max_rank=info['max_rank'], dyn_pops=info['dyn_pops'],
+                path_length=len(all_steps) if solved else None)
+
+
+def verify_hybrid(pair, steps, min_uses=2):
+    """Replay a hybrid certificate with the two independent verifiers; returns the final
+    string pair.  Raises SV.Failure / DV.Failure on any discrepancy."""
+    cur = SV.canon_pair(*pair)          # string world
+    words = None                        # int world (when not None it is authoritative)
+    for i, step in enumerate(steps):
+        if step['kind'] == 'dyn':
+            if words is None:
+                words = DV.norm(tuple(D.parse(w) for w in cur))
+            ev = step['event']
+            kind = ev['kind']
+            if kind == 'product':
+                child = DV.replay_product(words, ev)
+            elif kind == 'define':
+                child = DV.replay_define(words, ev, min_uses)
+            elif kind == 'eliminate':
+                child = DV.replay_eliminate(words, ev)
+            elif kind == 'nielsen':
+                child = DV.replay_nielsen(words, ev)
+            else:
+                raise DV.Failure('unknown dyn event')
+            child = DV.apply_relabel(child, step.get('relabel'))
+            if child != DV.norm(tuple(tuple(w) for w in step['after'])):
+                raise DV.Failure('hybrid step %d: replayed state differs from stored state' % i)
+            words = child
+            if len(words) == 2:
+                cur = SV.canon_pair(D.render(words[0]), D.render(words[1]))
+                words = None
+        else:
+            if words is not None:
+                raise SV.Failure('string step at rank %d' % len(words))
+            cur = SV.replay(cur, [step], None)  if False else _replay_one(cur, step, i)
+    if words is not None or not SV.terminal(cur):
+        raise SV.Failure('final state is not terminal: %r' % (cur if words is None else words,))
+    return cur
+
+
+def _replay_one(cur, step, i):
+    if step['kind'] == 'automorphism':
+        img = step['images']
+        signed_perm = (set(img) == {'x', 'y'} and all(v in ('x', 'X', 'y', 'Y') for v in img.values())
+                       and img['x'].lower() != img['y'].lower())
+        if not (signed_perm or any(img == dict(n) for n in SV.NIELSEN)):
+            raise SV.Failure('step %d: images are neither a Nielsen map nor a signed permutation' % i)
+        return SV.canon_pair(SV.apply_map(cur[0], img), SV.apply_map(cur[1], img))
+    if step['kind'] == 'substitution':
+        target, jsign, k1, k2 = map(int, step['move'].split('_'))
+        ri, rj = (cur[0], cur[1]) if target == 1 else (cur[1], cur[0])
+        oj = rj if jsign == 1 else SV.inverse(rj)
+        piece = SV.rotate_right(ri, k1) + SV.rotate_right(oj, k2)
+        return SV.canon_pair(piece, cur[1]) if target == 1 else SV.canon_pair(cur[0], piece)
+    raise SV.Failure('step %d: unknown kind' % i)

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "baseline_rows": 124,
+  "baseline_total": 2180,
+  "normal_product_positive_controls": 1,
+  "rejected_corruptions_or_missing_hypothesis": 5,
+  "signed_relabeling_to_generator11": true,
+  "nonconsecutive_baseline_ids_preserved": true,
+  "prior_aca80_path_gain_against_current_baseline": 0,
+  "presentation_searches": 0,
+  "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+  "frozen_independent_auditor_sha256": "6c95d91e34c4e710350575202ef343477d66eb56de32860e46f105ba8ac20c8f",
+  "verifier_sha256": "7f424c28333be2008f2ab166bd8a380a52c7b3df74e5a79568c691b14c919dcb"
+}

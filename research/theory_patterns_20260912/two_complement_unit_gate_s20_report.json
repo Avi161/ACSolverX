@@ -1,0 +1,1874 @@
+{
+  "status": "elementary_suffixes_verified_pending_independent_admission",
+  "rows": [
+    {
+      "name": "aca_116",
+      "original_input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "original_input_length": 14,
+      "projected_input": [
+        "yxYxyxYxy",
+        "yxYXXXyXYxx"
+      ],
+      "projected_input_length": 20,
+      "solved": false,
+      "best_pair": [
+        "YXYxyxx",
+        "YYYxxxxx"
+      ],
+      "best_length": 15,
+      "improves_original": false,
+      "prefix_units": 246,
+      "heap_pop_budget": 754,
+      "heap_pops": 754,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.16164200000000006,
+      "search_wall_seconds": 0.16231016698293388,
+      "replay_and_compile_cpu_seconds": 0.0023969999999999825,
+      "replay_and_compile_wall_seconds": 0.002411250025033951,
+      "elementary_move_count": 859,
+      "result": {
+        "solved": false,
+        "nodes_explored": 754,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYXyXYXyX",
+            "YXXyxYxxxyX"
+          ],
+          [
+            "YXXyxYxxxyX",
+            "YXyXYxxyXYXX"
+          ],
+          [
+            "YXXYxxyXX",
+            "YXXyxYxxxyX"
+          ],
+          [
+            "YXXYxxyXX",
+            "YXYxxxyXXX"
+          ],
+          [
+            "YXYxyxxyX",
+            "YXXYxxyXX"
+          ],
+          [
+            "YXYxyxxyX",
+            "YYXyxyXYXX"
+          ],
+          [
+            "YYXyXYXyX",
+            "YXYxyxxyX"
+          ],
+          [
+            "YYXyXYXyX",
+            "YXyXYXXXYXyx"
+          ],
+          [
+            "YYXyXYXyX",
+            "YXyXXYxyxxx"
+          ],
+          [
+            "YXyXXYxyxxx",
+            "YYXyxxYXyXXX"
+          ],
+          [
+            "YXyXXYxyxxx",
+            "YXXyXXXYxxx"
+          ],
+          [
+            "YXXyXXXYxxx",
+            "YXXXyXXYxxxx"
+          ],
+          [
+            "YXXyXYxxxyX",
+            "YXXXyXXYxxxx"
+          ],
+          [
+            "YXXyXYxxxyX",
+            "YXXyxYxxxyXyX"
+          ],
+          [
+            "YXyxYXyxYx",
+            "YXXyXYxxxyX"
+          ],
+          [
+            "YXyxYXyxYx",
+            "YXYXyxYxxyX"
+          ],
+          [
+            "YXYXyxxyx",
+            "YXYXyxYxxyX"
+          ],
+          [
+            "YXYxxyXX",
+            "YXYXyxxyx"
+          ],
+          [
+            "YXYXyxxyx",
+            "YXYxyXXYxyx"
+          ],
+          [
+            "YYXYxyyx",
+            "YXYXyxxyx"
+          ],
+          [
+            "YYXYxyyx",
+            "YYxyxYXyx"
+          ],
+          [
+            "YYXYxyyx",
+            "YYYYxyxyx"
+          ],
+          [
+            "YYXYxyyx",
+            "YYYxyyXYxyx"
+          ],
+          [
+            "YYYYXyyyXyx",
+            "YYYxyyXYxyx"
+          ],
+          [
+            "YYYYXyyyXyx",
+            "YYYYxyyXyyyX"
+          ],
+          [
+            "YYYYxyyXyyyX",
+            "YYYYYYXyyyyyx"
+          ],
+          [
+            "YYYXyxyyX",
+            "YYYYxyyXyyyX"
+          ],
+          [
+            "YYYXyxyyX",
+            "YYXyXyxYx"
+          ],
+          [
+            "YYXyXyxYx",
+            "YYYYXyyXyx"
+          ],
+          [
+            "YYXyXyxYx",
+            "YYXyXYxyXyx"
+          ],
+          [
+            "YYxYXyyx",
+            "YYXyXyxYx"
+          ],
+          [
+            "YYxYXyyx",
+            "YYxYXyXyxyX"
+          ],
+          [
+            "YXYxyxx",
+            "YYxYXyyx"
+          ],
+          [
+            "YXYxyxx",
+            "YYxxxYXyx"
+          ],
+          [
+            "YXYxyxx",
+            "YYYxxxxx"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "1_1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_4_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_6_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_1_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_1_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_1_2"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_7_1"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_1_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_5_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_11"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_1_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_5_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_4_5"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_5_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_4_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_3_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_3_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_2_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_2_3"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_2_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_1"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_1"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_4_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_3"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_5_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_2_5"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_6"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXYxyxx",
+          "YYYxxxxx"
+        ],
+        "min_total_length_seen": 15,
+        "min_max_relator_length_seen": 8,
+        "max_relator_length_seen": 24
+      }
+    },
+    {
+      "name": "aca_1",
+      "original_input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "original_input_length": 15,
+      "projected_input": [
+        "xxYYXXy",
+        "xxxYxYXyyyXX"
+      ],
+      "projected_input_length": 19,
+      "solved": false,
+      "best_pair": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "best_length": 15,
+      "improves_original": false,
+      "prefix_units": 61,
+      "heap_pop_budget": 939,
+      "heap_pops": 939,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.2429960000000001,
+      "search_wall_seconds": 0.24353350000455976,
+      "replay_and_compile_cpu_seconds": 7.500000000004725e-05,
+      "replay_and_compile_wall_seconds": 7.66250304877758e-05,
+      "elementary_move_count": 5,
+      "result": {
+        "solved": false,
+        "nodes_explored": 939,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYXXyxx",
+            "YYYxyXyX"
+          ]
+        ],
+        "best_steps": [],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YYXXyxx",
+          "YYYxyXyX"
+        ],
+        "min_total_length_seen": 15,
+        "min_max_relator_length_seen": 8,
+        "max_relator_length_seen": 29
+      }
+    },
+    {
+      "name": "aca_30",
+      "original_input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "original_input_length": 17,
+      "projected_input": [
+        "xYXYXXy",
+        "xxYxYXyxyxyxyxyX"
+      ],
+      "projected_input_length": 23,
+      "solved": false,
+      "best_pair": [
+        "YXYXXyx",
+        "YYxYxyXyXX"
+      ],
+      "best_length": 17,
+      "improves_original": false,
+      "prefix_units": 61,
+      "heap_pop_budget": 939,
+      "heap_pops": 939,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.21999400000000002,
+      "search_wall_seconds": 0.22030312498100102,
+      "replay_and_compile_cpu_seconds": 0.00021000000000004349,
+      "replay_and_compile_wall_seconds": 0.00021162512712180614,
+      "elementary_move_count": 47,
+      "result": {
+        "solved": false,
+        "nodes_explored": 939,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YXYXXyx",
+            "YXYXYXYXYxyXyX"
+          ],
+          [
+            "YXYXXyx",
+            "YXYXXYxYxyXyX"
+          ],
+          [
+            "YXYXXyx",
+            "YYxYxyXyXX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_6_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_8_5"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXYXXyx",
+          "YYxYxyXyXX"
+        ],
+        "min_total_length_seen": 17,
+        "min_max_relator_length_seen": 10,
+        "max_relator_length_seen": 27
+      }
+    },
+    {
+      "name": "aca_55",
+      "original_input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "original_input_length": 18,
+      "projected_input": [
+        "XyxxYxxxxxyX",
+        "XyxYxyxYxxy"
+      ],
+      "projected_input_length": 23,
+      "solved": false,
+      "best_pair": [
+        "YXyXYxYXXyX",
+        "YXXXXXyXXYxx"
+      ],
+      "best_length": 23,
+      "improves_original": false,
+      "prefix_units": 638,
+      "heap_pop_budget": 362,
+      "heap_pops": 362,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.18942199999999998,
+      "search_wall_seconds": 0.18957091681659222,
+      "replay_and_compile_cpu_seconds": 0.00011300000000002974,
+      "replay_and_compile_wall_seconds": 0.00011287513189017773,
+      "elementary_move_count": 26,
+      "result": {
+        "solved": false,
+        "nodes_explored": 362,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YXyXYxYXXyX",
+            "YXXXXXyXXYxx"
+          ]
+        ],
+        "best_steps": [],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXyXYxYXXyX",
+          "YXXXXXyXXYxx"
+        ],
+        "min_total_length_seen": 23,
+        "min_max_relator_length_seen": 12,
+        "max_relator_length_seen": 35
+      }
+    },
+    {
+      "name": "aca_80",
+      "original_input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "original_input_length": 19,
+      "projected_input": [
+        "xYXYXXy",
+        "xxxYXyxyxyxYxyxyxyX"
+      ],
+      "projected_input_length": 26,
+      "solved": false,
+      "best_pair": [
+        "YXYXXyx",
+        "YYYXXXYXYxyXyX"
+      ],
+      "best_length": 21,
+      "improves_original": false,
+      "prefix_units": 63,
+      "heap_pop_budget": 937,
+      "heap_pops": 937,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.25642300000000007,
+      "search_wall_seconds": 0.2566892500035465,
+      "replay_and_compile_cpu_seconds": 0.0003269999999999662,
+      "replay_and_compile_wall_seconds": 0.00032704113982617855,
+      "elementary_move_count": 65,
+      "result": {
+        "solved": false,
+        "nodes_explored": 937,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YXYXXyx",
+            "YXYXYXyXYXYXYxyXX"
+          ],
+          [
+            "YXYXXyx",
+            "YXYXYxyXXYXXYxyX"
+          ],
+          [
+            "YXYXXyx",
+            "YYXXXYXYxyXXYXX"
+          ],
+          [
+            "YXYXXyx",
+            "YYYXXXYXYxyXyX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_11_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_1"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_5"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXYXXyx",
+          "YYYXXXYXYxyXyX"
+        ],
+        "min_total_length_seen": 21,
+        "min_max_relator_length_seen": 14,
+        "max_relator_length_seen": 29
+      }
+    },
+    {
+      "name": "aca_82",
+      "original_input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "original_input_length": 22,
+      "projected_input": [
+        "XXXXXyxYXyXYxxxxxyXYxxxyXYxxxxxxyx",
+        "yXYxxxxxyXYxxxxxy"
+      ],
+      "projected_input_length": 51,
+      "solved": false,
+      "best_pair": [
+        "YYXXXXXyxYXXXXXyx",
+        "YXYXyxYxxyxyXYXyx"
+      ],
+      "best_length": 34,
+      "improves_original": false,
+      "prefix_units": 455,
+      "heap_pop_budget": 545,
+      "heap_pops": 545,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.6346259999999999,
+      "search_wall_seconds": 0.6353618330322206,
+      "replay_and_compile_cpu_seconds": 0.0005390000000002892,
+      "replay_and_compile_wall_seconds": 0.0005422499962151051,
+      "elementary_move_count": 166,
+      "result": {
+        "solved": false,
+        "nodes_explored": 545,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYXXXXXyxYXXXXXyx",
+            "YXyXYxxxxxyXYxxxyXYxxxxxxyXXXXyx"
+          ],
+          [
+            "YYXXXXXyxYXXXXXyx",
+            "YXYXXyXYxxxxxxyXXXXyx"
+          ],
+          [
+            "YYXXXXXyxYXXXXXyx",
+            "YXYXXyXYxyxYXXXXXyxYXXXXyx"
+          ],
+          [
+            "YYXXXXXyxYXXXXXyx",
+            "YXYXyxYxxyxyXYXyx"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_1_16_13"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_6_16"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_2_14"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YYXXXXXyxYXXXXXyx",
+          "YXYXyxYxxyxyXYXyx"
+        ],
+        "min_total_length_seen": 34,
+        "min_max_relator_length_seen": 17,
+        "max_relator_length_seen": 52
+      }
+    },
+    {
+      "name": "aca_109",
+      "original_input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "original_input_length": 23,
+      "projected_input": [
+        "xxxyyyxyyyXXy",
+        "xxxxyyyXXYYYXyyyy"
+      ],
+      "projected_input_length": 30,
+      "solved": false,
+      "best_pair": [
+        "YYYXYYYXXXYxx",
+        "YYYYxxxYYYXXXyyyX"
+      ],
+      "best_length": 30,
+      "improves_original": false,
+      "prefix_units": 352,
+      "heap_pop_budget": 648,
+      "heap_pops": 648,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.771649,
+      "search_wall_seconds": 0.7727417920250446,
+      "replay_and_compile_cpu_seconds": 0.0005079999999999529,
+      "replay_and_compile_wall_seconds": 0.0005092499777674675,
+      "elementary_move_count": 164,
+      "result": {
+        "solved": false,
+        "nodes_explored": 648,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYYXYYYXXXYxx",
+            "YYYYxyyyxxYYYXXXX"
+          ],
+          [
+            "YYYXYYYXXXYxx",
+            "YYYYxyyyxxxyyyXXyX"
+          ],
+          [
+            "YYYXYYYXXXYxx",
+            "YYYYxyyxxYYYXXXyX"
+          ],
+          [
+            "YYYXYYYXXXYxx",
+            "YYYYxyyxxxyyyXXyyX"
+          ],
+          [
+            "YYYXYYYXXXYxx",
+            "YYYYxyxxYYYXXXyyX"
+          ],
+          [
+            "YYYXYYYXXXYxx",
+            "YYYYxyxxxyyyXXyyyX"
+          ],
+          [
+            "YYYXYYYXXXYxx",
+            "YYYYxxxYYYXXXyyyX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_1_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_4_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_2_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_5_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_3_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_6_9"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YYYXYYYXXXYxx",
+          "YYYYxxxYYYXXXyyyX"
+        ],
+        "min_total_length_seen": 30,
+        "min_max_relator_length_seen": 17,
+        "max_relator_length_seen": 49
+      }
+    },
+    {
+      "name": "aca_101",
+      "original_input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "original_input_length": 25,
+      "projected_input": [
+        "YYYxyyyyXYYYxyyyyXY",
+        "xYYYYXyyyXXYYYYXyyyxxYYYYXyyyx"
+      ],
+      "projected_input_length": 49,
+      "solved": false,
+      "best_pair": [
+        "YYYYXXXyyyyxxxx",
+        "YYYYXyyyyxYYYYXyyyx"
+      ],
+      "best_length": 34,
+      "improves_original": false,
+      "prefix_units": 733,
+      "heap_pop_budget": 267,
+      "heap_pops": 267,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.31856799999999996,
+      "search_wall_seconds": 0.31886200001463294,
+      "replay_and_compile_cpu_seconds": 0.0005380000000001495,
+      "replay_and_compile_wall_seconds": 0.0005388748832046986,
+      "elementary_move_count": 154,
+      "result": {
+        "solved": false,
+        "nodes_explored": 267,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYYYXyyyyxYYYYXyyyx",
+            "YYYYXyyyXXYYYYXyyyxxYYYYXyyyxx"
+          ],
+          [
+            "YYYYXyyyyxYYYYXyyyx",
+            "YYYYXyyyyXYYYxyyyyxxYYYxyyyyX"
+          ],
+          [
+            "YYYYXyyyyxYYYYXyyyx",
+            "YYYYXyyyXXXYYYYxxyyyyx"
+          ],
+          [
+            "YYYYXXXyyyyxxxx",
+            "YYYYXyyyyxYYYYXyyyx"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_1_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_11_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_10"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YYYYXXXyyyyxxxx",
+          "YYYYXyyyyxYYYYXyyyx"
+        ],
+        "min_total_length_seen": 34,
+        "min_max_relator_length_seen": 19,
+        "max_relator_length_seen": 50
+      }
+    },
+    {
+      "name": "aca_117",
+      "original_input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "original_input_length": 14,
+      "projected_input": [
+        "yXYxyXYxy",
+        "yXYxxxyxYXX"
+      ],
+      "projected_input_length": 20,
+      "solved": false,
+      "best_pair": [
+        "YYXXXyyxx",
+        "YXXyXXYXXX"
+      ],
+      "best_length": 19,
+      "improves_original": false,
+      "prefix_units": 436,
+      "heap_pop_budget": 564,
+      "heap_pops": 564,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.16195000000000004,
+      "search_wall_seconds": 0.1621194169856608,
+      "replay_and_compile_cpu_seconds": 0.0011969999999998926,
+      "replay_and_compile_wall_seconds": 0.0011982088908553123,
+      "elementary_move_count": 464,
+      "result": {
+        "solved": false,
+        "nodes_explored": 564,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYXyxYXyx",
+            "YXXyXYxxxyx"
+          ],
+          [
+            "YXXyXYxxxyx",
+            "YXyxYxxyxYXX"
+          ],
+          [
+            "YXXYxxyxx",
+            "YXXyXYxxxyx"
+          ],
+          [
+            "YXXYxxyxx",
+            "YXXXYxxxyxxx"
+          ],
+          [
+            "YXXYxxyxx",
+            "YXyxxxyXYXX"
+          ],
+          [
+            "YXyxxxyXYXX",
+            "YXyxYxxyxYXX"
+          ],
+          [
+            "YYXyxYXyx",
+            "YXyxxxyXYXX"
+          ],
+          [
+            "YXyxxxyXYXX",
+            "YYXXXYXyxxyx"
+          ],
+          [
+            "YXyxxxyXYXX",
+            "YXXyxxxYXXX"
+          ],
+          [
+            "YXXYXXXyxx",
+            "YXyxxxyXYXX"
+          ],
+          [
+            "YXyxxxyXYXX",
+            "YXyxYXXXyxYXX"
+          ],
+          [
+            "YXyxxxyXYXX",
+            "YYxyxxxyxxyX"
+          ],
+          [
+            "YXyxxxyXYXX",
+            "YXyXXYXyxYXXX"
+          ],
+          [
+            "YXXyXXYXXX",
+            "YXyxxxyXYXX"
+          ],
+          [
+            "YXXyXXYXXX",
+            "YXXYXXXyXXX"
+          ],
+          [
+            "YYXXXyyxx",
+            "YXXyXXYXXX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "1_1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_4_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_7_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_1_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_2_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_5_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_4_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YYXXXyyxx",
+          "YXXyXXYXXX"
+        ],
+        "min_total_length_seen": 19,
+        "min_max_relator_length_seen": 10,
+        "max_relator_length_seen": 27
+      }
+    },
+    {
+      "name": "aca_9",
+      "original_input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "original_input_length": 15,
+      "projected_input": [
+        "yxYxxxyXYXX",
+        "yxYxxyxYxxy"
+      ],
+      "projected_input_length": 22,
+      "solved": false,
+      "best_pair": [
+        "YXYXXyxyx",
+        "YYXXyyXYXX"
+      ],
+      "best_length": 19,
+      "improves_original": false,
+      "prefix_units": 446,
+      "heap_pop_budget": 554,
+      "heap_pops": 554,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.193349,
+      "search_wall_seconds": 0.19373250007629395,
+      "replay_and_compile_cpu_seconds": 0.00041599999999997195,
+      "replay_and_compile_wall_seconds": 0.00041624996811151505,
+      "elementary_move_count": 165,
+      "result": {
+        "solved": false,
+        "nodes_explored": 554,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYXXyXYXXyX",
+            "YXXyxYxxxyX"
+          ],
+          [
+            "YXXyxYxxxyX",
+            "YXyxYxxyxxyx"
+          ],
+          [
+            "YXyXYXXYxyX",
+            "YXyxYxxyxxyx"
+          ],
+          [
+            "YXYXXyxyx",
+            "YXyXYXXYxyX"
+          ],
+          [
+            "YXYXXyxyx",
+            "YYXXyyXYXX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "1_1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_3_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_1"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_1"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXYXXyxyx",
+          "YYXXyyXYXX"
+        ],
+        "min_total_length_seen": 19,
+        "min_max_relator_length_seen": 10,
+        "max_relator_length_seen": 32
+      }
+    },
+    {
+      "name": "aca_67",
+      "original_input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "original_input_length": 20,
+      "projected_input": [
+        "Yxxxyxxxxxxyxxx",
+        "XXYXXXXXXXYxyXYxyxxxxxxyxxx"
+      ],
+      "projected_input_length": 42,
+      "solved": false,
+      "best_pair": [
+        "YXyxYXXXyXYxxyx",
+        "YXXXyXXXYXXXXXX"
+      ],
+      "best_length": 30,
+      "improves_original": false,
+      "prefix_units": 71,
+      "heap_pop_budget": 929,
+      "heap_pops": 929,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.9724439999999999,
+      "search_wall_seconds": 0.9741090831812471,
+      "replay_and_compile_cpu_seconds": 0.00033499999999975216,
+      "replay_and_compile_wall_seconds": 0.00033604097552597523,
+      "elementary_move_count": 81,
+      "result": {
+        "solved": false,
+        "nodes_explored": 929,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YXXXyXXXYXXXXXX",
+            "YXyxYXyxxxxxxxyXYXXXXXX"
+          ],
+          [
+            "YXXXyXXXYXXXXXX",
+            "YXyxxxxxxxyxxYxxyx"
+          ],
+          [
+            "YXyxYXXXyXYxxyx",
+            "YXXXyXXXYXXXXXX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_5_9"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXyxYXXXyXYxxyx",
+          "YXXXyXXXYXXXXXX"
+        ],
+        "min_total_length_seen": 30,
+        "min_max_relator_length_seen": 15,
+        "max_relator_length_seen": 47
+      }
+    },
+    {
+      "name": "aca_86",
+      "original_input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "original_input_length": 22,
+      "projected_input": [
+        "XXXXXyXYXXXyXYXXXXXyXYXyxYxxxxxxYX",
+        "yxYxxxxxyxYxxxxxy"
+      ],
+      "projected_input_length": 51,
+      "solved": false,
+      "best_pair": [
+        "YYXXXXXyXYXXXXXyX",
+        "YXYXXXXXyxxxxxxyx"
+      ],
+      "best_length": 34,
+      "improves_original": false,
+      "prefix_units": 455,
+      "heap_pop_budget": 545,
+      "heap_pops": 545,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.5881700000000007,
+      "search_wall_seconds": 0.5889866671059281,
+      "replay_and_compile_cpu_seconds": 0.0007450000000002177,
+      "replay_and_compile_wall_seconds": 0.0007454578299075365,
+      "elementary_move_count": 258,
+      "result": {
+        "solved": false,
+        "nodes_explored": 545,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYXXXXXyXYXXXXXyX",
+            "YXyxYxxxxxxYXXXXXXyXYXXXyXYXXXXXyX"
+          ],
+          [
+            "YYXXXXXyXYXXXXXyX",
+            "YXXyxYxxxxxxyXXXXXXyXYx"
+          ],
+          [
+            "YYXXXXXyXYXXXXXyX",
+            "YXXyxYxxxxxxyXyxYxxxxxyx"
+          ],
+          [
+            "YYXXXXXyXYXXXXXyX",
+            "YXXXXXXyXYxxxxxxxyx"
+          ],
+          [
+            "YYXXXXXyXYXXXXXyX",
+            "YXyxYxxxxxyxxxxxxxyx"
+          ],
+          [
+            "YYXXXXXyXYXXXXXyX",
+            "YXYXXXXXyxxxxxxyx"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_1_1"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_9_1"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_8_9"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YYXXXXXyXYXXXXXyX",
+          "YXYXXXXXyxxxxxxyx"
+        ],
+        "min_total_length_seen": 34,
+        "min_max_relator_length_seen": 17,
+        "max_relator_length_seen": 51
+      }
+    },
+    {
+      "name": "aca_106",
+      "original_input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "original_input_length": 21,
+      "projected_input": [
+        "Yxxxxyxxxxxxxyxxx",
+        "XXYXyxYXXXXXXXXYxyxxxxxxxyxxx"
+      ],
+      "projected_input_length": 46,
+      "solved": false,
+      "best_pair": [
+        "YXyXXXYxyXYxyxx",
+        "YXXXXyXXXYXXXXXXX"
+      ],
+      "best_length": 32,
+      "improves_original": false,
+      "prefix_units": 73,
+      "heap_pop_budget": 927,
+      "heap_pops": 927,
+      "combined_units": 1000,
+      "search_cpu_seconds": 1.161531,
+      "search_wall_seconds": 1.1629581251181662,
+      "replay_and_compile_cpu_seconds": 0.00038300000000024426,
+      "replay_and_compile_wall_seconds": 0.0003844581078737974,
+      "elementary_move_count": 115,
+      "result": {
+        "solved": false,
+        "nodes_explored": 927,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YXXXXyXXXYXXXXXXX",
+            "YXyxYXXXXXXXXYxyxxxxxxxyx"
+          ],
+          [
+            "YXXXXyXXXYXXXXXXX",
+            "YXyxYXXXXXXXXYXXXyXX"
+          ],
+          [
+            "YXyXXXYxyXYxyxx",
+            "YXXXXyXXXYXXXXXXX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_1_0_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_3_4"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXyXXXYxyXYxyxx",
+          "YXXXXyXXXYXXXXXXX"
+        ],
+        "min_total_length_seen": 32,
+        "min_max_relator_length_seen": 17,
+        "max_relator_length_seen": 53
+      }
+    },
+    {
+      "name": "aca_54",
+      "original_input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "original_input_length": 19,
+      "projected_input": [
+        "xxYXXYXXXXy",
+        "xxxxxxxYXXyxxyXX"
+      ],
+      "projected_input_length": 27,
+      "solved": false,
+      "best_pair": [
+        "YXXYxxyxx",
+        "YYYxxxxxxx"
+      ],
+      "best_length": 19,
+      "improves_original": false,
+      "prefix_units": 66,
+      "heap_pop_budget": 934,
+      "heap_pops": 934,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.2781160000000007,
+      "search_wall_seconds": 0.27843154198490083,
+      "replay_and_compile_cpu_seconds": 0.0021250000000003766,
+      "replay_and_compile_wall_seconds": 0.002124709077179432,
+      "elementary_move_count": 825,
+      "result": {
+        "solved": false,
+        "nodes_explored": 934,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YXXYXXXXyxx",
+            "YXXYxxyXXXXX"
+          ],
+          [
+            "YXXYxxyXXXXX",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyxxxxxxxxyXX",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXYXXXXyxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXYxxyXXXXX",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyxxxxxxxyXX",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YYXXXXyxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YYxxyXXXXX",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YYxxyXXXXX",
+            "YXXyxxxxxxyXX"
+          ],
+          [
+            "YXYXXyxxyxx",
+            "YXXyxxxxxxyXX"
+          ],
+          [
+            "YXXXXyxxYx",
+            "YXXyxxxxxxyXX"
+          ],
+          [
+            "YXXXXyxxYx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyXyxxxxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyXyxxxxx",
+            "YXXyxxxxxyXX"
+          ],
+          [
+            "YYXXyxyxx",
+            "YXXyxxxxxyXX"
+          ],
+          [
+            "YXXXXyxxYxx",
+            "YXXyxxxxxyXX"
+          ],
+          [
+            "YXXXXyxxYxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyXXyxxxxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyxxxxyXX",
+            "YXXyXXyxxxxx"
+          ],
+          [
+            "YYxxyXyXX",
+            "YXXyxxxxyXX"
+          ],
+          [
+            "YXXyxxxxyXX",
+            "YXXXXyxxYxxx"
+          ],
+          [
+            "YXXXXyxxYxxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyXXXyxxxxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyxxxyXX",
+            "YXXyXXXyxxxxx"
+          ],
+          [
+            "YXXyxxxyXX",
+            "YXXyXyxxYxx"
+          ],
+          [
+            "YXXyxxxyXX",
+            "YXXXXyxxYxxxx"
+          ],
+          [
+            "YXXXXyxxYxxxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXyXXXXyxxxxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXYxxyxx",
+            "YXXXXXXyxxxxxxx"
+          ],
+          [
+            "YXXYxxyxx",
+            "YXXXXyxxYxxxxx"
+          ],
+          [
+            "YXXYxxyxx",
+            "YYxxxxxYXXyxx"
+          ],
+          [
+            "YXXYxxyxx",
+            "YYYxxxxxxx"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "1_-1_7_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_4_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_3_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_2_5"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_3_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_2_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_2_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_3_5"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_5"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_3_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_2_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_1_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_4_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_4_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_2_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_2_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_7_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_5_10"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_0_13"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_5_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_6_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_8"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YXXYxxyxx",
+          "YYYxxxxxxx"
+        ],
+        "min_total_length_seen": 19,
+        "min_max_relator_length_seen": 10,
+        "max_relator_length_seen": 29
+      }
+    },
+    {
+      "name": "aca_5",
+      "original_input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "original_input_length": 19,
+      "projected_input": [
+        "Yxxxyxxxxyx",
+        "XYXXXXYXXXXYxyxxxyxxxxxyxxxxxyxx"
+      ],
+      "projected_input_length": 43,
+      "solved": false,
+      "best_pair": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "best_length": 19,
+      "improves_original": false,
+      "prefix_units": 68,
+      "heap_pop_budget": 932,
+      "heap_pops": 932,
+      "combined_units": 1000,
+      "search_cpu_seconds": 0.32681000000000004,
+      "search_wall_seconds": 0.3273963751271367,
+      "replay_and_compile_cpu_seconds": 0.0021279999999999077,
+      "replay_and_compile_wall_seconds": 0.002128791995346546,
+      "elementary_move_count": 833,
+      "result": {
+        "solved": false,
+        "nodes_explored": 932,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YXXXyXYXXXX",
+            "YXyxxxxyxxxxyXYXXXXXYXXXXXYXXX"
+          ],
+          [
+            "YXXXyXYXXXX",
+            "YXYxyxxxyxxxxxyxxxxxyxx"
+          ],
+          [
+            "YXXXyXYXXXX",
+            "YYXyxyXXYXXXXXYXyx"
+          ],
+          [
+            "YXXXyXYXXXX",
+            "YYXyxyXYxxxyXYXyx"
+          ],
+          [
+            "YXXXyXYXXXX",
+            "YYXyxyXYxxxxxxyxxxyx"
+          ],
+          [
+            "YXXXyXYXXXX",
+            "YXYxyxxxyxYXXXXXXyx"
+          ],
+          [
+            "YXXXyXYXXXX",
+            "YXYxyXYXXXXXXXXXyx"
+          ],
+          [
+            "YXXXyXYXXXX",
+            "YXYxxxxyXXXXXyx"
+          ],
+          [
+            "YXXXyXYXXXX",
+            "YXXXXYxxxxyXXXXXXXXX"
+          ],
+          [
+            "YXXXyXYXXXX",
+            "YXXXXXXXyxxxxxxxx"
+          ],
+          [
+            "YXXXXXXXyxxxxxxxx",
+            "YXXXXXXXXXXyXYxxxx"
+          ],
+          [
+            "YXXXXXXXyxxxxxxxx",
+            "YXXXyXXXXXXXXXYxxxx"
+          ],
+          [
+            "YXXXYXXXyX",
+            "YXXXXXXXyxxxxxxxx"
+          ],
+          [
+            "YXXXXXXXyxxxxxxxx",
+            "YXXXYxxxxyXXXXXXXXX"
+          ],
+          [
+            "YXXXXXXXyxxxxxxxx",
+            "YXXXXyxxxxxxxxxxyx"
+          ],
+          [
+            "YXXYXXXyX",
+            "YXXXXXXXyxxxxxxxx"
+          ],
+          [
+            "YXXXXXXXyxxxxxxxx",
+            "YXXYxxxxyXXXXXXXXX"
+          ],
+          [
+            "YXXXXyxxxxxxxxxyx",
+            "YXXXXXXXyxxxxxxxx"
+          ],
+          [
+            "YXYXXXyX",
+            "YXXXXXXXyxxxxxxxx"
+          ],
+          [
+            "YXYxxxxyXXXXXXXXX",
+            "YXXXXXXXyxxxxxxxx"
+          ],
+          [
+            "YXXXXyxxxxxxxxyx",
+            "YXXXXXXXyxxxxxxxx"
+          ],
+          [
+            "YYXXXyX",
+            "YXXXXyxxxxxxxxyx"
+          ],
+          [
+            "YYXXXyX",
+            "YXXXXyxxxxxyXYx"
+          ],
+          [
+            "YYXXXyX",
+            "YXYxYXXXXyxxyX"
+          ],
+          [
+            "YYXXXyX",
+            "YYxyXyxyxYXXX"
+          ],
+          [
+            "YYXXXyX",
+            "YYYxyXyxyxyx"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_1_17_5"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_10_4"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_5_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_2_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_8_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_7_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_6_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_13"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_1_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_4_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_1_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_3_0"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_-1_1_9"
+          },
+          {
+            "kind": "substitution",
+            "move": "1_1_0_8"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_14"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_1_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_1_3_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_4_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_5"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YYXXXyX",
+          "YYYxyXyxyxyx"
+        ],
+        "min_total_length_seen": 19,
+        "min_max_relator_length_seen": 12,
+        "max_relator_length_seen": 39
+      }
+    }
+  ],
+  "projection_source_sha256": "a87446e02b89c2fa10977eb11e0b81100d588577ccbc2f00b18f45ce143daa74",
+  "certificate_file": "two_complement_unit_gate_s20_certificates.jsonl",
+  "certificate_sha256": "199d842b108bcd364b1f5707db8a4aa450dc989ddaf87dd142eb814e3585d67b",
+  "input_count": 15,
+  "solved_ids": [],
+  "strict_original_gain_ids": [],
+  "search_cpu_seconds": 6.477690000000002,
+  "search_wall_seconds": 6.487106293439865,
+  "replay_and_compile_cpu_seconds": 0.012036000000000824,
+  "replay_and_compile_wall_seconds": 0.012063708156347275,
+  "batch_wall_seconds_including_cooling": 7.813640708103776,
+  "cooldown_seconds_per_row": 0.08,
+  "warmup_and_control_cpu_seconds": 0.527203,
+  "warmup_and_control_wall_seconds": 0.6729386250954121,
+  "relator_cap": null,
+  "total_heap_pops": 10776,
+  "total_combined_units": 15000,
+  "source_hashes": {
+    "two_complement_unit_gate_s20.py": "ad87293f1333ee35e60ebab03814f5b4237b6f08e0dae54448ea79dc509147ce",
+    "heuristic_1k.py": "4a5f3e29db87e4612c82fdd7bef7baeeef687c7d23be2d985d99b93743959c53",
+    "hexpand.py": "e609bb51a18a48cd739763e51dd1db114f01bee44d8b2265d43c7e7a9c7c21cc",
+    "captured_mixed_search.py": "4c0c33f177c034bb9332d4512bd4b5cd5bb6b903807ebf793b650b7f0e373d5f",
+    "compile_search_prefix.py": "26d91bb4a82978d83655afa97037dd81a75c685240106e24d3f7beac3264621f",
+    "ac_words.py": "2ebb847b2e2d8cdf997ae2256255857bce8ed4106a228f3caa22a093e56a07aa"
+  },
+  "scope": "Serial S20_MK2 without a relator cap; initial complementary-kernel projection uses theorem-backed stable AC equivalence, followed by fully emitted ordinary suffixes. Prefix image/compiler units and heap pops are heterogeneous, not equal compute. Five proper-join rejects were not searched. No baseline rerun. Each input's combined count is at most1000; independent certification is additional measured overhead."
+}

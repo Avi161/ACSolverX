@@ -68,3 +68,86 @@ not proven converged), and the exact `Aut(F₂)` step between 261 and 124 is
 **168** — no change of variables does better than 168. Derivation and the
 machine-checked merges are in `results/equivalence_classes/EQUIVALENCE_FINDING.md`
 on the research branches; `docs/BRANCH_MAP.md` says which branch holds what.
+
+### [2026-09-13] At an all-triangle root a unit is parity-forbidden and a bigon needs a shared digram
+[MECHANISM] Products of two length-3 cyclic words have even length, so a fixed-rank
+search from a triangulated root cannot make a unit in one move; a length-2 relator
+needs two relators sharing a cyclic digram modulo (u,v)->(v^-1,u^-1); every one of
+the 255 all-triangle roots in a 400-row AC19 sample is digram-disjoint, as are all four
+hard rows (the other 145 roots already carry a length<=2 relator from preprocessing).
+Score by digram coupling, not total length (constant 3r), and never read an empty
+cap-3/cap-4 neighbourhood as a budget problem. See
+`research/ac19_triangle_theory_20260913/THEORY.md`.
+
+### [2026-09-13] Cap-bounded exhaustive closure separates U124 from solved rows better than any structural feature, but not perfectly
+[MECHANISM] `research/ac_cap_closure_20260912/capbfs.py` enumerates the whole rank-2 AC
+component under a per-relator length cap (exact to cap 16 only: the int64 accumulator holds
+32 letters, so never trust a cap above 16). Every one of the 120 U124 rows whose relators fit
+is CLOSED and unsolved at every cap <= 16 (329 CPU-s in total, AK(3) is 190 s of it); of the
+48 solved-ladder rows that fit, 45 solve within cap 16 with a replayable certificate and their
+minimal cap rises with the difficulty bin (bin 0: 5-11, bin 6: 14-15, bin 9: 15), while 3 hard
+rows (bins 7-8) close at 16 exactly like U124. MS(n, w) with n >= 7 has a relator of length
+2n+3 >= 17 and is out of reach in this spelling (4 U124 rows, 12 solved rows). Minimal caps
+are far below the mrl=48 the heuristic certificates use. Records and tables in
+`research/ac_cap_closure_20260912/records/separator/`.
+
+### [2026-09-13] Definitions and eliminations as search moves beat fixed-rank search, and the reachable compression separates U124 from every solved row
+[MECHANISM] `research/ac_dynamic_rank_20260913/dynrank.py` searches presentations of any rank
+with three moves: ordinary rotation products, `define` (new generator for a repeated digram,
+rank+1) and `eliminate` (a generator occurring once in some relator is substituted away,
+rank-1); the solve condition is the empty presentation, and define/eliminate are stable AC
+composites (Lemma 11 of arXiv:2408.15332), so a certificate proves *stable* AC-triviality
+with those steps unexpanded. At 2,000 pops the dynamic arm solves 42/60 ladder rows against
+34/60 for the same engine held at rank two (12 rows in bins 5-9 only the dynamic arm solves,
+including two bin-9 rows that plain greedy needs 574k nodes for; 4 bin-5 rows only the
+control solves) and 25/60 for a search from the all-triangle root with a fixed dictionary:
+triangulating and then searching hurts, letting the dictionary change throughout helps.
+No U124 row solves (0/124). The feature `min total length reached / L` is a near-perfect
+separator: every U124 row stays at >= 0.80 of its length (the same floor the 3-hour
+shortening campaign hit on the same four rows), every solved row drops to <= 0.80 (59/60
+strictly below, hard bins 6-9 all <= 0.762) within the same 2,000 pops. Empirical, not a
+proof: the exhaustive dynamic-rank closure explodes (>100k states at zero slack for bin 4).
+
+### [2026-09-14] Nielsen maps as search edges, a sorted-array closed set and define/eliminate in one frontier solve the whole AC19 Aut-minimal census at 1,000 units
+[MECHANISM] `research/ac_hashfree_cascade_20260914/hfhybrid.py`: best-first on total length with
+no hash table (block-sorted closed set, bisection) and no pattern table (primitive relators
+finished by substitution, conjugation-shaped relators `g^a h^p g^-a h^q` pinched from a parsed
+form). The four Nielsen maps as search edges are the decisive ingredient: on the census
+policy's 727 leftovers the same engine goes from 31/180 to 673/727, and seven of the nine rows
+unsolved by every fixed-basis arm at 10M nodes solve in 137-318 units, because the Aut-minimal
+spelling sits at the bottom of a length well. Signed-permutation canonicalisation adds 23;
+define/eliminate moves (stable-AC composites, Lemma 11) in a second frontier served at most
+half as often as the rank-two one add the last 31, all of which need 1,100-10,080 rank-two
+units. Final: 72,779/72,779 rows verified at 1,000 units (policy: 72,052; 188 stable certificates), 727/727
+leftovers, all 156,762 rows of `data/AC19_extended.txt` in their original spelling 156,762/156,762
+(327 stable, median 31 units, max 954, 177 s on 4 workers), MS-640 640/640 in 2.2 s of single-core search, 5.8 s under the cascade's own batch protocol
+(cascade 2.4 s / 6.3 s). Memoryless
+search (parent-chain cycle check, frontier-only dedup, beams) solves 1.5% of the leftovers:
+visited-state memory is indispensable, hashing is not.
+[TRAP] A dynamic-rank state that is skipped for a budget-share rule must be deferred (second
+heap), never dropped: dropping it lost 6 of the 41 hard rows.
+
+### [2026-09-14] AC1M is not the Aut-orbit closure of AC19: 71,283 orbits against 66,561, overlapping in 66,444
+[MECHANISM] Exact Aut(F2) canonicalisation (`autcanon_fast.aut_min`, Whitehead peak reduction plus
+lex-min of the closed minimal level set) of every row: `AC19.txt` 140,535 rows -> 66,561 orbits,
+`AC19_extended.txt` 156,762 -> 72,779 (reproduces the shipped census exactly), `AC1M.txt.gz`
+1,136,154 -> 71,283 orbits, every one with Aut-minimal length <= 19 and >= 4 members. 66,444
+orbits are shared (99.8% of AC19's, 93.2% of AC1M's); 117 AC19 orbits (378 short rows) have no
+AC1M member and 4,839 AC1M orbits (50,459 rows, minimal length 15-19) have no AC19 member. So
+"solved the AC19 Aut-min census" does not cover AC1M; treat AC1M's 71,283 orbits as a separate
+benchmark. Records and method in `research/ac1m_autmin_20260914/`.
+The hash-free solver at 1,000 units: 71,281/71,283 AC1M representatives and 1,136,135/1,136,154 raw
+AC1M rows; every miss is a member of the same two AC1M-only orbits (`ac1m_54083`, `ac1m_68740`), all of
+which solve at 1,035-1,153 units with rank-two certificates; re-run at 10,000 units all 21 solve, with the
+identical unit counts and paths (the search is deterministic, so a larger budget only changes when it gives up)
+(`research/ac_hashfree_cascade_20260914/RESULTS.md`).
+[MECHANISM] A certificate's cost in ordinary AC substitutions is closed form: `ac_moves = substitution steps +
+Nielsen automorphism steps` (`acmoves.py`). An automorphism step is not free but it is cheap: transporting the
+basis change back through the path (AC moves are equivariant under Aut(F2); the terminal is a basis Nielsen's
+theorem returns to (x,y)) turns each Nielsen image into exactly one multiply in the terminal tail and a signed
+permutation into swaps and inverts alone. Checked against `research/supermoves_20260908/certificate_decoder.py`
+on 550 stratified rows plus 151 stage-stratified ones, 0 disagreements. Median cost 11-14 moves, maxima 256-389,
+20,187,384 moves over all 1,136,154 AC1M rows. Search effort and path length come apart: the 21 rows needing the
+most search (1,035-1,153 units) cost only 44-53 moves. Stable (dyn) certificates have NO rank-two count.
+[TRAP] Do not read these as lower bounds, and do not confuse them with generator-level counts: expanding one AC
+move into single-letter conjugations costs orders of magnitude more (a 259-move path becomes ~160,000 operations).

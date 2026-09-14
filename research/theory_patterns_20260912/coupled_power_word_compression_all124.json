@@ -1,0 +1,6857 @@
+{
+  "status": "theorem_backed_stable_macro_witnesses_not_elementary_expanded",
+  "row_limit": 500,
+  "max_defining_length": 6,
+  "wall_seconds": 1.5552989998832345,
+  "rows": [
+    {
+      "name": "aca_0",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYYYYXyxyX",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXXXXYxyx"
+        ],
+        "best_pair": [
+          "XXXXXXYxyxY",
+          "XYYxyXy"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 23
+      },
+      "attempted_endpoints": 15,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_1",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXyxx",
+        "defining_word": "YXXy",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYYxyXyX",
+        "raw_rank2_endpoint": [
+          "XYYXYYxyy",
+          "YYXYYXYYXyxyxy"
+        ],
+        "best_pair": [
+          "XXXyxYxY",
+          "XXYYxyy"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxyyxyyxy",
+              "XYYXYYxyy"
+            ],
+            "after": [
+              "XXYxyxyxy",
+              "XYXYYxyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxyxyxy",
+              "XYXYYxyy"
+            ],
+            "after": [
+              "XXXyxYxY",
+              "XXYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 27
+      },
+      "attempted_endpoints": 19,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_2",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "input_length": 16,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXyx",
+        "defining_word": "XyXy",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYXyyyxx",
+        "raw_rank2_endpoint": [
+          "XYYxYxy",
+          "YXXXYxxxyyy"
+        ],
+        "best_pair": [
+          "XXXYxxxyy",
+          "XYYxYxy"
+        ],
+        "best_length": 16,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 22
+      },
+      "attempted_endpoints": 17,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_3",
+      "input": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYYYxyxyX",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXXXyxyx"
+        ],
+        "best_pair": [
+          "XXXXXyxyxY",
+          "XYYxyXy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 22
+      },
+      "attempted_endpoints": 18,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_4",
+      "input": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "YXXXyxY",
+        "defining_word": "XyxY",
+        "isolator": "YXXz",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXz",
+        "companion_template": "YYxyxyXyXYX",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "XyyXyxYxYYYxYXy"
+        ],
+        "best_pair": [
+          "XXYYYxy",
+          "XXyxyxYxYXY"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYYxYxyXyyyXy"
+            ],
+            "after": [
+              "XXYxYxxyXyy",
+              "XYYYxyXy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXYxYxxyXyy",
+              "XYYYxyXy"
+            ],
+            "after": [
+              "XXYYYxy",
+              "XXyxyxYxYXY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 28
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 3,
+        "oriented_source": "XXyXYYX",
+        "defining_word": "XYYX",
+        "isolator": "XXyz",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxZ",
+        "companion_template": "YYYxyXyxyxyx",
+        "raw_rank2_endpoint": [
+          "XYxYYxYYY",
+          "xYYxYYxyXyXyyyXyyyXy"
+        ],
+        "best_pair": [
+          "XXXYxYxYxyxY",
+          "XXyxyyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYxYYYxYYYxYxYXyyXyy",
+              "XYxYYxYYY"
+            ],
+            "after": [
+              "XXyyXyyXyxYxYxy",
+              "XYxYxYYY"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyyXyyXyxYxYxy",
+              "XYxYxYYY"
+            ],
+            "after": [
+              "XXXYxYxYxyxY",
+              "XXyxyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 33
+      },
+      "attempted_endpoints": 9,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_6",
+      "input": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "XXyxxyxYY",
+        "defining_word": "xyxYY",
+        "isolator": "XXyxz",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxZX",
+        "companion_template": "YXXXXXyxYx",
+        "raw_rank2_endpoint": [
+          "XyyyXyxYxYY",
+          "yxYYYYYXyxY"
+        ],
+        "best_pair": [
+          "XXYxYYxyy",
+          "XYXYxyyyyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXYxyyyyy",
+              "XYxYYYxyyXy"
+            ],
+            "after": [
+              "XXYxYYxyy",
+              "XYXYxyyyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 27
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_7",
+      "input": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "input_length": 16,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXyxx",
+        "defining_word": "YXXy",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYYYxYXYX",
+        "raw_rank2_endpoint": [
+          "XYYXYYxyy",
+          "YYXYYXYYXYYXYXYYYXY"
+        ],
+        "best_pair": [
+          "XXXXyXYXY",
+          "XXYYxyy"
+        ],
+        "best_length": 16,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYYYXYYYXYYXYYXYY",
+              "XYYXYYxyy"
+            ],
+            "after": [
+              "XXYYXYYXYXYXY",
+              "XYXYYxyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYYXYYXYXYXY",
+              "XYXYYxyy"
+            ],
+            "after": [
+              "XXXXyXYXY",
+              "XXYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 32
+      },
+      "attempted_endpoints": 17,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_8",
+      "input": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYXYXyyx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYXYYXYYYXYxyyxyyy"
+        ],
+        "best_pair": [
+          "XXYXYxxy",
+          "XYxYXyy"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYYXYYYXYxyyxy"
+            ],
+            "after": [
+              "XYXYYXYxyxy",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYYXYxyxy",
+              "XYxYXy"
+            ],
+            "after": [
+              "XXYXYxxy",
+              "XYxYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 27
+      },
+      "attempted_endpoints": 18,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "XXXyxxY",
+        "defining_word": "XXyxxY",
+        "isolator": "Xz",
+        "eliminated_axis": "x",
+        "unique_sign": -1,
+        "recovered_word": "z",
+        "companion_template": "YYYXXyyX",
+        "raw_rank2_endpoint": [
+          "XXXyxxY",
+          "YYYXXyyX"
+        ],
+        "best_pair": [
+          "XXXyxxY",
+          "XXyyXYYY"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 22
+      },
+      "attempted_endpoints": 9,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_10",
+      "input": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "XXXyxxY",
+        "defining_word": "XXyxxY",
+        "isolator": "Xz",
+        "eliminated_axis": "x",
+        "unique_sign": -1,
+        "recovered_word": "z",
+        "companion_template": "YYXYXyyX",
+        "raw_rank2_endpoint": [
+          "XXXyxxY",
+          "YYXYXyyX"
+        ],
+        "best_pair": [
+          "XXXyxxY",
+          "XYXyyXYY"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 22
+      },
+      "attempted_endpoints": 8,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_11",
+      "input": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "XXXyxxY",
+        "defining_word": "XXyxxY",
+        "isolator": "Xz",
+        "eliminated_axis": "x",
+        "unique_sign": -1,
+        "recovered_word": "z",
+        "companion_template": "YYYXyxyx",
+        "raw_rank2_endpoint": [
+          "XXXyxxY",
+          "YYYXyxyx"
+        ],
+        "best_pair": [
+          "XXXyxxY",
+          "XYXYxyyy"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 22
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_12",
+      "input": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "XXXyxxY",
+        "defining_word": "XXyxxY",
+        "isolator": "Xz",
+        "eliminated_axis": "x",
+        "unique_sign": -1,
+        "recovered_word": "z",
+        "companion_template": "YYXYxyyX",
+        "raw_rank2_endpoint": [
+          "XXXyxxY",
+          "YYXYxyyX"
+        ],
+        "best_pair": [
+          "XXXyxxY",
+          "XYYXYxyy"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 22
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_13",
+      "input": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "input_length": 16,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXYYx",
+        "defining_word": "XXYY",
+        "isolator": "YYzx",
+        "eliminated_axis": "x",
+        "unique_sign": 1,
+        "recovered_word": "Zyy",
+        "companion_template": "YXXXyxxYx",
+        "raw_rank2_endpoint": [
+          "XYYxYYxYY",
+          "YYYxYYxYYxyXyyXyXyy"
+        ],
+        "best_pair": [
+          "XXXyxyxxY",
+          "XXyyxyy"
+        ],
+        "best_length": 16,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYxYYxYY",
+              "XYxYYxYYxyXyyXy"
+            ],
+            "after": [
+              "XXYxYxYxyXy",
+              "XYYxYxYY"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXYxYxYxyXy",
+              "XYYxYxYY"
+            ],
+            "after": [
+              "XXXyxyxxY",
+              "XXyyxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 32
+      },
+      "attempted_endpoints": 17,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_14",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXyx",
+        "defining_word": "XyXy",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYXyyxx",
+        "raw_rank2_endpoint": [
+          "XYYxYxy",
+          "YXXXYxxyyy"
+        ],
+        "best_pair": [
+          "XXXYxxyy",
+          "XYYxYxy"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 21
+      },
+      "attempted_endpoints": 18,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_15",
+      "input": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXyxx",
+        "defining_word": "XyXy",
+        "isolator": "YXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxx",
+        "companion_template": "YYYYxyyyX",
+        "raw_rank2_endpoint": [
+          "XYYxxyy",
+          "YYXYXYXYXyxyxyxy"
+        ],
+        "best_pair": [
+          "XXXXyxxxY",
+          "XYYxYxyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXyyxYY",
+              "XYXYXYXyxyxyxY"
+            ],
+            "after": [
+              "XXXXyxxxY",
+              "XYYxYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 28
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_16",
+      "input": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXyxx",
+        "defining_word": "YYXX",
+        "isolator": "zXyxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xZXX",
+        "companion_template": "YXyxxyXYx",
+        "raw_rank2_endpoint": [
+          "XyyxyxYYY",
+          "yyxYXyXYx"
+        ],
+        "best_pair": [
+          "XXYYxyyy",
+          "XYXyxYYxy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYYxyyy",
+              "XYYXyxYxy"
+            ],
+            "after": [
+              "XXYYxyyy",
+              "XYXyxYYxy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 23
+      },
+      "attempted_endpoints": 16,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_17",
+      "input": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXYxYx",
+        "defining_word": "XYxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYXyyyx",
+        "raw_rank2_endpoint": [
+          "XYYXyyXyy",
+          "YXyXyXyXYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXYxxxy",
+          "XYYYXyXy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYXyyXyy",
+              "XYxYxYxyXyXyXy"
+            ],
+            "after": [
+              "XXXXYxxxy",
+              "XYYYXyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_18",
+      "input": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYxyyyX",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXyxYxYx"
+        ],
+        "best_pair": [
+          "XXXXyxxxY",
+          "XYYYxyXy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxYxyXyXy"
+            ],
+            "after": [
+              "XXXXyxxxY",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 28
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_19",
+      "input": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxxx",
+        "companion_template": "YYYYXyyyx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYYXYYYXYYYXYYYXYxyyyxyyyxyyyy"
+        ],
+        "best_pair": [
+          "XXXXYxxxy",
+          "XYxYXyyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYYYXYYYXYYYXYxyyyxyyyxy"
+            ],
+            "after": [
+              "XYYXYYXYYXYxyyxyyxy",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYYXYYXYYXYxyyxyyxy",
+              "XYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYxyxyxy",
+              "XYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYxyxyxy",
+              "XYxYXyy"
+            ],
+            "after": [
+              "XXXXYxxxy",
+              "XYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 40
+      },
+      "attempted_endpoints": 9,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_20",
+      "input": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYXyyyx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXYxxxy",
+          "XYYYxyXy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxyXyXyXy"
+            ],
+            "after": [
+              "XXXXYxxxy",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_21",
+      "input": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyX",
+        "defining_word": "YXXY",
+        "isolator": "zxxyX",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZx",
+        "companion_template": "YYYYxyyyX",
+        "raw_rank2_endpoint": [
+          "XYxYxyy",
+          "YxyxyxyxyXYXYX"
+        ],
+        "best_pair": [
+          "XXXXyxxxY",
+          "XYxYYxyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXyxyxyxY",
+              "XYxYxyy"
+            ],
+            "after": [
+              "XXXXyxxxY",
+              "XYxYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 26
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_22",
+      "input": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyx",
+        "defining_word": "YXXY",
+        "isolator": "zxxyx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZX",
+        "companion_template": "YYYYxyyyX",
+        "raw_rank2_endpoint": [
+          "Xyxyxyy",
+          "yxyyyxyyyxyyyxyXYYYXYYYXYY"
+        ],
+        "best_pair": [
+          "XXXXyxxxY",
+          "XYxYYXyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxYY",
+              "XYYYXYYYXYYYXyxyyyxyyyxY"
+            ],
+            "after": [
+              "XXYxYY",
+              "XYYXYYXYYXyxyyxyyxY"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxYY",
+              "XYYXYYXYYXyxyyxyyxY"
+            ],
+            "after": [
+              "XYXYXYXyxyxyxY",
+              "XYxYYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXyxyxyxY",
+              "XYxYYXy"
+            ],
+            "after": [
+              "XXXXyxxxY",
+              "XYxYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 38
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_23",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyx",
+        "defining_word": "YXXY",
+        "isolator": "zxxyx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZX",
+        "companion_template": "YYYYXyyyx",
+        "raw_rank2_endpoint": [
+          "Xyxyxyy",
+          "yxyyyxyyyxyyyxYXYYYXYYYX"
+        ],
+        "best_pair": [
+          "XXXXYxxxy",
+          "XYxYYXyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxYY",
+              "XYYYXYYYXYYYXYxyyyxyyyxy"
+            ],
+            "after": [
+              "XXYxYY",
+              "XYYXYYXYYXYxyyxyyxy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxYY",
+              "XYYXYYXYYXYxyyxyyxy"
+            ],
+            "after": [
+              "XYXYXYXYxyxyxy",
+              "XYxYYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYxyxyxy",
+              "XYxYYXy"
+            ],
+            "after": [
+              "XXXXYxxxy",
+              "XYxYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 36
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_24",
+      "input": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXYxx",
+        "defining_word": "YYXX",
+        "isolator": "zXYxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "xxzX",
+        "companion_template": "YzYXYx",
+        "raw_rank2_endpoint": [
+          "XyXYXYYYY",
+          "yXYYxyXYYXY"
+        ],
+        "best_pair": [
+          "XXYYYXyy",
+          "XYXyXYYxy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYYxyXYY",
+              "XYXYYYYXy"
+            ],
+            "after": [
+              "XXYYYXyy",
+              "XYXyXYYxy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 25
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_25",
+      "input": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyX",
+        "defining_word": "YXXY",
+        "isolator": "zxxyX",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZx",
+        "companion_template": "YYYYXyyyx",
+        "raw_rank2_endpoint": [
+          "XYxYxyy",
+          "YxyxyxyxYXYXYXyy"
+        ],
+        "best_pair": [
+          "XXXXYxxxy",
+          "XYxYYxyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYxyxyxy",
+              "XYxYxyy"
+            ],
+            "after": [
+              "XXXXYxxxy",
+              "XYxYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 28
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_26",
+      "input": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxYxx",
+        "defining_word": "XYxY",
+        "isolator": "YXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxx",
+        "companion_template": "YYYYxyyyX",
+        "raw_rank2_endpoint": [
+          "XYYYXXy",
+          "YYXYXYXYXyxyxyxy"
+        ],
+        "best_pair": [
+          "XXXXyxxxY",
+          "XYYXyXyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXyXYYY",
+              "XYXYXYXyxyxyxY"
+            ],
+            "after": [
+              "XXXXyxxxY",
+              "XYYXyXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 28
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_27",
+      "input": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXyxx",
+        "defining_word": "XyXy",
+        "isolator": "YXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxx",
+        "companion_template": "YYYYXyyyx",
+        "raw_rank2_endpoint": [
+          "XYYxxyy",
+          "YYXYXYXYXYxyxyxyyy"
+        ],
+        "best_pair": [
+          "XXXXYxxxy",
+          "XYYxYxyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXyyxYY",
+              "XYXYXYXYxyxyxy"
+            ],
+            "after": [
+              "XXXXYxxxy",
+              "XYYxYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_28",
+      "input": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxYxx",
+        "defining_word": "XYxY",
+        "isolator": "YXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxx",
+        "companion_template": "YYYYXyyyx",
+        "raw_rank2_endpoint": [
+          "XYYYXXy",
+          "YYXYXYXYXYxyxyxyyy"
+        ],
+        "best_pair": [
+          "XXXXYxxxy",
+          "XYYXyXyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXyXYYY",
+              "XYXYXYXYxyxyxy"
+            ],
+            "after": [
+              "XXXXYxxxy",
+              "XYYXyXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_29",
+      "input": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "YXXXyxY",
+        "defining_word": "XyxY",
+        "isolator": "YXXz",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXz",
+        "companion_template": "YYxxyxyXyX",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "XyyXyyxYxYYYxY"
+        ],
+        "best_pair": [
+          "XXYYYxy",
+          "XXyyxyxYxY"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYYxYYxyXyyyXy"
+            ],
+            "after": [
+              "XXYYxYxyXyy",
+              "XYYYxyXy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXYYxYxyXyy",
+              "XYYYxyXy"
+            ],
+            "after": [
+              "XXYYYxy",
+              "XXyyxyxYxY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 27
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_30",
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "YXXyxY",
+        "defining_word": "XyxY",
+        "isolator": "YXz",
+        "eliminated_axis": "x",
+        "unique_sign": -1,
+        "recovered_word": "zY",
+        "companion_template": "YYYYYxyXXyX",
+        "raw_rank2_endpoint": [
+          "XyXyxYY",
+          "YYYYYxyXyXyyX"
+        ],
+        "best_pair": [
+          "XXyXYYYYYxy",
+          "XXyxYY"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYxyXyXyy",
+              "XYxYxyy"
+            ],
+            "after": [
+              "XXyXYYYYYxy",
+              "XXyxYY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 23
+      },
+      "attempted_endpoints": 15,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_31",
+      "input": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXyxx",
+        "defining_word": "YXXy",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYYYYXyXyx",
+        "raw_rank2_endpoint": [
+          "XYYXYYxyy",
+          "YYXYYXYYXYYXYYXYxyxyyy"
+        ],
+        "best_pair": [
+          "XXXXXYxYxy",
+          "XXYYxyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXyxyyxyyxyyxyyxY",
+              "XYYXYYxyy"
+            ],
+            "after": [
+              "XXyxyxyxyxyxY",
+              "XYXYYxyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXyxyxyxyxyxY",
+              "XYXYYxyy"
+            ],
+            "after": [
+              "XXXXXYxYxy",
+              "XXYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 35
+      },
+      "attempted_endpoints": 18,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_32",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyx",
+        "defining_word": "YXXY",
+        "isolator": "zxxyx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZX",
+        "companion_template": "YYYYXyxyx",
+        "raw_rank2_endpoint": [
+          "Xyxyxyy",
+          "yxyyyxyyyxyyyxYXYYX"
+        ],
+        "best_pair": [
+          "XXXXYxYxy",
+          "XYxYYXyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxYY",
+              "XYYXyxyyyxyyyxyyyxY"
+            ],
+            "after": [
+              "XXYxYY",
+              "XYXyxyyxyyxyyxY"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxYY",
+              "XYXyxyyxyyxyyxY"
+            ],
+            "after": [
+              "XXyxyxyxyxY",
+              "XYxYYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXyxyxyxyxY",
+              "XYxYYXy"
+            ],
+            "after": [
+              "XXXXYxYxy",
+              "XYxYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 31
+      },
+      "attempted_endpoints": 18,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_33",
+      "input": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYXyXyxyx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXYxYYxxyy"
+        ],
+        "best_pair": [
+          "XXYxYxyxy",
+          "XYYYxyXy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyyXyxYxY",
+              "XYYYxyXyy"
+            ],
+            "after": [
+              "XXYxYxyxy",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 26
+      },
+      "attempted_endpoints": 19,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_34",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "input_length": 16,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYYXyyxx",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXXYxxyyy"
+        ],
+        "best_pair": [
+          "XXXXYxxyy",
+          "XYYxyXy"
+        ],
+        "best_length": 16,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 22
+      },
+      "attempted_endpoints": 19,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_35",
+      "input": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "YXXXyxY",
+        "defining_word": "XyxY",
+        "isolator": "YXXz",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXz",
+        "companion_template": "YYYxxyxyXyX",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "XyyXyyXyyxYxYYYxY"
+        ],
+        "best_pair": [
+          "XXXyyxyxYxY",
+          "XXYYYxy"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYYxYYxYYxyXyyyXy"
+            ],
+            "after": [
+              "XXYYxYxYxyXyy",
+              "XYYYxyXy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXYYxYxYxyXyy",
+              "XYYYxyXy"
+            ],
+            "after": [
+              "XXXyyxyxYxY",
+              "XXYYYxy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_36",
+      "input": [
+        "YXXyxYx",
+        "YYYxYYXYX"
+      ],
+      "input_length": 16,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYxYYXYX",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXyXXYX"
+        ],
+        "best_pair": [
+          "XXXyXXYXY",
+          "XYYxyXy"
+        ],
+        "best_length": 16,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 21
+      },
+      "attempted_endpoints": 16,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_37",
+      "input": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXYxx",
+        "defining_word": "YYXX",
+        "isolator": "zXYxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "xxzX",
+        "companion_template": "YYYYYXyyyyx",
+        "raw_rank2_endpoint": [
+          "XyXYXYYYY",
+          "yXYXYXYXYXYxyxyxyx"
+        ],
+        "best_pair": [
+          "XXXXXYxxxxy",
+          "XXYYYXyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYxyxyxyxy",
+              "XYXYYYYXy"
+            ],
+            "after": [
+              "XXXXXYxxxxy",
+              "XXYYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 32
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_38",
+      "input": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXyxx",
+        "defining_word": "YYXX",
+        "isolator": "zXyxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xZXX",
+        "companion_template": "YYYYYXyyyyx",
+        "raw_rank2_endpoint": [
+          "XyyxyxYYY",
+          "yyxyxyxyxyxYXYXYXYXY"
+        ],
+        "best_pair": [
+          "XXXXXYxxxxy",
+          "XXYYxyyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYxyxyxyxy",
+              "XYXYYxyyy"
+            ],
+            "after": [
+              "XXXXXYxxxxy",
+              "XXYYxyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 34
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_39",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXYxYx",
+        "defining_word": "XYxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYXyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYXyyXyy",
+          "YXyXyXyXyXYxYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXXYxxxxy",
+          "XYYYXyXy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYXyyXyy",
+              "XYxYxYxYxyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXYxxxxy",
+              "XYYYXyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 34
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_40",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYxyyyyX",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXyXyxYxYxYx"
+        ],
+        "best_pair": [
+          "XXXXXyxxxxY",
+          "XYYYxyXy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxYxYxyXyXyXy"
+            ],
+            "after": [
+              "XXXXXyxxxxY",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 32
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_41",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxxx",
+        "companion_template": "YYYYYXyyyyx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyy"
+        ],
+        "best_pair": [
+          "XXXXXYxxxxy",
+          "XYxYXyyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxy"
+            ],
+            "after": [
+              "XYYXYYXYYXYYXYxyyxyyxyyxy",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYYXYYXYYXYYXYxyyxyyxyyxy",
+              "XYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYXYxyxyxyxy",
+              "XYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYxyxyxyxy",
+              "XYxYXyy"
+            ],
+            "after": [
+              "XXXXXYxxxxy",
+              "XYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 48
+      },
+      "attempted_endpoints": 9,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_42",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYXyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXyXYxYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXXYxxxxy",
+          "XYYYxyXy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxYxyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXYxxxxy",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 34
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_43",
+      "input": [
+        "YYXXyxx",
+        "YYxyXYxyXyX"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXyxx",
+        "defining_word": "YXXy",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYxyXYxyXyX",
+        "raw_rank2_endpoint": [
+          "XYYXYYxyy",
+          "YYXYYXyxYXyxyxy"
+        ],
+        "best_pair": [
+          "XXYYxyy",
+          "XXyxYXyxYxY"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxyXYxyyxy",
+              "XYYXYYxyy"
+            ],
+            "after": [
+              "XXYxyXYxyxy",
+              "XYXYYxyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxyXYxyxy",
+              "XYXYYxyy"
+            ],
+            "after": [
+              "XXYYxyy",
+              "XXyxYXyxYxY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 28
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_44",
+      "input": [
+        "YYXXYYx",
+        "YXyXYxxYXyx"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXYYx",
+        "defining_word": "XXYY",
+        "isolator": "YYzx",
+        "eliminated_axis": "x",
+        "unique_sign": 1,
+        "recovered_word": "Zyy",
+        "companion_template": "YXyXYxxYXyx",
+        "raw_rank2_endpoint": [
+          "XYYxYYxYY",
+          "YYYxYxYXyyXYxyXyy"
+        ],
+        "best_pair": [
+          "XXYxyXYxyxY",
+          "XXyyxyy"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYxYYxYY",
+              "XYxYxYXyyXYxy"
+            ],
+            "after": [
+              "XXyxYXyxYxy",
+              "XYYxYxYY"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyxYXyxYxy",
+              "XYYxYxYY"
+            ],
+            "after": [
+              "XXYxyXYxyxY",
+              "XXyyxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_45",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "YXzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxxx",
+        "companion_template": "YYYYXXXYxx",
+        "raw_rank2_endpoint": [
+          "XYYxYXy",
+          "YYYXYYXYYXYYXYYYYYXyyy"
+        ],
+        "best_pair": [
+          "XXXXYYYXyy",
+          "XYYxYXyyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYYXYYXYYXYYYYY",
+              "XYYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYYYYXy",
+              "XYYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYYYYXy",
+              "XYYxYXyy"
+            ],
+            "after": [
+              "XXXXYYYXyy",
+              "XYYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 35
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_46",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyx",
+        "defining_word": "YXXY",
+        "isolator": "zxxyx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZX",
+        "companion_template": "YYYYYXyyyyx",
+        "raw_rank2_endpoint": [
+          "Xyxyxyy",
+          "yxyyyxyyyxyyyxyyyxYXYYYXYYYXYYYX"
+        ],
+        "best_pair": [
+          "XXXXXYxxxxy",
+          "XYxYYXyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxYY",
+              "XYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxy"
+            ],
+            "after": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXYxyyxyyxyyxy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXYxyyxyyxyyxy"
+            ],
+            "after": [
+              "XYXYXYXYXYxyxyxyxy",
+              "XYxYYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYxyxyxyxy",
+              "XYxYYXy"
+            ],
+            "after": [
+              "XXXXXYxxxxy",
+              "XYxYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 44
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_47",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyX",
+        "defining_word": "YXXY",
+        "isolator": "zxxyX",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZx",
+        "companion_template": "YYYYYxyyyyX",
+        "raw_rank2_endpoint": [
+          "XYxYxyy",
+          "YxyxyxyxyxyXYXYXYX"
+        ],
+        "best_pair": [
+          "XXXXXyxxxxY",
+          "XYxYYxyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXyxyxyxyxY",
+              "XYxYxyy"
+            ],
+            "after": [
+              "XXXXXyxxxxY",
+              "XYxYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_48",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYxx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzxx",
+        "companion_template": "YYYYXXyxxx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YYXXXXYYxyyyyy"
+        ],
+        "best_pair": [
+          "XXXXYYxyyy",
+          "XYYYxyXyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 29
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_49",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyx",
+        "defining_word": "YXXY",
+        "isolator": "zxxyx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZX",
+        "companion_template": "YYYYYxyyyyX",
+        "raw_rank2_endpoint": [
+          "Xyxyxyy",
+          "yxyyyxyyyxyyyxyyyxyXYYYXYYYXYYYXYY"
+        ],
+        "best_pair": [
+          "XXXXXyxxxxY",
+          "XYxYYXyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxYY",
+              "XYYYXYYYXYYYXYYYXyxyyyxyyyxyyyxY"
+            ],
+            "after": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXyxyyxyyxyyxY"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXyxyyxyyxyyxY"
+            ],
+            "after": [
+              "XYXYXYXYXyxyxyxyxY",
+              "XYxYYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXyxyxyxyxY",
+              "XYxYYXy"
+            ],
+            "after": [
+              "XXXXXyxxxxY",
+              "XYxYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 46
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_50",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyX",
+        "defining_word": "YXXY",
+        "isolator": "zxxyX",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZx",
+        "companion_template": "YYYYYXyyyyx",
+        "raw_rank2_endpoint": [
+          "XYxYxyy",
+          "YxyxyxyxyxYXYXYXYXyy"
+        ],
+        "best_pair": [
+          "XXXXXYxxxxy",
+          "XYxYYxyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYxyxyxyxy",
+              "XYxYxyy"
+            ],
+            "after": [
+              "XXXXXYxxxxy",
+              "XYxYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 32
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_51",
+      "input": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxYxx",
+        "defining_word": "XYxY",
+        "isolator": "YXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxx",
+        "companion_template": "YYYYYXyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYYXXy",
+          "YYXYXYXYXYXYxyxyxyxyyy"
+        ],
+        "best_pair": [
+          "XXXXXYxxxxy",
+          "XYYXyXyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXyXYYY",
+              "XYXYXYXYXYxyxyxyxy"
+            ],
+            "after": [
+              "XXXXXYxxxxy",
+              "XYYXyXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 34
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_52",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXyxx",
+        "defining_word": "XyXy",
+        "isolator": "YXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxx",
+        "companion_template": "YYYYYXyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYxxyy",
+          "YYXYXYXYXYXYxyxyxyxyyy"
+        ],
+        "best_pair": [
+          "XXXXXYxxxxy",
+          "XYYxYxyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXyyxYY",
+              "XYXYXYXYXYxyxyxyxy"
+            ],
+            "after": [
+              "XXXXXYxxxxy",
+              "XYYxYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 34
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_53",
+      "input": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYXyyXyxyxx",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXYxxYxyxyyy"
+        ],
+        "best_pair": [
+          "XXYxxYxyxyy",
+          "XYYxyXy"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 24
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXXyxx",
+        "defining_word": "YYXX",
+        "isolator": "zXXyxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxZXX",
+        "companion_template": "YYxxyXXXXX",
+        "raw_rank2_endpoint": [
+          "XyyxxYYYY",
+          "yyxxyyXYYYYYYY"
+        ],
+        "best_pair": [
+          "XXYYxyyyy",
+          "XXyyyyyxYY"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 29
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "XXXyxyxYY",
+        "defining_word": "xyxYY",
+        "isolator": "XXXyz",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxxZ",
+        "companion_template": "YYxYXXyyX",
+        "raw_rank2_endpoint": [
+          "XyyyyXyxYYYxYYY",
+          "xYYYxYYxYYXyyyXY"
+        ],
+        "best_pair": [
+          "XXYxYxyyy",
+          "XXYxxyxYY"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYxYYYYxyyyXyyy",
+              "XYxYYYxYYxYYXyyy"
+            ],
+            "after": [
+              "XYxYYYxyyyXyy",
+              "XYxYYxYxYYXyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYxYYYxyyyXyy",
+              "XYxYYxYxYYXyy"
+            ],
+            "after": [
+              "XXyXyxYxyy",
+              "XYxYYxyyyXy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyXyxYxyy",
+              "XYxYYxyyyXy"
+            ],
+            "after": [
+              "XXYxYxyyy",
+              "XXYxxyxYY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 36
+      },
+      "attempted_endpoints": 14,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_56",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXyxx",
+        "defining_word": "YYXX",
+        "isolator": "zXyxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xZXX",
+        "companion_template": "YYXYYxxyXXX",
+        "raw_rank2_endpoint": [
+          "XyyxyxYYY",
+          "yyxyxxyxyyXYYYYY"
+        ],
+        "best_pair": [
+          "XXYYxyyy",
+          "XXyXXyyyxYY"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYXyyyxYYXY",
+              "XYXYYxyyy"
+            ],
+            "after": [
+              "XXYYxyyy",
+              "XXyXXyyyxYY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 15,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_57",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXyxx",
+        "defining_word": "YYXX",
+        "isolator": "zXyxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xZXX",
+        "companion_template": "YYXYYxyXXXX",
+        "raw_rank2_endpoint": [
+          "XyyxyxYYY",
+          "yyxyxxyxyXYYYYYY"
+        ],
+        "best_pair": [
+          "XXYYxyyy",
+          "XXyXXyyyyxY"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYXyyyyxYXY",
+              "XYXYYxyyy"
+            ],
+            "after": [
+              "XXYYxyyy",
+              "XXyXXyyyyxY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 16,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_58",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYYYXyyxx",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXXXYxxyyy"
+        ],
+        "best_pair": [
+          "XXXXXYxxyy",
+          "XYYxyXy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 23
+      },
+      "attempted_endpoints": 18,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "input_length": 20,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyxx",
+        "defining_word": "YXXY",
+        "isolator": "zxxyxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZXX",
+        "companion_template": "YYYYxxxxxxx",
+        "raw_rank2_endpoint": [
+          "Xyyxyyxyy",
+          "yyxyyyyxyyyyxyyyyxyyyyyyyyy"
+        ],
+        "best_pair": [
+          "XXXXYYYYYYY",
+          "XYYxYYXyy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYYXYYxYY",
+              "XYYYYXYYYYXYYYYXYYYYYYYYYYY"
+            ],
+            "after": [
+              "XYXYYxYY",
+              "XYYYXYYYXYYYXYYYYYYYYYY"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYYxYY",
+              "XYYYXYYYXYYYXYYYYYYYYYY"
+            ],
+            "after": [
+              "XXYYxYY",
+              "XYYXYYXYYXYYYYYYYYY"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYYxYY",
+              "XYYXYYXYYXYYYYYYYYY"
+            ],
+            "after": [
+              "XYXYXYXYYYYYYYY",
+              "XYYxYYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYYYYYYYY",
+              "XYYxYYXy"
+            ],
+            "after": [
+              "XXXXYYYYYYY",
+              "XYYxYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 42
+      },
+      "attempted_endpoints": 10,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_60",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "input_length": 20,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYxx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzxx",
+        "companion_template": "YYYYYXXyxxx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YYXXXXXYYxyyyyy"
+        ],
+        "best_pair": [
+          "XXXXXYYxyyy",
+          "XYYYxyXyy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_61",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "input_length": 20,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "YXzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxxx",
+        "companion_template": "YYYYYXXXYxx",
+        "raw_rank2_endpoint": [
+          "XYYxYXy",
+          "YYYXYYXYYXYYXYYXYYYYYXyyy"
+        ],
+        "best_pair": [
+          "XXXXXYYYXyy",
+          "XYYxYXyyy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYYXYYXYYXYYXYYYYY",
+              "XYYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYXYYYYXy",
+              "XYYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYYYYXy",
+              "XYYxYXyy"
+            ],
+            "after": [
+              "XXXXXYYYXyy",
+              "XYYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 38
+      },
+      "attempted_endpoints": 10,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_62",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXYxYx",
+        "defining_word": "XYxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYYXyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYXyyXyy",
+          "YXyXyXyXyXyXYxYxYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXXXYxxxxxy",
+          "XYYYXyXy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYXyyXyy",
+              "XYxYxYxYxYxyXyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXXYxxxxxy",
+              "XYYYXyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 38
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_63",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYYxyyyyyX",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXyXyXyxYxYxYxYx"
+        ],
+        "best_pair": [
+          "XXXXXXyxxxxxY",
+          "XYYYxyXy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxYxYxYxyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXXyxxxxxY",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 36
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_64",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxxx",
+        "companion_template": "YYYYYYXyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYYXYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXYxxxxxy",
+          "XYxYXyyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxy"
+            ],
+            "after": [
+              "XYYXYYXYYXYYXYYXYxyyxyyxyyxyyxy",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYYXYYXYYXYYXYYXYxyyxyyxyyxyyxy",
+              "XYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYXYXYxyxyxyxyxy",
+              "XYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYxyxyxyxyxy",
+              "XYxYXyy"
+            ],
+            "after": [
+              "XXXXXXYxxxxxy",
+              "XYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 56
+      },
+      "attempted_endpoints": 9,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_65",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYYXyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXyXyXYxYxYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXXXYxxxxxy",
+          "XYYYxyXy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxYxYxyXyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXXYxxxxxy",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 38
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_66",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 20,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXyxxx",
+        "defining_word": "YYXX",
+        "isolator": "zXyxxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xZXXX",
+        "companion_template": "YYXyXyxYXyx",
+        "raw_rank2_endpoint": [
+          "XyyyxyyxYYY",
+          "yyyxyyxYXYYYXyxYXYY"
+        ],
+        "best_pair": [
+          "XXYYYxyyy",
+          "XXYxyXYxyxy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYYXYYYxyyy",
+              "XYYXYxyXYxyyyxy"
+            ],
+            "after": [
+              "XYXYYYxyyy",
+              "XYXYxyXYxyyxy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYYYxyyy",
+              "XYXYxyXYxyyxy"
+            ],
+            "after": [
+              "XXYYYxyyy",
+              "XXYxyXYxyxy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 36
+      },
+      "attempted_endpoints": 10,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "XXXyXXXYY",
+        "defining_word": "XXYY",
+        "isolator": "XXXyXz",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxxZx",
+        "companion_template": "YYXyxYXyxyX",
+        "raw_rank2_endpoint": [
+          "XYYYxYYYYxYYY",
+          "YxYYYYxYXyxYXyyyyyX"
+        ],
+        "best_pair": [
+          "XXyxYxyXYxy",
+          "XXyyyxyyy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYYYxYYY",
+              "XYxYYYYxYXyxYXyyyyy"
+            ],
+            "after": [
+              "XYYYxYYYxYYY",
+              "XYxYYYxYXyxYXyyyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYYxYYY",
+              "XYxYYYxYXyxYXyyyy"
+            ],
+            "after": [
+              "XYYYxYYxYYY",
+              "XYxYYxYXyxYXyyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYxYYY",
+              "XYxYYxYXyxYXyyy"
+            ],
+            "after": [
+              "XYYYxYxYYY",
+              "XYxYxYXyxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYxYYY",
+              "XYxYxYXyxYXyy"
+            ],
+            "after": [
+              "XXyxYxyXYxy",
+              "XXyyyxyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 38
+      },
+      "attempted_endpoints": 8,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_68",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyx",
+        "defining_word": "YXXY",
+        "isolator": "zxxyx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZX",
+        "companion_template": "YYYYYYXyyyyyx",
+        "raw_rank2_endpoint": [
+          "Xyxyxyy",
+          "yxyyyxyyyxyyyxyyyxyyyxYXYYYXYYYXYYYXYYYX"
+        ],
+        "best_pair": [
+          "XXXXXXYxxxxxy",
+          "XYxYYXyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxYY",
+              "XYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxy"
+            ],
+            "after": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXYYXYxyyxyyxyyxyyxy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXYYXYxyyxyyxyyxyyxy"
+            ],
+            "after": [
+              "XYXYXYXYXYXYxyxyxyxyxy",
+              "XYxYYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYxyxyxyxyxy",
+              "XYxYYXy"
+            ],
+            "after": [
+              "XXXXXXYxxxxxy",
+              "XYxYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 52
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_69",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyX",
+        "defining_word": "YXXY",
+        "isolator": "zxxyX",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZx",
+        "companion_template": "YYYYYYxyyyyyX",
+        "raw_rank2_endpoint": [
+          "XYxYxyy",
+          "YxyxyxyxyxyxyXYXYXYXYX"
+        ],
+        "best_pair": [
+          "XXXXXXyxxxxxY",
+          "XYxYYxyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXyxyxyxyxyxY",
+              "XYxYxyy"
+            ],
+            "after": [
+              "XXXXXXyxxxxxY",
+              "XYxYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 34
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_70",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyx",
+        "defining_word": "YXXY",
+        "isolator": "zxxyx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZX",
+        "companion_template": "YYYYYYxyyyyyX",
+        "raw_rank2_endpoint": [
+          "Xyxyxyy",
+          "yxyyyxyyyxyyyxyyyxyyyxyXYYYXYYYXYYYXYYYXYY"
+        ],
+        "best_pair": [
+          "XXXXXXyxxxxxY",
+          "XYxYYXyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxYY",
+              "XYYYXYYYXYYYXYYYXYYYXyxyyyxyyyxyyyxyyyxY"
+            ],
+            "after": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXYYXyxyyxyyxyyxyyxY"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXYYXyxyyxyyxyyxyyxY"
+            ],
+            "after": [
+              "XYXYXYXYXYXyxyxyxyxyxY",
+              "XYxYYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXyxyxyxyxyxY",
+              "XYxYYXy"
+            ],
+            "after": [
+              "XXXXXXyxxxxxY",
+              "XYxYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 54
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_71",
+      "input": [
+        "YYXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXyxx",
+        "defining_word": "YYXX",
+        "isolator": "zXyxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xZXX",
+        "companion_template": "YYXyxyXYxyX",
+        "raw_rank2_endpoint": [
+          "XyyxyxYYY",
+          "yyxyxYXXYxyXYYY"
+        ],
+        "best_pair": [
+          "XXYYxyyy",
+          "XXyxYXyxYxy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxyXYxyxY",
+              "XYXYYxyyy"
+            ],
+            "after": [
+              "XXYYxyyy",
+              "XXyxYXyxYxy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 29
+      },
+      "attempted_endpoints": 16,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_72",
+      "input": [
+        "YYXXyxx",
+        "YYxyXyxyXyX"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXyxx",
+        "defining_word": "YXXy",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYxyXyxyXyX",
+        "raw_rank2_endpoint": [
+          "XYYXYYxyy",
+          "YYXYYXyxyxyyyxyxy"
+        ],
+        "best_pair": [
+          "XXYYxyy",
+          "XXyxYxyxYxY"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYYYXYXYxyyxy",
+              "XYYXYYxyy"
+            ],
+            "after": [
+              "XXYYXXYxyxy",
+              "XYXYYxyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYYXXYxyxy",
+              "XYXYYxyy"
+            ],
+            "after": [
+              "XXYYxyy",
+              "XXyxYxyxYxY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_73",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyX",
+        "defining_word": "YXXY",
+        "isolator": "zxxyX",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZx",
+        "companion_template": "YYYYYYXyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYxYxyy",
+          "YxyxyxyxyxyxYXYXYXYXYXyy"
+        ],
+        "best_pair": [
+          "XXXXXXYxxxxxy",
+          "XYxYYxyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYxyxyxyxyxy",
+              "XYxYxyy"
+            ],
+            "after": [
+              "XXXXXXYxxxxxy",
+              "XYxYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 36
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_74",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXyxx",
+        "defining_word": "XyXy",
+        "isolator": "YXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxx",
+        "companion_template": "YYYYYYXyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYxxyy",
+          "YYXYXYXYXYXYXYxyxyxyxyxyyy"
+        ],
+        "best_pair": [
+          "XXXXXXYxxxxxy",
+          "XYYxYxyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXyyxYY",
+              "XYXYXYXYXYXYxyxyxyxyxy"
+            ],
+            "after": [
+              "XXXXXXYxxxxxy",
+              "XYYxYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 38
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_75",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYxx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzxx",
+        "companion_template": "YYYYYYXXXYxx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YYXXXXXXYYYXyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXYYYXyy",
+          "XYYYxyXyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 31
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_76",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYxx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzxx",
+        "companion_template": "YYYYYYXXyxxx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YYXXXXXXYYxyyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXYYxyyy",
+          "XYYYxyXyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 31
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_77",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "YXzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxxx",
+        "companion_template": "YYYYYYXXXYxx",
+        "raw_rank2_endpoint": [
+          "XYYxYXy",
+          "YYYXYYXYYXYYXYYXYYXYYYYYXyyy"
+        ],
+        "best_pair": [
+          "XXXXXXYYYXyy",
+          "XYYxYXyyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYYXYYXYYXYYXYYXYYYYY",
+              "XYYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYXYXYYYYXy",
+              "XYYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYYYYXy",
+              "XYYxYXyy"
+            ],
+            "after": [
+              "XXXXXXYYYXyy",
+              "XYYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 41
+      },
+      "attempted_endpoints": 10,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_78",
+      "input": [
+        "YXXyXyx",
+        "YYYXYXyxyyxx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXyx",
+        "defining_word": "XyXy",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYXYXyxyyxx",
+        "raw_rank2_endpoint": [
+          "XYYxYxy",
+          "YXXXYXYxyxxyyy"
+        ],
+        "best_pair": [
+          "XXXYXYxyxxyy",
+          "XYYxYxy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 25
+      },
+      "attempted_endpoints": 9,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_79",
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXyyxx",
+        "defining_word": "XXXyyx",
+        "isolator": "YYzx",
+        "eliminated_axis": "x",
+        "unique_sign": 1,
+        "recovered_word": "Zyy",
+        "companion_template": "YXXXXXyxxYxx",
+        "raw_rank2_endpoint": [
+          "XYYxYYxYYxyyXyy",
+          "YYYxYYxYYxYYxYYxyXyyXyXyyXyy"
+        ],
+        "best_pair": [
+          "XXXXXyxxyxxY",
+          "XXXyyxxYY"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYxYYxYYxyyXyy",
+              "XYxYYxYYxYYxYYxyXyyXyXyy"
+            ],
+            "after": [
+              "XXyXYxYxYxYxYxyXy",
+              "XYYxYxYxyyXy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyXYxYxYxYxYxyXy",
+              "XYYxYxYxyyXy"
+            ],
+            "after": [
+              "XXXXXyxxyxxY",
+              "XXXyyxxYY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 47
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "YXXyxY",
+        "defining_word": "XyxY",
+        "isolator": "YXz",
+        "eliminated_axis": "x",
+        "unique_sign": -1,
+        "recovered_word": "zY",
+        "companion_template": "YYYXyXYYYxyXX",
+        "raw_rank2_endpoint": [
+          "XyXyxYY",
+          "YYXyyXYYYxyXyX"
+        ],
+        "best_pair": [
+          "XXYYYXyXYYYxy",
+          "XXyxYY"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYXyyXYYYxyXy",
+              "XYxYxyy"
+            ],
+            "after": [
+              "XXYYYXyXYYYxy",
+              "XXyxYY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 24
+      },
+      "attempted_endpoints": 10,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_81",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYYYYXyyxx",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXXXXYxxyyy"
+        ],
+        "best_pair": [
+          "XXXXXXYxxyy",
+          "XYYxyXy"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 24
+      },
+      "attempted_endpoints": 18,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "input_length": 22,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "YXXXXXyyxYY",
+        "defining_word": "XyyxYY",
+        "isolator": "YXXXXz",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXXXz",
+        "companion_template": "YYXyxxyyxYX",
+        "raw_rank2_endpoint": [
+          "XYYYYYxYYYYxyXyyyyXyyyy",
+          "XyyyyXYxYYxYYYYxyXyyy"
+        ],
+        "best_pair": [
+          "XXXYYYYYxxy",
+          "XXYYXyxxyxY"
+        ],
+        "best_length": 22,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYxYYYYxyXyyyyXyyyy",
+              "XYxYYxYYYYxyXyyyXyyyy"
+            ],
+            "after": [
+              "XYYYYYxYYYxyXyyyXyyy",
+              "XYxYxYYYxyXyyXyyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYxYYYxyXyyyXyyy",
+              "XYxYxYYYxyXyyXyyy"
+            ],
+            "after": [
+              "XXyxYYxYxYXyy",
+              "XYYYYYxYYxyXyyXyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyxYYxYxYXyy",
+              "XYYYYYxYYxyXyyXyy"
+            ],
+            "after": [
+              "XXyXYxyxYxy",
+              "XYYYYYxYxyXyXy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyXYxyxYxy",
+              "XYYYYYxYxyXyXy"
+            ],
+            "after": [
+              "XXXYYYYYxxy",
+              "XXYYXyxxyxY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 50
+      },
+      "attempted_endpoints": 4,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_83",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "YXzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxxx",
+        "companion_template": "YYYYYYYXXyxxx",
+        "raw_rank2_endpoint": [
+          "XYYxYXy",
+          "YYYXYYXYYXYYXYYXYYXYYXYYxyyyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXXYYxyyy",
+          "XYYxYXyyy"
+        ],
+        "best_length": 22,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYYXYYXYYXYYXYYXYYXYYxyyy",
+              "XYYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYXYXYXYYxyyy",
+              "XYYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYXYYxyyy",
+              "XYYxYXyy"
+            ],
+            "after": [
+              "XXXXXXXYYxyyy",
+              "XYYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 44
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_84",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYxx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzxx",
+        "companion_template": "YYYYYYYXXXYxx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YYXXXXXXXYYYXyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXXYYYXyy",
+          "XYYYxyXyy"
+        ],
+        "best_length": 22,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 32
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_85",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "input_length": 18,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYYYYYXXYYx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYXYYXYYXYYXYYXYYXYYYYXYYXy"
+        ],
+        "best_pair": [
+          "XXXXXXYYXXy",
+          "XYxYXyy"
+        ],
+        "best_length": 18,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYXYYXYYXYYXYYXYYXYYYYXYY"
+            ],
+            "after": [
+              "XXYXYXYXYXYXYYYXY",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYXYXYXYXYXYYYXY",
+              "XYxYXy"
+            ],
+            "after": [
+              "XXXXXXYYXXy",
+              "XYxYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 36
+      },
+      "attempted_endpoints": 15,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "input_length": 22,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "YXXXXXyyXYY",
+        "defining_word": "XyyXYY",
+        "isolator": "YXXXXz",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXXXz",
+        "companion_template": "YYXyxxyyXYx",
+        "raw_rank2_endpoint": [
+          "XYYYYYxYYYYxYXyyyyXyyyy",
+          "XyyyyXYxYYxYYYYxYXyyyyy"
+        ],
+        "best_pair": [
+          "XXXYYYYYxxY",
+          "XXYYXyxxYxy"
+        ],
+        "best_length": 22,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYxYYYYxYXyyyyXyyyy",
+              "XYxYYxYYYYxYXyyyyyXyyyy"
+            ],
+            "after": [
+              "XYYYYYxYYYxYXyyyXyyy",
+              "XYxYxYYYxYXyyyyXyyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYxYYYxYXyyyXyyy",
+              "XYxYxYYYxYXyyyyXyyy"
+            ],
+            "after": [
+              "XXyxYYxYYYxyXyy",
+              "XYYYYYxYYxYXyyXyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyxYYxYYYxyXyy",
+              "XYYYYYxYYxYXyyXyy"
+            ],
+            "after": [
+              "XYXyxYxYYxyXy",
+              "XYYYYYxYxYXyXy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYXyxYxYYxyXy",
+              "XYYYYYxYxYXyXy"
+            ],
+            "after": [
+              "XXXYYYYYxxY",
+              "XXYYXyxxYxy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 52
+      },
+      "attempted_endpoints": 4,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_87",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyx"
+      ],
+      "input_length": 20,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "XXXyXXXYY",
+        "defining_word": "XXYY",
+        "isolator": "XXXyXz",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxxZx",
+        "companion_template": "YYXyxYXyxyx",
+        "raw_rank2_endpoint": [
+          "XYYYxYYYYxYYY",
+          "YxYYYYxYXyxYXyyyyyXyy"
+        ],
+        "best_pair": [
+          "XXYxYxyXYxy",
+          "XXyyyxyyy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYYYxYYY",
+              "XYxYYYYYxyXYxyXyyyy"
+            ],
+            "after": [
+              "XYYYxYYYxYYY",
+              "XYxYYYYxyXYxyXyyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYYxYYY",
+              "XYxYYYYxyXYxyXyyy"
+            ],
+            "after": [
+              "XYYYxYYxYYY",
+              "XYxYYYxyXYxyXyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYxYYY",
+              "XYxYYYxyXYxyXyy"
+            ],
+            "after": [
+              "XYYYxYxYYY",
+              "XYxYYxyXYxyXy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYxYYY",
+              "XYxYYxyXYxyXy"
+            ],
+            "after": [
+              "XXYxYxyXYxy",
+              "XXyyyxyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 40
+      },
+      "attempted_endpoints": 6,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_88",
+      "input": [
+        "YYXXXyXX",
+        "YYxyXyxYXyx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "XXXyXXYY",
+        "defining_word": "XXYY",
+        "isolator": "XXXyz",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxxZ",
+        "companion_template": "YYxyXyxYXyx",
+        "raw_rank2_endpoint": [
+          "XYYxYYYxYYY",
+          "xYYYxyXyyXyxYXy"
+        ],
+        "best_pair": [
+          "XXYxyXYxyxY",
+          "XXyyxyyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYxYYYxYYY",
+              "XYxYYxYXyyyXYxy"
+            ],
+            "after": [
+              "XYYxYYxYYY",
+              "XYxYxYXyyXYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYxYYxYYY",
+              "XYxYxYXyyXYxy"
+            ],
+            "after": [
+              "XXyxYXyxYxy",
+              "XYYxYxYYY"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyxYXyxYxy",
+              "XYYxYxYYY"
+            ],
+            "after": [
+              "XXYxyXYxyxY",
+              "XXyyxyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 31
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_89",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyx",
+        "defining_word": "YXXY",
+        "isolator": "zxxyx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZX",
+        "companion_template": "YYYYYYYXyyyyyyx",
+        "raw_rank2_endpoint": [
+          "Xyxyxyy",
+          "yxyyyxyyyxyyyxyyyxyyyxyyyxYXYYYXYYYXYYYXYYYXYYYX"
+        ],
+        "best_pair": [
+          "XXXXXXXYxxxxxxy",
+          "XYxYYXyy"
+        ],
+        "best_length": 23,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxYY",
+              "XYYYXYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxyyyxy"
+            ],
+            "after": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXYYXYYXYxyyxyyxyyxyyxyyxy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxYY",
+              "XYYXYYXYYXYYXYYXYYXYxyyxyyxyyxyyxyyxy"
+            ],
+            "after": [
+              "XYXYXYXYXYXYXYxyxyxyxyxyxy",
+              "XYxYYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYXYxyxyxyxyxyxy",
+              "XYxYYXy"
+            ],
+            "after": [
+              "XXXXXXXYxxxxxxy",
+              "XYxYYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 60
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_90",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXyxxx",
+        "defining_word": "YYXX",
+        "isolator": "zXyxxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xZXXX",
+        "companion_template": "YYXyxYXyxyX",
+        "raw_rank2_endpoint": [
+          "XyyyxyyxYYY",
+          "yyyxyyxYXyxYXYXYYYY"
+        ],
+        "best_pair": [
+          "XXYYYxyyy",
+          "XXyxYxyXYxy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYxyyxYXyxY",
+              "XYYXYYYxyyy"
+            ],
+            "after": [
+              "XXYxyxYXyxY",
+              "XYXYYYxyyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxyxYXyxY",
+              "XYXYYYxyyy"
+            ],
+            "after": [
+              "XXYYYxyyy",
+              "XXyxYxyXYxy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 36
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_91",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYYYXyyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXyXyXyXYxYxYxYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXXXXYxxxxxxy",
+          "XYYYxyXy"
+        ],
+        "best_length": 23,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxYxYxYxyXyXyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXXXYxxxxxxy",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 42
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_92",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxxx",
+        "companion_template": "YYYYYYYXyyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYYXYYYXYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxyyyxyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXXYxxxxxxy",
+          "XYxYXyyy"
+        ],
+        "best_length": 23,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYYYXYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxyyyxy"
+            ],
+            "after": [
+              "XYYXYYXYYXYYXYYXYYXYxyyxyyxyyxyyxyyxy",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYYXYYXYYXYYXYYXYYXYxyyxyyxyyxyyxyyxy",
+              "XYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYXYXYXYxyxyxyxyxyxy",
+              "XYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYXYxyxyxyxyxyxy",
+              "XYxYXyy"
+            ],
+            "after": [
+              "XXXXXXXYxxxxxxy",
+              "XYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 64
+      },
+      "attempted_endpoints": 9,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_93",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "input_length": 23,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYYYxyyyyyyX",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXyXyXyXyxYxYxYxYxYx"
+        ],
+        "best_pair": [
+          "XXXXXXXyxxxxxxY",
+          "XYYYxyXy"
+        ],
+        "best_length": 23,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxYxYxYxYxyXyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXXXyxxxxxxY",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 40
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_94",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXYxYx",
+        "defining_word": "XYxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYYYXyyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYXyyXyy",
+          "YXyXyXyXyXyXyXYxYxYxYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXXXXYxxxxxxy",
+          "XYYYXyXy"
+        ],
+        "best_length": 23,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYXyyXyy",
+              "XYxYxYxYxYxYxyXyXyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXXXYxxxxxxy",
+              "XYYYXyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 42
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_95",
+      "input": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXyxx",
+        "defining_word": "YYXX",
+        "isolator": "zXyxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xZXX",
+        "companion_template": "YYxyxyXYxyX",
+        "raw_rank2_endpoint": [
+          "XyyxyxYYY",
+          "yyxyxyXXYxyXYYY"
+        ],
+        "best_pair": [
+          "XXYYxyyy",
+          "XXyxYXyxYxY"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxyXYxyxy",
+              "XYXYYxyyy"
+            ],
+            "after": [
+              "XXYYxyyy",
+              "XXyxYXyxYxY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 29
+      },
+      "attempted_endpoints": 14,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_96",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "input_length": 23,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXYxxyX",
+        "defining_word": "YXXY",
+        "isolator": "zxxyX",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "XXZx",
+        "companion_template": "YYYYYYYXyyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYxYxyy",
+          "YxyxyxyxyxyxyxYXYXYXYXYXYXyy"
+        ],
+        "best_pair": [
+          "XXXXXXXYxxxxxxy",
+          "XYxYYxyy"
+        ],
+        "best_length": 23,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYXYxyxyxyxyxyxy",
+              "XYxYxyy"
+            ],
+            "after": [
+              "XXXXXXXYxxxxxxy",
+              "XYxYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 40
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_97",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYYYYYXyyxx",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXXXXXYxxyyy"
+        ],
+        "best_pair": [
+          "XXXXXXXYxxyy",
+          "XYYxyXy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 25
+      },
+      "attempted_endpoints": 19,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_98",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYYYYYYXXYYx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYXYYXYYXYYXYYXYYXYYXYYYYXYYXy"
+        ],
+        "best_pair": [
+          "XXXXXXXYYXXy",
+          "XYxYXyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYXYYXYYXYYXYYXYYXYYXYYYYXYY"
+            ],
+            "after": [
+              "XXYXYXYXYXYXYXYYYXY",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYXYXYXYXYXYXYYYXY",
+              "XYxYXy"
+            ],
+            "after": [
+              "XXXXXXXYYXXy",
+              "XYxYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 39
+      },
+      "attempted_endpoints": 15,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_99",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyxyXyX"
+      ],
+      "input_length": 19,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXyxx",
+        "defining_word": "YXXy",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYYxyXyxyXyX",
+        "raw_rank2_endpoint": [
+          "XYYXYYxyy",
+          "YYXYYXYYXyxyxyyyxyxy"
+        ],
+        "best_pair": [
+          "XXXyxYxyxYxY",
+          "XXYYxyy"
+        ],
+        "best_length": 19,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYYYXYXYxyyxyyxy",
+              "XYYXYYxyy"
+            ],
+            "after": [
+              "XXYYXXYxyxyxy",
+              "XYXYYxyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYYXXYxyxyxy",
+              "XYXYYxyy"
+            ],
+            "after": [
+              "XXXyxYxyxYxY",
+              "XXYYxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 33
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_100",
+      "input": [
+        "YYXXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 20,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXXyxx",
+        "defining_word": "YYXX",
+        "isolator": "zXXyxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxZXX",
+        "companion_template": "YYXyxyXYxyX",
+        "raw_rank2_endpoint": [
+          "XyyxxYYYY",
+          "yyxxYXyXYxyXYYY"
+        ],
+        "best_pair": [
+          "XXYYxyyyy",
+          "XXyxYXyxYxy"
+        ],
+        "best_length": 20,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 12,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXYxYx",
+        "defining_word": "XYxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYYYYXyyyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYXyyXyy",
+          "YXyXyXyXyXyXyXyXYxYxYxYxYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXXXXXYxxxxxxxy",
+          "XYYYXyXy"
+        ],
+        "best_length": 25,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYXyyXyy",
+              "XYxYxYxYxYxYxYxyXyXyXyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXXXXYxxxxxxxy",
+              "XYYYXyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 46
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_102",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "input_length": 25,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYYYYxyyyyyyyX",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXyXyXyXyXyxYxYxYxYxYxYx"
+        ],
+        "best_pair": [
+          "XXXXXXXXyxxxxxxxY",
+          "XYYYxyXy"
+        ],
+        "best_length": 25,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxYxYxYxYxYxyXyXyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXXXXyxxxxxxxY",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 44
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_103",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxxx",
+        "companion_template": "YYYYYYYYXyyyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYYXYYYXYYYXYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxyyyxyyyxyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXXXYxxxxxxxy",
+          "XYxYXyyy"
+        ],
+        "best_length": 25,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYYYXYYYXYYYXYYYXYYYXYYYXYYYXYxyyyxyyyxyyyxyyyxyyyxyyyxy"
+            ],
+            "after": [
+              "XYYXYYXYYXYYXYYXYYXYYXYxyyxyyxyyxyyxyyxyyxy",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYYXYYXYYXYYXYYXYYXYYXYxyyxyyxyyxyyxyyxyyxy",
+              "XYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYXYXYXYXYxyxyxyxyxyxyxy",
+              "XYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYXYXYxyxyxyxyxyxyxy",
+              "XYxYXyy"
+            ],
+            "after": [
+              "XXXXXXXXYxxxxxxxy",
+              "XYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 72
+      },
+      "attempted_endpoints": 9,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_104",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzx",
+        "companion_template": "YYYYYYYYXyyyyyyyx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YXyXyXyXyXyXyXyXYxYxYxYxYxYxYxyy"
+        ],
+        "best_pair": [
+          "XXXXXXXXYxxxxxxxy",
+          "XYYYxyXy"
+        ],
+        "best_length": 25,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxyXyy",
+              "XYxYxYxYxYxYxYxyXyXyXyXyXyXyXy"
+            ],
+            "after": [
+              "XXXXXXXXYxxxxxxxy",
+              "XYYYxyXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 46
+      },
+      "attempted_endpoints": 13,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_105",
+      "input": [
+        "YYXXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYXXXXyxxx",
+        "defining_word": "YYXX",
+        "isolator": "zXXyxxx",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxZXXX",
+        "companion_template": "YYXyXyxYXyx",
+        "raw_rank2_endpoint": [
+          "XyyyxyxYYYY",
+          "yyyxyxYXYYXyxYXYY"
+        ],
+        "best_pair": [
+          "XXYYYxyyyy",
+          "XXYxyXYxyxy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYYYxyyyy",
+              "XYXYxyXYxyyxy"
+            ],
+            "after": [
+              "XXYYYxyyyy",
+              "XXYxyXYxyxy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 35
+      },
+      "attempted_endpoints": 10,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 21,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "XXXXyXXXYY",
+        "defining_word": "XXYY",
+        "isolator": "XXXXyXz",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "xxxxZx",
+        "companion_template": "YYXyxyXYxyX",
+        "raw_rank2_endpoint": [
+          "XYYYxYYYYYxYYYY",
+          "YxYYYYYxYXyyyyyyXYxyX"
+        ],
+        "best_pair": [
+          "XXyxYXyxYxy",
+          "XXyyyxyyyy"
+        ],
+        "best_length": 21,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYYYYxYYYY",
+              "XYxYYYYYxYXyyyyyyXYxy"
+            ],
+            "after": [
+              "XYYYxYYYYxYYYY",
+              "XYxYYYYxYXyyyyyXYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYYYxYYYY",
+              "XYxYYYYxYXyyyyyXYxy"
+            ],
+            "after": [
+              "XYYYxYYYxYYYY",
+              "XYxYYYxYXyyyyXYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYYxYYYY",
+              "XYxYYYxYXyyyyXYxy"
+            ],
+            "after": [
+              "XYYYxYYxYYYY",
+              "XYxYYxYXyyyXYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYYxYYYY",
+              "XYxYYxYXyyyXYxy"
+            ],
+            "after": [
+              "XYYYxYxYYYY",
+              "XYxYxYXyyXYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYxYxYYYY",
+              "XYxYxYXyyXYxy"
+            ],
+            "after": [
+              "XXyxYXyxYxy",
+              "XXyyyxyyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 43
+      },
+      "attempted_endpoints": 8,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_107",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "input_length": 22,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "YXzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxxx",
+        "companion_template": "YYYYYYYXXXYxx",
+        "raw_rank2_endpoint": [
+          "XYYxYXy",
+          "YYYXYYXYYXYYXYYXYYXYYXYYYYYXyyy"
+        ],
+        "best_pair": [
+          "XXXXXXXYYYXyy",
+          "XYYxYXyyy"
+        ],
+        "best_length": 22,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYYXYYXYYXYYXYYXYYXYYYYY",
+              "XYYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYXYXYXYYYYXy",
+              "XYYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYXYYYYXy",
+              "XYYxYXyy"
+            ],
+            "after": [
+              "XXXXXXXYYYXyy",
+              "XYYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 44
+      },
+      "attempted_endpoints": 10,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_108",
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "input_length": 24,
+      "best": {
+        "source": 1,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "YYYYYYxYYXYxY",
+        "defining_word": "XYxY",
+        "isolator": "YYYYYYxYYz",
+        "eliminated_axis": "x",
+        "unique_sign": 1,
+        "recovered_word": "yyyyyyZyy",
+        "companion_template": "YXYXyxyXYxx",
+        "raw_rank2_endpoint": [
+          "XYYxYXy",
+          "YYYxYYYYYYYYYxyXyxYXyyyyyyyyXyy"
+        ],
+        "best_pair": [
+          "XXYxYxyXyxY",
+          "XYYYYYYYXYYxY"
+        ],
+        "best_length": 24,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYxYXy",
+              "XYxYXyyyyyyyyyXyxYYYYYYYYxy"
+            ],
+            "after": [
+              "XXYYxY",
+              "XYxYXyyyyyyyyXyxYYYYYYYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXYYxY",
+              "XYxYXyyyyyyyyXyxYYYYYYYxy"
+            ],
+            "after": [
+              "XYXYYxY",
+              "XYxYXyyyyyyyXyxYYYYYYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYXYYxY",
+              "XYxYXyyyyyyyXyxYYYYYYxy"
+            ],
+            "after": [
+              "XYYXYYxY",
+              "XYxYXyyyyyyXyxYYYYYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYXYYxY",
+              "XYxYXyyyyyyXyxYYYYYxy"
+            ],
+            "after": [
+              "XYYYXYYxY",
+              "XYxYXyyyyyXyxYYYYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYXYYxY",
+              "XYxYXyyyyyXyxYYYYxy"
+            ],
+            "after": [
+              "XYYYYXYYxY",
+              "XYxYXyyyyXyxYYYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYXYYxY",
+              "XYxYXyyyyXyxYYYxy"
+            ],
+            "after": [
+              "XYYYYYXYYxY",
+              "XYxYXyyyXyxYYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYXYYxY",
+              "XYxYXyyyXyxYYxy"
+            ],
+            "after": [
+              "XYYYYYYXYYxY",
+              "XYxYXyyXyxYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYYXYYxY",
+              "XYxYXyyXyxYxy"
+            ],
+            "after": [
+              "XXYxYxyXyxY",
+              "XYYYYYYYXYYxY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 48
+      },
+      "attempted_endpoints": 6,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "best": {
+        "source": 1,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "YYYYYXXXYxxY",
+        "defining_word": "XXYxxY",
+        "isolator": "YYYYYXz",
+        "eliminated_axis": "x",
+        "unique_sign": -1,
+        "recovered_word": "zYYYYY",
+        "companion_template": "YYXXyxYxxyX",
+        "raw_rank2_endpoint": [
+          "XyyyyyXyyyyyXYxYYYYYxYYYYYY",
+          "yyyXyyyyyXyxYYYYYYxYYYYYxyX"
+        ],
+        "best_pair": [
+          "XXXYxxYYYYYY",
+          "XXyXYxxyyxY"
+        ],
+        "best_length": 23,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYxYYYYYxYYYYYYXyyyyyXyyyyy",
+              "XYxYYYYYxYYYxYXyyyyyXyyyyyy"
+            ],
+            "after": [
+              "XYxYYYYxYYYYYYXyyyyXyyyy",
+              "XYxYYYYxYYxYXyyyyXyyyyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYxYYYYxYYYYYYXyyyyXyyyy",
+              "XYxYYYYxYYxYXyyyyXyyyyy"
+            ],
+            "after": [
+              "XYxYYYxYYYYYYXyyyXyyy",
+              "XYxYYYxYxYXyyyXyyyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYxYYYxYYYYYYXyyyXyyy",
+              "XYxYYYxYxYXyyyXyyyy"
+            ],
+            "after": [
+              "XXyyXyxYYYxYYxy",
+              "XYxYYxYYYYYYXyyXyy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XXyyXyxYYYxYYxy",
+              "XYxYYxYYYYYYXyyXyy"
+            ],
+            "after": [
+              "XYXyXyxYYxYxy",
+              "XYxYxYYYYYYXyXy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYXyXyxYYxYxy",
+              "XYxYxYYYYYYXyXy"
+            ],
+            "after": [
+              "XXXYxxYYYYYY",
+              "XXyXYxxyyxY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 61
+      },
+      "attempted_endpoints": 4,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_110",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "input_length": 22,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYxx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzxx",
+        "companion_template": "YYYYYYYXXyxxx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YYXXXXXXXYYxyyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXXYYxyyy",
+          "XYYYxyXyy"
+        ],
+        "best_length": 22,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 32
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_111",
+      "input": [
+        "YXYXYxxyXyx",
+        "YYYYYYYxyXyyx"
+      ],
+      "input_length": 24,
+      "best": {
+        "source": 1,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YYYYYYYxyXyyx",
+        "defining_word": "Xyyx",
+        "isolator": "YYYYYYYxyz",
+        "eliminated_axis": "x",
+        "unique_sign": 1,
+        "recovered_word": "yyyyyyyZY",
+        "companion_template": "YXYXYxxyXyx",
+        "raw_rank2_endpoint": [
+          "XyxyyXY",
+          "xYYYYYYYxYXyyyyyyXyxyXY"
+        ],
+        "best_pair": [
+          "XXyxyXYxYxY",
+          "XYYYYYYYXyxyy"
+        ],
+        "best_length": 24,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYXyxyy",
+              "XYxYYYYYYYxYXyyyyyyXyxy"
+            ],
+            "after": [
+              "XYYXyxyy",
+              "XYxYYYYYYxYXyyyyyXyxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYXyxyy",
+              "XYxYYYYYYxYXyyyyyXyxy"
+            ],
+            "after": [
+              "XYYYXyxyy",
+              "XYxYYYYYxYXyyyyXyxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYXyxyy",
+              "XYxYYYYYxYXyyyyXyxy"
+            ],
+            "after": [
+              "XYYYYXyxyy",
+              "XYxYYYYxYXyyyXyxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYXyxyy",
+              "XYxYYYYxYXyyyXyxy"
+            ],
+            "after": [
+              "XYYYYYXyxyy",
+              "XYxYYYxYXyyXyxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYXyxyy",
+              "XYxYYYxYXyyXyxy"
+            ],
+            "after": [
+              "XYYYYYYXyxyy",
+              "XYxYYxYXyXyxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYYXyxyy",
+              "XYxYYxYXyXyxy"
+            ],
+            "after": [
+              "XXyxyXYxYxY",
+              "XYYYYYYYXyxyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 40
+      },
+      "attempted_endpoints": 7,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_112",
+      "input": [
+        "YXYxxyXYXyx",
+        "YYYYYYYxyyXYx"
+      ],
+      "input_length": 24,
+      "best": {
+        "source": 1,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "YYYYYYxyyXYxY",
+        "defining_word": "XYxY",
+        "isolator": "YYYYYYxyyz",
+        "eliminated_axis": "x",
+        "unique_sign": 1,
+        "recovered_word": "yyyyyyZYY",
+        "companion_template": "YXYxxyXYXyx",
+        "raw_rank2_endpoint": [
+          "XyyxYXYYY",
+          "yxYXyyyyXyxYYYYYxyXYY"
+        ],
+        "best_pair": [
+          "XXyxYxyXYxY",
+          "XYYYYYYYXyyxY"
+        ],
+        "best_length": 24,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYXyyxY",
+              "XYxYXyyyyXyxYYYYYxy"
+            ],
+            "after": [
+              "XYYYYXyyxY",
+              "XYxYXyyyXyxYYYYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYXyyxY",
+              "XYxYXyyyXyxYYYYxy"
+            ],
+            "after": [
+              "XYYYYYXyyxY",
+              "XYxYXyyXyxYYYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYXyyxY",
+              "XYxYXyyXyxYYYxy"
+            ],
+            "after": [
+              "XYYYYYYXyyxY",
+              "XYxYXyXyxYYxy"
+            ]
+          },
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYYYYXyyxY",
+              "XYxYXyXyxYYxy"
+            ],
+            "after": [
+              "XXyxYxyXYxY",
+              "XYYYYYYYXyyxY"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 40
+      },
+      "attempted_endpoints": 8,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_113",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXXyxYxx",
+        "defining_word": "XyxY",
+        "isolator": "YXXzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "XXzxx",
+        "companion_template": "YYYYYYYYXXXYxx",
+        "raw_rank2_endpoint": [
+          "XYYYxyXyy",
+          "YYXXXXXXXXYYYXyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXXXYYYXyy",
+          "XYYYxyXyy"
+        ],
+        "best_length": 23,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 33
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_114",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYYXXyxxx"
+      ],
+      "input_length": 23,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyXYxxx",
+        "defining_word": "XyXY",
+        "isolator": "YXzxxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzxxx",
+        "companion_template": "YYYYYYYYXXyxxx",
+        "raw_rank2_endpoint": [
+          "XYYxYXy",
+          "YYYXYYXYYXYYXYYXYYXYYXYYXYYxyyyyyy"
+        ],
+        "best_pair": [
+          "XXXXXXXXYYxyyy",
+          "XYYxYXyyy"
+        ],
+        "best_length": 23,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYYXYYXYYXYYXYYXYYXYYXYYxyyy",
+              "XYYxYXy"
+            ],
+            "after": [
+              "XYXYXYXYXYXYXYXYYxyyy",
+              "XYYxYXyy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XYXYXYXYXYXYXYXYYxyyy",
+              "XYYxYXyy"
+            ],
+            "after": [
+              "XXXXXXXXYYxyyy",
+              "XYYxYXyyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 47
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_115",
+      "input": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "input_length": 13,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXYxyx",
+        "defining_word": "XYxy",
+        "isolator": "Yzx",
+        "eliminated_axis": "x",
+        "unique_sign": 1,
+        "recovered_word": "Zy",
+        "companion_template": "YYYYxxx",
+        "raw_rank2_endpoint": [
+          "XYxYXyy",
+          "YYYYXyXyXy"
+        ],
+        "best_pair": [
+          "XXXYYYY",
+          "XYxYXy"
+        ],
+        "best_length": 13,
+        "nielsen_trace": [
+          {
+            "images": [
+              "xy",
+              "y"
+            ],
+            "before": [
+              "XYYYXyXy",
+              "XYxYXyy"
+            ],
+            "after": [
+              "XXXYYYY",
+              "XYxYXy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 20
+      },
+      "attempted_endpoints": 11,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 5,
+        "oriented_source": "yXYYYXy",
+        "defining_word": "XYYYXy",
+        "isolator": "yz",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "Z",
+        "companion_template": "YXXXyxx",
+        "raw_rank2_endpoint": [
+          "XYxxxYX",
+          "xYYYXyy"
+        ],
+        "best_pair": [
+          "XXXyxxy",
+          "XYYxyyy"
+        ],
+        "best_length": 14,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 21
+      },
+      "attempted_endpoints": 4,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "YXyyxYY",
+        "defining_word": "XyyxYY",
+        "isolator": "Yz",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "z",
+        "companion_template": "YXXXyxx",
+        "raw_rank2_endpoint": [
+          "XYxxyXX",
+          "XYYYxyy"
+        ],
+        "best_pair": [
+          "XXXYxxy",
+          "XYYYxyy"
+        ],
+        "best_length": 14,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 21
+      },
+      "attempted_endpoints": 4,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_118",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYYXyxx",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXXYxyyy"
+        ],
+        "best_pair": [
+          "XXXXYxyy",
+          "XYYxyXy"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 21
+      },
+      "attempted_endpoints": 18,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_119",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "input_length": 16,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYYYXyxx",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXXXYxyyy"
+        ],
+        "best_pair": [
+          "XXXXXYxyy",
+          "XYYxyXy"
+        ],
+        "best_length": 16,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 22
+      },
+      "attempted_endpoints": 17,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_120",
+      "input": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXXyxYx",
+        "defining_word": "XyxY",
+        "isolator": "YXzx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "Xzx",
+        "companion_template": "YYYXyyxx",
+        "raw_rank2_endpoint": [
+          "XYYxyXy",
+          "YXXXYxxyyy"
+        ],
+        "best_pair": [
+          "XXXYxxyy",
+          "XYYxyXy"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 21
+      },
+      "attempted_endpoints": 20,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_121",
+      "input": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYYXXYYx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYXYYXYYXYYYYXYYXy"
+        ],
+        "best_pair": [
+          "XXXYYXXy",
+          "XYxYXyy"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYXYYXYYXYYYYXYY"
+            ],
+            "after": [
+              "XXYXYXYYYXY",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYXYXYYYXY",
+              "XYxYXy"
+            ],
+            "after": [
+              "XXXYYXXy",
+              "XYxYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 27
+      },
+      "attempted_endpoints": 15,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_122",
+      "input": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "input_length": 16,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYYYXXYYx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYXYYXYYXYYXYYYYXYYXy"
+        ],
+        "best_pair": [
+          "XXXXYYXXy",
+          "XYxYXyy"
+        ],
+        "best_length": 16,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYXYYXYYXYYXYYYYXYY"
+            ],
+            "after": [
+              "XXYXYXYXYYYXY",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYXYXYXYYYXY",
+              "XYxYXy"
+            ],
+            "after": [
+              "XXXXYYXXy",
+              "XYxYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 30
+      },
+      "attempted_endpoints": 15,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_123",
+      "input": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "input_length": 17,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 0,
+        "oriented_source": "YXyXYxx",
+        "defining_word": "XyXY",
+        "isolator": "Yzxx",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "zxx",
+        "companion_template": "YYYYYXXYYx",
+        "raw_rank2_endpoint": [
+          "XYxYX",
+          "YYXYYXYYXYYXYYXYYYYXYYXy"
+        ],
+        "best_pair": [
+          "XXXXXYYXXy",
+          "XYxYXyy"
+        ],
+        "best_length": 17,
+        "nielsen_trace": [
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYxY",
+              "XYXYYXYYXYYXYYXYYYYXYY"
+            ],
+            "after": [
+              "XXYXYXYXYXYYYXY",
+              "XYxYXy"
+            ]
+          },
+          {
+            "images": [
+              "Yx",
+              "y"
+            ],
+            "before": [
+              "XXYXYXYXYXYYYXY",
+              "XYxYXy"
+            ],
+            "after": [
+              "XXXXXYYXXy",
+              "XYxYXyy"
+            ]
+          }
+        ],
+        "recorded_rank3_boundary_max_total_length": 33
+      },
+      "attempted_endpoints": 15,
+      "limit_hit": false
+    }
+  ],
+  "source_path": "data/ms_unsolved_reps/aca_124_best.csv",
+  "source_sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3"
+}

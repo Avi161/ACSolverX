@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "known_triviality_proof": "Target x a^11=1 gives x=a^-11; the BS(4,5) donor becomes a^4=a^5, forcing a=x=h=1.",
+    "signed_rebases_checked": [
+      {
+        "old": -2,
+        "new": -3,
+        "flow": -1,
+        "before_length": 26,
+        "after_length": 16
+      },
+      {
+        "old": -2,
+        "new": -3,
+        "flow": 0,
+        "before_length": 26,
+        "after_length": 17
+      },
+      {
+        "old": -2,
+        "new": -3,
+        "flow": 1,
+        "before_length": 26,
+        "after_length": 16
+      },
+      {
+        "old": -2,
+        "new": 3,
+        "flow": -1,
+        "before_length": 26,
+        "after_length": 16
+      },
+      {
+        "old": -2,
+        "new": 3,
+        "flow": 0,
+        "before_length": 26,
+        "after_length": 17
+      },
+      {
+        "old": -2,
+        "new": 3,
+        "flow": 1,
+        "before_length": 26,
+        "after_length": 16
+      },
+      {
+        "old": 2,
+        "new": -3,
+        "flow": -1,
+        "before_length": 26,
+        "after_length": 16
+      },
+      {
+        "old": 2,
+        "new": -3,
+        "flow": 0,
+        "before_length": 26,
+        "after_length": 17
+      },
+      {
+        "old": 2,
+        "new": -3,
+        "flow": 1,
+        "before_length": 26,
+        "after_length": 16
+      },
+      {
+        "old": 2,
+        "new": 3,
+        "flow": -1,
+        "before_length": 26,
+        "after_length": 16
+      },
+      {
+        "old": 2,
+        "new": 3,
+        "flow": 0,
+        "before_length": 26,
+        "after_length": 17
+      },
+      {
+        "old": 2,
+        "new": 3,
+        "flow": 1,
+        "before_length": 26,
+        "after_length": 16
+      }
+    ],
+    "single_planted_probe_candidates": 19,
+    "single_planted_probe_units": 1000,
+    "source_sha256": "e7a1f3fc5bb46ff1a8b54239405700816486c3a6d963dec411af0a122ed2cc1f"
+  },
+  "census_searches": 0,
+  "verifier_sha256": "823dde0d1331d909cf69869f9f3c93bd3a0865bbf61149cd73fbe07af27ff18f",
+  "script_sha256": "ec0b0aa8fbf471df8c9660b3eadaec8fbc51eff256d768b5cf334e159ed24c7b"
+}

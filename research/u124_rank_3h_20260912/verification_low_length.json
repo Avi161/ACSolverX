@@ -1,0 +1,308 @@
+{
+  "status": "PASS",
+  "rank3_theorem": "L <= 12 implies a nonincreasing singleton removal",
+  "general_theorem": "No nonincreasing singleton removal implies L >= 4r",
+  "hypotheses": "Nonempty freely and cyclically reduced balanced tuple on its occurring basis; exponent matrix determinant +/-1.",
+  "raw_residual_count_patterns": [
+    [
+      [
+        6,
+        3,
+        3
+      ],
+      [
+        1,
+        0,
+        3
+      ],
+      [
+        4,
+        1,
+        0
+      ]
+    ],
+    [
+      [
+        5,
+        3,
+        4
+      ],
+      [
+        1,
+        0,
+        3
+      ],
+      [
+        3,
+        1,
+        1
+      ]
+    ],
+    [
+      [
+        5,
+        3,
+        4
+      ],
+      [
+        3,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        3
+      ]
+    ],
+    [
+      [
+        5,
+        4,
+        3
+      ],
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        4,
+        1,
+        0
+      ]
+    ],
+    [
+      [
+        5,
+        4,
+        3
+      ],
+      [
+        1,
+        0,
+        3
+      ],
+      [
+        3,
+        2,
+        0
+      ]
+    ],
+    [
+      [
+        5,
+        4,
+        3
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        3,
+        1,
+        1
+      ]
+    ],
+    [
+      [
+        5,
+        4,
+        3
+      ],
+      [
+        3,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        3
+      ]
+    ]
+  ],
+  "five_residual_patterns": [
+    [
+      [
+        6,
+        3,
+        3
+      ],
+      [
+        1,
+        0,
+        3
+      ],
+      [
+        4,
+        1,
+        0
+      ]
+    ],
+    [
+      [
+        5,
+        3,
+        4
+      ],
+      [
+        1,
+        0,
+        3
+      ],
+      [
+        3,
+        1,
+        1
+      ]
+    ],
+    [
+      [
+        5,
+        3,
+        4
+      ],
+      [
+        3,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        3
+      ]
+    ],
+    [
+      [
+        5,
+        4,
+        3
+      ],
+      [
+        1,
+        1,
+        2
+      ],
+      [
+        3,
+        1,
+        1
+      ]
+    ],
+    [
+      [
+        5,
+        4,
+        3
+      ],
+      [
+        3,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        3
+      ]
+    ]
+  ],
+  "saved_unimodular_witnesses_replayed": 76,
+  "scalar_sign_checks": 96,
+  "cyclic_triple_checks": 16,
+  "forced_cancellation_shapes": [
+    {
+      "donor": [
+        101,
+        101,
+        307,
+        -101,
+        -100000000000000000000
+      ],
+      "replacement": [
+        -101,
+        -101,
+        100000000000000000000,
+        101
+      ],
+      "image": [
+        -100000000000000000000,
+        -100000000000000000000,
+        101
+      ]
+    },
+    {
+      "donor": [
+        101,
+        101,
+        -100000000000000000000,
+        -101,
+        307
+      ],
+      "replacement": [
+        101,
+        100000000000000000000,
+        -101,
+        -101
+      ],
+      "image": [
+        -100000000000000000000,
+        -100000000000000000000,
+        101
+      ]
+    },
+    {
+      "donor": [
+        101,
+        101,
+        307,
+        -101,
+        100000000000000000000
+      ],
+      "replacement": [
+        -101,
+        -101,
+        -100000000000000000000,
+        101
+      ],
+      "image": [
+        -100000000000000000000,
+        -100000000000000000000,
+        -101
+      ]
+    },
+    {
+      "donor": [
+        101,
+        101,
+        100000000000000000000,
+        -101,
+        307
+      ],
+      "replacement": [
+        101,
+        -100000000000000000000,
+        -101,
+        -101
+      ],
+      "image": [
+        -100000000000000000000,
+        -100000000000000000000,
+        -101
+      ]
+    }
+  ],
+  "combined_inequality_controls": 454,
+  "census_searches": 0,
+  "sources": {
+    "rank3_low_length.md": "6194ef25b3b0176643773517ba5cd075eaf689be743a59ce17ca913c3356d3ba",
+    "rank3_low_length.py": "ade1b81115a999a99222b315560e93067e173f39752485785bb26c970c97927b",
+    "rank3_low_length.json": "97160bfa50b07fcb9a2729873da2b94ebdf9a980b6c8094c78caabadae4e0647"
+  },
+  "script_sha256": "e50c1a257de87eb69009e8f8f266b019b2a280b8805c4818b9468ea78681b0bf",
+  "scope": "Proof review establishes count-case completeness. Saved finite controls supplement it and do not establish known triviality or sharpness."
+}

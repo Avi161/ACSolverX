@@ -1,0 +1,982 @@
+{
+  "status": "pass",
+  "algorithm": "explicit disjoint set blocks; one fold collision per iteration; no union-find",
+  "source": "https://gcc.episciences.org/6059/pdf",
+  "source_result": "Lemma 5.3; one-vertex case in Theorem 5.4",
+  "scope": "Exact cyclic join-complement absence for the 124 saved literal input subgroups only; no claim of group nontriviality or absence after AC moves.",
+  "counts": {
+    "control_graphs_and_decisions": 298,
+    "positive_control_words_verified": 270,
+    "root_graphs_checked": 124,
+    "root_identifications_crosschecked": 14864
+  },
+  "controls": [
+    {
+      "pair": [],
+      "status": "no_cyclic_complement",
+      "pairs_checked": 0,
+      "complete": true
+    },
+    {
+      "pair": [
+        "",
+        ""
+      ],
+      "status": "no_cyclic_complement",
+      "pairs_checked": 0,
+      "complete": true
+    },
+    {
+      "pair": [
+        "x"
+      ],
+      "status": "cyclic_complement",
+      "complement": "y",
+      "pairs_checked": 0,
+      "complete": true
+    },
+    {
+      "pair": [
+        "Y"
+      ],
+      "status": "cyclic_complement",
+      "complement": "x",
+      "pairs_checked": 0,
+      "complete": true
+    },
+    {
+      "pair": [
+        "x",
+        "y"
+      ],
+      "status": "already_generates",
+      "complement": "",
+      "pairs_checked": 0,
+      "complete": true
+    },
+    {
+      "pair": [
+        "xx",
+        "yy"
+      ],
+      "status": "no_cyclic_complement",
+      "pairs_checked": 3,
+      "complete": true
+    },
+    {
+      "pair": [
+        "xx",
+        "y"
+      ],
+      "status": "cyclic_complement",
+      "complement": "X",
+      "identified": [
+        0,
+        1
+      ],
+      "pairs_checked": 1,
+      "complete": true
+    },
+    {
+      "pair": [
+        "xyX",
+        ""
+      ],
+      "status": "cyclic_complement",
+      "complement": "X",
+      "identified": [
+        0,
+        1
+      ],
+      "pairs_checked": 1,
+      "complete": true
+    },
+    {
+      "pair": [
+        "xYyX",
+        "y"
+      ],
+      "status": "cyclic_complement",
+      "complement": "x",
+      "pairs_checked": 0,
+      "complete": true
+    }
+  ],
+  "records": [
+    {
+      "name": "aca_0",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_1",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_2",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_3",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_4",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_5",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_6",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_7",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_8",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_9",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_10",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_11",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_12",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_13",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_14",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_15",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_16",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_17",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_18",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_19",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_20",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_21",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_22",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_23",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_24",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_25",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_26",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_27",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_28",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_29",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_30",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_31",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_32",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_33",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_34",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_35",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_36",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_37",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_38",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_39",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_40",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_41",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_42",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_43",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_44",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_45",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_46",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_47",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_48",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_49",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_50",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_51",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_52",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_53",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_54",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_55",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_56",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_57",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_58",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_59",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_60",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_61",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_62",
+      "vertices": 18,
+      "pairs_checked": 153,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_63",
+      "vertices": 19,
+      "pairs_checked": 171,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_64",
+      "vertices": 18,
+      "pairs_checked": 153,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_65",
+      "vertices": 18,
+      "pairs_checked": 153,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_66",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_67",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_68",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_69",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_70",
+      "vertices": 19,
+      "pairs_checked": 171,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_71",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_72",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_73",
+      "vertices": 19,
+      "pairs_checked": 171,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_74",
+      "vertices": 18,
+      "pairs_checked": 153,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_75",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_76",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_77",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_78",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_79",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_80",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_81",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_82",
+      "vertices": 19,
+      "pairs_checked": 171,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_83",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_84",
+      "vertices": 17,
+      "pairs_checked": 136,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_85",
+      "vertices": 15,
+      "pairs_checked": 105,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_86",
+      "vertices": 19,
+      "pairs_checked": 171,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_87",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_88",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_89",
+      "vertices": 19,
+      "pairs_checked": 171,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_90",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_91",
+      "vertices": 20,
+      "pairs_checked": 190,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_92",
+      "vertices": 20,
+      "pairs_checked": 190,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_93",
+      "vertices": 21,
+      "pairs_checked": 210,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_94",
+      "vertices": 20,
+      "pairs_checked": 190,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_95",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_96",
+      "vertices": 21,
+      "pairs_checked": 210,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_97",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_98",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_99",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_100",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_101",
+      "vertices": 22,
+      "pairs_checked": 231,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_102",
+      "vertices": 23,
+      "pairs_checked": 253,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_103",
+      "vertices": 22,
+      "pairs_checked": 231,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_104",
+      "vertices": 22,
+      "pairs_checked": 231,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_105",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_106",
+      "vertices": 16,
+      "pairs_checked": 120,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_107",
+      "vertices": 18,
+      "pairs_checked": 153,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_108",
+      "vertices": 21,
+      "pairs_checked": 210,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_109",
+      "vertices": 20,
+      "pairs_checked": 190,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_110",
+      "vertices": 18,
+      "pairs_checked": 153,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_111",
+      "vertices": 20,
+      "pairs_checked": 190,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_112",
+      "vertices": 21,
+      "pairs_checked": 210,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_113",
+      "vertices": 18,
+      "pairs_checked": 153,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_114",
+      "vertices": 18,
+      "pairs_checked": 153,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_115",
+      "vertices": 10,
+      "pairs_checked": 45,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_116",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_117",
+      "vertices": 11,
+      "pairs_checked": 55,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_118",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_119",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_120",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_121",
+      "vertices": 12,
+      "pairs_checked": 66,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_122",
+      "vertices": 13,
+      "pairs_checked": 78,
+      "status": "no_cyclic_complement",
+      "complete": true
+    },
+    {
+      "name": "aca_123",
+      "vertices": 14,
+      "pairs_checked": 91,
+      "status": "no_cyclic_complement",
+      "complete": true
+    }
+  ],
+  "hashes": {
+    "cyclic_complement_u124.json": "1cee6a5b4bbdf30444887ee861438345f9845d1c8eefa6632114758012542374",
+    "cyclic_complement.py": "40f08750b30da39d18ed2c5f22a32ff4f4a3a4d641293d10facbfd00e576777f",
+    "check_complement.py": "5601a10adc9fe32daf3a0b30fb57682e16f6f7b94f408d4e63ee4479146c2818"
+  },
+  "wall_seconds": 0.7399648749269545,
+  "cpu_seconds": 0.7266229999999999
+}

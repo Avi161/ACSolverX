@@ -1,0 +1,3684 @@
+{
+  "status": "all_residual_patterns_have_nonincreasing_removal",
+  "basis": [
+    101,
+    307,
+    100000000000000000000
+  ],
+  "tested_presentations": 532,
+  "unimodular_presentations": 76,
+  "removal_candidate_checks": 92,
+  "combined_checks": 624,
+  "patterns": [
+    {
+      "degrees": [
+        6,
+        3,
+        3
+      ],
+      "four_counts": [
+        1,
+        0,
+        3
+      ],
+      "five_counts": [
+        4,
+        1,
+        0
+      ],
+      "tested_presentations": 4,
+      "unimodular_presentations": 0
+    },
+    {
+      "degrees": [
+        5,
+        3,
+        4
+      ],
+      "four_counts": [
+        3,
+        0,
+        1
+      ],
+      "five_counts": [
+        1,
+        1,
+        3
+      ],
+      "tested_presentations": 48,
+      "unimodular_presentations": 0
+    },
+    {
+      "degrees": [
+        5,
+        3,
+        4
+      ],
+      "four_counts": [
+        1,
+        0,
+        3
+      ],
+      "five_counts": [
+        3,
+        1,
+        1
+      ],
+      "tested_presentations": 48,
+      "unimodular_presentations": 4
+    },
+    {
+      "degrees": [
+        5,
+        4,
+        3
+      ],
+      "four_counts": [
+        3,
+        1,
+        0
+      ],
+      "five_counts": [
+        1,
+        1,
+        3
+      ],
+      "tested_presentations": 48,
+      "unimodular_presentations": 0
+    },
+    {
+      "degrees": [
+        5,
+        4,
+        3
+      ],
+      "four_counts": [
+        1,
+        1,
+        2
+      ],
+      "five_counts": [
+        3,
+        1,
+        1
+      ],
+      "tested_presentations": 384,
+      "unimodular_presentations": 72
+    }
+  ],
+  "witnesses": [
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -100000000000000000000,
+          101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -100000000000000000000,
+          101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 5,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 5,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -101,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 5,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -101,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 5,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -101,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -101,
+          307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          101,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          101,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          101,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 5,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          101,
+          307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 5,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 5,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 5,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          -307,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          -307,
+          -307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -101,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          101,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        -100000000000000000000,
+        -307,
+        100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 10,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 9,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -101,
+          -307
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -101,
+          307
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        -100000000000000000000,
+        -307,
+        100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          -307,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        -100000000000000000000,
+        -307,
+        100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 9,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        -100000000000000000000,
+        -307,
+        100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        -100000000000000000000,
+        -307,
+        100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          -307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 9,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        -100000000000000000000,
+        -307,
+        100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          101,
+          -307
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        -100000000000000000000,
+        -307,
+        100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          101,
+          307
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 9,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          307,
+          -101,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        -100000000000000000000,
+        -307,
+        100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 10,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -101
+        ],
+        [
+          -100000000000000000000,
+          307,
+          101,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          -100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          -100000000000000000000,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -101,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          101,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        100000000000000000000,
+        -307,
+        -100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 9,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -101,
+          -307
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          -101,
+          307
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        100000000000000000000,
+        -307,
+        -100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 10,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          -307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        100000000000000000000,
+        -307,
+        -100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          -101,
+          307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 9,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -307,
+          100000000000000000000,
+          -307,
+          -307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        100000000000000000000,
+        -307,
+        -100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        100000000000000000000,
+        -307,
+        -100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          -307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 9,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          -307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -100000000000000000000,
+          -307,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        100000000000000000000,
+        -307,
+        -100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          101,
+          -307
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        100000000000000000000,
+        -307,
+        -100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 10,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          101,
+          307
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          307,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          307,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 9,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          -101,
+          -101,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -100000000000000000000,
+          307,
+          100000000000000000000,
+          307,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 1,
+      "generator": 101,
+      "isolating_word": [
+        100000000000000000000,
+        -307,
+        -100000000000000000000
+      ],
+      "before_length": 12,
+      "after_length": 12,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 2
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          307,
+          101,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -307,
+          -307,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 11,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          -101,
+          307,
+          101,
+          101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    },
+    {
+      "before": [
+        [
+          101,
+          307,
+          307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          -100000000000000000000,
+          307
+        ],
+        [
+          -100000000000000000000,
+          101,
+          101,
+          307,
+          -101
+        ]
+      ],
+      "after": [
+        [
+          -100000000000000000000,
+          -307
+        ],
+        [
+          -100000000000000000000,
+          -307,
+          -307,
+          -100000000000000000000,
+          307
+        ]
+      ],
+      "defining_index": 0,
+      "generator": 101,
+      "isolating_word": [
+        -307,
+        -307
+      ],
+      "before_length": 12,
+      "after_length": 7,
+      "interpretation": "combinatorial substitution; stable AC additionally requires known triviality",
+      "tested_removal_candidates": 1
+    }
+  ],
+  "scope": "complete finite residual cases after the proof reductions in rank3_low_length.md; no census search"
+}

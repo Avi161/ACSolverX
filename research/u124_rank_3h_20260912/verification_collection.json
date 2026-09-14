@@ -1,0 +1,353 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "saved_control_replays": [
+      {
+        "name": "hidden_commutator",
+        "status": "PASS",
+        "endpoint_rank": 0,
+        "endpoint_length": 0,
+        "dictionary_units_including_forecasts": 70,
+        "full_probe_charged_units": 85,
+        "maximum_certified_rank": 3
+      },
+      {
+        "name": "rank11_commutator_detour",
+        "status": "PASS",
+        "endpoint_rank": 0,
+        "endpoint_length": 0,
+        "dictionary_units_including_forecasts": 270,
+        "full_probe_charged_units": 612,
+        "maximum_certified_rank": 12
+      }
+    ],
+    "signed_conjugate_checks": 14,
+    "rejected_metadata_corruptions": 4,
+    "distinct_cyclic_frames": [
+      {
+        "direction": "left",
+        "rank": 3,
+        "length": 10,
+        "charged": 39
+      },
+      {
+        "direction": "right",
+        "rank": 4,
+        "length": 19,
+        "charged": 45
+      }
+    ],
+    "high_depth_preflight_units": 1,
+    "dictionary_exchange_budget_controls": [
+      {
+        "budget": 0,
+        "charged": 0,
+        "candidates": 0,
+        "best_length": 13
+      },
+      {
+        "budget": 1,
+        "charged": 1,
+        "candidates": 1,
+        "best_length": 10
+      },
+      {
+        "budget": 10,
+        "charged": 10,
+        "candidates": 6,
+        "best_length": 9
+      },
+      {
+        "budget": 100,
+        "charged": 100,
+        "candidates": 8,
+        "best_length": 0
+      }
+    ],
+    "census_searches": 0,
+    "known_triviality": "For the two-row plant put c=[x,y]; its rows give c y c=1 and x c=1, hence x=c^-1 and y=c^-2, so c=[x,y]=1. The dictionary plant additionally defines z=xy. The saved rank-four plant has x y=1 and [x^3,y]^2 y=1, forcing y=x=1 and then its other rows force the remaining generators to one."
+  },
+  "collector_pilot": {
+    "status": "PASS",
+    "file": "collector_pilot.json",
+    "sha256": "e86dc561b09b55f74aa8351d37e283037c019b64ac721004efccea9a84a93036",
+    "rows": [
+      {
+        "name": "aca_0",
+        "status": "PASS",
+        "length": 18,
+        "rank": 2,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_1",
+        "status": "PASS",
+        "length": 15,
+        "rank": 2,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 15,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_9",
+        "status": "PASS",
+        "length": 15,
+        "rank": 2,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 15,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_13",
+        "status": "PASS",
+        "length": 15,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 15,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_24",
+        "status": "PASS",
+        "length": 15,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 15,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_32",
+        "status": "PASS",
+        "length": 16,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 16,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_45",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 17,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_60",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_95",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 17,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_101",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_115",
+        "status": "PASS",
+        "length": 13,
+        "rank": 2,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 13,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      }
+    ],
+    "new_probe_work_units": 11000,
+    "full_seed_files_historical_discovery_units": 119375,
+    "seed_work_included_in_new_probe_budget": false,
+    "new_strict_gains_beyond_available_seeds": 0,
+    "historical_verifier_provenance": {
+      "executed_sha256": "1e0ab48522e295162153a2bee832fb582cfc9d343025651f37992908fb4d55db",
+      "current_sha256": "c9228f24e45e87848254221e736e887a03cadf6a9b0d2b6beede295b69490155",
+      "matches_current": false,
+      "scope": "Historical verifier hash retained; every saved event is checked again with current independent verifier."
+    }
+  },
+  "dictionary_exchange_pilot": {
+    "status": "PASS",
+    "file": "dictionary_exchange_pilot.json",
+    "sha256": "b1c4f02d86234884fae141b222babfffc0f6d5c725278b3f4668affc787ce0d2",
+    "rows": [
+      {
+        "name": "aca_7",
+        "status": "PASS",
+        "length": 15,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 15,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_13",
+        "status": "PASS",
+        "length": 15,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 15,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_24",
+        "status": "PASS",
+        "length": 15,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 15,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_32",
+        "status": "PASS",
+        "length": 16,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 16,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_45",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 17,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_60",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_75",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_83",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_84",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_95",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 17,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_101",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      }
+    ],
+    "new_probe_work_units": 11000,
+    "full_seed_files_historical_discovery_units": 147682,
+    "seed_work_included_in_new_probe_budget": false,
+    "new_strict_gains_beyond_available_seeds": 0,
+    "historical_verifier_provenance": {
+      "executed_sha256": "c33da50700b55f54a27c23d1338228a0316c6cfa7d487bbc5a2e41a4d77dc17b",
+      "current_sha256": "c9228f24e45e87848254221e736e887a03cadf6a9b0d2b6beede295b69490155",
+      "matches_current": false,
+      "scope": "Historical verifier hash retained; every saved event is checked again with current independent verifier."
+    }
+  },
+  "source_sha256": {
+    "exchange_collect.py": "6a3775f606f92913bf9460c234f5ccb10d6b521017eeb6a350a83795e5dcd71f",
+    "dictionary_exchange.py": "27b7ec9ec86f0b5b349f256258af0103ea6d5e6a5b2ef8daad06ca45bebdacbf"
+  },
+  "script_sha256": "e2223548c1c3b00b175e42c023b55959aaad725547b6ed10b297ad34cce89f87",
+  "verifier_sha256": "c9228f24e45e87848254221e736e887a03cadf6a9b0d2b6beede295b69490155"
+}

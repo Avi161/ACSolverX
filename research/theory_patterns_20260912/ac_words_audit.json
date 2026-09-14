@@ -1,0 +1,63 @@
+{
+  "status": "pass",
+  "subject": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/ac_words.py",
+  "subject_sha256": "2ebb847b2e2d8cdf997ae2256255857bce8ed4106a228f3caa22a093e56a07aa",
+  "audit_sha256": "ecea8679b85320dff97960ae050bf4ad2b83292e5c3559d4ea4f9841a06bc603",
+  "seed": 20260912,
+  "freely_reduced_words_through_length_4": 161,
+  "conjugators_through_length_2": 17,
+  "random_factor_cases": 512,
+  "checks": {
+    "all_raw_short_canonicalizations": 341,
+    "all_raw_short_reductions": 341,
+    "all_short_products": 25921,
+    "canonical_word": 161,
+    "common_suffix_ledger": 512,
+    "critical_pair_ledger": 512,
+    "cyclic_witness": 161,
+    "emitted_operation_alphabet": 12294,
+    "factor_context_conjugation": 512,
+    "factor_inverse": 512,
+    "factor_inverse_cancellation": 512,
+    "factor_simplification": 512,
+    "free_reduced_word": 161,
+    "independent_replay": 12294,
+    "invalid_elementary_operation": 29,
+    "invalid_factor_conjugator": 7,
+    "invalid_factor_sign": 9,
+    "invalid_replay_pair": 4,
+    "invalid_trace_target": 35,
+    "inverse": 161,
+    "legacy_replay": 32,
+    "random_factor_product": 512,
+    "single_factor_expansion": 5474,
+    "strict_replay": 12294,
+    "suffix_factor_transport": 512,
+    "trace_state": 12294
+  },
+  "total_checks": 86109,
+  "failures": [],
+  "legacy_source": "/Users/avigyapaudel/Documents/surf/ACSolverX/research/supermoves_20260908/certificate_decoder.py",
+  "legacy_source_sha256": "05a2bf2bc4851b8099b6743211cb3b5ae8867153439931dccb3d9467f13b41fc",
+  "legacy_method": "AST-extracted replay_elementary, unchanged body; independent reducer injected for initial normalization; no module import or JIT",
+  "legacy_sample_count": 32,
+  "legacy_sample_groups": {
+    "canonicalize": 8,
+    "factor": 8,
+    "random_canonicalized": 8,
+    "random": 8
+  },
+  "python_optimization": 1,
+  "corrected_audit_findings": [
+    "Factor(0, '') expanded as donor inverse but appended as donor; strict constructor validation now rejects it, booleans, and noninteger signs.",
+    "Trace methods accepted some negative or boolean targets; every operation now checks integer target 0 or 1.",
+    "replay([], []) accepted zero relators; replay now requires exactly two."
+  ],
+  "critical_pair_proof": "u=wA; v=wB; U=uC=wAC; V=vD=wBD. Thus U^-1 V=C^-1 A^-1 B D.",
+  "suffix_transport_proof": "For U=U' s and V=V' s, U'^-1 V'=s(U^-1 V)s^-1. Each c^-1 R^e c becomes (c s^-1)^-1 R^e(c s^-1).",
+  "runtime_seconds": {
+    "wall": 0.3392493750434369,
+    "cpu": 0.33881300000000003
+  },
+  "scope": "Finite bounded verification and elementary free-group derivations; no presentation search, census experiment, or performance conclusion."
+}

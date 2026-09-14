@@ -1,0 +1,1789 @@
+{
+  "status": "complete_capped_remaining104_screen",
+  "rows": [
+    {
+      "name": "aca_0",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 77,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.018927,
+      "wall_seconds": 0.018975249957293272
+    },
+    {
+      "name": "aca_2",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 63,
+      "tested_attachments": 14,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.018303,
+      "wall_seconds": 0.01846054196357727
+    },
+    {
+      "name": "aca_3",
+      "input": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 70,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.020193000000000003,
+      "wall_seconds": 0.020233625080436468
+    },
+    {
+      "name": "aca_4",
+      "input": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 77,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.026355000000000003,
+      "wall_seconds": 0.026448708027601242
+    },
+    {
+      "name": "aca_6",
+      "input": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 90,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.025789000000000006,
+      "wall_seconds": 0.025817333022132516
+    },
+    {
+      "name": "aca_7",
+      "input": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 63,
+      "tested_attachments": 13,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02604400000000001,
+      "wall_seconds": 0.026090250117704272
+    },
+    {
+      "name": "aca_8",
+      "input": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 56,
+      "tested_attachments": 15,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.025854000000000016,
+      "wall_seconds": 0.025938082952052355
+    },
+    {
+      "name": "aca_10",
+      "input": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 56,
+      "tested_attachments": 15,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.026181999999999983,
+      "wall_seconds": 0.026231749914586544
+    },
+    {
+      "name": "aca_11",
+      "input": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 56,
+      "tested_attachments": 16,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.016541,
+      "wall_seconds": 0.016591584077104926
+    },
+    {
+      "name": "aca_12",
+      "input": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 56,
+      "tested_attachments": 16,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.016578000000000037,
+      "wall_seconds": 0.016648625023663044
+    },
+    {
+      "name": "aca_14",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 56,
+      "tested_attachments": 16,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02289000000000002,
+      "wall_seconds": 0.022910458967089653
+    },
+    {
+      "name": "aca_15",
+      "input": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.025610999999999995,
+      "wall_seconds": 0.02562162489630282
+    },
+    {
+      "name": "aca_16",
+      "input": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.028949000000000003,
+      "wall_seconds": 0.02897670795209706
+    },
+    {
+      "name": "aca_17",
+      "input": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.024468999999999963,
+      "wall_seconds": 0.02449016715399921
+    },
+    {
+      "name": "aca_18",
+      "input": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.027500999999999998,
+      "wall_seconds": 0.02757229213602841
+    },
+    {
+      "name": "aca_19",
+      "input": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.027347999999999983,
+      "wall_seconds": 0.027352374978363514
+    },
+    {
+      "name": "aca_20",
+      "input": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.027567000000000008,
+      "wall_seconds": 0.0275734169408679
+    },
+    {
+      "name": "aca_21",
+      "input": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02239599999999997,
+      "wall_seconds": 0.02243133308365941
+    },
+    {
+      "name": "aca_22",
+      "input": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02621499999999999,
+      "wall_seconds": 0.026317582931369543
+    },
+    {
+      "name": "aca_23",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02861400000000003,
+      "wall_seconds": 0.028638125164434314
+    },
+    {
+      "name": "aca_24",
+      "input": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 14,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.026388999999999996,
+      "wall_seconds": 0.02639554115012288
+    },
+    {
+      "name": "aca_25",
+      "input": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.024201000000000028,
+      "wall_seconds": 0.0242961251642555
+    },
+    {
+      "name": "aca_26",
+      "input": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02069399999999999,
+      "wall_seconds": 0.02084304206073284
+    },
+    {
+      "name": "aca_27",
+      "input": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.019596999999999976,
+      "wall_seconds": 0.019615957979112864
+    },
+    {
+      "name": "aca_28",
+      "input": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02270300000000003,
+      "wall_seconds": 0.022729292046278715
+    },
+    {
+      "name": "aca_29",
+      "input": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 70,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.017040999999999973,
+      "wall_seconds": 0.017058250028640032
+    },
+    {
+      "name": "aca_31",
+      "input": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 70,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.01675800000000005,
+      "wall_seconds": 0.016812667017802596
+    },
+    {
+      "name": "aca_32",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 13,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.01708300000000007,
+      "wall_seconds": 0.017125541111454368
+    },
+    {
+      "name": "aca_33",
+      "input": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 72,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.01723600000000003,
+      "wall_seconds": 0.017276833998039365
+    },
+    {
+      "name": "aca_34",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 63,
+      "tested_attachments": 13,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.017063999999999968,
+      "wall_seconds": 0.017104916973039508
+    },
+    {
+      "name": "aca_35",
+      "input": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 77,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.017915000000000014,
+      "wall_seconds": 0.0180247500538826
+    },
+    {
+      "name": "aca_36",
+      "input": [
+        "YXXyxYx",
+        "YYYxYYXYX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 63,
+      "tested_attachments": 13,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.017013000000000056,
+      "wall_seconds": 0.017135208006948233
+    },
+    {
+      "name": "aca_37",
+      "input": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.021550999999999987,
+      "wall_seconds": 0.02155849989503622
+    },
+    {
+      "name": "aca_38",
+      "input": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02132500000000004,
+      "wall_seconds": 0.02133604185655713
+    },
+    {
+      "name": "aca_39",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02806300000000006,
+      "wall_seconds": 0.02806445793248713
+    },
+    {
+      "name": "aca_40",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.029509000000000007,
+      "wall_seconds": 0.029568166006356478
+    },
+    {
+      "name": "aca_41",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.0329259999999999,
+      "wall_seconds": 0.03305737511254847
+    },
+    {
+      "name": "aca_42",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03046099999999996,
+      "wall_seconds": 0.030477916123345494
+    },
+    {
+      "name": "aca_43",
+      "input": [
+        "YYXXyxx",
+        "YYxyXYxyXyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 77,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.026840000000000086,
+      "wall_seconds": 0.026860208017751575
+    },
+    {
+      "name": "aca_44",
+      "input": [
+        "YYXXYYx",
+        "YXyXYxxYXyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 77,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02833999999999992,
+      "wall_seconds": 0.028402792057022452
+    },
+    {
+      "name": "aca_45",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 90,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03107300000000013,
+      "wall_seconds": 0.03116237511858344
+    },
+    {
+      "name": "aca_46",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.0304009999999999,
+      "wall_seconds": 0.03054579207673669
+    },
+    {
+      "name": "aca_47",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.022191000000000072,
+      "wall_seconds": 0.022201500134542584
+    },
+    {
+      "name": "aca_48",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 90,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.019033999999999995,
+      "wall_seconds": 0.019093000097200274
+    },
+    {
+      "name": "aca_49",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.01956699999999989,
+      "wall_seconds": 0.019635583041235805
+    },
+    {
+      "name": "aca_50",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02149599999999996,
+      "wall_seconds": 0.021542292088270187
+    },
+    {
+      "name": "aca_51",
+      "input": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02381000000000011,
+      "wall_seconds": 0.023837666027247906
+    },
+    {
+      "name": "aca_52",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.030357999999999885,
+      "wall_seconds": 0.030373250134289265
+    },
+    {
+      "name": "aca_53",
+      "input": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 77,
+      "tested_attachments": 11,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.026986000000000177,
+      "wall_seconds": 0.027015125146135688
+    },
+    {
+      "name": "aca_56",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.030234000000000094,
+      "wall_seconds": 0.030274666845798492
+    },
+    {
+      "name": "aca_57",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.028159000000000045,
+      "wall_seconds": 0.02819054201245308
+    },
+    {
+      "name": "aca_58",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 70,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.028726999999999947,
+      "wall_seconds": 0.028771291952580214
+    },
+    {
+      "name": "aca_60",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 99,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03014500000000009,
+      "wall_seconds": 0.030163124902173877
+    },
+    {
+      "name": "aca_61",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 99,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02934199999999998,
+      "wall_seconds": 0.029391332995146513
+    },
+    {
+      "name": "aca_62",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 104,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03490799999999994,
+      "wall_seconds": 0.03494708286598325
+    },
+    {
+      "name": "aca_63",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 104,
+      "tested_attachments": 7,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03232999999999997,
+      "wall_seconds": 0.0323727079667151
+    },
+    {
+      "name": "aca_64",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 104,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03034199999999987,
+      "wall_seconds": 0.03034720802679658
+    },
+    {
+      "name": "aca_65",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 104,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.029788999999999843,
+      "wall_seconds": 0.029902083100751042
+    },
+    {
+      "name": "aca_66",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 99,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.025333999999999968,
+      "wall_seconds": 0.025392707902938128
+    },
+    {
+      "name": "aca_68",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 104,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02920199999999995,
+      "wall_seconds": 0.02924408414401114
+    },
+    {
+      "name": "aca_69",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 104,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02929599999999999,
+      "wall_seconds": 0.02935508289374411
+    },
+    {
+      "name": "aca_70",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 104,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03070100000000009,
+      "wall_seconds": 0.030747874872758985
+    },
+    {
+      "name": "aca_71",
+      "input": [
+        "YYXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.023903999999999925,
+      "wall_seconds": 0.023935459088534117
+    },
+    {
+      "name": "aca_72",
+      "input": [
+        "YYXXyxx",
+        "YYxyXyxyXyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 77,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03247399999999989,
+      "wall_seconds": 0.0380130410194397
+    },
+    {
+      "name": "aca_73",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 104,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03017100000000017,
+      "wall_seconds": 0.030216250102967024
+    },
+    {
+      "name": "aca_74",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 104,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03478899999999996,
+      "wall_seconds": 0.034848707960918546
+    },
+    {
+      "name": "aca_75",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 108,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03232199999999996,
+      "wall_seconds": 0.03237683302722871
+    },
+    {
+      "name": "aca_76",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 108,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03271400000000013,
+      "wall_seconds": 0.032748250057920814
+    },
+    {
+      "name": "aca_77",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 108,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.024013000000000062,
+      "wall_seconds": 0.024053041823208332
+    },
+    {
+      "name": "aca_78",
+      "input": [
+        "YXXyXyx",
+        "YYYXYXyxyyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 84,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.029775000000000107,
+      "wall_seconds": 0.029824167024344206
+    },
+    {
+      "name": "aca_81",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 77,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03116500000000011,
+      "wall_seconds": 0.03123691608197987
+    },
+    {
+      "name": "aca_83",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 117,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03593899999999994,
+      "wall_seconds": 0.035990624921396375
+    },
+    {
+      "name": "aca_84",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 117,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.034710999999999936,
+      "wall_seconds": 0.034752124920487404
+    },
+    {
+      "name": "aca_85",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 77,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02748499999999998,
+      "wall_seconds": 0.027549667051061988
+    },
+    {
+      "name": "aca_87",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 99,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02781699999999998,
+      "wall_seconds": 0.027932167053222656
+    },
+    {
+      "name": "aca_88",
+      "input": [
+        "YYXXXyXX",
+        "YYxyXyxYXyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.024220999999999826,
+      "wall_seconds": 0.024273165967315435
+    },
+    {
+      "name": "aca_89",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 120,
+      "tested_attachments": 7,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.027117999999999753,
+      "wall_seconds": 0.027280667098239064
+    },
+    {
+      "name": "aca_90",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyxYXyxyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 99,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.01974600000000004,
+      "wall_seconds": 0.019802541937679052
+    },
+    {
+      "name": "aca_91",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 120,
+      "tested_attachments": 6,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03119100000000019,
+      "wall_seconds": 0.031222457997500896
+    },
+    {
+      "name": "aca_92",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 120,
+      "tested_attachments": 6,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.035661000000000165,
+      "wall_seconds": 0.0357915828935802
+    },
+    {
+      "name": "aca_93",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 120,
+      "tested_attachments": 6,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03735299999999997,
+      "wall_seconds": 0.037500124890357256
+    },
+    {
+      "name": "aca_94",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 120,
+      "tested_attachments": 6,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.036381,
+      "wall_seconds": 0.03643333399668336
+    },
+    {
+      "name": "aca_95",
+      "input": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 88,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.027468999999999966,
+      "wall_seconds": 0.027475374983623624
+    },
+    {
+      "name": "aca_96",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 120,
+      "tested_attachments": 6,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03760299999999983,
+      "wall_seconds": 0.03764979192055762
+    },
+    {
+      "name": "aca_97",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 84,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02810200000000007,
+      "wall_seconds": 0.028122124960646033
+    },
+    {
+      "name": "aca_98",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 84,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.025953000000000337,
+      "wall_seconds": 0.025961583014577627
+    },
+    {
+      "name": "aca_99",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyxyXyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 84,
+      "tested_attachments": 10,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.02361600000000008,
+      "wall_seconds": 0.023610375123098493
+    },
+    {
+      "name": "aca_100",
+      "input": [
+        "YYXXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 99,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.025547999999999682,
+      "wall_seconds": 0.025713874958455563
+    },
+    {
+      "name": "aca_102",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 136,
+      "tested_attachments": 5,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03690300000000013,
+      "wall_seconds": 0.03696462488733232
+    },
+    {
+      "name": "aca_103",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 136,
+      "tested_attachments": 6,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03708899999999993,
+      "wall_seconds": 0.03711070911958814
+    },
+    {
+      "name": "aca_104",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 136,
+      "tested_attachments": 6,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03841200000000011,
+      "wall_seconds": 0.03851258405484259
+    },
+    {
+      "name": "aca_105",
+      "input": [
+        "YYXXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 110,
+      "tested_attachments": 9,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.022703000000000362,
+      "wall_seconds": 0.02274075010791421
+    },
+    {
+      "name": "aca_107",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 117,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03196000000000021,
+      "wall_seconds": 0.03206766699440777
+    },
+    {
+      "name": "aca_110",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 117,
+      "tested_attachments": 8,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.033049000000000106,
+      "wall_seconds": 0.033058375120162964
+    },
+    {
+      "name": "aca_111",
+      "input": [
+        "YXYXYxxyXyx",
+        "YYYYYYYxyXyyx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 143,
+      "tested_attachments": 6,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.032879000000000325,
+      "wall_seconds": 0.03290933300741017
+    },
+    {
+      "name": "aca_112",
+      "input": [
+        "YXYxxyXYXyx",
+        "YYYYYYYxyyXYx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 143,
+      "tested_attachments": 6,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03691999999999984,
+      "wall_seconds": 0.03693787497468293
+    },
+    {
+      "name": "aca_113",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYYXXXYxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 126,
+      "tested_attachments": 7,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.033180999999999905,
+      "wall_seconds": 0.03321241610683501
+    },
+    {
+      "name": "aca_114",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYYXXyxxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 126,
+      "tested_attachments": 7,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.03393399999999991,
+      "wall_seconds": 0.03399649984203279
+    },
+    {
+      "name": "aca_118",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 56,
+      "tested_attachments": 15,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.018032999999999966,
+      "wall_seconds": 0.018071708967909217
+    },
+    {
+      "name": "aca_119",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 63,
+      "tested_attachments": 13,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.027528999999999915,
+      "wall_seconds": 0.027602958027273417
+    },
+    {
+      "name": "aca_120",
+      "input": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 56,
+      "tested_attachments": 15,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.022559999999999913,
+      "wall_seconds": 0.02259016688913107
+    },
+    {
+      "name": "aca_121",
+      "input": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 56,
+      "tested_attachments": 16,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.025533999999999946,
+      "wall_seconds": 0.0256142090074718
+    },
+    {
+      "name": "aca_122",
+      "input": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 63,
+      "tested_attachments": 13,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.028045000000000098,
+      "wall_seconds": 0.0280667080078274
+    },
+    {
+      "name": "aca_123",
+      "input": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "status": "unknown_at_shared_cap",
+      "theorem_hypotheses": true,
+      "attachment_count": 70,
+      "tested_attachments": 12,
+      "pairs_checked": 1000,
+      "complete": false,
+      "positive": null,
+      "cpu_seconds": 0.029963999999999658,
+      "wall_seconds": 0.030048666056245565
+    }
+  ],
+  "source_hashes": {
+    "conjugated_complement_panel20.json": "8ac78a031dc4c6a6e8c927d7d7b2992e7e9d04fb867058bb25debb3a51905efd",
+    "cyclic_complement_u124.json": "1cee6a5b4bbdf30444887ee861438345f9845d1c8eefa6632114758012542374",
+    "complement_audit.json": "792db087fe01d46ecc6503f84dd1a4e66f855fa6bedd231bd11fda96ea2d06d1",
+    "conjugated_complement_remaining.py": "bda59dc279c534a1746b492aa95ab5aa42ad5f2d9aaf4e4262e39d2c64ef9b98",
+    "conjugated_complement_probe.py": "e4c70d7862b0304367897889dcdc4c515fef4bceb7a735e93b67c6ac0c95cf2b"
+  },
+  "per_input_physical_identification_cap": 1000,
+  "prior_panel_reexecuted": false,
+  "physical_identifications": 104000,
+  "positive_ids": [],
+  "complete_negative_ids": [],
+  "unknown_ids": [
+    "aca_0",
+    "aca_2",
+    "aca_3",
+    "aca_4",
+    "aca_6",
+    "aca_7",
+    "aca_8",
+    "aca_10",
+    "aca_11",
+    "aca_12",
+    "aca_14",
+    "aca_15",
+    "aca_16",
+    "aca_17",
+    "aca_18",
+    "aca_19",
+    "aca_20",
+    "aca_21",
+    "aca_22",
+    "aca_23",
+    "aca_24",
+    "aca_25",
+    "aca_26",
+    "aca_27",
+    "aca_28",
+    "aca_29",
+    "aca_31",
+    "aca_32",
+    "aca_33",
+    "aca_34",
+    "aca_35",
+    "aca_36",
+    "aca_37",
+    "aca_38",
+    "aca_39",
+    "aca_40",
+    "aca_41",
+    "aca_42",
+    "aca_43",
+    "aca_44",
+    "aca_45",
+    "aca_46",
+    "aca_47",
+    "aca_48",
+    "aca_49",
+    "aca_50",
+    "aca_51",
+    "aca_52",
+    "aca_53",
+    "aca_56",
+    "aca_57",
+    "aca_58",
+    "aca_60",
+    "aca_61",
+    "aca_62",
+    "aca_63",
+    "aca_64",
+    "aca_65",
+    "aca_66",
+    "aca_68",
+    "aca_69",
+    "aca_70",
+    "aca_71",
+    "aca_72",
+    "aca_73",
+    "aca_74",
+    "aca_75",
+    "aca_76",
+    "aca_77",
+    "aca_78",
+    "aca_81",
+    "aca_83",
+    "aca_84",
+    "aca_85",
+    "aca_87",
+    "aca_88",
+    "aca_89",
+    "aca_90",
+    "aca_91",
+    "aca_92",
+    "aca_93",
+    "aca_94",
+    "aca_95",
+    "aca_96",
+    "aca_97",
+    "aca_98",
+    "aca_99",
+    "aca_100",
+    "aca_102",
+    "aca_103",
+    "aca_104",
+    "aca_105",
+    "aca_107",
+    "aca_110",
+    "aca_111",
+    "aca_112",
+    "aca_113",
+    "aca_114",
+    "aca_118",
+    "aca_119",
+    "aca_120",
+    "aca_121",
+    "aca_122",
+    "aca_123"
+  ],
+  "cpu_seconds": 2.8407970000000002,
+  "wall_seconds_including_cooling": 14.010176707990468
+}

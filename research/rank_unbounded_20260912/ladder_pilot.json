@@ -1,0 +1,766 @@
+{
+  "hashes": {
+    "u124_final_table.json": "771e18d85e4a647d943f896df4c461458de21ce6931299fa4c0c89d21b99e278",
+    "mixed_search.py": "93e854ff3909e131353da0e5d721f46131e1f12355b5d861571a9bce9540c5cc",
+    "search.py": "ad1d911988adf9fe31e4283ff82de5ea36bd1c8085d925ef9e8cf5e0c5339a9e",
+    "whitehead.py": "d24abe85a4d3abf2920c567f264f79122ec32c8440ab3c300dcca7a0c1dfb928",
+    "lemma11.py": "177bcfc4939e9de0c6fae574edcb13ce9a82e9a33e8dc1022a7b15882166fe1f"
+  },
+  "mode": "ladder",
+  "rows": [
+    {
+      "name": "aca_36",
+      "mode": "ladder",
+      "saved_best": [
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          1,
+          -2,
+          -2,
+          -1,
+          -2,
+          -1
+        ]
+      ],
+      "saved_rank2": [
+        [
+          -2,
+          -1,
+          -1,
+          2,
+          1,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          1,
+          -2,
+          -2,
+          -1,
+          -2,
+          -1
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "saved_best_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_36",
+      "saved_rank2_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_36",
+      "input_length": 16,
+      "best": [
+        [
+          -3,
+          -3,
+          2,
+          -1,
+          2,
+          2
+        ],
+        [
+          -3,
+          -2,
+          -1,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          -1,
+          -2,
+          1
+        ]
+      ],
+      "best_length": 15,
+      "best_rank": 3,
+      "additional_gain": 1,
+      "path_source": "saved_best",
+      "events": [
+        {
+          "before": [
+            [
+              -2,
+              -2,
+              -2,
+              1,
+              -2,
+              -2,
+              -1,
+              -2,
+              -1
+            ],
+            [
+              -2,
+              -1,
+              -1,
+              2,
+              1,
+              -2,
+              1
+            ]
+          ],
+          "defining": [
+            -2,
+            -1
+          ],
+          "helper": 3,
+          "cuts": [
+            0,
+            5
+          ],
+          "templates": [
+            [
+              -2,
+              -2,
+              -2,
+              1,
+              -2,
+              3,
+              3
+            ],
+            [
+              -2,
+              1,
+              3,
+              -1,
+              2,
+              1
+            ]
+          ],
+          "raw_after": [
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -2,
+              -2,
+              -2,
+              1,
+              -2,
+              3,
+              3
+            ],
+            [
+              -2,
+              1,
+              3,
+              -1,
+              2,
+              1
+            ]
+          ],
+          "after": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              2,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "uses": 3,
+          "literal_length": 16,
+          "final_length": 16,
+          "kind": "defining_compression"
+        },
+        {
+          "kind": "ambient_whitehead",
+          "before": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1
+            ],
+            [
+              -3,
+              -1,
+              2,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "multiplier": -2,
+          "side": [
+            -2,
+            -1
+          ],
+          "images": {
+            "1": [
+              2,
+              1
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              3
+            ]
+          },
+          "inverse_images": {
+            "1": [
+              -2,
+              1
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              3
+            ]
+          },
+          "raw_after": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "after": [
+            [
+              -3,
+              -3,
+              2,
+              -1,
+              2,
+              2
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              -2
+            ],
+            [
+              -3,
+              -1,
+              -1,
+              -2,
+              1
+            ]
+          ],
+          "length_change": -1
+        }
+      ],
+      "costs": {
+        "minimum_cuts": 662,
+        "ac_products": 208,
+        "lemma11_and_primitive_units": 93,
+        "definitions": 37
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "rank_limit": null,
+      "length_limit": null,
+      "maximum_accepted_rank": 15,
+      "rank_length_curve": {
+        "2": 16,
+        "3": 15,
+        "4": 16,
+        "5": 18,
+        "6": 19,
+        "7": 21,
+        "8": 23,
+        "9": 25,
+        "10": 27,
+        "11": 29,
+        "12": 31,
+        "13": 33,
+        "14": 35,
+        "15": 38
+      },
+      "expanded_states": 13,
+      "discovered_states": 110,
+      "stop": "work_budget",
+      "cpu_seconds": 0.02431,
+      "wall_seconds": 0.02437191689386964,
+      "fully_expanded_stable_certificate": false
+    },
+    {
+      "name": "aca_57",
+      "mode": "ladder",
+      "saved_best": [
+        [
+          -3,
+          -1,
+          -1
+        ],
+        [
+          -1,
+          2,
+          -3,
+          -2,
+          -2,
+          3
+        ],
+        [
+          -1,
+          -2,
+          -2,
+          1,
+          2,
+          3,
+          3,
+          -2,
+          -2
+        ]
+      ],
+      "saved_rank2": [
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -1,
+          -2,
+          -2,
+          1,
+          2,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      },
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "saved_best_pointer": "stable_dictionary_compression_report.json#/rows/57/best",
+      "saved_rank2_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_57",
+      "input_length": 18,
+      "best": [
+        [
+          -3,
+          -1,
+          -1
+        ],
+        [
+          -1,
+          2,
+          -3,
+          -2,
+          -2,
+          3
+        ],
+        [
+          -1,
+          -2,
+          -2,
+          1,
+          2,
+          3,
+          3,
+          -2,
+          -2
+        ]
+      ],
+      "best_length": 18,
+      "best_rank": 3,
+      "additional_gain": 0,
+      "path_source": "saved_best",
+      "events": [],
+      "costs": {
+        "minimum_cuts": 684,
+        "ac_products": 192,
+        "lemma11_and_primitive_units": 88,
+        "definitions": 36
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "rank_limit": null,
+      "length_limit": null,
+      "maximum_accepted_rank": 15,
+      "rank_length_curve": {
+        "3": 18,
+        "2": 19,
+        "4": 18,
+        "5": 20,
+        "6": 22,
+        "7": 23,
+        "8": 25,
+        "9": 27,
+        "10": 29,
+        "11": 31,
+        "12": 33,
+        "13": 35,
+        "14": 37,
+        "15": 40
+      },
+      "expanded_states": 12,
+      "discovered_states": 101,
+      "stop": "work_budget",
+      "cpu_seconds": 0.029143000000000002,
+      "wall_seconds": 0.029182166093960404,
+      "fully_expanded_stable_certificate": false
+    },
+    {
+      "name": "aca_80",
+      "mode": "ladder",
+      "saved_best": [
+        [
+          -3,
+          -1,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -1,
+          2,
+          3,
+          1,
+          2,
+          -1,
+          3
+        ],
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "saved_rank2": [
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          2,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          -1,
+          2,
+          -1,
+          -2,
+          -2,
+          -2,
+          1,
+          2,
+          -1,
+          -1
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      },
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "saved_best_pointer": "primitive_compression_report.json#/rows/5/attempts/0/boundaries/2",
+      "saved_rank2_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_80",
+      "input_length": 18,
+      "best": [
+        [
+          -3,
+          -1,
+          -2,
+          -2,
+          -2
+        ],
+        [
+          -1,
+          2,
+          3,
+          1,
+          2,
+          -1,
+          3
+        ],
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          2,
+          1
+        ]
+      ],
+      "best_length": 18,
+      "best_rank": 3,
+      "additional_gain": 0,
+      "path_source": "saved_best",
+      "events": [],
+      "costs": {
+        "minimum_cuts": 683,
+        "ac_products": 192,
+        "lemma11_and_primitive_units": 89,
+        "definitions": 36
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "rank_limit": null,
+      "length_limit": null,
+      "maximum_accepted_rank": 15,
+      "rank_length_curve": {
+        "3": 18,
+        "2": 19,
+        "4": 19,
+        "5": 20,
+        "6": 22,
+        "7": 23,
+        "8": 25,
+        "9": 27,
+        "10": 29,
+        "11": 31,
+        "12": 33,
+        "13": 35,
+        "14": 37,
+        "15": 40
+      },
+      "expanded_states": 12,
+      "discovered_states": 103,
+      "stop": "work_budget",
+      "cpu_seconds": 0.027656000000000014,
+      "wall_seconds": 0.027691249968484044,
+      "fully_expanded_stable_certificate": false
+    },
+    {
+      "name": "aca_108",
+      "mode": "ladder",
+      "saved_best": [
+        [
+          -4,
+          -2,
+          -2
+        ],
+        [
+          -1,
+          -2,
+          1,
+          -3
+        ],
+        [
+          -1,
+          -2,
+          -3,
+          2,
+          3,
+          1,
+          -2
+        ],
+        [
+          -2,
+          4,
+          4,
+          4,
+          1,
+          4,
+          3
+        ]
+      ],
+      "saved_rank2": [
+        [
+          -2,
+          -1,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          -2,
+          -2,
+          -1,
+          -2,
+          1
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2,
+        "z": 3,
+        "u": 4
+      },
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "saved_best_pointer": "recursive_stable_compression_report.json#/records/78",
+      "saved_rank2_pointer": "data/ms_unsolved_reps/aca_124_best.csv#name=aca_108",
+      "input_length": 21,
+      "best": [
+        [
+          -4,
+          -2,
+          -2
+        ],
+        [
+          -1,
+          -2,
+          1,
+          -3
+        ],
+        [
+          -1,
+          -2,
+          -3,
+          2,
+          3,
+          1,
+          -2
+        ],
+        [
+          -2,
+          4,
+          4,
+          4,
+          1,
+          4,
+          3
+        ]
+      ],
+      "best_length": 21,
+      "best_rank": 4,
+      "additional_gain": 0,
+      "path_source": "saved_best",
+      "events": [],
+      "costs": {
+        "minimum_cuts": 680,
+        "ac_products": 192,
+        "lemma11_and_primitive_units": 94,
+        "definitions": 34
+      },
+      "total_units": 1000,
+      "budget": 1000,
+      "rank_limit": null,
+      "length_limit": null,
+      "maximum_accepted_rank": 16,
+      "rank_length_curve": {
+        "4": 21,
+        "2": 24,
+        "3": 22,
+        "5": 22,
+        "6": 24,
+        "7": 25,
+        "8": 27,
+        "9": 29,
+        "10": 31,
+        "11": 33,
+        "12": 35,
+        "13": 37,
+        "14": 39,
+        "15": 41,
+        "16": 44
+      },
+      "expanded_states": 12,
+      "discovered_states": 105,
+      "stop": "work_budget",
+      "cpu_seconds": 0.03156600000000001,
+      "wall_seconds": 0.03160616592504084,
+      "fully_expanded_stable_certificate": false
+    }
+  ],
+  "summary": {
+    "rows": 4,
+    "gain_ids": [
+      "aca_36"
+    ],
+    "input_total": 73,
+    "best_total": 72,
+    "cpu_seconds": 0.11267500000000003,
+    "wall_seconds": 0.11285149888135493,
+    "total_units": 4000,
+    "best_ranks": {
+      "3": 3,
+      "4": 1
+    },
+    "maximum_accepted_rank": 16
+  }
+}

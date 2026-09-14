@@ -1,0 +1,15 @@
+{
+  "rows": 640,
+  "solved": 640,
+  "verified": 640,
+  "search_wall": 5.934165152993955,
+  "search_cpu": 5.934333407999996,
+  "batch_wall_including_verification": 7.914639390999582,
+  "max_units": 283,
+  "total_units": 25620,
+  "max_wall_row": 0.24948385800053074,
+  "params": {
+    "budget": 1000,
+    "penalty": 4
+  }
+}

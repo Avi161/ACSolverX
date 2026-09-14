@@ -1,0 +1,740 @@
+{
+  "status": "pass",
+  "planted": {
+    "counts": {
+      "signed_left_right_products": 72,
+      "euclidean_columns": 676,
+      "explicit_cyclic_orientation_witnesses": 6,
+      "prepared_solutions": 4,
+      "every_small_shared_budget": 52,
+      "word_certificate_resource_stops": 5,
+      "malformed_rejections": 9
+    },
+    "total": 824,
+    "solved_examples": [
+      {
+        "input": [
+          "x",
+          "y"
+        ],
+        "best_pair": [
+          "x",
+          "y"
+        ],
+        "best_moves": [],
+        "charges": 3
+      },
+      {
+        "input": [
+          "xxy",
+          "xxxyy"
+        ],
+        "best_pair": [
+          "y",
+          "x"
+        ],
+        "best_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "source": 2
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "source": 2
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          }
+        ],
+        "charges": 27
+      },
+      {
+        "input": [
+          "yx",
+          "xyy"
+        ],
+        "best_pair": [
+          "y",
+          "x"
+        ],
+        "best_moves": [
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "source": 2
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "source": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "source": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          }
+        ],
+        "charges": 24
+      },
+      {
+        "input": [
+          "YXX",
+          "YYXXX"
+        ],
+        "best_pair": [
+          "y",
+          "x"
+        ],
+        "best_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "source": 2
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "source": 2
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          }
+        ],
+        "charges": 27
+      }
+    ]
+  },
+  "panel": {
+    "size": 20,
+    "ids": [
+      "aca_115",
+      "aca_116",
+      "aca_1",
+      "aca_13",
+      "aca_30",
+      "aca_55",
+      "aca_80",
+      "aca_59",
+      "aca_79",
+      "aca_82",
+      "aca_109",
+      "aca_108",
+      "aca_101",
+      "aca_117",
+      "aca_9",
+      "aca_67",
+      "aca_86",
+      "aca_106",
+      "aca_54",
+      "aca_5"
+    ],
+    "solved_ids": [],
+    "strict_length_improved_ids": [],
+    "charges": 15279,
+    "framing_charges": 6316,
+    "theorem_charges": 8963,
+    "maximum_charges_per_input": 1000,
+    "theorem_calls": 420,
+    "theorem_reasons": {
+      "criterion_failed": 363,
+      "certificate_limit": 5,
+      "work_limit": 7,
+      "indexed_word_limit": 20,
+      "word_limit": 25
+    },
+    "preparation_reasons": {
+      "frame_ready": 304,
+      "work_limit": 3
+    },
+    "completed_boundary_passes": 598,
+    "completed_power_passes": 85,
+    "rows_with_completed_passes": [
+      "aca_115",
+      "aca_116",
+      "aca_1",
+      "aca_13",
+      "aca_30",
+      "aca_55",
+      "aca_80",
+      "aca_59",
+      "aca_79",
+      "aca_82",
+      "aca_109",
+      "aca_108",
+      "aca_101",
+      "aca_9",
+      "aca_67",
+      "aca_86",
+      "aca_106",
+      "aca_54",
+      "aca_5"
+    ],
+    "sum_starting_best_length": 377,
+    "sum_new_best_length": 377,
+    "max_composed_certificate_moves": 11846,
+    "algorithm_wall_seconds": 8.068721872288734,
+    "algorithm_cpu_seconds": 8.056344,
+    "cooldown_seconds": 0.0
+  },
+  "full_u124": {
+    "size": 124,
+    "ids": [
+      "aca_0",
+      "aca_1",
+      "aca_2",
+      "aca_3",
+      "aca_4",
+      "aca_5",
+      "aca_6",
+      "aca_7",
+      "aca_8",
+      "aca_9",
+      "aca_10",
+      "aca_11",
+      "aca_12",
+      "aca_13",
+      "aca_14",
+      "aca_15",
+      "aca_16",
+      "aca_17",
+      "aca_18",
+      "aca_19",
+      "aca_20",
+      "aca_21",
+      "aca_22",
+      "aca_23",
+      "aca_24",
+      "aca_25",
+      "aca_26",
+      "aca_27",
+      "aca_28",
+      "aca_29",
+      "aca_30",
+      "aca_31",
+      "aca_32",
+      "aca_33",
+      "aca_34",
+      "aca_35",
+      "aca_36",
+      "aca_37",
+      "aca_38",
+      "aca_39",
+      "aca_40",
+      "aca_41",
+      "aca_42",
+      "aca_43",
+      "aca_44",
+      "aca_45",
+      "aca_46",
+      "aca_47",
+      "aca_48",
+      "aca_49",
+      "aca_50",
+      "aca_51",
+      "aca_52",
+      "aca_53",
+      "aca_54",
+      "aca_55",
+      "aca_56",
+      "aca_57",
+      "aca_58",
+      "aca_59",
+      "aca_60",
+      "aca_61",
+      "aca_62",
+      "aca_63",
+      "aca_64",
+      "aca_65",
+      "aca_66",
+      "aca_67",
+      "aca_68",
+      "aca_69",
+      "aca_70",
+      "aca_71",
+      "aca_72",
+      "aca_73",
+      "aca_74",
+      "aca_75",
+      "aca_76",
+      "aca_77",
+      "aca_78",
+      "aca_79",
+      "aca_80",
+      "aca_81",
+      "aca_82",
+      "aca_83",
+      "aca_84",
+      "aca_85",
+      "aca_86",
+      "aca_87",
+      "aca_88",
+      "aca_89",
+      "aca_90",
+      "aca_91",
+      "aca_92",
+      "aca_93",
+      "aca_94",
+      "aca_95",
+      "aca_96",
+      "aca_97",
+      "aca_98",
+      "aca_99",
+      "aca_100",
+      "aca_101",
+      "aca_102",
+      "aca_103",
+      "aca_104",
+      "aca_105",
+      "aca_106",
+      "aca_107",
+      "aca_108",
+      "aca_109",
+      "aca_110",
+      "aca_111",
+      "aca_112",
+      "aca_113",
+      "aca_114",
+      "aca_115",
+      "aca_116",
+      "aca_117",
+      "aca_118",
+      "aca_119",
+      "aca_120",
+      "aca_121",
+      "aca_122",
+      "aca_123"
+    ],
+    "solved_ids": [],
+    "strict_length_improved_ids": [],
+    "charges": 100676,
+    "framing_charges": 33526,
+    "theorem_charges": 67150,
+    "maximum_charges_per_input": 1000,
+    "theorem_calls": 2432,
+    "theorem_reasons": {
+      "criterion_failed": 2133,
+      "work_limit": 96,
+      "word_limit": 93,
+      "indexed_word_limit": 64,
+      "certificate_limit": 46
+    },
+    "preparation_reasons": {
+      "frame_ready": 1890,
+      "work_limit": 20
+    },
+    "completed_boundary_passes": 4315,
+    "completed_power_passes": 628,
+    "rows_with_completed_passes": [
+      "aca_0",
+      "aca_1",
+      "aca_2",
+      "aca_3",
+      "aca_4",
+      "aca_5",
+      "aca_6",
+      "aca_7",
+      "aca_8",
+      "aca_9",
+      "aca_10",
+      "aca_11",
+      "aca_12",
+      "aca_13",
+      "aca_14",
+      "aca_15",
+      "aca_16",
+      "aca_17",
+      "aca_18",
+      "aca_19",
+      "aca_20",
+      "aca_21",
+      "aca_22",
+      "aca_23",
+      "aca_24",
+      "aca_25",
+      "aca_26",
+      "aca_27",
+      "aca_28",
+      "aca_29",
+      "aca_30",
+      "aca_31",
+      "aca_32",
+      "aca_33",
+      "aca_34",
+      "aca_35",
+      "aca_36",
+      "aca_37",
+      "aca_38",
+      "aca_39",
+      "aca_40",
+      "aca_41",
+      "aca_42",
+      "aca_43",
+      "aca_44",
+      "aca_45",
+      "aca_46",
+      "aca_47",
+      "aca_48",
+      "aca_49",
+      "aca_50",
+      "aca_51",
+      "aca_52",
+      "aca_53",
+      "aca_54",
+      "aca_55",
+      "aca_56",
+      "aca_57",
+      "aca_58",
+      "aca_59",
+      "aca_60",
+      "aca_61",
+      "aca_62",
+      "aca_63",
+      "aca_64",
+      "aca_65",
+      "aca_66",
+      "aca_67",
+      "aca_68",
+      "aca_69",
+      "aca_70",
+      "aca_71",
+      "aca_72",
+      "aca_73",
+      "aca_74",
+      "aca_75",
+      "aca_76",
+      "aca_77",
+      "aca_78",
+      "aca_79",
+      "aca_80",
+      "aca_81",
+      "aca_82",
+      "aca_83",
+      "aca_84",
+      "aca_85",
+      "aca_86",
+      "aca_87",
+      "aca_88",
+      "aca_89",
+      "aca_90",
+      "aca_91",
+      "aca_92",
+      "aca_93",
+      "aca_94",
+      "aca_95",
+      "aca_96",
+      "aca_97",
+      "aca_98",
+      "aca_99",
+      "aca_100",
+      "aca_101",
+      "aca_102",
+      "aca_103",
+      "aca_104",
+      "aca_105",
+      "aca_106",
+      "aca_107",
+      "aca_108",
+      "aca_109",
+      "aca_110",
+      "aca_111",
+      "aca_112",
+      "aca_113",
+      "aca_114",
+      "aca_115",
+      "aca_116",
+      "aca_118",
+      "aca_119",
+      "aca_120",
+      "aca_121",
+      "aca_122",
+      "aca_123"
+    ],
+    "sum_starting_best_length": 2356,
+    "sum_new_best_length": 2356,
+    "max_composed_certificate_moves": 11992,
+    "algorithm_wall_seconds": 43.82454362534918,
+    "algorithm_cpu_seconds": 43.75939099999999,
+    "cooldown_seconds": 0.0
+  },
+  "panel_records_reused_in_full": 20,
+  "source_hashes": {
+    "prepared_frames.py": "bcbe258fd96a4a4ae7b9a27723f01944866733786340e84374bef33f21a4570f",
+    "prepared_frames_checks.py": "a3e86ddca79f3990b987fe489b9ae3328bf381bff39f130c0510948e32d8763c",
+    "boundary_compiler.py": "3c2855d90b501b2bf21456d185a8d45a35c176c213536b3b21d59b0b8e8e72c8",
+    "ac_words.py": "2ebb847b2e2d8cdf997ae2256255857bce8ed4106a228f3caa22a093e56a07aa",
+    "u124_inventory.json": "87dc867395bd32523f05ec3974d031cdf2f335da846a6b2e2a9c03066689447a",
+    "aca_124_best.csv": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3",
+    "aca_124_initial.csv": "614bce2d3250a1acca81ec9de0fc0deb097eb74c4d56e6a9718985a150bb1d2c"
+  },
+  "legacy_replay_sha256": null,
+  "wall_seconds_including_independent_checks": 62.606285125017166,
+  "cpu_seconds_including_independent_checks": 62.288700999999996,
+  "executed_checks_source": "\"\"\"Serial exact-word checks and fixed U124 prepared-frame screen; no search/JIT.\"\"\"\nfrom __future__ import annotations\n\nimport argparse\nfrom collections import Counter\nimport csv\nimport hashlib\nimport itertools\nimport json\nfrom math import gcd\nfrom pathlib import Path\nimport sys\nimport time\n\nsys.dont_write_bytecode = True\nimport prepared_frames as subject\nfrom check_ac_words import independent_replay, inverse, legacy_replayer, reduce_word\n\nHERE = Path(__file__).resolve().parent\n\n\ndef verify(pair, result, legacy=None):\n    for path, expected in ((result['moves'], result['final_pair']),\n                           (result['best_moves'], result['best_pair'])):\n        assert independent_replay(pair, path) == expected\n        assert subject.replay(pair, path) == expected\n        if legacy:\n            assert legacy(pair, path) == expected\n    assert result['charges'] <= result['limits']['budget'] <= 1000\n    assert len(result['moves']) <= result['limits']['max_moves']\n\n\ndef verify_portfolio(result, legacy=None):\n    pair = result['input']\n    assert independent_replay(pair, result['best_moves']) == result['best_pair']\n    assert len(result['best_moves']) <= result['limits']['max_moves']\n    total = 0\n    for attempt in result['attempts']:\n        prep = attempt['preparation']\n        verify(pair, prep, legacy)\n        total += prep['charges']\n        for step in prep['steps']:\n            assert gcd(*step['before_column']) == gcd(*step['after_column'])\n            assert sum(map(abs, step['after_column'])) < sum(map(abs, step['before_column']))\n        for theorem in attempt['theorem_calls']:\n            verify(prep['final_pair'], theorem, legacy)\n            total += theorem['charges']\n            for moves, expected in ((theorem['composed_moves'], theorem['final_pair']),\n                                    (theorem['composed_best_moves'], theorem['best_pair'])):\n                assert independent_replay(pair, moves) == expected\n                if legacy:\n                    assert legacy(pair, moves) == expected\n                assert len(moves) <= result['limits']['max_moves']\n    assert total == result['charges'] == result['framing_charges'] + result['theorem_charges']\n    assert 0 <= total <= result['limits']['budget'] <= 1000\n    assert result['best_length'] == sum(map(len, result['best_pair']))\n    assert result['strict_length_improvement'] == (result['best_length'] < result['input_length'])\n\n\ndef planted_checks(legacy=None):\n    counts = Counter()\n    for first, second, target, sign, side in itertools.product(\n            ('x', 'xyX', 'xxYYx'), ('y', 'Yxy', 'yyXXy'), (0, 1), (-1, 1), ('right', 'left')):\n        pair = [first, second]\n        trace = subject.Trace(pair)\n        donor = pair[1 - target] if sign == 1 else inverse(pair[1 - target])\n        expected = list(pair)\n        expected[target] = reduce_word(pair[target] + donor if side == 'right' else donor + pair[target])\n        subject.signed_product(trace, target, sign, side)\n        assert trace.pair == expected and independent_replay(pair, trace.moves) == expected\n        if legacy:\n            assert legacy(pair, trace.moves) == expected\n        counts['signed_left_right_products'] += 1\n    for a, b, side, tie in itertools.product(range(-6, 7), range(-6, 7), ('left', 'right'), (0, 1)):\n        pair = [('x' * a if a >= 0 else 'X' * -a) + 'y',\n                ('x' * b if b >= 0 else 'X' * -b) + 'yy']\n        result = subject.prepare_frame(pair, side=side, tie_target=tie)\n        assert result['reason'] == ('frame_ready' if gcd(a, b) == 1 else 'column_not_primitive')\n        assert sorted(map(abs, result['final_column'])) == [0, gcd(a, b)]\n        verify(pair, result, legacy)\n        counts['euclidean_columns'] += 1\n    for pair, stable in itertools.product((['xyX', 'Yxxxy'], ['xxy', 'xxxyy'], ['XY', 'yx']), 'xy'):\n        result = subject.prepare_frame(pair, stable=stable, orientation='min_span')\n        verify(pair, result, legacy)\n        counts['explicit_cyclic_orientation_witnesses'] += 1\n    solved_examples = []\n    for pair in (['x', 'y'], ['xxy', 'xxxyy'], ['yx', 'xyy'], ['YXX', 'YYXXX']):\n        exps = [[subject.exponent(w, g) for g in 'xy'] for w in pair]\n        assert abs(exps[0][0] * exps[1][1] - exps[0][1] * exps[1][0]) == 1\n        result = subject.compile_prepared(pair)\n        verify_portfolio(result, legacy)\n        assert result['solved'], (pair, result['best_pair'])\n        solved_examples.append({'input': pair, 'best_pair': result['best_pair'],\n                                'best_moves': result['best_moves'], 'charges': result['charges']})\n        counts['prepared_solutions'] += 1\n    for budget in range(26):\n        for pair in (['xxy', 'xxxyy'], ['YXXyxYx', 'YYYYYYXyxyX']):\n            result = subject.compile_prepared(pair, limits=subject.Limits(budget=budget))\n            verify_portfolio(result, legacy)\n            counts['every_small_shared_budget'] += 1\n    for word_limit, move_limit in ((0, 12000), (1, 12000), (512, 0), (512, 1), (512, 2)):\n        result = subject.compile_prepared(['xyX', 'Yxxxy'], limits=subject.Limits(\n            budget=1000, max_word_length=word_limit, max_moves=move_limit))\n        verify_portfolio(result, legacy)\n        counts['word_certificate_resource_stops'] += 1\n    for kwargs in ({'stable': 'z'}, {'orientation': 'all'}, {'tie_target': True}, {'tie_target': 1.0}, {'side': 'bad'}):\n        try:\n            subject.prepare_frame(['x', 'y'], **kwargs)\n        except ValueError:\n            counts['malformed_rejections'] += 1\n        else:\n            raise AssertionError(kwargs)\n    for pair in (['z', 'y'], ['x', 'z'], ['x'], [None, 'y']):\n        try:\n            subject.compile_prepared(pair, limits=subject.Limits(budget=0))\n        except ValueError:\n            counts['malformed_rejections'] += 1\n        else:\n            raise AssertionError(pair)\n    return {'counts': dict(counts), 'total': sum(counts.values()), 'solved_examples': solved_examples}\n\n\ndef summarize(records):\n    calls = [c for r in records for a in r['attempts'] for c in a['theorem_calls']]\n    return {'size': len(records), 'ids': [r['name'] for r in records],\n            'solved_ids': [r['name'] for r in records if r['solved']],\n            'strict_length_improved_ids': [r['name'] for r in records if r['strict_length_improvement']],\n            'charges': sum(r['charges'] for r in records),\n            'framing_charges': sum(r['framing_charges'] for r in records),\n            'theorem_charges': sum(r['theorem_charges'] for r in records),\n            'maximum_charges_per_input': max(r['charges'] for r in records),\n            'theorem_calls': len(calls),\n            'theorem_reasons': dict(Counter(c['reason'] for c in calls)),\n            'preparation_reasons': dict(Counter(a['preparation']['reason'] for r in records for a in r['attempts'])),\n            'completed_boundary_passes': sum(p['rule'] == 'stable_boundary' for c in calls for p in c['passes']),\n            'completed_power_passes': sum(p['rule'] == 'extreme_power' for c in calls for p in c['passes']),\n            'rows_with_completed_passes': [r['name'] for r in records if any(c['passes'] for a in r['attempts'] for c in a['theorem_calls'])],\n            'sum_starting_best_length': sum(r['starting_best_length'] for r in records),\n            'sum_new_best_length': sum(r['best_length'] for r in records),\n            'max_composed_certificate_moves': max((c['composed_elementary_moves'] for c in calls), default=0),\n            'algorithm_wall_seconds': sum(r['wall_seconds'] for r in records),\n            'algorithm_cpu_seconds': sum(r['cpu_seconds'] for r in records)}\n\n\ndef save_jsonl(path, records):\n    temporary = path.with_name(path.stem + '.partial.jsonl')\n    temporary.write_text(''.join(json.dumps(r, separators=(',', ':')) + '\\n' for r in records))\n    temporary.replace(path)\n\n\ndef cohort(rows, source_rows, initial_rows, legacy=None, reuse=()):\n    previous = {r['name']: r for r in reuse}\n    result = []\n    for row in rows:\n        name = row['name']\n        pair = [row['r1'], row['r2']]\n        assert [source_rows[name]['r1'], source_rows[name]['r2']] == pair\n        if name in previous:\n            record = previous[name]\n            assert record['input'] == pair\n        else:\n            record = subject.compile_prepared(pair)\n            record.update({'name': name, 'starting_best_length': sum(map(len, pair)),\n                           'archival_initial_length': sum(len(initial_rows[name][k]) for k in ('r1', 'r2'))})\n            verify_portfolio(record, legacy)\n        result.append(record)\n    assert len(result) == len({r['name'] for r in result})\n    return result\n\n\ndef write_markdown(report, records):\n    full = report['full_u124'] or report['panel']\n    lines = ['# Prepared ordinary AC frames', '',\n        f\"The fixed {'124-row' if report['full_u124'] else '20-row'} screen found **{len(full['solved_ids'])} solves and {len(full['strict_length_improved_ids'])} strict total-length improvements** over the authoritative saved best inputs.\", '',\n        'The portfolio is finite: x/y columns, literal/minimum-span cyclic orientations, left/right signed row products, and target 0/1 tie resolution (16 preparation branches maximum). Each distinct prepared frame tries lower-first and upper-first boundary orders. It uses no ambient automorphism, stabilization, heap, JIT, or saved baseline rerun. Minimum-span orientation scores every literal cyclic rotation and emits its prefix conjugation explicitly. Both relators are cyclically reduced by explicit conjugations before preparation; each updated target is similarly reduced after a row product.', '',\n        'For a column (a,b) with both entries nonzero, choose a target with larger absolute value (the fixed target breaks equality). Replace that relator by its signed product with the other, choosing the sign that subtracts the smaller absolute entry. The resulting absolute target entry is |a|-|b| (with roles exchanged if necessary), so |a|+|b| strictly decreases by the smaller positive absolute entry. Elementary row operations preserve gcd, hence primitive columns terminate at (\u00b11,0) in one of the two relator orders. The compiler receives the actual source index; no relator swap or basis change is implicit. Left multiplication A\u2190B^s A is emitted as A\u2190A^-1, A\u2190A B^-s, A\u2190A^-1, with donor inversion restored inside the signed right multiplication.', '',\n        'All branches start from the original saved-best pair. Framing recognizes a column for one charge, scores each orientation candidate for one, charges one per whole-word orientation/cleanup conjugation, and charges every inversion or multiplication used for signed row products. Each Euclidean step has a separate recognition charge. Preparation is capped at 128 charges per branch and each theorem call at 128, all deducted from one shared limit of 1,000 per input. Duplicates are detected only after paid preparation and avoid repeated theorem calls. Discarded resource-limited staged operations remain charged. Emitted generator-level certificate length is recorded separately. Validation, certificate emission/replay and output costs are outside algebraic charges and inside wall/CPU measurements.', '',\n        'The preselected20 was run and verified first. Full124 reuses those records and evaluates only the remaining104. These retained bounded AC/Aut components are an upper bound, not124 proved distinct AC classes. The20-row structural panel is a development diagnostic, not a representative validation sample.', '',\n        f\"Checks: {report['planted']['total']} planted/edge cases; every preparation final/best path and every composed theorem final/best path independently replays. Sources are pinned by SHA-256 in `prepared_frames_report.json`.\", '',\n        '| cohort | solved | strict length gains | framing charges | theorem charges | total charges | algorithm wall s | algorithm CPU s |',\n        '|---|---:|---:|---:|---:|---:|---:|---:|']\n    for key in ('panel', 'full_u124'):\n        value = report[key]\n        if value:\n            lines.append(f\"| {key} ({value['size']}) | {len(value['solved_ids'])} | {len(value['strict_length_improved_ids'])} | {value['framing_charges']} | {value['theorem_charges']} | {value['charges']} | {value['algorithm_wall_seconds']:.6f} | {value['algorithm_cpu_seconds']:.6f} |\")\n    lines += ['', f\"Maximum per-input work: {full['maximum_charges_per_input']}; theorem calls: {full['theorem_calls']}; completed stable-boundary passes: {full['completed_boundary_passes']}; completed extreme-power passes: {full['completed_power_passes']}; largest composed certificate: {full['max_composed_certificate_moves']} elementary moves.\", '',\n        'A completed span-decreasing pass is an algebraic rewrite result; it is not an ordinary total-length gain. Every branch records its exact final pair, best prefix pair, initial potential, final spans, failed checkpoint and composed ordinary certificate. Best-prefix total length is compared directly with the authoritative saved-best original, separately from the archival initial input.', '',\n        'The theorem reason counts are `' + json.dumps(full['theorem_reasons'], sort_keys=True) + '`.', '',\n        '| row | solved | archival initial | starting best | new best | charges | best elementary moves |',\n        '|---|---:|---:|---:|---:|---:|---:|']\n    for r in records:\n        lines.append(f\"| {r['name']} | {str(r['solved']).lower()} | {r['archival_initial_length']} | {r['starting_best_length']} | {r['best_length']} | {r['charges']} | {r['best_elementary_moves']} |\")\n    (HERE / 'prepared_frames_report.md').write_text('\\n'.join(lines) + '\\n')\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--all-u124', action='store_true')\n    parser.add_argument('--legacy-replay-source', type=Path)\n    args = parser.parse_args()\n    start_wall, start_cpu = time.perf_counter(), time.process_time()\n    inventory_path = HERE / 'u124_inventory.json'\n    inventory = json.loads(inventory_path.read_text())\n    root = HERE.parents[1]\n    paths = {key: root / inventory['sources'][key]['path'] for key in ('best', 'initial')}\n    tables = {}\n    for key, path in paths.items():\n        assert hashlib.sha256(path.read_bytes()).hexdigest() == inventory['sources'][key]['sha256']\n        with path.open() as stream:\n            tables[key] = {row['name']: row for row in csv.DictReader(stream)}\n        assert len(tables[key]) == 124\n    legacy, legacy_hash = legacy_replayer(args.legacy_replay_source) if args.legacy_replay_source else (None, None)\n    planted = planted_checks(legacy)\n    saved_panel = []\n    if args.all_u124 and (HERE / 'prepared_frames_panel20.jsonl').exists():\n        prior = json.loads((HERE / 'prepared_frames_report.json').read_text())\n        assert prior['source_hashes']['prepared_frames.py'] == hashlib.sha256(Path(subject.__file__).read_bytes()).hexdigest()\n        assert prior['source_hashes']['boundary_compiler.py'] == hashlib.sha256((HERE / 'boundary_compiler.py').read_bytes()).hexdigest()\n        saved_panel = [json.loads(line) for line in (HERE / 'prepared_frames_panel20.jsonl').read_text().splitlines()]\n    panel = cohort(inventory['panel']['rows'], tables['best'], tables['initial'], legacy, reuse=saved_panel)\n    assert len(panel) == 20\n    save_jsonl(HERE / 'prepared_frames_panel20.jsonl', panel)\n    full = cohort(inventory['rows'], tables['best'], tables['initial'], legacy, reuse=panel) if args.all_u124 else None\n    if full:\n        assert len(full) == 124 and {r['name'] for r in full} == set(inventory['ids'])\n        save_jsonl(HERE / 'prepared_frames_full124.jsonl', full)\n    report = {'status': 'pass', 'planted': planted, 'panel': summarize(panel),\n              'full_u124': summarize(full) if full else None,\n              'panel_records_reused_in_full': 20 if full else 0,\n              'source_hashes': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in\n                                (Path(subject.__file__), Path(__file__), HERE / 'boundary_compiler.py',\n                                 HERE / 'ac_words.py', inventory_path, *paths.values())},\n              'legacy_replay_sha256': legacy_hash,\n              'wall_seconds_including_independent_checks': time.perf_counter() - start_wall,\n              'cpu_seconds_including_independent_checks': time.process_time() - start_cpu}\n    (HERE / 'prepared_frames_report.json').write_text(json.dumps(report, indent=2) + '\\n')\n    write_markdown(report, full or panel)\n    print(json.dumps({k: report[k] for k in ('status', 'panel', 'full_u124', 'wall_seconds_including_independent_checks', 'cpu_seconds_including_independent_checks')}))\n\n\nif __name__ == '__main__':\n    main()\n",
+  "observed_cooldown_seconds": 0.0,
+  "post_run_checks_sha256": "22bbf6b4495597d1994e22e8bf9eaf47eeb9f61b6613a178b88d79329a8c9ba4",
+  "post_run_change": "After the screen, the runner gained default0.2s per fresh row cooldowns and explicit cooldown accounting. The completed run had0s intentional cooldown. Its exact executed checks source is preserved in executed_checks_source; no U124 row was rerun."
+}

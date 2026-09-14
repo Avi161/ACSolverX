@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "saved_controls": [
+      {
+        "name": "hidden_plant_solution",
+        "status": "PASS",
+        "initial_length": 10,
+        "endpoint_length": 0,
+        "endpoint_rank": 0
+      },
+      {
+        "name": "hidden_plant_length9_dictionary",
+        "status": "PASS",
+        "initial_length": 10,
+        "endpoint_length": 9,
+        "endpoint_rank": 3
+      },
+      {
+        "name": "saved_aca43_prefix_reconstruction",
+        "status": "PASS",
+        "initial_length": 18,
+        "endpoint_length": 16,
+        "endpoint_rank": 3
+      }
+    ],
+    "signed_linear_identities": 56,
+    "signed_high_label_compressions": [
+      {
+        "mode": "one_direction",
+        "axis_sign": 1,
+        "length": 10,
+        "rank": 3,
+        "charged": 8
+      },
+      {
+        "mode": "one_direction",
+        "axis_sign": -1,
+        "length": 15,
+        "rank": 3,
+        "charged": 8
+      },
+      {
+        "mode": "all_heights",
+        "axis_sign": 1,
+        "length": 10,
+        "rank": 3,
+        "charged": 8
+      },
+      {
+        "mode": "all_heights",
+        "axis_sign": -1,
+        "length": 13,
+        "rank": 3,
+        "charged": 8
+      }
+    ],
+    "rejected_corruptions": 3,
+    "budget_controls": [
+      {
+        "budget": 0,
+        "charged": 0,
+        "candidates": 0
+      },
+      {
+        "budget": 1,
+        "charged": 1,
+        "candidates": 0
+      },
+      {
+        "budget": 7,
+        "charged": 1,
+        "candidates": 0
+      },
+      {
+        "budget": 8,
+        "charged": 1,
+        "candidates": 0
+      },
+      {
+        "budget": 30,
+        "charged": 22,
+        "candidates": 2
+      }
+    ],
+    "saved_real_prefix_scope": "The aca43 record reconstructs an already found stage, not a new census gain.",
+    "census_searches": 0
+  },
+  "source_sha256": "dad6ebad95394b044c6663c659c328adb7284c76f563efa8d9810abddd18c893",
+  "verifier_sha256": "2cb8e4afe7761ffd5b66e81c1ebfdfcfb74fe1c9f70523520c94fb1a7c103028"
+}

@@ -1,0 +1,3148 @@
+{
+  "status": "complete",
+  "checks": {
+    "step_differential_checks": 320,
+    "temporary_minimum_regression": true
+  },
+  "cpu_cap_seconds": 60,
+  "sources": {
+    "prepared_frames_full124.jsonl": {
+      "rows_complete": 124,
+      "complete": true,
+      "sha256": "cc94455b764e8183a8b606afdbe94d8940ca0944021a4a4d93e8b84b56ac7abe"
+    },
+    "boundary_compiler_report.json": {
+      "rows_complete": 124,
+      "complete": true,
+      "sha256": "064a537db159f09028c744c9806bb17c2ac4e2f4ced3b320ae994aba6adbce6c"
+    },
+    "critical_pairs_panel.json": {
+      "rows_complete": 20,
+      "complete": true,
+      "sha256": "669d307497a5eee145b6bdbb4ff93d19a31e1e52fc928a48b22b511bcbee203a"
+    }
+  },
+  "last_location": {
+    "source": "critical_pairs_panel.json",
+    "name": "aca_5",
+    "case": 1
+  },
+  "operation_counts": {
+    "invert": 41542,
+    "conjugate": 2964364,
+    "multiply": 36147
+  },
+  "certificates_checked": 5374,
+  "strict_length_improved_ids": [],
+  "solved_ids": [],
+  "sum_starting_best_length": 2356,
+  "sum_best_length": 2356,
+  "rows": [
+    {
+      "name": "aca_0",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "archival_initial_length": 18,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYYYYXyxyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 34,
+      "elementary_steps": 49012,
+      "multiplications": 502,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_1",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "archival_initial_length": 15,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 2812,
+      "multiplications": 124,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_2",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "archival_initial_length": 16,
+      "starting_best_length": 16,
+      "best_length": 16,
+      "best_pair": [
+        "YXXyXyx",
+        "YYYXyyyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 3909,
+      "multiplications": 142,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_3",
+      "input": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYYYxyxyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 39,
+      "elementary_steps": 35673,
+      "multiplications": 461,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_4",
+      "input": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "archival_initial_length": 18,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YYXXXyx",
+        "YYxyxyXyXYX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 11487,
+      "multiplications": 219,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 52,
+      "elementary_steps": 30935,
+      "multiplications": 387,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_6",
+      "input": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXyxxyx",
+        "YXXXXXyxYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 52324,
+      "multiplications": 350,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_7",
+      "input": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "archival_initial_length": 16,
+      "starting_best_length": 16,
+      "best_length": 16,
+      "best_pair": [
+        "YYXXyxx",
+        "YYYYxYXYX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 38,
+      "elementary_steps": 45306,
+      "multiplications": 448,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_8",
+      "input": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "archival_initial_length": 15,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YXyXYxx",
+        "YYXYXyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 1510,
+      "multiplications": 96,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "archival_initial_length": 15,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 2216,
+      "multiplications": 96,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_10",
+      "input": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "archival_initial_length": 15,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YXXXyxx",
+        "YYXYXyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 2654,
+      "multiplications": 110,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_11",
+      "input": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "archival_initial_length": 15,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YXXXyxx",
+        "YYYXyxyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 2128,
+      "multiplications": 108,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_12",
+      "input": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "archival_initial_length": 15,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YXXXyxx",
+        "YYXYxyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 2750,
+      "multiplications": 116,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_13",
+      "input": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "archival_initial_length": 16,
+      "starting_best_length": 16,
+      "best_length": 16,
+      "best_pair": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 6717,
+      "multiplications": 160,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_14",
+      "input": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "archival_initial_length": 15,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YXXyXyx",
+        "YYYXyyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 56,
+      "elementary_steps": 4873,
+      "multiplications": 205,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_15",
+      "input": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXyXyxx",
+        "YYYYxyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 6127,
+      "multiplications": 175,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_16",
+      "input": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YYXXXyxx",
+        "YXyxxyXYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 7794,
+      "multiplications": 192,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_17",
+      "input": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXXYxYx",
+        "YYYYXyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 4020,
+      "multiplications": 128,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_18",
+      "input": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYxyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 12946,
+      "multiplications": 296,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_19",
+      "input": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXyXYxxx",
+        "YYYYXyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 4788,
+      "multiplications": 166,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_20",
+      "input": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYXyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 4320,
+      "multiplications": 174,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_21",
+      "input": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXYxxyX",
+        "YYYYxyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 9458,
+      "multiplications": 214,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_22",
+      "input": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXYxxyx",
+        "YYYYxyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 10932,
+      "multiplications": 238,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_23",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXYxxyx",
+        "YYYYXyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 11204,
+      "multiplications": 198,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_24",
+      "input": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YYXXXYxx",
+        "YYYXXYXYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 56,
+      "elementary_steps": 2650,
+      "multiplications": 132,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_25",
+      "input": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXYxxyX",
+        "YYYYXyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 12810,
+      "multiplications": 222,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_26",
+      "input": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXYxYxx",
+        "YYYYxyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 6680,
+      "multiplications": 158,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_27",
+      "input": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXyXyxx",
+        "YYYYXyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 6843,
+      "multiplications": 173,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_28",
+      "input": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXYxYxx",
+        "YYYYXyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 3988,
+      "multiplications": 128,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_29",
+      "input": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YYXXXyx",
+        "YYxxyxyXyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 55,
+      "elementary_steps": 15542,
+      "multiplications": 359,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_30",
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 52,
+      "elementary_steps": 19335,
+      "multiplications": 378,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_31",
+      "input": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YYXXyxx",
+        "YYYYYXyXyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 6872,
+      "multiplications": 212,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_32",
+      "input": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXYxxyx",
+        "YYYYXyxyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 48,
+      "elementary_steps": 18876,
+      "multiplications": 296,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_33",
+      "input": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "archival_initial_length": 17,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYXyXyxyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 4186,
+      "multiplications": 138,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_34",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "archival_initial_length": 18,
+      "starting_best_length": 16,
+      "best_length": 16,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYYXyyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 6194,
+      "multiplications": 212,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_35",
+      "input": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "archival_initial_length": 18,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YYXXXyx",
+        "YYYxxyxyXyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 12825,
+      "multiplications": 249,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_36",
+      "input": [
+        "YXXyxYx",
+        "YYYxYYXYX"
+      ],
+      "archival_initial_length": 18,
+      "starting_best_length": 16,
+      "best_length": 16,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYxYYXYX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 35,
+      "elementary_steps": 54148,
+      "multiplications": 479,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_37",
+      "input": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXXYxx",
+        "YYYYYXyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 3384,
+      "multiplications": 104,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_38",
+      "input": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 3880,
+      "multiplications": 160,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_39",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXXYxYx",
+        "YYYYYXyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 4668,
+      "multiplications": 128,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_40",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYYxyyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 43,
+      "elementary_steps": 33433,
+      "multiplications": 434,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_41",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXyXYxxx",
+        "YYYYYXyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 22204,
+      "multiplications": 386,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_42",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYYXyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 18396,
+      "multiplications": 390,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_43",
+      "input": [
+        "YYXXyxx",
+        "YYxyXYxyXyX"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YYXXyxx",
+        "YYxyXYxyXyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 32,
+      "elementary_steps": 472,
+      "multiplications": 30,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_44",
+      "input": [
+        "YYXXYYx",
+        "YXyXYxxYXyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YYXXYYx",
+        "YXyXYxxYXyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 31334,
+      "multiplications": 242,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_45",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXyXYxxx",
+        "YYYYXXXYxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 27360,
+      "multiplications": 312,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_46",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXYxxyx",
+        "YYYYYXyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 20756,
+      "multiplications": 326,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_47",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXYxxyX",
+        "YYYYYxyyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 30438,
+      "multiplications": 406,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_48",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXXyxYxx",
+        "YYYYXXyxxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 9624,
+      "multiplications": 216,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_49",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXYxxyx",
+        "YYYYYxyyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 32482,
+      "multiplications": 428,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_50",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXYxxyX",
+        "YYYYYXyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 24594,
+      "multiplications": 362,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_51",
+      "input": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXYxYxx",
+        "YYYYYXyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 4620,
+      "multiplications": 128,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_52",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXyXyxx",
+        "YYYYYXyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 26777,
+      "multiplications": 327,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_53",
+      "input": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "archival_initial_length": 18,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YXXyxYx",
+        "YYXyyXyxyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 18705,
+      "multiplications": 347,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 58,
+      "elementary_steps": 5189,
+      "multiplications": 162,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 2747,
+      "multiplications": 111,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_56",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXXyxx",
+        "YYXYYxxyXXX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 56,
+      "elementary_steps": 9049,
+      "multiplications": 283,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_57",
+      "input": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "archival_initial_length": 19,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXXyxx",
+        "YYXYYxyXXXX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 53,
+      "elementary_steps": 14468,
+      "multiplications": 315,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_58",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "archival_initial_length": 20,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYYYXyyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 43,
+      "elementary_steps": 22093,
+      "multiplications": 406,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "archival_initial_length": 20,
+      "starting_best_length": 20,
+      "best_length": 20,
+      "best_pair": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 50,
+      "elementary_steps": 28370,
+      "multiplications": 288,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_60",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "archival_initial_length": 20,
+      "starting_best_length": 20,
+      "best_length": 20,
+      "best_pair": [
+        "YXXXyxYxx",
+        "YYYYYXXyxxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 30673,
+      "multiplications": 381,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_61",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "archival_initial_length": 20,
+      "starting_best_length": 20,
+      "best_length": 20,
+      "best_pair": [
+        "YXXyXYxxx",
+        "YYYYYXXXYxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 46455,
+      "multiplications": 378,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_62",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXXYxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 5316,
+      "multiplications": 128,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_63",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYYYxyyyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 39,
+      "elementary_steps": 45594,
+      "multiplications": 467,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_64",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXyXYxxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 38,
+      "elementary_steps": 39342,
+      "multiplications": 460,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_65",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYYYXyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 39,
+      "elementary_steps": 36802,
+      "multiplications": 457,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_66",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 20,
+      "best_length": 20,
+      "best_pair": [
+        "YYXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 32,
+      "elementary_steps": 814,
+      "multiplications": 42,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 20,
+      "best_length": 20,
+      "best_pair": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 36966,
+      "multiplications": 278,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_68",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXYxxyx",
+        "YYYYYYXyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 22900,
+      "multiplications": 350,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_69",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXYxxyX",
+        "YYYYYYxyyyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 31242,
+      "multiplications": 406,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_70",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXYxxyx",
+        "YYYYYYxyyyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 34325,
+      "multiplications": 418,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_71",
+      "input": [
+        "YYXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "archival_initial_length": 20,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 4772,
+      "multiplications": 166,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_72",
+      "input": [
+        "YYXXyxx",
+        "YYxyXyxyXyX"
+      ],
+      "archival_initial_length": 20,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YYXXyxx",
+        "YYxyXyxyXyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 13526,
+      "multiplications": 308,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_73",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXYxxyX",
+        "YYYYYYXyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 29250,
+      "multiplications": 398,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_74",
+      "input": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXyXyxx",
+        "YYYYYYXyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 43,
+      "elementary_steps": 48869,
+      "multiplications": 417,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_75",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXXyxYxx",
+        "YYYYYYXXXYxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 48947,
+      "multiplications": 369,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_76",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXXyxYxx",
+        "YYYYYYXXyxxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 39,
+      "elementary_steps": 40165,
+      "multiplications": 421,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_77",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YXXyXYxxx",
+        "YYYYYYXXXYxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 48356,
+      "multiplications": 367,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_78",
+      "input": [
+        "YXXyXyx",
+        "YYYXYXyxyyxx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXyXyx",
+        "YYYXYXyxyyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 56,
+      "elementary_steps": 9890,
+      "multiplications": 280,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_79",
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 2897,
+      "multiplications": 112,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 45,
+      "elementary_steps": 16485,
+      "multiplications": 393,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_81",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "archival_initial_length": 22,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYYYYXyyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 36,
+      "elementary_steps": 42521,
+      "multiplications": 475,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "archival_initial_length": 22,
+      "starting_best_length": 22,
+      "best_length": 22,
+      "best_pair": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 29365,
+      "multiplications": 258,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_83",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "archival_initial_length": 22,
+      "starting_best_length": 22,
+      "best_length": 22,
+      "best_pair": [
+        "YXXyXYxxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 38,
+      "elementary_steps": 45210,
+      "multiplications": 407,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_84",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "archival_initial_length": 22,
+      "starting_best_length": 22,
+      "best_length": 22,
+      "best_pair": [
+        "YXXXyxYxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 45944,
+      "multiplications": 359,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_85",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "archival_initial_length": 22,
+      "starting_best_length": 18,
+      "best_length": 18,
+      "best_pair": [
+        "YXyXYxx",
+        "YYYYYYXXYYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 41,
+      "elementary_steps": 48958,
+      "multiplications": 384,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "archival_initial_length": 22,
+      "starting_best_length": 22,
+      "best_length": 22,
+      "best_pair": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 77488,
+      "multiplications": 430,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_87",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyx"
+      ],
+      "archival_initial_length": 23,
+      "starting_best_length": 20,
+      "best_length": 20,
+      "best_pair": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 39,
+      "elementary_steps": 68609,
+      "multiplications": 443,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_88",
+      "input": [
+        "YYXXXyXX",
+        "YYxyXyxYXyx"
+      ],
+      "archival_initial_length": 23,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXXyXX",
+        "YYxyXyxYXyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 59780,
+      "multiplications": 384,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_89",
+      "input": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "archival_initial_length": 23,
+      "starting_best_length": 23,
+      "best_length": 23,
+      "best_pair": [
+        "YXXYxxyx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 25468,
+      "multiplications": 374,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_90",
+      "input": [
+        "YYXXXyxxx",
+        "YYXyxYXyxyX"
+      ],
+      "archival_initial_length": 23,
+      "starting_best_length": 20,
+      "best_length": 20,
+      "best_pair": [
+        "YYXXXyxxx",
+        "YYXyxYXyxyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 32,
+      "elementary_steps": 1574,
+      "multiplications": 66,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_91",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "archival_initial_length": 23,
+      "starting_best_length": 23,
+      "best_length": 23,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 37,
+      "elementary_steps": 38629,
+      "multiplications": 468,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_92",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "archival_initial_length": 23,
+      "starting_best_length": 23,
+      "best_length": 23,
+      "best_pair": [
+        "YXyXYxxx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 36,
+      "elementary_steps": 48171,
+      "multiplications": 493,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_93",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "archival_initial_length": 23,
+      "starting_best_length": 23,
+      "best_length": 23,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYYYYxyyyyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 39,
+      "elementary_steps": 46956,
+      "multiplications": 457,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_94",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "archival_initial_length": 23,
+      "starting_best_length": 23,
+      "best_length": 23,
+      "best_pair": [
+        "YXXXYxYx",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 5964,
+      "multiplications": 128,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_95",
+      "input": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "archival_initial_length": 21,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXXyxx",
+        "YYxyxyXYxyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 6672,
+      "multiplications": 164,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_96",
+      "input": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "archival_initial_length": 23,
+      "starting_best_length": 23,
+      "best_length": 23,
+      "best_pair": [
+        "YXXYxxyX",
+        "YYYYYYYXyyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 43,
+      "elementary_steps": 30915,
+      "multiplications": 390,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_97",
+      "input": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "archival_initial_length": 24,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYYYYYXyyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 32,
+      "elementary_steps": 56283,
+      "multiplications": 509,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_98",
+      "input": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "archival_initial_length": 24,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YXyXYxx",
+        "YYYYYYYXXYYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 41,
+      "elementary_steps": 45569,
+      "multiplications": 371,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_99",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyxyXyX"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 19,
+      "best_length": 19,
+      "best_pair": [
+        "YYXXyxx",
+        "YYYxyXyxyXyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 15244,
+      "multiplications": 324,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_100",
+      "input": [
+        "YYXXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 20,
+      "best_length": 20,
+      "best_pair": [
+        "YYXXXXyxx",
+        "YYXyxyXYxyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 34804,
+      "multiplications": 378,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 25,
+      "best_length": 25,
+      "best_pair": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 6614,
+      "multiplications": 128,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_102",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 25,
+      "best_length": 25,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYYYYYxyyyyyyyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 39,
+      "elementary_steps": 48756,
+      "multiplications": 449,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_103",
+      "input": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 25,
+      "best_length": 25,
+      "best_pair": [
+        "YXyXYxxx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 35,
+      "elementary_steps": 48941,
+      "multiplications": 487,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_104",
+      "input": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 25,
+      "best_length": 25,
+      "best_pair": [
+        "YXXXyxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 36,
+      "elementary_steps": 40534,
+      "multiplications": 478,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_105",
+      "input": [
+        "YYXXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YYXXXXyxxx",
+        "YYXyXyxYXyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 4456,
+      "multiplications": 154,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 21,
+      "best_length": 21,
+      "best_pair": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 48950,
+      "multiplications": 358,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_107",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 22,
+      "best_length": 22,
+      "best_pair": [
+        "YXXyXYxxx",
+        "YYYYYYYXXXYxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 46252,
+      "multiplications": 345,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_108",
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 24,
+      "best_length": 24,
+      "best_pair": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 45,
+      "elementary_steps": 38684,
+      "multiplications": 298,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 23,
+      "best_length": 23,
+      "best_pair": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 39,
+      "elementary_steps": 72520,
+      "multiplications": 440,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_110",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 22,
+      "best_length": 22,
+      "best_pair": [
+        "YXXXyxYxx",
+        "YYYYYYYXXyxxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 39,
+      "elementary_steps": 43989,
+      "multiplications": 405,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_111",
+      "input": [
+        "YXYXYxxyXyx",
+        "YYYYYYYxyXyyx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 24,
+      "best_length": 24,
+      "best_pair": [
+        "YXYXYxxyXyx",
+        "YYYYYYYxyXyyx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 54936,
+      "multiplications": 382,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_112",
+      "input": [
+        "YXYxxyXYXyx",
+        "YYYYYYYxyyXYx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 24,
+      "best_length": 24,
+      "best_pair": [
+        "YXYxxyXYXyx",
+        "YYYYYYYxyyXYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 62648,
+      "multiplications": 364,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_113",
+      "input": [
+        "YXXXyxYxx",
+        "YYYYYYYYXXXYxx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 23,
+      "best_length": 23,
+      "best_pair": [
+        "YXXXyxYxx",
+        "YYYYYYYYXXXYxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 40782,
+      "multiplications": 339,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_114",
+      "input": [
+        "YXXyXYxxx",
+        "YYYYYYYYXXyxxx"
+      ],
+      "archival_initial_length": 25,
+      "starting_best_length": 23,
+      "best_length": 23,
+      "best_pair": [
+        "YXXyXYxxx",
+        "YYYYYYYYXXyxxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 38,
+      "elementary_steps": 46647,
+      "multiplications": 401,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_115",
+      "input": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "archival_initial_length": 13,
+      "starting_best_length": 13,
+      "best_length": 13,
+      "best_pair": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 50,
+      "elementary_steps": 31347,
+      "multiplications": 333,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "archival_initial_length": 14,
+      "starting_best_length": 14,
+      "best_length": 14,
+      "best_pair": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 46,
+      "elementary_steps": 958,
+      "multiplications": 61,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "archival_initial_length": 14,
+      "starting_best_length": 14,
+      "best_length": 14,
+      "best_pair": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 34,
+      "elementary_steps": 46,
+      "multiplications": 0,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": true,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_118",
+      "input": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "archival_initial_length": 15,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYYXyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 7366,
+      "multiplications": 194,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_119",
+      "input": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "archival_initial_length": 16,
+      "starting_best_length": 16,
+      "best_length": 16,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYYYXyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 24738,
+      "multiplications": 352,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_120",
+      "input": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "archival_initial_length": 16,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YXXyxYx",
+        "YYYXyyxx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 1408,
+      "multiplications": 94,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_121",
+      "input": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "archival_initial_length": 16,
+      "starting_best_length": 15,
+      "best_length": 15,
+      "best_pair": [
+        "YXyXYxx",
+        "YYYXXYYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 44,
+      "elementary_steps": 20450,
+      "multiplications": 300,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_122",
+      "input": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "archival_initial_length": 18,
+      "starting_best_length": 16,
+      "best_length": 16,
+      "best_pair": [
+        "YXyXYxx",
+        "YYYYXXYYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 43161,
+      "multiplications": 398,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    },
+    {
+      "name": "aca_123",
+      "input": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "archival_initial_length": 20,
+      "starting_best_length": 17,
+      "best_length": 17,
+      "best_pair": [
+        "YXyXYxx",
+        "YYYYYXXYYx"
+      ],
+      "best_moves": [],
+      "best_location": null,
+      "certificates_checked": 42,
+      "elementary_steps": 48273,
+      "multiplications": 397,
+      "prepared_frames_complete": true,
+      "boundary_compiler_complete": true,
+      "critical_pairs_complete": null,
+      "strict_length_improvement": false,
+      "best_elementary_moves": 0,
+      "solved_at_intermediate": false
+    }
+  ],
+  "wall_seconds": 59.585246042115614,
+  "cpu_seconds": 4.815975999999999,
+  "cooldown_seconds": 54.67098737927154,
+  "audit_source_sha256": "b4fb94051dae7fb946b1ca78eb60a75c71ebbbf92d5d2b5adc525e9e97dca722",
+  "inventory_sha256": "87dc867395bd32523f05ec3974d031cdf2f335da846a6b2e2a9c03066689447a",
+  "method": "Stream each prepared record; replay preparation once per attempt, then theorem moves from that prepared input. Ignore redundant raw/composed/best copies. Check cyclic total length after every multiply, since invert and conjugate preserve it. Confirm every final state exactly. Materialize only strict improvements, append explicit ordinary canonicalization and independently replay the complete prefix from the original pair. No search or new theorem call."
+}

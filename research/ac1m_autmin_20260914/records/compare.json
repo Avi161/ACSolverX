@@ -1,0 +1,178 @@
+{
+  "shipped_vs_recomputed": {
+    "shipped": 72779,
+    "recomputed": 72779,
+    "same_rep_set": true,
+    "same_member_lists": true
+  },
+  "ac19_vs_extended": {
+    "ac19": 66561,
+    "extended": 72779,
+    "ac19_subset_of_extended": true,
+    "extended_only": 6218
+  },
+  "ac1m": {
+    "rows": 1136154,
+    "orbits": 71283,
+    "orbits_shared_with_ac19": 66444,
+    "orbits_shared_with_extended": 66611,
+    "ac1m_rows_in_ac19_orbits": 1085695,
+    "ac1m_rows_in_extended_orbits": 1087594,
+    "ac1m_only_orbits": 4672,
+    "ac19_only_orbits": 117,
+    "extended_only_orbits": 6168,
+    "equal_to_ac19": false,
+    "equal_to_extended": false,
+    "ac1m_only_mu_hist": {
+      "15": 2,
+      "16": 17,
+      "17": 196,
+      "18": 474,
+      "19": 3983
+    },
+    "ac1m_only_rows": 48560,
+    "ac19_only_mu_hist": {
+      "2": 1,
+      "7": 1,
+      "8": 4,
+      "9": 7,
+      "10": 30,
+      "11": 10,
+      "12": 2,
+      "13": 4,
+      "15": 20,
+      "16": 6,
+      "17": 13,
+      "18": 9,
+      "19": 10
+    },
+    "ac19_only_rows": 378,
+    "extended_only_mu_hist": {
+      "2": 1,
+      "7": 1,
+      "8": 4,
+      "9": 7,
+      "10": 30,
+      "11": 10,
+      "12": 3,
+      "13": 4,
+      "14": 1,
+      "15": 22,
+      "16": 12,
+      "17": 181,
+      "18": 20,
+      "19": 281,
+      "20": 1715,
+      "21": 2601,
+      "22": 520,
+      "23": 479,
+      "24": 92,
+      "25": 127,
+      "26": 19,
+      "27": 25,
+      "28": 4,
+      "29": 5,
+      "30": 2,
+      "31": 1,
+      "33": 1
+    },
+    "extended_only_rows": 9591
+  },
+  "extended_only_orbits_by_source": {
+    "len>19": 6029,
+    "ms634": 20,
+    "len<=19": 104,
+    "len<=19+len>19": 13,
+    "len>19+ms634": 2
+  },
+  "examples": {
+    "ac1m_only": [
+      [
+        "YXXXYxx",
+        "YYXYYXyx"
+      ],
+      [
+        "YXXyXyX",
+        "YYYxyyxx"
+      ],
+      [
+        "YXXXXXX",
+        "YYYXyxyyX"
+      ],
+      [
+        "YXXXXXX",
+        "YYYXyxyyx"
+      ],
+      [
+        "YXXXYxx",
+        "YYXXyyxYx"
+      ],
+      [
+        "YXXXYxx",
+        "YYXYYXXYx"
+      ],
+      [
+        "YXXXYxx",
+        "YYYXXYXyx"
+      ],
+      [
+        "YXXXYxx",
+        "YYYXyXyxx"
+      ],
+      [
+        "YXXyXYx",
+        "YYxyXYXXX"
+      ],
+      [
+        "YXXyXyx",
+        "YYYXyxyyX"
+      ]
+    ],
+    "ac19_only": [
+      [
+        "Y",
+        "X"
+      ],
+      [
+        "X",
+        "YYXXyX"
+      ],
+      [
+        "X",
+        "YYXXXyX"
+      ],
+      [
+        "X",
+        "YYXXXyx"
+      ],
+      [
+        "X",
+        "YYXXyXX"
+      ],
+      [
+        "X",
+        "YYXXyxx"
+      ],
+      [
+        "X",
+        "YYXXXXyX"
+      ],
+      [
+        "X",
+        "YYXXXXyx"
+      ],
+      [
+        "X",
+        "YYXXXyXX"
+      ],
+      [
+        "X",
+        "YYXXXyxx"
+      ]
+    ]
+  },
+  "shared_orbit_size_pattern (ac19_multi, ac1m_multi)": {
+    "(False, True)": 42238,
+    "(True, True)": 24206
+  }
+}

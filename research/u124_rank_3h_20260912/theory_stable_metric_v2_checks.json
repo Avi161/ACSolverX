@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "module_sha256": "5e10badaf47732cdba6a0c51148f5eedc91822789596756306c1eed9c03f9310",
+  "independent_atom_patterns": 252,
+  "cycle_bit_optima": 18,
+  "compiled_signed_chains": 36,
+  "budget_controls": [
+    {
+      "allowance": 0,
+      "charged": 0,
+      "strict_candidates": 0
+    },
+    {
+      "allowance": 1,
+      "charged": 1,
+      "strict_candidates": 0
+    },
+    {
+      "allowance": 2,
+      "charged": 2,
+      "strict_candidates": 0
+    },
+    {
+      "allowance": 10,
+      "charged": 10,
+      "strict_candidates": 0
+    },
+    {
+      "allowance": 100,
+      "charged": 100,
+      "strict_candidates": 0
+    },
+    {
+      "allowance": 1000,
+      "charged": 1000,
+      "strict_candidates": 6
+    }
+  ],
+  "zero_cost_controls": {
+    "charged": 468,
+    "rational_solves": 68,
+    "strict_candidates": 68
+  },
+  "known_triviality_proof": "The first plant has x y^11; the second has x. Either forces BS(4,5) to give y=1, then the root donor gives z=1.",
+  "scope": "Mechanism and budget controls only, no census evaluation.",
+  "exact_coin_balls_checked": 12,
+  "admissible_parameter_pairs_checked": 428
+}

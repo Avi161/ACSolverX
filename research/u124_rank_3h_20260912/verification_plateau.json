@@ -1,0 +1,2624 @@
+{
+  "status": "PASS",
+  "saved_records": {
+    "status": "PASS",
+    "reports": [
+      {
+        "file": "plateau_pilot.json",
+        "sha256": "4322b5597adeb04e545c73729ea2864c229edc2ee9c2342be544e45600581675",
+        "status": "PASS",
+        "rows": [
+          {
+            "name": "aca_7",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 3,
+            "endpoint_length": 15,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_30",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 3,
+            "endpoint_length": 16,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_57",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_80",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_108",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 21,
+            "baseline_rank": 3,
+            "endpoint_length": 21,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 21
+              }
+            ]
+          },
+          {
+            "name": "aca_109",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 4,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": true,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 4,
+                "length": 20
+              },
+              {
+                "events": 1,
+                "rank": 4,
+                "length": 20
+              },
+              {
+                "events": 2,
+                "rank": 3,
+                "length": 21
+              },
+              {
+                "events": 3,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          }
+        ],
+        "events": {
+          "normal_product_substitution": 1,
+          "lemma11_removal": 1,
+          "ambient_whitehead": 1
+        },
+        "physical_work_units": 3569
+      },
+      {
+        "file": "plateau_whitehead_pilot.json",
+        "sha256": "1fb0c8302f72c388bd1df85d95b61e3378ced7b20f850319694bcb8d7eab26f7",
+        "status": "PASS",
+        "rows": [
+          {
+            "name": "aca_7",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 3,
+            "endpoint_length": 15,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_30",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 3,
+            "endpoint_length": 16,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_57",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_80",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_108",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 21,
+            "baseline_rank": 3,
+            "endpoint_length": 21,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 21
+              }
+            ]
+          },
+          {
+            "name": "aca_109",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 4,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": true,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 4,
+                "length": 20
+              },
+              {
+                "events": 1,
+                "rank": 4,
+                "length": 20
+              },
+              {
+                "events": 2,
+                "rank": 3,
+                "length": 21
+              },
+              {
+                "events": 3,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          }
+        ],
+        "events": {
+          "normal_product_substitution": 1,
+          "lemma11_removal": 1,
+          "ambient_whitehead": 1
+        },
+        "physical_work_units": 6000
+      },
+      {
+        "file": "plateau_remainder.json",
+        "sha256": "06157427e5324d5866c70fd924cb084123a96accb331a951fd4d97eccd26dbf2",
+        "status": "PASS",
+        "rows": [
+          {
+            "name": "aca_0",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 2,
+            "endpoint_length": 18,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_1",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_2",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 2,
+            "endpoint_length": 16,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_3",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_4",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_5",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_6",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_8",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_9",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_10",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_11",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_12",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_13",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 3,
+            "endpoint_length": 15,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_14",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_15",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_16",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 3,
+            "endpoint_length": 15,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_17",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_18",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_19",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_20",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_21",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_22",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_23",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_24",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 3,
+            "endpoint_length": 15,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_25",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_26",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_27",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_28",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_29",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_31",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 3,
+            "endpoint_length": 16,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_32",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 3,
+            "endpoint_length": 16,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_33",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 3,
+            "endpoint_length": 16,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_34",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 2,
+            "endpoint_length": 16,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_35",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 2,
+            "endpoint_length": 18,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_36",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 3,
+            "endpoint_length": 15,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_37",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_38",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_39",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_40",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_41",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_42",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_43",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_44",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_45",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_46",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_47",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_48",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_49",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_50",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_51",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_52",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_53",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_54",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 3,
+            "endpoint_length": 16,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_55",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_56",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_58",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_59",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_60",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_61",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_62",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_63",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_64",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_65",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_66",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_67",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_68",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_69",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_70",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_71",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_72",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_73",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_74",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_75",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 1,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              },
+              {
+                "events": 1,
+                "rank": 3,
+                "length": 19
+              },
+              {
+                "events": 2,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_76",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_77",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_78",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_79",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_81",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_82",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_83",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 1,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              },
+              {
+                "events": 1,
+                "rank": 3,
+                "length": 20
+              },
+              {
+                "events": 2,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_84",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 1,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              },
+              {
+                "events": 1,
+                "rank": 3,
+                "length": 20
+              },
+              {
+                "events": 2,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_85",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 3,
+            "endpoint_length": 17,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 17
+              }
+            ]
+          },
+          {
+            "name": "aca_86",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_87",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_88",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_89",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_90",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_91",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_92",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_93",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_94",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_95",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_96",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_97",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_98",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_99",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_100",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 18,
+            "baseline_rank": 3,
+            "endpoint_length": 18,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 18
+              }
+            ]
+          },
+          {
+            "name": "aca_101",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 21,
+            "baseline_rank": 3,
+            "endpoint_length": 21,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 21
+              }
+            ]
+          },
+          {
+            "name": "aca_102",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "name": "aca_103",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "name": "aca_104",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "name": "aca_105",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 19,
+            "baseline_rank": 3,
+            "endpoint_length": 19,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 19
+              }
+            ]
+          },
+          {
+            "name": "aca_106",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "name": "aca_107",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "name": "aca_110",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "name": "aca_111",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 21,
+            "baseline_rank": 4,
+            "endpoint_length": 21,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": true,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 4,
+                "length": 21
+              },
+              {
+                "events": 1,
+                "rank": 4,
+                "length": 21
+              },
+              {
+                "events": 2,
+                "rank": 4,
+                "length": 21
+              },
+              {
+                "events": 3,
+                "rank": 3,
+                "length": 22
+              },
+              {
+                "events": 4,
+                "rank": 3,
+                "length": 22
+              },
+              {
+                "events": 5,
+                "rank": 3,
+                "length": 22
+              },
+              {
+                "events": 6,
+                "rank": 3,
+                "length": 22
+              },
+              {
+                "events": 7,
+                "rank": 3,
+                "length": 22
+              },
+              {
+                "events": 8,
+                "rank": 3,
+                "length": 22
+              },
+              {
+                "events": 9,
+                "rank": 3,
+                "length": 22
+              },
+              {
+                "events": 10,
+                "rank": 3,
+                "length": 21
+              }
+            ]
+          },
+          {
+            "name": "aca_112",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 21,
+            "baseline_rank": 3,
+            "endpoint_length": 21,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 21
+              }
+            ]
+          },
+          {
+            "name": "aca_113",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "name": "aca_114",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 20,
+            "baseline_rank": 3,
+            "endpoint_length": 20,
+            "endpoint_rank": 3,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 3,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "name": "aca_115",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 13,
+            "baseline_rank": 2,
+            "endpoint_length": 13,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 13
+              }
+            ]
+          },
+          {
+            "name": "aca_116",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 14,
+            "baseline_rank": 2,
+            "endpoint_length": 14,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 14
+              }
+            ]
+          },
+          {
+            "name": "aca_117",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 14,
+            "baseline_rank": 2,
+            "endpoint_length": 14,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 14
+              }
+            ]
+          },
+          {
+            "name": "aca_118",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_119",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 2,
+            "endpoint_length": 16,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_120",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_121",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 15,
+            "baseline_rank": 2,
+            "endpoint_length": 15,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 15
+              }
+            ]
+          },
+          {
+            "name": "aca_122",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 16,
+            "baseline_rank": 2,
+            "endpoint_length": 16,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 16
+              }
+            ]
+          },
+          {
+            "name": "aca_123",
+            "status": "PASS",
+            "initial_source": "current_best",
+            "baseline_length": 17,
+            "baseline_rank": 2,
+            "endpoint_length": 17,
+            "endpoint_rank": 2,
+            "gain": 0,
+            "same_length_rank_improvement": false,
+            "boundaries": [
+              {
+                "events": 0,
+                "rank": 2,
+                "length": 17
+              }
+            ]
+          }
+        ],
+        "events": {
+          "normal_product_substitution": 14,
+          "lemma11_removal": 1,
+          "ambient_whitehead": 1
+        },
+        "physical_work_units": 24738
+      }
+    ],
+    "distinct_rewrite_ids": 124,
+    "length_gain_ids": [
+      "aca_75",
+      "aca_83",
+      "aca_84"
+    ],
+    "new_total_from_rewrite": 2177,
+    "same_length_rank_improvement_ids": [
+      "aca_109",
+      "aca_111"
+    ],
+    "physical_rewrite_units": 28307,
+    "separate_whitehead_pilot_units": 6000
+  },
+  "planted_control": {
+    "status": "PASS",
+    "initial": [
+      [
+        5
+      ],
+      [
+        2,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      [
+        -5,
+        -5,
+        9,
+        -5,
+        -5
+      ]
+    ],
+    "initial_rank": 3,
+    "generator_ids": [
+      2,
+      5,
+      9
+    ],
+    "known_triviality_proof": "Relator5 kills generator5, then donor kills2, then target kills9.",
+    "matched_rewrites_evaluated": 25,
+    "distinct_endpoints_replayed": 10,
+    "wrapping_endpoints_replayed": 4,
+    "wrong_sign_and_unrestored_frame_rejected": 2,
+    "selected_wrapping_event": {
+      "kind": "normal_product_substitution",
+      "before": [
+        [
+          5
+        ],
+        [
+          2,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        [
+          -5,
+          -5,
+          9,
+          -5,
+          -5
+        ]
+      ],
+      "target": 2,
+      "raw_target_after": [
+        -5,
+        -5,
+        9,
+        2,
+        5,
+        5,
+        5
+      ],
+      "factors": [
+        {
+          "donor_index": 1,
+          "sign": 1,
+          "conjugator": [
+            -5,
+            -5
+          ]
+        }
+      ],
+      "after": [
+        [
+          -9,
+          -5,
+          -2
+        ],
+        [
+          -5
+        ],
+        [
+          -5,
+          -5,
+          -5,
+          -5,
+          -5,
+          -2
+        ]
+      ],
+      "rule": {
+        "left": [
+          -5,
+          -5,
+          -5,
+          -5
+        ],
+        "right": [
+          2,
+          5
+        ],
+        "target_cut": 3
+      }
+    },
+    "census_rows_searched": 0
+  },
+  "plateau_sha256": "012e3ac9ae596a53d42f81546c350753610fac0f1b756fda0b17aea674c7cdbd",
+  "verifier_sha256": "7f424c28333be2008f2ab166bd8a380a52c7b3df74e5a79568c691b14c919dcb",
+  "audit_script_sha256": "c4c9dee98649832802bb9ef69d8cb5f158a8c97be0a0a9602bf0dac93ec86027",
+  "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+  "scope": "Independent algebra and saved-path replay; no census searches, no frontier completeness claim."
+}

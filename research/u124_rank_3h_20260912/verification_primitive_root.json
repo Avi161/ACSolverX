@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "known_triviality_proof": "The two old generators occur as singleton relators; the retained helper definition then kills the helper.",
+    "plants": 6,
+    "events_checked": 10,
+    "pure_power_endpoints": 4,
+    "source_sha256": "3248a6e479d2f7a242035223cd2087ced9a55dce14aab14837a23eb3b853914f"
+  },
+  "census_searches": 0,
+  "verifier_sha256": "823dde0d1331d909cf69869f9f3c93bd3a0865bbf61149cd73fbe07af27ff18f",
+  "script_sha256": "ec0b0aa8fbf471df8c9660b3eadaec8fbc51eff256d768b5cf334e159ed24c7b"
+}

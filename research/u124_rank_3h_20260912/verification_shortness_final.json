@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "short_relator_positive_controls": 33,
+  "exact_C2_negative_controls": 4,
+  "fixed_rank_preserved": true,
+  "flip_rows_exactly_match_triangularization": 124,
+  "flip_new_gain_count": 0,
+  "flip_units": 117984,
+  "theorem": "For balanced tuples with every freely reduced relator length<=2, triviality is equivalent to a forest with one singleton per component. Ungrounded components have an explicit C2 quotient. In the trivial case ordinary relator operations propagate singleton generators at fixed rank without exceeding length2.",
+  "scope": "No shortness alone is called a solve. Exactly length2 in every nonempty row gives the all-generators-to-C2 obstruction.",
+  "hashes": {
+    "theory_short_relators.py": "4ea342185a28fb927468306061b83bba4364c3fbe69806201195974566ba0afe",
+    "theory_short_relators.json": "77b9d3c5332c3071759fcf3158844f36cbff094b1dc1ab5213cc87d749670d15",
+    "HIGH_RANK_FLIPS.json": "f0cd67017307f15cc6998eb07b7ff26807626e87b5c80f3328d5d77a2fc619cc"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "status": "pass",
+  "snapshot_utc": "2026-09-12T23:09:31.154796+00:00",
+  "table_status": "final_snapshot",
+  "row_count": 124,
+  "exact_id_sequence": true,
+  "csv_lf_only": true,
+  "artifacts_sha256": {
+    "u124_final_table.json": "fa3b7c05b45269057203852f5ce8e263b7c1b032b642e7550085b36cbf7a3677",
+    "u124_final_table.csv": "98114855f80c258695e7ce84983b14aac16cb15e5aead1f44bec1c6a12a326d7",
+    "u124_final_table.md": "ea0a4127828059d87ee46fab510479a563941d27f8455dfe929c064181fc7376",
+    "u124_final_table.py": "68b64245f2079601a0ff2aa6444cdd800443a9e08fd59325e41d20d245219587"
+  },
+  "archival_initial_length_sum": 2446,
+  "starting_best_length_sum": 2356,
+  "historical_reduced_rows_not_credited_to_session": 36,
+  "best_rank2_length_sum": 2356,
+  "best_any_rank_length_sum": 2191,
+  "gain_rows": 85,
+  "unsolved_rows": 124,
+  "ordinary_solved_rows": 0,
+  "stable_solved_rows": 0,
+  "best_rank_counts": {
+    "2": 39,
+    "3": 79,
+    "4": 6
+  },
+  "non_admitted_component_checks": [
+    {
+      "source": "two_complement_independent_theory.json",
+      "source_sha256": "e6b30624e1cc1084fd34c3fd850c687a59a20e9a370fee2634106fc426ca63b9",
+      "name": "aca_1",
+      "original_start_length": 15,
+      "projected_source_length": 29,
+      "ordinary_suffix_endpoint_length": 19,
+      "all_elementary_minimum_length": 19,
+      "cyclic_length_minimum": 19,
+      "elementary_moves_replayed": 41,
+      "reason": "projected shortening remains longer than original input"
+    }
+  ],
+  "semantic_checks": [
+    "all relators counted",
+    "rank2 endpoint may have a stable proof",
+    "stable rank2 solve is not ordinary",
+    "unproved gain and solve rejected",
+    "Nielsen image marking is not a presentation state"
+  ],
+  "scope": "Validation of this saved table and its admitted proof hashes; no search or new mathematical result."
+}

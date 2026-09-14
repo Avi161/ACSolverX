@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "module_sha256": "e1df8e53b7e3ce6b893ec6097d68869135f9f55baea2708932b7cc7a2cd07b65",
+  "wrapper_sha256": "44deb5ac1db167ad7291727b2bd8315847623de4842934e3120151f037f60c31",
+  "exhaustive_words_through_length4": 341,
+  "distinct_normal_forms": 117,
+  "convex_minimum_checks": 11,
+  "signed_replayed_chains": 44,
+  "budget_controls": [
+    {
+      "allowance": 0,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 1,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 2,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 10,
+      "charged": 2,
+      "candidates": 0
+    },
+    {
+      "allowance": 100,
+      "charged": 44,
+      "candidates": 1
+    },
+    {
+      "allowance": 1000,
+      "charged": 74,
+      "candidates": 3
+    }
+  ],
+  "sparse_control": {
+    "rank": 4,
+    "maximum_generator": 10000000000000000000000000,
+    "charged": 77,
+    "candidates": 3
+  },
+  "wrapper_budget_controls": [
+    {
+      "allowance": 0,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 1,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 2,
+      "charged": 1,
+      "candidates": 0
+    },
+    {
+      "allowance": 10,
+      "charged": 5,
+      "candidates": 0
+    },
+    {
+      "allowance": 100,
+      "charged": 50,
+      "candidates": 7
+    },
+    {
+      "allowance": 1000,
+      "charged": 772,
+      "candidates": 31
+    }
+  ],
+  "known_triviality_proof": "With x z^n=1, the conjugate-root row gives h=z and D then gives z=1.",
+  "scope": "Exact retained-donor words and finite normal-form optimization controls; no census run."
+}

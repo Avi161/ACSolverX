@@ -1,0 +1,1007 @@
+{
+  "status": "final_local_artifact_snapshot",
+  "created_utc": "2026-09-12T23:09:35.578696+00:00",
+  "branch": "codex/theory-patterns-3h",
+  "base_commit": "98f719e2ad9ce98cac1525c0984555f4711e412b",
+  "file_count": 198,
+  "total_bytes": 62326099,
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 22344,
+      "sha256": "f95eefa8109cdbfc7ae0fa1fb9038dfcad3152b8863d001dc928521eadc33db2"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ARCHIVE.md",
+      "bytes": 619,
+      "sha256": "a218302d563b27493659c5b6a1bf2da9dd82aac8e7c898bc1669bb746084d02c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/FINAL_REPORT.md",
+      "bytes": 11837,
+      "sha256": "5b17d76612ccc503147cadfbff7b932b4d9916be5bbb734f43d5627e076387c9"
+    },
+    {
+      "path": "research/theory_patterns_20260912/FINAL_REVIEW.md",
+      "bytes": 6399,
+      "sha256": "1b5c039df0049cd5ff7f1be8e0be3480c71c2b379938634407c7c59691705491"
+    },
+    {
+      "path": "research/theory_patterns_20260912/FINAL_REVIEW_ACCEPTANCE.json",
+      "bytes": 3216,
+      "sha256": "dfeea1a82861092d13199a0fc14611981b1d22eb6cae3463171690a77eccdcd5"
+    },
+    {
+      "path": "research/theory_patterns_20260912/README.md",
+      "bytes": 2844,
+      "sha256": "4a844fe1992ca1b074ffbea0ced908d1bcb30d710c9a7384a304c913fc67a867"
+    },
+    {
+      "path": "research/theory_patterns_20260912/STABLE_CERTIFICATE_CONVENTIONS.md",
+      "bytes": 4564,
+      "sha256": "cd576f1b24de1936f941f2b367dac6308f882278e19de69040874eca6bd3ae54"
+    },
+    {
+      "path": "research/theory_patterns_20260912/STABLE_LENGTH_REDUCTION.md",
+      "bytes": 5159,
+      "sha256": "ecb022342a0765fc84c5ac4261c0ebbc43d6311f1d47c83f0462245d802b243b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/THEORY_CATALOG.md",
+      "bytes": 27308,
+      "sha256": "3eccbeaec4bb021d8d204fc959b77bec9400f2a7ceeb047b007d9c9e972aef4c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ac_words.py",
+      "bytes": 5928,
+      "sha256": "2ebb847b2e2d8cdf997ae2256255857bce8ed4106a228f3caa22a093e56a07aa"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ac_words_audit.json",
+      "bytes": 2764,
+      "sha256": "5b4b0af85488b1f4a9bffbadc430005d2062ba98a276b9357a54ef15ea2504c7"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ac_words_audit.md",
+      "bytes": 2414,
+      "sha256": "86ee3cba514b015db583459ec2b4ab1a8d6c6d78d581c989ae59dc2806cb4b34"
+    },
+    {
+      "path": "research/theory_patterns_20260912/astra_boundary_checks.json",
+      "bytes": 284327,
+      "sha256": "205cb3fbcc8178ee8f5ee9810016758fc6d3e221e0c5ba2e071dea84a9ce80de"
+    },
+    {
+      "path": "research/theory_patterns_20260912/astra_boundary_probe.py",
+      "bytes": 4125,
+      "sha256": "fbc1c594e884e73568d3b493e86b67e941fc9576bd7858e8c5d17c1865a69360"
+    },
+    {
+      "path": "research/theory_patterns_20260912/astra_patterns.md",
+      "bytes": 8992,
+      "sha256": "e831c568194fc0fd483571f386e3cb5604637984431c31bc3d70ffd25591cc1c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/astra_power_identity_checks.json",
+      "bytes": 3228,
+      "sha256": "008e03985dae032e3ea735d3545a3a07c4c023951b2f7005ee8104bbe4c43851"
+    },
+    {
+      "path": "research/theory_patterns_20260912/boundary_compiler.py",
+      "bytes": 22210,
+      "sha256": "3c2855d90b501b2bf21456d185a8d45a35c176c213536b3b21d59b0b8e8e72c8"
+    },
+    {
+      "path": "research/theory_patterns_20260912/boundary_compiler_checks.py",
+      "bytes": 12538,
+      "sha256": "9a995c0de51ff380a1a259557af9b7d8f61b0e4b7d8952d8ce8d3a301cf486b0"
+    },
+    {
+      "path": "research/theory_patterns_20260912/boundary_compiler_report.json",
+      "bytes": 3322425,
+      "sha256": "064a537db159f09028c744c9806bb17c2ac4e2f4ced3b320ae994aba6adbce6c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/boundary_compiler_report.md",
+      "bytes": 14890,
+      "sha256": "f3c20788bbd92b048b561bfbc53593792d79215419d135b45ef3b2c78ab7e4e5"
+    },
+    {
+      "path": "research/theory_patterns_20260912/boundary_independent_audit.json",
+      "bytes": 2580,
+      "sha256": "8a92996914cf3ebeff07a52a6f0d5d94cf16ba3c079bf9b1d88f2c1c6e3a38a3"
+    },
+    {
+      "path": "research/theory_patterns_20260912/boundary_independent_audit.md",
+      "bytes": 10779,
+      "sha256": "36a348f95c9dd34a53fa9a640ce4e96fb2224fd176656aa479ad69497d7a53aa"
+    },
+    {
+      "path": "research/theory_patterns_20260912/build_artifact_manifest.py",
+      "bytes": 3048,
+      "sha256": "d753bf1f2972d070f05bc03f3c248c4252f6a391cc48079c84bda376a0187a22"
+    },
+    {
+      "path": "research/theory_patterns_20260912/captured_mixed_search.py",
+      "bytes": 4887,
+      "sha256": "4c0c33f177c034bb9332d4512bd4b5cd5bb6b903807ebf793b650b7f0e373d5f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/check_ac_words.py",
+      "bytes": 15443,
+      "sha256": "ecea8679b85320dff97960ae050bf4ad2b83292e5c3559d4ea4f9841a06bc603"
+    },
+    {
+      "path": "research/theory_patterns_20260912/check_boundary_independent.py",
+      "bytes": 17419,
+      "sha256": "6a64322d5bdc0bc53dd0249a7842dccfd23a44b15a32e562cb7c4d7834914867"
+    },
+    {
+      "path": "research/theory_patterns_20260912/check_compile_search_prefix.py",
+      "bytes": 2357,
+      "sha256": "cca84f0dc47b43955b5814f3b50a7c55ff766a841fd0feebbcab748d56230090"
+    },
+    {
+      "path": "research/theory_patterns_20260912/check_complement.py",
+      "bytes": 9010,
+      "sha256": "5601a10adc9fe32daf3a0b30fb57682e16f6f7b94f408d4e63ee4479146c2818"
+    },
+    {
+      "path": "research/theory_patterns_20260912/check_critical_pairs.py",
+      "bytes": 5320,
+      "sha256": "ec5d50fb7c8555b70bbc603525023b0b2af4215058d5a5bedf5bf0d9f5c7459c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/check_ms_independent.py",
+      "bytes": 13205,
+      "sha256": "7184ba822d46780ae86e33965521bd5f3994e24db8af88d03a665c1e0643e8e2"
+    },
+    {
+      "path": "research/theory_patterns_20260912/check_primitive_compression_independent.py",
+      "bytes": 26057,
+      "sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590"
+    },
+    {
+      "path": "research/theory_patterns_20260912/check_stable_independent.py",
+      "bytes": 20873,
+      "sha256": "5e9c4cba7a0a3bcc0e831b62ba9c17f6ed06312846488f4f63b668d81f9d0832"
+    },
+    {
+      "path": "research/theory_patterns_20260912/compile_search_prefix.py",
+      "bytes": 3690,
+      "sha256": "26d91bb4a82978d83655afa97037dd81a75c685240106e24d3f7beac3264621f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/compile_search_prefix_checks.json",
+      "bytes": 641,
+      "sha256": "f74628faf82b4b4b11bfd1b930ad83f7aeec0fcf15f88fd9de2ec10cb42f4ea9"
+    },
+    {
+      "path": "research/theory_patterns_20260912/complement_audit.json",
+      "bytes": 21130,
+      "sha256": "792db087fe01d46ecc6503f84dd1a4e66f855fa6bedd231bd11fda96ea2d06d1"
+    },
+    {
+      "path": "research/theory_patterns_20260912/complement_audit.md",
+      "bytes": 2999,
+      "sha256": "e03adf730192ed4cc3a4cd9ee7206d408f6835849d67df58e146dc4c9589d19a"
+    },
+    {
+      "path": "research/theory_patterns_20260912/complement_followup.json",
+      "bytes": 90053,
+      "sha256": "861e262a19857d9ec3086aabd403902da463cf78a4e3352a2b7ced5ada814e3c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/complement_followup.jsonl",
+      "bytes": 713059,
+      "sha256": "f344f0c3cdb9d023fe0143acbb64af6c27e0309bcb4e3421d365bb17650cc407"
+    },
+    {
+      "path": "research/theory_patterns_20260912/complement_followup.py",
+      "bytes": 11419,
+      "sha256": "f549250c10491444b486e6fd5f50e5a65d1fddbbf1e4b3433f7b328eb290f261"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_controls.json",
+      "bytes": 40681,
+      "sha256": "aba2f8461df893a08b19b73bb92387ddf1ebdf70270942ca33dceaa197861b6d"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_independent_audit.json",
+      "bytes": 10492,
+      "sha256": "e162ad28b5de4fc43a01930a8f99027a9200d5f74a1c644fe02f9619102436e7"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_independent_audit.md",
+      "bytes": 8994,
+      "sha256": "703659f66bc08d406fb2b5768a8894c1af5b1ed6a179356593b06bc140f2fd94"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_independent_check.py",
+      "bytes": 5001,
+      "sha256": "3c60c665c544dee5783836f02a927ad50077ed4ec2f6ef9b8fb63c10a59c3b4e"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_panel20.json",
+      "bytes": 9824,
+      "sha256": "8ac78a031dc4c6a6e8c927d7d7b2992e7e9d04fb867058bb25debb3a51905efd"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_panel20.jsonl",
+      "bytes": 63385,
+      "sha256": "a2a6f89d5ffec015806f14aa43c5ad12d7c70e77a84cbb7bd4a9f5f4ad6b50f2"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_probe.py",
+      "bytes": 9165,
+      "sha256": "e4c70d7862b0304367897889dcdc4c515fef4bceb7a735e93b67c6ac0c95cf2b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_probe_run_snapshot.py",
+      "bytes": 9176,
+      "sha256": "f9d03e56be25849bcfb6a78dcf650ec6fb66602a99381ac0a43a9c135de55ed0"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_remaining.py",
+      "bytes": 2665,
+      "sha256": "bda59dc279c534a1746b492aa95ab5aa42ad5f2d9aaf4e4262e39d2c64ef9b98"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_remaining104.json",
+      "bytes": 44450,
+      "sha256": "2942ff83a47431fce8dc97f319edad60936460b2c59040e577a76e0fdaf19378"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_remaining104.jsonl",
+      "bytes": 304912,
+      "sha256": "3a929435d855a8c35087bb069c90b05299ac8e22fe91d93d3b578191eaa64853"
+    },
+    {
+      "path": "research/theory_patterns_20260912/conjugated_complement_theory.md",
+      "bytes": 10451,
+      "sha256": "0906354cfe8c06441b116ec33ec957b03efc58f2a4bda2571380bd4c572a96aa"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_boundary_next.md",
+      "bytes": 9282,
+      "sha256": "169a10952190f3d72773e5a26c006ba48cb22e10dc55344c18fa8c8b4504155f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_boundary_next_check.json",
+      "bytes": 5586,
+      "sha256": "734141a7b56f3a15dd856fe93c45c270220cabdd6866e0de1d5069f5e101ca88"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_boundary_next_check.py",
+      "bytes": 4059,
+      "sha256": "7b0b426a15cb6e84769aad7e085b76f74edfcd96aaebaab45f17a22b291e3998"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_exchange.py",
+      "bytes": 12649,
+      "sha256": "8ec8426339f9fa7b97943236eb1b879567ad90f1496440d3a8d3e1cde415e977"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_exchange_checks.py",
+      "bytes": 16135,
+      "sha256": "f119146841fa7aba64056c1b81ad6194a9f1d4ed76291e2907f488ded39dc5f7"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_exchange_report.json",
+      "bytes": 3477695,
+      "sha256": "4a0e28b9a2df536a6d972d75233552e91c05758436a741d34adf2162fa6e9256"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_exchange_report.md",
+      "bytes": 13823,
+      "sha256": "2d68ed32fb090baae9e296e7096a6d0cab7c6c9b0745cd10ab6209631d8af73e"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_checks.json",
+      "bytes": 229751,
+      "sha256": "76159e9be84e306931c2a94aac2514bc4a40bb500c6e7f788e17dc5d826c1ead"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_general_compression.json",
+      "bytes": 203364,
+      "sha256": "9ad7b027267c63c023663bf152cd036e7aea662ca78b2ee33f86a363179f01e1"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_general_compression.py",
+      "bytes": 5600,
+      "sha256": "8fbb28c369ab838f500638e462783a2eb353040ca28e1e03d2d26e5a3ce0bd16"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_probe.py",
+      "bytes": 5014,
+      "sha256": "15fd91689b8458fc757488fba4f5268d00baa8bd6b9a5df2a931fd72c0163c06"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_stable_probe.json",
+      "bytes": 75108,
+      "sha256": "6b5f704c08939b26f643e1c9647beb3cd067020178d4d851726caf0a30db44df"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_stable_probe.py",
+      "bytes": 4977,
+      "sha256": "94aa38b4ace8d94cc308d2d218ffdae6bf27ecdfc4b28342f2e9dbd5bbd104e4"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_theory.md",
+      "bytes": 17526,
+      "sha256": "70dcbebfe7345d0c138f53145a7802323ee4eec07d994e4d845cd4a1258ead0b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_word_compression.py",
+      "bytes": 7342,
+      "sha256": "fc50b382b2770725bd98e520d589f9991185d3fa3892e87c3a854937a04ed419"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_word_compression_all124.json",
+      "bytes": 158416,
+      "sha256": "73c1028ea1eef4194a3c7af17473b2e1323f5f10ebf33529e729a74804fec990"
+    },
+    {
+      "path": "research/theory_patterns_20260912/coupled_power_word_compression_panel.json",
+      "bytes": 2661,
+      "sha256": "6a253ff2ce17d9fe875073d6b7e959c91f2b7eff7db379e564897ccce3484a65"
+    },
+    {
+      "path": "research/theory_patterns_20260912/critical_pairs.md",
+      "bytes": 3080,
+      "sha256": "e115c512fd110d7a8a552e5268e2014c3560a1706e142ceecb5629a19e69cbda"
+    },
+    {
+      "path": "research/theory_patterns_20260912/critical_pairs.py",
+      "bytes": 7656,
+      "sha256": "34052b777a9cf80f20a2350b3c0ac3c3cd49002b0770f8c478adb4d21de6720b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/critical_pairs_checks.json",
+      "bytes": 6887,
+      "sha256": "53242fbc75a2de25812ef2785991039086d6228e46fe98f83452b614906856a7"
+    },
+    {
+      "path": "research/theory_patterns_20260912/critical_pairs_panel.json",
+      "bytes": 56012,
+      "sha256": "669d307497a5eee145b6bdbb4ff93d19a31e1e52fc928a48b22b511bcbee203a"
+    },
+    {
+      "path": "research/theory_patterns_20260912/cyclic_complement.py",
+      "bytes": 3734,
+      "sha256": "40f08750b30da39d18ed2c5f22a32ff4f4a3a4d641293d10facbfd00e576777f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/cyclic_complement_u124.json",
+      "bytes": 284222,
+      "sha256": "1cee6a5b4bbdf30444887ee861438345f9845d1c8eefa6632114758012542374"
+    },
+    {
+      "path": "research/theory_patterns_20260912/endpoint_gates.json",
+      "bytes": 23972,
+      "sha256": "c0e787e66e0c2fcc982d2be5e4ff0717a0e59cafb5fc77b56ba2cbe3a3843ab5"
+    },
+    {
+      "path": "research/theory_patterns_20260912/endpoint_gates.py",
+      "bytes": 5094,
+      "sha256": "6d5f615f5d41751e53f2efc5a5bba8019edd694580c9878eb8a4045ad3dda415"
+    },
+    {
+      "path": "research/theory_patterns_20260912/endpoint_nielsen.json",
+      "bytes": 52647,
+      "sha256": "e60131d60b414b438b1ff4817f62a8e9aefaf74599f79b80592201749ba3b3b5"
+    },
+    {
+      "path": "research/theory_patterns_20260912/endpoint_nielsen.jsonl",
+      "bytes": 1937180,
+      "sha256": "c0cb88847cd6d58b953e2da76fd308d3c2ae3197ab8858b908e2a9892dec86b9"
+    },
+    {
+      "path": "research/theory_patterns_20260912/endpoint_nielsen.py",
+      "bytes": 6573,
+      "sha256": "2f6b6c96b3db942ca8e3f992f68fbd441be3b89fe9d08d9283718b52f1a87541"
+    },
+    {
+      "path": "research/theory_patterns_20260912/endpoint_nielsen_audit.json",
+      "bytes": 1373,
+      "sha256": "56d0b3c0b02abab9b506f0068be3ebb9650d9693e4f21cb0a347945cd60fac31"
+    },
+    {
+      "path": "research/theory_patterns_20260912/endpoint_nielsen_audit.md",
+      "bytes": 869,
+      "sha256": "084e633e9de52f409e42753d78e086509c55eb3971eaa9f42b2e44af496cb85b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/endpoint_nielsen_audit.py",
+      "bytes": 8534,
+      "sha256": "df76281abcba17de987f55e203af995249aee83cce4a6f1bab44d79acdc6f979"
+    },
+    {
+      "path": "research/theory_patterns_20260912/euclidean_power_complement_certificate.json",
+      "bytes": 32886,
+      "sha256": "4801d7699aed7fcbb17996ea0c5a291c5ea249e170a02df411f866e461712871"
+    },
+    {
+      "path": "research/theory_patterns_20260912/euclidean_power_complement_report.json",
+      "bytes": 20171,
+      "sha256": "3b72a227d4777a5d54554ae400502530eddc3f534ee9ed3cd1fdcaf81427b462"
+    },
+    {
+      "path": "research/theory_patterns_20260912/euclidean_power_complement_run.py",
+      "bytes": 6054,
+      "sha256": "3d751598425b8466a9c19c8ccb5d52bcc4e7e867ff224be86d60ad3d11e3e5b4"
+    },
+    {
+      "path": "research/theory_patterns_20260912/euclidean_power_complement_theory.json",
+      "bytes": 8973,
+      "sha256": "966165d77fbdef9b94a8b08b8d9ff2c4e1802b0889d277080c86707c0659d062"
+    },
+    {
+      "path": "research/theory_patterns_20260912/euclidean_power_complement_theory.md",
+      "bytes": 7800,
+      "sha256": "a6eaeaf1fc93f34def5b848b307902672cf69b2558ab82d524417b94ad263b93"
+    },
+    {
+      "path": "research/theory_patterns_20260912/extreme_residues.py",
+      "bytes": 7939,
+      "sha256": "76eb4038090d54ede303a21f575a19cbdaa137de9099c9c8728c54c85fdacce0"
+    },
+    {
+      "path": "research/theory_patterns_20260912/extreme_residues_checks.py",
+      "bytes": 12624,
+      "sha256": "3101b63fe4adcf1861ca7bbc778534ee971c5a260314d5e466014fe624c4aaf7"
+    },
+    {
+      "path": "research/theory_patterns_20260912/extreme_residues_report.json",
+      "bytes": 1255550,
+      "sha256": "898b31c5a4be6dcf6a1f6ec41e21ea0d22a8d4a885abcc60e9bdab3c14cb8a92"
+    },
+    {
+      "path": "research/theory_patterns_20260912/extreme_residues_report.md",
+      "bytes": 12294,
+      "sha256": "f3d7d0f03cf4c8dde652c4c98cff9db8911de5f89c009cb595d8b3a6b7334020"
+    },
+    {
+      "path": "research/theory_patterns_20260912/final_table_validation.json",
+      "bytes": 1850,
+      "sha256": "d0ece2a4b2aaeab042fefbd0ed37b4cb17df5ff6106d3e92b660ac2c4c16c32b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/intermediate_minima.csv",
+      "bytes": 6994,
+      "sha256": "3afebae076191477600bff5518f723f863872b7003d419f5df8cfe16f6ba80b0"
+    },
+    {
+      "path": "research/theory_patterns_20260912/intermediate_minima.json",
+      "bytes": 83392,
+      "sha256": "3699a8dd2104026b1bce4c53c0c3584edc1a1cfe145523aff4f25baf778f10a5"
+    },
+    {
+      "path": "research/theory_patterns_20260912/intermediate_minima.md",
+      "bytes": 1564,
+      "sha256": "4c8fb10800e7774e41934d9412060a0cf872fa835402e978f21d2e2d405b6911"
+    },
+    {
+      "path": "research/theory_patterns_20260912/intermediate_minima.py",
+      "bytes": 14784,
+      "sha256": "68cbfc2a6b9967ac58dbd9c0f944ee5a05f069c1ddb99cb39668b8eb3ad6305d"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_census_scope.json",
+      "bytes": 526379,
+      "sha256": "8ba0979ec07d541ea1bddd4e0290964be79cf9719dc2388195ce78094cafd047"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_census_scope.py",
+      "bytes": 3071,
+      "sha256": "b2d4d78296d65d9698fc606f6c365766e1bc2841f110dafe130ce5123177d0d4"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_family_checks.json",
+      "bytes": 377354,
+      "sha256": "b3dd2f7499a36927f218cb7a681e37a31e48bb1a1affaf629d0c33aca270268d"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_family_extensions.md",
+      "bytes": 10998,
+      "sha256": "34a0bc4fb844b018b75ec380b12ce98c06975b283508f407bf95a0c0a2fe1328"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_family_verify.py",
+      "bytes": 12360,
+      "sha256": "ca6489e26ce0df0db9aceb9fddd762b3585d8b8d1eb46220d9fde3f1cb0d0c2b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_independent_audit.json",
+      "bytes": 321919,
+      "sha256": "e88a934673a1822f3a11c4fff9a3e8fb5451330340f70f3e3b3063170fe0f19e"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_independent_audit.md",
+      "bytes": 9746,
+      "sha256": "6a5707e91918ffb2c15a912e255cae9ded5871cb252c9acc2b4f9c09930fce57"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_residue_class_probe.json",
+      "bytes": 306389,
+      "sha256": "0249fd0bf358748ad9c5b66b15bdb7ce5604354b0cdd1c483b51c7fd97da1a33"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_residue_class_probe.py",
+      "bytes": 3998,
+      "sha256": "f2620ce6a606bdc377c2816c3494e8dd5f17088cffe087ccf840ebf140bbfb9e"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_residue_orbits.json",
+      "bytes": 20934,
+      "sha256": "88346aa5e420d009c08c39db4367df92daeeb5a4ba68100a97addcd569a898e3"
+    },
+    {
+      "path": "research/theory_patterns_20260912/ms_residue_orbits.py",
+      "bytes": 2444,
+      "sha256": "35c820c4a8fa39fb39d651621337c741550e373859d2d6ebaa9346e1f31c3137"
+    },
+    {
+      "path": "research/theory_patterns_20260912/neuwirth_independent_audit.json",
+      "bytes": 481544,
+      "sha256": "0414a6899f75739f8f587a6b335ed02d0fd618f66f6a0d485f34f58eb52689ba"
+    },
+    {
+      "path": "research/theory_patterns_20260912/neuwirth_independent_audit.md",
+      "bytes": 7695,
+      "sha256": "b0f7e7ebf998579ab1b0b91fb32a029bb43be9f54300b81d08790099d9d3b34b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/neuwirth_independent_audit.py",
+      "bytes": 22550,
+      "sha256": "d771b87a9ae00cfc59d8bd9f64343c29062c6635d4e5bf7856577641d3304d4f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/prepared_frames.py",
+      "bytes": 12968,
+      "sha256": "bcbe258fd96a4a4ae7b9a27723f01944866733786340e84374bef33f21a4570f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/prepared_frames_checks.py",
+      "bytes": 17651,
+      "sha256": "8a94f3dfb1113105243192d2467a2fe1d0abded6279fc28b11bf6c3904fbc0c1"
+    },
+    {
+      "path": "research/theory_patterns_20260912/prepared_frames_full124.jsonl.gz",
+      "bytes": 3511931,
+      "sha256": "c575d24a480fde949cde9859eae3b910dceb36714b41f6c6365f2527fc01428c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/prepared_frames_panel20.jsonl",
+      "bytes": 38500044,
+      "sha256": "677d9be1dde2ea858d3340a552f2e9aca7219e257ad9214b933827e7e671131f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/prepared_frames_report.json",
+      "bytes": 32027,
+      "sha256": "d66b5e783cb676b3de6558ca956a648705d0984614ec16e0b3b9ca965034c80b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/prepared_frames_report.md",
+      "bytes": 9831,
+      "sha256": "0eeeb612610926b5a4099c6fd52ab1e1bbffa3814fbe35d80ca74dcfcb56d20f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/primitive_compression.py",
+      "bytes": 14769,
+      "sha256": "14341a1cff7354e8dc048d50577ca4cea7043d4da21ff435bd0ff973443f009f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/primitive_compression_checks.py",
+      "bytes": 21693,
+      "sha256": "740eff052d2bf2a8a3e32383c5272f630898e07a0e2c6804566658f87f329c04"
+    },
+    {
+      "path": "research/theory_patterns_20260912/primitive_compression_independent_audit.json",
+      "bytes": 22723,
+      "sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46"
+    },
+    {
+      "path": "research/theory_patterns_20260912/primitive_compression_independent_audit.md",
+      "bytes": 5545,
+      "sha256": "856bf2af9070d169a15e2bbadbd3928b5fde637c60e2687e69ad368cb7939844"
+    },
+    {
+      "path": "research/theory_patterns_20260912/primitive_compression_report.json",
+      "bytes": 527296,
+      "sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32"
+    },
+    {
+      "path": "research/theory_patterns_20260912/primitive_compression_report.md",
+      "bytes": 3959,
+      "sha256": "cf94ee782e8a03d6a5c2193cff62096ab933955358055b6d25e82ad35fabd794"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rank3_complement_report.json",
+      "bytes": 20107,
+      "sha256": "fe799946799d8c644fcdf95affb40cff632a97d82fd5dd361ceed0878ba739a9"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rank3_corridor_final_analysis.md",
+      "bytes": 9916,
+      "sha256": "76a703c43746ee98ce3e014a34f3c067cc48b2cb96863e557e1830d52b7b20a4"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rank3_corridor_final_analysis_checks.json",
+      "bytes": 117684,
+      "sha256": "eb45233d69d5223234cf309064e02a2461589a6394d5d250fc46a1ba5b6210c5"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rank3_corridor_final_independent_audit.json",
+      "bytes": 672,
+      "sha256": "03f306c495de54213ac9794d9f396b0d0812f18f6d252510533e16d0e1855946"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rank3_corridor_final_independent_audit.py",
+      "bytes": 3154,
+      "sha256": "80c7b644c5fee70058ae39e1b92958bb21b3eb6b0f1159332da5bbccde7b443c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rank3_neuwirth_extension.json",
+      "bytes": 178303,
+      "sha256": "fc89d13d7da0447bd7de057cb8831a9d83fae990085ef32a3aec97ac7bd191f1"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rank3_neuwirth_extension.md",
+      "bytes": 10108,
+      "sha256": "d0f8339bf4fedb737eddeec88427f93e6fec23b3896caba6237282bb190b1b8c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rank3_neuwirth_extension.py",
+      "bytes": 9844,
+      "sha256": "de0734ec8e3ed2d1049e154270cb15174e201fdb7cbe3d966b39c6d2d52e7a78"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rankn_complement.py",
+      "bytes": 6059,
+      "sha256": "a4530f0724b716b8c1fef9c5252cb94fc7e9d6d25e604677a0243f683f2a86ce"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rankn_complement_theory_audit.json",
+      "bytes": 2952,
+      "sha256": "078145bf2450a74c43e549a16fe9a9370fc18d94b1cc1e1844dcec87cb9a558e"
+    },
+    {
+      "path": "research/theory_patterns_20260912/rankn_complement_theory_audit.md",
+      "bytes": 10115,
+      "sha256": "c80eef55d806c300a7859631589291ae9c33f2cb263ddf5cb1f84b99636ed394"
+    },
+    {
+      "path": "research/theory_patterns_20260912/recursive_stable_compression.py",
+      "bytes": 11049,
+      "sha256": "ecc6ffb33dc8db7415dcdaa69f7d6d96021031aef807d1f32b5e4d3ade3fe3ed"
+    },
+    {
+      "path": "research/theory_patterns_20260912/recursive_stable_compression_checks.py",
+      "bytes": 17277,
+      "sha256": "7c82321573edc87e024e79de93522e19758c08e131b1691a447bc03b0c74e7c1"
+    },
+    {
+      "path": "research/theory_patterns_20260912/recursive_stable_compression_independent_audit.json",
+      "bytes": 31377,
+      "sha256": "325d2297c500b44512f78a11c9051a285c7b4a81e2741fdfe40db72dd09445e0"
+    },
+    {
+      "path": "research/theory_patterns_20260912/recursive_stable_compression_independent_audit.md",
+      "bytes": 3359,
+      "sha256": "bb949ae6c86e4bf8a208c931fd48e8f1a2c75cca79f6fa144ef7cc225fd4413d"
+    },
+    {
+      "path": "research/theory_patterns_20260912/recursive_stable_compression_independent_audit.py",
+      "bytes": 11811,
+      "sha256": "1d6d747ec35e21f41fa18d76572d790f7b8ade949ff72a53ee108e39f62662ff"
+    },
+    {
+      "path": "research/theory_patterns_20260912/recursive_stable_compression_report.json",
+      "bytes": 618140,
+      "sha256": "3e6a3d89e652b292051e58cd297abcbf8d29b9bfcceff166d72c8aadc9de0ce2"
+    },
+    {
+      "path": "research/theory_patterns_20260912/recursive_stable_compression_report.md",
+      "bytes": 8070,
+      "sha256": "735040d08d3fc6f3cbcd625fbf151848d947e442f17656933af3541575e77cce"
+    },
+    {
+      "path": "research/theory_patterns_20260912/session.json",
+      "bytes": 780,
+      "sha256": "9b84bc2c3ec50ec602ed5cdd5801e983f83bc96c486601bc36ffc3fc9f0a3d6c"
+    },
+    {
+      "path": "research/theory_patterns_20260912/snapshot_neuwirth_dart_audit.py",
+      "bytes": 10728,
+      "sha256": "466a2443941d53df925f97f62a47d33df18f9962842f5fb6598823d507fc4f8d"
+    },
+    {
+      "path": "research/theory_patterns_20260912/snapshot_neuwirth_permutation_certificate.py",
+      "bytes": 11157,
+      "sha256": "02c9ac34f1869740f3f8addd4a8d96192eaf691a7a03e74e8237ac9f86388bca"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_dictionary_compression.py",
+      "bytes": 6984,
+      "sha256": "89b4b58cecc542c4e657983999f654c91c679f0011272761da5e4aec1feea8c3"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_dictionary_compression_report.json",
+      "bytes": 64394,
+      "sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_dictionary_independent_audit.json",
+      "bytes": 158219,
+      "sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_dictionary_independent_audit.md",
+      "bytes": 4052,
+      "sha256": "7371dae44516215401d4f3b5014723509be6f46dacb09961d5bc1b52a54af6f6"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_dictionary_independent_audit.py",
+      "bytes": 10483,
+      "sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_endpoint_combo.json",
+      "bytes": 106173,
+      "sha256": "382092b13656ff343f9bedf44079badc92619d154900afba0e41d7cca85bd007"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_endpoint_combo.py",
+      "bytes": 3337,
+      "sha256": "9e2fdab91ac9a0820db0c67e7fd073efecfb8d550a206cccc972c64ad1116689"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_independent_audit.json",
+      "bytes": 163801,
+      "sha256": "de71c7affbf0e21c8680110d4126c2589cec0d0100242db55925c415273b3418"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_independent_audit.md",
+      "bytes": 12771,
+      "sha256": "49d9653dc60d7f12c93767b2ffdd504caae240cd2d92abb4b9832712bd88bc1d"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_neuwirth_report.json",
+      "bytes": 30496,
+      "sha256": "71f193ca7937c9fbba82fda1464243d83007439ac8d1fb6dd6c73ed9e7ae383e"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_neuwirth_screen.py",
+      "bytes": 4945,
+      "sha256": "3c855f18f2df942e5d4dd5205aafcdca8bbaa7c75fdb9ac1233fe1731c6f1a7a"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_neuwirth_seed_snapshot.json",
+      "bytes": 158910,
+      "sha256": "fda80a1d7a83ac8bd8afe4112aef5e6cd790cfe1bded1878ef169656f47fc830"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_ac_descent.py",
+      "bytes": 5010,
+      "sha256": "c0d96d2fdf979d4d99b00990aeefb90263eed1e3fc60290048af09d2c071d665"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_ac_descent_report.json",
+      "bytes": 120904,
+      "sha256": "887e960e3a578c8f81fd5a6d0996aae80c11575228f016c5cef3c7cf7f068bb1"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_ac_independent_audit.json",
+      "bytes": 205309,
+      "sha256": "ba0b260dba8e5b064cecbb87eb84312bb57fb82819652539a622a9f5e1d0dcfd"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_ac_independent_audit.md",
+      "bytes": 3485,
+      "sha256": "691b72d39453cfc38770fef87f03749f264f58b4902a30ec351e44d1f66b5204"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_ac_independent_audit.py",
+      "bytes": 14136,
+      "sha256": "fb35cbed1f29ea1c1e7caaefff86c69a3af7f489e3870e9cb5e8380561ebf6aa"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_descent.py",
+      "bytes": 3833,
+      "sha256": "ad2942e271649f179ff71310e0309e03f810af08d94ccf1b5781ce72a8ec91a5"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_descent_report.json",
+      "bytes": 118015,
+      "sha256": "06039c6acc3a198abe6f889fc8458f0e247cdfaa9b67b979aa7b596ce6de0cb5"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_patterns.md",
+      "bytes": 7300,
+      "sha256": "ffd118ad210ede317fdea14abd4c6731b3f31b22768d9848df4c777349abb549"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_patterns_check.py",
+      "bytes": 4872,
+      "sha256": "01427863def7a55f8d7799d075c67904364a368b1d5f1c8714da109e8c5348c9"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_patterns_independent_audit.json",
+      "bytes": 892,
+      "sha256": "d10be9278b4f95e4e797a4acaa949bc6406b640270206d445d6d514d7e0ba73f"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_patterns_independent_audit.md",
+      "bytes": 2011,
+      "sha256": "2be335cb17d092dd5027a25377b95248ad3708117a2cc1cd8d0b04773b24ca7d"
+    },
+    {
+      "path": "research/theory_patterns_20260912/stable_rank3_patterns_independent_audit.py",
+      "bytes": 4855,
+      "sha256": "c134a569eb3da15a3e134ad40a2174df09bb91c8a2892a63211ee38d619da493"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_continuation_elementary.json",
+      "bytes": 9889,
+      "sha256": "7b88f12d4e74d10b970aaf3e45a7fd4a7de522d6fbe2a9fe1b076604efd69f7d"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_direct_completion.py",
+      "bytes": 13142,
+      "sha256": "f9ac216e709c886f6cd84d9eb441ba418d3eea7aeff2503c3a847a4545759603"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_direct_completion_report.json",
+      "bytes": 165152,
+      "sha256": "bec4e53329a749e04739f0e22eef1639fed0e22adf615fa92c0dc374c1411107"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_direct_completion_report.md",
+      "bytes": 7284,
+      "sha256": "3146aa8540cecaca6b2d00deee4cb7d457049d417f841fe87d2d08a4cc10d769"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_independent_theory.json",
+      "bytes": 12646,
+      "sha256": "e6b30624e1cc1084fd34c3fd850c687a59a20e9a370fee2634106fc426ca63b9"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_independent_theory.md",
+      "bytes": 10724,
+      "sha256": "dd7a6970bed27f337718bd1ee84ae9a31f2c4899b118d6f27bfeaac1ac7dbf8e"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_probe.py",
+      "bytes": 18549,
+      "sha256": "4ebb70fd05a098dbc43f3d308600ab40c3c453ad3ae2ad09f02b6be527e4cfbb"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_probe_checks.py",
+      "bytes": 14861,
+      "sha256": "9045b8523f55886b61d0f76b701149fa16e2f77a60aed4c0c1a52c39c38002a1"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_probe_report.json",
+      "bytes": 77568,
+      "sha256": "2fcdcbc1368e508c6f85174488eb233b8740734cefee7e894935190833ade3f0"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_probe_report.md",
+      "bytes": 10226,
+      "sha256": "d646cc9b9927c49793664dbe5e430d5ec9f07f6f17b74698cee335babcfd7010"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_q3_certificates.jsonl",
+      "bytes": 67485,
+      "sha256": "4bd99e75b54415d0f939d4d5687fa39484d182c08cf2b780121d76f71835ccc8"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_q3_report.json",
+      "bytes": 58650,
+      "sha256": "b5b72fb511bf8c3f96ccc1f7cc3e18fbca95f2420497ee48f691ccd69da61491"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_scope_theory.md",
+      "bytes": 6860,
+      "sha256": "ecb45b0ef2d8b97a785345e55d829142f0c8f7d2f660f36c620d3ee64c8a1b43"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_search_continuation.json",
+      "bytes": 2817,
+      "sha256": "f0c3bc6b92db0ba7f1c21344d108753e4059bc600606f997521bd6099e9ba3b6"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_search_continuation.py",
+      "bytes": 4233,
+      "sha256": "fd1b24da4d5c2a5d3f6dcade1fe95db2d39960a0504e2ae663397fe9d2e702cd"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_unit_gate.py",
+      "bytes": 15349,
+      "sha256": "c264e1f21f3c5edd85ccad5ab4987db08fdd9395815bca6bbc12bbb7d6d1012e"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_unit_gate_independent_audit.json",
+      "bytes": 124826,
+      "sha256": "742e7caa0f1558f664d97767a89700561ffbc6b48d8135b8c5a6f4495635e48e"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_unit_gate_independent_audit.md",
+      "bytes": 6798,
+      "sha256": "44cba01531b4b0a7d32ffa48a099a54db0589efaf732815916f21937cd412522"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_unit_gate_independent_audit.py",
+      "bytes": 41097,
+      "sha256": "eb6c3f98b530b1e85ad119277601de4f02efbe31ac19594802909fda0081d2b1"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_unit_gate_report.json",
+      "bytes": 344379,
+      "sha256": "a87446e02b89c2fa10977eb11e0b81100d588577ccbc2f00b18f45ce143daa74"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_unit_gate_report.md",
+      "bytes": 3340,
+      "sha256": "0d05f9346522fb8bb590a0326311c26ef6848f7c1d00af5a5383d75008cffb77"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_unit_gate_s20.py",
+      "bytes": 6370,
+      "sha256": "ad87293f1333ee35e60ebab03814f5b4237b6f08e0dae54448ea79dc509147ce"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_unit_gate_s20_certificates.jsonl",
+      "bytes": 176428,
+      "sha256": "199d842b108bcd364b1f5707db8a4aa450dc989ddaf87dd142eb814e3585d67b"
+    },
+    {
+      "path": "research/theory_patterns_20260912/two_complement_unit_gate_s20_report.json",
+      "bytes": 45112,
+      "sha256": "602594b0b1c121e5b4ce5c8800270c08468767ef6dd9acf958553da43c8dac6a"
+    },
+    {
+      "path": "research/theory_patterns_20260912/u124_final_table.csv",
+      "bytes": 32648,
+      "sha256": "98114855f80c258695e7ce84983b14aac16cb15e5aead1f44bec1c6a12a326d7"
+    },
+    {
+      "path": "research/theory_patterns_20260912/u124_final_table.json",
+      "bytes": 234537,
+      "sha256": "fa3b7c05b45269057203852f5ce8e263b7c1b032b642e7550085b36cbf7a3677"
+    },
+    {
+      "path": "research/theory_patterns_20260912/u124_final_table.md",
+      "bytes": 17201,
+      "sha256": "ea0a4127828059d87ee46fab510479a563941d27f8455dfe929c064181fc7376"
+    },
+    {
+      "path": "research/theory_patterns_20260912/u124_final_table.py",
+      "bytes": 51418,
+      "sha256": "68b64245f2079601a0ff2aa6444cdd800443a9e08fd59325e41d20d245219587"
+    },
+    {
+      "path": "research/theory_patterns_20260912/u124_inventory.json",
+      "bytes": 241004,
+      "sha256": "87dc867395bd32523f05ec3974d031cdf2f335da846a6b2e2a9c03066689447a"
+    },
+    {
+      "path": "research/theory_patterns_20260912/u124_inventory.md",
+      "bytes": 22989,
+      "sha256": "83c812117547852cfa3641b9eef0832a1430a6a33cd359cb2c8717377c527ab9"
+    },
+    {
+      "path": "two_complement_q3_run.py",
+      "bytes": 5858,
+      "sha256": "d4c4ea8a009a48ebd8369a44fd2bc8301113f234bfc0d81dd820b296ba93b384"
+    }
+  ],
+  "table_snapshot_utc": "2026-09-12T23:09:31.154796+00:00",
+  "table_rows": 124,
+  "solved_ordinary_ids": [],
+  "solved_stable_ids": [],
+  "best_rank2_length_sum": 2356,
+  "best_any_rank_length_sum": 2191,
+  "scope": "Research snapshot prepared for commit on this branch. Hashes identify original author reports and later audits separately. Large certificate files are retained in compressed form where required. This manifest does not assert every research artifact passed review; FINAL_REPORT and the independent audits identify the accepted conclusions."
+}

@@ -1,0 +1,138 @@
+{
+  "source": "exchange_rank4_sharp.json",
+  "source_sha256": "5148e7250560f6019fd96a34b30c1c65e2bf1800c6aeb800d15239261b13ae76",
+  "before": [
+    [
+      101,
+      100000000000000000000,
+      100000000000000000000
+    ],
+    [
+      307,
+      100000000000000000001,
+      100000000000000000001
+    ],
+    [
+      100000000000000000000,
+      307,
+      101,
+      -307,
+      -101
+    ],
+    [
+      100000000000000000001,
+      101,
+      307,
+      -101,
+      -307
+    ]
+  ],
+  "after": [
+    [
+      101,
+      100000000000000000000,
+      100000000000000000000
+    ],
+    [
+      307,
+      100000000000000000001,
+      100000000000000000001
+    ],
+    [
+      100000000000000000000,
+      307,
+      101,
+      -307,
+      -101
+    ],
+    [
+      100000000000000000001,
+      101,
+      307,
+      -101,
+      -307
+    ]
+  ],
+  "events": [],
+  "charged_units": 8,
+  "coupled_whitehead_score": {
+    "complete": true,
+    "signed_multipliers": [
+      {
+        "multiplier": -100000000000000000001,
+        "side": [
+          -100000000000000000001
+        ],
+        "capacity": 3,
+        "degree": 3,
+        "delta": 0
+      },
+      {
+        "multiplier": -100000000000000000000,
+        "side": [
+          -100000000000000000000
+        ],
+        "capacity": 3,
+        "degree": 3,
+        "delta": 0
+      },
+      {
+        "multiplier": -307,
+        "side": [
+          -307
+        ],
+        "capacity": 5,
+        "degree": 5,
+        "delta": 0
+      },
+      {
+        "multiplier": -101,
+        "side": [
+          -101
+        ],
+        "capacity": 5,
+        "degree": 5,
+        "delta": 0
+      },
+      {
+        "multiplier": 101,
+        "side": [
+          101
+        ],
+        "capacity": 5,
+        "degree": 5,
+        "delta": 0
+      },
+      {
+        "multiplier": 307,
+        "side": [
+          307
+        ],
+        "capacity": 5,
+        "degree": 5,
+        "delta": 0
+      },
+      {
+        "multiplier": 100000000000000000000,
+        "side": [
+          100000000000000000000
+        ],
+        "capacity": 3,
+        "degree": 3,
+        "delta": 0
+      },
+      {
+        "multiplier": 100000000000000000001,
+        "side": [
+          100000000000000000001
+        ],
+        "capacity": 3,
+        "degree": 3,
+        "delta": 0
+      }
+    ],
+    "raw_length": 16,
+    "one_step_length": 16
+  },
+  "scope": "All signed Whitehead minimum cuts are nonnegative, certifying whole-Aut minimum16; the separate ordinary donor escape still applies."
+}

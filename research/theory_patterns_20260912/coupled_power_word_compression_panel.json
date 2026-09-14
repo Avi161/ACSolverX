@@ -1,0 +1,109 @@
+{
+  "status": "theorem_backed_stable_macro_witnesses_not_elementary_expanded",
+  "row_limit": 500,
+  "max_defining_length": 6,
+  "wall_seconds": 0.01944291708059609,
+  "rows": [
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "input_length": 15,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 1,
+        "oriented_source": "XXXyxxY",
+        "defining_word": "XXyxxY",
+        "isolator": "Xz",
+        "eliminated_axis": "x",
+        "unique_sign": -1,
+        "recovered_word": "z",
+        "companion_template": "YYYXXyyX",
+        "raw_rank2_endpoint": [
+          "XXXyxxY",
+          "YYYXXyyX"
+        ],
+        "best_pair": [
+          "XXXyxxY",
+          "XXyyXYYY"
+        ],
+        "best_length": 15,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 22
+      },
+      "attempted_endpoints": 9,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 5,
+        "oriented_source": "yXYYYXy",
+        "defining_word": "XYYYXy",
+        "isolator": "yz",
+        "eliminated_axis": "y",
+        "unique_sign": 1,
+        "recovered_word": "Z",
+        "companion_template": "YXXXyxx",
+        "raw_rank2_endpoint": [
+          "XYxxxYX",
+          "xYYYXyy"
+        ],
+        "best_pair": [
+          "XXXyxxy",
+          "XYYxyyy"
+        ],
+        "best_length": 14,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 21
+      },
+      "attempted_endpoints": 4,
+      "limit_hit": false
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "best": {
+        "source": 0,
+        "cyclic_prefix": "",
+        "cut": 2,
+        "oriented_source": "YXyyxYY",
+        "defining_word": "XyyxYY",
+        "isolator": "Yz",
+        "eliminated_axis": "y",
+        "unique_sign": -1,
+        "recovered_word": "z",
+        "companion_template": "YXXXyxx",
+        "raw_rank2_endpoint": [
+          "XYxxyXX",
+          "XYYYxyy"
+        ],
+        "best_pair": [
+          "XXXYxxy",
+          "XYYYxyy"
+        ],
+        "best_length": 14,
+        "nielsen_trace": [],
+        "recorded_rank3_boundary_max_total_length": 21
+      },
+      "attempted_endpoints": 4,
+      "limit_hit": false
+    }
+  ],
+  "source_path": "data/ms_unsolved_reps/aca_124_best.csv",
+  "source_sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3"
+}

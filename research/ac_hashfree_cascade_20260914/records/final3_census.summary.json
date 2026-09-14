@@ -1,0 +1,15 @@
+{
+  "rows": 72779,
+  "solved": 72779,
+  "verified": 72779,
+  "params": {
+    "engine": "hybrid",
+    "budget": 1000,
+    "penalty": 5,
+    "cap": 8,
+    "slack": 8,
+    "dyn_max": null,
+    "dyn_ratio": 0.5
+  },
+  "elapsed": 94.87339942399922
+}

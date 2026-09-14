@@ -1,0 +1,17 @@
+{
+  "rows": 640,
+  "solved": 640,
+  "verified": 640,
+  "search_wall": 2.2247060690096987,
+  "search_cpu": 2.224692494,
+  "batch_wall_including_verification": 5.760002835000705,
+  "max_units": 283,
+  "total_units": 25064,
+  "max_wall_row": 0.17371872699914093,
+  "params": {
+    "budget": 1000,
+    "penalty": 5,
+    "dyn_ratio": 0.5
+  },
+  "cascade_protocol": true
+}

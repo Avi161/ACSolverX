@@ -1,0 +1,13 @@
+{
+  "rows": 41,
+  "solved": 32,
+  "verified": 32,
+  "params": {
+    "engine": "hybrid",
+    "budget": 1000,
+    "penalty": 6,
+    "cap": 8,
+    "slack": 8
+  },
+  "elapsed": 20.677498989000014
+}

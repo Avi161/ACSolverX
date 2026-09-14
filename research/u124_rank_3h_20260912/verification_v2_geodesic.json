@@ -1,0 +1,413 @@
+{
+  "status": "PASS",
+  "controls": {
+    "status": "PASS",
+    "epsilon_oracles": [
+      {
+        "epsilon_pairs": 9,
+        "oracle_passes": 2,
+        "charged_units": 7
+      },
+      {
+        "epsilon_pairs": 25,
+        "oracle_passes": 5,
+        "charged_units": 31
+      },
+      {
+        "epsilon_pairs": 121,
+        "oracle_passes": 8,
+        "charged_units": 359
+      }
+    ],
+    "complete_queries_vs_exhaustive_tokens": 106,
+    "freely_reduced_token_words_enumerated": 1311,
+    "lexicographic_template": [
+      -1,
+      3,
+      -2,
+      -2
+    ],
+    "lexicographic_cost": [
+      1,
+      4
+    ],
+    "length_objective_template": [
+      1,
+      1,
+      2
+    ],
+    "lexicographic_zero_pivot_lower_bound": "Without oldgenerator1, helper3 contributes exponent multiplesof3, incompatiblewith targetexponent2.",
+    "repeated_saturation_regression_pass": true,
+    "v2_template_event": {
+      "kind": "defining_template_compression",
+      "before": [
+        [
+          -5,
+          -5,
+          -2,
+          5,
+          2
+        ],
+        [
+          -5,
+          -2,
+          -2,
+          5,
+          2
+        ]
+      ],
+      "certificate_kind": "theorem_backed_stable_composite",
+      "required_hypothesis": "known balanced presentation of the trivial group",
+      "helpers": [
+        6
+      ],
+      "defining_words": [
+        [
+          2,
+          5,
+          -2,
+          -5
+        ]
+      ],
+      "defining_relators": [
+        [
+          -6,
+          2,
+          5,
+          -2,
+          -5
+        ]
+      ],
+      "rows": [
+        {
+          "input_index": 0,
+          "before": [
+            -5,
+            -5,
+            -2,
+            5,
+            2
+          ],
+          "sign": 1,
+          "conjugator": [
+            -5,
+            -5,
+            -2
+          ],
+          "oriented": [
+            5,
+            2,
+            -5,
+            -5,
+            -2
+          ],
+          "template": [
+            -6,
+            -5,
+            -6
+          ],
+          "expanded": [
+            5,
+            2,
+            -5,
+            -5,
+            -2
+          ],
+          "complete_geodesic": true,
+          "template_cost": [
+            0,
+            3
+          ]
+        },
+        {
+          "input_index": 1,
+          "before": [
+            -5,
+            -2,
+            -2,
+            5,
+            2
+          ],
+          "sign": -1,
+          "conjugator": [
+            -2,
+            -5,
+            2
+          ],
+          "oriented": [
+            2,
+            5,
+            -2,
+            -5,
+            2
+          ],
+          "template": [
+            6,
+            2
+          ],
+          "expanded": [
+            2,
+            5,
+            -2,
+            -5,
+            2
+          ],
+          "complete_geodesic": true,
+          "template_cost": [
+            1,
+            2
+          ]
+        }
+      ],
+      "templates": [
+        [
+          -6,
+          -5,
+          -6
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "raw_after": [
+        [
+          -6,
+          2,
+          5,
+          -2,
+          -5
+        ],
+        [
+          -6,
+          -5,
+          -6
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "normalization": [
+        {
+          "input_index": 1,
+          "before": [
+            -6,
+            -5,
+            -6
+          ],
+          "after": [
+            -6,
+            -6,
+            -5
+          ],
+          "sign": 1,
+          "conjugator": [
+            -6,
+            -5
+          ]
+        },
+        {
+          "input_index": 2,
+          "before": [
+            6,
+            2
+          ],
+          "after": [
+            -6,
+            -2
+          ],
+          "sign": -1,
+          "conjugator": [
+            -2
+          ]
+        },
+        {
+          "input_index": 0,
+          "before": [
+            -6,
+            2,
+            5,
+            -2,
+            -5
+          ],
+          "after": [
+            -6,
+            2,
+            5,
+            -2,
+            -5
+          ],
+          "sign": 1,
+          "conjugator": []
+        }
+      ],
+      "after": [
+        [
+          -6,
+          -6,
+          -5
+        ],
+        [
+          -6,
+          -2
+        ],
+        [
+          -6,
+          2,
+          5,
+          -2,
+          -5
+        ]
+      ],
+      "helper_uses": {
+        "6": 3
+      },
+      "length_change": 0,
+      "method": "weighted_free_reduction_saturation",
+      "orientation_selection": "literal_score_then_dictionary_prefix_overlap",
+      "objective": "old_generator_count_then_length",
+      "eliminate_generator": 2,
+      "saturation_complete": true,
+      "complete_all_exact_word_geodesics": true,
+      "automaton_states": 7,
+      "automaton_edges": 12,
+      "work_counts": {
+        "epsilon_cancellation_pairs": 19,
+        "epsilon_concatenations": 70,
+        "query_epsilon_paths": 189,
+        "query_letter_edges": 30,
+        "definitions": 1,
+        "template_expansions": 2
+      },
+      "charged_units": 311,
+      "fully_expanded_elementary_certificate": false
+    },
+    "v2_template_charged_units": 311,
+    "census_searches": 0
+  },
+  "pilot": {
+    "status": "PASS",
+    "file": "templates_v2_pilot.json",
+    "sha256": "24614208e6fb6e6f0dcf43f2bfb5fe729082e33724f0080ebdaaa925746b20eb",
+    "rows": [
+      {
+        "name": "aca_7",
+        "status": "PASS",
+        "length": 15,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 15,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_30",
+        "status": "PASS",
+        "length": 16,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 16,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_57",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 17,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_75",
+        "status": "PASS",
+        "length": 18,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 18,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_80",
+        "status": "PASS",
+        "length": 17,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 17,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_83",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_84",
+        "status": "PASS",
+        "length": 19,
+        "rank": 3,
+        "gain_vs2180_baseline": 1,
+        "preprobe_best_length_including_seeds": 19,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_108",
+        "status": "PASS",
+        "length": 21,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 21,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      },
+      {
+        "name": "aca_109",
+        "status": "PASS",
+        "length": 20,
+        "rank": 3,
+        "gain_vs2180_baseline": 0,
+        "preprobe_best_length_including_seeds": 20,
+        "new_gain_beyond_seeds": 0,
+        "new_probe_units": 1000,
+        "retained_path_identical_to_imported_seed": true
+      }
+    ],
+    "new_probe_work_units": 9000,
+    "full_seed_files_historical_discovery_units": 28307,
+    "seed_work_included_in_new_probe_budget": false,
+    "new_strict_gains_beyond_available_seeds": 0,
+    "historical_verifier_provenance": {
+      "executed_sha256": "2e314f5c2edbc050370ab37cc615cfd333937c6b7fab485cb5667edf352e176b",
+      "current_sha256": "90b891b36aeeef255410548f462cb0b8fa5e42d0fcdba47af71d630bd89e2d66",
+      "matches_current": false,
+      "scope": "Historical verifier hash retained; every saved event is checked again with current independent verifier."
+    }
+  },
+  "source_sha256": {
+    "exchange_v2_geodesic.py": "6cd3f0f3ccf21b45f28b2d3b9e8ae08541d59f00504527f2869c0df444209898",
+    "exchange_v2_probe.py": "a24d97f14e3ba6946c34fddef97679327df85818f9eb73d3952f3902a0f88509",
+    "exchange_v2_geodesic_snapshot_before_reset.py": "314f8e73fdee674235e16e3a423cef9d197cd1f1880b1f9ea61aed8223597b56"
+  },
+  "independent_verifier_sha256": "90b891b36aeeef255410548f462cb0b8fa5e42d0fcdba47af71d630bd89e2d66",
+  "script_sha256": "dd06480097260be06ad7784cdaeecfb135bbd19b3e725cc31da9667a1368924f",
+  "scope": "Optimality concerns each selected exact reduced orientation and fixed dictionary/objective; orientation selection and whole-tuple search remain heuristic."
+}

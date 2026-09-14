@@ -1,0 +1,471 @@
+{
+  "source_sha256": "771e18d85e4a647d943f896df4c461458de21ce6931299fa4c0c89d21b99e278",
+  "source_file": "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/u124_final_table.json",
+  "script_sha256": "ad1d911988adf9fe31e4283ff82de5ea36bd1c8085d925ef9e8cf5e0c5339a9e",
+  "budget": 1000,
+  "rank_limit": null,
+  "rows": [
+    {
+      "name": "aca_13",
+      "source_pointer": "primitive_compression_report.json#/rows/2/attempts/3/boundaries/5",
+      "input_length": 15,
+      "input_rank": 3,
+      "input": [
+        [
+          -1,
+          -2,
+          -1,
+          -2,
+          3
+        ],
+        [
+          -1,
+          -3,
+          1,
+          3,
+          2
+        ],
+        [
+          -1,
+          2,
+          3,
+          2,
+          2
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      },
+      "rank2_input": [
+        [
+          -2,
+          -2,
+          -1,
+          -1,
+          -2,
+          -2,
+          1
+        ],
+        [
+          -2,
+          -1,
+          -1,
+          -1,
+          2,
+          1,
+          1,
+          -2,
+          1
+        ]
+      ],
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "greedy": {
+        "best": [
+          [
+            -3,
+            -2,
+            1,
+            -2,
+            -2
+          ],
+          [
+            -3,
+            -1,
+            3,
+            1,
+            -2
+          ],
+          [
+            -3,
+            2,
+            1,
+            2,
+            1
+          ]
+        ],
+        "path": [],
+        "evaluations": 3,
+        "rounds": 1,
+        "stop": "no_strict_compression",
+        "cpu_seconds": 0.00016900000000000248,
+        "wall_seconds": 0.00016412511467933655
+      },
+      "branch": {
+        "best": null,
+        "source": null,
+        "path": [],
+        "evaluations": 86,
+        "popped_states": 58,
+        "accepted_edges": 56,
+        "discovered_states": 58,
+        "maximum_accepted_rank": 5,
+        "ceiling": 17,
+        "stop": "frontier_exhausted",
+        "cpu_seconds": 0.005014999999999999,
+        "wall_seconds": 0.005061333999037743
+      },
+      "best": [
+        [
+          -3,
+          -2,
+          1,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -1,
+          3,
+          1,
+          -2
+        ],
+        [
+          -3,
+          2,
+          1,
+          2,
+          1
+        ]
+      ],
+      "best_rank": 3,
+      "best_length": 15,
+      "additional_gain": 0,
+      "evaluations": 89,
+      "budget": 1000,
+      "rank_limit": null,
+      "fully_expanded_stable_certificate": false
+    },
+    {
+      "name": "aca_59",
+      "source_pointer": "primitive_compression_report.json#/rows/6/attempts/0/boundaries/2",
+      "input_length": 17,
+      "input_rank": 3,
+      "input": [
+        [
+          -3,
+          1,
+          1
+        ],
+        [
+          -2,
+          -3,
+          -2,
+          3,
+          2,
+          3
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          3,
+          3,
+          3
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      },
+      "rank2_input": [
+        [
+          -2,
+          -1,
+          -1,
+          -2,
+          1,
+          1,
+          2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "greedy": {
+        "best": [
+          [
+            -3,
+            -3,
+            -3,
+            -1,
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            -3,
+            -2,
+            -3,
+            2,
+            3,
+            2
+          ],
+          [
+            -3,
+            1,
+            1
+          ]
+        ],
+        "path": [],
+        "evaluations": 6,
+        "rounds": 1,
+        "stop": "no_strict_compression",
+        "cpu_seconds": 0.0004220000000000057,
+        "wall_seconds": 0.00042129214853048325
+      },
+      "branch": {
+        "best": null,
+        "source": null,
+        "path": [],
+        "evaluations": 55,
+        "popped_states": 19,
+        "accepted_edges": 17,
+        "discovered_states": 19,
+        "maximum_accepted_rank": 5,
+        "ceiling": 19,
+        "stop": "frontier_exhausted",
+        "cpu_seconds": 0.004135,
+        "wall_seconds": 0.004133999813348055
+      },
+      "best": [
+        [
+          -3,
+          -3,
+          -3,
+          -1,
+          2,
+          2,
+          2,
+          2
+        ],
+        [
+          -3,
+          -2,
+          -3,
+          2,
+          3,
+          2
+        ],
+        [
+          -3,
+          1,
+          1
+        ]
+      ],
+      "best_rank": 3,
+      "best_length": 17,
+      "additional_gain": 0,
+      "evaluations": 61,
+      "budget": 1000,
+      "rank_limit": null,
+      "fully_expanded_stable_certificate": false
+    },
+    {
+      "name": "aca_108",
+      "source_pointer": "recursive_stable_compression_report.json#/records/78",
+      "input_length": 21,
+      "input_rank": 4,
+      "input": [
+        [
+          -4,
+          -2,
+          -2
+        ],
+        [
+          -1,
+          -2,
+          1,
+          -3
+        ],
+        [
+          -1,
+          -2,
+          -3,
+          2,
+          3,
+          1,
+          -2
+        ],
+        [
+          -2,
+          4,
+          4,
+          4,
+          1,
+          4,
+          3
+        ]
+      ],
+      "input_generator_map": {
+        "x": 1,
+        "y": 2,
+        "z": 3,
+        "u": 4
+      },
+      "rank2_input": [
+        [
+          -2,
+          -1,
+          -2,
+          -1,
+          2,
+          1,
+          2,
+          -1,
+          -2,
+          1,
+          1
+        ],
+        [
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          -2,
+          1,
+          -2,
+          -2,
+          -1,
+          -2,
+          1
+        ]
+      ],
+      "rank2_generator_map": {
+        "x": 1,
+        "y": 2
+      },
+      "greedy": {
+        "best": [
+          [
+            -4,
+            -4,
+            -4,
+            2,
+            -3,
+            -4,
+            -1
+          ],
+          [
+            -4,
+            -2,
+            -2
+          ],
+          [
+            -3,
+            -2,
+            3,
+            2,
+            1,
+            2,
+            -1
+          ],
+          [
+            -3,
+            -1,
+            -2,
+            1
+          ]
+        ],
+        "path": [],
+        "evaluations": 2,
+        "rounds": 1,
+        "stop": "no_strict_compression",
+        "cpu_seconds": 0.0002940000000000026,
+        "wall_seconds": 0.00030545820482075214
+      },
+      "branch": {
+        "best": null,
+        "source": null,
+        "path": [],
+        "evaluations": 872,
+        "popped_states": 248,
+        "accepted_edges": 246,
+        "discovered_states": 248,
+        "maximum_accepted_rank": 6,
+        "ceiling": 23,
+        "stop": "frontier_exhausted",
+        "cpu_seconds": 0.069828,
+        "wall_seconds": 0.07041287492029369
+      },
+      "best": [
+        [
+          -4,
+          -4,
+          -4,
+          2,
+          -3,
+          -4,
+          -1
+        ],
+        [
+          -4,
+          -2,
+          -2
+        ],
+        [
+          -3,
+          -2,
+          3,
+          2,
+          1,
+          2,
+          -1
+        ],
+        [
+          -3,
+          -1,
+          -2,
+          1
+        ]
+      ],
+      "best_rank": 4,
+      "best_length": 21,
+      "additional_gain": 0,
+      "evaluations": 874,
+      "budget": 1000,
+      "rank_limit": null,
+      "fully_expanded_stable_certificate": false
+    }
+  ],
+  "summary": {
+    "rows": 3,
+    "gain_ids": [],
+    "input_total": 53,
+    "best_total": 53,
+    "evaluations": 1024,
+    "cpu_seconds": 0.07986300000000002,
+    "wall_seconds": 0.08049908420071006,
+    "best_ranks": {
+      "3": 2,
+      "4": 1
+    },
+    "maximum_accepted_rank": 6
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "current_total": 2162,
+  "phase_gain_count": 18,
+  "saved_rank2_total": 2356,
+  "rank_counts": {
+    "2": 35,
+    "3": 89
+  },
+  "shortened_vs_saved_rank2": 89,
+  "solves": 0,
+  "experiment_files": 55,
+  "physical_rows": 2752,
+  "physical_charged_units": 1952029,
+  "search_cpu_seconds": 47.021232999999974,
+  "search_wall_seconds": 47.35831519193016,
+  "recorded_maximum_rank": 22,
+  "high_rank_record_sources": [
+    {
+      "file": "collector_right_all124.json",
+      "maximum_registered_rank": 14,
+      "rows_at_maximum": [
+        "aca_75"
+      ]
+    },
+    {
+      "file": "schreier_pilot.json",
+      "maximum_registered_rank": 22,
+      "rows_at_maximum": [
+        "aca_13",
+        "aca_24",
+        "aca_32",
+        "aca_45",
+        "aca_60",
+        "aca_95",
+        "aca_101"
+      ]
+    }
+  ],
+  "full124_export_matches_live_current": true,
+  "proof_review": "General L>=4r and rank-three L>=13 proofs PASS with normalized balanced unimodular hypotheses; fixed-donor and geodesic statements retain their stated family scopes.",
+  "scope_notes": "maximum_rank counts registered event boundaries, including imported seeds. The rank22 Schreier rows exceed all their imported seed ranks; complete selected shortening certificates peak at rank5. Work totals exclude verification, cooldown, initialization and historical seed discovery.",
+  "source_hashes": {
+    "CURRENT.json": "81b8a105c18c452a0a78ab51af8117dce1092284ee1c4aee9892d0166b5de4f1",
+    "CURRENT.csv": "5249c6220ae014f1d87310f8606693e4457b76f4b23f02ff3ac5d9c0c3eca07d",
+    "CURRENT.md": "fc9161097404995146727712f63a7fa2468e3378a6a78972f2e2594b6819cead",
+    "EXPERIMENT_INDEX.json": "d18ab56d198ddef8430a3db9b6c29926d1ac7c4fa4dd4bf544f46ac8402109a5",
+    "EXPERIMENT_INDEX.md": "cec097db6894f326bf842d1c36f824d3866bdc7352d64cd337268cab7ffeda87",
+    "RESEARCH_NOTES.md": "b90cd80519855252a47a21a18a295c9953dd865b0cd22d7ccb63595223902682",
+    "RANK_LENGTH_BOUND.md": "842638faa143b4aa3c877ada2c1a8ca704d7811433a86bfda9c185df0c08d717"
+  },
+  "census_reruns": 0
+}

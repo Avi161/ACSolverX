@@ -1,0 +1,6699 @@
+{
+  "schema": "ac19_triangulation_digram_census_v1",
+  "ac19_sha256": "7e220253bd0d950378d6ca6944be46ff4b77e49f30067b9ff6c6c6da82f64ae2",
+  "theory_sha256": "f7024146ed539caaf35fd8de59eb7ae8bcbbcb1771a5a3d3f2699a763d0e170a",
+  "parameters": {
+    "sample": 400,
+    "seed": 3
+  },
+  "summary": {
+    "sampled": 400,
+    "triangulated": 400,
+    "all_triangle_roots": 255,
+    "roots_with_a_relator_shorter_than_three": 145,
+    "all_triangle_and_digram_disjoint": 255,
+    "rank_histogram": {
+      "5": 1,
+      "6": 3,
+      "7": 31,
+      "8": 81,
+      "9": 133,
+      "10": 113,
+      "11": 32,
+      "12": 5,
+      "13": 1
+    },
+    "one_step_length_histogram": {
+      "1": 6,
+      "2": 232,
+      "3": 2292,
+      "4": 48344,
+      "5": 20502,
+      "6": 451980
+    }
+  },
+  "rows": [
+    {
+      "name": "ac19_31190",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 144,
+        "6": 688
+      },
+      "rotation_products": 840
+    },
+    {
+      "name": "ac19_71333",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 98,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_17094",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 84,
+        "5": 176,
+        "6": 924
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_48490",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_62135",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 85,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 176,
+        "6": 920
+      },
+      "rotation_products": 1104
+    },
+    {
+      "name": "ac19_8588",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 70,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 72,
+        "5": 152,
+        "6": 684
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_1725",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 916
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_61503",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 84,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_33994",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 68,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_72192",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 84,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 172,
+        "6": 924
+      },
+      "rotation_products": 1104
+    },
+    {
+      "name": "ac19_30714",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 112,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_25132",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 56,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": false,
+      "shared_pairs": 1,
+      "one_step_length_histogram": {
+        "1": 6,
+        "3": 12,
+        "4": 60,
+        "5": 126,
+        "6": 480
+      },
+      "rotation_products": 684
+    },
+    {
+      "name": "ac19_61638",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 84,
+        "5": 172,
+        "6": 924
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_70906",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1480
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_72041",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 90,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_62436",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 156,
+        "6": 1464
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_52053",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 108,
+        "5": 196,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_19741",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 72,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_30398",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 70,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 76,
+        "5": 148,
+        "6": 680
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_19873",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 95,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_68574",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 92,
+        "5": 176,
+        "6": 916
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_51109",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 133,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 160,
+        "6": 1820
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_1985",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 61,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 88,
+        "6": 668
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_8392",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 147,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 168,
+        "6": 1812
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_20892",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 112,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1480
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_5608",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 85,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 180,
+        "6": 916
+      },
+      "rotation_products": 1104
+    },
+    {
+      "name": "ac19_39487",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 112,
+        "5": 200,
+        "6": 1184
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_4064",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 106,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 108,
+        "5": 192,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_35314",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 83,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 88,
+        "5": 168,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_61964",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_50804",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 121,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_55959",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 90,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_51768",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 94,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_58277",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 93,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_17583",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 96,
+        "5": 176,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_47909",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_12773",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 156,
+        "6": 1464
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_4703",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 76,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 884
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_17821",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 58,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 672
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_64865",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 71,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_28440",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 84,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 80,
+        "5": 172,
+        "6": 928
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_33814",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 127,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 120,
+        "5": 224,
+        "6": 1500
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_57168",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 73,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 916
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_39456",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_55200",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 76,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 892
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_66485",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 60,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 88,
+        "6": 668
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_50576",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 129,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 28,
+        "4": 132,
+        "5": 212,
+        "6": 1488
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_45994",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 70,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 72,
+        "5": 148,
+        "6": 684
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_70005",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 108,
+        "5": 196,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_53421",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 91,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_30459",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 152,
+        "6": 1468
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_44140",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_3756",
+      "triangulated": true,
+      "rank": 6,
+      "definitions": 4,
+      "preprocessing_units": 40,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 40,
+        "5": 104,
+        "6": 320
+      },
+      "rotation_products": 480
+    },
+    {
+      "name": "ac19_36658",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 152,
+        "6": 1468
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_21377",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 56,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 672
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_42780",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 68,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 148,
+        "6": 684
+      },
+      "rotation_products": 840
+    },
+    {
+      "name": "ac19_71010",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 152,
+        "6": 680
+      },
+      "rotation_products": 840
+    },
+    {
+      "name": "ac19_13641",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_27672",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 96,
+        "5": 172,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_35007",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 176,
+        "6": 920
+      },
+      "rotation_products": 1104
+    },
+    {
+      "name": "ac19_37349",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_16309",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 96,
+        "5": 176,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_8317",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1488
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_63176",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 72,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_63374",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 71,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 72,
+        "5": 152,
+        "6": 684
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_11602",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_45099",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 112,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 136,
+        "6": 1484
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_8730",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 91,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_53800",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 91,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_19761",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 100,
+        "5": 192,
+        "6": 1196
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_2637",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 55,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 60,
+        "5": 128,
+        "6": 480
+      },
+      "rotation_products": 684
+    },
+    {
+      "name": "ac19_38520",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 916
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_55986",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_54420",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 72,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 96,
+        "6": 912
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_15586",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 59,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 88,
+        "6": 668
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_5792",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_5890",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 68,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 76,
+        "5": 148,
+        "6": 680
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_49519",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 84,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 84,
+        "5": 168,
+        "6": 924
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_43378",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 84,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 1184
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_72201",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 91,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_36578",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 152,
+        "6": 680
+      },
+      "rotation_products": 840
+    },
+    {
+      "name": "ac19_66246",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 103,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 100,
+        "5": 192,
+        "6": 1196
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_30926",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 76,
+        "5": 144,
+        "6": 680
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_4720",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_40589",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 208,
+        "6": 1188
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_948",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 70,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_10088",
+      "triangulated": true,
+      "rank": 6,
+      "definitions": 4,
+      "preprocessing_units": 47,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 68,
+        "6": 472
+      },
+      "rotation_products": 540
+    },
+    {
+      "name": "ac19_14171",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 118,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 156,
+        "6": 1464
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_70199",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 108,
+        "5": 196,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_4112",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 96,
+        "5": 192,
+        "6": 1200
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_25871",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 92,
+        "5": 172,
+        "6": 916
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_53469",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_38222",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_34520",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 176,
+        "6": 920
+      },
+      "rotation_products": 1104
+    },
+    {
+      "name": "ac19_20473",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_5562",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 54,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 80,
+        "6": 676
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_44540",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 72,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 896
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_41134",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 92,
+        "5": 176,
+        "6": 916
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_47211",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 72,
+        "5": 144,
+        "6": 684
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_18130",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 106,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 152,
+        "6": 1468
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_49517",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1488
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_49381",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 84,
+        "5": 168,
+        "6": 924
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_60346",
+      "triangulated": true,
+      "rank": 12,
+      "definitions": 10,
+      "preprocessing_units": 149,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 148,
+        "5": 248,
+        "6": 1832
+      },
+      "rotation_products": 2244
+    },
+    {
+      "name": "ac19_68167",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 67,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 72,
+        "5": 144,
+        "6": 684
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_50619",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 85,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 88,
+        "5": 172,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_13444",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 129,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 132,
+        "5": 224,
+        "6": 1488
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_66457",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 152,
+        "6": 1468
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_35559",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 124,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 136,
+        "6": 1484
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_56517",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 108,
+        "5": 196,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_31147",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 92,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_39464",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 93,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_57336",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_33847",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 84,
+        "5": 172,
+        "6": 924
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_68305",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 212,
+        "6": 1184
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_39713",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 184,
+        "6": 912
+      },
+      "rotation_products": 1104
+    },
+    {
+      "name": "ac19_71883",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 94,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 1184
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_44421",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 60,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 664
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_1501",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 96,
+        "5": 176,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_54422",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1488
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_41271",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 99,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_2628",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 121,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_49350",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 93,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_17467",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 100,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_7874",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_43574",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_61112",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 72,
+        "5": 148,
+        "6": 684
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_46257",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 112,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_46212",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 110,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_36559",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 176,
+        "6": 920
+      },
+      "rotation_products": 1104
+    },
+    {
+      "name": "ac19_64160",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 75,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 100,
+        "6": 908
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_2907",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 896
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_7939",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 80,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_2785",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 88,
+        "5": 172,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_48387",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_32915",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 204,
+        "6": 1192
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_59809",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 108,
+        "5": 192,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_39142",
+      "triangulated": true,
+      "rank": 12,
+      "definitions": 10,
+      "preprocessing_units": 153,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 184,
+        "6": 2192
+      },
+      "rotation_products": 2376
+    },
+    {
+      "name": "ac19_41946",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 106,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 104,
+        "5": 200,
+        "6": 1192
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_23254",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 58,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 664
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_47704",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 132,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 180,
+        "6": 1800
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_24280",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 90,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_40982",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 71,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_48385",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 94,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_34620",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 78,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_39374",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 92,
+        "5": 168,
+        "6": 916
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_49435",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 204,
+        "6": 1192
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_13745",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_3528",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 112,
+        "5": 192,
+        "6": 1184
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_17225",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 88,
+        "5": 172,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_40634",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 108,
+        "5": 196,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_65537",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 126,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 28,
+        "4": 124,
+        "5": 212,
+        "6": 1496
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_29168",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 108,
+        "5": 192,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_35307",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 90,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_31286",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 72,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 100,
+        "6": 908
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_42963",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 100,
+        "5": 176,
+        "6": 908
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_24562",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 73,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_57047",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 76,
+        "5": 144,
+        "6": 680
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_12716",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 96,
+        "5": 168,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_13348",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 72,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_42200",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 112,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_43745",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 124,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 160,
+        "6": 1820
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_29420",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 152,
+        "6": 1468
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_57465",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_22188",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 54,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 664
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_10478",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 92,
+        "5": 172,
+        "6": 916
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_44133",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 88,
+        "5": 172,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_28576",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 129,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 136,
+        "5": 224,
+        "6": 1484
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_59126",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1480
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_35468",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 66,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 64,
+        "5": 148,
+        "6": 692
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_29494",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 111,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_15849",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 59,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 672
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_4444",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 72,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_69419",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 110,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1480
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_25009",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 110,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 100,
+        "5": 200,
+        "6": 1196
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_41306",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_24063",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 108,
+        "5": 200,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_36515",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 116,
+        "5": 200,
+        "6": 1180
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_44578",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 122,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1480
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_11211",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 119,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_45256",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 56,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 88,
+        "6": 668
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_16998",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 84,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 88,
+        "5": 168,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_55217",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 77,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 100,
+        "6": 908
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_38265",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 88,
+        "5": 168,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_67947",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 88,
+        "5": 176,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_35543",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 71,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 896
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_60911",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 104,
+        "5": 200,
+        "6": 1192
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_45397",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 106,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 208,
+        "6": 1188
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_54644",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_38063",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 129,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 180,
+        "6": 1800
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_55020",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 92,
+        "5": 176,
+        "6": 916
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_53676",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 104,
+        "5": 200,
+        "6": 1192
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_4658",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 73,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 76,
+        "5": 148,
+        "6": 680
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_54167",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 91,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_20446",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 135,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 168,
+        "6": 1812
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_26158",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_611",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 208,
+        "6": 1188
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_62567",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 108,
+        "5": 196,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_66865",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 104,
+        "5": 192,
+        "6": 1192
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_56931",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 96,
+        "5": 176,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_29109",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_4236",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_59856",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 100,
+        "6": 908
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_68028",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 110,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1480
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_37885",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 108,
+        "5": 200,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_71284",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 72,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 72,
+        "5": 148,
+        "6": 684
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_44704",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 61,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 88,
+        "6": 668
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_29814",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 119,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 152,
+        "6": 1468
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_8921",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 59,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 672
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_37619",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 67,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 892
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_15728",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 145,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 164,
+        "6": 1816
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_32051",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_5908",
+      "triangulated": true,
+      "rank": 6,
+      "definitions": 4,
+      "preprocessing_units": 41,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 48,
+        "5": 104,
+        "6": 312
+      },
+      "rotation_products": 480
+    },
+    {
+      "name": "ac19_4606",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 55,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 672
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_67147",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 146,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 164,
+        "6": 1816
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_26013",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 146,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 168,
+        "6": 1812
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_56346",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 100,
+        "6": 908
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_6469",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1480
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_1722",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 75,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_63051",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 124,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 152,
+        "6": 1828
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_15835",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 924
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_22520",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 96,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_65953",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 110,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_39306",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 106,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 108,
+        "5": 192,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_31332",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 122,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_2601",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_68808",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 84,
+        "5": 176,
+        "6": 924
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_70385",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 126,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 172,
+        "6": 1808
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_54231",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 121,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_6979",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 129,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 136,
+        "5": 224,
+        "6": 1484
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_14888",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 90,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 1184
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_44741",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 128,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 180,
+        "6": 1800
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_16437",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 79,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 896
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_33092",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 112,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 160,
+        "6": 1460
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_70907",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 168,
+        "6": 928
+      },
+      "rotation_products": 1104
+    },
+    {
+      "name": "ac19_62547",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 85,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_8043",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 60,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 672
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_46116",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_28941",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 117,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_25864",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 84,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_16019",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 92,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_70075",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 71,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 64,
+        "5": 148,
+        "6": 692
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_15625",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 116,
+        "5": 192,
+        "6": 1180
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_22452",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 71,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_31386",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 85,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 1184
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_35882",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 129,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 244,
+        "6": 1488
+      },
+      "rotation_products": 1740
+    },
+    {
+      "name": "ac19_16840",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 85,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_983",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 95,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_63897",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 147,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 172,
+        "6": 1808
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_52465",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_6544",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 117,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_35572",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 128,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 28,
+        "4": 132,
+        "5": 212,
+        "6": 1488
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_32539",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 103,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 108,
+        "5": 192,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_35204",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 99,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_69109",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 96,
+        "5": 176,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_68114",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 100,
+        "5": 176,
+        "6": 908
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_55441",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 68,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 140,
+        "6": 692
+      },
+      "rotation_products": 840
+    },
+    {
+      "name": "ac19_6681",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 104,
+        "5": 196,
+        "6": 1192
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_61983",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 92,
+        "5": 176,
+        "6": 916
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_42351",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_237",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 62,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 96,
+        "6": 660
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_7187",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 59,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 664
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_16628",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 93,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_6053",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 58,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 88,
+        "6": 668
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_16335",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 90,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_6531",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 113,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1488
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_8967",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 78,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 100,
+        "6": 908
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_63283",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 92,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_4326",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 97,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_11288",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 137,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 160,
+        "6": 1820
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_67555",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 129,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 136,
+        "5": 224,
+        "6": 1484
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_65813",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 101,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_64224",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 152,
+        "6": 1468
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_41405",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 61,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 672
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_20583",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 128,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 120,
+        "5": 216,
+        "6": 1500
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_41232",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 141,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 168,
+        "6": 1812
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_9407",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 84,
+        "5": 176,
+        "6": 924
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_46044",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 122,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 136,
+        "6": 1484
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_50567",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_51070",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 129,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 180,
+        "6": 1800
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_39861",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_47295",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 127,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 124,
+        "5": 220,
+        "6": 1496
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_34724",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 88,
+        "5": 172,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_25045",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 208,
+        "6": 1188
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_43093",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_56190",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 68,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 68,
+        "5": 144,
+        "6": 688
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_16220",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 110,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 136,
+        "6": 1484
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_16726",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 104,
+        "5": 192,
+        "6": 1192
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_457",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 91,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_49838",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 75,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_10472",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 58,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 88,
+        "6": 668
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_23403",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_5631",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 72,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_48925",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 73,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_60400",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 208,
+        "6": 1188
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_70952",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 99,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_49842",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 132,
+        "6": 1164
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_5693",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 892
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_56569",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_6955",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 92,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 1188
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_48813",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 62,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 672
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_65031",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 122,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_41280",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_55117",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 114,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1480
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_54826",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 119,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_60403",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 109,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 96,
+        "5": 192,
+        "6": 1200
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_2349",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 90,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1156
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_32123",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_28658",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 111,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_70233",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 96,
+        "6": 912
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_35401",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 75,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_9382",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 96,
+        "5": 168,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_55690",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 77,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 100,
+        "6": 908
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_29417",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 122,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 140,
+        "6": 1480
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_55817",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 99,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_17087",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 83,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_3682",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 85,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_42672",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 91,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_49051",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 92,
+        "5": 176,
+        "6": 916
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_34364",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 112,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_15918",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 106,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 204,
+        "6": 1192
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_60836",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 79,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_16140",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 68,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 68,
+        "5": 148,
+        "6": 688
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_69491",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 54,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 60,
+        "5": 128,
+        "6": 480
+      },
+      "rotation_products": 684
+    },
+    {
+      "name": "ac19_49339",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 112,
+        "5": 200,
+        "6": 1184
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_14238",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 88,
+        "5": 168,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_41732",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 85,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_69726",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 208,
+        "6": 1188
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_13517",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 100,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_642",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 75,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 896
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_62068",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 130,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 164,
+        "6": 1816
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_18811",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 76,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_30929",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 128,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 128,
+        "5": 224,
+        "6": 1492
+      },
+      "rotation_products": 1860
+    },
+    {
+      "name": "ac19_50944",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 88,
+        "5": 168,
+        "6": 920
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_5808",
+      "triangulated": true,
+      "rank": 5,
+      "definitions": 3,
+      "preprocessing_units": 29,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 60,
+        "6": 300
+      },
+      "rotation_products": 360
+    },
+    {
+      "name": "ac19_69101",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 111,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_12032",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 55,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 56,
+        "5": 124,
+        "6": 484
+      },
+      "rotation_products": 684
+    },
+    {
+      "name": "ac19_13015",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 68,
+        "5": 152,
+        "6": 688
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_49251",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 76,
+        "5": 148,
+        "6": 680
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_23482",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 73,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 68,
+        "5": 148,
+        "6": 688
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_3078",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 93,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_44758",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 70,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 76,
+        "5": 148,
+        "6": 680
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_15896",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 71,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 72,
+        "5": 148,
+        "6": 684
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_3338",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 208,
+        "6": 1188
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_15085",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 84,
+        "5": 168,
+        "6": 924
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_63166",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 108,
+        "5": 192,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_37289",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 176,
+        "6": 920
+      },
+      "rotation_products": 1104
+    },
+    {
+      "name": "ac19_39240",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_11637",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 61,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 664
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_4753",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 79,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_67020",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 28,
+        "4": 104,
+        "5": 188,
+        "6": 1192
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_69337",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 87,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_31235",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 216,
+        "6": 1180
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_13991",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 120,
+        "5": 200,
+        "6": 1176
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_72674",
+      "triangulated": true,
+      "rank": 12,
+      "definitions": 10,
+      "preprocessing_units": 172,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 196,
+        "6": 2180
+      },
+      "rotation_products": 2376
+    },
+    {
+      "name": "ac19_13095",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 79,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_72524",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_8013",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 112,
+        "5": 200,
+        "6": 1184
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_72105",
+      "triangulated": true,
+      "rank": 12,
+      "definitions": 10,
+      "preprocessing_units": 171,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 180,
+        "6": 2196
+      },
+      "rotation_products": 2376
+    },
+    {
+      "name": "ac19_42499",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 92,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_23648",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 94,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_10136",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 61,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 664
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_31735",
+      "triangulated": true,
+      "rank": 12,
+      "definitions": 10,
+      "preprocessing_units": 152,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 188,
+        "6": 2188
+      },
+      "rotation_products": 2376
+    },
+    {
+      "name": "ac19_23563",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 71,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 68,
+        "5": 148,
+        "6": 688
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_32763",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 133,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1832
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_59525",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_51606",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 89,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 96,
+        "5": 176,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_33147",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_48165",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 77,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_51988",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 104,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 208,
+        "6": 1188
+      },
+      "rotation_products": 1404
+    },
+    {
+      "name": "ac19_45912",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 90,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_54816",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 74,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 100,
+        "6": 908
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_10913",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 96,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_49194",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 128,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 180,
+        "6": 1800
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_65576",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 101,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_30836",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 98,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_54110",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_21052",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 92,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 124,
+        "6": 1172
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_54430",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 108,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_67776",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 24,
+        "4": 108,
+        "5": 192,
+        "6": 1188
+      },
+      "rotation_products": 1512
+    },
+    {
+      "name": "ac19_63402",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 112,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 136,
+        "6": 1484
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_20470",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 58,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 664
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_52566",
+      "triangulated": true,
+      "rank": 13,
+      "definitions": 11,
+      "preprocessing_units": 178,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 204,
+        "6": 2604
+      },
+      "rotation_products": 2808
+    },
+    {
+      "name": "ac19_19572",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 67,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 20,
+        "4": 64,
+        "5": 148,
+        "6": 692
+      },
+      "rotation_products": 924
+    },
+    {
+      "name": "ac19_21310",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 96,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_12564",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 62,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 664
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_65268",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 75,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 108,
+        "6": 900
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_63373",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 83,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 12,
+        "4": 92,
+        "5": 180,
+        "6": 916
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_67797",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 92,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 116,
+        "6": 1180
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_58071",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 107,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 148,
+        "6": 1472
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_24393",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 100,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 120,
+        "6": 1176
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_17863",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 86,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 112,
+        "6": 1184
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_35043",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 144,
+        "6": 1476
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_26106",
+      "triangulated": true,
+      "rank": 11,
+      "definitions": 9,
+      "preprocessing_units": 131,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 160,
+        "6": 1820
+      },
+      "rotation_products": 1980
+    },
+    {
+      "name": "ac19_19209",
+      "triangulated": true,
+      "rank": 10,
+      "definitions": 8,
+      "preprocessing_units": 105,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 152,
+        "6": 1468
+      },
+      "rotation_products": 1620
+    },
+    {
+      "name": "ac19_67583",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 88,
+      "all_triangle": false,
+      "shortest_root_relator": 2,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "3": 16,
+        "4": 96,
+        "5": 176,
+        "6": 912
+      },
+      "rotation_products": 1200
+    },
+    {
+      "name": "ac19_41267",
+      "triangulated": true,
+      "rank": 9,
+      "definitions": 7,
+      "preprocessing_units": 94,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 128,
+        "6": 1168
+      },
+      "rotation_products": 1296
+    },
+    {
+      "name": "ac19_30448",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 60,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 84,
+        "6": 672
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_70521",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 69,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 104,
+        "6": 904
+      },
+      "rotation_products": 1008
+    },
+    {
+      "name": "ac19_38779",
+      "triangulated": true,
+      "rank": 7,
+      "definitions": 5,
+      "preprocessing_units": 62,
+      "all_triangle": true,
+      "shortest_root_relator": 3,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "4": 92,
+        "6": 664
+      },
+      "rotation_products": 756
+    },
+    {
+      "name": "ac19_54159",
+      "triangulated": true,
+      "rank": 8,
+      "definitions": 6,
+      "preprocessing_units": 70,
+      "all_triangle": false,
+      "shortest_root_relator": 1,
+      "digram_disjoint": true,
+      "shared_pairs": 0,
+      "one_step_length_histogram": {
+        "2": 8,
+        "4": 144,
+        "6": 688
+      },
+      "rotation_products": 840
+    }
+  ]
+}

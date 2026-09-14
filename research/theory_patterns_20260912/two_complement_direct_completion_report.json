@@ -1,0 +1,7166 @@
+{
+  "status": "direct_saved_snapshot_completion_verified",
+  "rows": [
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "source_row_index": 1,
+      "source_snapshot_images": [
+        "",
+        "",
+        "x",
+        "y"
+      ],
+      "source_candidate_word_images": 984,
+      "compiler_word_operations": 0,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 13,
+      "conservative_candidate_plus_compiler_and_projection": 986,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "uurtUturtUt",
+          "TuTRUUttuTRUsTT",
+          "TuTRUUttuTRUsT",
+          "uurtUt"
+        ],
+        "inverse_domain_basis": [
+          "UrUUrTsuRuTs",
+          "UrTsTsTsutSt",
+          "St",
+          "uRu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              1,
+              0
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 0,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 2,
+          "other_axis": "y",
+          "other_lift_row": 3,
+          "known_unit_sign": 1,
+          "other_lift_sign": 1,
+          "word_operations": 0,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 2,
+          "operations": [],
+          "image_states": [
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 22,
+        "new_nielsen_move_count": 0
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "uurtUturtUt",
+          "TuTRUUttuTRUsTT"
+        ],
+        "kernel_basis": [
+          "uurtUturtUt",
+          "TuTRUUttuTRUsTT",
+          "TuTRUUttuTRUsT",
+          "uurtUt"
+        ],
+        "inverse_basis": [
+          "UrUUrTsuRuTs",
+          "UrTsTsTsutSt",
+          "St",
+          "uRu"
+        ],
+        "Q": [
+          "yyxYxyxYx",
+          "XyXYYxxyXYXX"
+        ],
+        "P": [
+          "YYYXyyX",
+          "YXXXyxx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YrYYrXsyRyXs",
+          "YrXsXsXsyxSx",
+          "Sx",
+          "yRy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYYXyyX",
+          "YXXXyxx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "yyxYxyxYx",
+        "XyXYYxxyXYXX"
+      ],
+      "raw_projected_total_length": 21,
+      "canonical_projected_pair": [
+        "XYXyXYYXy",
+        "XXXyXYYxxyXY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": -1,
+          "conjugator": "Xy",
+          "elementary_word_operations": 3
+        },
+        {
+          "sign": 1,
+          "conjugator": "XyXYYxxyXY",
+          "elementary_word_operations": 10
+        }
+      ],
+      "canonical_projected_total_length": 21,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XYXyXYYXy",
+          "signed_counts": {
+            "x": 0,
+            "X": 4,
+            "y": 2,
+            "Y": 3
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 4,
+            "y": 5
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXyXYYxxyXY",
+          "signed_counts": {
+            "x": 2,
+            "X": 5,
+            "y": 2,
+            "Y": 3
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 7,
+            "y": 5
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_1",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "input_length": 15,
+      "source_row_index": 2,
+      "source_snapshot_images": [
+        "",
+        "X",
+        "Y",
+        "YxY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 5,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 16,
+      "conservative_candidate_plus_compiler_and_projection": 1007,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "uttRURUTT",
+          "uttRUTTTuttRUTTTSUtturTTUt",
+          "t",
+          "uttRUTT"
+        ],
+        "inverse_domain_basis": [
+          "UrUTTRutt",
+          "UrUUtSuTuT",
+          "t",
+          "uRu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 5,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 1,
+          "other_axis": "y",
+          "other_lift_row": 2,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 5,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 7,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "invert",
+              "target": 2
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                0,
+                3,
+                1,
+                2
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "",
+              "X",
+              "Y",
+              "YxY"
+            ],
+            [
+              "",
+              "x",
+              "Y",
+              "YxY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "YxY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "xY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "Y"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 18,
+        "new_nielsen_move_count": 6
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "uttRURUTT",
+          "uttRUTTTuttRUTTTSUtturTTUt"
+        ],
+        "kernel_basis": [
+          "uttRURUTT",
+          "uttRUTTTuttRUTTTSUtturTTUt",
+          "t",
+          "uttRUTT"
+        ],
+        "inverse_basis": [
+          "UrUTTRutt",
+          "UrUUtSuTuT",
+          "t",
+          "uRu"
+        ],
+        "Q": [
+          "yxxYYXX",
+          "yxxYXXXyxxYXXXYxxyXXYx"
+        ],
+        "P": [
+          "YYXXyxx",
+          "YYYxyXyX"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YrYXXRyxx",
+          "YrYYxSyXyX",
+          "x",
+          "yRy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYXXyxx",
+          "YYYxyXyX"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "yxxYYXX",
+        "yxxYXXXyxxYXXXYxxyXXYx"
+      ],
+      "raw_projected_total_length": 29,
+      "canonical_projected_pair": [
+        "XXYxxyy",
+        "XXXYxxyXXYxyxxYXXXyxxY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": -1,
+          "conjugator": "xxyy",
+          "elementary_word_operations": 5
+        },
+        {
+          "sign": 1,
+          "conjugator": "yxxYXXXyxxY",
+          "elementary_word_operations": 11
+        }
+      ],
+      "canonical_projected_total_length": 29,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXYxxyy",
+          "signed_counts": {
+            "x": 2,
+            "X": 2,
+            "y": 2,
+            "Y": 1
+          },
+          "cyclic_letter_changes": 4,
+          "absolute_generator_counts": {
+            "x": 4,
+            "y": 3
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXYxxyXXYxyxxYXXXyxxY",
+          "signed_counts": {
+            "x": 7,
+            "X": 8,
+            "y": 3,
+            "Y": 4
+          },
+          "cyclic_letter_changes": 14,
+          "absolute_generator_counts": {
+            "x": 15,
+            "y": 7
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_30",
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "input_length": 17,
+      "source_row_index": 4,
+      "source_snapshot_images": [
+        "",
+        "X",
+        "Y",
+        "YY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 4,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 9,
+      "conservative_candidate_plus_compiler_and_projection": 1006,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "turTuusttRUtRUTT",
+          "turTuusttRUturTuusttRUU",
+          "turTuusttRUtRUT",
+          "turTuusttRU"
+        ],
+        "inverse_domain_basis": [
+          "UUsTrTuRt",
+          "UUsUUsUtuTrTuTr",
+          "Rt",
+          "Suu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 4,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 1,
+          "other_axis": "y",
+          "other_lift_row": 2,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 4,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 6,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "invert",
+              "target": 2
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                0,
+                3,
+                1,
+                2
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "",
+              "X",
+              "Y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "Y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "Y"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 20,
+        "new_nielsen_move_count": 5
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "turTuusttRUtRUTT",
+          "turTuusttRUturTuusttRUU"
+        ],
+        "kernel_basis": [
+          "turTuusttRUtRUTT",
+          "turTuusttRUturTuusttRUU",
+          "turTuusttRUtRUT",
+          "turTuusttRU"
+        ],
+        "inverse_basis": [
+          "UUsTrTuRt",
+          "UUsUUsUtuTrTuTr",
+          "Rt",
+          "Suu"
+        ],
+        "Q": [
+          "xyXyyxxYxYXX",
+          "xyXyyxxYxyXyyxxYY"
+        ],
+        "P": [
+          "YYXXyx",
+          "YYYYYxyXXyX"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YYsXrXyRx",
+          "YYsYYsYxyXrXyXr",
+          "Rx",
+          "Syy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYXXyx",
+          "YYYYYxyXXyX"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "xyXyyxxYxYXX",
+        "xyXyyxxYxyXyyxxYY"
+      ],
+      "raw_projected_total_length": 29,
+      "canonical_projected_pair": [
+        "XXYYxYxyXy",
+        "XXYYxYXyXXYYxYXyy"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": -1,
+          "conjugator": "xxyXy",
+          "elementary_word_operations": 6
+        },
+        {
+          "sign": -1,
+          "conjugator": "yy",
+          "elementary_word_operations": 3
+        }
+      ],
+      "canonical_projected_total_length": 27,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXYYxYxyXy",
+          "signed_counts": {
+            "x": 2,
+            "X": 3,
+            "y": 2,
+            "Y": 3
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 5,
+            "y": 5
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXYYxYXyXXYYxYXyy",
+          "signed_counts": {
+            "x": 2,
+            "X": 6,
+            "y": 3,
+            "Y": 6
+          },
+          "cyclic_letter_changes": 12,
+          "absolute_generator_counts": {
+            "x": 8,
+            "y": 9
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "input_length": 18,
+      "source_row_index": 5,
+      "source_snapshot_images": [
+        "X",
+        "Y",
+        "YX",
+        "YY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 6,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 18,
+      "conservative_candidate_plus_compiler_and_projection": 1008,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "tttturTTuststUt",
+          "ttturTTustUtttturTTustUtU",
+          "t",
+          "ttturTTustUt"
+        ],
+        "inverse_domain_basis": [
+          "UUsTTTuRtut",
+          "UUstUTrTSuuT",
+          "t",
+          "Suu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 6,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 6,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 8,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "Y",
+              "YX",
+              "YY"
+            ],
+            [
+              "x",
+              "Y",
+              "YX",
+              "YY"
+            ],
+            [
+              "x",
+              "y",
+              "YX",
+              "YY"
+            ],
+            [
+              "x",
+              "y",
+              "X",
+              "YY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "YY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 20,
+        "new_nielsen_move_count": 7
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "tttturTTuststUt",
+          "ttturTTustUtttturTTustUtU"
+        ],
+        "kernel_basis": [
+          "tttturTTuststUt",
+          "ttturTTustUtttturTTustUtU",
+          "t",
+          "ttturTTustUt"
+        ],
+        "inverse_basis": [
+          "UUsTTTuRtut",
+          "UUstUTrTSuuT",
+          "t",
+          "Suu"
+        ],
+        "Q": [
+          "xxxxyXXyxxYx",
+          "xxxyXXyxYxxxxyXXyxYxY"
+        ],
+        "P": [
+          "YYXXXyxyx",
+          "YYxYXXyyX"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YYsXXXyRxyx",
+          "YYsxYXrXSyyX",
+          "x",
+          "Syy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYXXXyxyx",
+          "YYxYXXyyX"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "xxxxyXXyxxYx",
+        "xxxyXXyxYxxxxyXXyxYxY"
+      ],
+      "raw_projected_total_length": 33,
+      "canonical_projected_pair": [
+        "XXXXXyXXYxxY",
+        "XXXXyXYxxYXXXyXyXYxxY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": -1,
+          "conjugator": "XyXXYxxY",
+          "elementary_word_operations": 9
+        },
+        {
+          "sign": -1,
+          "conjugator": "yXyXYxxY",
+          "elementary_word_operations": 9
+        }
+      ],
+      "canonical_projected_total_length": 33,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXXXyXXYxxY",
+          "signed_counts": {
+            "x": 2,
+            "X": 7,
+            "y": 1,
+            "Y": 2
+          },
+          "cyclic_letter_changes": 6,
+          "absolute_generator_counts": {
+            "x": 9,
+            "y": 3
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXXyXYxxYXXXyXyXYxxY",
+          "signed_counts": {
+            "x": 4,
+            "X": 10,
+            "y": 3,
+            "Y": 4
+          },
+          "cyclic_letter_changes": 14,
+          "absolute_generator_counts": {
+            "x": 14,
+            "y": 7
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "input_length": 19,
+      "source_row_index": 6,
+      "source_snapshot_images": [
+        "",
+        "X",
+        "Y",
+        "XyXYYY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 8,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 10,
+      "conservative_candidate_plus_compiler_and_projection": 1010,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "utRUTRUTT",
+          "utRUTTutRUTTutRUturTUtutRUTTustttturTUT",
+          "t",
+          "utRUTT"
+        ],
+        "inverse_domain_basis": [
+          "UrUTTRut",
+          "UrUUTuTUUUstuTT",
+          "t",
+          "uRu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 8,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 1,
+          "other_axis": "y",
+          "other_lift_row": 2,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 8,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 10,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "invert",
+              "target": 2
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                0,
+                3,
+                1,
+                2
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "",
+              "X",
+              "Y",
+              "XyXYYY"
+            ],
+            [
+              "",
+              "x",
+              "Y",
+              "XyXYYY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "XyXYYY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "yXYYY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "XYYY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "YYY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "Y"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 20,
+        "new_nielsen_move_count": 9
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "utRUTRUTT",
+          "utRUTTutRUTTutRUturTUtutRUTTustttturTUT"
+        ],
+        "kernel_basis": [
+          "utRUTRUTT",
+          "utRUTTutRUTTutRUturTUtutRUTTustttturTUT",
+          "t",
+          "utRUTT"
+        ],
+        "inverse_basis": [
+          "UrUTTRut",
+          "UrUUTuTUUUstuTT",
+          "t",
+          "uRu"
+        ],
+        "Q": [
+          "yxYXYXX",
+          "yxYXXyxYXXyxYxyXYxyxYXXyxxxxyXYX"
+        ],
+        "P": [
+          "YYXXyx",
+          "YYYXyXYYYxyXX"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YrYXXRyx",
+          "YrYYXyXYYYsxyXX",
+          "x",
+          "yRy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYXXyx",
+          "YYYXyXYYYxyXX"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "yxYXYXX",
+        "yxYXXyxYXXyxYxyXYxyxYXXyxxxxyXYX"
+      ],
+      "raw_projected_total_length": 39,
+      "canonical_projected_pair": [
+        "XXyxYXY",
+        "XXXXYxxyXYXyxYXyXYxxyXYxxyXYxyxY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": 1,
+          "conjugator": "yxYXY",
+          "elementary_word_operations": 5
+        },
+        {
+          "sign": -1,
+          "conjugator": "xyxY",
+          "elementary_word_operations": 5
+        }
+      ],
+      "canonical_projected_total_length": 39,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXyxYXY",
+          "signed_counts": {
+            "x": 1,
+            "X": 3,
+            "y": 1,
+            "Y": 2
+          },
+          "cyclic_letter_changes": 6,
+          "absolute_generator_counts": {
+            "x": 4,
+            "y": 3
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXXYxxyXYXyxYXyXYxxyXYxxyXYxyxY",
+          "signed_counts": {
+            "x": 9,
+            "X": 10,
+            "y": 6,
+            "Y": 7
+          },
+          "cyclic_letter_changes": 26,
+          "absolute_generator_counts": {
+            "x": 19,
+            "y": 13
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "input_length": 22,
+      "source_row_index": 9,
+      "source_snapshot_images": [
+        "X",
+        "Y",
+        "YY",
+        "XyxxyyxY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 12,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 3,
+      "conservative_candidate_plus_compiler_and_projection": 1014,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "TTTTTutRUTTTTTutRUU",
+          "TTTTTutRUTurTUttttturTUttturTUttttttust",
+          "t",
+          "TTTTTutRU"
+        ],
+        "inverse_domain_basis": [
+          "UUrUTTTTTRuut",
+          "UUrTuttuutUsT",
+          "t",
+          "Ruu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 12,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 12,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 14,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "Y",
+              "YY",
+              "XyxxyyxY"
+            ],
+            [
+              "x",
+              "Y",
+              "YY",
+              "XyxxyyxY"
+            ],
+            [
+              "x",
+              "y",
+              "YY",
+              "XyxxyyxY"
+            ],
+            [
+              "x",
+              "y",
+              "Y",
+              "XyxxyyxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XyxxyyxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yxxyyxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "xxyyxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "xyyxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yyxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "xY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 18,
+        "new_nielsen_move_count": 13
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "TTTTTutRUTTTTTutRUU",
+          "TTTTTutRUTurTUttttturTUttturTUttttttust"
+        ],
+        "kernel_basis": [
+          "TTTTTutRUTTTTTutRUU",
+          "TTTTTutRUTurTUttttturTUttturTUttttttust",
+          "t",
+          "TTTTTutRU"
+        ],
+        "inverse_basis": [
+          "UUrUTTTTTRuut",
+          "UUrTuttuutUsT",
+          "t",
+          "Ruu"
+        ],
+        "Q": [
+          "XXXXXyxYXXXXXyxYY",
+          "XXXXXyxYXyXYxxxxxyXYxxxyXYxxxxxxyx"
+        ],
+        "P": [
+          "YYYXXXXXyyx",
+          "YYXyxxyyxYX"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YYrYXXXXXRyyx",
+          "YYrXyxxyyxYsX",
+          "x",
+          "Ryy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYYXXXXXyyx",
+          "YYXyxxyyxYX"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "XXXXXyxYXXXXXyxYY",
+        "XXXXXyxYXyXYxxxxxyXYxxxyXYxxxxxxyx"
+      ],
+      "raw_projected_total_length": 51,
+      "canonical_projected_pair": [
+        "XXXXXyxYXXXXXyxYY",
+        "XXXXXXyxYXXXyxYXXXXXyxYxyXYxxxxY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": 1,
+          "conjugator": "",
+          "elementary_word_operations": 0
+        },
+        {
+          "sign": -1,
+          "conjugator": "XY",
+          "elementary_word_operations": 3
+        }
+      ],
+      "canonical_projected_total_length": 49,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXXXyxYXXXXXyxYY",
+          "signed_counts": {
+            "x": 2,
+            "X": 10,
+            "y": 2,
+            "Y": 3
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 12,
+            "y": 5
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXXXXyxYXXXyxYXXXXXyxYxyXYxxxxY",
+          "signed_counts": {
+            "x": 8,
+            "X": 15,
+            "y": 4,
+            "Y": 5
+          },
+          "cyclic_letter_changes": 18,
+          "absolute_generator_counts": {
+            "x": 23,
+            "y": 9
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "input_length": 23,
+      "source_row_index": 10,
+      "source_snapshot_images": [
+        "X",
+        "YY",
+        "XXY",
+        "XYxxy"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 11,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 24,
+      "conservative_candidate_plus_compiler_and_projection": 1013,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "ttSUUUTSUUUTTTU",
+          "tttuuusTTSUUUTuuusurt",
+          "t",
+          "ttSUUUTTT"
+        ],
+        "inverse_domain_basis": [
+          "UUrTTutUttusT",
+          "UUrUUrUUrTTTUtt",
+          "t",
+          "Ruu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              3,
+              0,
+              2
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 11,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 2,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 11,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 13,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "invert",
+              "target": 2
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                1,
+                3,
+                0,
+                2
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "YY",
+              "XXY",
+              "XYxxy"
+            ],
+            [
+              "x",
+              "YY",
+              "XXY",
+              "XYxxy"
+            ],
+            [
+              "x",
+              "YY",
+              "XY",
+              "XYxxy"
+            ],
+            [
+              "x",
+              "YY",
+              "Y",
+              "XYxxy"
+            ],
+            [
+              "x",
+              "YY",
+              "y",
+              "XYxxy"
+            ],
+            [
+              "x",
+              "Y",
+              "y",
+              "XYxxy"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              "XYxxy"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              "Yxxy"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              "xxy"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              "xy"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              "y"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 16,
+        "new_nielsen_move_count": 12
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "ttSUUUTSUUUTTTU",
+          "tttuuusTTSUUUTuuusurt"
+        ],
+        "kernel_basis": [
+          "ttSUUUTSUUUTTTU",
+          "tttuuusTTSUUUTuuusurt",
+          "t",
+          "ttSUUUTTT"
+        ],
+        "inverse_basis": [
+          "UUrTTutUttusT",
+          "UUrUUrUUrTTTUtt",
+          "t",
+          "Ruu"
+        ],
+        "Q": [
+          "xxYYYXYYYXXXY",
+          "xxxyyyXXYYYXyyyyx"
+        ],
+        "P": [
+          "YYXXyxYxxyX",
+          "YYYYYYXXXYxx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YYrXXyxYxxysX",
+          "YYrYYrYYrXXXYxx",
+          "x",
+          "Ryy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYXXyxYxxyX",
+          "YYYYYYXXXYxx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "xxYYYXYYYXXXY",
+        "xxxyyyXXYYYXyyyyx"
+      ],
+      "raw_projected_total_length": 30,
+      "canonical_projected_pair": [
+        "XXXYxxYYYXYYY",
+        "XXXXYYYYxyyyxxYYY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": 1,
+          "conjugator": "xxYYYXYYY",
+          "elementary_word_operations": 9
+        },
+        {
+          "sign": -1,
+          "conjugator": "XYYYYxyyyxxYYY",
+          "elementary_word_operations": 15
+        }
+      ],
+      "canonical_projected_total_length": 30,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXYxxYYYXYYY",
+          "signed_counts": {
+            "x": 2,
+            "X": 4,
+            "y": 0,
+            "Y": 7
+          },
+          "cyclic_letter_changes": 6,
+          "absolute_generator_counts": {
+            "x": 6,
+            "y": 7
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXXYYYYxyyyxxYYY",
+          "signed_counts": {
+            "x": 3,
+            "X": 4,
+            "y": 3,
+            "Y": 7
+          },
+          "cyclic_letter_changes": 6,
+          "absolute_generator_counts": {
+            "x": 7,
+            "y": 10
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "input_length": 25,
+      "source_row_index": 12,
+      "source_snapshot_images": [
+        "X",
+        "Y",
+        "YY",
+        "YXXXYxY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 11,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 28,
+      "conservative_candidate_plus_compiler_and_projection": 1013,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "UUUtuuuusTUUUtuuuusTU",
+          "UUUtuuuusTTUUUtuuuusttUUUtuuuusTrT",
+          "t",
+          "UUUtuuuusT"
+        ],
+        "inverse_domain_basis": [
+          "UTTTUtUst",
+          "UUrUUrUUrUUrTRuuRuuRuuut",
+          "t",
+          "Ruu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 11,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 11,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 13,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "Y",
+              "YY",
+              "YXXXYxY"
+            ],
+            [
+              "x",
+              "Y",
+              "YY",
+              "YXXXYxY"
+            ],
+            [
+              "x",
+              "y",
+              "YY",
+              "YXXXYxY"
+            ],
+            [
+              "x",
+              "y",
+              "Y",
+              "YXXXYxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "YXXXYxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXXYxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXYxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XYxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "YxY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "xY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 18,
+        "new_nielsen_move_count": 12
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "UUUtuuuusTUUUtuuuusTU",
+          "UUUtuuuusTTUUUtuuuusttUUUtuuuusTrT"
+        ],
+        "kernel_basis": [
+          "UUUtuuuusTUUUtuuuusTU",
+          "UUUtuuuusTTUUUtuuuusttUUUtuuuusTrT",
+          "t",
+          "UUUtuuuusT"
+        ],
+        "inverse_basis": [
+          "UTTTUtUst",
+          "UUrUUrUUrUUrTRuuRuuRuuut",
+          "t",
+          "Ruu"
+        ],
+        "Q": [
+          "YYYxyyyyXYYYxyyyyXY",
+          "YYYxyyyyXXYYYxyyyyxxYYYxyyyyXX"
+        ],
+        "P": [
+          "YXXXYxYx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YXXXYxYsx",
+          "YYrYYrYYrYYrXRyyRyyRyyyx",
+          "x",
+          "Ryy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YXXXYxYx",
+          "YYYYYYYYXyyyyyyyx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "YYYxyyyyXYYYxyyyyXY",
+        "YYYxyyyyXXYYYxyyyyxxYYYxyyyyXX"
+      ],
+      "raw_projected_total_length": 49,
+      "canonical_projected_pair": [
+        "XYYYYxyyyyXYYYxyyyy",
+        "XXYYYYXyyyxxYYYYXyyyxxYYYYXyyy"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": 1,
+          "conjugator": "YYYxyyyyXYYYxyyyy",
+          "elementary_word_operations": 17
+        },
+        {
+          "sign": -1,
+          "conjugator": "xxYYYYXyyy",
+          "elementary_word_operations": 11
+        }
+      ],
+      "canonical_projected_total_length": 49,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XYYYYxyyyyXYYYxyyyy",
+          "signed_counts": {
+            "x": 2,
+            "X": 2,
+            "y": 8,
+            "Y": 7
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 4,
+            "y": 15
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXYYYYXyyyxxYYYYXyyyxxYYYYXyyy",
+          "signed_counts": {
+            "x": 4,
+            "X": 5,
+            "y": 9,
+            "Y": 12
+          },
+          "cyclic_letter_changes": 12,
+          "absolute_generator_counts": {
+            "x": 9,
+            "y": 21
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "input_length": 14,
+      "source_row_index": 13,
+      "source_snapshot_images": [
+        "",
+        "X",
+        "Y",
+        "YY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 4,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 12,
+      "conservative_candidate_plus_compiler_and_projection": 1006,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "TutRUttSurTUTT",
+          "TutRUTutRUU",
+          "TutRUttSurTUT",
+          "TutRU"
+        ],
+        "inverse_domain_basis": [
+          "UUsUTrSuuRt",
+          "UTrTrTuRtRt",
+          "Rt",
+          "Suu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              1,
+              0
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 4,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 1,
+          "other_axis": "y",
+          "other_lift_row": 2,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 4,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 6,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "invert",
+              "target": 2
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                0,
+                3,
+                1,
+                2
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "",
+              "X",
+              "Y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "Y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "Y"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 22,
+        "new_nielsen_move_count": 5
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "TutRUttSurTUTT",
+          "TutRUTutRUU"
+        ],
+        "kernel_basis": [
+          "TutRUttSurTUTT",
+          "TutRUTutRUU",
+          "TutRUttSurTUT",
+          "TutRU"
+        ],
+        "inverse_basis": [
+          "UUsUTrSuuRt",
+          "UTrTrTuRtRt",
+          "Rt",
+          "Suu"
+        ],
+        "Q": [
+          "XyxYxxyXYXX",
+          "XyxYXyxYY"
+        ],
+        "P": [
+          "YYYXyyx",
+          "YXXXyxx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YYsYXrSyyRx",
+          "YXrXrXyRxRx",
+          "Rx",
+          "Syy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYYXyyx",
+          "YXXXyxx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "XyxYxxyXYXX",
+        "XyxYXyxYY"
+      ],
+      "raw_projected_total_length": 20,
+      "canonical_projected_pair": [
+        "XXXyxYxxyXY",
+        "XYxyXYxyy"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": 1,
+          "conjugator": "XyxYxxyXY",
+          "elementary_word_operations": 9
+        },
+        {
+          "sign": -1,
+          "conjugator": "yy",
+          "elementary_word_operations": 3
+        }
+      ],
+      "canonical_projected_total_length": 20,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXyxYxxyXY",
+          "signed_counts": {
+            "x": 3,
+            "X": 4,
+            "y": 2,
+            "Y": 2
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 7,
+            "y": 4
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XYxyXYxyy",
+          "signed_counts": {
+            "x": 2,
+            "X": 2,
+            "y": 3,
+            "Y": 2
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 4,
+            "y": 5
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "input_length": 15,
+      "source_row_index": 14,
+      "source_snapshot_images": [
+        "",
+        "X",
+        "Y",
+        "YY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 4,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 10,
+      "conservative_candidate_plus_compiler_and_projection": 1006,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "TTuTSUttRustUT",
+          "TTuTSUTTuTSUU",
+          "TTuTSUttRustU",
+          "TTuTSU"
+        ],
+        "inverse_domain_basis": [
+          "UTrTrTuRtRt",
+          "UUsUTrTrSuuTr",
+          "Rt",
+          "Suu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 0,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 4,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 1,
+          "other_axis": "y",
+          "other_lift_row": 2,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 4,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 6,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "invert",
+              "target": 2
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                0,
+                3,
+                1,
+                2
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "",
+              "X",
+              "Y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "Y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "YY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "Y"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 22,
+        "new_nielsen_move_count": 5
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "TTuTSUttRustUT",
+          "TTuTSUTTuTSUU"
+        ],
+        "kernel_basis": [
+          "TTuTSUttRustUT",
+          "TTuTSUTTuTSUU",
+          "TTuTSUttRustU",
+          "TTuTSU"
+        ],
+        "inverse_basis": [
+          "UTrTrTuRtRt",
+          "UUsUTrTrSuuTr",
+          "Rt",
+          "Suu"
+        ],
+        "Q": [
+          "XXyXYxxyxYX",
+          "XXyXYXXyXYY"
+        ],
+        "P": [
+          "YXXXyxx",
+          "YYYXXyyX"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YXrXrXyRxRx",
+          "YYsYXrXrSyyXr",
+          "Rx",
+          "Syy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YXXXyxx",
+          "YYYXXyyX"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "XXyXYxxyxYX",
+        "XXyXYXXyXYY"
+      ],
+      "raw_projected_total_length": 22,
+      "canonical_projected_pair": [
+        "XXXyXYxxyxY",
+        "XXyXYXXyXYY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": 1,
+          "conjugator": "XXyXYxxyxY",
+          "elementary_word_operations": 10
+        },
+        {
+          "sign": 1,
+          "conjugator": "",
+          "elementary_word_operations": 0
+        }
+      ],
+      "canonical_projected_total_length": 22,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXyXYxxyxY",
+          "signed_counts": {
+            "x": 3,
+            "X": 4,
+            "y": 2,
+            "Y": 2
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 7,
+            "y": 4
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXyXYXXyXYY",
+          "signed_counts": {
+            "x": 0,
+            "X": 6,
+            "y": 2,
+            "Y": 3
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 6,
+            "y": 5
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "input_length": 20,
+      "source_row_index": 15,
+      "source_snapshot_images": [
+        "X",
+        "Y",
+        "YY",
+        "YXYxyXY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 11,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 12,
+      "conservative_candidate_plus_compiler_and_projection": 1013,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "ttturtttttturtttU",
+          "ttturtRUTurttttttturttSUT",
+          "t",
+          "ttturttt"
+        ],
+        "inverse_domain_basis": [
+          "UUrTTTuTTT",
+          "UUrTSutUTutuT",
+          "t",
+          "Ruu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 11,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 11,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 13,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "Y",
+              "YY",
+              "YXYxyXY"
+            ],
+            [
+              "x",
+              "Y",
+              "YY",
+              "YXYxyXY"
+            ],
+            [
+              "x",
+              "y",
+              "YY",
+              "YXYxyXY"
+            ],
+            [
+              "x",
+              "y",
+              "Y",
+              "YXYxyXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "YXYxyXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XYxyXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "YxyXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "xyXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 16,
+        "new_nielsen_move_count": 12
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "ttturtttttturtttU",
+          "ttturtRUTurttttttturttSUT"
+        ],
+        "kernel_basis": [
+          "ttturtttttturtttU",
+          "ttturtRUTurttttttturttSUT",
+          "t",
+          "ttturttt"
+        ],
+        "inverse_basis": [
+          "UUrTTTuTTT",
+          "UUrTSutUTutuT",
+          "t",
+          "Ruu"
+        ],
+        "Q": [
+          "xxxyxxxxxxyxxxY",
+          "xxxyxYXyxxxxxxxyxxYX"
+        ],
+        "P": [
+          "YYXXXyXXX",
+          "YYXyxYXyxyX"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YYrXXXyXXX",
+          "YYrXSyxYXyxyX",
+          "x",
+          "Ryy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYXXXyXXX",
+          "YYXyxYXyxyX"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "xxxyxxxxxxyxxxY",
+        "xxxyxYXyxxxxxxxyxxYX"
+      ],
+      "raw_projected_total_length": 35,
+      "canonical_projected_pair": [
+        "XXXXXXYXXXyXXXY",
+        "XXXXXXXYxyXYXXyXXY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": -1,
+          "conjugator": "yXXXY",
+          "elementary_word_operations": 6
+        },
+        {
+          "sign": -1,
+          "conjugator": "xyXXY",
+          "elementary_word_operations": 6
+        }
+      ],
+      "canonical_projected_total_length": 33,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXXXXYXXXyXXXY",
+          "signed_counts": {
+            "x": 0,
+            "X": 12,
+            "y": 1,
+            "Y": 2
+          },
+          "cyclic_letter_changes": 6,
+          "absolute_generator_counts": {
+            "x": 12,
+            "y": 3
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXXXXXYxyXYXXyXXY",
+          "signed_counts": {
+            "x": 1,
+            "X": 12,
+            "y": 2,
+            "Y": 3
+          },
+          "cyclic_letter_changes": 10,
+          "absolute_generator_counts": {
+            "x": 13,
+            "y": 5
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "input_length": 22,
+      "source_row_index": 16,
+      "source_snapshot_images": [
+        "X",
+        "Y",
+        "YY",
+        "XyxYYXXY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 12,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 33,
+      "conservative_candidate_plus_compiler_and_projection": 1014,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "TTTTTuTRUTTTTTuTRUU",
+          "TTTTTuTRUTTTuTRUTTTTTuTRUTurtUttttttSUT",
+          "t",
+          "TTTTTuTRU"
+        ],
+        "inverse_domain_basis": [
+          "UUrUTTTTTRuuT",
+          "UUrTSuttuuTUt",
+          "t",
+          "Ruu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              1,
+              0
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 12,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 12,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 14,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "Y",
+              "YY",
+              "XyxYYXXY"
+            ],
+            [
+              "x",
+              "Y",
+              "YY",
+              "XyxYYXXY"
+            ],
+            [
+              "x",
+              "y",
+              "YY",
+              "XyxYYXXY"
+            ],
+            [
+              "x",
+              "y",
+              "Y",
+              "XyxYYXXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XyxYYXXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yxYYXXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "xYYXXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "YYXXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "YXXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 16,
+        "new_nielsen_move_count": 13
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "TTTTTuTRUTTTTTuTRUU",
+          "TTTTTuTRUTTTuTRUTTTTTuTRUTurtUttttttSUT"
+        ],
+        "kernel_basis": [
+          "TTTTTuTRUTTTTTuTRUU",
+          "TTTTTuTRUTTTuTRUTTTTTuTRUTurtUttttttSUT",
+          "t",
+          "TTTTTuTRU"
+        ],
+        "inverse_basis": [
+          "UUrUTTTTTRuuT",
+          "UUrTSuttuuTUt",
+          "t",
+          "Ruu"
+        ],
+        "Q": [
+          "XXXXXyXYXXXXXyXYY",
+          "XXXXXyXYXXXyXYXXXXXyXYXyxYxxxxxxYX"
+        ],
+        "P": [
+          "YYYXXXXXyyX",
+          "YYXyxxyyXYx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YYrYXXXXXRyyX",
+          "YYrXSyxxyyXYx",
+          "x",
+          "Ryy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYYXXXXXyyX",
+          "YYXyxxyyXYx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "XXXXXyXYXXXXXyXYY",
+        "XXXXXyXYXXXyXYXXXXXyXYXyxYxxxxxxYX"
+      ],
+      "raw_projected_total_length": 51,
+      "canonical_projected_pair": [
+        "XXXXXyXYXXXXXyXYY",
+        "XXXXXXyXYXXXyXYXXXXXyXYXyxYxxxxxxY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": 1,
+          "conjugator": "",
+          "elementary_word_operations": 0
+        },
+        {
+          "sign": 1,
+          "conjugator": "XXXXXyXYXXXyXYXXXXXyXYXyxYxxxxxxY",
+          "elementary_word_operations": 33
+        }
+      ],
+      "canonical_projected_total_length": 51,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXXXyXYXXXXXyXYY",
+          "signed_counts": {
+            "x": 0,
+            "X": 12,
+            "y": 2,
+            "Y": 3
+          },
+          "cyclic_letter_changes": 8,
+          "absolute_generator_counts": {
+            "x": 12,
+            "y": 5
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXXXXyXYXXXyXYXXXXXyXYXyxYxxxxxxY",
+          "signed_counts": {
+            "x": 7,
+            "X": 18,
+            "y": 4,
+            "Y": 5
+          },
+          "cyclic_letter_changes": 18,
+          "absolute_generator_counts": {
+            "x": 25,
+            "y": 9
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "input_length": 21,
+      "source_row_index": 17,
+      "source_snapshot_images": [
+        "X",
+        "Y",
+        "YY",
+        "YXyxYXY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 11,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 16,
+      "conservative_candidate_plus_compiler_and_projection": 1013,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "tttturttttttturtttU",
+          "tttturtttttttturTRUturttSUT",
+          "t",
+          "tttturttt"
+        ],
+        "inverse_domain_basis": [
+          "UUrTTTTuTTT",
+          "UUrTSutuTUtuT",
+          "t",
+          "Ruu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 11,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 1,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 11,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 13,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                2,
+                3,
+                0,
+                1
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "Y",
+              "YY",
+              "YXyxYXY"
+            ],
+            [
+              "x",
+              "Y",
+              "YY",
+              "YXyxYXY"
+            ],
+            [
+              "x",
+              "y",
+              "YY",
+              "YXyxYXY"
+            ],
+            [
+              "x",
+              "y",
+              "Y",
+              "YXyxYXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "YXyxYXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XyxYXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "yxYXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "xYXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "YXY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "XY"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              "Y"
+            ],
+            [
+              "x",
+              "y",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 17,
+        "new_nielsen_move_count": 12
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "tttturttttttturtttU",
+          "tttturtttttttturTRUturttSUT"
+        ],
+        "kernel_basis": [
+          "tttturttttttturtttU",
+          "tttturtttttttturTRUturttSUT",
+          "t",
+          "tttturttt"
+        ],
+        "inverse_basis": [
+          "UUrTTTTuTTT",
+          "UUrTSutuTUtuT",
+          "t",
+          "Ruu"
+        ],
+        "Q": [
+          "xxxxyxxxxxxxyxxxY",
+          "xxxxyxxxxxxxxyXYxyxxYX"
+        ],
+        "P": [
+          "YYXXXXyXXX",
+          "YYXyxyXYxyX"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YYrXXXXyXXX",
+          "YYrXSyxyXYxyX",
+          "x",
+          "Ryy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYXXXXyXXX",
+          "YYXyxyXYxyX"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "xxxxyxxxxxxxyxxxY",
+        "xxxxyxxxxxxxxyXYxyxxYX"
+      ],
+      "raw_projected_total_length": 39,
+      "canonical_projected_pair": [
+        "XXXXXXXYXXXXyXXXY",
+        "XXXXXXXXYXXXyXXYXyxY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": -1,
+          "conjugator": "yXXXY",
+          "elementary_word_operations": 6
+        },
+        {
+          "sign": -1,
+          "conjugator": "xyXXYXyxY",
+          "elementary_word_operations": 10
+        }
+      ],
+      "canonical_projected_total_length": 37,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXXXXXYXXXXyXXXY",
+          "signed_counts": {
+            "x": 0,
+            "X": 14,
+            "y": 1,
+            "Y": 2
+          },
+          "cyclic_letter_changes": 6,
+          "absolute_generator_counts": {
+            "x": 14,
+            "y": 3
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXXXXXXYXXXyXXYXyxY",
+          "signed_counts": {
+            "x": 1,
+            "X": 14,
+            "y": 2,
+            "Y": 3
+          },
+          "cyclic_letter_changes": 10,
+          "absolute_generator_counts": {
+            "x": 15,
+            "y": 5
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "input_length": 19,
+      "source_row_index": 18,
+      "source_snapshot_images": [
+        "X",
+        "YY",
+        "XXy",
+        "xYXX"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 9,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 15,
+      "conservative_candidate_plus_compiler_and_projection": 1011,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "tttturtturTTU",
+          "tttttturTTTTTTTSU",
+          "t",
+          "tttturTT"
+        ],
+        "inverse_domain_basis": [
+          "UUrTTTTutt",
+          "UUrSttuTTTTT",
+          "t",
+          "Ruu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 0
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              3,
+              0,
+              2
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 9,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 0,
+          "other_axis": "y",
+          "other_lift_row": 2,
+          "known_unit_sign": -1,
+          "other_lift_sign": 1,
+          "word_operations": 9,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 11,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 0
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 1,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 0,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                1,
+                3,
+                0,
+                2
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "X",
+              "YY",
+              "XXy",
+              "xYXX"
+            ],
+            [
+              "x",
+              "YY",
+              "XXy",
+              "xYXX"
+            ],
+            [
+              "x",
+              "YY",
+              "Xy",
+              "xYXX"
+            ],
+            [
+              "x",
+              "YY",
+              "y",
+              "xYXX"
+            ],
+            [
+              "x",
+              "Y",
+              "y",
+              "xYXX"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              "xYXX"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              "YXX"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              "XX"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              "X"
+            ],
+            [
+              "x",
+              "",
+              "y",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 16,
+        "new_nielsen_move_count": 10
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "tttturtturTTU",
+          "tttttturTTTTTTTSU"
+        ],
+        "kernel_basis": [
+          "tttturtturTTU",
+          "tttttturTTTTTTTSU",
+          "t",
+          "tttturTT"
+        ],
+        "inverse_basis": [
+          "UUrTTTTutt",
+          "UUrSttuTTTTT",
+          "t",
+          "Ruu"
+        ],
+        "Q": [
+          "xxxxyxxyXXY",
+          "xxxxxxyXXXXXXXY"
+        ],
+        "P": [
+          "YYXXXXyxx",
+          "YYxxyXXXXX"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YYrXXXXyxx",
+          "YYrSxxyXXXXX",
+          "x",
+          "Ryy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYXXXXyxx",
+          "YYxxyXXXXX"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "xxxxyxxyXXY",
+        "xxxxxxyXXXXXXXY"
+      ],
+      "raw_projected_total_length": 26,
+      "canonical_projected_pair": [
+        "XXXXyxxYXXY",
+        "XXXXXXXYxxxxxxy"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": -1,
+          "conjugator": "yxxYXXY",
+          "elementary_word_operations": 8
+        },
+        {
+          "sign": 1,
+          "conjugator": "xxxxxxy",
+          "elementary_word_operations": 7
+        }
+      ],
+      "canonical_projected_total_length": 26,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXXyxxYXXY",
+          "signed_counts": {
+            "x": 2,
+            "X": 6,
+            "y": 1,
+            "Y": 2
+          },
+          "cyclic_letter_changes": 6,
+          "absolute_generator_counts": {
+            "x": 8,
+            "y": 3
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXXXXXYxxxxxxy",
+          "signed_counts": {
+            "x": 6,
+            "X": 7,
+            "y": 1,
+            "Y": 1
+          },
+          "cyclic_letter_changes": 4,
+          "absolute_generator_counts": {
+            "x": 13,
+            "y": 2
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "input_length": 19,
+      "source_row_index": 19,
+      "source_snapshot_images": [
+        "",
+        "X",
+        "Y",
+        "YXYXYxY"
+      ],
+      "source_candidate_word_images": 1000,
+      "compiler_word_operations": 9,
+      "projection_word_images": 2,
+      "normalization_elementary_word_operations": 6,
+      "conservative_candidate_plus_compiler_and_projection": 1011,
+      "completed_basis": {
+        "status": "marked_kernel_basis_found",
+        "domain_basis": [
+          "uTRUTTTTRUTTT",
+          "uTRUTTTTuTRUTTuTRUTTuTRUTTSUTRUTT",
+          "t",
+          "uTRUTTT"
+        ],
+        "inverse_domain_basis": [
+          "UrUTTTRuT",
+          "UrUUrtSuTututut",
+          "t",
+          "uRu"
+        ],
+        "images": [
+          "",
+          "",
+          "x",
+          "y"
+        ],
+        "nielsen_row_moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 3
+          },
+          {
+            "op": "permute",
+            "order": [
+              2,
+              3,
+              0,
+              1
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "right"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 0,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "donor": 2,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              1,
+              0,
+              2,
+              3
+            ]
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 1,
+            "sign": -1,
+            "side": "left"
+          },
+          {
+            "op": "multiply",
+            "target": 3,
+            "donor": 2,
+            "sign": 1,
+            "side": "left"
+          },
+          {
+            "op": "permute",
+            "order": [
+              0,
+              3,
+              1,
+              2
+            ]
+          }
+        ],
+        "verified": true,
+        "compiler_word_operations": 9,
+        "completion_plan": {
+          "known_axis": "x",
+          "known_unit_row": 1,
+          "other_axis": "y",
+          "other_lift_row": 2,
+          "known_unit_sign": -1,
+          "other_lift_sign": -1,
+          "word_operations": 9,
+          "projection_word_images": 2,
+          "word_operations_including_projection": 11,
+          "operations": [
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "invert",
+              "target": 2
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 1,
+              "sign": -1,
+              "side": "left"
+            },
+            {
+              "op": "multiply",
+              "target": 3,
+              "donor": 2,
+              "sign": 1,
+              "side": "left"
+            },
+            {
+              "op": "permute",
+              "order": [
+                0,
+                3,
+                1,
+                2
+              ]
+            }
+          ],
+          "image_states": [
+            [
+              "",
+              "X",
+              "Y",
+              "YXYXYxY"
+            ],
+            [
+              "",
+              "x",
+              "Y",
+              "YXYXYxY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "YXYXYxY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "XYXYxY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "YXYxY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "XYxY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "YxY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "xY"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              "Y"
+            ],
+            [
+              "",
+              "x",
+              "y",
+              ""
+            ],
+            [
+              "",
+              "",
+              "x",
+              "y"
+            ]
+          ],
+          "images_after": [
+            "",
+            "",
+            "x",
+            "y"
+          ]
+        },
+        "best_image_length": 2,
+        "prior_nielsen_move_count": 17,
+        "new_nielsen_move_count": 10
+      },
+      "stable_equivalence_witness": {
+        "rank4_tuple": [
+          "r",
+          "s",
+          "uTRUTTTTRUTTT",
+          "uTRUTTTTuTRUTTuTRUTTuTRUTTSUTRUTT"
+        ],
+        "kernel_basis": [
+          "uTRUTTTTRUTTT",
+          "uTRUTTTTuTRUTTuTRUTTuTRUTTSUTRUTT",
+          "t",
+          "uTRUTTT"
+        ],
+        "inverse_basis": [
+          "UrUTTTRuT",
+          "UrUUrtSuTututut",
+          "t",
+          "uRu"
+        ],
+        "Q": [
+          "yXYXXXXYXXX",
+          "yXYXXXXyXYXXyXYXXyXYXXYXYXX"
+        ],
+        "P": [
+          "YYXXXyX",
+          "YYYxyXyxyxyx"
+        ],
+        "theta_old_generator_images_in_coordinates_R_S_x_y": [
+          "YrYXXXRyX",
+          "YrYYrxSyXyxyxyx",
+          "x",
+          "yRy"
+        ],
+        "theta_r_s_after_killing_kernel_coordinates": [
+          "YYXXXyX",
+          "YYYxyXyxyxyx"
+        ],
+        "projected_pair_to_rank4": "stabilize unit r,s; restore-donor-correct projected Wi to full Wi",
+        "rank4_to_original": "change marked ambient basis; unit kernel coordinates clear remaining rows and destabilize",
+        "maximum_displayed_rank": 4,
+        "maximum_rank_using_one_helper_ambient_macro": 5,
+        "kind": "known_trivial_group_theorem_backed_stable_AC_equivalence",
+        "ordinary_equivalence_claimed": false,
+        "projected_target_shorter_than_original": false
+      },
+      "raw_projected_pair": [
+        "yXYXXXXYXXX",
+        "yXYXXXXyXYXXyXYXXyXYXXYXYXX"
+      ],
+      "raw_projected_total_length": 38,
+      "canonical_projected_pair": [
+        "XXXXYXXXyXY",
+        "XXXXyXYXXyXYXXyXYXXYXYXXyXY"
+      ],
+      "canonical_witnesses": [
+        {
+          "sign": 1,
+          "conjugator": "yXY",
+          "elementary_word_operations": 3
+        },
+        {
+          "sign": 1,
+          "conjugator": "yXY",
+          "elementary_word_operations": 3
+        }
+      ],
+      "canonical_projected_total_length": 38,
+      "strict_gain_over_original": false,
+      "exact_cyclic_inverse_permutation_return": false,
+      "Aut_orbit_comparison": "not_tested",
+      "structural_terminal_observations": [
+        {
+          "word": "XXXXYXXXyXY",
+          "signed_counts": {
+            "x": 0,
+            "X": 8,
+            "y": 1,
+            "Y": 2
+          },
+          "cyclic_letter_changes": 6,
+          "absolute_generator_counts": {
+            "x": 8,
+            "y": 3
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        },
+        {
+          "word": "XXXXyXYXXyXYXXyXYXXYXYXXyXY",
+          "signed_counts": {
+            "x": 0,
+            "X": 17,
+            "y": 4,
+            "Y": 6
+          },
+          "cyclic_letter_changes": 20,
+          "absolute_generator_counts": {
+            "x": 17,
+            "y": 10
+          },
+          "literal_generator_row": false,
+          "mixed_sign_generator": true
+        }
+      ],
+      "independent_verification": {
+        "join_rejected": false,
+        "basis_verified": true,
+        "projected_verified": true
+      },
+      "status": "completed_and_independently_replayed"
+    }
+  ],
+  "source_report_sha256": "2fcdcbc1368e508c6f85174488eb233b8740734cefee7e894935190833ade3f0",
+  "script_sha256": "f9ac216e709c886f6cd84d9eb441ba418d3eea7aeff2503c3a847a4545759603",
+  "prototype_sha256": "4ebb70fd05a098dbc43f3d308600ab40c3c453ad3ae2ad09f02b6be527e4cfbb",
+  "independent_checker_sha256": "9045b8523f55886b61d0f76b701149fa16e2f77a60aed4c0c1a52c39c38002a1",
+  "source_panel_size": 20,
+  "source_full_join_rows": 15,
+  "directly_completed_rows": 15,
+  "newly_completed_prior_budget_rows": 14,
+  "strict_projected_gain_ids": [],
+  "solved_ids": [],
+  "compiler_word_operations": 117,
+  "projection_word_images": 30,
+  "normalization_elementary_word_operations": 225,
+  "maximum_candidate_plus_compiler_and_projection": 1014,
+  "checks": {
+    "planted_unit_plans": 4,
+    "negative_recognizers": 2,
+    "canonical_controls": 4
+  },
+  "cpu_seconds": 0.013814000000000007,
+  "wall_seconds": 0.013979666866362095,
+  "scope": "Only saved marked snapshots are completed; no heap or candidate search runs. Existing candidate work, deterministic compiler word operations, projection and ordinary canonicalization are separate ledgers. Several totals exceed1000, explicitly not a shared1k search claim. New smaller projections would be stable endpoints under the independently reviewed known-trivial-group bridge, not ordinary-equivalent endpoints."
+}

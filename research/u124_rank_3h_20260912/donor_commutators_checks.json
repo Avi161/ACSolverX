@@ -1,0 +1,32 @@
+{
+  "replacement_checks": 16,
+  "budgets": [
+    {
+      "budget": 0,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "budget": 1,
+      "charged": 1,
+      "candidates": 1
+    },
+    {
+      "budget": 12,
+      "charged": 12,
+      "candidates": 6
+    },
+    {
+      "budget": 100,
+      "charged": 68,
+      "candidates": 12
+    },
+    {
+      "budget": 1000,
+      "charged": 68,
+      "candidates": 12
+    }
+  ],
+  "known_trivial_plant": "(xy,y): use y to clear xy to x",
+  "source_sha256": "e0fbb5b7794dacb03c65ed103250fcf93313130118031576aab6728f7831f59f"
+}

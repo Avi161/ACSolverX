@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "module_sha256": "63f9235df782fc62648d5c3f2385562affef74f014b0d30a158f924bfa9226ed",
+  "signed_divisible_chains": 10,
+  "budget_controls": [
+    {
+      "allowance": 0,
+      "charged": 0,
+      "candidates": 0
+    },
+    {
+      "allowance": 1,
+      "charged": 1,
+      "candidates": 0
+    },
+    {
+      "allowance": 2,
+      "charged": 2,
+      "candidates": 0
+    },
+    {
+      "allowance": 10,
+      "charged": 10,
+      "candidates": 1
+    },
+    {
+      "allowance": 100,
+      "charged": 100,
+      "candidates": 4
+    },
+    {
+      "allowance": 1000,
+      "charged": 313,
+      "candidates": 6
+    }
+  ],
+  "sparse_control": {
+    "maximum_input_generator": 10000000000000000000000000,
+    "charged": 200,
+    "candidates": 6
+  },
+  "known_triviality_proof": "The companion x y^11 turns BS(4,5) into y=1, forcing x=z=1.",
+  "scope": "Planted certificates and budgets only; no census evaluation."
+}

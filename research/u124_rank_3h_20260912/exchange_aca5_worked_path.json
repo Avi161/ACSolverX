@@ -1,0 +1,2140 @@
+{
+  "source": "collector_aliases_remaining107.json",
+  "source_sha256": "e321df0bc3c9b01e7d16f8d3477e454b8948b1eaf5eff7595d078126b52eb988",
+  "saved_winning_record": {
+    "name": "aca_5",
+    "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+    "source_key": "saved_rank2",
+    "initial": [
+      [
+        -2,
+        -2,
+        -2,
+        1,
+        2,
+        -1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1
+      ],
+      [
+        -2,
+        -2,
+        -1,
+        -1,
+        -1,
+        2,
+        -1
+      ]
+    ],
+    "events": [
+      {
+        "kind": "defining_template_compression",
+        "before": [
+          [
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            -1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            -2,
+            -2,
+            -1,
+            -1,
+            -1,
+            2,
+            -1
+          ]
+        ],
+        "certificate_kind": "theorem_backed_stable_composite",
+        "required_hypothesis": "known balanced presentation of the trivial group",
+        "helpers": [
+          3
+        ],
+        "defining_words": [
+          [
+            1,
+            -2,
+            -1,
+            2
+          ]
+        ],
+        "defining_relators": [
+          [
+            -3,
+            1,
+            -2,
+            -1,
+            2
+          ]
+        ],
+        "rows": [
+          {
+            "input_index": 0,
+            "before": [
+              -2,
+              -2,
+              -2,
+              1,
+              2,
+              -1,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1
+            ],
+            "sign": 1,
+            "conjugator": [
+              -2,
+              -2,
+              -2,
+              1,
+              2,
+              -1,
+              2
+            ],
+            "oriented": [
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2,
+              -2,
+              1,
+              2,
+              -1,
+              2
+            ],
+            "template": [
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2,
+              -3,
+              2
+            ],
+            "expanded": [
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2,
+              -2,
+              1,
+              2,
+              -1,
+              2
+            ],
+            "prefix_direction": "left",
+            "prefix_axis_exponent": 3,
+            "prefix_mode": "one_direction",
+            "prefix_chunks": [
+              {
+                "letter": 2,
+                "height": -2,
+                "template": [
+                  -1,
+                  -1,
+                  2,
+                  1,
+                  1
+                ]
+              },
+              {
+                "letter": 2,
+                "height": -1,
+                "template": [
+                  -1,
+                  2,
+                  1
+                ]
+              },
+              {
+                "letter": -2,
+                "height": 0,
+                "template": [
+                  -2
+                ]
+              },
+              {
+                "letter": -2,
+                "height": 0,
+                "template": [
+                  -2
+                ]
+              },
+              {
+                "letter": -2,
+                "height": 0,
+                "template": [
+                  -2
+                ]
+              },
+              {
+                "letter": 2,
+                "height": 1,
+                "template": [
+                  2,
+                  -3
+                ]
+              },
+              {
+                "letter": 2,
+                "height": 0,
+                "template": [
+                  2
+                ]
+              }
+            ],
+            "alias_canonical": [
+              -3,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2
+            ]
+          },
+          {
+            "input_index": 1,
+            "before": [
+              -2,
+              -2,
+              -1,
+              -1,
+              -1,
+              2,
+              -1
+            ],
+            "sign": -1,
+            "conjugator": [],
+            "oriented": [
+              1,
+              -2,
+              1,
+              1,
+              1,
+              2,
+              2
+            ],
+            "template": [
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              2
+            ],
+            "expanded": [
+              1,
+              -2,
+              1,
+              1,
+              1,
+              2,
+              2
+            ],
+            "prefix_direction": "left",
+            "prefix_axis_exponent": 4,
+            "prefix_mode": "all_heights",
+            "prefix_chunks": [
+              {
+                "letter": -2,
+                "height": -3,
+                "template": [
+                  -1,
+                  -1,
+                  -1,
+                  -3,
+                  1,
+                  -3,
+                  1,
+                  -3,
+                  1,
+                  -2
+                ]
+              },
+              {
+                "letter": 2,
+                "height": 0,
+                "template": [
+                  2
+                ]
+              },
+              {
+                "letter": 2,
+                "height": 0,
+                "template": [
+                  2
+                ]
+              }
+            ],
+            "alias_canonical": [
+              -3,
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              2,
+              1
+            ]
+          }
+        ],
+        "templates": [
+          [
+            1,
+            2,
+            1,
+            2,
+            1,
+            -2,
+            -2,
+            -3,
+            2
+          ],
+          [
+            1,
+            -3,
+            1,
+            -3,
+            1,
+            -3,
+            1,
+            2
+          ]
+        ],
+        "raw_after": [
+          [
+            -3,
+            1,
+            -2,
+            -1,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            2,
+            1,
+            -2,
+            -2,
+            -3,
+            2
+          ],
+          [
+            1,
+            -3,
+            1,
+            -3,
+            1,
+            -3,
+            1,
+            2
+          ]
+        ],
+        "normalization": [
+          {
+            "input_index": 2,
+            "before": [
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              2
+            ],
+            "after": [
+              -3,
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              2,
+              1
+            ],
+            "sign": 1,
+            "conjugator": [
+              1
+            ]
+          },
+          {
+            "input_index": 0,
+            "before": [
+              -3,
+              1,
+              -2,
+              -1,
+              2
+            ],
+            "after": [
+              -3,
+              1,
+              -2,
+              -1,
+              2
+            ],
+            "sign": 1,
+            "conjugator": []
+          },
+          {
+            "input_index": 1,
+            "before": [
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2,
+              -3,
+              2
+            ],
+            "after": [
+              -3,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2
+            ],
+            "sign": 1,
+            "conjugator": [
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2
+            ]
+          }
+        ],
+        "after": [
+          [
+            -3,
+            1,
+            -3,
+            1,
+            -3,
+            1,
+            2,
+            1
+          ],
+          [
+            -3,
+            1,
+            -2,
+            -1,
+            2
+          ],
+          [
+            -3,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            -2,
+            -2
+          ]
+        ],
+        "helper_uses": {
+          "3": 4
+        },
+        "length_change": 3,
+        "method": "commutator_prefix_alias_collection",
+        "prefix_axis": 1,
+        "prefix_other": -2,
+        "prefix_mode": "per_row",
+        "prefix_direction_policy": "per_row",
+        "alias_indices": [
+          0,
+          1
+        ],
+        "alias_catalog_sizes": [
+          3,
+          3
+        ],
+        "independent_minimum_length": 21,
+        "work_counts": {
+          "definitions": 1,
+          "template_expansions": 2
+        },
+        "charged_units": 3,
+        "fully_expanded_elementary_certificate": false,
+        "coupled_whitehead_score": {
+          "complete": true,
+          "signed_multipliers": [
+            {
+              "multiplier": -3,
+              "side": [
+                -3
+              ],
+              "capacity": 5,
+              "degree": 5,
+              "delta": 0
+            },
+            {
+              "multiplier": -2,
+              "side": [
+                -2,
+                1,
+                3
+              ],
+              "capacity": 6,
+              "degree": 8,
+              "delta": -2
+            },
+            {
+              "multiplier": -1,
+              "side": [
+                -3,
+                -1
+              ],
+              "capacity": 6,
+              "degree": 9,
+              "delta": -3
+            },
+            {
+              "multiplier": 1,
+              "side": [
+                -2,
+                1,
+                3
+              ],
+              "capacity": 6,
+              "degree": 9,
+              "delta": -3
+            },
+            {
+              "multiplier": 2,
+              "side": [
+                -3,
+                -1,
+                2
+              ],
+              "capacity": 6,
+              "degree": 8,
+              "delta": -2
+            },
+            {
+              "multiplier": 3,
+              "side": [
+                3
+              ],
+              "capacity": 5,
+              "degree": 5,
+              "delta": 0
+            }
+          ],
+          "raw_length": 22,
+          "one_step_length": 19
+        },
+        "alias_probe_accounting": {
+          "catalogs": 8,
+          "selected_definitions": 2,
+          "scored_tuples": 12,
+          "descent_allowance": 64,
+          "descent_charged_units": 16
+        }
+      },
+      {
+        "kind": "ambient_whitehead",
+        "before": [
+          [
+            -3,
+            1,
+            -3,
+            1,
+            -3,
+            1,
+            2,
+            1
+          ],
+          [
+            -3,
+            1,
+            -2,
+            -1,
+            2
+          ],
+          [
+            -3,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            -2,
+            -2
+          ]
+        ],
+        "multiplier": -1,
+        "side": [
+          -3,
+          -1
+        ],
+        "images": {
+          "1": [
+            1
+          ],
+          "2": [
+            2
+          ],
+          "3": [
+            1,
+            3
+          ]
+        },
+        "inverse_images": {
+          "1": [
+            1
+          ],
+          "2": [
+            2
+          ],
+          "3": [
+            -1,
+            3
+          ]
+        },
+        "raw_after": [
+          [
+            -3,
+            -3,
+            -3,
+            2,
+            1
+          ],
+          [
+            -3,
+            -2,
+            -1,
+            2
+          ],
+          [
+            -3,
+            -1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            -2,
+            -2
+          ]
+        ],
+        "after": [
+          [
+            -3,
+            -3,
+            -3,
+            2,
+            1
+          ],
+          [
+            -3,
+            -2,
+            -1,
+            2
+          ],
+          [
+            -3,
+            -1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            -2,
+            -2
+          ]
+        ],
+        "length_change": -3
+      },
+      {
+        "kind": "ambient_whitehead",
+        "before": [
+          [
+            -3,
+            -3,
+            -3,
+            2,
+            1
+          ],
+          [
+            -3,
+            -2,
+            -1,
+            2
+          ],
+          [
+            -3,
+            -1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            -2,
+            -2
+          ]
+        ],
+        "multiplier": -2,
+        "side": [
+          -3,
+          -2,
+          1,
+          3
+        ],
+        "images": {
+          "1": [
+            1,
+            -2
+          ],
+          "2": [
+            2
+          ],
+          "3": [
+            2,
+            3,
+            -2
+          ]
+        },
+        "inverse_images": {
+          "1": [
+            1,
+            2
+          ],
+          "2": [
+            2
+          ],
+          "3": [
+            -2,
+            3,
+            2
+          ]
+        },
+        "raw_after": [
+          [
+            2,
+            -3,
+            -3,
+            -3,
+            1,
+            -2
+          ],
+          [
+            2,
+            -3,
+            -2,
+            -1,
+            2
+          ],
+          [
+            2,
+            -3,
+            -1,
+            2,
+            1,
+            1,
+            1,
+            -2,
+            -2,
+            -2
+          ]
+        ],
+        "after": [
+          [
+            -3,
+            -3,
+            -3,
+            1
+          ],
+          [
+            -3,
+            -2,
+            -1,
+            2,
+            2
+          ],
+          [
+            -3,
+            -1,
+            2,
+            1,
+            1,
+            1,
+            -2,
+            -2
+          ]
+        ],
+        "length_change": -2
+      }
+    ],
+    "endpoint": [
+      [
+        -3,
+        -3,
+        -3,
+        1
+      ],
+      [
+        -3,
+        -2,
+        -1,
+        2,
+        2
+      ],
+      [
+        -3,
+        -1,
+        2,
+        1,
+        1,
+        1,
+        -2,
+        -2
+      ]
+    ],
+    "input_length": 18,
+    "best_length": 17,
+    "best_rank": 3,
+    "gain": 1,
+    "costs": {
+      "minimum_cuts": 22,
+      "lemma11_checks": 9,
+      "macro_probe_units": 969
+    },
+    "total_units": 1000,
+    "budget": 1000,
+    "probe_allowance": 950,
+    "rank_limit": null,
+    "length_limit": null,
+    "expanded_states": 4,
+    "discovered_states": 35,
+    "maximum_rank": 4,
+    "cpu_seconds": 0.02366400000000002,
+    "wall_seconds": 0.02368487510830164,
+    "certificate_kind": "theorem_backed_stable_composite",
+    "fully_expanded_stable_certificate": false,
+    "verification": {
+      "status": "PASS",
+      "name": "aca_5",
+      "source_key": "saved_rank2",
+      "baseline_length": 18,
+      "baseline_rank": 3,
+      "endpoint": [
+        [
+          -3,
+          -3,
+          -3,
+          1
+        ],
+        [
+          -3,
+          -2,
+          -1,
+          2,
+          2
+        ],
+        [
+          -3,
+          -1,
+          2,
+          1,
+          1,
+          1,
+          -2,
+          -2
+        ]
+      ],
+      "endpoint_length": 17,
+      "endpoint_rank": 3,
+      "endpoint_gain": 1,
+      "boundaries": [
+        {
+          "events": 0,
+          "rank": 2,
+          "length": 19
+        },
+        {
+          "events": 1,
+          "rank": 3,
+          "length": 22
+        },
+        {
+          "events": 2,
+          "rank": 3,
+          "length": 19
+        },
+        {
+          "events": 3,
+          "rank": 3,
+          "length": 17
+        }
+      ],
+      "best_certified": [
+        [
+          -3,
+          -3,
+          -3,
+          1
+        ],
+        [
+          -3,
+          -2,
+          -1,
+          2,
+          2
+        ],
+        [
+          -3,
+          -1,
+          2,
+          1,
+          1,
+          1,
+          -2,
+          -2
+        ]
+      ],
+      "best_prefix_event_count": 3,
+      "best_prefix_length": 17,
+      "best_prefix_rank": 3,
+      "best_prefix_gain": 1,
+      "strict_length_improvement": true,
+      "same_length_rank_improvement": false,
+      "canonical_endpoint_equals_baseline": false,
+      "endpoint_misses_better_prefix": false,
+      "solved_at_certified_prefix": false,
+      "certificate_scope": "theorem_backed_stable_composite",
+      "fully_expanded_elementary_path": false
+    }
+  },
+  "fixed_definition_alias_comparison": [
+    {
+      "alias_indices": [
+        0,
+        0
+      ],
+      "dictionary_length": 21,
+      "after_length": 21,
+      "complete_whitehead_descent": true,
+      "minimum_cuts": 6,
+      "events": [
+        {
+          "kind": "defining_template_compression",
+          "before": [
+            [
+              -2,
+              -2,
+              -2,
+              1,
+              2,
+              -1,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1
+            ],
+            [
+              -2,
+              -2,
+              -1,
+              -1,
+              -1,
+              2,
+              -1
+            ]
+          ],
+          "certificate_kind": "theorem_backed_stable_composite",
+          "required_hypothesis": "known balanced presentation of the trivial group",
+          "helpers": [
+            3
+          ],
+          "defining_words": [
+            [
+              1,
+              -2,
+              -1,
+              2
+            ]
+          ],
+          "defining_relators": [
+            [
+              -3,
+              1,
+              -2,
+              -1,
+              2
+            ]
+          ],
+          "rows": [
+            {
+              "input_index": 0,
+              "before": [
+                -2,
+                -2,
+                -2,
+                1,
+                2,
+                -1,
+                2,
+                1,
+                2,
+                1,
+                2,
+                1
+              ],
+              "sign": 1,
+              "conjugator": [
+                -2,
+                -2,
+                -2,
+                1,
+                2,
+                -1,
+                2
+              ],
+              "oriented": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2,
+                -2,
+                1,
+                2,
+                -1,
+                2
+              ],
+              "template": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2,
+                -3,
+                2
+              ],
+              "expanded": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2,
+                -2,
+                1,
+                2,
+                -1,
+                2
+              ],
+              "prefix_direction": "left",
+              "prefix_axis_exponent": 3,
+              "prefix_mode": "one_direction",
+              "prefix_chunks": [
+                {
+                  "letter": 2,
+                  "height": -2,
+                  "template": [
+                    -1,
+                    -1,
+                    2,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": -1,
+                  "template": [
+                    -1,
+                    2,
+                    1
+                  ]
+                },
+                {
+                  "letter": -2,
+                  "height": 0,
+                  "template": [
+                    -2
+                  ]
+                },
+                {
+                  "letter": -2,
+                  "height": 0,
+                  "template": [
+                    -2
+                  ]
+                },
+                {
+                  "letter": -2,
+                  "height": 0,
+                  "template": [
+                    -2
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": 1,
+                  "template": [
+                    2,
+                    -3
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": 0,
+                  "template": [
+                    2
+                  ]
+                }
+              ],
+              "alias_canonical": [
+                -3,
+                2,
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2
+              ]
+            },
+            {
+              "input_index": 1,
+              "before": [
+                -2,
+                -2,
+                -1,
+                -1,
+                -1,
+                2,
+                -1
+              ],
+              "sign": -1,
+              "conjugator": [],
+              "oriented": [
+                1,
+                -2,
+                1,
+                1,
+                1,
+                2,
+                2
+              ],
+              "template": [
+                1,
+                -2,
+                1,
+                1,
+                1,
+                2,
+                2
+              ],
+              "expanded": [
+                1,
+                -2,
+                1,
+                1,
+                1,
+                2,
+                2
+              ],
+              "prefix_direction": "left",
+              "prefix_axis_exponent": 4,
+              "prefix_mode": "one_direction",
+              "prefix_chunks": [
+                {
+                  "letter": -2,
+                  "height": -3,
+                  "template": [
+                    -1,
+                    -1,
+                    -1,
+                    -2,
+                    1,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": 0,
+                  "template": [
+                    2
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": 0,
+                  "template": [
+                    2
+                  ]
+                }
+              ],
+              "alias_canonical": [
+                -2,
+                -2,
+                -1,
+                -1,
+                -1,
+                2,
+                -1
+              ]
+            }
+          ],
+          "templates": [
+            [
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2,
+              -3,
+              2
+            ],
+            [
+              1,
+              -2,
+              1,
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          "raw_after": [
+            [
+              -3,
+              1,
+              -2,
+              -1,
+              2
+            ],
+            [
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2,
+              -3,
+              2
+            ],
+            [
+              1,
+              -2,
+              1,
+              1,
+              1,
+              2,
+              2
+            ]
+          ],
+          "normalization": [
+            {
+              "input_index": 0,
+              "before": [
+                -3,
+                1,
+                -2,
+                -1,
+                2
+              ],
+              "after": [
+                -3,
+                1,
+                -2,
+                -1,
+                2
+              ],
+              "sign": 1,
+              "conjugator": []
+            },
+            {
+              "input_index": 1,
+              "before": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2,
+                -3,
+                2
+              ],
+              "after": [
+                -3,
+                2,
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2
+              ],
+              "sign": 1,
+              "conjugator": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2
+              ]
+            },
+            {
+              "input_index": 2,
+              "before": [
+                1,
+                -2,
+                1,
+                1,
+                1,
+                2,
+                2
+              ],
+              "after": [
+                -2,
+                -2,
+                -1,
+                -1,
+                -1,
+                2,
+                -1
+              ],
+              "sign": -1,
+              "conjugator": []
+            }
+          ],
+          "after": [
+            [
+              -3,
+              1,
+              -2,
+              -1,
+              2
+            ],
+            [
+              -3,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2
+            ],
+            [
+              -2,
+              -2,
+              -1,
+              -1,
+              -1,
+              2,
+              -1
+            ]
+          ],
+          "helper_uses": {
+            "3": 1
+          },
+          "length_change": 2,
+          "method": "commutator_prefix_alias_collection",
+          "prefix_axis": 1,
+          "prefix_other": -2,
+          "prefix_mode": "per_row",
+          "prefix_direction_policy": "per_row",
+          "alias_indices": [
+            0,
+            0
+          ],
+          "alias_catalog_sizes": [
+            3,
+            3
+          ],
+          "independent_minimum_length": 21,
+          "work_counts": {
+            "definitions": 1,
+            "template_expansions": 2
+          },
+          "charged_units": 3,
+          "fully_expanded_elementary_certificate": false
+        }
+      ]
+    },
+    {
+      "alias_indices": [
+        0,
+        1
+      ],
+      "dictionary_length": 22,
+      "after_length": 17,
+      "complete_whitehead_descent": true,
+      "minimum_cuts": 18,
+      "events": [
+        {
+          "kind": "defining_template_compression",
+          "before": [
+            [
+              -2,
+              -2,
+              -2,
+              1,
+              2,
+              -1,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1
+            ],
+            [
+              -2,
+              -2,
+              -1,
+              -1,
+              -1,
+              2,
+              -1
+            ]
+          ],
+          "certificate_kind": "theorem_backed_stable_composite",
+          "required_hypothesis": "known balanced presentation of the trivial group",
+          "helpers": [
+            3
+          ],
+          "defining_words": [
+            [
+              1,
+              -2,
+              -1,
+              2
+            ]
+          ],
+          "defining_relators": [
+            [
+              -3,
+              1,
+              -2,
+              -1,
+              2
+            ]
+          ],
+          "rows": [
+            {
+              "input_index": 0,
+              "before": [
+                -2,
+                -2,
+                -2,
+                1,
+                2,
+                -1,
+                2,
+                1,
+                2,
+                1,
+                2,
+                1
+              ],
+              "sign": 1,
+              "conjugator": [
+                -2,
+                -2,
+                -2,
+                1,
+                2,
+                -1,
+                2
+              ],
+              "oriented": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2,
+                -2,
+                1,
+                2,
+                -1,
+                2
+              ],
+              "template": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2,
+                -3,
+                2
+              ],
+              "expanded": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2,
+                -2,
+                1,
+                2,
+                -1,
+                2
+              ],
+              "prefix_direction": "left",
+              "prefix_axis_exponent": 3,
+              "prefix_mode": "one_direction",
+              "prefix_chunks": [
+                {
+                  "letter": 2,
+                  "height": -2,
+                  "template": [
+                    -1,
+                    -1,
+                    2,
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": -1,
+                  "template": [
+                    -1,
+                    2,
+                    1
+                  ]
+                },
+                {
+                  "letter": -2,
+                  "height": 0,
+                  "template": [
+                    -2
+                  ]
+                },
+                {
+                  "letter": -2,
+                  "height": 0,
+                  "template": [
+                    -2
+                  ]
+                },
+                {
+                  "letter": -2,
+                  "height": 0,
+                  "template": [
+                    -2
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": 1,
+                  "template": [
+                    2,
+                    -3
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": 0,
+                  "template": [
+                    2
+                  ]
+                }
+              ],
+              "alias_canonical": [
+                -3,
+                2,
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2
+              ]
+            },
+            {
+              "input_index": 1,
+              "before": [
+                -2,
+                -2,
+                -1,
+                -1,
+                -1,
+                2,
+                -1
+              ],
+              "sign": -1,
+              "conjugator": [],
+              "oriented": [
+                1,
+                -2,
+                1,
+                1,
+                1,
+                2,
+                2
+              ],
+              "template": [
+                1,
+                -3,
+                1,
+                -3,
+                1,
+                -3,
+                1,
+                2
+              ],
+              "expanded": [
+                1,
+                -2,
+                1,
+                1,
+                1,
+                2,
+                2
+              ],
+              "prefix_direction": "left",
+              "prefix_axis_exponent": 4,
+              "prefix_mode": "all_heights",
+              "prefix_chunks": [
+                {
+                  "letter": -2,
+                  "height": -3,
+                  "template": [
+                    -1,
+                    -1,
+                    -1,
+                    -3,
+                    1,
+                    -3,
+                    1,
+                    -3,
+                    1,
+                    -2
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": 0,
+                  "template": [
+                    2
+                  ]
+                },
+                {
+                  "letter": 2,
+                  "height": 0,
+                  "template": [
+                    2
+                  ]
+                }
+              ],
+              "alias_canonical": [
+                -3,
+                1,
+                -3,
+                1,
+                -3,
+                1,
+                2,
+                1
+              ]
+            }
+          ],
+          "templates": [
+            [
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2,
+              -3,
+              2
+            ],
+            [
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              2
+            ]
+          ],
+          "raw_after": [
+            [
+              -3,
+              1,
+              -2,
+              -1,
+              2
+            ],
+            [
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2,
+              -3,
+              2
+            ],
+            [
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              2
+            ]
+          ],
+          "normalization": [
+            {
+              "input_index": 2,
+              "before": [
+                1,
+                -3,
+                1,
+                -3,
+                1,
+                -3,
+                1,
+                2
+              ],
+              "after": [
+                -3,
+                1,
+                -3,
+                1,
+                -3,
+                1,
+                2,
+                1
+              ],
+              "sign": 1,
+              "conjugator": [
+                1
+              ]
+            },
+            {
+              "input_index": 0,
+              "before": [
+                -3,
+                1,
+                -2,
+                -1,
+                2
+              ],
+              "after": [
+                -3,
+                1,
+                -2,
+                -1,
+                2
+              ],
+              "sign": 1,
+              "conjugator": []
+            },
+            {
+              "input_index": 1,
+              "before": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2,
+                -3,
+                2
+              ],
+              "after": [
+                -3,
+                2,
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2
+              ],
+              "sign": 1,
+              "conjugator": [
+                1,
+                2,
+                1,
+                2,
+                1,
+                -2,
+                -2
+              ]
+            }
+          ],
+          "after": [
+            [
+              -3,
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              2,
+              1
+            ],
+            [
+              -3,
+              1,
+              -2,
+              -1,
+              2
+            ],
+            [
+              -3,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2
+            ]
+          ],
+          "helper_uses": {
+            "3": 4
+          },
+          "length_change": 3,
+          "method": "commutator_prefix_alias_collection",
+          "prefix_axis": 1,
+          "prefix_other": -2,
+          "prefix_mode": "per_row",
+          "prefix_direction_policy": "per_row",
+          "alias_indices": [
+            0,
+            1
+          ],
+          "alias_catalog_sizes": [
+            3,
+            3
+          ],
+          "independent_minimum_length": 21,
+          "work_counts": {
+            "definitions": 1,
+            "template_expansions": 2
+          },
+          "charged_units": 3,
+          "fully_expanded_elementary_certificate": false
+        },
+        {
+          "kind": "ambient_whitehead",
+          "before": [
+            [
+              -3,
+              1,
+              -3,
+              1,
+              -3,
+              1,
+              2,
+              1
+            ],
+            [
+              -3,
+              1,
+              -2,
+              -1,
+              2
+            ],
+            [
+              -3,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2
+            ]
+          ],
+          "multiplier": -1,
+          "side": [
+            -3,
+            -1
+          ],
+          "images": {
+            "1": [
+              1
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              1,
+              3
+            ]
+          },
+          "inverse_images": {
+            "1": [
+              1
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              -1,
+              3
+            ]
+          },
+          "raw_after": [
+            [
+              -3,
+              -3,
+              -3,
+              2,
+              1
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              2
+            ],
+            [
+              -3,
+              -1,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2
+            ]
+          ],
+          "after": [
+            [
+              -3,
+              -3,
+              -3,
+              2,
+              1
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              2
+            ],
+            [
+              -3,
+              -1,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2
+            ]
+          ],
+          "length_change": -3
+        },
+        {
+          "kind": "ambient_whitehead",
+          "before": [
+            [
+              -3,
+              -3,
+              -3,
+              2,
+              1
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              2
+            ],
+            [
+              -3,
+              -1,
+              2,
+              1,
+              2,
+              1,
+              2,
+              1,
+              -2,
+              -2
+            ]
+          ],
+          "multiplier": -2,
+          "side": [
+            -3,
+            -2,
+            1,
+            3
+          ],
+          "images": {
+            "1": [
+              1,
+              -2
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              2,
+              3,
+              -2
+            ]
+          },
+          "inverse_images": {
+            "1": [
+              1,
+              2
+            ],
+            "2": [
+              2
+            ],
+            "3": [
+              -2,
+              3,
+              2
+            ]
+          },
+          "raw_after": [
+            [
+              2,
+              -3,
+              -3,
+              -3,
+              1,
+              -2
+            ],
+            [
+              2,
+              -3,
+              -2,
+              -1,
+              2
+            ],
+            [
+              2,
+              -3,
+              -1,
+              2,
+              1,
+              1,
+              1,
+              -2,
+              -2,
+              -2
+            ]
+          ],
+          "after": [
+            [
+              -3,
+              -3,
+              -3,
+              1
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              2,
+              2
+            ],
+            [
+              -3,
+              -1,
+              2,
+              1,
+              1,
+              1,
+              -2,
+              -2
+            ]
+          ],
+          "length_change": -2
+        }
+      ]
+    }
+  ],
+  "scope": "saved winning path plus two direct bounded dictionary/Whitehead identity controls; no campaign rerun"
+}

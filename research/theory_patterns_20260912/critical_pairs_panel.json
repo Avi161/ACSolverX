@@ -1,0 +1,2249 @@
+{
+  "method": "bounded one-donor overlap completion",
+  "selected_panel": "u124_inventory.json panel",
+  "heap_nodes": 0,
+  "limits": {
+    "critical_pairs_per_donor": 400,
+    "cpu_seconds_per_donor": 0.1,
+    "recipient_steps": 100
+  },
+  "wall_seconds": 0.6906391668599099,
+  "cpu_seconds": 0.685724,
+  "strictly_reduced_ids": [],
+  "records": [
+    {
+      "name": "aca_115",
+      "input": [
+        "YXYxyx",
+        "YYYYxxx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 18,
+            "derived_rules": 50,
+            "overlap_positions_checked": 5812,
+            "critical_pairs": 400,
+            "normalization_steps": 657,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.017873
+          },
+          "pair": [
+            "YXYxyx",
+            "XXXyyyy"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 2
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 13,
+          "total_length": 13,
+          "strict_reduction": false,
+          "canonical_target": "XXXyyyy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 28,
+            "derived_rules": 57,
+            "overlap_positions_checked": 6590,
+            "critical_pairs": 400,
+            "normalization_steps": 476,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.013505999999999997
+          },
+          "pair": [
+            "XYXyxy",
+            "YYYYxxx"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 1
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 13,
+          "total_length": 13,
+          "strict_reduction": false,
+          "canonical_target": "XYXyxy"
+        }
+      ]
+    },
+    {
+      "name": "aca_116",
+      "input": [
+        "YYYXyyX",
+        "YXXXyxx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 28,
+            "derived_rules": 57,
+            "overlap_positions_checked": 6402,
+            "critical_pairs": 400,
+            "normalization_steps": 506,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.013850999999999988
+          },
+          "pair": [
+            "YYYXyyX",
+            "XXXyxxY"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 14,
+          "total_length": 14,
+          "strict_reduction": false,
+          "canonical_target": "XXXyxxY"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 28,
+            "derived_rules": 53,
+            "overlap_positions_checked": 6281,
+            "critical_pairs": 400,
+            "normalization_steps": 506,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.01325599999999999
+          },
+          "pair": [
+            "XYYYXyy",
+            "YXXXyxx"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 14,
+          "total_length": 14,
+          "strict_reduction": false,
+          "canonical_target": "XYYYXyy"
+        }
+      ]
+    },
+    {
+      "name": "aca_1",
+      "input": [
+        "YYXXyxx",
+        "YYYxyXyX"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 28,
+            "derived_rules": 55,
+            "overlap_positions_checked": 7585,
+            "critical_pairs": 400,
+            "normalization_steps": 492,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.013566000000000009
+          },
+          "pair": [
+            "YYXXyxx",
+            "XYYYxyXy"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 15,
+          "total_length": 15,
+          "strict_reduction": false,
+          "canonical_target": "XYYYxyXy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 24,
+            "derived_rules": 59,
+            "overlap_positions_checked": 7532,
+            "critical_pairs": 400,
+            "normalization_steps": 583,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.017259999999999998
+          },
+          "pair": [
+            "XXYxxyy",
+            "YYYxyXyX"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 1
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 15,
+          "total_length": 15,
+          "strict_reduction": false,
+          "canonical_target": "XXYxxyy"
+        }
+      ]
+    },
+    {
+      "name": "aca_13",
+      "input": [
+        "YYXXYYx",
+        "YXXXyxxYx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 28,
+            "derived_rules": 41,
+            "overlap_positions_checked": 7447,
+            "critical_pairs": 400,
+            "normalization_steps": 528,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.020483
+          },
+          "pair": [
+            "YYXXYYx",
+            "XXXYxYxxy"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "source": 1
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "source": 1
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "invert",
+              "target": 1
+            }
+          ],
+          "normalization_steps": 1,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 16,
+          "total_length": 16,
+          "strict_reduction": false,
+          "canonical_target": "XXXYxYxxy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 54,
+            "overlap_positions_checked": 9496,
+            "critical_pairs": 400,
+            "normalization_steps": 494,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.017496999999999985
+          },
+          "pair": [
+            "XXYYxYY",
+            "YXXXyxxYx"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 16,
+          "total_length": 16,
+          "strict_reduction": false,
+          "canonical_target": "XXYYxYY"
+        }
+      ]
+    },
+    {
+      "name": "aca_30",
+      "input": [
+        "YYXXyx",
+        "YYYYYxyXXyX"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 18,
+            "derived_rules": 33,
+            "overlap_positions_checked": 7074,
+            "critical_pairs": 400,
+            "normalization_steps": 765,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.018646999999999997
+          },
+          "pair": [
+            "YYXXyx",
+            "XXYXXYYYYxy"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "source": 1
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            }
+          ],
+          "normalization_steps": 1,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 17,
+          "total_length": 17,
+          "strict_reduction": false,
+          "canonical_target": "XXYXXYYYYxy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 76,
+            "overlap_positions_checked": 10120,
+            "critical_pairs": 400,
+            "normalization_steps": 436,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.019044000000000005
+          },
+          "pair": [
+            "XXyxYY",
+            "YYYYYxyXXyX"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 17,
+          "total_length": 17,
+          "strict_reduction": false,
+          "canonical_target": "XXyxYY"
+        }
+      ]
+    },
+    {
+      "name": "aca_55",
+      "input": [
+        "YYXXXyxyx",
+        "YYxYXXyyX"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 54,
+            "overlap_positions_checked": 10677,
+            "critical_pairs": 400,
+            "normalization_steps": 502,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.017151
+          },
+          "pair": [
+            "YYXXXyxyx",
+            "XXyyXYYxY"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 18,
+          "total_length": 18,
+          "strict_reduction": false,
+          "canonical_target": "XXyyXYYxY"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 53,
+            "overlap_positions_checked": 10300,
+            "critical_pairs": 400,
+            "normalization_steps": 508,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.016516000000000003
+          },
+          "pair": [
+            "XXXyxyxYY",
+            "YYxYXXyyX"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 18,
+          "total_length": 18,
+          "strict_reduction": false,
+          "canonical_target": "XXXyxyxYY"
+        }
+      ]
+    },
+    {
+      "name": "aca_80",
+      "input": [
+        "YYXXyx",
+        "YYYXyXYYYxyXX"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 18,
+            "derived_rules": 33,
+            "overlap_positions_checked": 7074,
+            "critical_pairs": 400,
+            "normalization_steps": 765,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.017083999999999988
+          },
+          "pair": [
+            "YYXXyx",
+            "XXYXYxYXXYYxy"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "source": 1
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "multiply",
+              "target": 2,
+              "source": 1
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            }
+          ],
+          "normalization_steps": 2,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 19,
+          "total_length": 19,
+          "strict_reduction": false,
+          "canonical_target": "XXYXYxYXXYYxy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 52,
+            "derived_rules": 106,
+            "overlap_positions_checked": 11264,
+            "critical_pairs": 400,
+            "normalization_steps": 377,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.021341
+          },
+          "pair": [
+            "XXyxYY",
+            "YYYXyXYYYxyXX"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 19,
+          "total_length": 19,
+          "strict_reduction": false,
+          "canonical_target": "XXyxYY"
+        }
+      ]
+    },
+    {
+      "name": "aca_59",
+      "input": [
+        "YXXYxxyxx",
+        "YYYYxxxxxxx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 47,
+            "overlap_positions_checked": 8955,
+            "critical_pairs": 400,
+            "normalization_steps": 509,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.015721999999999958
+          },
+          "pair": [
+            "YXXYxxyxx",
+            "XXXXXXXyyyy"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 2
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 20,
+          "total_length": 20,
+          "strict_reduction": false,
+          "canonical_target": "XXXXXXXyyyy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 72,
+            "overlap_positions_checked": 4565,
+            "critical_pairs": 400,
+            "normalization_steps": 509,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.014110000000000011
+          },
+          "pair": [
+            "XXYXXyxxy",
+            "YYYYxxxxxxx"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 1
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 20,
+          "total_length": 20,
+          "strict_reduction": false,
+          "canonical_target": "XXYXXyxxy"
+        }
+      ]
+    },
+    {
+      "name": "aca_79",
+      "input": [
+        "YYXXXyyxx",
+        "YXXXXXyxxYxx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 52,
+            "overlap_positions_checked": 10222,
+            "critical_pairs": 400,
+            "normalization_steps": 511,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.01670200000000005
+          },
+          "pair": [
+            "YYXXXyyxx",
+            "XXXXXyxxYxxY"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 21,
+          "total_length": 21,
+          "strict_reduction": false,
+          "canonical_target": "XXXXXyxxYxxY"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 38,
+            "overlap_positions_checked": 9958,
+            "critical_pairs": 400,
+            "normalization_steps": 638,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.021139999999999992
+          },
+          "pair": [
+            "XXXyyxxYY",
+            "YXXXXXyxxYxx"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 21,
+          "total_length": 21,
+          "strict_reduction": false,
+          "canonical_target": "XXXyyxxYY"
+        }
+      ]
+    },
+    {
+      "name": "aca_82",
+      "input": [
+        "YYYXXXXXyyx",
+        "YYXyxxyyxYX"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 72,
+            "overlap_positions_checked": 9811,
+            "critical_pairs": 400,
+            "normalization_steps": 446,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.018118999999999996
+          },
+          "pair": [
+            "YYYXXXXXyyx",
+            "XXYxyyxyXYY"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 2
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 22,
+          "total_length": 22,
+          "strict_reduction": false,
+          "canonical_target": "XXYxyyxyXYY"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 74,
+            "overlap_positions_checked": 11136,
+            "critical_pairs": 400,
+            "normalization_steps": 460,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.019853999999999983
+          },
+          "pair": [
+            "XXXXXyyxYYY",
+            "YYXyxxyyxYX"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 22,
+          "total_length": 22,
+          "strict_reduction": false,
+          "canonical_target": "XXXXXyyxYYY"
+        }
+      ]
+    },
+    {
+      "name": "aca_109",
+      "input": [
+        "YYXXyxYxxyX",
+        "YYYYYYXXXYxx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 61,
+            "overlap_positions_checked": 11704,
+            "critical_pairs": 400,
+            "normalization_steps": 470,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.01927899999999999
+          },
+          "pair": [
+            "YYXXyxYxxyX",
+            "XXXYxxYYYYYY"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 23,
+          "total_length": 23,
+          "strict_reduction": false,
+          "canonical_target": "XXXYxxYYYYYY"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 69,
+            "overlap_positions_checked": 10122,
+            "critical_pairs": 400,
+            "normalization_steps": 555,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.02140900000000001
+          },
+          "pair": [
+            "XXyXYxxyyxY",
+            "YYYYYYXXXYxx"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 1
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 23,
+          "total_length": 23,
+          "strict_reduction": false,
+          "canonical_target": "XXyXYxxyyxY"
+        }
+      ]
+    },
+    {
+      "name": "aca_108",
+      "input": [
+        "YXYXyxyXYxx",
+        "YYYYYYYxYYXYx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 71,
+            "overlap_positions_checked": 10516,
+            "critical_pairs": 400,
+            "normalization_steps": 434,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.020287
+          },
+          "pair": [
+            "YXYXyxyXYxx",
+            "XYxYYYYYYYxYY"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 24,
+          "total_length": 24,
+          "strict_reduction": false,
+          "canonical_target": "XYxYYYYYYYxYY"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 52,
+            "derived_rules": 108,
+            "overlap_positions_checked": 2750,
+            "critical_pairs": 212,
+            "normalization_steps": 183,
+            "stop_reason": "rule_cap",
+            "cpu_seconds": 0.009097000000000022
+          },
+          "pair": [
+            "XXyxYXYxyxy",
+            "YYYYYYYxYYXYx"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 1
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 24,
+          "total_length": 24,
+          "strict_reduction": false,
+          "canonical_target": "XXyxYXYxyxy"
+        }
+      ]
+    },
+    {
+      "name": "aca_101",
+      "input": [
+        "YXXXYxYx",
+        "YYYYYYYYXyyyyyyyx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 24,
+            "derived_rules": 57,
+            "overlap_positions_checked": 7828,
+            "critical_pairs": 400,
+            "normalization_steps": 674,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.018269000000000035
+          },
+          "pair": [
+            "YXXXYxYx",
+            "XYYYYYYYxyyyyyyyy"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 2
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 25,
+          "total_length": 25,
+          "strict_reduction": false,
+          "canonical_target": "XYYYYYYYxyyyyyyyy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 68,
+            "derived_rules": 92,
+            "overlap_positions_checked": 3453,
+            "critical_pairs": 110,
+            "normalization_steps": 18,
+            "stop_reason": "rule_cap",
+            "cpu_seconds": 0.005749000000000004
+          },
+          "pair": [
+            "XXXYxYxY",
+            "YYYYYYYYXyyyyyyyx"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 25,
+          "total_length": 25,
+          "strict_reduction": false,
+          "canonical_target": "XXXYxYxY"
+        }
+      ]
+    },
+    {
+      "name": "aca_117",
+      "input": [
+        "YYYXyyx",
+        "YXXXyxx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 28,
+            "derived_rules": 59,
+            "overlap_positions_checked": 6178,
+            "critical_pairs": 400,
+            "normalization_steps": 528,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.013461999999999974
+          },
+          "pair": [
+            "YYYXyyx",
+            "XXXyxxY"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 14,
+          "total_length": 14,
+          "strict_reduction": false,
+          "canonical_target": "XXXyxxY"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 28,
+            "derived_rules": 53,
+            "overlap_positions_checked": 6281,
+            "critical_pairs": 400,
+            "normalization_steps": 506,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.012896000000000019
+          },
+          "pair": [
+            "XYYxyyy",
+            "YXXXyxx"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 1
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 14,
+          "total_length": 14,
+          "strict_reduction": false,
+          "canonical_target": "XYYxyyy"
+        }
+      ]
+    },
+    {
+      "name": "aca_9",
+      "input": [
+        "YXXXyxx",
+        "YYYXXyyX"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 28,
+            "derived_rules": 53,
+            "overlap_positions_checked": 6281,
+            "critical_pairs": 400,
+            "normalization_steps": 506,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.012769999999999948
+          },
+          "pair": [
+            "YXXXyxx",
+            "XXyyXYYY"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 15,
+          "total_length": 15,
+          "strict_reduction": false,
+          "canonical_target": "XXyyXYYY"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 24,
+            "derived_rules": 49,
+            "overlap_positions_checked": 8065,
+            "critical_pairs": 400,
+            "normalization_steps": 605,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.015507999999999966
+          },
+          "pair": [
+            "XXXyxxY",
+            "YYYXXyyX"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 15,
+          "total_length": 15,
+          "strict_reduction": false,
+          "canonical_target": "XXXyxxY"
+        }
+      ]
+    },
+    {
+      "name": "aca_67",
+      "input": [
+        "YYXXXyXXX",
+        "YYXyxYXyxyX"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 50,
+            "overlap_positions_checked": 9000,
+            "critical_pairs": 400,
+            "normalization_steps": 498,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.015828999999999982
+          },
+          "pair": [
+            "YYXXXyXXX",
+            "XYYXyxYXyxy"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 20,
+          "total_length": 20,
+          "strict_reduction": false,
+          "canonical_target": "XYYXyxYXyxy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 74,
+            "overlap_positions_checked": 10075,
+            "critical_pairs": 400,
+            "normalization_steps": 430,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.018631999999999982
+          },
+          "pair": [
+            "XXXYYXXXy",
+            "YYXyxYXyxyX"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 20,
+          "total_length": 20,
+          "strict_reduction": false,
+          "canonical_target": "XXXYYXXXy"
+        }
+      ]
+    },
+    {
+      "name": "aca_86",
+      "input": [
+        "YYYXXXXXyyX",
+        "YYXyxxyyXYx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 73,
+            "overlap_positions_checked": 9827,
+            "critical_pairs": 400,
+            "normalization_steps": 443,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.018203999999999998
+          },
+          "pair": [
+            "YYYXXXXXyyX",
+            "XXYxyyXyxYY"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 2
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 22,
+          "total_length": 22,
+          "strict_reduction": false,
+          "canonical_target": "XXYxyyXyxYY"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 70,
+            "overlap_positions_checked": 11484,
+            "critical_pairs": 400,
+            "normalization_steps": 469,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.01938200000000001
+          },
+          "pair": [
+            "XXXXXyyXYYY",
+            "YYXyxxyyXYx"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 22,
+          "total_length": 22,
+          "strict_reduction": false,
+          "canonical_target": "XXXXXyyXYYY"
+        }
+      ]
+    },
+    {
+      "name": "aca_106",
+      "input": [
+        "YYXXXXyXXX",
+        "YYXyxyXYxyX"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 30,
+            "derived_rules": 74,
+            "overlap_positions_checked": 8092,
+            "critical_pairs": 400,
+            "normalization_steps": 552,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.01651400000000003
+          },
+          "pair": [
+            "YYXXXXyXXX",
+            "XYYXyxyXYxy"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "X"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 21,
+          "total_length": 21,
+          "strict_reduction": false,
+          "canonical_target": "XYYXyxyXYxy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 44,
+            "derived_rules": 76,
+            "overlap_positions_checked": 9965,
+            "critical_pairs": 400,
+            "normalization_steps": 428,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.018337999999999965
+          },
+          "pair": [
+            "XXXXyXXXYY",
+            "YYXyxyXYxyX"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 21,
+          "total_length": 21,
+          "strict_reduction": false,
+          "canonical_target": "XXXXyXXXYY"
+        }
+      ]
+    },
+    {
+      "name": "aca_54",
+      "input": [
+        "YYXXXXyxx",
+        "YYxxyXXXXX"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 49,
+            "overlap_positions_checked": 9000,
+            "critical_pairs": 400,
+            "normalization_steps": 499,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.015807000000000015
+          },
+          "pair": [
+            "YYXXXXyxx",
+            "XXXXXYYxxy"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "x"
+            },
+            {
+              "op": "conjugate",
+              "target": 2,
+              "by": "y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 19,
+          "total_length": 19,
+          "strict_reduction": false,
+          "canonical_target": "XXXXXYYxxy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 30,
+            "derived_rules": 48,
+            "overlap_positions_checked": 8881,
+            "critical_pairs": 400,
+            "normalization_steps": 637,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.017391000000000045
+          },
+          "pair": [
+            "XXXXyxxYY",
+            "YYxxyXXXXX"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 19,
+          "total_length": 19,
+          "strict_reduction": false,
+          "canonical_target": "XXXXyxxYY"
+        }
+      ]
+    },
+    {
+      "name": "aca_5",
+      "input": [
+        "YYXXXyX",
+        "YYYxyXyxyxyx"
+      ],
+      "cases": [
+        {
+          "donor_index": 0,
+          "stats": {
+            "initial_rules": 28,
+            "derived_rules": 49,
+            "overlap_positions_checked": 7942,
+            "critical_pairs": 400,
+            "normalization_steps": 512,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.012952999999999992
+          },
+          "pair": [
+            "YYXXXyX",
+            "XYXYXYxYXyyy"
+          ],
+          "moves": [
+            {
+              "op": "invert",
+              "target": 2
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 19,
+          "total_length": 19,
+          "strict_reduction": false,
+          "canonical_target": "XYXYXYxYXyyy"
+        },
+        {
+          "donor_index": 1,
+          "stats": {
+            "initial_rules": 36,
+            "derived_rules": 48,
+            "overlap_positions_checked": 13130,
+            "critical_pairs": 400,
+            "normalization_steps": 630,
+            "stop_reason": "critical_cap",
+            "cpu_seconds": 0.022868
+          },
+          "pair": [
+            "XXXyXYY",
+            "YYYxyXyxyxyx"
+          ],
+          "moves": [
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            },
+            {
+              "op": "conjugate",
+              "target": 1,
+              "by": "Y"
+            }
+          ],
+          "normalization_steps": 0,
+          "stop_reason": "normal",
+          "elementary_verified": true,
+          "initial_total_length": 19,
+          "total_length": 19,
+          "strict_reduction": false,
+          "canonical_target": "XXXyXYY"
+        }
+      ]
+    }
+  ]
+}

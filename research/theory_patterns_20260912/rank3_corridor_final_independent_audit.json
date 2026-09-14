@@ -1,0 +1,11 @@
+{
+  "status": "pass",
+  "signed_fixtures": 14,
+  "elementary_moves": 1263,
+  "replayed_states": 1277,
+  "maximum_replayed_total_length": 30,
+  "source_sha256": "eb45233d69d5223234cf309064e02a2461589a6394d5d250fc46a1ba5b6210c5",
+  "auditor_sha256": "80c7b644c5fee70058ae39e1b92958bb21b3eb6b0f1159332da5bbccde7b443c",
+  "cpu_seconds": 0.0017210000000000003,
+  "scope": "Independent literal signed input construction and strict zero-based AC1/AC2/one-letter-AC3 replay to exactly(x,y,z). No imports from author or prior replayers; no search and no U124 solve claim. The infinite family proof is the algebraic unit-elimination argument in rank3_corridor_final_analysis.md."
+}

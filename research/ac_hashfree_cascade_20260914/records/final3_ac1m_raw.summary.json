@@ -1,0 +1,45 @@
+{
+  "source": "data/AC1M.txt.gz",
+  "rows": 1056376,
+  "solved": 1056357,
+  "verified": 1056357,
+  "unsolved": [
+    "ac1m_row_131216",
+    "ac1m_row_261182",
+    "ac1m_row_321708",
+    "ac1m_row_365851",
+    "ac1m_row_375215",
+    "ac1m_row_625939",
+    "ac1m_row_655993",
+    "ac1m_row_662510",
+    "ac1m_row_699274",
+    "ac1m_row_707955",
+    "ac1m_row_721382",
+    "ac1m_row_799361",
+    "ac1m_row_819592",
+    "ac1m_row_825380",
+    "ac1m_row_849911",
+    "ac1m_row_879909",
+    "ac1m_row_1020660",
+    "ac1m_row_1021204",
+    "ac1m_row_1122125"
+  ],
+  "params": {
+    "engine": "hybrid",
+    "budget": 1000,
+    "penalty": 5,
+    "cap": 8,
+    "slack": 8,
+    "dyn_max": null,
+    "dyn_ratio": 0.5,
+    "compact": true,
+    "keep_above": 500
+  },
+  "elapsed": 1130.594192654,
+  "skipped_already_run": 79778,
+  "skipped_solved_there": 79778,
+  "skipped_by_file": {
+    "final3_extended.jsonl.gz": 75090,
+    "final3_ac1m_reps.jsonl.gz": 4688
+  }
+}

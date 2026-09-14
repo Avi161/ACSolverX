@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "independent_signed_minimum_cuts": 8,
+  "all_deltas": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "whole_Aut_minimum_length": 16,
+  "handwritten_unit_paths_checked": 16,
+  "unit_path_values": [
+    5,
+    5,
+    3,
+    3
+  ],
+  "source_hashes": {
+    "exchange_rank4_sharp_aut.json": "648268823f03a8a562afa37b76144fd695e31402e6f21274c0bb54386599925d",
+    "exchange_rank4_sharp_flows.json": "0a23a1c09cf778e09d7205ab8271c5e7c68124ada4dfa6239d184f048ad89d0d"
+  },
+  "scope": "Both an independent dense flow oracle and16 explicit unit paths certify the minimum cut values. Reverse paths handle negative multipliers. Whitehead length reduction gives whole-Aut minimality; the separate ordinary AC escape remains available."
+}

@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "controls": [
+    {
+      "control": "triangle_flip",
+      "input_rank": 3,
+      "endpoint_rank": 3,
+      "input_total": 7,
+      "endpoint_total": 5,
+      "maximum_relator_length": 3
+    },
+    {
+      "control": "rank11_control",
+      "input_rank": 11,
+      "endpoint_rank": 11,
+      "input_total": 15,
+      "endpoint_total": 13,
+      "maximum_relator_length": 3
+    },
+    {
+      "control": "shared_binary_definition",
+      "input_rank": 2,
+      "endpoint_rank": 3,
+      "input_total": 8,
+      "endpoint_total": 8,
+      "maximum_relator_length": 3
+    }
+  ],
+  "source_sha256": "9e5fbd97f18d7628fcd36c637b26a8e9b2b63954ccdeb22a3f0347416a7fa496",
+  "module_sha256": "710b554c6b7f4b1992a58ca870d2222d44f2fc11b970d5f2d47ac214116b6942",
+  "scope": "Rank-preserving exact two-sided basis map z->a z C with inverse z->A z c. Every macro endpoint has relator length<=3; an elementary Nielsen factorization may pass length4. Sharing is an exact retained-definition template, not a solve claim."
+}

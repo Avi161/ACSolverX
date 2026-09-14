@@ -1,0 +1,140 @@
+{
+  "status": "PASS",
+  "rows": 124,
+  "saved_rank2_total": 2356,
+  "endpoint_total": 2162,
+  "endpoint_rank_counts": {
+    "2": 35,
+    "3": 89
+  },
+  "strictly_shortened_rows": 89,
+  "flat_composite_events": 265,
+  "event_kinds": {
+    "export_defining_template_composite": 84,
+    "export_relator_equivalence": 37,
+    "defining_template_compression": 12,
+    "ambient_whitehead": 35,
+    "defining_compression": 22,
+    "lemma11_removal": 29,
+    "export_basis_map_composite": 2,
+    "export_ordinary_elementary": 21,
+    "normal_product_substitution": 19,
+    "ambient_automorphism": 1,
+    "ordinary_ac_substitution": 3
+  },
+  "maximum_certified_rank": 5,
+  "unresolved_lineage_segments": 0,
+  "fully_expanded_elementary_stable_AC": false,
+  "current_snapshot": "current_81b8a105c18c452a.json",
+  "current_snapshot_sha256": "81b8a105c18c452a0a78ab51af8117dce1092284ee1c4aee9892d0166b5de4f1",
+  "certificate_file": "all124_stable_composite.jsonl",
+  "certificate_sha256": "7b9bd8367ba61b56794ec96ebdce8f2c60b59fcd2a2402fe0bbf9bc4fb644ad8",
+  "sources": {
+    "research/u124_rank_3h_20260912/CURRENT.json": {
+      "sha256": "81b8a105c18c452a0a78ab51af8117dce1092284ee1c4aee9892d0166b5de4f1",
+      "bytes": 112916
+    },
+    "research/theory_patterns_20260912/u124_final_table.json": {
+      "sha256": "771e18d85e4a647d943f896df4c461458de21ce6931299fa4c0c89d21b99e278",
+      "bytes": 234335
+    },
+    "research/rank_unbounded_20260912/all124.json": {
+      "sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+      "bytes": 57663
+    },
+    "data/ms_unsolved_reps/aca_124_best.csv": {
+      "sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3",
+      "bytes": 5357
+    },
+    "research/rank_unbounded_20260912/shortening_witnesses.jsonl": {
+      "sha256": "138c0385aa062914424d0db81e7aa6e3e012b46e67863e9a9622fc3ba8a505cc",
+      "bytes": 58765
+    },
+    "research/theory_patterns_20260912/stable_dictionary_compression_report.json": {
+      "sha256": "d40ef3d5b18237882a5515025a405c795b442ebf6c60376f7a86de29c808e7f3",
+      "bytes": 64394
+    },
+    "research/theory_patterns_20260912/stable_dictionary_independent_audit.json": {
+      "sha256": "af949c9098d3539750a0e04b1f13cc599397bd9427e9ac85284952f7b296c886",
+      "bytes": 158219
+    },
+    "research/theory_patterns_20260912/stable_dictionary_independent_audit.py": {
+      "sha256": "a25f45a4335d921f2197f76821f5fda2226faa01fb05d790ea2aed842cc5f0d7",
+      "bytes": 10483
+    },
+    "research/theory_patterns_20260912/STABLE_CERTIFICATE_CONVENTIONS.md": {
+      "sha256": "cd576f1b24de1936f941f2b367dac6308f882278e19de69040874eca6bd3ae54",
+      "bytes": 4564
+    },
+    "research/u124_rank_3h_20260912/aut_collect_pilot21.json": {
+      "sha256": "6095af954bf268f0786d8f62d834d0c6eb15d547d6563d125e08594e1f9b0d25",
+      "bytes": 381935
+    },
+    "research/rank_unbounded_20260912/observed_pilot.json": {
+      "sha256": "6ea01faf926001c6094fbdfd737102507e09708fdc2d07133005bf6d8eb88977",
+      "bytes": 49084
+    },
+    "research/theory_patterns_20260912/primitive_compression_report.json": {
+      "sha256": "3ba2fa1943c394c95022d19b6358b1fabd01ec281e4fe6ab87919834009abd32",
+      "bytes": 527296
+    },
+    "research/theory_patterns_20260912/primitive_compression_independent_audit.json": {
+      "sha256": "6dd9c79153bd476189d2af375b7ab2155055d69211e1d78f4acb629ac6b39a46",
+      "bytes": 22723
+    },
+    "research/theory_patterns_20260912/check_primitive_compression_independent.py": {
+      "sha256": "9bb5c321a6f134deb57adc0841171fc289cdfa3671a6e4274914fde3b1ad1590",
+      "bytes": 26057
+    },
+    "research/theory_patterns_20260912/stable_rank3_ac_descent_report.json": {
+      "sha256": "887e960e3a578c8f81fd5a6d0996aae80c11575228f016c5cef3c7cf7f068bb1",
+      "bytes": 120904
+    },
+    "research/theory_patterns_20260912/stable_rank3_ac_independent_audit.json": {
+      "sha256": "ba0b260dba8e5b064cecbb87eb84312bb57fb82819652539a622a9f5e1d0dcfd",
+      "bytes": 205309
+    },
+    "research/theory_patterns_20260912/stable_rank3_ac_independent_audit.py": {
+      "sha256": "fb35cbed1f29ea1c1e7caaefff86c69a3af7f489e3870e9cb5e8380561ebf6aa",
+      "bytes": 14136
+    },
+    "research/rank_unbounded_20260912/observed_remainder.json": {
+      "sha256": "74dcb439fdc02c613318dab897a20841ff6487baab32109ea939aceaa21856e1",
+      "bytes": 2143136
+    },
+    "research/u124_rank_3h_20260912/aliases_v3_pilot.json": {
+      "sha256": "5640cee272263ec1f2485d56d12ffb4de2371c77e3215913b9270f9abfad97ba",
+      "bytes": 67316
+    },
+    "research/theory_patterns_20260912/recursive_stable_compression_report.json": {
+      "sha256": "3e6a3d89e652b292051e58cd297abcbf8d29b9bfcceff166d72c8aadc9de0ce2",
+      "bytes": 618140
+    },
+    "research/theory_patterns_20260912/recursive_stable_compression_independent_audit.json": {
+      "sha256": "325d2297c500b44512f78a11c9051a285c7b4a81e2741fdfe40db72dd09445e0",
+      "bytes": 31377
+    },
+    "research/theory_patterns_20260912/recursive_stable_compression_independent_audit.py": {
+      "sha256": "1d6d747ec35e21f41fa18d76572d790f7b8ade949ff72a53ee108e39f62662ff",
+      "bytes": 11811
+    },
+    "research/u124_rank_3h_20260912/aut_collect_remaining103.json": {
+      "sha256": "658903ad8413069de5cd76ba408374855299a9334a58cb05cc56d0b119639694",
+      "bytes": 330256
+    },
+    "research/u124_rank_3h_20260912/export_paths.py": {
+      "sha256": "608283bab84b5eb039a8407a8c0bb51400a68e26a1c00b2e40a87f53ccd4c674",
+      "bytes": 28801
+    },
+    "research/u124_rank_3h_20260912/verify.py": {
+      "sha256": "25ac7d1be59d89d1c62c1c6f696b4873aeda9bf408964184dc68a2abe767cdf0",
+      "bytes": 54210
+    },
+    "research/rank_unbounded_20260912/audit.py": {
+      "sha256": "6c95d91e34c4e710350575202ef343477d66eb56de32860e46f105ba8ac20c8f",
+      "bytes": 53052
+    }
+  },
+  "replay_command": "python research/u124_rank_3h_20260912/export_paths.py --check",
+  "searches_performed": 0
+}

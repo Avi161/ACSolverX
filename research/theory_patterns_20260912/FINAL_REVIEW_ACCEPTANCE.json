@@ -1,0 +1,55 @@
+{
+  "status": "pass",
+  "reviewed_at_utc": "2026-09-12T06:23:41.384051+00:00",
+  "reviewer": "astra_coupled_power",
+  "scope": "Read-only acceptance review of six previously requested corrections, current final table/validation hash consistency, and new signed m=-1 theorem scope. No research/search or repeat certificate campaign. This JSON is the only file written in this acceptance turn.",
+  "artifacts_sha256": {
+    "FINAL_REPORT.md": "5b17d76612ccc503147cadfbff7b932b4d9916be5bbb734f43d5627e076387c9",
+    "THEORY_CATALOG.md": "3eccbeaec4bb021d8d204fc959b77bec9400f2a7ceeb047b007d9c9e972aef4c",
+    "u124_final_table.json": "771e18d85e4a647d943f896df4c461458de21ce6931299fa4c0c89d21b99e278",
+    "u124_final_table.csv": "98114855f80c258695e7ce84983b14aac16cb15e5aead1f44bec1c6a12a326d7",
+    "u124_final_table.md": "00449fb0b48479d6b0d846440361cd971db8e3885a79958b0655dc1b819db7b9",
+    "final_table_validation.json": "1ef3132d4ab1bcf45323b0156bc5efc7358f4d9437b6393313f3101b3feaf6e7",
+    "rank3_corridor_final_analysis.md": "76a703c43746ee98ce3e014a34f3c067cc48b2cb96863e557e1830d52b7b20a4",
+    "rank3_corridor_final_analysis_checks.json": "eb45233d69d5223234cf309064e02a2461589a6394d5d250fc46a1ba5b6210c5",
+    "rank3_corridor_final_independent_audit.json": "03f306c495de54213ac9794d9f396b0d0812f18f6d252510533e16d0e1855946"
+  },
+  "checks": {
+    "all_extreme_runs_required": true,
+    "repeated_preflight_disclosed": true,
+    "integer_k_declared": true,
+    "natural_marking_qualification": true,
+    "stabilized_unit_inversion_explicit": true,
+    "final_snapshot_export": true,
+    "validation_pass": true,
+    "validation_table_hashes_match": true,
+    "row_count_and_unique_ids": true,
+    "all_current_relator_lengths_counted": true,
+    "rank2_lengths_counted": true,
+    "aggregate_lengths_match": true,
+    "gains_and_ranks_match": true,
+    "all_rows_unsolved": true,
+    "new_signed_fixture_audit_pass": true,
+    "new_signed_line_correctly_scoped": true,
+    "euclidean_endpoint_raw_pair_distinguished": true,
+    "extra_endpoint_image_work_disclosed": true
+  },
+  "signed_family_proof_review": {
+    "status": "pass",
+    "hypotheses": "m=-1, integers k,n, abs(k-n)=1",
+    "reason": "Exact first donor identity gives x*y^(n+1); retained-donor substitutions give Z*y^(-2n-1) and z*y^k*Z*y^-n; clearing z yields y^(k-n), then units. Each generator replacement lowers its occurrence count, including all signed edge cases. The finite14-case replay checks signs but is not used to establish infinite quantifiers.",
+    "independent_replay_evidence": "Root source hash agrees,14 fixtures1263 elementary moves,1277 replayed states; no U124 solve or gain claimed.",
+    "nonclaims": "No full-family reflection symmetry, no new mechanism priority, no application to aca24 m=2."
+  },
+  "unresolved_issues": [],
+  "final_table_snapshot_utc": "2026-09-12T06:21:28.816273+00:00",
+  "numerical_conclusion": {
+    "rows": 124,
+    "shorter_stable_rows": 85,
+    "saved_start_total": 2356,
+    "best_any_rank_total": 2191,
+    "best_rank2_total": 2356,
+    "new_solved_rows": 0
+  },
+  "manifest_scope": "Manifest is written later and may pin this acceptance file; no circular manifest hash requested."
+}

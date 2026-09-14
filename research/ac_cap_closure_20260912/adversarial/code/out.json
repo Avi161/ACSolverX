@@ -1,0 +1,18 @@
+{
+  "initial": [
+    "xyxYXY",
+    "xxxYYYY"
+  ],
+  "cap": 12,
+  "closed": true,
+  "solved": false,
+  "states": 42856,
+  "max_states": 5000000,
+  "min_total_length_seen": 13,
+  "frontier_size_at_stop": 0,
+  "seconds": 1.447874213000432,
+  "nodes_per_second": 29599.25635472811,
+  "popped": 42856,
+  "budget_exhausted": false,
+  "engine": "capbfs-numba"
+}

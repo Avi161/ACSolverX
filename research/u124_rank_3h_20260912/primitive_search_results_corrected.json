@@ -1,0 +1,7301 @@
+{
+  "rows": [
+    {
+      "name": "aca_43",
+      "projected": false,
+      "preparation_units": 3,
+      "reason": "no rank2 projection using primitive exposure in the declared allowance"
+    },
+    {
+      "name": "aca_79",
+      "projected": true,
+      "source_sha256": "db876a613bec3b8b362e79f36b2c8dc8aa508953931ffad7007c84c8840dfc30",
+      "projection": {
+        "name": "aca_79",
+        "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+        "source_key": "current_best",
+        "initial": [
+          [
+            -3,
+            -3,
+            2,
+            3,
+            2,
+            3,
+            -2,
+            1
+          ],
+          [
+            -3,
+            -2,
+            -2,
+            3,
+            -1,
+            2,
+            2
+          ],
+          [
+            -3,
+            -1,
+            -1
+          ]
+        ],
+        "events": [
+          {
+            "kind": "defining_template_compression",
+            "before": [
+              [
+                -3,
+                -3,
+                2,
+                3,
+                2,
+                3,
+                -2,
+                1
+              ],
+              [
+                -3,
+                -2,
+                -2,
+                3,
+                -1,
+                2,
+                2
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "certificate_kind": "theorem_backed_stable_composite",
+            "required_hypothesis": "known balanced presentation of the trivial group",
+            "helpers": [
+              4
+            ],
+            "defining_words": [
+              [
+                2,
+                3,
+                -2,
+                -3
+              ]
+            ],
+            "defining_relators": [
+              [
+                -4,
+                2,
+                3,
+                -2,
+                -3
+              ]
+            ],
+            "rows": [
+              {
+                "input_index": 0,
+                "before": [
+                  -3,
+                  -3,
+                  2,
+                  3,
+                  2,
+                  3,
+                  -2,
+                  1
+                ],
+                "sign": 1,
+                "conjugator": [
+                  -1,
+                  2,
+                  -3,
+                  -2,
+                  -3,
+                  -2
+                ],
+                "oriented": [
+                  2,
+                  3,
+                  2,
+                  3,
+                  -2,
+                  1,
+                  -3,
+                  -3
+                ],
+                "template": [
+                  2,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "expanded": [
+                  2,
+                  3,
+                  2,
+                  3,
+                  -2,
+                  1,
+                  -3,
+                  -3
+                ],
+                "collection_row_label": [
+                  "original",
+                  0
+                ]
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  -3,
+                  -2,
+                  -2,
+                  3,
+                  -1,
+                  2,
+                  2
+                ],
+                "sign": 1,
+                "conjugator": [
+                  -2,
+                  -2,
+                  1,
+                  -3
+                ],
+                "oriented": [
+                  3,
+                  -1,
+                  2,
+                  2,
+                  -3,
+                  -2,
+                  -2
+                ],
+                "template": [
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  2,
+                  -4,
+                  -2
+                ],
+                "expanded": [
+                  3,
+                  -1,
+                  2,
+                  2,
+                  -3,
+                  -2,
+                  -2
+                ],
+                "collection_row_label": [
+                  "original",
+                  1
+                ]
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": [],
+                "oriented": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "template": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "expanded": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "collection_row_label": [
+                  "original",
+                  2
+                ]
+              }
+            ],
+            "templates": [
+              [
+                2,
+                3,
+                4,
+                3,
+                1,
+                -3,
+                -3
+              ],
+              [
+                3,
+                -1,
+                -3,
+                -4,
+                2,
+                -4,
+                -2
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "raw_after": [
+              [
+                -4,
+                2,
+                3,
+                -2,
+                -3
+              ],
+              [
+                2,
+                3,
+                4,
+                3,
+                1,
+                -3,
+                -3
+              ],
+              [
+                3,
+                -1,
+                -3,
+                -4,
+                2,
+                -4,
+                -2
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "normalization": [
+              {
+                "input_index": 1,
+                "before": [
+                  2,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "after": [
+                  -4,
+                  -3,
+                  -2,
+                  3,
+                  3,
+                  -1,
+                  -3
+                ],
+                "sign": -1,
+                "conjugator": [
+                  3,
+                  3,
+                  -1,
+                  -3
+                ]
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  2,
+                  -4,
+                  -2
+                ],
+                "after": [
+                  -4,
+                  -2,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  2
+                ],
+                "sign": 1,
+                "conjugator": [
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  2
+                ]
+              },
+              {
+                "input_index": 0,
+                "before": [
+                  -4,
+                  2,
+                  3,
+                  -2,
+                  -3
+                ],
+                "after": [
+                  -4,
+                  2,
+                  3,
+                  -2,
+                  -3
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 3,
+                "before": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "after": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": []
+              }
+            ],
+            "after": [
+              [
+                -4,
+                -3,
+                -2,
+                3,
+                3,
+                -1,
+                -3
+              ],
+              [
+                -4,
+                -2,
+                3,
+                -1,
+                -3,
+                -4,
+                2
+              ],
+              [
+                -4,
+                2,
+                3,
+                -2,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "helper_uses": {
+              "4": 3
+            },
+            "length_change": 4,
+            "method": "iterated_commutator_collection_stage",
+            "collection_axis": 2,
+            "collection_stage": 1,
+            "collection_stages": 2,
+            "work_counts": {
+              "definitions": 1,
+              "template_expansions": 3,
+              "collection_plan_checks": 1,
+              "collection_orientation_letters": 72,
+              "collection_letter_transitions": 36,
+              "collection_swap_steps": 4,
+              "collection_complete_row_expansions": 3,
+              "collection_axis_forecasts": 3
+            },
+            "charged_units": 123,
+            "fully_expanded_elementary_certificate": false,
+            "collection_rewrites": [
+              {
+                "before": [
+                  -3,
+                  -3,
+                  2,
+                  3,
+                  2,
+                  3,
+                  -2,
+                  1
+                ],
+                "oriented": [
+                  2,
+                  3,
+                  2,
+                  3,
+                  -2,
+                  1,
+                  -3,
+                  -3
+                ],
+                "orientation_sign": 1,
+                "orientation_conjugator": [
+                  -3,
+                  -3
+                ],
+                "axis_exponent": 1,
+                "direction": "left",
+                "letters_at_heights": [
+                  [
+                    0,
+                    3
+                  ],
+                  [
+                    1,
+                    3
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    0,
+                    -3
+                  ],
+                  [
+                    0,
+                    -3
+                  ]
+                ],
+                "collection_swaps": 1,
+                "conjugate_chunks": [
+                  {
+                    "letter": 3,
+                    "height": 0,
+                    "template": [
+                      3
+                    ],
+                    "expanded": [
+                      3
+                    ]
+                  },
+                  {
+                    "letter": 3,
+                    "height": 1,
+                    "template": [
+                      4,
+                      3
+                    ],
+                    "expanded": [
+                      2,
+                      3,
+                      -2
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  },
+                  {
+                    "letter": -3,
+                    "height": 0,
+                    "template": [
+                      -3
+                    ],
+                    "expanded": [
+                      -3
+                    ]
+                  },
+                  {
+                    "letter": -3,
+                    "height": 0,
+                    "template": [
+                      -3
+                    ],
+                    "expanded": [
+                      -3
+                    ]
+                  }
+                ],
+                "template": [
+                  2,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ]
+              },
+              {
+                "before": [
+                  -3,
+                  -2,
+                  -2,
+                  3,
+                  -1,
+                  2,
+                  2
+                ],
+                "oriented": [
+                  3,
+                  -1,
+                  2,
+                  2,
+                  -3,
+                  -2,
+                  -2
+                ],
+                "orientation_sign": 1,
+                "orientation_conjugator": [
+                  -3,
+                  -2,
+                  -2
+                ],
+                "axis_exponent": 0,
+                "direction": "right",
+                "letters_at_heights": [
+                  [
+                    0,
+                    3
+                  ],
+                  [
+                    0,
+                    -1
+                  ],
+                  [
+                    2,
+                    -3
+                  ]
+                ],
+                "collection_swaps": 3,
+                "conjugate_chunks": [
+                  {
+                    "letter": 3,
+                    "height": 0,
+                    "template": [
+                      3
+                    ],
+                    "expanded": [
+                      3
+                    ]
+                  },
+                  {
+                    "letter": -1,
+                    "height": 0,
+                    "template": [
+                      -1
+                    ],
+                    "expanded": [
+                      -1
+                    ]
+                  },
+                  {
+                    "letter": -3,
+                    "height": 2,
+                    "template": [
+                      -3,
+                      -4,
+                      -4,
+                      -5
+                    ],
+                    "expanded": [
+                      2,
+                      2,
+                      -3,
+                      -2,
+                      -2
+                    ]
+                  }
+                ],
+                "template": [
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4,
+                  -5
+                ]
+              },
+              {
+                "before": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "oriented": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "orientation_sign": 1,
+                "orientation_conjugator": [],
+                "axis_exponent": 0,
+                "direction": "right",
+                "letters_at_heights": [
+                  [
+                    0,
+                    -3
+                  ],
+                  [
+                    0,
+                    -1
+                  ],
+                  [
+                    0,
+                    -1
+                  ]
+                ],
+                "collection_swaps": 0,
+                "conjugate_chunks": [
+                  {
+                    "letter": -3,
+                    "height": 0,
+                    "template": [
+                      -3
+                    ],
+                    "expanded": [
+                      -3
+                    ]
+                  },
+                  {
+                    "letter": -1,
+                    "height": 0,
+                    "template": [
+                      -1
+                    ],
+                    "expanded": [
+                      -1
+                    ]
+                  },
+                  {
+                    "letter": -1,
+                    "height": 0,
+                    "template": [
+                      -1
+                    ],
+                    "expanded": [
+                      -1
+                    ]
+                  }
+                ],
+                "template": [
+                  -3,
+                  -1,
+                  -1
+                ]
+              }
+            ],
+            "collection_full_images": {
+              "1": [
+                1
+              ],
+              "2": [
+                2
+              ],
+              "3": [
+                3
+              ],
+              "4": [
+                2,
+                3,
+                -2,
+                -3
+              ],
+              "5": [
+                2,
+                2,
+                3,
+                -2,
+                -3,
+                -2,
+                3,
+                2,
+                -3,
+                -2
+              ]
+            },
+            "collection_definitions": [
+              [
+                4,
+                [
+                  2,
+                  3,
+                  -2,
+                  -3
+                ]
+              ],
+              [
+                5,
+                [
+                  2,
+                  4,
+                  -2,
+                  -4
+                ]
+              ]
+            ],
+            "collection_helper_names": [
+              [
+                1,
+                3,
+                1,
+                4
+              ],
+              [
+                1,
+                3,
+                2,
+                5
+              ]
+            ],
+            "collection_direction_policy": "cheapest",
+            "collection_immediate_descent": {
+              "reserved_units": 400,
+              "forced_removal_tests": 1,
+              "start_rank": 4,
+              "start_length": 37,
+              "whitehead_min_cuts": 46,
+              "peeling_attempts": 7,
+              "after_rank": 3,
+              "after_length": 19,
+              "total_probe_charged_units": 182
+            }
+          },
+          {
+            "kind": "defining_template_compression",
+            "before": [
+              [
+                -4,
+                -3,
+                -2,
+                3,
+                3,
+                -1,
+                -3
+              ],
+              [
+                -4,
+                -2,
+                3,
+                -1,
+                -3,
+                -4,
+                2
+              ],
+              [
+                -4,
+                2,
+                3,
+                -2,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "certificate_kind": "theorem_backed_stable_composite",
+            "required_hypothesis": "known balanced presentation of the trivial group",
+            "helpers": [
+              5
+            ],
+            "defining_words": [
+              [
+                2,
+                4,
+                -2,
+                -4
+              ]
+            ],
+            "defining_relators": [
+              [
+                -5,
+                2,
+                4,
+                -2,
+                -4
+              ]
+            ],
+            "rows": [
+              {
+                "input_index": 0,
+                "before": [
+                  -4,
+                  -3,
+                  -2,
+                  3,
+                  3,
+                  -1,
+                  -3
+                ],
+                "sign": -1,
+                "conjugator": [
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "oriented": [
+                  2,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "template": [
+                  2,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "expanded": [
+                  2,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "collection_row_label": [
+                  "original",
+                  0
+                ]
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  -4,
+                  -2,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  2
+                ],
+                "sign": 1,
+                "conjugator": [
+                  -2,
+                  4,
+                  3,
+                  1,
+                  -3
+                ],
+                "oriented": [
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  2,
+                  -4,
+                  -2
+                ],
+                "template": [
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4,
+                  -5
+                ],
+                "expanded": [
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  2,
+                  -4,
+                  -2
+                ],
+                "collection_row_label": [
+                  "original",
+                  1
+                ]
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -4,
+                  2,
+                  3,
+                  -2,
+                  -3
+                ],
+                "sign": 1,
+                "conjugator": [],
+                "oriented": [
+                  -4,
+                  2,
+                  3,
+                  -2,
+                  -3
+                ],
+                "template": [
+                  -4,
+                  2,
+                  3,
+                  -2,
+                  -3
+                ],
+                "expanded": [
+                  -4,
+                  2,
+                  3,
+                  -2,
+                  -3
+                ],
+                "collection_row_label": [
+                  "definition",
+                  4
+                ]
+              },
+              {
+                "input_index": 3,
+                "before": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": [],
+                "oriented": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "template": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "expanded": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "collection_row_label": [
+                  "original",
+                  2
+                ]
+              }
+            ],
+            "templates": [
+              [
+                2,
+                3,
+                4,
+                3,
+                1,
+                -3,
+                -3
+              ],
+              [
+                3,
+                -1,
+                -3,
+                -4,
+                -4,
+                -5
+              ],
+              [
+                -4,
+                2,
+                3,
+                -2,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "raw_after": [
+              [
+                -5,
+                2,
+                4,
+                -2,
+                -4
+              ],
+              [
+                2,
+                3,
+                4,
+                3,
+                1,
+                -3,
+                -3
+              ],
+              [
+                3,
+                -1,
+                -3,
+                -4,
+                -4,
+                -5
+              ],
+              [
+                -4,
+                2,
+                3,
+                -2,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "normalization": [
+              {
+                "input_index": 0,
+                "before": [
+                  -5,
+                  2,
+                  4,
+                  -2,
+                  -4
+                ],
+                "after": [
+                  -5,
+                  2,
+                  4,
+                  -2,
+                  -4
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4,
+                  -5
+                ],
+                "after": [
+                  -5,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4
+                ],
+                "sign": 1,
+                "conjugator": [
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4
+                ]
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  2,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "after": [
+                  -4,
+                  -3,
+                  -2,
+                  3,
+                  3,
+                  -1,
+                  -3
+                ],
+                "sign": -1,
+                "conjugator": [
+                  3,
+                  3,
+                  -1,
+                  -3
+                ]
+              },
+              {
+                "input_index": 3,
+                "before": [
+                  -4,
+                  2,
+                  3,
+                  -2,
+                  -3
+                ],
+                "after": [
+                  -4,
+                  2,
+                  3,
+                  -2,
+                  -3
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 4,
+                "before": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "after": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": []
+              }
+            ],
+            "after": [
+              [
+                -5,
+                2,
+                4,
+                -2,
+                -4
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                -4,
+                -4
+              ],
+              [
+                -4,
+                -3,
+                -2,
+                3,
+                3,
+                -1,
+                -3
+              ],
+              [
+                -4,
+                2,
+                3,
+                -2,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "helper_uses": {
+              "5": 1
+            },
+            "length_change": 4,
+            "method": "iterated_commutator_collection_stage",
+            "collection_axis": 2,
+            "collection_stage": 2,
+            "collection_stages": 2,
+            "work_counts": {
+              "definitions": 1,
+              "template_expansions": 4
+            },
+            "charged_units": 5,
+            "fully_expanded_elementary_certificate": false
+          },
+          {
+            "kind": "lemma11_removal",
+            "certificate_kind": "theorem_backed_stable_composite",
+            "required_hypothesis": "known balanced presentation of the trivial group",
+            "before": [
+              [
+                -5,
+                2,
+                4,
+                -2,
+                -4
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                -4,
+                -4
+              ],
+              [
+                -4,
+                -3,
+                -2,
+                3,
+                3,
+                -1,
+                -3
+              ],
+              [
+                -4,
+                2,
+                3,
+                -2,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "defining_index": 2,
+            "defining_relator": [
+              -4,
+              -3,
+              -2,
+              3,
+              3,
+              -1,
+              -3
+            ],
+            "generator": 2,
+            "occurrence_position": 2,
+            "occurrence_sign": -1,
+            "isolating_word": [
+              3,
+              3,
+              -1,
+              -3,
+              -4,
+              -3
+            ],
+            "normal_form": [
+              -2,
+              3,
+              3,
+              -1,
+              -3,
+              -4,
+              -3
+            ],
+            "normal_form_witness": {
+              "sign": 1,
+              "conjugator": [
+                -4,
+                -3
+              ]
+            },
+            "substitutions": [
+              {
+                "input_index": 0,
+                "before": [
+                  -5,
+                  2,
+                  4,
+                  -2,
+                  -4
+                ],
+                "raw_substitution": [
+                  -5,
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -3,
+                  4,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3,
+                  -4
+                ],
+                "after_free_reduction": [
+                  -5,
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -3,
+                  4,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3,
+                  -4
+                ],
+                "replaced_occurrences": 2
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  -5,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4
+                ],
+                "raw_substitution": [
+                  -5,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4
+                ],
+                "after_free_reduction": [
+                  -5,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4
+                ],
+                "replaced_occurrences": 0
+              },
+              {
+                "input_index": 3,
+                "before": [
+                  -4,
+                  2,
+                  3,
+                  -2,
+                  -3
+                ],
+                "raw_substitution": [
+                  -4,
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -3,
+                  3,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3,
+                  -3
+                ],
+                "after_free_reduction": [
+                  -4,
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3,
+                  -3
+                ],
+                "replaced_occurrences": 2
+              },
+              {
+                "input_index": 4,
+                "before": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "raw_substitution": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "after_free_reduction": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "replaced_occurrences": 0
+              }
+            ],
+            "raw_after": [
+              [
+                -5,
+                3,
+                3,
+                -1,
+                -3,
+                -4,
+                -3,
+                4,
+                3,
+                4,
+                3,
+                1,
+                -3,
+                -3,
+                -4
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                -4,
+                -4
+              ],
+              [
+                -4,
+                3,
+                3,
+                -1,
+                -3,
+                -4,
+                3,
+                4,
+                3,
+                1,
+                -3,
+                -3,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "normalization": [
+              {
+                "input_index": 1,
+                "before": [
+                  -5,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4
+                ],
+                "after": [
+                  -5,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -4
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 0,
+                "before": [
+                  -5,
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -3,
+                  4,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3,
+                  -4
+                ],
+                "after": [
+                  -5,
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  -3,
+                  4,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3,
+                  -4
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -4,
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  -4,
+                  3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3,
+                  -3
+                ],
+                "after": [
+                  -4,
+                  -3,
+                  4,
+                  3,
+                  1,
+                  -3,
+                  -3,
+                  4,
+                  3,
+                  3,
+                  3,
+                  -1,
+                  -3
+                ],
+                "sign": -1,
+                "conjugator": [
+                  3,
+                  3,
+                  3,
+                  -1,
+                  -3
+                ]
+              },
+              {
+                "input_index": 3,
+                "before": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "after": [
+                  -3,
+                  -1,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": []
+              }
+            ],
+            "after": [
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                -4,
+                -4
+              ],
+              [
+                -5,
+                3,
+                3,
+                -1,
+                -3,
+                -4,
+                -3,
+                4,
+                3,
+                4,
+                3,
+                1,
+                -3,
+                -3,
+                -4
+              ],
+              [
+                -4,
+                -3,
+                4,
+                3,
+                1,
+                -3,
+                -3,
+                4,
+                3,
+                3,
+                3,
+                -1,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "before_generator_ids": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "after_generator_ids": [
+              1,
+              3,
+              4,
+              5
+            ],
+            "generator_relabeling": "identity_on_survivors",
+            "literal_substitution_length": 39,
+            "final_length": 37,
+            "length_change": 11,
+            "charged_units": 1,
+            "fully_expanded_elementary_certificate": false
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                -4,
+                -4
+              ],
+              [
+                -5,
+                3,
+                3,
+                -1,
+                -3,
+                -4,
+                -3,
+                4,
+                3,
+                4,
+                3,
+                1,
+                -3,
+                -3,
+                -4
+              ],
+              [
+                -4,
+                -3,
+                4,
+                3,
+                1,
+                -3,
+                -3,
+                4,
+                3,
+                3,
+                3,
+                -1,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "multiplier": -3,
+            "side": [
+              -5,
+              -4,
+              -3,
+              4,
+              5
+            ],
+            "images": {
+              "1": [
+                1
+              ],
+              "3": [
+                3
+              ],
+              "4": [
+                3,
+                4,
+                -3
+              ],
+              "5": [
+                3,
+                5,
+                -3
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1
+              ],
+              "3": [
+                3
+              ],
+              "4": [
+                -3,
+                4,
+                3
+              ],
+              "5": [
+                -3,
+                5,
+                3
+              ]
+            },
+            "raw_after": [
+              [
+                3,
+                -5,
+                -1,
+                -4,
+                -4,
+                -3
+              ],
+              [
+                3,
+                -5,
+                3,
+                -1,
+                -4,
+                -3,
+                4,
+                3,
+                4,
+                1,
+                -3,
+                -4,
+                -3
+              ],
+              [
+                3,
+                -4,
+                -3,
+                4,
+                1,
+                -3,
+                4,
+                3,
+                3,
+                -1,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "after": [
+              [
+                -5,
+                -1,
+                -4,
+                -4
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -4,
+                -3,
+                4,
+                3,
+                4,
+                1,
+                -3,
+                -4
+              ],
+              [
+                -4,
+                -3,
+                4,
+                1,
+                -3,
+                4,
+                3,
+                3,
+                -1
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "length_change": -10
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -5,
+                -1,
+                -4,
+                -4
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -4,
+                -3,
+                4,
+                3,
+                4,
+                1,
+                -3,
+                -4
+              ],
+              [
+                -4,
+                -3,
+                4,
+                1,
+                -3,
+                4,
+                3,
+                3,
+                -1
+              ],
+              [
+                -3,
+                -1,
+                -1
+              ]
+            ],
+            "multiplier": -4,
+            "side": [
+              -5,
+              -4,
+              -3,
+              1,
+              3,
+              5
+            ],
+            "images": {
+              "1": [
+                1,
+                -4
+              ],
+              "3": [
+                4,
+                3,
+                -4
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                4,
+                5,
+                -4
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1,
+                4
+              ],
+              "3": [
+                -4,
+                3,
+                4
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                -4,
+                5,
+                4
+              ]
+            },
+            "raw_after": [
+              [
+                4,
+                -5,
+                -1,
+                -4,
+                -4
+              ],
+              [
+                4,
+                -5,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                1,
+                -3,
+                -4,
+                -4
+              ],
+              [
+                -3,
+                1,
+                -3,
+                4,
+                3,
+                3,
+                -1
+              ],
+              [
+                4,
+                -3,
+                -1,
+                4,
+                -1
+              ]
+            ],
+            "after": [
+              [
+                -5,
+                -1,
+                -4
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                1,
+                -3,
+                -4
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                -4,
+                3,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ]
+            ],
+            "length_change": -3
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -5,
+                -1,
+                -4
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                1,
+                -3,
+                -4
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                -4,
+                3,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ]
+            ],
+            "multiplier": -4,
+            "side": [
+              -4,
+              5
+            ],
+            "images": {
+              "1": [
+                1
+              ],
+              "3": [
+                3
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                5,
+                -4
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1
+              ],
+              "3": [
+                3
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                5,
+                4
+              ]
+            },
+            "raw_after": [
+              [
+                4,
+                -5,
+                -1,
+                -4
+              ],
+              [
+                4,
+                -5,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                1,
+                -3,
+                -4
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                -4,
+                3,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ]
+            ],
+            "after": [
+              [
+                -5,
+                -1
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                1,
+                -3
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                -4,
+                3,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ]
+            ],
+            "length_change": -2
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -5,
+                -1
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                1,
+                -3
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                -4,
+                3,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ]
+            ],
+            "multiplier": -3,
+            "side": [
+              -4,
+              -3,
+              -1,
+              5
+            ],
+            "images": {
+              "1": [
+                3,
+                1
+              ],
+              "3": [
+                3
+              ],
+              "4": [
+                3,
+                4
+              ],
+              "5": [
+                5,
+                -3
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                -3,
+                1
+              ],
+              "3": [
+                3
+              ],
+              "4": [
+                -3,
+                4
+              ],
+              "5": [
+                5,
+                3
+              ]
+            },
+            "raw_after": [
+              [
+                3,
+                -5,
+                -1,
+                -3
+              ],
+              [
+                3,
+                -5,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                3,
+                1,
+                -3
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                -4,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ]
+            ],
+            "after": [
+              [
+                -5,
+                -1
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                3,
+                1
+              ],
+              [
+                -4,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ]
+            ],
+            "length_change": -1
+          },
+          {
+            "kind": "lemma11_removal",
+            "certificate_kind": "theorem_backed_stable_composite",
+            "required_hypothesis": "known balanced presentation of the trivial group",
+            "before": [
+              [
+                -5,
+                -1
+              ],
+              [
+                -5,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                3,
+                1
+              ],
+              [
+                -4,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ]
+            ],
+            "defining_index": 0,
+            "defining_relator": [
+              -5,
+              -1
+            ],
+            "generator": 5,
+            "occurrence_position": 0,
+            "occurrence_sign": -1,
+            "isolating_word": [
+              -1
+            ],
+            "normal_form": [
+              -5,
+              -1
+            ],
+            "normal_form_witness": {
+              "sign": 1,
+              "conjugator": []
+            },
+            "substitutions": [
+              {
+                "input_index": 1,
+                "before": [
+                  -5,
+                  3,
+                  -1,
+                  -3,
+                  4,
+                  3,
+                  3,
+                  1
+                ],
+                "raw_substitution": [
+                  1,
+                  3,
+                  -1,
+                  -3,
+                  4,
+                  3,
+                  3,
+                  1
+                ],
+                "after_free_reduction": [
+                  1,
+                  3,
+                  -1,
+                  -3,
+                  4,
+                  3,
+                  3,
+                  1
+                ],
+                "replaced_occurrences": 1
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -4,
+                  -1,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "raw_substitution": [
+                  -4,
+                  -1,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "after_free_reduction": [
+                  -4,
+                  -1,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "replaced_occurrences": 0
+              },
+              {
+                "input_index": 3,
+                "before": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "raw_substitution": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "after_free_reduction": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "replaced_occurrences": 0
+              }
+            ],
+            "raw_after": [
+              [
+                1,
+                3,
+                -1,
+                -3,
+                4,
+                3,
+                3,
+                1
+              ],
+              [
+                -4,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ]
+            ],
+            "normalization": [
+              {
+                "input_index": 1,
+                "before": [
+                  -4,
+                  -1,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "after": [
+                  -4,
+                  -1,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "after": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 0,
+                "before": [
+                  1,
+                  3,
+                  -1,
+                  -3,
+                  4,
+                  3,
+                  3,
+                  1
+                ],
+                "after": [
+                  -4,
+                  3,
+                  1,
+                  -3,
+                  -1,
+                  -1,
+                  -3,
+                  -3
+                ],
+                "sign": -1,
+                "conjugator": [
+                  -1,
+                  -3,
+                  -3
+                ]
+              }
+            ],
+            "after": [
+              [
+                -4,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                -4,
+                3,
+                1,
+                -3,
+                -1,
+                -1,
+                -3,
+                -3
+              ]
+            ],
+            "before_generator_ids": [
+              1,
+              3,
+              4,
+              5
+            ],
+            "after_generator_ids": [
+              1,
+              3,
+              4
+            ],
+            "generator_relabeling": "identity_on_survivors",
+            "literal_substitution_length": 19,
+            "final_length": 19,
+            "length_change": -2,
+            "charged_units": 1,
+            "fully_expanded_elementary_certificate": false,
+            "occurrence_accounting": {
+              "generator_degree": 2,
+              "donor_length": 2,
+              "length_change_upper_bound": -2
+            }
+          },
+          {
+            "kind": "defining_template_compression",
+            "before": [
+              [
+                -4,
+                -1,
+                3,
+                1,
+                -3,
+                -3
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                -4,
+                3,
+                1,
+                -3,
+                -1,
+                -1,
+                -3,
+                -3
+              ]
+            ],
+            "certificate_kind": "theorem_backed_stable_composite",
+            "required_hypothesis": "known balanced presentation of the trivial group",
+            "helpers": [
+              5
+            ],
+            "defining_words": [
+              [
+                3,
+                1,
+                -3,
+                -1
+              ]
+            ],
+            "defining_relators": [
+              [
+                -5,
+                3,
+                1,
+                -3,
+                -1
+              ]
+            ],
+            "rows": [
+              {
+                "input_index": 0,
+                "before": [
+                  -4,
+                  -1,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "sign": -1,
+                "conjugator": [],
+                "oriented": [
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  1,
+                  4
+                ],
+                "template": [
+                  3,
+                  -1,
+                  -5,
+                  1,
+                  4
+                ],
+                "expanded": [
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  1,
+                  4
+                ],
+                "collection_row_label": [
+                  "original",
+                  0
+                ]
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "sign": 1,
+                "conjugator": [],
+                "oriented": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "template": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "expanded": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "collection_row_label": [
+                  "original",
+                  1
+                ]
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -4,
+                  3,
+                  1,
+                  -3,
+                  -1,
+                  -1,
+                  -3,
+                  -3
+                ],
+                "sign": -1,
+                "conjugator": [],
+                "oriented": [
+                  3,
+                  3,
+                  1,
+                  1,
+                  3,
+                  -1,
+                  -3,
+                  4
+                ],
+                "template": [
+                  3,
+                  3,
+                  1,
+                  -5,
+                  4
+                ],
+                "expanded": [
+                  3,
+                  3,
+                  1,
+                  1,
+                  3,
+                  -1,
+                  -3,
+                  4
+                ],
+                "collection_row_label": [
+                  "original",
+                  2
+                ]
+              }
+            ],
+            "templates": [
+              [
+                3,
+                -1,
+                -5,
+                1,
+                4
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                3,
+                3,
+                1,
+                -5,
+                4
+              ]
+            ],
+            "raw_after": [
+              [
+                -5,
+                3,
+                1,
+                -3,
+                -1
+              ],
+              [
+                3,
+                -1,
+                -5,
+                1,
+                4
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ],
+              [
+                3,
+                3,
+                1,
+                -5,
+                4
+              ]
+            ],
+            "normalization": [
+              {
+                "input_index": 1,
+                "before": [
+                  3,
+                  -1,
+                  -5,
+                  1,
+                  4
+                ],
+                "after": [
+                  -5,
+                  1,
+                  4,
+                  3,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": [
+                  3,
+                  -1
+                ]
+              },
+              {
+                "input_index": 0,
+                "before": [
+                  -5,
+                  3,
+                  1,
+                  -3,
+                  -1
+                ],
+                "after": [
+                  -5,
+                  3,
+                  1,
+                  -3,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 3,
+                "before": [
+                  3,
+                  3,
+                  1,
+                  -5,
+                  4
+                ],
+                "after": [
+                  -5,
+                  4,
+                  3,
+                  3,
+                  1
+                ],
+                "sign": 1,
+                "conjugator": [
+                  3,
+                  3,
+                  1
+                ]
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "after": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "sign": 1,
+                "conjugator": []
+              }
+            ],
+            "after": [
+              [
+                -5,
+                1,
+                4,
+                3,
+                -1
+              ],
+              [
+                -5,
+                3,
+                1,
+                -3,
+                -1
+              ],
+              [
+                -5,
+                4,
+                3,
+                3,
+                1
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ]
+            ],
+            "helper_uses": {
+              "5": 2
+            },
+            "length_change": 1,
+            "method": "iterated_commutator_collection_stage",
+            "collection_axis": 3,
+            "collection_stage": 1,
+            "collection_stages": 1,
+            "work_counts": {
+              "definitions": 1,
+              "template_expansions": 3,
+              "collection_plan_checks": 1,
+              "collection_orientation_letters": 76,
+              "collection_letter_transitions": 38,
+              "collection_swap_steps": 2,
+              "collection_complete_row_expansions": 3,
+              "collection_axis_forecasts": 3
+            },
+            "charged_units": 127,
+            "fully_expanded_elementary_certificate": false,
+            "collection_rewrites": [
+              {
+                "before": [
+                  -4,
+                  -1,
+                  3,
+                  1,
+                  -3,
+                  -3
+                ],
+                "oriented": [
+                  3,
+                  3,
+                  -1,
+                  -3,
+                  1,
+                  4
+                ],
+                "orientation_sign": -1,
+                "orientation_conjugator": [],
+                "axis_exponent": 1,
+                "direction": "left",
+                "letters_at_heights": [
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    0,
+                    4
+                  ]
+                ],
+                "collection_swaps": 1,
+                "conjugate_chunks": [
+                  {
+                    "letter": -1,
+                    "height": 1,
+                    "template": [
+                      -1,
+                      -5
+                    ],
+                    "expanded": [
+                      3,
+                      -1,
+                      -3
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  },
+                  {
+                    "letter": 4,
+                    "height": 0,
+                    "template": [
+                      4
+                    ],
+                    "expanded": [
+                      4
+                    ]
+                  }
+                ],
+                "template": [
+                  3,
+                  -1,
+                  -5,
+                  1,
+                  4
+                ]
+              },
+              {
+                "before": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "oriented": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "orientation_sign": 1,
+                "orientation_conjugator": [],
+                "axis_exponent": 1,
+                "direction": "right",
+                "letters_at_heights": [
+                  [
+                    0,
+                    -4
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    0,
+                    -4
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "collection_swaps": 0,
+                "conjugate_chunks": [
+                  {
+                    "letter": -4,
+                    "height": 0,
+                    "template": [
+                      -4
+                    ],
+                    "expanded": [
+                      -4
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  },
+                  {
+                    "letter": -4,
+                    "height": 0,
+                    "template": [
+                      -4
+                    ],
+                    "expanded": [
+                      -4
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  }
+                ],
+                "template": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ]
+              },
+              {
+                "before": [
+                  -4,
+                  3,
+                  1,
+                  -3,
+                  -1,
+                  -1,
+                  -3,
+                  -3
+                ],
+                "oriented": [
+                  3,
+                  3,
+                  1,
+                  1,
+                  3,
+                  -1,
+                  -3,
+                  4
+                ],
+                "orientation_sign": -1,
+                "orientation_conjugator": [],
+                "axis_exponent": 2,
+                "direction": "left",
+                "letters_at_heights": [
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    1,
+                    -1
+                  ],
+                  [
+                    0,
+                    4
+                  ]
+                ],
+                "collection_swaps": 1,
+                "conjugate_chunks": [
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  },
+                  {
+                    "letter": -1,
+                    "height": 1,
+                    "template": [
+                      -1,
+                      -5
+                    ],
+                    "expanded": [
+                      3,
+                      -1,
+                      -3
+                    ]
+                  },
+                  {
+                    "letter": 4,
+                    "height": 0,
+                    "template": [
+                      4
+                    ],
+                    "expanded": [
+                      4
+                    ]
+                  }
+                ],
+                "template": [
+                  3,
+                  3,
+                  1,
+                  -5,
+                  4
+                ]
+              }
+            ],
+            "collection_full_images": {
+              "1": [
+                1
+              ],
+              "3": [
+                3
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                3,
+                1,
+                -3,
+                -1
+              ]
+            },
+            "collection_definitions": [
+              [
+                5,
+                [
+                  3,
+                  1,
+                  -3,
+                  -1
+                ]
+              ]
+            ],
+            "collection_helper_names": [
+              [
+                1,
+                1,
+                1,
+                5
+              ]
+            ],
+            "collection_direction_policy": "cheapest",
+            "collection_immediate_descent": {
+              "reserved_units": 400,
+              "forced_removal_tests": 2,
+              "start_rank": 3,
+              "start_length": 26,
+              "whitehead_min_cuts": 24,
+              "peeling_attempts": 2,
+              "after_rank": 3,
+              "after_length": 17,
+              "total_probe_charged_units": 155
+            }
+          },
+          {
+            "kind": "lemma11_removal",
+            "certificate_kind": "theorem_backed_stable_composite",
+            "required_hypothesis": "known balanced presentation of the trivial group",
+            "before": [
+              [
+                -5,
+                1,
+                4,
+                3,
+                -1
+              ],
+              [
+                -5,
+                3,
+                1,
+                -3,
+                -1
+              ],
+              [
+                -5,
+                4,
+                3,
+                3,
+                1
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                3
+              ]
+            ],
+            "defining_index": 0,
+            "defining_relator": [
+              -5,
+              1,
+              4,
+              3,
+              -1
+            ],
+            "generator": 3,
+            "occurrence_position": 3,
+            "occurrence_sign": 1,
+            "isolating_word": [
+              -4,
+              -1,
+              5,
+              1
+            ],
+            "normal_form": [
+              -3,
+              -4,
+              -1,
+              5,
+              1
+            ],
+            "normal_form_witness": {
+              "sign": -1,
+              "conjugator": [
+                1
+              ]
+            },
+            "substitutions": [
+              {
+                "input_index": 1,
+                "before": [
+                  -5,
+                  3,
+                  1,
+                  -3,
+                  -1
+                ],
+                "raw_substitution": [
+                  -5,
+                  -4,
+                  -1,
+                  5,
+                  1,
+                  1,
+                  -1,
+                  -5,
+                  1,
+                  4,
+                  -1
+                ],
+                "after_free_reduction": [
+                  -5,
+                  -4,
+                  -1,
+                  5,
+                  1,
+                  -5,
+                  1,
+                  4,
+                  -1
+                ],
+                "replaced_occurrences": 2
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -5,
+                  4,
+                  3,
+                  3,
+                  1
+                ],
+                "raw_substitution": [
+                  -5,
+                  4,
+                  -4,
+                  -1,
+                  5,
+                  1,
+                  -4,
+                  -1,
+                  5,
+                  1,
+                  1
+                ],
+                "after_free_reduction": [
+                  -5,
+                  -1,
+                  5,
+                  1,
+                  -4,
+                  -1,
+                  5,
+                  1,
+                  1
+                ],
+                "replaced_occurrences": 2
+              },
+              {
+                "input_index": 3,
+                "before": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  3
+                ],
+                "raw_substitution": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  -4,
+                  -1,
+                  5,
+                  1
+                ],
+                "after_free_reduction": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  -4,
+                  -1,
+                  5,
+                  1
+                ],
+                "replaced_occurrences": 1
+              }
+            ],
+            "raw_after": [
+              [
+                -5,
+                -4,
+                -1,
+                5,
+                1,
+                -5,
+                1,
+                4,
+                -1
+              ],
+              [
+                -5,
+                -1,
+                5,
+                1,
+                -4,
+                -1,
+                5,
+                1,
+                1
+              ],
+              [
+                -4,
+                1,
+                -4,
+                1,
+                -4,
+                -1,
+                5,
+                1
+              ]
+            ],
+            "normalization": [
+              {
+                "input_index": 0,
+                "before": [
+                  -5,
+                  -4,
+                  -1,
+                  5,
+                  1,
+                  -5,
+                  1,
+                  4,
+                  -1
+                ],
+                "after": [
+                  -5,
+                  -4,
+                  -1,
+                  5,
+                  1,
+                  -5,
+                  1,
+                  4,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  -5,
+                  -1,
+                  5,
+                  1,
+                  -4,
+                  -1,
+                  5,
+                  1,
+                  1
+                ],
+                "after": [
+                  -5,
+                  -1,
+                  5,
+                  1,
+                  -4,
+                  -1,
+                  5,
+                  1,
+                  1
+                ],
+                "sign": 1,
+                "conjugator": []
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -4,
+                  1,
+                  -4,
+                  1,
+                  -4,
+                  -1,
+                  5,
+                  1
+                ],
+                "after": [
+                  -5,
+                  1,
+                  4,
+                  -1,
+                  4,
+                  -1,
+                  4,
+                  -1
+                ],
+                "sign": -1,
+                "conjugator": [
+                  -1
+                ]
+              }
+            ],
+            "after": [
+              [
+                -5,
+                -4,
+                -1,
+                5,
+                1,
+                -5,
+                1,
+                4,
+                -1
+              ],
+              [
+                -5,
+                -1,
+                5,
+                1,
+                -4,
+                -1,
+                5,
+                1,
+                1
+              ],
+              [
+                -5,
+                1,
+                4,
+                -1,
+                4,
+                -1,
+                4,
+                -1
+              ]
+            ],
+            "before_generator_ids": [
+              1,
+              3,
+              4,
+              5
+            ],
+            "after_generator_ids": [
+              1,
+              4,
+              5
+            ],
+            "generator_relabeling": "identity_on_survivors",
+            "literal_substitution_length": 30,
+            "final_length": 26,
+            "length_change": 6,
+            "charged_units": 1,
+            "fully_expanded_elementary_certificate": false
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -5,
+                -4,
+                -1,
+                5,
+                1,
+                -5,
+                1,
+                4,
+                -1
+              ],
+              [
+                -5,
+                -1,
+                5,
+                1,
+                -4,
+                -1,
+                5,
+                1,
+                1
+              ],
+              [
+                -5,
+                1,
+                4,
+                -1,
+                4,
+                -1,
+                4,
+                -1
+              ]
+            ],
+            "multiplier": -1,
+            "side": [
+              -5,
+              -1,
+              5
+            ],
+            "images": {
+              "1": [
+                1
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                1,
+                5,
+                -1
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                -1,
+                5,
+                1
+              ]
+            },
+            "raw_after": [
+              [
+                1,
+                -5,
+                -1,
+                -4,
+                5,
+                1,
+                -5,
+                4,
+                -1
+              ],
+              [
+                1,
+                -5,
+                -1,
+                5,
+                -4,
+                5,
+                1
+              ],
+              [
+                1,
+                -5,
+                4,
+                -1,
+                4,
+                -1,
+                4,
+                -1
+              ]
+            ],
+            "after": [
+              [
+                -5,
+                -1,
+                -4,
+                5,
+                1,
+                -5,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                5,
+                1,
+                1
+              ],
+              [
+                -5,
+                4,
+                -1,
+                4,
+                -1,
+                4
+              ]
+            ],
+            "length_change": -6
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -5,
+                -1,
+                -4,
+                5,
+                1,
+                -5,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                5,
+                1,
+                1
+              ],
+              [
+                -5,
+                4,
+                -1,
+                4,
+                -1,
+                4
+              ]
+            ],
+            "multiplier": -5,
+            "side": [
+              -5,
+              -4
+            ],
+            "images": {
+              "1": [
+                1
+              ],
+              "4": [
+                5,
+                4
+              ],
+              "5": [
+                5
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1
+              ],
+              "4": [
+                -5,
+                4
+              ],
+              "5": [
+                5
+              ]
+            },
+            "raw_after": [
+              [
+                -5,
+                -1,
+                -4,
+                1,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                1,
+                1
+              ],
+              [
+                4,
+                -1,
+                5,
+                4,
+                -1,
+                5,
+                4
+              ]
+            ],
+            "after": [
+              [
+                -5,
+                -1,
+                -4,
+                1,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                1,
+                1
+              ],
+              [
+                -5,
+                1,
+                -4,
+                -5,
+                1,
+                -4,
+                -4
+              ]
+            ],
+            "length_change": -2
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -5,
+                -1,
+                -4,
+                1,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                1,
+                1
+              ],
+              [
+                -5,
+                1,
+                -4,
+                -5,
+                1,
+                -4,
+                -4
+              ]
+            ],
+            "multiplier": -1,
+            "side": [
+              -5,
+              -1
+            ],
+            "images": {
+              "1": [
+                1
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                1,
+                5
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                -1,
+                5
+              ]
+            },
+            "raw_after": [
+              [
+                -5,
+                -1,
+                -1,
+                -4,
+                1,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                1,
+                1
+              ],
+              [
+                -5,
+                -4,
+                -5,
+                -4,
+                -4
+              ]
+            ],
+            "after": [
+              [
+                -5,
+                -4,
+                -5,
+                -4,
+                -4
+              ],
+              [
+                -5,
+                -1,
+                -1,
+                -4,
+                1,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                1,
+                1
+              ]
+            ],
+            "length_change": -1
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -5,
+                -4,
+                -5,
+                -4,
+                -4
+              ],
+              [
+                -5,
+                -1,
+                -1,
+                -4,
+                1,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                1,
+                1
+              ]
+            ],
+            "multiplier": -4,
+            "side": [
+              -4,
+              5
+            ],
+            "images": {
+              "1": [
+                1
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                5,
+                -4
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1
+              ],
+              "4": [
+                4
+              ],
+              "5": [
+                5,
+                4
+              ]
+            },
+            "raw_after": [
+              [
+                4,
+                -5,
+                -5,
+                -4,
+                -4
+              ],
+              [
+                4,
+                -5,
+                -1,
+                -1,
+                -4,
+                1,
+                4
+              ],
+              [
+                4,
+                -5,
+                -1,
+                5,
+                -4,
+                -4,
+                1,
+                1
+              ]
+            ],
+            "after": [
+              [
+                -5,
+                -5,
+                -4
+              ],
+              [
+                -5,
+                -1,
+                -1,
+                -4,
+                1,
+                4,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                -4,
+                1,
+                1,
+                4
+              ]
+            ],
+            "objective": "expose_lemma11_defining_relator",
+            "target_index_before": 0,
+            "target_index_after": 0,
+            "target_length_change": -2,
+            "length_change": 1,
+            "normalization": [
+              {
+                "input_index": 0,
+                "before": [
+                  4,
+                  -5,
+                  -5,
+                  -4,
+                  -4
+                ],
+                "after": [
+                  -5,
+                  -5,
+                  -4
+                ],
+                "sign": 1,
+                "conjugator": [
+                  4
+                ]
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  4,
+                  -5,
+                  -1,
+                  -1,
+                  -4,
+                  1,
+                  4
+                ],
+                "after": [
+                  -5,
+                  -1,
+                  -1,
+                  -4,
+                  1,
+                  4,
+                  4
+                ],
+                "sign": 1,
+                "conjugator": [
+                  4
+                ]
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  4,
+                  -5,
+                  -1,
+                  5,
+                  -4,
+                  -4,
+                  1,
+                  1
+                ],
+                "after": [
+                  -5,
+                  -1,
+                  5,
+                  -4,
+                  -4,
+                  1,
+                  1,
+                  4
+                ],
+                "sign": 1,
+                "conjugator": [
+                  4
+                ]
+              }
+            ],
+            "cut_evaluations_this_pass": 4,
+            "complete_cut_pass": true
+          },
+          {
+            "kind": "lemma11_removal",
+            "certificate_kind": "theorem_backed_stable_composite",
+            "required_hypothesis": "known balanced presentation of the trivial group",
+            "before": [
+              [
+                -5,
+                -5,
+                -4
+              ],
+              [
+                -5,
+                -1,
+                -1,
+                -4,
+                1,
+                4,
+                4
+              ],
+              [
+                -5,
+                -1,
+                5,
+                -4,
+                -4,
+                1,
+                1,
+                4
+              ]
+            ],
+            "defining_index": 0,
+            "defining_relator": [
+              -5,
+              -5,
+              -4
+            ],
+            "generator": 4,
+            "occurrence_position": 2,
+            "occurrence_sign": -1,
+            "isolating_word": [
+              -5,
+              -5
+            ],
+            "normal_form": [
+              -4,
+              -5,
+              -5
+            ],
+            "normal_form_witness": {
+              "sign": 1,
+              "conjugator": [
+                -5,
+                -5
+              ]
+            },
+            "substitutions": [
+              {
+                "input_index": 1,
+                "before": [
+                  -5,
+                  -1,
+                  -1,
+                  -4,
+                  1,
+                  4,
+                  4
+                ],
+                "raw_substitution": [
+                  -5,
+                  -1,
+                  -1,
+                  5,
+                  5,
+                  1,
+                  -5,
+                  -5,
+                  -5,
+                  -5
+                ],
+                "after_free_reduction": [
+                  -5,
+                  -1,
+                  -1,
+                  5,
+                  5,
+                  1,
+                  -5,
+                  -5,
+                  -5,
+                  -5
+                ],
+                "replaced_occurrences": 3
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -5,
+                  -1,
+                  5,
+                  -4,
+                  -4,
+                  1,
+                  1,
+                  4
+                ],
+                "raw_substitution": [
+                  -5,
+                  -1,
+                  5,
+                  5,
+                  5,
+                  5,
+                  5,
+                  1,
+                  1,
+                  -5,
+                  -5
+                ],
+                "after_free_reduction": [
+                  -5,
+                  -1,
+                  5,
+                  5,
+                  5,
+                  5,
+                  5,
+                  1,
+                  1,
+                  -5,
+                  -5
+                ],
+                "replaced_occurrences": 3
+              }
+            ],
+            "raw_after": [
+              [
+                -5,
+                -1,
+                -1,
+                5,
+                5,
+                1,
+                -5,
+                -5,
+                -5,
+                -5
+              ],
+              [
+                -5,
+                -1,
+                5,
+                5,
+                5,
+                5,
+                5,
+                1,
+                1,
+                -5,
+                -5
+              ]
+            ],
+            "normalization": [
+              {
+                "input_index": 0,
+                "before": [
+                  -5,
+                  -1,
+                  -1,
+                  5,
+                  5,
+                  1,
+                  -5,
+                  -5,
+                  -5,
+                  -5
+                ],
+                "after": [
+                  -5,
+                  -5,
+                  -5,
+                  -5,
+                  -5,
+                  -1,
+                  -1,
+                  5,
+                  5,
+                  1
+                ],
+                "sign": 1,
+                "conjugator": [
+                  -5,
+                  -1,
+                  -1,
+                  5,
+                  5,
+                  1
+                ]
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  -5,
+                  -1,
+                  5,
+                  5,
+                  5,
+                  5,
+                  5,
+                  1,
+                  1,
+                  -5,
+                  -5
+                ],
+                "after": [
+                  -5,
+                  -5,
+                  -5,
+                  -5,
+                  -5,
+                  1,
+                  5,
+                  5,
+                  5,
+                  -1,
+                  -1
+                ],
+                "sign": -1,
+                "conjugator": [
+                  5,
+                  5,
+                  -1,
+                  -1
+                ]
+              }
+            ],
+            "after": [
+              [
+                -5,
+                -5,
+                -5,
+                -5,
+                -5,
+                -1,
+                -1,
+                5,
+                5,
+                1
+              ],
+              [
+                -5,
+                -5,
+                -5,
+                -5,
+                -5,
+                1,
+                5,
+                5,
+                5,
+                -1,
+                -1
+              ]
+            ],
+            "before_generator_ids": [
+              1,
+              4,
+              5
+            ],
+            "after_generator_ids": [
+              1,
+              5
+            ],
+            "generator_relabeling": "identity_on_survivors",
+            "literal_substitution_length": 21,
+            "final_length": 21,
+            "length_change": 3,
+            "charged_units": 1,
+            "fully_expanded_elementary_certificate": false
+          },
+          {
+            "kind": "generator_relabeling",
+            "before": [
+              [
+                -5,
+                -5,
+                -5,
+                -5,
+                -5,
+                -1,
+                -1,
+                5,
+                5,
+                1
+              ],
+              [
+                -5,
+                -5,
+                -5,
+                -5,
+                -5,
+                1,
+                5,
+                5,
+                5,
+                -1,
+                -1
+              ]
+            ],
+            "after": [
+              [
+                -2,
+                -2,
+                -2,
+                -2,
+                -2,
+                -1,
+                -1,
+                2,
+                2,
+                1
+              ],
+              [
+                -2,
+                -2,
+                -2,
+                -2,
+                -2,
+                1,
+                2,
+                2,
+                2,
+                -1,
+                -1
+              ]
+            ],
+            "images": {
+              "1": [
+                1
+              ],
+              "5": [
+                2
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1
+              ],
+              "2": [
+                5
+              ]
+            }
+          }
+        ],
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -1,
+            -1,
+            2,
+            2,
+            1
+          ],
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            2,
+            2,
+            2,
+            -1,
+            -1
+          ]
+        ],
+        "endpoint_length": 21,
+        "endpoint_rank": 2,
+        "newly_charged_preparation_units": 12,
+        "verification": {
+          "status": "PASS",
+          "name": "aca_79",
+          "source_key": "current_best",
+          "baseline_length": 18,
+          "baseline_rank": 3,
+          "endpoint": [
+            [
+              -2,
+              -2,
+              -2,
+              -2,
+              -2,
+              -1,
+              -1,
+              2,
+              2,
+              1
+            ],
+            [
+              -2,
+              -2,
+              -2,
+              -2,
+              -2,
+              1,
+              2,
+              2,
+              2,
+              -1,
+              -1
+            ]
+          ],
+          "endpoint_length": 21,
+          "endpoint_rank": 2,
+          "endpoint_gain": -3,
+          "boundaries": [
+            {
+              "events": 0,
+              "rank": 3,
+              "length": 18
+            },
+            {
+              "events": 1,
+              "rank": 4,
+              "length": 22
+            },
+            {
+              "events": 2,
+              "rank": 5,
+              "length": 26
+            },
+            {
+              "events": 3,
+              "rank": 4,
+              "length": 37
+            },
+            {
+              "events": 4,
+              "rank": 4,
+              "length": 27
+            },
+            {
+              "events": 5,
+              "rank": 4,
+              "length": 24
+            },
+            {
+              "events": 6,
+              "rank": 4,
+              "length": 22
+            },
+            {
+              "events": 7,
+              "rank": 4,
+              "length": 21
+            },
+            {
+              "events": 8,
+              "rank": 3,
+              "length": 19
+            },
+            {
+              "events": 9,
+              "rank": 4,
+              "length": 20
+            },
+            {
+              "events": 10,
+              "rank": 3,
+              "length": 26
+            },
+            {
+              "events": 11,
+              "rank": 3,
+              "length": 20
+            },
+            {
+              "events": 12,
+              "rank": 3,
+              "length": 18
+            },
+            {
+              "events": 13,
+              "rank": 3,
+              "length": 17
+            },
+            {
+              "events": 14,
+              "rank": 3,
+              "length": 18
+            },
+            {
+              "events": 15,
+              "rank": 2,
+              "length": 21
+            },
+            {
+              "events": 16,
+              "rank": 2,
+              "length": 21
+            }
+          ],
+          "best_certified": [
+            [
+              -5,
+              -4,
+              -5,
+              -4,
+              -4
+            ],
+            [
+              -5,
+              -1,
+              -1,
+              -4,
+              1,
+              4
+            ],
+            [
+              -5,
+              -1,
+              5,
+              -4,
+              1,
+              1
+            ]
+          ],
+          "best_prefix_event_count": 13,
+          "best_prefix_length": 17,
+          "best_prefix_rank": 3,
+          "best_prefix_gain": 1,
+          "strict_length_improvement": true,
+          "same_length_rank_improvement": false,
+          "canonical_endpoint_equals_baseline": false,
+          "endpoint_misses_better_prefix": true,
+          "solved_at_certified_prefix": false,
+          "certificate_scope": "theorem_backed_stable_composite",
+          "fully_expanded_elementary_path": false
+        }
+      },
+      "search_input": [
+        "YYYYYXXyyx",
+        "YYYYYxyyyXX"
+      ],
+      "search_input_length": 21,
+      "preparation_units": 12,
+      "heap_pop_budget": 988,
+      "heap_pops": 988,
+      "combined_new_units": 1000,
+      "historical_seed_work_excluded": true,
+      "solved": false,
+      "best_search_pair": [
+        "YYYYYXXyyx",
+        "YYXyyxxxyyX"
+      ],
+      "best_search_length": 21,
+      "phase_best_before": 17,
+      "additional_gain": -4,
+      "result": {
+        "solved": false,
+        "nodes_explored": 988,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYYYYXXyyx",
+            "YYYYYxyyyXX"
+          ],
+          [
+            "YYYYYXXyyx",
+            "YYYYYYYYXyyyyyyyx"
+          ],
+          [
+            "YYYYYXXyyx",
+            "YYYYYYYXyyxyyyX"
+          ],
+          [
+            "YYYYYXXyyx",
+            "YYYXYYXyyxyyx"
+          ],
+          [
+            "YYYYYXXyyx",
+            "YYXyyxxxyyX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_7"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_8_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_7_6"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_0"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YYYYYXXyyx",
+          "YYXyyxxxyyX"
+        ],
+        "min_total_length_seen": 21,
+        "min_max_relator_length_seen": 11,
+        "max_relator_length_seen": 33
+      },
+      "elementary_suffix": {
+        "input": [
+          "YYYYYXXyyx",
+          "YYYYYxyyyXX"
+        ],
+        "endpoint": [
+          "YYYYYXXyyx",
+          "YYXyyxxxyyX"
+        ],
+        "moves": [
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          }
+        ],
+        "elementary_move_count": 76,
+        "substitution_count": 4,
+        "boundaries": [
+          {
+            "move_count": 0,
+            "pair": [
+              "YYYYYXXyyx",
+              "YYYYYxyyyXX"
+            ]
+          },
+          {
+            "move_count": 13,
+            "pair": [
+              "YYYYYXXyyx",
+              "YYYYYYYYXyyyyyyyx"
+            ]
+          },
+          {
+            "move_count": 42,
+            "pair": [
+              "YYYYYXXyyx",
+              "YYYYYYYXyyxyyyX"
+            ]
+          },
+          {
+            "move_count": 69,
+            "pair": [
+              "YYYYYXXyyx",
+              "YYYXYYXyyxyyx"
+            ]
+          },
+          {
+            "move_count": 76,
+            "pair": [
+              "YYYYYXXyyx",
+              "YYXyyxxxyyX"
+            ]
+          }
+        ],
+        "total_length": 21,
+        "certificate_kind": "independently_replayed_ordinary_elementary_prefix"
+      },
+      "preparation_cpu_seconds": 0.003356999999999999,
+      "preparation_wall_seconds": 0.003357167122885585,
+      "search_cpu_seconds": 0.408942,
+      "search_wall_seconds": 0.4100148750003427,
+      "relator_cap": null
+    },
+    {
+      "name": "aca_106",
+      "projected": true,
+      "source_sha256": "db876a613bec3b8b362e79f36b2c8dc8aa508953931ffad7007c84c8840dfc30",
+      "projection": {
+        "name": "aca_106",
+        "baseline_sha256": "fba32693f0f1da10b8a9b8bf35ed6cd0f354a6d42d3af73f3aabf86142680336",
+        "source_key": "saved_rank2",
+        "initial": [
+          [
+            -2,
+            -2,
+            -1,
+            -1,
+            -1,
+            -1,
+            2,
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            2,
+            -1,
+            -2,
+            1,
+            2,
+            -1
+          ]
+        ],
+        "events": [
+          {
+            "kind": "defining_template_compression",
+            "before": [
+              [
+                -2,
+                -2,
+                -1,
+                -1,
+                -1,
+                -1,
+                2,
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -2,
+                -2,
+                -1,
+                2,
+                1,
+                2,
+                -1,
+                -2,
+                1,
+                2,
+                -1
+              ]
+            ],
+            "certificate_kind": "theorem_backed_stable_composite",
+            "required_hypothesis": "known balanced presentation of the trivial group",
+            "helpers": [
+              3
+            ],
+            "defining_words": [
+              [
+                2,
+                1,
+                -2,
+                -1
+              ]
+            ],
+            "defining_relators": [
+              [
+                -3,
+                2,
+                1,
+                -2,
+                -1
+              ]
+            ],
+            "rows": [
+              {
+                "input_index": 0,
+                "before": [
+                  -2,
+                  -2,
+                  -1,
+                  -1,
+                  -1,
+                  -1,
+                  2,
+                  -1,
+                  -1,
+                  -1
+                ],
+                "sign": -1,
+                "conjugator": [
+                  1,
+                  1,
+                  1,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "oriented": [
+                  2,
+                  2,
+                  1,
+                  1,
+                  1,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "template": [
+                  2,
+                  3,
+                  1,
+                  3,
+                  1,
+                  3,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "expanded": [
+                  2,
+                  2,
+                  1,
+                  1,
+                  1,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "collection_row_label": [
+                  "original",
+                  0
+                ]
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  -2,
+                  -2,
+                  -1,
+                  2,
+                  1,
+                  2,
+                  -1,
+                  -2,
+                  1,
+                  2,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": [
+                  1,
+                  -2,
+                  -1,
+                  2,
+                  1,
+                  -2,
+                  -1,
+                  -2,
+                  1
+                ],
+                "oriented": [
+                  -1,
+                  2,
+                  1,
+                  2,
+                  -1,
+                  -2,
+                  1,
+                  2,
+                  -1,
+                  -2,
+                  -2
+                ],
+                "template": [
+                  -1,
+                  2,
+                  -3,
+                  -3,
+                  -2
+                ],
+                "expanded": [
+                  -1,
+                  2,
+                  1,
+                  2,
+                  -1,
+                  -2,
+                  1,
+                  2,
+                  -1,
+                  -2,
+                  -2
+                ],
+                "collection_row_label": [
+                  "original",
+                  1
+                ]
+              }
+            ],
+            "templates": [
+              [
+                2,
+                3,
+                1,
+                3,
+                1,
+                3,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                -1,
+                2,
+                -3,
+                -3,
+                -2
+              ]
+            ],
+            "raw_after": [
+              [
+                -3,
+                2,
+                1,
+                -2,
+                -1
+              ],
+              [
+                2,
+                3,
+                1,
+                3,
+                1,
+                3,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                -1,
+                2,
+                -3,
+                -3,
+                -2
+              ]
+            ],
+            "normalization": [
+              {
+                "input_index": 2,
+                "before": [
+                  -1,
+                  2,
+                  -3,
+                  -3,
+                  -2
+                ],
+                "after": [
+                  -3,
+                  -3,
+                  -2,
+                  -1,
+                  2
+                ],
+                "sign": 1,
+                "conjugator": [
+                  -1,
+                  2
+                ]
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  2,
+                  3,
+                  1,
+                  3,
+                  1,
+                  3,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "after": [
+                  -3,
+                  -2,
+                  -1,
+                  -1,
+                  -1,
+                  -1,
+                  -1,
+                  -3,
+                  -1,
+                  -3,
+                  -1
+                ],
+                "sign": -1,
+                "conjugator": [
+                  -1,
+                  -1,
+                  -1,
+                  -1,
+                  -1,
+                  -3,
+                  -1,
+                  -3,
+                  -1
+                ]
+              },
+              {
+                "input_index": 0,
+                "before": [
+                  -3,
+                  2,
+                  1,
+                  -2,
+                  -1
+                ],
+                "after": [
+                  -3,
+                  2,
+                  1,
+                  -2,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": []
+              }
+            ],
+            "after": [
+              [
+                -3,
+                -3,
+                -2,
+                -1,
+                2
+              ],
+              [
+                -3,
+                -2,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -3,
+                -1,
+                -3,
+                -1
+              ],
+              [
+                -3,
+                2,
+                1,
+                -2,
+                -1
+              ]
+            ],
+            "helper_uses": {
+              "3": 5
+            },
+            "length_change": 0,
+            "method": "iterated_commutator_collection_stage",
+            "collection_axis": 2,
+            "collection_stage": 1,
+            "collection_stages": 2,
+            "work_counts": {
+              "definitions": 1,
+              "template_expansions": 2,
+              "collection_plan_checks": 1,
+              "collection_orientation_letters": 84,
+              "collection_letter_transitions": 42,
+              "collection_swap_steps": 11,
+              "collection_complete_row_expansions": 2,
+              "collection_axis_forecasts": 2
+            },
+            "charged_units": 145,
+            "fully_expanded_elementary_certificate": false,
+            "collection_rewrites": [
+              {
+                "before": [
+                  -2,
+                  -2,
+                  -1,
+                  -1,
+                  -1,
+                  -1,
+                  2,
+                  -1,
+                  -1,
+                  -1
+                ],
+                "oriented": [
+                  2,
+                  2,
+                  1,
+                  1,
+                  1,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "orientation_sign": -1,
+                "orientation_conjugator": [
+                  1,
+                  1,
+                  1,
+                  -2,
+                  1,
+                  1,
+                  1,
+                  1
+                ],
+                "axis_exponent": 1,
+                "direction": "left",
+                "letters_at_heights": [
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    0,
+                    1
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ],
+                "collection_swaps": 3,
+                "conjugate_chunks": [
+                  {
+                    "letter": 1,
+                    "height": 1,
+                    "template": [
+                      3,
+                      1
+                    ],
+                    "expanded": [
+                      2,
+                      1,
+                      -2
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 1,
+                    "template": [
+                      3,
+                      1
+                    ],
+                    "expanded": [
+                      2,
+                      1,
+                      -2
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 1,
+                    "template": [
+                      3,
+                      1
+                    ],
+                    "expanded": [
+                      2,
+                      1,
+                      -2
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 0,
+                    "template": [
+                      1
+                    ],
+                    "expanded": [
+                      1
+                    ]
+                  }
+                ],
+                "template": [
+                  2,
+                  3,
+                  1,
+                  3,
+                  1,
+                  3,
+                  1,
+                  1,
+                  1,
+                  1,
+                  1
+                ]
+              },
+              {
+                "before": [
+                  -2,
+                  -2,
+                  -1,
+                  2,
+                  1,
+                  2,
+                  -1,
+                  -2,
+                  1,
+                  2,
+                  -1
+                ],
+                "oriented": [
+                  -1,
+                  2,
+                  1,
+                  2,
+                  -1,
+                  -2,
+                  1,
+                  2,
+                  -1,
+                  -2,
+                  -2
+                ],
+                "orientation_sign": 1,
+                "orientation_conjugator": [
+                  -2,
+                  -2
+                ],
+                "axis_exponent": 0,
+                "direction": "right",
+                "letters_at_heights": [
+                  [
+                    0,
+                    -1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    -1
+                  ],
+                  [
+                    1,
+                    1
+                  ],
+                  [
+                    2,
+                    -1
+                  ]
+                ],
+                "collection_swaps": 8,
+                "conjugate_chunks": [
+                  {
+                    "letter": -1,
+                    "height": 0,
+                    "template": [
+                      -1
+                    ],
+                    "expanded": [
+                      -1
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 1,
+                    "template": [
+                      3,
+                      1
+                    ],
+                    "expanded": [
+                      2,
+                      1,
+                      -2
+                    ]
+                  },
+                  {
+                    "letter": -1,
+                    "height": 2,
+                    "template": [
+                      -1,
+                      -3,
+                      -3,
+                      -4
+                    ],
+                    "expanded": [
+                      2,
+                      2,
+                      -1,
+                      -2,
+                      -2
+                    ]
+                  },
+                  {
+                    "letter": 1,
+                    "height": 1,
+                    "template": [
+                      3,
+                      1
+                    ],
+                    "expanded": [
+                      2,
+                      1,
+                      -2
+                    ]
+                  },
+                  {
+                    "letter": -1,
+                    "height": 2,
+                    "template": [
+                      -1,
+                      -3,
+                      -3,
+                      -4
+                    ],
+                    "expanded": [
+                      2,
+                      2,
+                      -1,
+                      -2,
+                      -2
+                    ]
+                  }
+                ],
+                "template": [
+                  -1,
+                  -3,
+                  -4,
+                  -3,
+                  -4
+                ]
+              }
+            ],
+            "collection_full_images": {
+              "1": [
+                1
+              ],
+              "2": [
+                2
+              ],
+              "3": [
+                2,
+                1,
+                -2,
+                -1
+              ],
+              "4": [
+                2,
+                2,
+                1,
+                -2,
+                -1,
+                -2,
+                1,
+                2,
+                -1,
+                -2
+              ]
+            },
+            "collection_definitions": [
+              [
+                3,
+                [
+                  2,
+                  1,
+                  -2,
+                  -1
+                ]
+              ],
+              [
+                4,
+                [
+                  2,
+                  3,
+                  -2,
+                  -3
+                ]
+              ]
+            ],
+            "collection_helper_names": [
+              [
+                1,
+                1,
+                1,
+                3
+              ],
+              [
+                1,
+                1,
+                2,
+                4
+              ]
+            ],
+            "collection_direction_policy": "cheapest",
+            "collection_immediate_descent": {
+              "reserved_units": 400,
+              "forced_removal_tests": 1,
+              "start_rank": 3,
+              "start_length": 47,
+              "whitehead_min_cuts": 52,
+              "peeling_attempts": 1,
+              "after_rank": 2,
+              "after_length": 25,
+              "total_probe_charged_units": 203
+            }
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -3,
+                -3,
+                -2,
+                -1,
+                2
+              ],
+              [
+                -3,
+                -2,
+                -1,
+                -1,
+                -1,
+                -1,
+                -1,
+                -3,
+                -1,
+                -3,
+                -1
+              ],
+              [
+                -3,
+                2,
+                1,
+                -2,
+                -1
+              ]
+            ],
+            "multiplier": -1,
+            "side": [
+              -1,
+              3
+            ],
+            "images": {
+              "1": [
+                1
+              ],
+              "2": [
+                2
+              ],
+              "3": [
+                3,
+                -1
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1
+              ],
+              "2": [
+                2
+              ],
+              "3": [
+                3,
+                1
+              ]
+            },
+            "raw_after": [
+              [
+                1,
+                -3,
+                1,
+                -3,
+                -2,
+                -1,
+                2
+              ],
+              [
+                1,
+                -3,
+                -2,
+                -1,
+                -1,
+                -1,
+                -1,
+                -3,
+                -3,
+                -1
+              ],
+              [
+                1,
+                -3,
+                2,
+                1,
+                -2,
+                -1
+              ]
+            ],
+            "after": [
+              [
+                -3,
+                -3,
+                -3,
+                -2,
+                -1,
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -3,
+                -2,
+                -1,
+                2,
+                1,
+                -3,
+                1
+              ],
+              [
+                -3,
+                2,
+                1,
+                -2
+              ]
+            ],
+            "length_change": -2
+          },
+          {
+            "kind": "ambient_whitehead",
+            "before": [
+              [
+                -3,
+                -3,
+                -3,
+                -2,
+                -1,
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -3,
+                -2,
+                -1,
+                2,
+                1,
+                -3,
+                1
+              ],
+              [
+                -3,
+                2,
+                1,
+                -2
+              ]
+            ],
+            "multiplier": -1,
+            "side": [
+              -3,
+              -1,
+              2
+            ],
+            "images": {
+              "1": [
+                1
+              ],
+              "2": [
+                2,
+                -1
+              ],
+              "3": [
+                1,
+                3
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                1
+              ],
+              "2": [
+                2,
+                1
+              ],
+              "3": [
+                -1,
+                3
+              ]
+            },
+            "raw_after": [
+              [
+                -3,
+                -1,
+                -3,
+                -1,
+                -3,
+                -2,
+                -1,
+                -1,
+                -1,
+                -1
+              ],
+              [
+                -3,
+                -2,
+                -1,
+                2,
+                -3
+              ],
+              [
+                -3,
+                -1,
+                2,
+                1,
+                -2
+              ]
+            ],
+            "after": [
+              [
+                -3,
+                -3,
+                -2,
+                -1,
+                2
+              ],
+              [
+                -3,
+                -2,
+                -1,
+                -1,
+                -1,
+                -1,
+                -3,
+                -1,
+                -3,
+                -1
+              ],
+              [
+                -3,
+                -1,
+                2,
+                1,
+                -2
+              ]
+            ],
+            "objective": "expose_lemma11_defining_relator",
+            "target_index_before": 1,
+            "target_index_after": 0,
+            "target_length_change": -2,
+            "length_change": 1,
+            "normalization": [
+              {
+                "input_index": 1,
+                "before": [
+                  -3,
+                  -2,
+                  -1,
+                  2,
+                  -3
+                ],
+                "after": [
+                  -3,
+                  -3,
+                  -2,
+                  -1,
+                  2
+                ],
+                "sign": 1,
+                "conjugator": [
+                  -3,
+                  -2,
+                  -1,
+                  2
+                ]
+              },
+              {
+                "input_index": 0,
+                "before": [
+                  -3,
+                  -1,
+                  -3,
+                  -1,
+                  -3,
+                  -2,
+                  -1,
+                  -1,
+                  -1,
+                  -1
+                ],
+                "after": [
+                  -3,
+                  -2,
+                  -1,
+                  -1,
+                  -1,
+                  -1,
+                  -3,
+                  -1,
+                  -3,
+                  -1
+                ],
+                "sign": 1,
+                "conjugator": [
+                  -3,
+                  -1,
+                  -3,
+                  -1
+                ]
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -3,
+                  -1,
+                  2,
+                  1,
+                  -2
+                ],
+                "after": [
+                  -3,
+                  -1,
+                  2,
+                  1,
+                  -2
+                ],
+                "sign": 1,
+                "conjugator": []
+              }
+            ],
+            "cut_evaluations_this_pass": 6,
+            "complete_cut_pass": true
+          },
+          {
+            "kind": "lemma11_removal",
+            "certificate_kind": "theorem_backed_stable_composite",
+            "required_hypothesis": "known balanced presentation of the trivial group",
+            "before": [
+              [
+                -3,
+                -3,
+                -2,
+                -1,
+                2
+              ],
+              [
+                -3,
+                -2,
+                -1,
+                -1,
+                -1,
+                -1,
+                -3,
+                -1,
+                -3,
+                -1
+              ],
+              [
+                -3,
+                -1,
+                2,
+                1,
+                -2
+              ]
+            ],
+            "defining_index": 0,
+            "defining_relator": [
+              -3,
+              -3,
+              -2,
+              -1,
+              2
+            ],
+            "generator": 1,
+            "occurrence_position": 3,
+            "occurrence_sign": -1,
+            "isolating_word": [
+              2,
+              -3,
+              -3,
+              -2
+            ],
+            "normal_form": [
+              -1,
+              2,
+              -3,
+              -3,
+              -2
+            ],
+            "normal_form_witness": {
+              "sign": 1,
+              "conjugator": [
+                -3,
+                -3,
+                -2
+              ]
+            },
+            "substitutions": [
+              {
+                "input_index": 1,
+                "before": [
+                  -3,
+                  -2,
+                  -1,
+                  -1,
+                  -1,
+                  -1,
+                  -3,
+                  -1,
+                  -3,
+                  -1
+                ],
+                "raw_substitution": [
+                  -3,
+                  -2,
+                  2,
+                  3,
+                  3,
+                  -2,
+                  2,
+                  3,
+                  3,
+                  -2,
+                  2,
+                  3,
+                  3,
+                  -2,
+                  2,
+                  3,
+                  3,
+                  -2,
+                  -3,
+                  2,
+                  3,
+                  3,
+                  -2,
+                  -3,
+                  2,
+                  3,
+                  3,
+                  -2
+                ],
+                "after_free_reduction": [
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  -2,
+                  -3,
+                  2,
+                  3,
+                  3,
+                  -2,
+                  -3,
+                  2,
+                  3,
+                  3,
+                  -2
+                ],
+                "replaced_occurrences": 6
+              },
+              {
+                "input_index": 2,
+                "before": [
+                  -3,
+                  -1,
+                  2,
+                  1,
+                  -2
+                ],
+                "raw_substitution": [
+                  -3,
+                  2,
+                  3,
+                  3,
+                  -2,
+                  2,
+                  2,
+                  -3,
+                  -3,
+                  -2,
+                  -2
+                ],
+                "after_free_reduction": [
+                  -3,
+                  2,
+                  3,
+                  3,
+                  2,
+                  -3,
+                  -3,
+                  -2,
+                  -2
+                ],
+                "replaced_occurrences": 2
+              }
+            ],
+            "raw_after": [
+              [
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                -2,
+                -3,
+                2,
+                3,
+                3,
+                -2,
+                -3,
+                2,
+                3,
+                3,
+                -2
+              ],
+              [
+                -3,
+                2,
+                3,
+                3,
+                2,
+                -3,
+                -3,
+                -2,
+                -2
+              ]
+            ],
+            "normalization": [
+              {
+                "input_index": 0,
+                "before": [
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  -2,
+                  -3,
+                  2,
+                  3,
+                  3,
+                  -2,
+                  -3,
+                  2,
+                  3,
+                  3,
+                  -2
+                ],
+                "after": [
+                  -3,
+                  -3,
+                  -3,
+                  -3,
+                  -3,
+                  -3,
+                  -3,
+                  2,
+                  -3,
+                  -3,
+                  -2,
+                  3,
+                  2,
+                  -3,
+                  -3,
+                  -2,
+                  3,
+                  2
+                ],
+                "sign": -1,
+                "conjugator": [
+                  2,
+                  -3,
+                  -3,
+                  -2,
+                  3,
+                  2,
+                  -3,
+                  -3,
+                  -2,
+                  3,
+                  2
+                ]
+              },
+              {
+                "input_index": 1,
+                "before": [
+                  -3,
+                  2,
+                  3,
+                  3,
+                  2,
+                  -3,
+                  -3,
+                  -2,
+                  -2
+                ],
+                "after": [
+                  -3,
+                  -3,
+                  -2,
+                  -2,
+                  -3,
+                  2,
+                  3,
+                  3,
+                  2
+                ],
+                "sign": 1,
+                "conjugator": [
+                  -3,
+                  2,
+                  3,
+                  3,
+                  2
+                ]
+              }
+            ],
+            "after": [
+              [
+                -3,
+                -3,
+                -3,
+                -3,
+                -3,
+                -3,
+                -3,
+                2,
+                -3,
+                -3,
+                -2,
+                3,
+                2,
+                -3,
+                -3,
+                -2,
+                3,
+                2
+              ],
+              [
+                -3,
+                -3,
+                -2,
+                -2,
+                -3,
+                2,
+                3,
+                3,
+                2
+              ]
+            ],
+            "before_generator_ids": [
+              1,
+              2,
+              3
+            ],
+            "after_generator_ids": [
+              2,
+              3
+            ],
+            "generator_relabeling": "identity_on_survivors",
+            "literal_substitution_length": 39,
+            "final_length": 27,
+            "length_change": 7,
+            "charged_units": 1,
+            "fully_expanded_elementary_certificate": false
+          },
+          {
+            "kind": "generator_relabeling",
+            "before": [
+              [
+                -3,
+                -3,
+                -3,
+                -3,
+                -3,
+                -3,
+                -3,
+                2,
+                -3,
+                -3,
+                -2,
+                3,
+                2,
+                -3,
+                -3,
+                -2,
+                3,
+                2
+              ],
+              [
+                -3,
+                -3,
+                -2,
+                -2,
+                -3,
+                2,
+                3,
+                3,
+                2
+              ]
+            ],
+            "after": [
+              [
+                -2,
+                -2,
+                -2,
+                -2,
+                -2,
+                -2,
+                -2,
+                1,
+                -2,
+                -2,
+                -1,
+                2,
+                1,
+                -2,
+                -2,
+                -1,
+                2,
+                1
+              ],
+              [
+                -2,
+                -2,
+                -1,
+                -1,
+                -2,
+                1,
+                2,
+                2,
+                1
+              ]
+            ],
+            "images": {
+              "2": [
+                1
+              ],
+              "3": [
+                2
+              ]
+            },
+            "inverse_images": {
+              "1": [
+                2
+              ],
+              "2": [
+                3
+              ]
+            }
+          }
+        ],
+        "endpoint": [
+          [
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            -2,
+            1,
+            -2,
+            -2,
+            -1,
+            2,
+            1,
+            -2,
+            -2,
+            -1,
+            2,
+            1
+          ],
+          [
+            -2,
+            -2,
+            -1,
+            -1,
+            -2,
+            1,
+            2,
+            2,
+            1
+          ]
+        ],
+        "endpoint_length": 27,
+        "endpoint_rank": 2,
+        "newly_charged_preparation_units": 15,
+        "verification": {
+          "status": "PASS",
+          "name": "aca_106",
+          "source_key": "saved_rank2",
+          "baseline_length": 20,
+          "baseline_rank": 3,
+          "endpoint": [
+            [
+              -2,
+              -2,
+              -2,
+              -2,
+              -2,
+              -2,
+              -2,
+              1,
+              -2,
+              -2,
+              -1,
+              2,
+              1,
+              -2,
+              -2,
+              -1,
+              2,
+              1
+            ],
+            [
+              -2,
+              -2,
+              -1,
+              -1,
+              -2,
+              1,
+              2,
+              2,
+              1
+            ]
+          ],
+          "endpoint_length": 27,
+          "endpoint_rank": 2,
+          "endpoint_gain": -7,
+          "boundaries": [
+            {
+              "events": 0,
+              "rank": 2,
+              "length": 21
+            },
+            {
+              "events": 1,
+              "rank": 3,
+              "length": 21
+            },
+            {
+              "events": 2,
+              "rank": 3,
+              "length": 19
+            },
+            {
+              "events": 3,
+              "rank": 3,
+              "length": 20
+            },
+            {
+              "events": 4,
+              "rank": 2,
+              "length": 27
+            },
+            {
+              "events": 5,
+              "rank": 2,
+              "length": 27
+            }
+          ],
+          "best_certified": [
+            [
+              -3,
+              -3,
+              -3,
+              -2,
+              -1,
+              -1,
+              -1,
+              -1
+            ],
+            [
+              -3,
+              -2,
+              -1,
+              2,
+              1,
+              -3,
+              1
+            ],
+            [
+              -3,
+              2,
+              1,
+              -2
+            ]
+          ],
+          "best_prefix_event_count": 2,
+          "best_prefix_length": 19,
+          "best_prefix_rank": 3,
+          "best_prefix_gain": 1,
+          "strict_length_improvement": true,
+          "same_length_rank_improvement": false,
+          "canonical_endpoint_equals_baseline": false,
+          "endpoint_misses_better_prefix": true,
+          "solved_at_certified_prefix": false,
+          "certificate_scope": "theorem_backed_stable_composite",
+          "fully_expanded_elementary_path": false
+        }
+      },
+      "search_input": [
+        "YYYYYYYxYYXyxYYXyx",
+        "YYXXYxyyx"
+      ],
+      "search_input_length": 27,
+      "preparation_units": 15,
+      "heap_pop_budget": 985,
+      "heap_pops": 985,
+      "combined_new_units": 1000,
+      "historical_seed_work_excluded": true,
+      "solved": false,
+      "best_search_pair": [
+        "YYXyxxyyX",
+        "YYYYYYYxxYYYYX"
+      ],
+      "best_search_length": 23,
+      "phase_best_before": 19,
+      "additional_gain": -4,
+      "result": {
+        "solved": false,
+        "nodes_explored": 985,
+        "states": [],
+        "steps": [],
+        "best_states": [
+          [
+            "YYXyxxyyX",
+            "YYYYYYYxYYXyxYYXyx"
+          ],
+          [
+            "YYXyxxyyX",
+            "YYYYYYYxYYXyxxYYX"
+          ],
+          [
+            "YYXyxxyyX",
+            "YYYYYYYxxYYYYX"
+          ]
+        ],
+        "best_steps": [
+          {
+            "kind": "substitution",
+            "move": "2_-1_0_5"
+          },
+          {
+            "kind": "substitution",
+            "move": "2_-1_3_6"
+          }
+        ],
+        "basis_evaluations": 0,
+        "best_state": [
+          "YYXyxxyyX",
+          "YYYYYYYxxYYYYX"
+        ],
+        "min_total_length_seen": 23,
+        "min_max_relator_length_seen": 14,
+        "max_relator_length_seen": 41
+      },
+      "elementary_suffix": {
+        "input": [
+          "YYYYYYYxYYXyxYYXyx",
+          "YYXXYxyyx"
+        ],
+        "endpoint": [
+          "YYXyxxyyX",
+          "YYYYYYYxxYYYYX"
+        ],
+        "moves": [
+          {
+            "op": "multiply",
+            "target": 1,
+            "source": 2
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "multiply",
+            "target": 1,
+            "source": 2
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "invert",
+            "target": 2
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "x"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "x"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "Y"
+          },
+          {
+            "op": "multiply",
+            "target": 2,
+            "source": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "y"
+          },
+          {
+            "op": "conjugate",
+            "target": 1,
+            "by": "X"
+          },
+          {
+            "op": "invert",
+            "target": 1
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "Y"
+          },
+          {
+            "op": "conjugate",
+            "target": 2,
+            "by": "X"
+          }
+        ],
+        "elementary_move_count": 63,
+        "substitution_count": 2,
+        "boundaries": [
+          {
+            "move_count": 26,
+            "pair": [
+              "YYXyxxyyX",
+              "YYYYYYYxYYXyxYYXyx"
+            ]
+          },
+          {
+            "move_count": 37,
+            "pair": [
+              "YYXyxxyyX",
+              "YYYYYYYxYYXyxxYYX"
+            ]
+          },
+          {
+            "move_count": 63,
+            "pair": [
+              "YYXyxxyyX",
+              "YYYYYYYxxYYYYX"
+            ]
+          }
+        ],
+        "total_length": 23,
+        "certificate_kind": "independently_replayed_ordinary_elementary_prefix"
+      },
+      "preparation_cpu_seconds": 0.004242999999999997,
+      "preparation_wall_seconds": 0.004250416997820139,
+      "search_cpu_seconds": 0.5023190000000002,
+      "search_wall_seconds": 0.5033815829083323,
+      "relator_cap": null
+    }
+  ],
+  "warmup": {
+    "cpu_seconds": 0.5711809999999999,
+    "wall_seconds": 0.7961724170017987,
+    "engine_sha256": "4a5f3e29db87e4612c82fdd7bef7baeeef687c7d23be2d985d99b93743959c53",
+    "capture_sha256": "4c0c33f177c034bb9332d4512bd4b5cd5bb6b903807ebf793b650b7f0e373d5f"
+  },
+  "source_sha256": "db876a613bec3b8b362e79f36b2c8dc8aa508953931ffad7007c84c8840dfc30",
+  "scope": "At most1000 newly charged preparation checks plus ordinary heap pops per row; heterogeneous units. Three selected new endpoints, no baseline rerun. Historical seed discovery and independent verification excluded.",
+  "executed_script_sha256": "b289a8ee8ea182aba0a1922a9d24fa9695d65719458d9e65c00c262edee1df9d",
+  "reporting_script_sha256": "3e618dc4c88c963a1a03a6f0826b7f1e6e1928d58806a9601514f8c3e2321a77",
+  "reporting_correction": "Removed inherited seed endpoint/cost fields from projection records; all word events and search outcomes unchanged, no searches rerun."
+}

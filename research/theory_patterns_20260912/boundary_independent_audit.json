@@ -1,0 +1,65 @@
+{
+  "status": "pass",
+  "review": "No correctness defect found in stated proofs or tested compiler paths.",
+  "fresh": {
+    "counts": {
+      "all_legal_q_signed_axes_roles": 256,
+      "out_of_interval_or_noninteger_q_rejected": 192,
+      "translated_nonmonic_alternating_solutions": 128,
+      "cancellation_merged_runs_signed_identity": 24,
+      "general_C_E_power_compiler_signed_cases": 128,
+      "power_pass_creates_empty_stable_fibre_terminal": 64,
+      "nonunimodular_transport_creates_empty_zero_fibre": 32,
+      "negative_source_transaction_cap_sweeps": 280,
+      "initial_terminal_fibres_all_signs_axes_roles": 96,
+      "optional_best_cleanup_charged": 4,
+      "outside_unimodular_or_empty_frame_rejected": 4,
+      "arbitrary_outside_frame_certificate": 1
+    },
+    "total": 1209,
+    "resource_outcomes": {
+      "work_limit": 64,
+      "boundary_pass_complete": 40,
+      "certificate_limit": 48,
+      "word_limit": 88,
+      "indexed_word_limit": 40
+    }
+  },
+  "full_u124": {
+    "counts": {
+      "attempts": 992,
+      "stable_boundary": 149,
+      "rows_with_passes": 62,
+      "charges": 2929,
+      "extreme_power": 48
+    },
+    "outcomes": {
+      "frame_not_recognized": 762,
+      "criterion_failed": 230
+    },
+    "failed_boundary_conditions": {
+      "extreme_not_one_literal_run": 260,
+      "extreme_run_not_divisible": 200
+    },
+    "max_elementary_moves": 408,
+    "max_committed_word_length": 141,
+    "max_row_charges": 63,
+    "solves": 0,
+    "strict_length_gains": 0,
+    "stored_attempts_replayed_and_exactly_regenerated": 992,
+    "source_best_sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3",
+    "report_sha256": "064a537db159f09028c744c9806bb17c2ac4e2f4ced3b320ae994aba6adbce6c",
+    "author_source_hashes_matched": true,
+    "panel_records_exactly_reused": true
+  },
+  "hashes": {
+    "boundary_compiler.py": "3c2855d90b501b2bf21456d185a8d45a35c176c213536b3b21d59b0b8e8e72c8",
+    "ac_words.py": "2ebb847b2e2d8cdf997ae2256255857bce8ed4106a228f3caa22a093e56a07aa",
+    "astra_patterns.md": "e831c568194fc0fd483571f386e3cb5604637984431c31bc3d70ffd25591cc1c",
+    "boundary_compiler_report.md": "f3c20788bbd92b048b561bfbc53593792d79215419d135b45ef3b2c78ab7e4e5",
+    "check_boundary_independent.py": "6a64322d5bdc0bc53dd0249a7842dccfd23a44b15a32e562cb7c4d7834914867"
+  },
+  "wall_seconds": 0.9954624581150711,
+  "cpu_seconds": 0.9283819999999999,
+  "scope": "Independent divide-and-conquer/free-boundary replay plus ac_words; tiny serial algebra only, no heap/JIT/baseline/frozen artifact writes."
+}

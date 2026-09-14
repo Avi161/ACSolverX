@@ -1,0 +1,92 @@
+{
+  "status": "verified_tiny_ordinary_continuation",
+  "name": "aca_116",
+  "input": [
+    "yyxYxyxYx",
+    "XyXYYxxyXYXX"
+  ],
+  "input_length": 21,
+  "original_u124_start_length": 14,
+  "result": {
+    "solved": false,
+    "nodes_explored": 16,
+    "states": [],
+    "steps": [],
+    "best_states": [
+      [
+        "YYXyXYXyX",
+        "YYxxyXYXXXyX"
+      ],
+      [
+        "YYXyXYXyX",
+        "YXXyxYxxxyX"
+      ],
+      [
+        "YXXyxYxxxyX",
+        "YXyXYxxyXYXX"
+      ],
+      [
+        "YXXYxxyXX",
+        "YXXyxYxxxyX"
+      ],
+      [
+        "YXXYxxyXX",
+        "YXYxxxyXXX"
+      ],
+      [
+        "YXYxyxxyX",
+        "YXXYxxyXX"
+      ]
+    ],
+    "best_steps": [
+      {
+        "kind": "substitution",
+        "move": "2_-1_0_0"
+      },
+      {
+        "kind": "substitution",
+        "move": "1_1_0_7"
+      },
+      {
+        "kind": "substitution",
+        "move": "2_1_4_0"
+      },
+      {
+        "kind": "substitution",
+        "move": "2_1_6_7"
+      },
+      {
+        "kind": "substitution",
+        "move": "2_-1_1_0"
+      }
+    ],
+    "basis_evaluations": 0,
+    "best_state": [
+      "YXYxyxxyX",
+      "YXXYxxyXX"
+    ],
+    "min_total_length_seen": 18,
+    "min_max_relator_length_seen": 9,
+    "max_relator_length_seen": 21
+  },
+  "verified_endpoint": [
+    "YXYxyxxyX",
+    "YXXYxxyXX"
+  ],
+  "search_cpu_seconds": 0.003066999999999931,
+  "search_wall_seconds": 0.0031032918486744165,
+  "warmup_and_control_cpu_seconds": 0.5555789999999999,
+  "warmup_and_control_wall_seconds": 0.7894235418643802,
+  "relator_cap": null,
+  "heap_pop_budget": 16,
+  "previous_conservative_candidate_units": 984,
+  "conservative_combined_units": 1000,
+  "capture_control": "All original one-pop result fields agree exactly; best prefix additionally replays.",
+  "source_hashes": {
+    "/Users/avigyapaudel/Documents/surf/ACSolverX/experiments/search/heuristic_1k.py": "4a5f3e29db87e4612c82fdd7bef7baeeef687c7d23be2d985d99b93743959c53",
+    "/Users/avigyapaudel/Documents/surf/ACSolverX/experiments/heuristic_search/core/hexpand.py": "e609bb51a18a48cd739763e51dd1db114f01bee44d8b2265d43c7e7a9c7c21cc",
+    "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/captured_mixed_search.py": "4c0c33f177c034bb9332d4512bd4b5cd5bb6b903807ebf793b650b7f0e373d5f",
+    "/Users/avigyapaudel/Documents/surf/ACSolverX/.scratch/theory_3h_20260912/worktree/research/theory_patterns_20260912/two_complement_search_continuation.py": "fd1b24da4d5c2a5d3f6dcade1fe95db2d39960a0504e2ae663397fe9d2e702cd"
+  },
+  "scope": "S20_MK2=L+20S+2MK; one thread, uncapped relators. Image candidates and heap pops are heterogeneous units, not an equal-compute baseline. U124 admission additionally requires the independently audited stable tag-pair bridge."
+}

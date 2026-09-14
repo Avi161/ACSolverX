@@ -1,0 +1,1907 @@
+{
+  "PASS": true,
+  "signed_tree_controls": [
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          -2,
+          -1
+        ],
+        [
+          -3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": 1
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": 2
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          -2,
+          -1
+        ],
+        [
+          -3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": 1
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": -2
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          -2,
+          -1
+        ],
+        [
+          3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": 1
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          -2,
+          -1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": 1
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          -3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": -1
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": 2
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          -3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": -1
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": -2
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": -1
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": -1
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          2,
+          -1
+        ],
+        [
+          -3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": 2
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          2,
+          -1
+        ],
+        [
+          -3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": -2
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          2,
+          -1
+        ],
+        [
+          3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          2,
+          -1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          -3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": 2
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          -3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": -2
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          -1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          -2,
+          -1
+        ],
+        [
+          -3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": 1
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": 2
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          -2,
+          -1
+        ],
+        [
+          -3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": 1
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": -2
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          -2,
+          -1
+        ],
+        [
+          3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": 1
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          -2,
+          -1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": 1
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          -3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": -1
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": 2
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          -3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": -1
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": -2
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": -1
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          -2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "conjugate",
+          "target": 1,
+          "letter": -1
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          2,
+          -1
+        ],
+        [
+          -3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": 2
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          2,
+          -1
+        ],
+        [
+          -3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": -2
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          2,
+          -1
+        ],
+        [
+          3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          2,
+          -1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          -3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": 2
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          -3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 2
+        },
+        {
+          "op": "conjugate",
+          "target": 2,
+          "letter": -2
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          -2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        }
+      ]
+    },
+    {
+      "input": [
+        [
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "endpoint": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "moves": [
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "right_multiply",
+          "target": 1,
+          "donor": 0
+        },
+        {
+          "op": "invert",
+          "target": 0
+        },
+        {
+          "op": "invert",
+          "target": 1
+        },
+        {
+          "op": "right_multiply",
+          "target": 2,
+          "donor": 1
+        },
+        {
+          "op": "invert",
+          "target": 1
+        }
+      ]
+    }
+  ],
+  "nontrivial_C2_controls": [
+    [
+      [
+        1,
+        1
+      ]
+    ],
+    [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        -2
+      ]
+    ],
+    [
+      [],
+      [
+        1,
+        2
+      ]
+    ],
+    [
+      [
+        1
+      ],
+      [
+        2,
+        2
+      ]
+    ]
+  ],
+  "sparse_labels": {
+    "trivial": true,
+    "initial": [
+      [
+        10000000000000000000000000
+      ],
+      [
+        -7,
+        10000000000000000000000000
+      ]
+    ],
+    "endpoint": [
+      [
+        10000000000000000000000000
+      ],
+      [
+        7
+      ]
+    ],
+    "moves": [
+      {
+        "op": "invert",
+        "target": 1
+      },
+      {
+        "op": "conjugate",
+        "target": 1,
+        "letter": -10000000000000000000000000
+      },
+      {
+        "op": "right_multiply",
+        "target": 1,
+        "donor": 0
+      }
+    ],
+    "unit_relator_indices": {
+      "10000000000000000000000000": 0,
+      "7": 1
+    },
+    "rank_preserved": 2,
+    "maximum_relator_length": 2,
+    "terminal_scope": "positive standard generators, up to relator permutation"
+  },
+  "scope": "33 positive controls, four exact quotient negatives; no census search"
+}
