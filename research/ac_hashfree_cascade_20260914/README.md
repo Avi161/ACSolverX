@@ -71,6 +71,7 @@ python3 research/ac_hashfree_cascade_20260914/run_file.py --src data/AC1M.txt.gz
 python3 research/ac_hashfree_cascade_20260914/run_file.py --pairs records/final3_ac1m_21_b10000.jsonl --budget 10000 --workers 4 --out records/ac1m_21_b10000.jsonl   # the 21 over-budget presentations at 10,000 units
 python3 research/ac_hashfree_cascade_20260914/acmoves.py count --records records/final3_census.jsonl.gz --out records/acmoves_ac19_census.csv.gz   # ordinary AC substitution moves per presentation
 python3 research/ac_hashfree_cascade_20260914/acmoves.py validate --records records/final3_census.jsonl.gz --sample 400   # check that count against the repository's certificate decoder
+python3 research/ac_hashfree_cascade_20260914/ac1m_moves_table.py --table records/final3_ac1m_raw.table_moves.csv.gz --skipped <run>.skipped.csv.gz --from-tables records/acmoves_ac19_extended.csv.gz records/acmoves_ac1m_reps.csv.gz --out records/acmoves_ac1m_all_rows.csv.gz   # the cost of all 1,136,154 AC1M rows
 python3 research/ac_hashfree_cascade_20260914/summarise_ac1m.py
 python3 research/ac_hashfree_cascade_20260914/run_ms640.py --out records/ms640_fast.jsonl                        # MS-640 timing, one core, rank-two engine
 python3 research/ac_hashfree_cascade_20260914/run_ms640.py --engine hybrid --out records/ms640_hybrid.jsonl      # MS-640 timing, one core, final

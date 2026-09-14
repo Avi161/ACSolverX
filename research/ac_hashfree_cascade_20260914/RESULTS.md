@@ -120,7 +120,7 @@ Wall clock on the 4-worker pool, verification included: 78 s for the representat
 Independent replay after the fact (`verify_all.py`): the 71,281 representative
 certificates, the 94 raw-row certificates kept (rows needing ≥ 500 units), and the 21
 over-budget certificates, 0 failures.  The raw run's per-row table is
-`records/final3_ac1m_raw.table.csv.gz` (index into `AC1M.txt.gz`, length, stage, units,
+`records/final3_ac1m_raw.table_moves.csv.gz` (name, relators, length, stage, units,
 certificate kind, verified flag); the full per-row certificates of the raw run were
 verified in-process and not kept (30 MB).  The skipped rows and where each was run are in
 `records/final3_ac1m_raw.skipped.csv.gz`; `records/ac1m_summary_stats.json` has the
@@ -171,6 +171,15 @@ nielsen, perm, dyn, ac_moves, stable):
 | AC19 Aut-minimal census | 72,779 | 12 | 99 | 256 | 1,303,466 | 188 | 36,811 |
 | AC19_extended, original spelling | 156,762 | 13 | 90 | 258 | 2,745,667 | 327 | 25,451 |
 | AC1M representatives | 71,283 | 12 | 96 | 387 | 1,213,958 | 124 | 34,649 |
+| the whole `AC1M.txt.gz` file, every row in its original spelling | 1,136,154 | 14 | 82 | 389 | 20,187,384 | 1,528 | — |
+
+The AC1M file is covered row by row in `records/acmoves_ac1m_all_rows.csv.gz`
+(1,136,154 rows: 1,056,376 run now, 79,778 carried over from the row they matched in
+the AC19_extended run or among the representatives, 0 unmatched).  A carried row has
+the same canonical form, so the solver's run, certificate and cost are identical; 200
+carried rows re-solved from scratch reproduce the carried cost exactly, 200 / 200.
+That run also supersedes `final3_ac1m_raw.table.csv.gz`, whose columns it carries plus
+the move counts, so the older table is removed.
 
 Two things this table is not.  It is not a count at the generator level: expanding
 each AC move into single-letter conjugations, inversions, swaps and multiplies costs

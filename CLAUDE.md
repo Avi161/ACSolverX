@@ -141,3 +141,13 @@ AC1M rows; every miss is a member of the same two AC1M-only orbits (`ac1m_54083`
 which solve at 1,035-1,153 units with rank-two certificates; re-run at 10,000 units all 21 solve, with the
 identical unit counts and paths (the search is deterministic, so a larger budget only changes when it gives up)
 (`research/ac_hashfree_cascade_20260914/RESULTS.md`).
+[MECHANISM] A certificate's cost in ordinary AC substitutions is closed form: `ac_moves = substitution steps +
+Nielsen automorphism steps` (`acmoves.py`). An automorphism step is not free but it is cheap: transporting the
+basis change back through the path (AC moves are equivariant under Aut(F2); the terminal is a basis Nielsen's
+theorem returns to (x,y)) turns each Nielsen image into exactly one multiply in the terminal tail and a signed
+permutation into swaps and inverts alone. Checked against `research/supermoves_20260908/certificate_decoder.py`
+on 550 stratified rows plus 151 stage-stratified ones, 0 disagreements. Median cost 11-14 moves, maxima 256-389,
+20,187,384 moves over all 1,136,154 AC1M rows. Search effort and path length come apart: the 21 rows needing the
+most search (1,035-1,153 units) cost only 44-53 moves. Stable (dyn) certificates have NO rank-two count.
+[TRAP] Do not read these as lower bounds, and do not confuse them with generator-level counts: expanding one AC
+move into single-letter conjugations costs orders of magnitude more (a 259-move path becomes ~160,000 operations).
