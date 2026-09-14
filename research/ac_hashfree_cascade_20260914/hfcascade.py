@@ -59,6 +59,19 @@ from experiments.equivalence_classes.lib.words import (  # noqa: E402
 NIELSEN = ({'x': 'xy', 'y': 'y'}, {'x': 'xY', 'y': 'y'},
            {'x': 'x', 'y': 'yx'}, {'x': 'x', 'y': 'yX'})
 _ORDER = {'Y': 0, 'y': 1, 'X': 2, 'x': 3}
+SIGNED_PERMS = tuple({'x': fx, 'y': fy} for fx in 'xXyY' for fy in 'xXyY' if fx.lower() != fy.lower())
+IDENTITY = {'x': 'x', 'y': 'y'}
+
+
+def perm_canonical(state):
+    """The least canonical pair over the eight signed generator permutations, and the
+    permutation that reaches it (None when the state is already least)."""
+    best, best_img = state, None
+    for img in SIGNED_PERMS:
+        cand = canon_pair(apply_hom(state[0], img), apply_hom(state[1], img))
+        if (len(cand[0]) + len(cand[1]), _key(cand[0]), _key(cand[1])) < (len(best[0]) + len(best[1]), _key(best[0]), _key(best[1])):
+            best, best_img = cand, img
+    return best, best_img
 
 
 class Budget(Exception):
@@ -186,8 +199,9 @@ class Run:
         del self.states[n + 1:]
         self.state = state
 
-    def apply_aut(self, img):
-        self.charge()
+    def apply_aut(self, img, charge=True):
+        if charge:
+            self.charge()
         self.state = canon_pair(apply_hom(self.state[0], img), apply_hom(self.state[1], img))
         self.steps.append({'kind': 'automorphism', 'images': dict(img)})
         self.states.append(list(self.state))
@@ -528,10 +542,26 @@ def _commit_path(run, node):
     while node[1] is not None:
         chain.append(node)
         node = node[1]
-    for state, parent, move in reversed(chain):
-        run.apply_move(move, charge=False)
+    for state, parent, step in reversed(chain):
+        perm = None
+        if isinstance(step, tuple) and len(step) == 2 and isinstance(step[1], (dict, type(None))):
+            step, perm = step
+        if isinstance(step, dict):
+            run.apply_aut(step, charge=False)
+        else:
+            run.apply_move(step, charge=False)
+        if perm is not None:
+            run.apply_aut(perm, charge=False)
         if run.state != state:
-            raise AssertionError('beam child does not replay')
+            raise AssertionError('search child does not replay')
+
+
+def nielsen_children(state):
+    """The four Nielsen images of the pair, as (child, images) — automorphism edges."""
+    out = []
+    for img in NIELSEN:
+        out.append((canon_pair(apply_hom(state[0], img), apply_hom(state[1], img)), img))
+    return out
 
 
 def _on_ancestors(child, node, depth):
@@ -544,7 +574,8 @@ def _on_ancestors(child, node, depth):
     return False
 
 
-def stage_bestfirst(run, score, gates=True, ancestors=0, closed_set=False, frontier_dedup=False):
+def stage_bestfirst(run, score, gates=True, ancestors=0, closed_set=False, frontier_dedup=False,
+                    nielsen=False, perms=False):
     """Best-first descent.  The default keeps NO closed set: a state reached by several
     routes is pushed (and may be popped) several times; the only memory is the chain of
     parent references.  Options, all comparison-based unless marked:
@@ -582,7 +613,16 @@ def stage_bestfirst(run, score, gates=True, ancestors=0, closed_set=False, front
                 return False
             _, depth, _, node = heapq.heappop(heap)
         run.charge()
-        for child, move in children(node[0]):
+        edges = children(node[0])
+        if nielsen:
+            edges = edges + nielsen_children(node[0])
+        if perms:
+            relabelled = []
+            for child, move in edges:
+                rep, img = perm_canonical(child)
+                relabelled.append((rep, (move, img)))
+            edges = relabelled
+        for child, move in edges:
             if ancestors and _on_ancestors(child, node, ancestors):
                 continue
             if closed_set == 'hash':
@@ -618,7 +658,8 @@ def stage_bestfirst(run, score, gates=True, ancestors=0, closed_set=False, front
 
 # --------------------------------------------------------------------------- solve
 def solve(pair, budget=1000, width=8, score='s20', gates=True, pair_descent=True,
-          engine='beam', ancestors=0, closed_set=False, frontier_dedup=False):
+          engine='beam', ancestors=0, closed_set=False, frontier_dedup=False, nielsen=False,
+          perms=False):
     """Return dict(solved, units, steps, states, stage, ...)."""
     run = Run(pair, budget)
     scorer = SCORES[score]
@@ -644,7 +685,7 @@ def solve(pair, budget=1000, width=8, score='s20', gates=True, pair_descent=True
             if engine == 'beam':
                 found = stage_beam(run, width, scorer, gates, ancestors=ancestors)
             elif engine == 'bestfirst':
-                found = stage_bestfirst(run, scorer, gates, ancestors, closed_set, frontier_dedup)
+                found = stage_bestfirst(run, scorer, gates, ancestors, closed_set, frontier_dedup, nielsen, perms)
             else:
                 raise ValueError(engine)
             if found:
@@ -661,4 +702,4 @@ def solve(pair, budget=1000, width=8, score='s20', gates=True, pair_descent=True
                 max_relator=max((len(w) for s in run.states for w in s), default=0) if solved else None,
                 stages=run.stages, params=dict(budget=budget, width=width, score=score, gates=gates,
                                                engine=engine, ancestors=ancestors, closed_set=closed_set,
-                                               frontier_dedup=frontier_dedup))
+                                               frontier_dedup=frontier_dedup, nielsen=nielsen, perms=perms))

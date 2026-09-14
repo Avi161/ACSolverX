@@ -74,6 +74,8 @@ def main():
     ap.add_argument('--ancestors', type=int, default=0)
     ap.add_argument('--closed-set', default='', choices=('', 'sorted', 'hash'), help="'sorted' = bisection array (no hashing); 'hash' = CONTROL")
     ap.add_argument('--frontier-dedup', action='store_true')
+    ap.add_argument('--nielsen', action='store_true', help='Nielsen maps as search edges')
+    ap.add_argument('--perms', action='store_true', help='canonicalise under the 8 signed permutations')
     ap.add_argument('--no-gates', action='store_true')
     ap.add_argument('--no-pair-descent', action='store_true')
     ap.add_argument('--workers', type=int, default=4)
@@ -83,7 +85,7 @@ def main():
     params = dict(budget=args.budget, width=args.width, score=args.score,
                   gates=not args.no_gates, pair_descent=not args.no_pair_descent,
                   engine=args.engine, ancestors=args.ancestors, closed_set=args.closed_set or False,
-                  frontier_dedup=args.frontier_dedup)
+                  frontier_dedup=args.frontier_dedup, nielsen=args.nielsen, perms=args.perms)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     t0 = time.perf_counter()
     solved = verified = 0

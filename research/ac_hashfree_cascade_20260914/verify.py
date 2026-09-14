@@ -95,8 +95,10 @@ def replay(pair, steps, states=None):
     for i, step in enumerate(steps):
         if step['kind'] == 'automorphism':
             img = step['images']
-            if not any(img == dict(n) for n in NIELSEN):
-                raise Failure('step %d: images are not a Nielsen map' % i)
+            signed_perm = (set(img) == {'x', 'y'} and all(v in ('x', 'X', 'y', 'Y') for v in img.values())
+                           and img['x'].lower() != img['y'].lower())
+            if not (signed_perm or any(img == dict(n) for n in NIELSEN)):
+                raise Failure('step %d: images are neither a Nielsen map nor a signed permutation' % i)
             nxt = canon_pair(apply_map(cur[0], img), apply_map(cur[1], img))
         elif step['kind'] == 'substitution':
             target, jsign, k1, k2 = map(int, step['move'].split('_'))
