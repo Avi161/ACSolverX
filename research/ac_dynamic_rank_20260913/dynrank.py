@@ -429,14 +429,23 @@ PRIORITIES = {'length': priority_length, 'length_rank': priority_length_rank}
 
 def best_first(root, *, cap, ceiling, pops, allow_define=True, allow_eliminate=True,
                priority='length', relabel=False, elim_cap=None, min_uses=2,
-               max_states=2_000_000, elim_units_only=False):
-    """Best-first search from ``root``; solved when the empty presentation is reached."""
+               max_states=2_000_000, elim_units_only=False, closed_set='hash'):
+    """Best-first search from ``root``; solved when the empty presentation is reached.
+
+    ``closed_set='sorted'`` keeps the visited states in a sorted list searched by
+    bisection (comparison only, no hashing); the search is otherwise identical."""
+    import bisect
     t0 = time.process_time()
     root = normalize(root)
     key, relabel_event = make_key(root, relabel)
     prio = PRIORITIES[priority]
     records = [{'words': key, 'parent': None, 'event': None, 'relabel': relabel_event}]
-    seen = {key: 0}
+    if closed_set == 'sorted':
+        seen_sorted = [key]
+    elif closed_set == 'hash':
+        seen = {key: 0}
+    else:
+        raise ValueError(closed_set)
     heap = [(prio(key), 0)]
     popped = generated = 0
     solved = None
@@ -456,9 +465,15 @@ def best_first(root, *, cap, ceiling, pops, allow_define=True, allow_eliminate=T
                                            elim_units_only=elim_units_only):
             generated += 1
             ckey, rl = make_key(child_words, relabel)
-            if ckey in seen:
-                continue
-            seen[ckey] = len(records)
+            if closed_set == 'sorted':
+                pos = bisect.bisect_left(seen_sorted, ckey)
+                if pos < len(seen_sorted) and seen_sorted[pos] == ckey:
+                    continue
+                seen_sorted.insert(pos, ckey)
+            else:
+                if ckey in seen:
+                    continue
+                seen[ckey] = len(records)
             records.append({'words': ckey, 'parent': index, 'event': event, 'relabel': rl})
             child = len(records) - 1
             if total_length(ckey) < best_len:
@@ -488,7 +503,8 @@ def best_first(root, *, cap, ceiling, pops, allow_define=True, allow_eliminate=T
             'cpu_seconds': time.process_time() - t0,
             'params': {'cap': cap, 'ceiling': ceiling, 'pops': pops, 'allow_define': allow_define,
                        'allow_eliminate': allow_eliminate, 'priority': priority, 'relabel': relabel,
-                       'elim_cap': elim_cap, 'min_uses': min_uses, 'elim_units_only': elim_units_only}}
+                       'elim_cap': elim_cap, 'min_uses': min_uses, 'elim_units_only': elim_units_only,
+                       'closed_set': closed_set}}
 
 
 def closure(root, *, cap, ceiling, max_states, allow_define=True, allow_eliminate=True,

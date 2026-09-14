@@ -239,6 +239,45 @@ class Run:
             raise AssertionError('rewrite is not a single rotation product')
         self.apply_move(move)
 
+    def rewrite_at(self, target_index, word, position, lhs, rhs):
+        """Replace `lhs` by `rhs` at `position` of the oriented spelling `word` of relator
+        `target_index` with ONE rotation product, deriving (jsign, k1, k2) directly:
+        the multiplier lhs^-1 rhs must be a rotation of the donor or its inverse."""
+        if word[position:position + len(lhs)] != lhs:
+            raise AssertionError('rewrite does not match the oriented word')
+        actual = self.state[target_index]
+        donor = self.state[1 - target_index]
+        n = len(word)
+        shift = (word + word).find(actual)
+        local_lhs, local_rhs = lhs, rhs
+        if 0 <= shift < n:
+            start = (position - shift) % n
+        else:
+            inverted = inv(word)
+            shift = (inverted + inverted).find(actual)
+            if not 0 <= shift < n:
+                raise AssertionError('canonical target is not a rotation or inverse of the oriented word')
+            start = (n - position - len(lhs) - shift) % n
+            local_lhs, local_rhs = inv(lhs), inv(rhs)
+        needed = free_reduce(inv(local_lhs) + local_rhs)
+        move = None
+        for jsign in (1, -1):
+            oriented = donor if jsign == 1 else inv(donor)
+            for cut in range(len(oriented)):
+                if rot(oriented, cut) == needed:
+                    move = (target_index + 1, jsign, (-(start + len(local_lhs))) % len(actual), cut)
+                    break
+            if move is not None:
+                break
+        if move is None:
+            raise AssertionError('replacement is not a cyclic donor substitution')
+        desired = canon_rel(word[:position] + rhs + word[position + len(lhs):])
+        want = canon_pair(desired, donor) if target_index == 0 else canon_pair(donor, desired)
+        # canon_pair orders the pair; compare as sets of relators
+        if sorted(replay_move(self.state, move)) != sorted(want):
+            raise AssertionError('substitution does not produce the intended rewrite')
+        self.apply_move(move)
+
 
 # --------------------------------------------------------------------------- stage A
 def stage_pair_descent(run):
@@ -308,8 +347,17 @@ def _delete_letters(run, donor_index):
 
 
 def stage_primitive(run, index):
-    """True when relator `index` is primitive and the pair has been finished from it."""
+    """True when relator `index` is primitive and the pair has been finished from it.
+
+    A relator with a single occurrence of one generator, W = g h^r up to rotation and
+    inversion, is finished by substitution (the primitive-donor deletion theorem compiled
+    into ordinary moves): every g of the companion is replaced by h^-r with one product,
+    the companion is then h^{+-1} by abelianisation, and its letter deletes the h's of W.
+    Any other relator is first shortened to one letter by strict Nielsen descent."""
     mark = run.mark()
+    if one_occurrence(run.state[index]) and _finish_one_occurrence(run, index):
+        return True
+    run.rollback(mark)
     donor_index = _relator_descent(run, index)
     if donor_index is None:
         run.rollback(mark)
@@ -318,6 +366,39 @@ def stage_primitive(run, index):
         return True
     run.rollback(mark)          # abelianisation obstruction: not a trivial-group pair
     return False
+
+
+def _finish_one_occurrence(run, index):
+    donor = run.state[index]
+    lower = donor.lower()
+    g = 'x' if lower.count('x') == 1 else 'y'
+    h = 'y' if g == 'x' else 'x'
+    # substitute g away in the companion, one product per occurrence
+    while True:
+        r1, r2 = run.state
+        di = 0 if r1 == donor else 1 if r2 == donor else None
+        if di is None:
+            raise AssertionError('one-occurrence donor lost')
+        comp = run.state[1 - di]
+        if g not in comp.lower():
+            break
+        k1 = next(k for k in range(len(comp)) if rot(comp, k)[-1].lower() == g)
+        letter = rot(comp, k1)[-1]
+        # donor orientation starting with the inverse of that letter
+        for jsign in (1, -1):
+            oriented = donor if jsign == 1 else inv(donor)
+            if letter.swapcase() in oriented:
+                k2 = next(k for k in range(len(oriented)) if rot(oriented, k)[0] == letter.swapcase())
+                break
+        run.apply_move((2 - di, jsign, k1, k2))
+        if run.state[1 - di] == donor and run.state[di] != donor:
+            pass                      # canonical reordering may have swapped the pair
+    r1, r2 = run.state
+    di = 0 if r1 == donor else 1
+    comp = run.state[1 - di]
+    if len(comp) != 1:
+        return False                  # not a trivial-group pair (or a non-terminal residue)
+    return _delete_letters(run, 1 - di)
 
 
 def one_occurrence(word):
@@ -362,8 +443,10 @@ def _bracket(syl, g, a, p, q):
     return None
 
 
-def _pinch_once(syl, i, g, a, h, p, q):
-    """One rule use on the bracket at syllable i: returns the new syllable list.
+def _pinch_once(syl, i, g, a, h, p, q, with_rewrite=False):
+    """One rule use on the bracket at syllable i: returns the new syllable list (and,
+    with `with_rewrite`, the oriented word starting at syllable i with the position,
+    lhs and rhs of the replacement).
 
     Rules of R = g^a h^p g^-a h^q:  (i) g^a h^p -> h^-q g^a,  (ii) g^-a h^-q -> h^p g^-a,
     (iii) h^-p g^-a -> g^-a h^q,  (iv) h^q g^a -> g^a h^-p.  A bracket g^e1 h^m g^e2 with
@@ -375,17 +458,25 @@ def _pinch_once(syl, i, g, a, h, p, q):
         left = (m > 0) == (p > 0)
         if left:
             new_mid = [(g, e1 - a), (h, -q), (g, a), (h, m - p)]
+            pos, lhs, rhs = e1 - a, power(g, a) + power(h, p), power(h, -q) + power(g, a)
         else:
             new_mid = [(g, e1), (h, m + p), (g, -a), (h, q), (g, e2 + a)]
+            pos, lhs, rhs = e1 + abs(m) - abs(p), power(h, -p) + power(g, -a), power(g, -a) + power(h, q)
     else:
         left = (m > 0) == (q < 0)
         if left:
             new_mid = [(g, e1 + a), (h, p), (g, -a), (h, m + q)]
+            pos, lhs, rhs = -e1 - a, power(g, -a) + power(h, -q), power(h, p) + power(g, -a)
         else:
             new_mid = [(g, e1), (h, m - q), (g, a), (h, -p), (g, e2 - a)]
+            pos, lhs, rhs = -e1 + abs(m) - abs(q), power(h, q) + power(g, a), power(g, a) + power(h, -p)
     first = 2 if left else 3
     rest = [syl[(i + k) % n] for k in range(first, n)]
-    return _merge(new_mid + rest)
+    merged = _merge(new_mid + rest)
+    if not with_rewrite:
+        return merged
+    oriented = from_syllables([syl[(i + k) % n] for k in range(n)])
+    return merged, oriented, pos, lhs, rhs
 
 
 def _merge(syl):
@@ -445,8 +536,8 @@ def stage_pinch(run, donor_index, form):
             if b is None:
                 run.rollback(mark)
                 return False
-            new = from_syllables(_pinch_once(syl, b[0], g, a, h, p, q))
-            run.rewrite(comp_index, new)
+            new, oriented, pos, lhs, rhs = _pinch_once(syl, b[0], g, a, h, p, q, with_rewrite=True)
+            run.rewrite_at(comp_index, oriented, pos, lhs, rhs)
         comp_index = 1 - run.state.index(donor)
         if stage_primitive(run, comp_index):
             return True
@@ -656,10 +747,180 @@ def stage_bestfirst(run, score, gates=True, ancestors=0, closed_set=False, front
                 heapq.heappush(heap, (score(child), depth + 1, counter, cnode))
 
 
+# --------------------------------------------------------------------------- sorted set
+class SortedBlocks:
+    """A sorted collection with membership and insertion by bisection: a list of sorted
+    blocks of bounded size (no hashing; comparisons only)."""
+
+    __slots__ = ('blocks', 'maxes', 'load')
+
+    def __init__(self, first, load=512):
+        self.blocks = [[first]]
+        self.maxes = [first]
+        self.load = load
+
+    def add(self, key):
+        """Insert `key` unless present; True when inserted."""
+        import bisect
+        i = bisect.bisect_left(self.maxes, key)
+        if i == len(self.maxes):
+            i -= 1
+        block = self.blocks[i]
+        j = bisect.bisect_left(block, key)
+        if j < len(block) and block[j] == key:
+            return False
+        block.insert(j, key)
+        if j == len(block) - 1:
+            self.maxes[i] = key
+        if len(block) > self.load:
+            half = len(block) // 2
+            self.blocks[i:i + 1] = [block[:half], block[half:]]
+            self.maxes[i:i + 1] = [block[half - 1], block[-1]]
+        return True
+
+
+# --------------------------------------------------------------------------- fast engine
+_FAST = {}
+
+
+def _fast_setup():
+    """Lazy import of the repository's compiled expansion kernel and Nielsen transform."""
+    if _FAST:
+        return _FAST
+    import numpy as np
+    from experiments.heuristic_search.core.hexpand import expand_and_score_h
+    from experiments.heuristic_search.core.hfast import _arrs, compile_config
+    from experiments.search.basis_moves import _apply_transform_nj
+    from experiments.search.heuristic_1k import pack, unpack
+    cfgs = {'length': compile_config({'segments': [{'upto': None, 'w': {'L': 1.0}}]}),
+            's20': compile_config({'segments': [{'upto': None, 'w': {'L': 1.0, 'S': 20.0, 'MK': 2.0}}]})}
+    _FAST.update(np=np, expand=expand_and_score_h, arrs=_arrs, transform=_apply_transform_nj,
+                 pack=pack, unpack=unpack, cfgs=cfgs)
+    return _FAST
+
+
+def _key_terminal(key):
+    return len(key) == 3 and (key[0] & 1) != (key[2] & 1)
+
+
+def stage_fast(run, score_name, gates=True, closed_set='sorted', nielsen=True, perms=False,
+               gate_when='pop'):
+    """The best-first descent of `stage_bestfirst` on packed keys with the repository's
+    compiled child expansion and Nielsen transform.  Same moves and the same
+    closed-set discipline (a block-sorted array unless closed_set='hash', the control);
+    the closed-set test is made when a state is popped, so a state reached by several
+    routes is pushed several times but expanded (and charged) once.  Gates are tried
+    on popped states (gate_when='pop') or on every generated child ('generated')."""
+    import heapq
+    F = _fast_setup()
+    np, expand, arrs, transform, pack, unpack = (F['np'], F['expand'], F['arrs'], F['transform'],
+                                                  F['pack'], F['unpack'])
+    upto, weights, _ = F['cfgs'][score_name]
+    scorer = SCORES[score_name]
+    root_key = pack(run.state)
+    if perms:
+        best, img = _perm_key(root_key, transform, np)
+        if best != root_key:
+            run.apply_aut(_IMAGES_FAST[img], charge=False)
+            root_key = pack(run.state)
+    root = (root_key, None, None)
+    heap = [(scorer(unpack(root_key)), 0, 0, root)]
+    counter = 0
+    if closed_set == 'hash':
+        seen = set()
+        admit = lambda k: (k not in seen) and (seen.add(k) or True)
+    elif closed_set == 'sorted':
+        seen = SortedBlocks(b'')
+        admit = seen.add
+    else:
+        raise ValueError(closed_set)
+
+    def finish(node):
+        mark = run.mark()
+        _commit_path(run, _node_to_states(node, unpack))
+        if run_gates(run):
+            return True
+        run.rollback(mark)
+        return False
+
+    push = heapq.heappush
+    while heap:
+        _, depth, _, node = heapq.heappop(heap)
+        key = node[0]
+        if not admit(key):
+            continue
+        run.charge()
+        if gates and gate_when == 'pop' and node[1] is not None and gate_applicable(unpack(key)):
+            if finish(node):
+                return True
+        a, b = arrs(key)
+        blob, offs, lens, _, scores, _, _, moves, count = expand(a, b, len(key) - 1, True, upto, weights, True, True)
+        raw = blob.tobytes()
+        offs = offs.tolist()
+        lens = lens.tolist()
+        scores = scores.tolist()
+        moves = moves.tolist()
+        depth += 1
+        for i in range(count):
+            o = offs[i]
+            child = raw[o:o + lens[i]]
+            step = tuple(moves[i])
+            sc = scores[i]
+            if perms:
+                child, img = _perm_key(child, transform, np)
+                step = (step, None if img == 4 else _IMAGES_FAST[img])
+            if _key_terminal(child) or (gates and gate_when == 'generated' and gate_applicable(unpack(child))):
+                if finish((child, node, step)):
+                    return True
+            counter += 1
+            push(heap, (sc, depth, counter, (child, node, step)))
+        if nielsen:
+            codes = np.frombuffer(key, dtype=np.uint8)
+            for t in range(4):
+                child = transform(codes, t).tobytes()
+                step = NIELSEN[t]
+                if perms:
+                    child, img = _perm_key(child, transform, np)
+                    step = (step, None if img == 4 else _IMAGES_FAST[img])
+                if _key_terminal(child):
+                    if finish((child, node, step)):
+                        return True
+                counter += 1
+                push(heap, (scorer(unpack(child)), depth, counter, (child, node, step)))
+    return False
+
+
+_IMAGES_FAST = (NIELSEN + tuple({'x': fx, 'y': fy} for fx in 'xXyY' for fy in 'xXyY'
+                                if fx.lower() != fy.lower()))
+
+
+def _perm_key(key, transform, np):
+    """Least packed key over the eight signed permutations (transform indices 4..11)."""
+    codes = np.frombuffer(key, dtype=np.uint8)
+    best, best_i = key, 4
+    for i in range(5, 12):
+        cand = transform(codes, i).tobytes()
+        if cand < best:
+            best, best_i = cand, i
+    return best, best_i
+
+
+def _node_to_states(node, unpack):
+    """Re-express a chain of packed-key nodes as string-state nodes for _commit_path."""
+    chain = []
+    while node is not None:
+        chain.append(node)
+        node = node[1]
+    prev = None
+    for key, _, step in reversed(chain):
+        prev = (unpack(key), prev, step)
+    return prev
+
+
 # --------------------------------------------------------------------------- solve
 def solve(pair, budget=1000, width=8, score='s20', gates=True, pair_descent=True,
           engine='beam', ancestors=0, closed_set=False, frontier_dedup=False, nielsen=False,
-          perms=False):
+          perms=False, gate_when='pop'):
     """Return dict(solved, units, steps, states, stage, ...)."""
     run = Run(pair, budget)
     scorer = SCORES[score]
@@ -686,6 +947,8 @@ def solve(pair, budget=1000, width=8, score='s20', gates=True, pair_descent=True
                 found = stage_beam(run, width, scorer, gates, ancestors=ancestors)
             elif engine == 'bestfirst':
                 found = stage_bestfirst(run, scorer, gates, ancestors, closed_set, frontier_dedup, nielsen, perms)
+            elif engine == 'fast':
+                found = stage_fast(run, score, gates, closed_set or 'sorted', nielsen, perms, gate_when)
             else:
                 raise ValueError(engine)
             if found:
@@ -702,4 +965,5 @@ def solve(pair, budget=1000, width=8, score='s20', gates=True, pair_descent=True
                 max_relator=max((len(w) for s in run.states for w in s), default=0) if solved else None,
                 stages=run.stages, params=dict(budget=budget, width=width, score=score, gates=gates,
                                                engine=engine, ancestors=ancestors, closed_set=closed_set,
-                                               frontier_dedup=frontier_dedup, nielsen=nielsen, perms=perms))
+                                               frontier_dedup=frontier_dedup, nielsen=nielsen, perms=perms,
+                                               gate_when=gate_when))

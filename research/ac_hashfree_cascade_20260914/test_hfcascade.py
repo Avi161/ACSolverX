@@ -48,6 +48,14 @@ class Stages(unittest.TestCase):
         self.assertFalse(r['solved'])
         self.assertEqual(r['units'], 60)
 
+    def test_one_occurrence_finisher_is_cheap(self):
+        pair = ('YXXyx', 'YYYYYYYYXyyyyyyyx')         # BS(1,2) donor, n = 7 companion
+        r = hf.solve(pair, budget=1000, engine='fast', score='length', nielsen=True)
+        self.assertTrue(r['solved'])
+        self.assertEqual(r['stage'], 'C')
+        self.assertLessEqual(r['units'], 300)
+        verify.replay(pair, r['steps'], r['states'])
+
     def test_units_never_exceed_budget_on_solves(self):
         for pair in (('YXXyx', 'YYYYYYYYXyyyyyyyx'), ('YXXyXyx', 'YYXyxxyXX')):
             r = hf.solve(pair, budget=1000)
@@ -71,6 +79,19 @@ class Stages(unittest.TestCase):
             self.assertLessEqual(r['units'], 120)
             if r['solved']:
                 verify.replay(pair, r['steps'], r['states'])
+
+    def test_fast_engine_agrees_with_pure_python_engine(self):
+        for pair in (('YXXYxYxx', 'YYYxxYXYx'), ('YYXXXXyx', 'YYXXXYXXyXX')):
+            a = hf.solve(pair, budget=1000, engine='bestfirst', score='length', closed_set='sorted', nielsen=True,
+                         gates=True)
+            b = hf.solve(pair, budget=1000, engine='fast', score='length', nielsen=True, gate_when='generated')
+            self.assertTrue(a['solved'] and b['solved'])
+            # the fast engine deduplicates at pop time, so its depth tie-break can differ slightly
+            self.assertLess(abs(a['units'] - b['units']), 0.2 * a['units'] + 5)
+            verify.replay(pair, b['steps'], b['states'])
+        c = hf.solve(('YYXXXXYX', 'YYYXYXyyX'), budget=1000, engine='fast', score='length', nielsen=True, perms=True)
+        self.assertTrue(c['solved'])
+        verify.replay(('YYXXXXYX', 'YYYXYXyyX'), c['steps'], c['states'])
 
     def test_nontrivial_group_is_not_solved(self):
         # <x,y | x^2, y> is Z/2: abelianisation det 2, every stage must fail cleanly

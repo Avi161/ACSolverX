@@ -147,6 +147,28 @@ def replay_eliminate(parent, ev):
     return norm(out)
 
 
+def replay_nielsen(parent, ev):
+    """x_i -> x_i x_j^sign applied to every relator: a free-group automorphism (its inverse
+    is x_i -> x_i x_j^-sign), so the AC class is transported and the empty presentation is
+    reached in the new basis exactly when it is reached in the old one."""
+    i, j, sign = ev['i'], ev['j'], ev['sign']
+    n = len(parent)
+    if not (1 <= i <= n and 1 <= j <= n and i != j and sign in (1, -1)):
+        raise Failure('bad nielsen transvection')
+    out = []
+    for w in parent:
+        img = []
+        for x in w:
+            if x == i:
+                img.extend((i, sign * j))
+            elif x == -i:
+                img.extend((-sign * j, -i))
+            else:
+                img.append(x)
+        out.append(cyc_canon(tuple(img)))
+    return norm(out)
+
+
 def apply_relabel(ws, rl):
     if rl is None:
         return ws
@@ -185,6 +207,8 @@ def replay(root, path, min_uses=2, root_relabel=None, target=None):
             n_elim += 1
         elif kind == 'rename':
             child = state                      # a pure renaming, carried by step['relabel']
+        elif kind == 'nielsen':
+            child = replay_nielsen(state, ev)
         else:
             raise Failure('unknown event kind ' + str(kind))
         child = apply_relabel(child, step.get('relabel'))
