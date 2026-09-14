@@ -119,7 +119,8 @@ spelling sits at the bottom of a length well. Signed-permutation canonicalisatio
 define/eliminate moves (stable-AC composites, Lemma 11) in a second frontier served at most
 half as often as the rank-two one add the last 31, all of which need 1,100-10,080 rank-two
 units. Final: 72,779/72,779 rows verified at 1,000 units (policy: 72,052; 188 stable certificates), 727/727
-leftovers, MS-640 640/640 in 2.2 s of single-core search, 5.8 s under the cascade's own batch protocol
+leftovers, all 156,762 rows of `data/AC19_extended.txt` in their original spelling 156,762/156,762
+(327 stable, median 31 units, max 954, 177 s on 4 workers), MS-640 640/640 in 2.2 s of single-core search, 5.8 s under the cascade's own batch protocol
 (cascade 2.4 s / 6.3 s). Memoryless
 search (parent-chain cycle check, frontier-only dedup, beams) solves 1.5% of the leftovers:
 visited-state memory is indispensable, hashing is not.

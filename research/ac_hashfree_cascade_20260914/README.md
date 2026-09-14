@@ -65,6 +65,7 @@ python3 $R --unsolved --engine bestfirst --score length --out records/u727_bf_le
 python3 $R --sample 2000 --seed 1 --engine bestfirst --score length --out records/s2000.jsonl
 python3 $R --engine fast --score length --closed-set sorted --nielsen --perms --workers 4 --no-states --out records/census_fast.jsonl   # all 72,779 rows, rank two
 python3 $R --engine hybrid --workers 4 --no-states --out records/census_hybrid.jsonl                            # all 72,779 rows, hybrid (final)
+python3 research/ac_hashfree_cascade_20260914/run_extended.py --workers 4 --out records/extended_hybrid.jsonl.gz  # all 156,762 rows of data/AC19_extended.txt in their original spelling
 python3 research/ac_hashfree_cascade_20260914/run_ms640.py --out records/ms640_fast.jsonl                        # MS-640 timing, one core, rank-two engine
 python3 research/ac_hashfree_cascade_20260914/run_ms640.py --engine hybrid --out records/ms640_hybrid.jsonl      # MS-640 timing, one core, final
 python3 research/ac_hashfree_cascade_20260914/verify_all.py records/*.jsonl records/*.jsonl.gz                     # replay every stored certificate

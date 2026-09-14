@@ -16,6 +16,7 @@ single-core with `NUMBA_NUM_THREADS=1`.
 | the 9 rows unsolved by every fixed-basis arm at 10M nodes | 9 | 0 | 9 (7 at ≤ 318 units; 2 need permutation canonicalisation, 440–545) | 9 |
 | random census sample (seed 1) | 2,000 | — | 1,997 | 2,000 (`records/final3_s2000.jsonl`) |
 | MS-640, 1,000 units | 640 | 640 (cascade) | 640 | 640 (2.22 s search, 5.76 s batch under the cascade's protocol, one core) |
+| the whole `data/AC19_extended.txt` file, every row in its ORIGINAL spelling (not the Aut-minimal representative) | 156,762 | — | — | **156,762** (`records/final3_extended.jsonl.gz`, median 31 units, 99th percentile 125, max 954; 177 s wall on 4 workers) |
 
 MS-640 timing on one core, measured the way the cascade measured itself (search clock
 around the solver only; the batch clock includes verification by two independent
@@ -42,6 +43,33 @@ units, all replayed) and `records/census41_fast_v2.jsonl`.
 Independent replay after the fact (`verify_all.py` over the final records
 `records/final3_*` and key earlier ones): every stored certificate replays, 0 failures
 (77,531 in the first final pass, 76,187 and 76,827 in the re-validations of the final build).
+
+## The whole AC19_extended file in its original spelling
+
+`run_extended.py` runs the same final solver, same two tuned numbers, same 1,000-unit
+budget, over every one of the 156,762 rows of `data/AC19_extended.txt` as written
+(the 634 solved MS-640 rows the file opens with, the 140,240 further rows of length
+<= 19 and the 15,888 rows of length 20-33), not over the 72,779 Aut-minimal
+representatives.  The Aut-minimal census is a quotient of this file (the `members`
+column of `data/AC19_extended_aut_min.csv` partitions exactly these 156,762 indices),
+but solving a representative says nothing about the budget its orbit-mates need from
+their own spelling, so this is a separate measurement.
+
+| rows | solved | verified | units median / p99 / p99.9 / max | stage B / C / search | rank-two certificates | stable certificates |
+|---:|---:|---:|---|---|---:|---:|
+| 156,762 | **156,762** | 156,762 | 31 / 125 / 242 / 954 | 14,788 / 40,478 / 101,496 | 156,435 | 327 |
+
+- length <= 19: 140,874 / 140,874 (max 954 units); length 20-33: 15,888 / 15,888 (max 827);
+  the 634 MS rows: 634 / 634 (max 278).  25 rows need more than 500 units, one more
+  than 900 (`ext_61616`, `YYXYxyxxYYx / YXXYxxyx`, 954 units, a rank-two certificate).
+- The 327 stable certificates (define/eliminate steps, Lemma-11 composites unexpanded)
+  are almost exactly the orbit-mates of the 188 census representatives that needed one:
+  326 of the 156,762 rows belong to such an orbit, 325 of them get a stable certificate
+  here and one a rank-two certificate; two further rows in orbits whose representative
+  had a rank-two certificate need a stable one from their own spelling.
+- Wall clock 176.9 s on the 4-worker pool including verification (641.7 CPU-s of
+  search, at most 2.43 s on a row).  Replayed after the fact by `verify_all.py`:
+  156,762 / 156,762, 0 failures.
 
 ## What each ingredient buys (the 727 policy leftovers, 1,000 units)
 
