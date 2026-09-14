@@ -1,0 +1,22 @@
+{
+  "source": "research/ac1m_autmin_20260914/records/AC1M_aut_min.csv.gz",
+  "rows": 71283,
+  "solved": 71281,
+  "verified": 71281,
+  "unsolved": [
+    "ac1m_54083",
+    "ac1m_68740"
+  ],
+  "params": {
+    "engine": "hybrid",
+    "budget": 1000,
+    "penalty": 5,
+    "cap": 8,
+    "slack": 8,
+    "dyn_max": null,
+    "dyn_ratio": 0.5,
+    "compact": false,
+    "keep_above": 500
+  },
+  "elapsed": 78.38207365400012
+}

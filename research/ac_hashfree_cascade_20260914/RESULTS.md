@@ -17,6 +17,8 @@ single-core with `NUMBA_NUM_THREADS=1`.
 | random census sample (seed 1) | 2,000 | — | 1,997 | 2,000 (`records/final3_s2000.jsonl`) |
 | MS-640, 1,000 units | 640 | 640 (cascade) | 640 | 640 (2.22 s search, 5.76 s batch under the cascade's protocol, one core) |
 | the whole `data/AC19_extended.txt` file, every row in its ORIGINAL spelling (not the Aut-minimal representative) | 156,762 | — | — | **156,762** (`records/final3_extended.jsonl.gz`, median 31 units, 99th percentile 125, max 954; 177 s wall on 4 workers) |
+| AC1M Aut-minimal census (`research/ac1m_autmin_20260914/records/AC1M_aut_min.csv.gz`) | 71,283 | — | — | **71,281** (`records/final3_ac1m_reps.jsonl.gz`; the 2 misses solve at 1,035 and 1,138 units) |
+| the whole `data/AC1M.txt.gz` file, every row in its ORIGINAL spelling | 1,136,154 | — | — | **1,136,135** (19 misses, all in the same 2 orbits, all solve at 1,040–1,153 units) |
 
 MS-640 timing on one core, measured the way the cascade measured itself (search clock
 around the solver only; the batch clock includes verification by two independent
@@ -70,6 +72,38 @@ their own spelling, so this is a separate measurement.
 - Wall clock 176.9 s on the 4-worker pool including verification (641.7 CPU-s of
   search, at most 2.43 s on a row).  Replayed after the fact by `verify_all.py`:
   156,762 / 156,762, 0 failures.
+
+## AC1M: the Aut-minimal census and every raw row
+
+AC1M (`data/AC1M.txt.gz`, 1,136,154 presentations of total length 6–30) has 71,283
+Aut(F₂)-orbits, 4,672 of which have no member in `AC19_extended.txt`
+(`research/ac1m_autmin_20260914/`).  The final solver, unchanged, at 1,000 units:
+
+| set | rows | solved | verified | units median / p99 / p99.9 | stage B / C / search | rank-two | stable |
+|---|---:|---:|---:|---|---|---:|---:|
+| Aut-minimal representatives (`run_file.py --census`) | 71,283 | **71,281** | 71,281 | 27 / 142 / 309 | 8,009 / 18,121 / 45,151 | 71,157 | 124 |
+| raw rows, run now (`run_file.py --src --skip-from`) | 1,056,376 | 1,056,357 | 1,056,357 | 37 / 136 / 311 | 84,024 / 280,057 / 692,276 | 1,054,889 | 1,468 |
+| raw rows already run earlier and skipped (identical up to rotation, inversion and relator order to a row of the AC19_extended run: 75,090; or to a representative: 4,688) | 79,778 | 79,778 | 79,778 | max 713 | | | |
+| **all raw rows** | **1,136,154** | **1,136,135** | 1,136,135 | | | | |
+
+The 2 unsolved representatives, `ac1m_54083` = `YYXXYXXYx / YXXXyXYxxx` and `ac1m_68740` =
+`YXXyXYx / YYXyyxyxyxx`, are AC1M-only orbits (no AC19 member) and solve just over the
+line: 1,138 and 1,035 units, rank-two certificates of 65 and 61 steps
+(`records/final3_ac1m_reps_b2000.jsonl`).  The 19 unsolved raw rows are exactly the 9 + 10
+members of those two orbits (lengths 19–29); every one solves at 1,040–1,153 units with a
+rank-two certificate (`records/final3_ac1m_raw_unsolved19_b5000.jsonl`).  No other orbit
+of AC1M has a member that misses the budget from its own spelling.
+
+Wall clock on the 4-worker pool, verification included: 78 s for the representatives,
+1,131 s for the 1,056,376 raw rows (4,177 CPU-s of search, at most 2.7 s on a row).
+Independent replay after the fact (`verify_all.py`): the 71,281 representative
+certificates, the 94 raw-row certificates kept (rows needing ≥ 500 units), and the 21
+over-budget certificates, 0 failures.  The raw run's per-row table is
+`records/final3_ac1m_raw.table.csv.gz` (index into `AC1M.txt.gz`, length, stage, units,
+certificate kind, verified flag); the full per-row certificates of the raw run were
+verified in-process and not kept (30 MB).  The skipped rows and where each was run are in
+`records/final3_ac1m_raw.skipped.csv.gz`; `records/ac1m_summary_stats.json` has the
+per-length breakdown (`summarise_ac1m.py`).
 
 ## What each ingredient buys (the 727 policy leftovers, 1,000 units)
 

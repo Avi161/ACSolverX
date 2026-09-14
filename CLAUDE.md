@@ -136,3 +136,6 @@ orbits are shared (99.8% of AC19's, 93.2% of AC1M's); 117 AC19 orbits (378 short
 AC1M member and 4,839 AC1M orbits (50,459 rows, minimal length 15-19) have no AC19 member. So
 "solved the AC19 Aut-min census" does not cover AC1M; treat AC1M's 71,283 orbits as a separate
 benchmark. Records and method in `research/ac1m_autmin_20260914/`.
+The hash-free solver at 1,000 units: 71,281/71,283 AC1M representatives and 1,136,135/1,136,154 raw
+AC1M rows; every miss is a member of the same two AC1M-only orbits (`ac1m_54083`, `ac1m_68740`), all of
+which solve at 1,035-1,153 units with rank-two certificates (`research/ac_hashfree_cascade_20260914/RESULTS.md`).

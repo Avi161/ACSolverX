@@ -66,6 +66,9 @@ python3 $R --sample 2000 --seed 1 --engine bestfirst --score length --out record
 python3 $R --engine fast --score length --closed-set sorted --nielsen --perms --workers 4 --no-states --out records/census_fast.jsonl   # all 72,779 rows, rank two
 python3 $R --engine hybrid --workers 4 --no-states --out records/census_hybrid.jsonl                            # all 72,779 rows, hybrid (final)
 python3 research/ac_hashfree_cascade_20260914/run_extended.py --workers 4 --out records/extended_hybrid.jsonl.gz  # all 156,762 rows of data/AC19_extended.txt in their original spelling
+python3 research/ac_hashfree_cascade_20260914/run_file.py --census research/ac1m_autmin_20260914/records/AC1M_aut_min.csv.gz --workers 4 --out records/ac1m_reps.jsonl.gz   # the 71,283 AC1M representatives
+python3 research/ac_hashfree_cascade_20260914/run_file.py --src data/AC1M.txt.gz --prefix ac1m_row --workers 4 --compact --skip-from records/final3_extended.jsonl.gz records/final3_ac1m_reps.jsonl.gz --out records/ac1m_raw.jsonl.gz   # all 1,136,154 AC1M rows, skipping rows already run
+python3 research/ac_hashfree_cascade_20260914/summarise_ac1m.py
 python3 research/ac_hashfree_cascade_20260914/run_ms640.py --out records/ms640_fast.jsonl                        # MS-640 timing, one core, rank-two engine
 python3 research/ac_hashfree_cascade_20260914/run_ms640.py --engine hybrid --out records/ms640_hybrid.jsonl      # MS-640 timing, one core, final
 python3 research/ac_hashfree_cascade_20260914/verify_all.py records/*.jsonl records/*.jsonl.gz                     # replay every stored certificate
