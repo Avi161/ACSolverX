@@ -1,0 +1,100 @@
+"""Focused tests for the hash-free cascade and its independent verifier."""
+import sys
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from research.ac_hashfree_cascade_20260914 import hfcascade as hf  # noqa: E402
+from research.ac_hashfree_cascade_20260914 import verify  # noqa: E402
+from experiments.equivalence_classes.lib.words import canon_pair, apply_hom  # noqa: E402
+
+
+class Syllables(unittest.TestCase):
+    def test_cyclic_merge(self):
+        self.assertEqual(hf.syllables('xxYYx'), [('x', 3), ('y', -2)])
+        self.assertEqual(hf.from_syllables([('y', -2), ('x', 3)]), 'YYxxx')
+        self.assertEqual(hf._merge([('x', 1), ('y', 0), ('x', -1), ('y', 2)]), [('y', 2)])
+
+    def test_conjugation_forms(self):
+        forms = hf.conjugation_forms('YXXyx')            # y^-1 x^-2 y x
+        self.assertIn(('y', 1, 'x', 1, -2), forms)          # y x y^-1 x^-2
+        self.assertEqual(hf.conjugation_forms('YYXXyx'), [])   # y^-2 x^-2 y x: no opposite pair
+        self.assertIn(('x', 2, 'y', -2, 1), hf.conjugation_forms('YYXXyxx'))
+
+    def test_pinch_rule_is_a_relation_consequence(self):
+        # every rule use must be a single rotation product; check on the n=3 BS family
+        r = hf.solve(('YXXyx', 'YYYYXyyyx'), budget=200)
+        self.assertTrue(r['solved'])
+        self.assertEqual(r['stage'], 'C')
+        verify.replay(('YXXyx', 'YYYYXyyyx'), r['steps'], r['states'])
+
+
+class Stages(unittest.TestCase):
+    def test_primitive_deletion(self):
+        r = hf.solve(('YYXyx', 'Yx'), budget=50)
+        self.assertTrue(r['solved'])
+        self.assertEqual(verify.replay(('YYXyx', 'Yx'), r['steps'], r['states']), ('Y', 'X'))
+
+    def test_one_occurrence_gate_finishes_from_a_child(self):
+        r = hf.solve(('YYXyx', 'YXXyx'), budget=100, width=4)
+        self.assertTrue(r['solved'])
+        verify.replay(('YYXyx', 'YXXyx'), r['steps'], r['states'])
+
+    def test_beam_is_hash_free_and_bounded(self):
+        r = hf.solve(('YYXXXyX', 'YXYxyXXX'), budget=60, width=4)
+        self.assertFalse(r['solved'])
+        self.assertEqual(r['units'], 60)
+
+    def test_units_never_exceed_budget_on_solves(self):
+        for pair in (('YXXyx', 'YYYYYYYYXyyyyyyyx'), ('YXXyXyx', 'YYXyxxyXX')):
+            r = hf.solve(pair, budget=1000)
+            if r['solved']:
+                self.assertLessEqual(r['units'], 1000)
+                verify.replay(pair, r['steps'], r['states'])
+
+    def test_sorted_closed_set_matches_hashed_control(self):
+        for pair in (('YXXYxYxx', 'YYYxxYXYx'), ('YXyxYXXyx', 'YYXyXXXyxYX')):
+            a = hf.solve(pair, budget=1000, engine='bestfirst', score='length', closed_set='sorted')
+            b = hf.solve(pair, budget=1000, engine='bestfirst', score='length', closed_set='hash')
+            self.assertTrue(a['solved'])
+            self.assertEqual((a['units'], a['path_length']), (b['units'], b['path_length']))
+            verify.replay(pair, a['steps'], a['states'])
+
+    def test_memoryless_variants_run_and_stay_in_budget(self):
+        pair = ('YXXYxYxx', 'YYYxxYXYx')
+        for cfg in (dict(engine='bestfirst', frontier_dedup=True, ancestors=50),
+                    dict(engine='beam', width=4, ancestors=50)):
+            r = hf.solve(pair, budget=120, score='length', **cfg)
+            self.assertLessEqual(r['units'], 120)
+            if r['solved']:
+                verify.replay(pair, r['steps'], r['states'])
+
+    def test_nontrivial_group_is_not_solved(self):
+        # <x,y | x^2, y> is Z/2: abelianisation det 2, every stage must fail cleanly
+        r = hf.solve(('xx', 'y'), budget=100)
+        self.assertFalse(r['solved'])
+
+
+class Verifier(unittest.TestCase):
+    def test_tampering_is_caught(self):
+        pair = ('YXXyx', 'YYYYXyyyx')
+        r = hf.solve(pair, budget=200)
+        steps = [dict(s) for s in r['steps']]
+        steps[-1] = {'kind': 'substitution', 'move': '1_1_0_0'}
+        with self.assertRaises(verify.Failure):
+            verify.replay(pair, steps, r['states'])
+        bad = {'kind': 'automorphism', 'images': {'x': 'xx', 'y': 'y'}}
+        with self.assertRaises(verify.Failure):
+            verify.replay(pair, [bad] + r['steps'], None)
+
+    def test_canonical_forms_agree_with_repository(self):
+        for w in ('xyXY', 'YYXyx', 'xxyXXY', 'yXyXX'):
+            self.assertEqual(canon_pair(w, 'x')[0] if len(w) == 1 else canon_pair(w, 'xyxyxyxyxyxyxy')[0],
+                             verify.canon_pair(w, 'xyxyxyxyxyxyxy')[0])
+
+
+if __name__ == '__main__':
+    unittest.main()
