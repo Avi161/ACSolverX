@@ -1,0 +1,19 @@
+{
+  "rows": 640,
+  "solved": 640,
+  "verified": 640,
+  "search_wall": 2.946403232983357,
+  "search_cpu": 2.9463902220000016,
+  "batch_wall_including_verification": 6.80548052299946,
+  "max_units": 283,
+  "total_units": 25556,
+  "max_wall_row": 0.18874650199995813,
+  "params": {
+    "budget": 1000,
+    "engine": "fast",
+    "score": "length",
+    "closed_set": "sorted",
+    "nielsen": true,
+    "perms": true
+  }
+}

@@ -122,10 +122,12 @@ one tuned parameter) is:
    automorphism steps).  Every popped rank-two state also offers `define` children
    (a new generator for a repeated cyclic digram), higher-rank states are expanded
    with capped products, `define`, `eliminate` and Nielsen transvections, and a child
-   that returns to rank two re-enters the rank-two path.  Priority is total length
-   plus five letters per generator above two.  The closed set is a block-sorted
-   array searched by bisection, tested when a state is popped.  Gates 1-2 are tried
-   on every generated rank-two child.
+   that returns to rank two re-enters the rank-two path.  Two frontiers: the rank-two
+   one ordered by total length, the higher-rank one by total length plus five letters
+   per generator above two; the higher-rank frontier is served only while its pops
+   are at most half the rank-two pops (plus twenty), its states waiting otherwise.
+   The closed sets are block-sorted arrays searched by bisection, tested when a state
+   is popped.  Gates 1-2 are tried on every generated rank-two child.
 4. One unit per popped state, per accepted map, per image evaluation and per
    substitution move; nothing else is charged.
 

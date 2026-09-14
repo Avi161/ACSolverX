@@ -37,7 +37,7 @@ def summarise(name, rows):
                 path_q=quantiles([r['path_length'] for r in solved if r.get('path_length') is not None]),
                 maxrel_q=quantiles([r['max_relator'] if r.get('max_relator') is not None else (r.get('max_rank') or 0)
                                     for r in solved]),
-                seconds=sum(r['seconds'] for r in rows))
+                seconds=sum(r.get('seconds', r.get('wall', 0)) for r in rows))
     return line
 
 

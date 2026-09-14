@@ -107,3 +107,21 @@ separator: every U124 row stays at >= 0.80 of its length (the same floor the 3-h
 shortening campaign hit on the same four rows), every solved row drops to <= 0.80 (59/60
 strictly below, hard bins 6-9 all <= 0.762) within the same 2,000 pops. Empirical, not a
 proof: the exhaustive dynamic-rank closure explodes (>100k states at zero slack for bin 4).
+
+### [2026-09-14] Nielsen maps as search edges, a sorted-array closed set and define/eliminate in one frontier solve the whole AC19 Aut-minimal census at 1,000 units
+[MECHANISM] `research/ac_hashfree_cascade_20260914/hfhybrid.py`: best-first on total length with
+no hash table (block-sorted closed set, bisection) and no pattern table (primitive relators
+finished by substitution, conjugation-shaped relators `g^a h^p g^-a h^q` pinched from a parsed
+form). The four Nielsen maps as search edges are the decisive ingredient: on the census
+policy's 727 leftovers the same engine goes from 31/180 to 673/727, and seven of the nine rows
+unsolved by every fixed-basis arm at 10M nodes solve in 137-318 units, because the Aut-minimal
+spelling sits at the bottom of a length well. Signed-permutation canonicalisation adds 23;
+define/eliminate moves (stable-AC composites, Lemma 11) in a second frontier served at most
+half as often as the rank-two one add the last 31, all of which need 1,100-10,080 rank-two
+units. Final: 72,779/72,779 rows verified at 1,000 units (policy: 72,052; 185 stable certificates), 727/727
+leftovers, MS-640 640/640 in 5.0 s of single-core search, 7.0 s with verification (cascade
+2.4 s / 6.3 s; the rank-two engine alone 2.9 s / 6.8 s). Memoryless
+search (parent-chain cycle check, frontier-only dedup, beams) solves 1.5% of the leftovers:
+visited-state memory is indispensable, hashing is not.
+[TRAP] A dynamic-rank state that is skipped for a budget-share rule must be deferred (second
+heap), never dropped: dropping it lost 6 of the 41 hard rows.

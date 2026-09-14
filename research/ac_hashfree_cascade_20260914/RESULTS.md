@@ -11,26 +11,29 @@ single-core with `NUMBA_NUM_THREADS=1`.
 
 | set | rows | census policy (hashed closed set + BS tables) | this solver, rank-two engine (`fast`) | this solver, final (`hybrid`, penalty 5) |
 |---|---:|---:|---:|---:|
-| AC19 Aut-minimal census | 72,779 | 72,052 | 72,738 | **__CENSUS_HYBRID__** |
-| the policy's 727 leftovers | 727 | 0 | 696 (673 without permutation canonicalisation) | **727** |
+| AC19 Aut-minimal census | 72,779 | 72,052 | 72,738 | **72,779** (`records/final_census.jsonl.gz`, median 27 units, 99th percentile 128, max 954; 290 s wall on 4 workers) |
+| the policy's 727 leftovers | 727 | 0 | 696 (673 without permutation canonicalisation) | **727** (`records/final_u727.jsonl`, 59 stable, max 800 units) |
 | the 9 rows unsolved by every fixed-basis arm at 10M nodes | 9 | 0 | 9 (7 at ≤ 318 units; 2 need permutation canonicalisation, 440–545) | 9 |
-| random census sample (seed 1) | 2,000 | — | 1,997 | 2,000 |
+| random census sample (seed 1) | 2,000 | — | 1,997 | 2,000 (`records/final_s2000.jsonl`) |
 | MS-640, 1,000 units | 640 | 640 (cascade) | 640 | 640 |
 
 MS-640 timing on one core (search only / whole batch including verification and
 serialisation): cascade 2.36 s / 6.32 s (recorded in
 `results/heuristic_search/goal_frontiers/MS640_RESULTS.md`); rank-two engine
-3.01 s / 7.11 s, at most 283 units on a row (cascade: 404); hybrid __MS640_HYBRID__.
+3.01 s / 7.11 s, at most 283 units on a row (cascade: 404); final hybrid 4.98 s / 7.00 s, at most 283 units (`records/final_ms640_hybrid.jsonl`; the rank-two engine alone on a quiet core: 2.95 s / 6.81 s, `records/ms640_fast_v3.jsonl`).
 
-Certificate scope in the hybrid census run: __CENSUS_R2__ rows have ordinary rank-two
+Certificate scope in the hybrid census run: 72,594 rows have ordinary rank-two
 certificates (products and automorphism transport, expanded to AC moves by the
-repository's existing decoder contract); __CENSUS_STABLE__ rows use `define`/`eliminate`
+repository's existing decoder contract); 185 rows use `define`/`eliminate`
 steps and are therefore certificates of *stable* AC-triviality of a trivial-group
 presentation (Lemma 11 of arXiv:2408.15332, composites not expanded), exactly as in
 `research/ac_dynamic_rank_20260913`.  Every one of the 727 leftovers and of the 41
 rows the rank-two engine could not finish at 1,000 units has a rank-two certificate at
 a larger budget: `records/left31_fast_hash_perms_b20k.jsonl` (the 31 hardest, 1,094–10,080
 units, all replayed) and `records/census41_fast_v2.jsonl`.
+
+Independent replay after the fact (`verify_all.py` over the final and key earlier
+records): 77,531 / 77,531 certificates replayed, 0 failures.
 
 ## What each ingredient buys (the 727 policy leftovers, 1,000 units)
 
@@ -57,6 +60,23 @@ the same engine).  The Aut-minimal spelling sits at the bottom of a length well
 `claude/ac19-leftover-solver-notebook-6yan6d`); with basis changes as edges, seven of
 the nine 10M-node failures solve in 137–318 units.
 
+## The nine rows no fixed-basis arm solved at 10,000,000 nodes
+
+| row | rank-two engine, units | final hybrid, units | certificate |
+|---|---:|---:|---|
+| ac19_16286 | 116 | 98 | rank two |
+| ac19_27254 | 174 | 98 | rank two |
+| ac19_28131 | 121 | 103 | rank two |
+| ac19_44381 | 238 | 134 | rank two |
+| ac19_50841 | 136 | 124 | rank two |
+| ac19_51034 | 550 | 668 | rank two |
+| ac19_59576 | 116 | 98 | rank two |
+| ac19_65753 | 445 | 502 | rank two |
+| ac19_7284 | 116 | 98 | rank two |
+
+All nine have ordinary rank-two certificates (products and Nielsen automorphisms) found
+within the budget; `records/final_u727.jsonl` carries them.
+
 ## Dynamic rank on the residue
 
 The 41 rows the rank-two engine leaves at 1,000 units need 1,094–10,080 rank-two units
@@ -76,6 +96,13 @@ priority penalty per generator above two:
 | **5** | **41** | **7** | **727** |
 | 6 | 32 | 7 | — |
 | 8 | 2 | 7 | — |
+
+Penalty 5 alone left one census row (`ac19_38723`, 647 rank-two units) unsolved: its
+rank-two search was crowded out by 429 higher-rank pops.  The final rule keeps two
+frontiers and serves the higher-rank one only while its pops are at most half the
+rank-two pops plus 20 (deferring, never dropping, its states); with it the 41, the
+pinch rows, `ac19_38723`, all 727 leftovers and the whole census solve
+(`records/hy41_p5r2.jsonl`, `records/hy13_p5r2.jsonl`, `records/final_*`).
 
 A small penalty lets rank-three states crowd out rank-two states that a length-ordered
 search needs to reach the pinch structure; a large one delays the dynamic moves past
