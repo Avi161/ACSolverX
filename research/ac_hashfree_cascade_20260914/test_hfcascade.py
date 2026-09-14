@@ -103,7 +103,7 @@ class Hybrid(unittest.TestCase):
     def test_hybrid_solves_rank_two_rows_like_the_fast_engine(self):
         from research.ac_hashfree_cascade_20260914 import hfhybrid as HY
         for pair in (('YXXYxYxx', 'YYYxxYXYx'), ('YYXXXXyx', 'YYXXXYXXyXX'), ('YXXyx', 'YYYYYYYYXyyyyyyyx')):
-            r = HY.solve(pair, budget=1000, penalty=4)
+            r = HY.solve(pair, budget=1000)
             self.assertTrue(r['solved'])
             self.assertTrue(r['explicit_rank2'])
             self.assertEqual(HY.verify_hybrid(pair, r['steps']), ('Y', 'X'))
@@ -111,7 +111,7 @@ class Hybrid(unittest.TestCase):
     def test_hybrid_uses_dynamic_rank_on_a_hard_row_and_certificate_replays(self):
         from research.ac_hashfree_cascade_20260914 import hfhybrid as HY
         pair = ('YXXXyxx', 'YYXyXYxyxYXXyx')          # rank-two search needs ~9,500 units
-        r = HY.solve(pair, budget=1000, penalty=4)
+        r = HY.solve(pair, budget=1000)
         self.assertTrue(r['solved'])
         self.assertLessEqual(r['units'], 1000)
         self.assertEqual(HY.verify_hybrid(pair, r['steps']), ('Y', 'X'))

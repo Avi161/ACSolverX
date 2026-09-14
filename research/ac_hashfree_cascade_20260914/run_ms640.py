@@ -13,7 +13,7 @@ ROOT = HERE.parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from research.ac_hashfree_cascade_20260914 import hfcascade, verify  # noqa: E402
+from research.ac_hashfree_cascade_20260914 import hfcascade, hfhybrid, verify  # noqa: E402
 
 SYMBOL = {1: 'x', -1: 'X', 2: 'y', -2: 'Y'}
 
@@ -34,30 +34,41 @@ def main():
     ap.add_argument('--score', default='length')
     ap.add_argument('--no-perms', action='store_true')
     ap.add_argument('--no-nielsen', action='store_true')
+    ap.add_argument('--penalty', type=int, default=5)
     args = ap.parse_args()
     try:
         import numba
         numba.set_num_threads(1)
     except Exception:
         pass
-    params = dict(budget=args.budget, engine=args.engine, score=args.score, closed_set='sorted',
-                  nielsen=not args.no_nielsen, perms=not args.no_perms)
-    hfcascade.solve(('YYXyx', 'Yx'), **params)          # warm-up (numba compilation)
+    if args.engine == 'hybrid':
+        params = dict(budget=args.budget, penalty=args.penalty)
+        solver = hfhybrid.solve
+        replay = hfhybrid.verify_hybrid
+    else:
+        params = dict(budget=args.budget, engine=args.engine, score=args.score, closed_set='sorted',
+                      nielsen=not args.no_nielsen, perms=not args.no_perms)
+        solver = hfcascade.solve
+        replay = lambda pair, steps, states: verify.replay(pair, steps, states)
+    solver(('YYXyx', 'Yx'), **params)          # warm-up (numba compilation)
     pairs = load_ms640()
     records = []
     search_wall = search_cpu = 0.0
     batch = time.perf_counter()
     for i, pair in enumerate(pairs):
         w0, c0 = time.perf_counter(), time.process_time()
-        res = hfcascade.solve(pair, **params)
+        res = solver(pair, **params)
         w, c = time.perf_counter() - w0, time.process_time() - c0
         search_wall += w
         search_cpu += c
         rec = dict(pres_id=i, r1=pair[0], r2=pair[1], solved=res['solved'], stage=res['stage'],
-                   units=res['units'], path_length=res['path_length'], max_relator=res['max_relator'],
-                   wall=w, cpu=c)
+                   units=res['units'], path_length=res.get('path_length'), max_relator=res.get('max_relator'),
+                   explicit_rank2=res.get('explicit_rank2', True), wall=w, cpu=c)
         if res['solved']:
-            verify.replay(pair, res['steps'], res['states'])
+            if args.engine == 'hybrid':
+                replay(pair, res['steps'], None)
+            else:
+                replay(pair, res['steps'], res['states'])
             rec['verified'] = True
             rec['steps'] = res['steps']
         records.append(rec)

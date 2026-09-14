@@ -94,7 +94,7 @@ def main():
     ap.add_argument('--nielsen', action='store_true', help='Nielsen maps as search edges')
     ap.add_argument('--perms', action='store_true', help='canonicalise under the 8 signed permutations')
     ap.add_argument('--gate-when', default='pop', choices=('pop', 'generated'))
-    ap.add_argument('--penalty', type=int, default=4)
+    ap.add_argument('--penalty', type=int, default=5)
     ap.add_argument('--cap', type=int, default=8)
     ap.add_argument('--slack', type=int, default=8)
     ap.add_argument('--no-gates', action='store_true')

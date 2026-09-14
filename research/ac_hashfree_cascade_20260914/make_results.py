@@ -26,14 +26,17 @@ def quantiles(values, qs=(0, 0.25, 0.5, 0.75, 0.9, 1.0)):
 def summarise(name, rows):
     solved = [r for r in rows if r['solved']]
     stages = Counter(r['stage'] for r in solved)
+    r2 = sum(1 for r in solved if r.get('explicit_rank2', True))
     line = dict(run=name, rows=len(rows), solved=len(solved),
                 verified=sum(1 for r in solved if r.get('verified')),
                 le100=sum(1 for r in solved if r['units'] <= 100),
                 le300=sum(1 for r in solved if r['units'] <= 300),
-                stages=' '.join('%s:%d' % (k, stages[k]) for k in ('A', 'B', 'C', 'D') if stages[k]),
+                stages=' '.join('%s:%d' % (k, stages[k]) for k in ('A', 'B', 'C', 'D', 'H') if stages[k])
+                       + (' rank2:%d stable:%d' % (r2, len(solved) - r2) if len(solved) - r2 else ''),
                 units_q=quantiles([r['units'] for r in solved]),
-                path_q=quantiles([r['path_length'] for r in solved]),
-                maxrel_q=quantiles([r['max_relator'] for r in solved]),
+                path_q=quantiles([r['path_length'] for r in solved if r.get('path_length') is not None]),
+                maxrel_q=quantiles([r['max_relator'] if r.get('max_relator') is not None else (r.get('max_rank') or 0)
+                                    for r in solved]),
                 seconds=sum(r['seconds'] for r in rows))
     return line
 
@@ -43,7 +46,7 @@ def main():
     ap.add_argument('records', nargs='+')
     ap.add_argument('--census-solved', help='optional: policy unsolved.csv to cross-tabulate')
     args = ap.parse_args()
-    print('| run | rows | solved | verified | <=100 | <=300 | stage of solve | units q(0,25,50,75,90,100) | path q | max relator q | wall s |')
+    print('| run | rows | solved | verified | <=100 | <=300 | stage of solve | units q(0,25,50,75,90,100) | path q | max relator (or max rank) q | wall s |')
     print('|---|---:|---:|---:|---:|---:|---|---|---|---|---:|')
     for path in args.records:
         rows = load(path)

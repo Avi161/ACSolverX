@@ -61,8 +61,8 @@ def _dedup_sorted(items):
     return out
 
 
-def search(run, *, budget, penalty=2, cap=8, slack=8, relabel=True, nielsen=True, perms=True,
-           allow_define=True, allow_eliminate=True, min_uses=2, gates=True):
+def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True, perms=True,
+           allow_define=True, allow_eliminate=True, min_uses=2, gates=True, gate_when='generated'):
     """Best-first hybrid search from run.state; returns (solved, steps, info)."""
     F = H._fast_setup()
     np, expand, arrs, transform, pack, unpack = (F['np'], F['expand'], F['arrs'], F['transform'],
@@ -118,99 +118,131 @@ def search(run, *, budget, penalty=2, cap=8, slack=8, relabel=True, nielsen=True
         out.reverse()
         return prefix + out
 
-    while heap and pops < budget:
-        _, depth, _, node = heapq.heappop(heap)
-        repr_, parent, step, kind = node
-        if kind == 'r2':
-            if not seen_r2.add(repr_):
-                continue
-        else:
-            if not seen_dyn.add(repr_):
-                continue
-        pops += 1
-        depth += 1
-        if kind == 'r2':
-            key = repr_
-            state = unpack(key)
-            if H.is_terminal(state):
-                return True, chain_steps(node), dict(pops=pops, max_rank=max_rank, dyn_pops=dyn_pops)
-            if gates and parent is not None and H.gate_applicable(state):
-                gate_run = H.Run(state, budget - pops)
-                try:
-                    if H.run_gates(gate_run):
-                        pops += gate_run.units
-                        return True, chain_steps(node) + gate_run.steps, dict(pops=pops, max_rank=max_rank, dyn_pops=dyn_pops)
-                    pops += gate_run.units
-                except H.Budget:
-                    pops = budget
-                    break
-            a, b = arrs(key)
-            blob, offs, lens, _, scores, _, _, moves, count = expand(a, b, len(key) - 1, True, upto, weights, True, True)
-            raw = blob.tobytes()
-            offs = offs.tolist()
-            lens = lens.tolist()
-            scores = scores.tolist()
-            moves = moves.tolist()
-            for i in range(count):
-                o = offs[i]
-                child = raw[o:o + lens[i]]
-                cstep = tuple(moves[i])
-                if perms:
-                    child, img = H._perm_key(child, transform, np)
-                    cstep = (cstep, None if img == 4 else H._IMAGES_FAST[img])
-                counter += 1
-                push(heap, (scores[i], depth, counter, (child, node, cstep, 'r2')))
-            if nielsen:
-                codes = np.frombuffer(key, dtype=np.uint8)
-                for t in range(4):
-                    child = transform(codes, t).tobytes()
-                    cstep = H.NIELSEN[t]
+    class _Done(Exception):
+        pass
+
+    result = {}
+
+    def try_finish(node, state):
+        """Gates on a rank-two state; charges their units; raises _Done on success."""
+        nonlocal pops
+        if H.is_terminal(state):
+            result['steps'] = chain_steps(node)
+            raise _Done()
+        if not (gates and H.gate_applicable(state)):
+            return
+        gate_run = H.Run(state, budget - pops)
+        try:
+            ok = H.run_gates(gate_run)
+        except H.Budget:
+            pops = budget
+            raise _Done()
+        pops += gate_run.units
+        if ok:
+            result['steps'] = chain_steps(node) + gate_run.steps
+            raise _Done()
+
+    try:
+        while heap and pops < budget:
+            _, depth, _, node = heapq.heappop(heap)
+            repr_, parent, step, kind = node
+            if kind == 'r2':
+                if not seen_r2.add(repr_):
+                    continue
+            else:
+                if not seen_dyn.add(repr_):
+                    continue
+            pops += 1
+            depth += 1
+            if kind == 'r2':
+                key = repr_
+                state = unpack(key)
+                if gate_when == 'pop' and parent is not None:
+                    try_finish(node, state)
+                elif H.is_terminal(state):
+                    result['steps'] = chain_steps(node)
+                    raise _Done()
+                a, b = arrs(key)
+                blob, offs, lens, _, scores, _, _, moves, count = expand(a, b, len(key) - 1, True, upto, weights, True, True)
+                raw = blob.tobytes()
+                offs = offs.tolist()
+                lens = lens.tolist()
+                scores = scores.tolist()
+                moves = moves.tolist()
+                for i in range(count):
+                    o = offs[i]
+                    child = raw[o:o + lens[i]]
+                    cstep = tuple(moves[i])
                     if perms:
                         child, img = H._perm_key(child, transform, np)
                         cstep = (cstep, None if img == 4 else H._IMAGES_FAST[img])
                     counter += 1
-                    push(heap, (float(len(child) - 1), depth, counter, (child, node, cstep, 'r2')))
-            if allow_define:
-                words = pair_to_words(state)
-                for cw, event in _dedup_sorted(D.defines(words, min_uses)):
-                    if D.total_length(cw) > ceiling:
-                        continue
+                    cnode = (child, node, cstep, 'r2')
+                    if gate_when == 'generated':
+                        try_finish(cnode, unpack(child))
+                    push(heap, (scores[i], depth, counter, cnode))
+                if nielsen:
+                    codes = np.frombuffer(key, dtype=np.uint8)
+                    for t in range(4):
+                        child = transform(codes, t).tobytes()
+                        cstep = H.NIELSEN[t]
+                        if perms:
+                            child, img = H._perm_key(child, transform, np)
+                            cstep = (cstep, None if img == 4 else H._IMAGES_FAST[img])
+                        counter += 1
+                        cnode = (child, node, cstep, 'r2')
+                        if gate_when == 'generated':
+                            try_finish(cnode, unpack(child))
+                        push(heap, (float(len(child) - 1), depth, counter, cnode))
+                if allow_define:
+                    words = pair_to_words(state)
+                    for cw, event in _dedup_sorted(D.defines(words, min_uses)):
+                        if D.total_length(cw) > ceiling:
+                            continue
+                        ckey, rl = D.make_key(cw, relabel)
+                        cstep = {'kind': 'dyn', 'event': event, 'relabel': rl, 'after': ckey}
+                        counter += 1
+                        max_rank = max(max_rank, len(ckey))
+                        push(heap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
+                                    (ckey, node, cstep, 'dyn')))
+            else:
+                words = repr_
+                dyn_pops += 1
+                edges = D.children(words, cap=cap, ceiling=ceiling, allow_define=allow_define,
+                                   allow_eliminate=allow_eliminate, min_uses=min_uses)
+                if nielsen:
+                    edges = edges + [(c, e) for c, e in nielsen_children(words) if D.total_length(c) <= ceiling]
+                for cw, event in _dedup_sorted(edges):
                     ckey, rl = D.make_key(cw, relabel)
                     cstep = {'kind': 'dyn', 'event': event, 'relabel': rl, 'after': ckey}
                     counter += 1
-                    max_rank = max(max_rank, len(ckey))
-                    push(heap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
-                                (ckey, node, cstep, 'dyn')))
-        else:
-            words = repr_
-            dyn_pops += 1
-            edges = D.children(words, cap=cap, ceiling=ceiling, allow_define=allow_define,
-                               allow_eliminate=allow_eliminate, min_uses=min_uses)
-            if nielsen:
-                edges = edges + [(c, e) for c, e in nielsen_children(words) if D.total_length(c) <= ceiling]
-            for cw, event in _dedup_sorted(edges):
-                ckey, rl = D.make_key(cw, relabel)
-                cstep = {'kind': 'dyn', 'event': event, 'relabel': rl, 'after': ckey}
-                counter += 1
-                if len(ckey) == 2:
-                    pair = words_to_pair(ckey)
-                    k2 = pack(pair)
-                    perm = None
-                    if perms:
-                        k2, img = H._perm_key(k2, transform, np)
-                        perm = None if img == 4 else H._IMAGES_FAST[img]
-                    push(heap, (float(len(k2) - 1), depth, counter, (k2, node, ('dyn', cstep, perm), 'r2')))
-                elif len(ckey) < 2:
-                    raise AssertionError('rank fell below two')
-                else:
-                    max_rank = max(max_rank, len(ckey))
-                    push(heap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
-                                (ckey, node, cstep, 'dyn')))
+                    if len(ckey) == 2:
+                        pair = words_to_pair(ckey)
+                        k2 = pack(pair)
+                        perm = None
+                        if perms:
+                            k2, img = H._perm_key(k2, transform, np)
+                            perm = None if img == 4 else H._IMAGES_FAST[img]
+                        cnode = (k2, node, ('dyn', cstep, perm), 'r2')
+                        if gate_when == 'generated':
+                            try_finish(cnode, unpack(k2))
+                        push(heap, (float(len(k2) - 1), depth, counter, cnode))
+                    elif len(ckey) < 2:
+                        raise AssertionError('rank fell below two')
+                    else:
+                        max_rank = max(max_rank, len(ckey))
+                        push(heap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
+                                    (ckey, node, cstep, 'dyn')))
+    except _Done:
+        if 'steps' in result:
+            return True, result['steps'], dict(pops=min(pops, budget), max_rank=max_rank, dyn_pops=dyn_pops)
     return False, [], dict(pops=min(pops, budget), max_rank=max_rank, dyn_pops=dyn_pops)
 
 
-def solve(pair, budget=1000, **kw):
-    """Stages A-C of hfcascade, then the hybrid search with the remaining budget."""
+def solve(pair, budget=1000, penalty=5, **kw):
+    """Stages A-C of hfcascade, then the hybrid search with the remaining budget.
+    `penalty` (letters per generator above two, default 5) is the one tuned parameter."""
+    kw['penalty'] = penalty
     run = H.Run(pair, budget)
     try:
         if H.is_terminal(run.state):

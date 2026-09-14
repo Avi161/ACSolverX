@@ -22,6 +22,23 @@ budget.  `EXPLAINER.md` describes that policy and the MS-640 cascade it grew fro
 Scores available for D: `length` (total length) and `s20` (`L + 20 S + 2 MK`, the
 repository's recommended ordering, computed from cyclic blocks).
 
+Engines for D (`engine=`): `beam` and `bestfirst` are the pure-Python references;
+`fast` is the same best-first search on the repository's compiled child expansion and
+Nielsen/permutation transforms (`experiments/heuristic_search/core/hexpand.py`,
+`experiments/search/basis_moves.py`) with a block-sorted closed set checked at pop time
+and, with `perms=True`, states canonical under the eight signed generator permutations;
+`hybrid` (`hfhybrid.py`) is the fast engine with dynamic-rank moves added to the same
+frontier: every popped rank-two state also offers `define` children (a new generator for
+a repeated cyclic digram), higher-rank states are expanded with capped products,
+`define`, `eliminate` and Nielsen transvections (the moves of
+`research/ac_dynamic_rank_20260913`), and a child that returns to rank two re-enters the
+fast path; the heap is ordered by total length plus `penalty` letters per generator
+above two.  A hybrid certificate without `dyn` steps is an ordinary rank-two AC
+certificate (with automorphism transport); one with `dyn` steps proves *stable*
+AC-triviality of a trivial-group presentation, because `define`/`eliminate` are the
+Lemma-11 composites of arXiv:2408.15332 and are not expanded.  `verify_hybrid` replays
+both step kinds with the two independent verifiers.
+
 Certificates use the repository's mixed-step contract (`automorphism` steps carrying a
 Nielsen map, `substitution` steps carrying `target_jsign_k1_k2`) and are replayed by
 `verify.py`, which shares no code with the solver.  An automorphism step is sound because
@@ -36,7 +53,9 @@ python3 -m unittest research.ac_hashfree_cascade_20260914.test_hfcascade
 R=research/ac_hashfree_cascade_20260914/run_census.py
 python3 $R --unsolved --engine bestfirst --score length --out records/u727_bf_len.jsonl   # the 727 policy leftovers
 python3 $R --sample 2000 --seed 1 --engine bestfirst --score length --out records/s2000.jsonl
-python3 $R --engine bestfirst --score length --workers 4 --no-states --out records/census.jsonl  # all 72,779 rows
+python3 $R --engine fast --score length --closed-set sorted --nielsen --perms --workers 4 --no-states --out records/census_fast.jsonl   # all 72,779 rows, rank two
+python3 $R --engine hybrid --penalty 4 --workers 4 --no-states --out records/census_hybrid.jsonl               # all 72,779 rows, hybrid
+python3 research/ac_hashfree_cascade_20260914/run_ms640.py --out records/ms640_fast.jsonl                        # MS-640 timing, one core
 python3 research/ac_hashfree_cascade_20260914/verify.py records/*.jsonl
 python3 research/ac_hashfree_cascade_20260914/make_results.py records/*.jsonl
 python3 research/ac_hashfree_cascade_20260914/analyse727.py     # structure of the 727 leftovers
