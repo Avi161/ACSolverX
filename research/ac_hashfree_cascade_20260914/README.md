@@ -32,7 +32,9 @@ frontier: every popped rank-two state also offers `define` children (a new gener
 a repeated cyclic digram), higher-rank states are expanded with capped products,
 `define`, `eliminate` and Nielsen transvections (the moves of
 `research/ac_dynamic_rank_20260913`), and a child that returns to rank two re-enters the
-fast path.  Two frontiers: the rank-two heap ordered by total length and the
+fast path.  The define children of a rank-two state are generated lazily: a placeholder
+carrying the priority the best of them would have sits in the higher-rank frontier and is
+expanded only if that frontier is served at that priority.  Two frontiers: the rank-two heap ordered by total length and the
 higher-rank heap ordered by total length plus `penalty` letters per generator above two
 (default 5); the higher-rank heap is served when its best priority is no worse and the
 higher-rank pops so far are at most `dyn_ratio` (default 0.5) times the rank-two pops

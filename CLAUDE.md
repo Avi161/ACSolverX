@@ -118,9 +118,9 @@ unsolved by every fixed-basis arm at 10M nodes solve in 137-318 units, because t
 spelling sits at the bottom of a length well. Signed-permutation canonicalisation adds 23;
 define/eliminate moves (stable-AC composites, Lemma 11) in a second frontier served at most
 half as often as the rank-two one add the last 31, all of which need 1,100-10,080 rank-two
-units. Final: 72,779/72,779 rows verified at 1,000 units (policy: 72,052; 185 stable certificates), 727/727
-leftovers, MS-640 640/640 in 5.0 s of single-core search, 7.0 s with verification (cascade
-2.4 s / 6.3 s; the rank-two engine alone 2.9 s / 6.8 s). Memoryless
+units. Final: 72,779/72,779 rows verified at 1,000 units (policy: 72,052; 188 stable certificates), 727/727
+leftovers, MS-640 640/640 in 3.6 s of single-core search, 3.9 s with verification (cascade
+2.4 s / 6.3 s). Memoryless
 search (parent-chain cycle check, frontier-only dedup, beams) solves 1.5% of the leftovers:
 visited-state memory is indispensable, hashing is not.
 [TRAP] A dynamic-rank state that is skipped for a budget-share rule must be deferred (second

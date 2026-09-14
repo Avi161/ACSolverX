@@ -46,23 +46,29 @@ def cyclic(w):
     return w
 
 
+_TO_RANK = str.maketrans('YyXx', '0123')
+_FROM_RANK = str.maketrans('0123', 'YyXx')
+
+
 def canon_word(w):
+    """Least rotation of w or of its inverse in the order Y < y < X < x (strings of
+    rank digits compare exactly in that order)."""
     w = cyclic(w)
     if not w:
         return ''
+    n = len(w)
     best = None
-    for u in (w, inverse(w)):
-        for k in range(len(u)):
-            r = u[k:] + u[:k]
-            key = (len(r), [_RANK[c] for c in r])
-            if best is None or key < best[0]:
-                best = (key, r)
-    return best[1]
+    for u in (w.translate(_TO_RANK), inverse(w).translate(_TO_RANK)):
+        uu = u + u
+        m = min(uu[k:k + n] for k in range(n))
+        if best is None or m < best:
+            best = m
+    return best.translate(_FROM_RANK)
 
 
 def canon_pair(a, b):
     a, b = canon_word(a), canon_word(b)
-    ka, kb = (len(a), [_RANK[c] for c in a]), (len(b), [_RANK[c] for c in b])
+    ka, kb = (len(a), a.translate(_TO_RANK)), (len(b), b.translate(_TO_RANK))
     return (a, b) if ka <= kb else (b, a)
 
 

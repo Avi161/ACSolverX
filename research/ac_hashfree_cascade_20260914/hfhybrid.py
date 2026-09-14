@@ -48,6 +48,28 @@ def words_to_pair(words):
     return H.canon_pair(D.render(words[0]), D.render(words[1]))
 
 
+_DIGRAM_CLASS = {}
+for _a in 'xXyY':
+    for _b in 'xXyY':
+        _d = _a + _b
+        _inv = _b.swapcase() + _a.swapcase()
+        _DIGRAM_CLASS[_d] = min(_d, _inv)
+
+
+def _max_digram_uses(state):
+    """Largest number of cyclic occurrences of one digram class in the pair (a define's
+    best case saves that many letters and adds three)."""
+    counts = {}
+    for w in state:
+        if len(w) < 2:
+            continue
+        ww = w + w[0]
+        for i in range(len(w)):
+            c = _DIGRAM_CLASS[ww[i:i + 2]]
+            counts[c] = counts.get(c, 0) + 1
+    return max(counts.values(), default=0)
+
+
 def _dedup_sorted(items):
     """Deduplicate (state, event) pairs by sorting on the state (no hashing)."""
     items = sorted(items, key=lambda t: t[0])
@@ -155,6 +177,20 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
             else:
                 break                             # only deferred higher-rank states remain
             repr_, parent, step, kind = node
+            if kind == 'defs':
+                # expand the deferred define children of a rank-two state (child
+                # generation, not an expansion: no charge)
+                words = pair_to_words(step)
+                for cw, event in _dedup_sorted(D.defines(words, min_uses)):
+                    if D.total_length(cw) > ceiling:
+                        continue
+                    ckey, rl = D.make_key(cw, relabel)
+                    cstep = {'kind': 'dyn', 'event': event, 'relabel': rl, 'after': ckey}
+                    counter += 1
+                    max_rank = max(max_rank, len(ckey))
+                    push(dheap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
+                                 (ckey, parent, cstep, 'dyn')))
+                continue
             if kind == 'r2':
                 if not seen_r2.add(repr_):
                     continue
@@ -204,16 +240,13 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
                             try_finish(cnode, unpack(child))
                         push(heap, (float(len(child) - 1), depth, counter, cnode))
                 if allow_define:
-                    words = pair_to_words(state)
-                    for cw, event in _dedup_sorted(D.defines(words, min_uses)):
-                        if D.total_length(cw) > ceiling:
-                            continue
-                        ckey, rl = D.make_key(cw, relabel)
-                        cstep = {'kind': 'dyn', 'event': event, 'relabel': rl, 'after': ckey}
-                        counter += 1
-                        max_rank = max(max_rank, len(ckey))
-                        push(dheap, (float(D.total_length(ckey) + penalty * (len(ckey) - 2)), depth, counter,
-                                    (ckey, node, cstep, 'dyn')))
+                    # deferred: the define children of this state are enumerated only when
+                    # the higher-rank frontier is served at the priority the best of them
+                    # would have (total length minus the saved letters plus three, plus
+                    # the penalty for the new generator)
+                    counter += 1
+                    lower = float(len(key) - 1 - _max_digram_uses(state) + 3 + penalty)
+                    push(dheap, (lower, depth, counter, (None, node, state, 'defs')))
             else:
                 words = repr_
                 dyn_pops += 1
