@@ -36,6 +36,10 @@ def main():
     ap.add_argument('--no-nielsen', action='store_true')
     ap.add_argument('--penalty', type=int, default=5)
     ap.add_argument('--dyn-ratio', type=float, default=0.5)
+    ap.add_argument('--cascade-protocol', action='store_true',
+                    help='time the batch exactly as the MS-640 cascade did: every certificate verified by '
+                         'two independent replayers, a 0.25 s cooldown after every 50 rows (12 in all), '
+                         'progress output; search clocks exclude all of that')
     args = ap.parse_args()
     try:
         import numba
@@ -68,11 +72,26 @@ def main():
         if res['solved']:
             if args.engine == 'hybrid':
                 replay(pair, res['steps'], None)
+                if args.cascade_protocol:
+                    # second, independent replayer: the string-certificate verifier for
+                    # rank-two certificates, the dynamic-rank replay path otherwise
+                    if res.get('explicit_rank2', True):
+                        verify.replay(pair, res['steps'], None)
+                    else:
+                        hfhybrid.verify_hybrid(pair, res['steps'])
             else:
                 replay(pair, res['steps'], res['states'])
+                if args.cascade_protocol:
+                    hfhybrid.verify_hybrid(pair, res['steps'])
             rec['verified'] = True
             rec['steps'] = res['steps']
         records.append(rec)
+        if args.cascade_protocol:
+            if (i + 1) % 50 == 0 or i + 1 == len(pairs):
+                print(json.dumps(dict(rows=i + 1, solved=sum(r['solved'] for r in records),
+                                      search_wall_seconds=search_wall)), flush=True)
+            if (i + 1) % 50 == 0:
+                time.sleep(0.25)
     batch = time.perf_counter() - batch
     args.out.parent.mkdir(parents=True, exist_ok=True)
     with args.out.open('w') as f:
@@ -83,7 +102,8 @@ def main():
                    search_wall=search_wall, search_cpu=search_cpu,
                    batch_wall_including_verification=batch,
                    max_units=max(r['units'] for r in records), total_units=sum(r['units'] for r in records),
-                   max_wall_row=max(r['wall'] for r in records), params=params)
+                   max_wall_row=max(r['wall'] for r in records), params=params,
+                   cascade_protocol=args.cascade_protocol)
     args.out.with_suffix('.summary.json').write_text(json.dumps(summary, indent=2) + '\n')
     print(json.dumps(summary))
 

@@ -79,20 +79,22 @@ class Budget(Exception):
 
 
 # --------------------------------------------------------------------------- words
+_RUNS = __import__('re').compile(r'(.)\1*')
+
+
 def syllables(word):
-    """Cyclic syllable list [(generator, signed exponent), ...] with the seam merged."""
+    """Cyclic syllable list [(generator, signed exponent), ...] with the seam merged.
+    In a reduced word a generator run is a run of one letter, so runs are regex groups."""
     out = []
-    for c in word:
-        g = c.lower()
-        e = 1 if c.islower() else -1
-        if out and out[-1][0] == g:
-            out[-1][1] += e
-        else:
-            out.append([g, e])
+    for m in _RUNS.finditer(word):
+        c = m.group(1)
+        n = m.end() - m.start()
+        out.append((c.lower(), n if c.islower() else -n))
     if len(out) > 1 and out[0][0] == out[-1][0]:
-        out[0][1] += out[-1][1]
+        g, e = out[0]
+        out[0] = (g, e + out[-1][1])
         out.pop()
-    return [(g, e) for g, e in out]
+    return out
 
 
 def power(g, e):
@@ -272,11 +274,13 @@ class Run:
         if move is None:
             raise AssertionError('replacement is not a cyclic donor substitution')
         desired = canon_rel(word[:position] + rhs + word[position + len(lhs):])
-        want = canon_pair(desired, donor) if target_index == 0 else canon_pair(donor, desired)
-        # canon_pair orders the pair; compare as sets of relators
-        if sorted(replay_move(self.state, move)) != sorted(want):
+        child = replay_move(self.state, move)
+        if sorted(child) != sorted((desired, donor)):
             raise AssertionError('substitution does not produce the intended rewrite')
-        self.apply_move(move)
+        self.charge()
+        self.state = child
+        self.steps.append({'kind': 'substitution', 'move': '_'.join(map(str, move))})
+        self.states.append(list(child))
 
 
 # --------------------------------------------------------------------------- stage A
@@ -556,6 +560,28 @@ def try_pinch_gates(run):
             if stage_pinch(run, index, form):
                 return True
     return False
+
+
+_GEN_TABLE = bytes.maketrans(bytes([1, 2, 3, 4]), b'abab')
+
+
+def gate_precheck_key(key):
+    """Free, on the packed key: may a finishing gate apply?  True when the pair is
+    terminal, a relator has a single occurrence of one generator, or a relator has
+    exactly four cyclic syllables (the only shapes the gates act on)."""
+    i = key.index(0)
+    for w in (key[:i], key[i + 1:]):
+        n = len(w)
+        if n == 1:
+            return True                   # a one-letter relator is a primitive donor
+        t = w.translate(_GEN_TABLE)
+        na = t.count(b'a')
+        if na == 1 or n - na == 1:
+            return True
+        tt = t + t[:1]
+        if tt.count(b'ab') + tt.count(b'ba') == 4:
+            return True
+    return len(key) == 3
 
 
 def gate_applicable(state):

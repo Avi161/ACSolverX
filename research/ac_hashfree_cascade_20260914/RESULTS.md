@@ -11,16 +11,23 @@ single-core with `NUMBA_NUM_THREADS=1`.
 
 | set | rows | census policy (hashed closed set + BS tables) | this solver, rank-two engine (`fast`) | this solver, final (`hybrid`, penalty 5) |
 |---|---:|---:|---:|---:|
-| AC19 Aut-minimal census | 72,779 | 72,052 | 72,738 | **72,779** (`records/final2_census.jsonl.gz`, median 27 units, 99th percentile 128, max 954; 173 s wall on 4 workers) |
-| the policy's 727 leftovers | 727 | 0 | 696 (673 without permutation canonicalisation) | **727** (`records/final2_u727.jsonl`, max 800 units) |
+| AC19 Aut-minimal census | 72,779 | 72,052 | 72,738 | **72,779** (`records/final3_census.jsonl.gz`, median 27 units, 99th percentile 128, max 954; 95 s wall on 4 workers) |
+| the policy's 727 leftovers | 727 | 0 | 696 (673 without permutation canonicalisation) | **727** (`records/final3_u727.jsonl`) |
 | the 9 rows unsolved by every fixed-basis arm at 10M nodes | 9 | 0 | 9 (7 at ≤ 318 units; 2 need permutation canonicalisation, 440–545) | 9 |
-| random census sample (seed 1) | 2,000 | — | 1,997 | 2,000 (`records/final2_s2000.jsonl`) |
-| MS-640, 1,000 units | 640 | 640 (cascade) | 640 | 640 (3.62 s search, 3.90 s batch, one core) |
+| random census sample (seed 1) | 2,000 | — | 1,997 | 2,000 (`records/final3_s2000.jsonl`) |
+| MS-640, 1,000 units | 640 | 640 (cascade) | 640 | 640 (2.22 s search, 5.76 s batch under the cascade's protocol, one core) |
 
-MS-640 timing on one core (search only / whole batch including verification and
-serialisation): cascade 2.36 s / 6.32 s (recorded in
-`results/heuristic_search/goal_frontiers/MS640_RESULTS.md`); rank-two engine
-3.01 s / 7.11 s, at most 283 units on a row (cascade: 404); final hybrid 3.62 s / 3.90 s, at most 283 units (`records/final2_ms640_hybrid.jsonl`; before define children were generated lazily and the verifier's canonical form was sped up it was 4.98 s / 7.00 s, `records/final_ms640_hybrid.jsonl`; the rank-two engine alone on a quiet core: 2.95 s / 6.81 s, `records/ms640_fast_v3.jsonl`, with the old verifier).
+MS-640 timing on one core, measured the way the cascade measured itself (search clock
+around the solver only; the batch clock includes verification by two independent
+replayers, serialisation, progress output and twelve 0.25 s cooldowns, one after every
+50 rows): cascade 2.36 s search / 6.32 s batch (`results/heuristic_search/goal_frontiers/MS640_RESULTS.md`);
+**final hybrid 2.22 s search / 5.76 s batch**, at most 283 units on a row (cascade: 404),
+`records/final3_ms640_hybrid_protocol.jsonl` (`run_ms640.py --cascade-protocol`).  Without
+the cooldowns and with one replayer the same run is 2.27 s / 2.55 s
+(`records/final3_ms640_hybrid.jsonl`).  Earlier builds for reference: rank-two engine
+3.01 s / 7.11 s (`records/ms640_fast_v2.jsonl`); hybrid before lazy define children,
+pop-time permutation canonicalisation and the packed gate precheck 4.98 s / 7.00 s
+(`records/final_ms640_hybrid.jsonl`).
 
 Certificate scope in the hybrid census run: 72,591 rows have ordinary rank-two
 certificates (products and automorphism transport, expanded to AC moves by the
@@ -33,8 +40,8 @@ a larger budget: `records/left31_fast_hash_perms_b20k.jsonl` (the 31 hardest, 1,
 units, all replayed) and `records/census41_fast_v2.jsonl`.
 
 Independent replay after the fact (`verify_all.py` over the final records
-`records/final2_*` and key earlier ones): every stored certificate replays, 0 failures
-(77,531 in the first final pass, 76,187 in the re-validation of the lazy-define build).
+`records/final3_*` and key earlier ones): every stored certificate replays, 0 failures
+(77,531 in the first final pass, 76,187 and 76,827 in the re-validations of the final build).
 
 ## What each ingredient buys (the 727 policy leftovers, 1,000 units)
 
@@ -76,7 +83,7 @@ the nine 10M-node failures solve in 137–318 units.
 | ac19_7284 | 116 | 98 | rank two |
 
 All nine have ordinary rank-two certificates (products and Nielsen automorphisms) found
-within the budget; `records/final2_u727.jsonl` carries them.
+within the budget; `records/final3_u727.jsonl` carries them.
 
 ## Dynamic rank on the residue
 
@@ -103,7 +110,7 @@ rank-two search was crowded out by 429 higher-rank pops.  The final rule keeps t
 frontiers and serves the higher-rank one only while its pops are at most half the
 rank-two pops plus 20 (deferring, never dropping, its states); with it the 41, the
 pinch rows, `ac19_38723`, all 727 leftovers and the whole census solve
-(`records/hy41_p5r2.jsonl`, `records/hy13_p5r2.jsonl`, `records/final2_*`).
+(`records/hy41_p5r2.jsonl`, `records/hy13_p5r2.jsonl`, `records/final3_*`).
 
 A small penalty lets rank-three states crowd out rank-two states that a length-ordered
 search needs to reach the pinch structure; a large one delays the dynamic moves past

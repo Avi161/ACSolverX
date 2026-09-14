@@ -120,21 +120,21 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
             repr_, parent, step, kind = node
             mine = []
             if kind == 'r2':
+                perm = None
+                if isinstance(step, tuple) and len(step) == 2 and isinstance(step[1], (dict, type(None))) \
+                        and not (len(step) == 3):
+                    step, perm = step
                 if isinstance(step, tuple) and len(step) == 3 and step[0] == 'dyn':
-                    _, ev, perm = step
+                    _, ev, perm0 = step
                     mine.append(ev)
-                    if perm is not None:
-                        mine.append({'kind': 'automorphism', 'images': perm})
+                    if perm0 is not None:
+                        mine.append({'kind': 'automorphism', 'images': perm0})
+                elif isinstance(step, dict):
+                    mine.append({'kind': 'automorphism', 'images': dict(step)})
                 else:
-                    perm = None
-                    if isinstance(step, tuple) and len(step) == 2 and isinstance(step[1], (dict, type(None))):
-                        step, perm = step
-                    if isinstance(step, dict):
-                        mine.append({'kind': 'automorphism', 'images': dict(step)})
-                    else:
-                        mine.append({'kind': 'substitution', 'move': '_'.join(map(str, step))})
-                    if perm is not None:
-                        mine.append({'kind': 'automorphism', 'images': perm})
+                    mine.append({'kind': 'substitution', 'move': '_'.join(map(str, step))})
+                if perm is not None:
+                    mine.append({'kind': 'automorphism', 'images': perm})
             else:
                 mine.append(step)
             out.extend(reversed(mine))
@@ -177,6 +177,13 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
             else:
                 break                             # only deferred higher-rank states remain
             repr_, parent, step, kind = node
+            if kind == 'r2' and perms and parent is not None:
+                # signed-permutation canonical form, computed once here rather than for
+                # every generated child; the permutation joins the step
+                canon, img = H._perm_key(repr_, transform, np)
+                if img != 4:
+                    node = (canon, parent, (step, H._IMAGES_FAST[img]), 'r2')
+                    repr_, step = canon, node[2]
             if kind == 'defs':
                 # expand the deferred define children of a rank-two state (child
                 # generation, not an expansion: no charge)
@@ -217,26 +224,18 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
                 for i in range(count):
                     o = offs[i]
                     child = raw[o:o + lens[i]]
-                    cstep = tuple(moves[i])
-                    if perms:
-                        child, img = H._perm_key(child, transform, np)
-                        cstep = (cstep, None if img == 4 else H._IMAGES_FAST[img])
                     counter += 1
-                    cnode = (child, node, cstep, 'r2')
-                    if gate_when == 'generated':
+                    cnode = (child, node, tuple(moves[i]), 'r2')
+                    if gate_when == 'generated' and H.gate_precheck_key(child):
                         try_finish(cnode, unpack(child))
                     push(heap, (scores[i], depth, counter, cnode))
                 if nielsen:
                     codes = np.frombuffer(key, dtype=np.uint8)
                     for t in range(4):
                         child = transform(codes, t).tobytes()
-                        cstep = H.NIELSEN[t]
-                        if perms:
-                            child, img = H._perm_key(child, transform, np)
-                            cstep = (cstep, None if img == 4 else H._IMAGES_FAST[img])
                         counter += 1
-                        cnode = (child, node, cstep, 'r2')
-                        if gate_when == 'generated':
+                        cnode = (child, node, H.NIELSEN[t], 'r2')
+                        if gate_when == 'generated' and H.gate_precheck_key(child):
                             try_finish(cnode, unpack(child))
                         push(heap, (float(len(child) - 1), depth, counter, cnode))
                 if allow_define:
@@ -259,14 +258,9 @@ def search(run, *, budget, penalty=5, cap=8, slack=8, relabel=True, nielsen=True
                     cstep = {'kind': 'dyn', 'event': event, 'relabel': rl, 'after': ckey}
                     counter += 1
                     if len(ckey) == 2:
-                        pair = words_to_pair(ckey)
-                        k2 = pack(pair)
-                        perm = None
-                        if perms:
-                            k2, img = H._perm_key(k2, transform, np)
-                            perm = None if img == 4 else H._IMAGES_FAST[img]
-                        cnode = (k2, node, ('dyn', cstep, perm), 'r2')
-                        if gate_when == 'generated':
+                        k2 = pack(words_to_pair(ckey))
+                        cnode = (k2, node, ('dyn', cstep, None), 'r2')
+                        if gate_when == 'generated' and H.gate_precheck_key(k2):
                             try_finish(cnode, unpack(k2))
                         push(heap, (float(len(k2) - 1), depth, counter, cnode))
                     elif len(ckey) < 2:

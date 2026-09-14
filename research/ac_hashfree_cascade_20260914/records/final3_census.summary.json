@@ -1,7 +1,7 @@
 {
-  "rows": 2000,
-  "solved": 2000,
-  "verified": 2000,
+  "rows": 72779,
+  "solved": 72779,
+  "verified": 72779,
   "params": {
     "engine": "hybrid",
     "budget": 1000,
@@ -11,5 +11,5 @@
     "dyn_max": null,
     "dyn_ratio": 0.5
   },
-  "elapsed": 5.267572577000465
+  "elapsed": 94.87339942399922
 }

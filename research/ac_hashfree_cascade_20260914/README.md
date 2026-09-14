@@ -32,7 +32,11 @@ frontier: every popped rank-two state also offers `define` children (a new gener
 a repeated cyclic digram), higher-rank states are expanded with capped products,
 `define`, `eliminate` and Nielsen transvections (the moves of
 `research/ac_dynamic_rank_20260913`), and a child that returns to rank two re-enters the
-fast path.  The define children of a rank-two state are generated lazily: a placeholder
+fast path.  Signed-permutation canonicalisation is applied when a rank-two state is popped
+(once per expansion, the permutation joining that state's step), not to every generated
+child; a free precheck on the packed key (a one-letter relator, a single occurrence of a
+generator, or exactly four cyclic syllables) decides whether a generated child is handed to
+the finishing gates.  The define children of a rank-two state are generated lazily: a placeholder
 carrying the priority the best of them would have sits in the higher-rank frontier and is
 expanded only if that frontier is served at that priority.  Two frontiers: the rank-two heap ordered by total length and the
 higher-rank heap ordered by total length plus `penalty` letters per generator above two

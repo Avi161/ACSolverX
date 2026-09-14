@@ -127,7 +127,9 @@ one tuned parameter) is:
    per generator above two; the higher-rank frontier is served only while its pops
    are at most half the rank-two pops (plus twenty), its states waiting otherwise.
    The closed sets are block-sorted arrays searched by bisection, tested when a state
-   is popped.  Gates 1-2 are tried on every generated rank-two child.
+   is popped, where the signed-permutation canonical form is also computed.  Gates 1-2
+   are tried on every generated rank-two child that passes a free structural precheck
+   on the packed key.
 4. One unit per popped state, per accepted map, per image evaluation and per
    substitution move; nothing else is charged.
 
