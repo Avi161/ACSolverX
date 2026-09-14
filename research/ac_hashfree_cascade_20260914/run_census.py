@@ -15,7 +15,7 @@ ROOT = HERE.parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from research.ac_hashfree_cascade_20260914 import hfcascade, verify  # noqa: E402
+from research.ac_hashfree_cascade_20260914 import hfcascade, hfhybrid, verify  # noqa: E402
 
 CENSUS = ROOT / 'data/AC19_extended_aut_min.csv'
 UNSOLVED = ROOT / 'results/heuristic_search/ac19_final_policy_full_1k/unsolved.csv'
@@ -41,6 +41,23 @@ def job(arg):
     row, params = arg
     pair = (row['r1'], row['r2'])
     t = time.perf_counter()
+    if params.get('engine') == 'hybrid':
+        res = hfhybrid.solve(pair, budget=params['budget'], penalty=params['penalty'], cap=params['cap'],
+                             slack=params['slack'])
+        seconds = time.perf_counter() - t
+        rec = dict(name=row['name'], r1=row['r1'], r2=row['r2'], solved=res['solved'], stage=res['stage'],
+                   units=res['units'], path_length=res.get('path_length'), max_rank=res.get('max_rank'),
+                   dyn_pops=res.get('dyn_pops'), explicit_rank2=res.get('explicit_rank2'), seconds=seconds,
+                   params=params)
+        if res['solved']:
+            try:
+                hfhybrid.verify_hybrid(pair, res['steps'])
+                rec['verified'] = True
+            except (verify.Failure, hfhybrid.DV.Failure) as exc:
+                rec['verified'] = False
+                rec['failure'] = str(exc)
+            rec['steps'] = res['steps']
+        return rec
     res = hfcascade.solve(pair, **params)
     seconds = time.perf_counter() - t
     rec = dict(name=row['name'], r1=row['r1'], r2=row['r2'], solved=res['solved'], stage=res['stage'],
@@ -70,23 +87,31 @@ def main():
     ap.add_argument('--budget', type=int, default=1000)
     ap.add_argument('--width', type=int, default=8)
     ap.add_argument('--score', default='s20', choices=sorted(hfcascade.SCORES))
-    ap.add_argument('--engine', default='beam', choices=('beam', 'bestfirst', 'fast'))
+    ap.add_argument('--engine', default='beam', choices=('beam', 'bestfirst', 'fast', 'hybrid'))
     ap.add_argument('--ancestors', type=int, default=0)
     ap.add_argument('--closed-set', default='', choices=('', 'sorted', 'hash'), help="'sorted' = bisection array (no hashing); 'hash' = CONTROL")
     ap.add_argument('--frontier-dedup', action='store_true')
     ap.add_argument('--nielsen', action='store_true', help='Nielsen maps as search edges')
     ap.add_argument('--perms', action='store_true', help='canonicalise under the 8 signed permutations')
     ap.add_argument('--gate-when', default='pop', choices=('pop', 'generated'))
+    ap.add_argument('--penalty', type=int, default=4)
+    ap.add_argument('--cap', type=int, default=8)
+    ap.add_argument('--slack', type=int, default=8)
     ap.add_argument('--no-gates', action='store_true')
     ap.add_argument('--no-pair-descent', action='store_true')
     ap.add_argument('--workers', type=int, default=4)
     ap.add_argument('--no-states', action='store_true', help='drop states from the record (keep steps)')
     args = ap.parse_args()
     rows = load_rows(args)
-    params = dict(budget=args.budget, width=args.width, score=args.score,
+    if args.engine == 'hybrid':
+        params = dict(engine='hybrid', budget=args.budget, penalty=args.penalty, cap=args.cap, slack=args.slack)
+    else:
+        params = dict(budget=args.budget, width=args.width, score=args.score,
                   gates=not args.no_gates, pair_descent=not args.no_pair_descent,
                   engine=args.engine, ancestors=args.ancestors, closed_set=args.closed_set or False,
                   frontier_dedup=args.frontier_dedup, nielsen=args.nielsen, perms=args.perms, gate_when=args.gate_when)
+    if args.engine == 'hybrid':
+        pass
     args.out.parent.mkdir(parents=True, exist_ok=True)
     t0 = time.perf_counter()
     solved = verified = 0
