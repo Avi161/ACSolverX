@@ -126,6 +126,63 @@ verified in-process and not kept (30 MB).  The skipped rows and where each was r
 `records/final3_ac1m_raw.skipped.csv.gz`; `records/ac1m_summary_stats.json` has the
 per-length breakdown (`summarise_ac1m.py`).
 
+## How many ordinary AC substitution moves each presentation costs
+
+A hybrid certificate mixes three step kinds, and only one of them is an AC move as
+stored: `substitution` is an ordinary product move, `automorphism` is a Nielsen map
+or a signed permutation of the basis, and `dyn` is a Lemma-11 define/eliminate
+composite.  An automorphism-assisted path is nevertheless an AC solve, because AC
+moves are equivariant under `Aut(F2)`: pushing the accumulated basis change back
+through the path turns every automorphism step into a no-op, and the search's
+terminal is a basis, which Nielsen's theorem returns to `(x, y)` by tuple moves that
+are themselves AC moves.  That transport is implemented in
+`research/supermoves_20260908/certificate_decoder.py` and is used here as the
+authority, not re-derived.
+
+Reading its output at the multiply granularity gives the cost in closed form:
+
+```
+ac_moves  =  substitution steps  +  Nielsen automorphism steps
+```
+
+one multiply per substitution step and one per Nielsen image transported to the
+terminal tail, while a signed permutation emits only swaps and inverts and so is
+free at this granularity.  `acmoves.py` computes it, and `acmoves.py validate` checks
+it row by row against the decoder, whose own frame checks and independent replay to
+`(x, y)` stay armed throughout.
+
+**Validation.** 550 stratified rows (the longest certificates, the most
+automorphism-heavy, every available row carrying a signed permutation, and a random
+remainder) across MS-640, the AC19 census, AC19_extended and the AC1M
+representatives: **550 / 550 agree**, 0 disagreements, longest certificate 388 steps.
+A second, stage-stratified check over the census (50 rows each from the primitive
+stage B, the pinch stage C and the search stage H, plus the one already-terminal row)
+agrees 151 / 151.  `records/acmoves_validation.json`,
+`records/acmoves_validation_extended.json`, and the regression tests in
+`test_hfcascade.py::ACMoveCount`.
+
+**Cost per presentation.** One row per presentation in
+`records/acmoves_*.csv.gz` (name, r1, r2, length, stage, units, steps, substitution,
+nielsen, perm, dyn, ac_moves, stable):
+
+| set | rows | median | p99 | max | total AC moves | no rank-two count (stable) | certificates already automorphism-free |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| MS-640 | 640 | 11 | 258 | 259 | 13,790 | 0 | 128 |
+| AC19 Aut-minimal census | 72,779 | 12 | 99 | 256 | 1,303,466 | 188 | 36,811 |
+| AC19_extended, original spelling | 156,762 | 13 | 90 | 258 | 2,745,667 | 327 | 25,451 |
+| AC1M representatives | 71,283 | 12 | 96 | 387 | 1,213,958 | 124 | 34,649 |
+
+Two things this table is not.  It is not a count at the generator level: expanding
+each AC move into single-letter conjugations, inversions, swaps and multiplies costs
+orders of magnitude more (a 259-move MS-640 path becomes about 160,000 elementary
+operations, and the decoder's compressed form of three AC19 rows runs to 3,130-8,076).
+And it is not a lower bound: it is what these certificates cost, not the minimum over
+all AC paths.
+
+The `stable` rows are the exception with no entry at all.  A `dyn` certificate proves
+*stable* AC-triviality with the composites unexpanded, so it has no rank-two move
+count; those rows are marked and counted separately rather than given a number.
+
 ## What each ingredient buys (the 727 policy leftovers, 1,000 units)
 
 | engine | closed set | Nielsen edges | signed-perm canonical | solved / rows | record |

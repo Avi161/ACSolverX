@@ -69,6 +69,8 @@ python3 research/ac_hashfree_cascade_20260914/run_extended.py --workers 4 --out 
 python3 research/ac_hashfree_cascade_20260914/run_file.py --census research/ac1m_autmin_20260914/records/AC1M_aut_min.csv.gz --workers 4 --out records/ac1m_reps.jsonl.gz   # the 71,283 AC1M representatives
 python3 research/ac_hashfree_cascade_20260914/run_file.py --src data/AC1M.txt.gz --prefix ac1m_row --workers 4 --compact --skip-from records/final3_extended.jsonl.gz records/final3_ac1m_reps.jsonl.gz --out records/ac1m_raw.jsonl.gz   # all 1,136,154 AC1M rows, skipping rows already run
 python3 research/ac_hashfree_cascade_20260914/run_file.py --pairs records/final3_ac1m_21_b10000.jsonl --budget 10000 --workers 4 --out records/ac1m_21_b10000.jsonl   # the 21 over-budget presentations at 10,000 units
+python3 research/ac_hashfree_cascade_20260914/acmoves.py count --records records/final3_census.jsonl.gz --out records/acmoves_ac19_census.csv.gz   # ordinary AC substitution moves per presentation
+python3 research/ac_hashfree_cascade_20260914/acmoves.py validate --records records/final3_census.jsonl.gz --sample 400   # check that count against the repository's certificate decoder
 python3 research/ac_hashfree_cascade_20260914/summarise_ac1m.py
 python3 research/ac_hashfree_cascade_20260914/run_ms640.py --out records/ms640_fast.jsonl                        # MS-640 timing, one core, rank-two engine
 python3 research/ac_hashfree_cascade_20260914/run_ms640.py --engine hybrid --out records/ms640_hybrid.jsonl      # MS-640 timing, one core, final

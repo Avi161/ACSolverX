@@ -28,6 +28,7 @@ if str(ROOT) not in sys.path:
 
 from research.ac_hashfree_cascade_20260914 import hfhybrid, verify  # noqa: E402
 from research.ac_hashfree_cascade_20260914 import hfcascade  # noqa: E402
+from research.ac_hashfree_cascade_20260914 import acmoves  # noqa: E402
 
 LETTER = {1: 'x', -1: 'X', 2: 'y', -2: 'Y'}
 
@@ -92,6 +93,11 @@ def job(arg):
                max_rank=res.get('max_rank'), dyn_pops=res.get('dyn_pops'), explicit_rank2=res.get('explicit_rank2'),
                seconds=seconds)
     if res['solved']:
+        # the ordinary AC substitution cost of the certificate: one move per
+        # substitution step, one per Nielsen image (transported to the terminal tail),
+        # none for a signed permutation; None for a dyn (stable) certificate
+        rec.update({k: v for k, v in acmoves.count(res['steps']).items()
+                    if k in ('ac_moves', 'substitution', 'nielsen', 'perm', 'dyn')})
         try:
             hfhybrid.verify_hybrid(pair, res['steps'])
             rec['verified'] = True
@@ -124,6 +130,7 @@ def main():
     ap.add_argument('--compact', action='store_true')
     ap.add_argument('--keep-above', type=int, default=500)
     ap.add_argument('--skip-from', type=Path, nargs='*', default=[], help='earlier record files: rows already run there are skipped')
+    ap.add_argument('--table', type=Path, help='also write a compact per-row CSV(.gz) with the AC-move counts')
     args = ap.parse_args()
     rows, skipped = load_rows(args)
     print(json.dumps(dict(rows_to_run=len(rows), skipped_already_run=len(skipped))), flush=True)
@@ -135,9 +142,20 @@ def main():
     t0 = time.perf_counter()
     solved = verified = 0
     unsolved = []
+    TABLE_COLS = ['name', 'r1', 'r2', 'length', 'solved', 'stage', 'units', 'path_length',
+                  'max_rank', 'explicit_rank2', 'substitution', 'nielsen', 'perm', 'dyn',
+                  'ac_moves', 'verified']
+    table = tw = None
+    if args.table:
+        args.table.parent.mkdir(parents=True, exist_ok=True)
+        table = (gzip.open if args.table.name.endswith('.gz') else open)(args.table, 'wt', newline='')
+        tw = csv.writer(table)
+        tw.writerow(TABLE_COLS)
     with opener(args.out, 'wt') as out, mp.Pool(args.workers) as pool:
         for i, rec in enumerate(pool.imap(job, [(r, params) for r in rows], chunksize=16)):
             out.write(json.dumps(rec) + '\n')
+            if tw is not None:
+                tw.writerow(['' if rec.get(c) is None else rec.get(c, '') for c in TABLE_COLS])
             solved += rec['solved']
             verified += rec.get('verified', False)
             if not rec['solved']:
@@ -155,6 +173,8 @@ def main():
             w = csv.writer(f)
             w.writerow(['name', 'r1', 'r2', 'run_in', 'as', 'solved', 'units'])
             w.writerows(skipped)
+    if table is not None:
+        table.close()
     base = base_name(args.out)
     (args.out.parent / (base + '.summary.json')).write_text(json.dumps(summary, indent=2) + '\n')
     print(json.dumps({k: v for k, v in summary.items() if k != 'unsolved'}), 'unsolved:', len(unsolved))

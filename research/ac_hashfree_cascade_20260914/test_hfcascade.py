@@ -143,3 +143,45 @@ class Verifier(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class ACMoveCount(unittest.TestCase):
+    """`acmoves.count` must agree with the repository's own certificate decoder.
+
+    The count asserts that a hybrid certificate costs one ordinary AC substitution
+    per `substitution` step plus one per Nielsen image, and nothing for a signed
+    permutation.  The decoder is the authority: it transports the basis change back
+    through the path and replays the result to (x, y) without canonicalisation.
+    """
+
+    def _check(self, pair):
+        from research.ac_hashfree_cascade_20260914 import hfhybrid, acmoves
+        res = hfhybrid.solve(pair, budget=1000)
+        self.assertTrue(res['solved'], pair)
+        self.assertTrue(res['explicit_rank2'], pair)
+        formula = acmoves.count(res['steps'])
+        decoded = acmoves.decode_counts(pair, res['steps'])
+        self.assertEqual(formula['ac_moves'], decoded['multiply'], pair)
+        self.assertEqual(formula['ac_moves'],
+                         formula['substitution'] + formula['nielsen'], pair)
+
+    def test_matches_decoder_on_search_rows(self):
+        for pair in (('YXyXXXyx', 'YYXXyXYXyxYxxxyyX'),   # 156 AC moves, 3 Nielsen, 1 perm
+                     ('YXXXyxYxx', 'YYYxxYYXXX'),           # 154 AC moves, 3 Nielsen, 2 perms
+                     ('YXXXyxYxx', 'YYXYxxxYXXX')):
+            with self.subTest(pair=pair):
+                self._check(pair)
+
+    def test_terminal_and_short_rows(self):
+        from research.ac_hashfree_cascade_20260914 import acmoves
+        self.assertEqual(acmoves.count([])['ac_moves'], 0)
+        for pair in (('X', 'YYXyx'), ('YX', 'YYYXyXXyx')):
+            with self.subTest(pair=pair):
+                self._check(pair)
+
+    def test_stable_certificate_has_no_rank_two_count(self):
+        from research.ac_hashfree_cascade_20260914 import acmoves
+        c = acmoves.count([{'kind': 'substitution', 'move': '1_1_0_0'},
+                           {'kind': 'dyn', 'event': 'define', 'relabel': None, 'after': ()}])
+        self.assertTrue(c['stable'])
+        self.assertIsNone(c['ac_moves'])
