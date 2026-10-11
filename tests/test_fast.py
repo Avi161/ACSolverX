@@ -70,6 +70,13 @@ def test_three_generators(kw):
     assert r.solved and r.end.n_gen == 3
 
 
+def test_s20_mk2_needs_two_generators():
+    p = Presentation.parse("xY", "yZ", "zyX")
+    for call in (lambda: search(p, priority="s20_mk2", backend="fast"), lambda: children(p.rels, 3, priority="s20_mk2")):
+        with pytest.raises(ValueError, match="two generators"):
+            call()
+
+
 def test_start_over_the_cap():
     r = parity(Presentation.parse("xxxxxxyXYXYX", "xyXyXY"), cap=8, budget=10)
     assert r.pops == 1 and r.stats["cap_rejected"] == len(list(enumerate_moves(r.start.rels)))

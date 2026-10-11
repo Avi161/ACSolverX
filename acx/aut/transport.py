@@ -103,7 +103,7 @@ class _Emitter:
             sign, c = _witness(self.pres.rels[m], t)
             if sign < 0:
                 self.invert(m)
-            self.conj(m, c if c or self.pres.rels[m] == t else (1, -1))      # (1, -1): free reduction only
+            self.conj(m, c)
 
     def s_move(self, rels, m, tab):
         """The S-move ``m`` on canonical ``rels``, transported by the substitution table ``tab``."""

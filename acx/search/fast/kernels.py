@@ -49,6 +49,13 @@ LENGTH, S20_MK2 = 0, 1
 PRIORITY_IDS = {"length": LENGTH, "s20_mk2": S20_MK2}
 
 
+def priority_id(priority, rels):
+    """The kernel id of a priority name; ``s20_mk2`` needs two generators, as in ``acx.core.priority``."""
+    if priority == "s20_mk2" and any(abs(g) > 2 for r in rels for g in r):
+        raise ValueError("s20_mk2 is defined for two generators only")
+    return PRIORITY_IDS[priority]
+
+
 def encode(rels, n_gen, width=None):
     """Int-tuple relators -> ``(syms (R, width) uint8, lens (R,) int32)``."""
     lens = np.array([len(r) for r in rels], dtype=np.int32)
@@ -332,6 +339,6 @@ def children(rels, n_gen=2, cap=24, cyclic=True, priority="length"):
     out_len = np.zeros((max(mc, 1), len(lens)), dtype=np.int32)
     out_mv = np.zeros((max(mc, 1), 5), dtype=np.int32)
     count, rejected = expand(syms, lens, n_gen, -1 if cap is None else cap, cyclic, out, out_len, out_mv)
-    pid = PRIORITY_IDS[priority]
+    pid = priority_id(priority, rels)
     scores = np.array([score(out[c], out_len[c], n_gen, pid) for c in range(count)])
     return out[:count], out_len[:count], out_mv[:count], scores, rejected

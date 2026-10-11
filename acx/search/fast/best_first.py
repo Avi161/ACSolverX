@@ -27,7 +27,7 @@ from numba import njit
 from ...core.moves import Move
 from ...core.words import Presentation, fmt
 from ..engine import Result
-from .kernels import PRIORITY_IDS, child_width, decode, encode, expand, key_code, max_children, score
+from .kernels import child_width, decode, encode, expand, key_code, max_children, priority_id, score
 
 OK, SOLVED, NEED_CAPACITY, NEED_WIDTH = 0, 1, 2, 3
 # st slots
@@ -208,14 +208,13 @@ class _Arrays:
 def run(start, cfg):
     """Search from ``start`` (reduced and canonical) under ``cfg``; spec's ``Result``, step for step."""
     n, R = start.n_gen, len(start.rels)
-    if cfg.priority == "s20_mk2" and any(abs(g) > 2 for r in start.rels for g in r):
-        raise ValueError("s20_mk2 is defined for two generators only")
+    pid = priority_id(cfg.priority, start.rels)
     cap = -1 if cfg.cap is None else cfg.cap
     syms, lens0 = encode(start.rels, n, width=cfg.cap)   # uncapped: the start, widened on demand
     W = syms.shape[1]
     a = _Arrays(max(1024, min(cfg.budget, 1 << 16) * 8) + int(max_children(lens0)), R, W, cfg.capture_path)
     a.arena[0], a.lens[0], a.depth[0], a.heap[0] = syms, lens0, 0, 0
-    a.prio[0] = score(syms, lens0, n, PRIORITY_IDS[cfg.priority])
+    a.prio[0] = score(syms, lens0, n, pid)
     a.parent[0] = -1
     _rehash(a.table, a.arena, a.lens, 1)
     tot0 = int(lens0.sum())
@@ -229,7 +228,7 @@ def run(start, cfg):
     out_mv = np.empty((mc, 5), dtype=np.int32)
     while True:
         status = _run(a.arena, a.lens, a.depth, a.prio, a.parent, a.pmove, a.heap, a.table, trace, st,
-                      cfg.budget, n, cap, cfg.cyclic, PRIORITY_IDS[cfg.priority], cfg.capture_path,
+                      cfg.budget, n, cap, cfg.cyclic, pid, cfg.capture_path,
                       out, out_len, out_mv)
         if status == NEED_CAPACITY:
             a = a.grow(2 * len(a.depth), W, int(st[N_DISC]), int(st[HEAP_LEN]))

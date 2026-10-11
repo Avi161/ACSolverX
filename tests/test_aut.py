@@ -1,5 +1,6 @@
 """acx.aut: Whitehead canonical form (pure vs numba parity), orbit pairs, certificate transport."""
 import csv
+import itertools
 import os
 import random
 
@@ -89,6 +90,22 @@ def test_ladder_pairs_are_automorphic():
     assert not are_automorphic(_p(*a[:2]), _p(*b[:2]))
 
 
+def test_reps_match_the_published_orbit_table():
+    """data/AC19_extended_aut_min.csv is the source branch's own output: same reps, in its string order."""
+    path = os.path.join(ROOT, "data", "AC19_extended_aut_min.csv")
+    if not os.path.exists(path):
+        pytest.skip("data/AC19_extended_aut_min.csv not shipped")
+    rows = dataset("data/AC19_extended.txt")
+    checked = 0
+    with open(path) as f:
+        for rec in itertools.islice(csv.DictReader(f), 120):
+            rep = _p(rec["r1"], rec["r2"]).canonical()
+            for m in map(int, rec["members"].split()[:2]):
+                assert aut_canon(rows[m]).rep == rep
+                checked += 1
+    assert checked >= 200
+
+
 # --- pure vs numba --------------------------------------------------------------------------------
 
 def test_fast_matches_pure_on_ac19_extended():
@@ -145,6 +162,23 @@ def test_transport_of_mixed_and_noncyclic_paths():
     replay(pres, transport(pres, ac.phi, mixed, res.start), normalize=False)
     _, path = solve_via_aut_min(pres, budget=2000, cyclic=False)
     replay(pres, path, cyclic=False, normalize=False)
+
+
+def test_transport_on_already_trivial_and_unreduced_rows():
+    rng, solved = random.Random(2), 0
+    for strs in [("x", "y"), ("y", "x"), ("xy", "y"), ("Xyx", "x"), ("yXx", "xyY")]:
+        pres = _p(*strs)
+        res, path = solve_via_aut_min(pres, budget=50)
+        assert res.solved and replay(pres, path, normalize=False)[-1].is_trivial()
+    for pres in dataset("data/ms640_solved.txt")[:30]:                      # conjugated, inverted, shuffled input
+        rels = [(g,) + (r[k:] + r[:k] if rng.random() < .5 else tuple(-a for a in reversed(r))) + (-g,)
+                for r, g, k in ((r, rng.choice((1, -1, 2, -2)), rng.randrange(len(r))) for r in pres.rels)]
+        raw = apply_pres(Presentation(2, tuple(rels)), tuple(rng.randrange(8, len(AUTOS)) for _ in range(5)))
+        _, path = solve_via_aut_min(raw, budget=500)
+        if path is not None:
+            assert replay(raw, path, normalize=False)[-1].is_trivial()
+            solved += 1
+    assert solved >= 15
 
 
 def test_transport_rejects_a_wrong_frame():

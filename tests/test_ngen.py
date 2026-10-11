@@ -1,0 +1,149 @@
+"""acx.ngen: the SAC transform, its replayable lift to elementary stable moves, n-generator search."""
+import random
+
+import pytest
+
+from acx.aut.whitehead import _apply
+from acx.core.config import SearchConfig
+from acx.core.words import Presentation, canonical_word, inverse, parse, reduce
+from acx.ngen import NGenConfig, check, define, lift, solve, triangulate, verify
+from acx.search import PARITY_STATS, search
+from acx.verify import ReplayError, replay
+from acx.verify.replay import abs_det
+
+FAST = SearchConfig(backend="fast", budget=3000)
+EXPECTED_SAMPLE_SOLVES = 10    # of 40 (rank two solves 34 of the same 40 at budget 1,000)
+ROWS = [0, 32, 96, 128, 224, 256]      # MS640 rows whose triangle root solves within 3,000 pops
+
+
+def test_triangulate_ms640(ms640):
+    for pres in ms640[::16]:
+        sac = triangulate(pres)
+        assert check(sac) and sac.source == pres.reduced()
+        assert sac.rank == pres.n_gen + len(sac.digrams)
+        assert all(len(r) <= 3 for r in sac.root.rels) and len(sac.root.rels) == sac.rank
+        assert abs_det(sac.root) == 1
+
+
+# digrams and root of dynrank.triangulate (origin/claude/vigilant-babbage-nnbuj0) on rows whose
+# tie-breaks depend on orienting each relator as its canonical form (roots in acx letters)
+SOURCE = {252: (((-2, -2), (-1, -1), (1, -2), (-5, 3), (-5, 4)), ["DBa", "Daz", "CBz", "CzX", "BxY", "AXX", "ZYY"]),
+          285: (((-2, -2), (-1, -1), (-3, 1), (-5, -4), (-5, 1)), ["DBx", "DYz", "CBA", "CAY", "BZx", "AXX", "ZYY"]),
+          458: (((-2, -2), (-3, -3), (-2, 1), (-5, 4), (-6, -3)), ["DCZ", "DxA", "CBa", "B", "BYx", "AZZ", "ZYY"])}
+
+
+@pytest.mark.parametrize("pid", sorted(SOURCE))
+def test_triangulate_matches_the_source(ms640, pid):
+    digrams, root = SOURCE[pid]
+    sac = triangulate(ms640[pid])
+    assert sac.digrams == digrams
+    assert sorted(canonical_word(r) for r in sac.root.rels) == sorted(canonical_word(parse(r)) for r in root)
+
+
+def test_triangulate_is_a_noop_on_short_relators():
+    sac = triangulate(Presentation.parse("xy", "Yxy"))
+    assert sac.digrams == () and sac.root == sac.source
+
+
+def test_check_rejects_a_forged_root():
+    sac = triangulate(Presentation.parse("YYXyx", "Yx"))
+    forged = type(sac)(sac.source, sac.digrams[:-1], sac.root)
+    assert not check(forged)
+
+
+def test_define_keeps_the_group_element():
+    """Substituting ``h -> d`` in a rewritten relator gives back a conjugate of the original."""
+    rng = random.Random(7)
+    for _ in range(200):
+        w = reduce(tuple(rng.choice([1, -1, 2, -2]) for _ in range(rng.randint(2, 14))))
+        if len(w) < 2:
+            continue
+        k = rng.randrange(len(w))
+        d = (w[k], w[(k + 1) % len(w)])
+        out = define(Presentation(2, (w, (1,))), d)
+        assert out.rels[-1] == inverse(d) + (3,)
+        tab = {1: (1,), -1: (-1,), 2: (2,), -2: (-2,), 3: d, -3: inverse(d)}
+        assert canonical_word(reduce(_apply(out.rels[0], tab))) == canonical_word(w)
+        assert len(out.rels[0]) < len(w)
+
+
+@pytest.mark.parametrize("pid", ROWS)
+def test_lift_replays_on_the_source(ms640, pid):
+    pres = ms640[pid]
+    res = solve(pres, NGenConfig(FAST))
+    assert res.solved and res.kind == "stable_cert"
+    m = len(res.sac.digrams)
+    ops = [mv["op"] for mv in res.moves]
+    assert ops.count("stabilize") == ops.count("destabilize") == m and set(ops) <= {
+        "stabilize", "destabilize", "conjugate", "multiply", "invert", "swap"}
+    states = verify(pres, res)
+    assert states[-1].is_trivial() and states[-1].n_gen == 2
+    assert max(s.n_gen for s in states) == pres.n_gen + m
+
+
+def test_lift_rejects_a_tampered_certificate(ms640):
+    res = solve(ms640[32], NGenConfig(FAST))
+    first = next(i for i, mv in enumerate(res.moves) if mv["op"] == "multiply")
+    with pytest.raises(ReplayError):
+        replay(ms640[32], res.moves[:first] + res.moves[first + 1:], normalize=False)
+    with pytest.raises(ReplayError):
+        replay(ms640[32], res.moves[:len(res.moves) // 2], normalize=False)
+
+
+def test_lift_from_unreduced_and_three_generator_sources(ms640):
+    base = ms640[32]
+    conj = Presentation(2, ((-1,) + base.rels[0] + (1,), base.rels[1] + (2, -2)))
+    assert conj.rels != conj.reduced().rels
+    stab = Presentation(3, base.rels + ((3,),))
+    for pres in (conj, stab):
+        res = solve(pres, NGenConfig(FAST))
+        assert res.solved and res.kind == "stable_cert"
+        assert verify(pres, res)[-1].is_trivial()
+
+
+def test_lift_needs_a_path_that_solves(ms640):
+    sac = triangulate(ms640[32])
+    res = search(sac.root, FAST)
+    with pytest.raises(ReplayError):
+        lift(ms640[32], sac, res.path[:-1], res.start)
+
+
+@pytest.mark.parametrize("cap", [24, 5, None])
+@pytest.mark.parametrize("pid", [0, 96, 224, 64])
+def test_fast_matches_spec_past_two_generators(ms640, pid, cap):
+    root = triangulate(ms640[pid]).root
+    cfg = SearchConfig(cap=cap, budget=300, trace=True)
+    a, b = search(root, cfg), search(root, cfg.replace(backend="fast"))
+    assert root.n_gen > 2 and (a.solved or cap != 5 or a.stats["cap_rejected"] > 0)
+    assert (a.solved, a.pops, a.path, a.end, a.trace) == (b.solved, b.pops, b.path, b.end, b.trace)
+    assert {k: a.stats[k] for k in PARITY_STATS} == {k: b.stats[k] for k in PARITY_STATS}
+
+
+def test_solve_without_sac_is_an_ac_path(ms640):
+    stab = Presentation(3, ms640[32].rels + ((3,),))
+    res = solve(stab, NGenConfig(FAST, sac=False))
+    assert res.solved and res.kind == "ac_path" and res.sac is None and res.rank == 3
+    assert verify(stab, res)[-1].is_trivial()
+
+
+def test_solve_short_relators_need_no_definition():
+    res = solve(Presentation.parse("xy", "Yxy"), NGenConfig(FAST))
+    assert res.kind == "ac_path" and res.sac.digrams == () and verify(Presentation.parse("xy", "Yxy"), res)
+
+
+def test_solve_unsolved_and_guard(ms640):
+    res = solve(ms640[64], NGenConfig(FAST.replace(budget=5)))
+    assert not res.solved and res.kind is None and res.moves is None
+    with pytest.raises(ValueError):
+        solve(ms640[64], NGenConfig(SearchConfig(priority="s20_mk2")))
+
+
+def test_ms640_sample_solves_in_n_generator_form(ms640):
+    """Every 16th MS640 row at budget 3,000 on the fast backend: each solve replays on its source."""
+    n = 0
+    for pres in ms640[::16]:
+        res = solve(pres, NGenConfig(FAST))
+        if res.solved:
+            n += 1
+            assert verify(pres, res)[-1].is_trivial()
+    assert n == EXPECTED_SAMPLE_SOLVES
