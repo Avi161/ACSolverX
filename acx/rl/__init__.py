@@ -16,3 +16,5 @@ Source: ``origin/experiments/ppo:experiments/ppo`` (tip c73b11f2), the PyTorch p
 
 Install: ``pip install torch`` (CPU is enough; ``--index-url https://download.pytorch.org/whl/cpu`` for the small wheel).
 """
+
+L = 24      # the policy's observation width: the longest relator it can see (torch-free, for config checks)

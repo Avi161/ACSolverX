@@ -35,6 +35,7 @@ commit 5ae1bd8e; the drivers (``best_first``, ``closure``) and ``triangulate``
 """
 from collections import Counter
 
+from ..core.priority import length
 from ..core.words import inverse, reduce
 from ..ngen.sac import tokenize
 
@@ -49,10 +50,6 @@ def dcanon(w):
 
 def normalize(words):
     return tuple(sorted(dcanon(w) for w in words))
-
-
-def total_length(words):
-    return sum(map(len, words))
 
 
 # ---------------------------------------------------------------- generator relabelling
@@ -147,7 +144,7 @@ def products(words, cap):
                         product = dcanon(left + base[k2:] + base[:k2])
                         if not product or product == target:
                             continue
-                        if len(product) > cap:
+                        if cap is not None and len(product) > cap:
                             rejected += 1
                             continue
                         key = normalize(words[:i] + (product,) + words[i + 1:])
@@ -238,12 +235,12 @@ def children(words, cap, ceiling, min_uses=2, nielsen=True):
     """``(children, rejected)``: every admissible child ``(normalized child, event)`` within the
     total-length ``ceiling``, and the number of moves the cap or the ceiling rejected.
 
-    ``cap`` bounds the relators a product or an elimination creates; a definition
+    ``cap`` bounds the relators a product or an elimination creates (``None``: no bound); a definition
     never lengthens a relator. Relators inherited unchanged may exceed ``cap``.
     """
     prods, rejected = products(words, cap)
     elims = eliminations(words)
-    kept = [(k, e) for k, e in elims if max(map(len, k), default=0) <= cap]
+    kept = [(k, e) for k, e in elims if cap is None or max(map(len, k), default=0) <= cap]
     cands = prods + defines(words, min_uses) + kept + (nielsen_children(words) if nielsen else [])
-    out = [(k, e) for k, e in cands if total_length(k) <= ceiling]
+    out = [(k, e) for k, e in cands if length(k) <= ceiling]
     return out, rejected + len(elims) - len(kept) + len(cands) - len(out)

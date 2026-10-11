@@ -1,0 +1,49 @@
+{
+ "name": "bench60_ngen_sac",
+ "method": "ngen",
+ "benchmark": "bench60",
+ "rows": 60,
+ "solved": 8,
+ "ac_path": 0,
+ "aut_assisted": 0,
+ "stable_cert": 8,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 531923,
+  "on_solved": 11923
+ },
+ "path_length": {
+  "stable_cert": {
+   "sub_moves": {
+    "n": 8,
+    "sum": 147,
+    "mean": 18.38,
+    "median": 19.5,
+    "max": 26
+   },
+   "elem_moves": {
+    "n": 8,
+    "sum": 8152,
+    "mean": 1019.0,
+    "median": 1167.5,
+    "max": 1517
+   }
+  }
+ },
+ "wall_seconds": 13.45,
+ "row_seconds": 52.74,
+ "config": {
+  "method": "ngen",
+  "benchmark": "bench60",
+  "search": {
+   "backend": "fast",
+   "budget": 10000
+  },
+  "ngen": {
+   "sac": true
+  },
+  "name": "bench60_ngen_sac",
+  "workers": 4
+ }
+}

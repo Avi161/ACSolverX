@@ -1,0 +1,8 @@
+{
+ "method": "hybrid",
+ "benchmark": "ac1m_hard_holdout60",
+ "hybrid": {
+  "budget": 1000
+ },
+ "name": "holdout60_hybrid"
+}

@@ -1,0 +1,60 @@
+{
+ "name": "ms640_hybrid",
+ "method": "hybrid",
+ "benchmark": "ms640",
+ "rows": 640,
+ "solved": 640,
+ "ac_path": 128,
+ "aut_assisted": 512,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "units",
+  "total": 25064,
+  "on_solved": 25064
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 128,
+    "sum": 1968,
+    "mean": 15.38,
+    "median": 8.0,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 128,
+    "sum": 9026,
+    "mean": 70.52,
+    "median": 44.0,
+    "max": 1380
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 512,
+    "sum": 10378,
+    "mean": 20.27,
+    "median": 10.0,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 512,
+    "sum": 80029,
+    "mean": 156.31,
+    "median": 69.0,
+    "max": 2783
+   }
+  }
+ },
+ "wall_seconds": 11.69,
+ "row_seconds": 11.58,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "ms640",
+  "hybrid": {
+   "budget": 1000
+  },
+  "name": "ms640_hybrid"
+ }
+}

@@ -1,0 +1,9 @@
+# The S20_MK2 priority (L + 20 S + 2 MK) on the fast backend.
+method = "greedy"
+benchmark = "ms640"
+
+[search]
+backend = "fast"
+priority = "s20_mk2"
+budget = 10000
+cap = 24

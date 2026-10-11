@@ -10,8 +10,7 @@ from acx.core.moves import (Move, apply_raw, destabilize, elementary_step, enume
                             from_legacy, s_step, seam_cancels, stabilize, to_legacy)
 from acx.core.priority import features, length, s20_mk2
 from acx.core.words import (Presentation, canonical_rels, canonical_word, fmt, inverse,
-                            is_cyclically_reduced, parse, reduce, rotate, state_key, to_bool_array,
-                            from_bool_array, to_codes)
+                            is_cyclically_reduced, parse, reduce, rotate, state_key)
 
 RNG = random.Random(7)
 
@@ -31,10 +30,12 @@ def test_parse_format_roundtrip():
 
 
 def test_rotate_is_np_roll_of_main_encoding():
+    """Main rotates its flat ``(n, 2)`` encoding by ``np.roll(arr, 2k)``: the word rolled by ``k``."""
     for _ in range(50):
         w = rand_word(RNG.randint(1, 9))
         k = RNG.randint(0, 20)
-        assert from_bool_array(np.roll(to_bool_array(w), 2 * k)) == rotate(w, k)
+        flat = np.array([[abs(g) == 1, g > 0] for g in w]).reshape(-1)
+        assert [tuple(p) for p in np.roll(flat, 2 * k).reshape(-1, 2)] == [(abs(g) == 1, g > 0) for g in rotate(w, k)]
 
 
 def test_reduce():
@@ -64,8 +65,7 @@ def test_canonical_pair_sorted_by_length_then_booth():
 
 
 def test_codes_and_state_key_sort_like_main_string_keys():
-    assert list(to_codes(parse("XYxy"))) == [1, 2, 3, 4]
-    assert to_bool_array(parse("xXyY")).tolist() == [[1, 1], [1, 0], [0, 1], [0, 0]]
+    assert state_key((parse("XYxy"),)) == ((1, 2, 3, 4),)
     pairs = [(rand_word(RNG.randint(0, 5)), rand_word(RNG.randint(0, 5))) for _ in range(300)]
     by_key = sorted(pairs, key=state_key)
     by_str = sorted(pairs, key=lambda p: (fmt(p[0]), fmt(p[1])))

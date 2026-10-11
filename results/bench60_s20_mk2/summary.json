@@ -1,0 +1,48 @@
+{
+ "name": "bench60_s20_mk2",
+ "method": "greedy",
+ "benchmark": "bench60",
+ "rows": 60,
+ "solved": 52,
+ "ac_path": 52,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 141740,
+  "on_solved": 61740
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 52,
+    "sum": 3237,
+    "mean": 62.25,
+    "median": 31.5,
+    "max": 380
+   },
+   "elem_moves": {
+    "n": 52,
+    "sum": 34173,
+    "mean": 657.17,
+    "median": 281.0,
+    "max": 4443
+   }
+  }
+ },
+ "wall_seconds": 4.87,
+ "row_seconds": 18.56,
+ "config": {
+  "method": "greedy",
+  "benchmark": "bench60",
+  "search": {
+   "backend": "fast",
+   "priority": "s20_mk2",
+   "budget": 10000,
+   "cap": 24
+  },
+  "name": "bench60_s20_mk2",
+  "workers": 4
+ }
+}

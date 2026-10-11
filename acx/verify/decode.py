@@ -27,31 +27,9 @@ Port of ``origin/codex/ac-elementary-decoder:experiments/search/ac_decode.py`` (
 ``_emit_canonicalization``, ``replay_elementary``) and ``decode_ac_jsonl.py`` (the packed ``I/S/C/M``
 JSONL form: ``pack`` / ``unpack``), rewritten for n relators and the acx word and move types.
 """
-from ..core.moves import Move, elementary_step, step
-from ..core.words import canonical_rels, canonical_word, inverse, reduce, rotate, to_char
+from ..core.moves import Move, Trace, step
+from ..core.words import canonical_rels, canonical_word, inverse, reduce, rotate
 from .replay import replay
-
-
-class _Trace:
-    """A presentation plus the elementary moves that produced it."""
-
-    def __init__(self, pres, moves=()):
-        self.pres, self.moves = pres, list(moves)
-
-    def copy(self):
-        return _Trace(self.pres, self.moves)
-
-    def do(self, op):
-        self.pres = elementary_step(self.pres, op)
-        self.moves.append(op)
-
-    def conj(self, t, word):
-        """``r_t <- c^-1 r_t c`` for the word ``c``, one generator letter at a time (``t`` 0-based)."""
-        for g in word:
-            self.do({"op": "conjugate", "target": t + 1, "by": to_char(g)})
-
-    def invert(self, t):
-        self.do({"op": "invert", "target": t + 1})
 
 
 def _rot_conjugators(w, k):
@@ -92,7 +70,7 @@ def _conjugated_multiply(tr, i, j, s, c):
     if s < 0:
         tr.invert(j)
     tr.conj(j, c)
-    tr.do({"op": "multiply", "target": i + 1, "source": j + 1})
+    tr.multiply(i, j)
     tr.conj(j, inverse(c))
     if s < 0:
         tr.invert(j)
@@ -142,7 +120,7 @@ def decode(pres, path):
     """
     if any(reduce(r, cyclic=False) != r for r in pres.rels):
         raise ValueError(f"start must be freely reduced: {pres}")
-    tr, expect = _Trace(pres), pres.reduced().canonical()
+    tr, expect = Trace(pres), pres.reduced().canonical()
     _canonicalize(tr)
     for mv in path:
         expect = step(expect, mv)

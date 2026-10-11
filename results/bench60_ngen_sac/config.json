@@ -1,0 +1,12 @@
+{
+ "method": "ngen",
+ "benchmark": "bench60",
+ "search": {
+  "backend": "fast",
+  "budget": 10000
+ },
+ "ngen": {
+  "sac": true
+ },
+ "name": "bench60_ngen_sac"
+}

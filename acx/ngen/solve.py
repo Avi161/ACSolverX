@@ -5,7 +5,7 @@ run any number of relators, step for step identical (``tests/test_ngen.py``
 pins this for the triangle roots). They replace ``solvern`` / ``solvern_fast``
 (``origin/worktree-hsearch-hyper:experiments/stable_ac/``: ``solvern.py`` blob
 5d1dd1ee, commit eff4b4c7, identical on ``origin/cov/all-subsets-sweep``;
-``solvern_fast.py`` blob e965386b, commit 848e673d: the numba twin, same pop
+``solvern_fast.py`` blob e965386b, commit a4024828 (added in 848e673d): the numba twin, same pop
 order, 4.6-5.9x faster) and ``greedy_nrel`` (``origin/test/stable-ac-moves:
 experiments/stable_ac/one_generator/``, blob e12d2dd2, commit 658db0c0: 364 ->
 3,300 nodes/s with ``expand_fast``). ``solvern`` is the newer, and the one whose

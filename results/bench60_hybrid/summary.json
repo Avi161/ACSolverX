@@ -1,0 +1,61 @@
+{
+ "name": "bench60_hybrid",
+ "method": "hybrid",
+ "benchmark": "bench60",
+ "rows": 60,
+ "solved": 60,
+ "ac_path": 7,
+ "aut_assisted": 53,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "units",
+  "total": 4783,
+  "on_solved": 4783
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 7,
+    "sum": 80,
+    "mean": 11.43,
+    "median": 11,
+    "max": 18
+   },
+   "elem_moves": {
+    "n": 7,
+    "sum": 389,
+    "mean": 55.57,
+    "median": 49,
+    "max": 102
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 53,
+    "sum": 3302,
+    "mean": 62.3,
+    "median": 19,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 53,
+    "sum": 27252,
+    "mean": 514.19,
+    "median": 216,
+    "max": 2783
+   }
+  }
+ },
+ "wall_seconds": 1.84,
+ "row_seconds": 6.8,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "bench60",
+  "hybrid": {
+   "budget": 1000
+  },
+  "name": "bench60_hybrid",
+  "workers": 4
+ }
+}

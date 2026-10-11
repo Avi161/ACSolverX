@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "acx"
 version = "0.1.0"
-description = "Andrews-Curtis search: substitution greedy, change of variables, replay verification"
+description = "Andrews-Curtis search: greedy (spec and numba), change of variables, automorphisms, hybrid, n-generator, RL; every path replay-verified"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { file = "LICENSE" }
@@ -19,4 +19,4 @@ dev = ["pytest"]
 include = ["acx*"]
 
 [tool.setuptools.package-data]
-acx = ["*.md"]
+acx = ["rl/checkpoint/*"]

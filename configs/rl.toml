@@ -1,0 +1,8 @@
+# The 610model PPO policy (step 1000) as a beam search; needs pip install -e .[rl].
+method = "rl"
+benchmark = "ms640"
+rows = "0:30"
+
+[rl]
+width = 256
+steps = 150

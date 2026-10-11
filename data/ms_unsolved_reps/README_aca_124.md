@@ -1,12 +1,12 @@
 # The 124 unsolved ACA classes — initial, reduced, and best-known
 
-> Copied from `origin/cursor/u124-stable-ac-1b54` (this note added). The `CLAUDE.md`, `docs/BRANCH_MAP.md`, `experiments/ppo` and
+> Copied from `origin/cursor/u124-stable-ac-1b54` (this note added). The `docs/BRANCH_MAP.md`, `experiments/ppo` and
 > `results/` references below point into that branch history, not this checkout.
 
 Three views of the same 124 rows (`aca_0` … `aca_123`), the ACA classes of the
 550 unsolved Miller–Schupp presentations. Keyed by `name`; `members` lists the
 **A-equivalence class representatives** merged into each ACA class, not the raw
-cells — the 124 `n_members` sum to **261**, the rep count of CLAUDE.md §4, and
+cells — the 124 `n_members` sum to **261**, the representative count of that branch's notes, and
 the column matches `reps` in `results/equivalence_classes/ms1190_tables/
 unsolved_124_aca_classes.csv` row for row (that table's `n_cells` is what sums
 to 550). So these files record the 261 → 124 step. Copied from
@@ -58,6 +58,6 @@ in `aca_124_initial.csv` and `aca_124_best.csv` on every mu_floor row.
 
 ## Caveat
 
-The reductions come from the μ-ladder line, which `CLAUDE.md` §3 records as **not
+The reductions come from the μ-ladder line, which that branch's notes record as **not
 production** — these files are a data record, not a recommended pipeline. The
 124 itself is an **upper bound** from a bounded AC-move search (§4).

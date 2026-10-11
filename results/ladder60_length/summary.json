@@ -1,0 +1,47 @@
+{
+ "name": "ladder60_length",
+ "method": "greedy",
+ "benchmark": "ladder60",
+ "rows": 60,
+ "solved": 12,
+ "ac_path": 12,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 508744,
+  "on_solved": 28744
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 12,
+    "sum": 644,
+    "mean": 53.67,
+    "median": 60.5,
+    "max": 153
+   },
+   "elem_moves": {
+    "n": 12,
+    "sum": 6807,
+    "mean": 567.25,
+    "median": 604.0,
+    "max": 1588
+   }
+  }
+ },
+ "wall_seconds": 10.5,
+ "row_seconds": 41.11,
+ "config": {
+  "method": "greedy",
+  "benchmark": "ladder60",
+  "workers": 4,
+  "search": {
+   "backend": "fast",
+   "priority": "length",
+   "budget": 10000
+  },
+  "name": "ladder60_length"
+ }
+}

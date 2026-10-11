@@ -1,0 +1,77 @@
+{
+ "name": "ac1m_hybrid",
+ "method": "hybrid",
+ "benchmark": "ac1m_autmin",
+ "rows": 71283,
+ "solved": 71281,
+ "ac_path": 34649,
+ "aut_assisted": 36508,
+ "stable_cert": 124,
+ "skipped": 0,
+ "cost": {
+  "unit": "units",
+  "total": 2384509,
+  "on_solved": 2382509
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 34649,
+    "sum": 481967,
+    "mean": 13.91,
+    "median": 10,
+    "max": 129
+   },
+   "elem_moves": {
+    "n": 34649,
+    "sum": 2264474,
+    "mean": 65.35,
+    "median": 53,
+    "max": 546
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 36508,
+    "sum": 654321,
+    "mean": 17.92,
+    "median": 13.0,
+    "max": 385
+   },
+   "elem_moves": {
+    "n": 36508,
+    "sum": 4974640,
+    "mean": 136.26,
+    "median": 101.0,
+    "max": 3131
+   }
+  },
+  "stable_cert": {
+   "sub_moves": {
+    "n": 124,
+    "sum": 1662,
+    "mean": 13.4,
+    "median": 13.0,
+    "max": 25
+   },
+   "elem_moves": {
+    "n": 124,
+    "sum": 62312,
+    "mean": 502.52,
+    "median": 444.5,
+    "max": 2333
+   }
+  }
+ },
+ "wall_seconds": 252.27,
+ "row_seconds": 950.7,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "ac1m_autmin",
+  "hybrid": {
+   "budget": 1000
+  },
+  "name": "ac1m_hybrid",
+  "workers": 4
+ }
+}

@@ -2,11 +2,10 @@
 
 Parity means the same ``solved``, ``pops``, ``path``, ``end``, popped-state
 ``trace`` and ``PARITY_STATS``. ``PARITY_ROWS`` are 40 MS640 rows at budget
-10,000 under both presets (about 70 s, nearly all of it spec);
-``ACX_FULL_PARITY=1`` adds every 16th MS640 row (40 rows, about 56,000 spec
-pops, a few minutes).
+10,000 under both presets (about 70 s, nearly all of it spec; the four heavy
+rows are marked ``slow``); the ``slow`` set adds every 16th MS640 row (40 rows,
+about 56,000 spec pops, a few minutes).
 """
-import os
 import time
 
 import pytest
@@ -22,7 +21,7 @@ from acx.search.fast import children, decode
 # is at most 2,500, plus four rows costing 3,000-7,600 pops: about 22,000 spec pops in all.
 PARITY_ROWS = [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255,
                270, 285, 300, 315, 330, 345, 360, 375, 390, 405, 420, 435, 450, 467, 482, 497, 512,
-               528, 464, 547, 565, 577]
+               528] + [pytest.param(p, marks=pytest.mark.slow) for p in (464, 547, 565, 577)]
 FULL_ROWS = list(range(0, 640, 16))
 
 
@@ -41,7 +40,7 @@ def test_ms640_parity_budget_10k(ms640, pid, priority):
     parity(ms640[pid], priority=priority, budget=10_000)
 
 
-@pytest.mark.skipif(not os.environ.get("ACX_FULL_PARITY"), reason="set ACX_FULL_PARITY=1 (slow)")
+@pytest.mark.slow
 @pytest.mark.parametrize("priority", ["length", "s20_mk2"])
 @pytest.mark.parametrize("pid", FULL_ROWS)
 def test_ms640_parity_full(ms640, pid, priority):
@@ -127,6 +126,7 @@ def test_children_kernel(ms640, priority):
     assert kept < total and rejected_all > 0
 
 
+@pytest.mark.slow
 def test_speed(ms640, capsys):
     """Report pops/s of both backends on the same rows; fast must be several times faster."""
     rate = {}

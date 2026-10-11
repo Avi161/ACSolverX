@@ -1,0 +1,47 @@
+{
+ "name": "ms640_length_fast",
+ "method": "greedy",
+ "benchmark": "ms640",
+ "rows": 640,
+ "solved": 606,
+ "ac_path": 606,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 576053,
+  "on_solved": 236053
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 606,
+    "sum": 12103,
+    "mean": 19.97,
+    "median": 8.0,
+    "max": 294
+   },
+   "elem_moves": {
+    "n": 606,
+    "sum": 114828,
+    "mean": 189.49,
+    "median": 54.0,
+    "max": 3886
+   }
+  }
+ },
+ "wall_seconds": 64.53,
+ "row_seconds": 64.46,
+ "config": {
+  "method": "greedy",
+  "benchmark": "ms640",
+  "search": {
+   "backend": "fast",
+   "priority": "length",
+   "budget": 10000,
+   "cap": 24
+  },
+  "name": "ms640_length_fast"
+ }
+}

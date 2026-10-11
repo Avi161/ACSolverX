@@ -39,7 +39,7 @@ committed large-budget runs:
 So `g` is exact for every row that solved, and censored at 10,000,000 for the 28 AC19
 orbits that did not. The caps differ across runs (24 for MS-640, 48 up to 1M, 64
 above) exactly as they did historically; each row carries its own `greedy_budget`,
-`greedy_cap` and `greedy_run`, and the cap caveat from `CLAUDE.md` applies: read
+`greedy_cap` and `greedy_run`, and the cap caveat applies (docs/RESULTS.md, "Reading the numbers"): read
 solves as primary, node ratios across caps as indicative.
 
 Levels 7–9 are **graded by record**: a 10M-pop greedy run needs ~50 GB, so they are

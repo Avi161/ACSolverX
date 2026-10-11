@@ -33,8 +33,8 @@ shape. The path from ``T`` is:
 The length is large (a conjugation costs one move per letter and ``beta(h_k)``
 grows with the nesting of the definitions) but deterministic; nothing searches.
 """
-from ..aut.transport import _Emitter
-from ..aut.whitehead import _apply
+from ..aut.transport import Emitter
+from ..aut.whitehead import apply_table
 from ..core.moves import Move
 from ..core.words import canonical_rels, inverse
 from ..verify.replay import replay
@@ -46,7 +46,7 @@ def beta_table(n, digrams):
     tab = {s * g: (s * g,) for g in range(1, n + 1) for s in (1, -1)}
     for k, d in enumerate(digrams, 1):
         h = n + k
-        tab[h] = _apply(d, tab) + (h,)
+        tab[h] = apply_table(d, tab) + (h,)
         tab[-h] = inverse(tab[h])
     return tab
 
@@ -58,10 +58,10 @@ def _undefine(em, virt, src, d, h, tab):
         if flip:
             em.invert(i)
         w = inverse(virt[i]) if flip else virt[i]
-        em.conj(i, _apply(w[:c], tab))                    # rotate: conjugate by the prefix
+        em.conj(i, apply_table(w[:c], tab))                    # rotate: conjugate by the prefix
         for j in reversed(range(len(new))):
             if abs(new[j]) == h:
-                q = _apply(new[j + 1:] if new[j] > 0 else inverse(d) + new[j + 1:], tab)
+                q = apply_table(new[j + 1:] if new[j] > 0 else inverse(d) + new[j + 1:], tab)
                 em.conj(src, q)
                 em.multiply(i, src, 1 if new[j] > 0 else -1)
                 em.conj(src, inverse(q))
@@ -75,17 +75,17 @@ def lift(pres, sac, path, start, cyclic=True):
     """
     n, m = pres.n_gen, len(sac.digrams)
     tab = beta_table(n, sac.digrams)
-    em = _Emitter(pres)
+    em = Emitter(pres)
     for _ in range(m):
-        em.op(op="stabilize")
+        em.do({"op": "stabilize"})
     defs = [inverse(d) + (n + k,) for k, d in enumerate(sac.digrams, 1)]
     virt = list(sac.source.rels) + defs                   # T, mapped to U by beta
-    em.align(tuple(_apply(w, tab) for w in virt))
+    em.align(tuple(apply_table(w, tab) for w in virt))
     for k, d in enumerate(sac.digrams, 1):
         _undefine(em, virt, len(sac.source.rels) + k - 1, d, n + k, tab)
     for s, mv in zip(replay(start, path, cyclic=cyclic), path):
         rels = canonical_rels(s.rels)
-        em.align(tuple(_apply(r, tab) for r in rels))
+        em.align(tuple(apply_table(r, tab) for r in rels))
         em.s_move(rels, Move(*mv), tab)
     em.align(tuple(tab[g] for g in range(1, n + m + 1)))
     for j in range(n + 1, n + m + 1):
@@ -95,6 +95,6 @@ def lift(pres, sac, path, start, cyclic=True):
             em.multiply(j - 1, abs(a) - 1, -1 if a > 0 else 1)
             em.conj(abs(a) - 1, (-j,))
     for _ in range(m):
-        em.op(op="destabilize")
-    replay(pres, em.ops, cyclic=cyclic, normalize=False)
-    return em.ops
+        em.do({"op": "destabilize"})
+    replay(pres, em.moves, cyclic=cyclic, normalize=False)
+    return em.moves

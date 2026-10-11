@@ -1,0 +1,8 @@
+{
+ "method": "hybrid",
+ "benchmark": "ms640",
+ "hybrid": {
+  "budget": 1000
+ },
+ "name": "ms640_hybrid"
+}

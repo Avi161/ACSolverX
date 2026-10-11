@@ -1,0 +1,11 @@
+{
+ "method": "greedy",
+ "benchmark": "ac1m_hard_holdout60",
+ "search": {
+  "backend": "fast",
+  "priority": "length",
+  "budget": 10000,
+  "cap": 24
+ },
+ "name": "holdout60_length"
+}

@@ -26,7 +26,7 @@ Sources: ``origin/test/greedy-test-suite:experiments/greedy_tests/spec/
 """
 from collections import namedtuple
 
-from .words import Presentation, canonical_rels, inverse, parse, reduce, rotate
+from .words import Presentation, canonical_rels, free, inverse, parse, reduce, rotate, to_char
 
 Move = namedtuple("Move", "i j s k1 k2")
 
@@ -103,10 +103,6 @@ def _idx(pres, t):
     return t - 1
 
 
-def _free(w):
-    return reduce(w, cyclic=False)
-
-
 def elementary_step(pres, op):
     """Apply one elementary AC or stable move (dict schema above)."""
     rels = list(pres.rels)
@@ -122,12 +118,12 @@ def elementary_step(pres, op):
         c = parse(op["by"])
         if len(c) != 1 or abs(c[0]) > pres.n_gen:
             raise ValueError(f"conjugate by one generator letter, got {op['by']!r}")
-        rels[i] = _free(inverse(c) + rels[i] + c)
+        rels[i] = free(inverse(c) + rels[i] + c)
     elif kind == "multiply":
         i, j = _idx(pres, op["target"]), _idx(pres, op["source"])
         if i == j:
             raise ValueError("multiply needs distinct target and source")
-        rels[i] = _free(rels[i] + rels[j])
+        rels[i] = free(rels[i] + rels[j])
     elif kind == "stabilize":
         return stabilize(pres)
     elif kind == "destabilize":
@@ -158,6 +154,37 @@ def destabilize(pres):
 def step(pres, mv, cyclic=True):
     """Apply one path element: a ``Move`` (S-move) or an elementary/stable dict."""
     return elementary_step(pres, mv) if isinstance(mv, dict) else s_step(pres, Move(*mv), cyclic)
+
+
+class Trace:
+    """A presentation and the elementary moves that produced it, each applied by ``elementary_step``
+    (the emitter of ``acx.verify.decode``, ``acx.aut.transport`` and ``acx.ngen.lift``; ``t`` is 0-based)."""
+
+    def __init__(self, pres, moves=()):
+        self.pres, self.moves = pres, list(moves)
+
+    def copy(self):
+        return type(self)(self.pres, self.moves)
+
+    def do(self, op):
+        self.pres = elementary_step(self.pres, op)
+        self.moves.append(op)
+
+    def conj(self, t, word):
+        """``r_t <- c^-1 r_t c`` for the word ``c``, one generator letter at a time."""
+        for g in word:
+            self.do({"op": "conjugate", "target": t + 1, "by": to_char(g)})
+
+    def invert(self, t):
+        self.do({"op": "invert", "target": t + 1})
+
+    def multiply(self, t, s, e=1):
+        """``r_t <- r_t r_s^e``."""
+        if e < 0:
+            self.invert(s)
+        self.do({"op": "multiply", "target": t + 1, "source": s + 1})
+        if e < 0:
+            self.invert(s)
 
 
 def encode_path(path):

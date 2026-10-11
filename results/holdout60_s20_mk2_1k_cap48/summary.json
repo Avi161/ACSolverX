@@ -1,0 +1,48 @@
+{
+ "name": "holdout60_s20_mk2_1k_cap48",
+ "method": "greedy",
+ "benchmark": "ac1m_hard_holdout60",
+ "rows": 60,
+ "solved": 33,
+ "ac_path": 33,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 41953,
+  "on_solved": 14953
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 33,
+    "sum": 1465,
+    "mean": 44.39,
+    "median": 36,
+    "max": 159
+   },
+   "elem_moves": {
+    "n": 33,
+    "sum": 15128,
+    "mean": 458.42,
+    "median": 342,
+    "max": 1980
+   }
+  }
+ },
+ "wall_seconds": 2.03,
+ "row_seconds": 7.86,
+ "config": {
+  "method": "greedy",
+  "benchmark": "ac1m_hard_holdout60",
+  "search": {
+   "backend": "fast",
+   "priority": "s20_mk2",
+   "budget": 1000,
+   "cap": 48
+  },
+  "name": "holdout60_s20_mk2_1k_cap48",
+  "workers": 4
+ }
+}

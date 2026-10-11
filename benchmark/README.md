@@ -3,9 +3,12 @@
 Fixed row lists for scoring a search technique, so two techniques are compared on the same
 presentations rather than on whichever ones each happened to run. Every row is a verbatim
 presentation from `data/` (or from a record that is shipped there), so a row can be checked
-against its source file. Load with `acx.data`:
+against its source file. Load with `acx.data`, or run one with `python run.py --config ... --set benchmark=<name>`:
 
-- `load_csv(path)`: any CSV with `r1`, `r2` columns (id = `name`, else `pres_id`, else the index).
+- `rows(name)`: any benchmark by name: `ms640`, `1190ms`, `bench10`..`bench60`, `ladder20`..`ladder500`,
+  `ladder20_s20hard`..`ladder300_s20hard`, `ac1m_hard_holdout60`, `ac19_autmin`, `ac1m_autmin`, `u124`.
+  `u124` is `data/ms_unsolved_reps/aca_124_initial.csv`, the same rows as `ladder/unsolved_124.csv`.
+- `load_csv(path)`: any CSV with `r1`, `r2` columns (id = `name`, else `pres_id`, else the index; `.gz` read).
 - `load_split(path, part)`: a split JSON, `part` = `"holdout"` or `"train"`.
 - `load(name)`: the flat-int datasets in `data/` (`ms640`, `ac1m`, ...).
 
@@ -66,8 +69,7 @@ a technique that fails one has failed a solvable problem.
 Rows are picked across ten bins of `log10(nodes_explored)` at 1M budget (each bin costs
 3.37x the one below, from 3 nodes to about 575,000). Each subset takes an equal number per bin,
 and within a bin picks first minimise `Aut(F2)`-equivalent pairs. Subset-60 spans 45 distinct
-classes of the 640's 113. The subsets are not nested. The 20 ids in
-`tests/test_greedy_heuristic.py` are `benchmark_subset_20.json` in file order.
+classes of the 640's 113. The subsets are not nested.
 
 | file | what |
 |---|---|
@@ -94,9 +96,9 @@ the baseline's nodes and path length at 1M, the `Aut(F2)` class and minimal tota
 
 - `AC19_extended_aut_min.csv` (72,779 aut-min orbits of `AC19_extended`) and
   `AC1M_aut_min.csv.gz` (71,283 orbits of AC1M, gzip). The ladder's `ac19_N` rows are the first
-  table's rows; the second is read with `gzip` (`load_csv` does not open `.gz` yet).
+  table's rows. Both load by name: `acx.data.rows("ac19_autmin")`, `rows("ac1m_autmin")`.
 - `ms_unsolved_reps/aca_124_{initial,reduced,best}.csv` and `README_aca_124.md`: the 124 unsolved
   classes before and after the mu-ladder reduction. `aca_124_best` is the one to use.
 - `equivalence_classes/certificates.json`: the equivalence pipeline's certificates for the 124
   classes (261 presentations, 137 edges: 93 change-of-variables edges, 44 AC edges of which 6 are pure
-  AC paths).
+  AC paths). `acx.aut.equivalence.check` re-checks every edge (moves, automorphisms, meeting points).

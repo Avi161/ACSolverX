@@ -1,0 +1,10 @@
+# The slow baseline: pure-Python length-only greedy (main's GreedyBaselineSolver), cap 24.
+method = "greedy"
+benchmark = "ms640"
+workers = 4
+
+[search]
+backend = "spec"
+priority = "length"
+budget = 10000
+cap = 24

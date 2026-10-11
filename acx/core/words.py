@@ -12,21 +12,15 @@ Two symbol orders exist and must never be mixed up:
   rotation/inversion orbit is stored. Same as ``is_less_than`` in main's
   ``greedy_baseline.py``.
 * ASCII (key) order ``X < Y < x < y`` (inverses first, then by generator): the
-  heap tie-break compares state keys in this order. ``code`` gives the
+  heap tie-break compares state keys in this order. ``state_key`` uses the
   order-preserving codes ``X=1, Y=2, x=3, y=4`` that main's packed keys and the
   fast engine (``hcompact``'s ``_code_of``) use.
-
-Fast-engine interop: ``to_bool_array`` is main's ``(n, 2)`` bool layout
-(``a0`` = "is x", ``a1`` = "positive"; ``x=[1,1] X=[1,0] y=[0,1] Y=[0,0]``),
-and ``to_codes`` the order-preserving ``uint8`` codes.
 
 Sources: ``origin/test/greedy-test-suite:experiments/greedy_tests/spec/
 {words,presentation}.py`` (general-n spec), ``origin/main:experiments/search/
 greedy_baseline.py`` (reduction tail, canonical pair order, encodings).
 """
 from dataclasses import dataclass
-
-import numpy as np
 
 Word = tuple
 
@@ -81,6 +75,24 @@ def reduce(w, cyclic=True):
     return tuple(st)
 
 
+def free(w):
+    """Free reduction only (no cyclic cancellation)."""
+    return reduce(w, cyclic=False)
+
+
+def conjugators(w, t):
+    """Every ``(sign, c)`` with ``free(c^-1 w^sign c) == free(t)``: two per rotation of the cyclic core of
+    ``w^sign`` that is ``t``'s, the first ``a . C[:k] . b^-1`` (``w = a C a^-1``, ``t = b D b^-1``)."""
+    w, t = free(w), free(t)
+    cw, ct = reduce(w), reduce(t)
+    a, b = w[:(len(w) - len(cw)) // 2], t[:(len(t) - len(ct)) // 2]
+    for sign, cs in ((1, cw), (-1, inverse(cw))):
+        for k in range(max(len(cs), 1)):
+            if cs[k:] + cs[:k] == ct:
+                yield sign, free(a + cs[:k] + inverse(b))
+                yield sign, free(a + inverse(cs[k:]) + inverse(b))
+
+
 def is_cyclically_reduced(w):
     return all(a != -b for a, b in zip(w, w[1:])) and (len(w) < 2 or w[0] != -w[-1])
 
@@ -106,7 +118,7 @@ _BCHAR = _Table(lambda g: chr(0x1000 - 2 * abs(g) + (g > 0)))
 _BSYM = _Table(_sym)
 
 
-def _bstr(w):
+def booth_str(w):
     return "".join([_BCHAR[g] for g in w])
 
 
@@ -119,14 +131,14 @@ def canonical_word(w):
     n = len(w)
     if n == 0:
         return w
-    s = _bstr(w) * 2
-    t = _bstr(inverse(w)) * 2
+    s = booth_str(w) * 2
+    t = booth_str(inverse(w)) * 2
     return _from_bstr(min(min(s[i:i + n] for i in range(n)), min(t[i:i + n] for i in range(n))))
 
 
 def sort_rels(rels):
     """Relators sorted by ``(length, Booth order)``: main's pair order."""
-    return tuple(sorted(rels, key=lambda r: (len(r), _bstr(r))))
+    return tuple(sorted(rels, key=lambda r: (len(r), booth_str(r))))
 
 
 def canonical_rels(rels):
@@ -134,32 +146,13 @@ def canonical_rels(rels):
     return sort_rels([canonical_word(r) for r in rels])
 
 
-def code(g, n_gen=2):
-    """Order-preserving key code: inverses ``1..n_gen`` then generators ``n_gen+1..2n_gen``."""
-    return n_gen + g if g > 0 else -g
-
-
 def state_key(rels, n_gen=2):
-    """The heap tie-break key: per relator the codes, compared as tuples.
+    """The heap tie-break key: per relator the codes (inverses ``1..n_gen``, then generators
+    ``n_gen+1..2n_gen``), compared as tuples.
 
     At ``n_gen = 2`` this sorts exactly like main's ``(r1_str, r2_str)``.
     """
     return tuple(tuple(n_gen + g if g > 0 else -g for g in r) for r in rels)
-
-
-def to_codes(w, n_gen=2):
-    return np.array([code(g, n_gen) for g in w], dtype=np.uint8)
-
-
-def to_bool_array(w):
-    """Main's ``(n, 2)`` bool encoding (2 generators only)."""
-    if any(abs(g) > 2 for g in w):
-        raise ValueError("bool encoding holds 2 generators only")
-    return np.array([[abs(g) == 1, g > 0] for g in w], dtype=bool).reshape(len(w), 2)
-
-
-def from_bool_array(a):
-    return tuple((1 if x else 2) * (1 if p else -1) for x, p in np.asarray(a, dtype=bool))
 
 
 @dataclass(frozen=True)

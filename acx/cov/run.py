@@ -36,12 +36,11 @@ import time
 from dataclasses import dataclass, field, replace
 
 from ..aut import automorphism, transport
-from ..core.config import SearchConfig
-from ..core.moves import encode_path
+from ..core.config import SearchConfig, parse_cap
 from ..search import Result, search
 from ..search.engine import as_presentation
 from ..verify.replay import replay
-from .cov import FAMILY_TAG, MAX_LEN, CoVImage, check_cert, enumerate_images
+from .cov import MAX_LEN, CoVImage, check_cert, enumerate_images
 
 
 @dataclass(frozen=True)
@@ -58,6 +57,8 @@ class CoVConfig:
             raise ValueError(f"until {self.until!r} not in ('solve', 'ac_path')")
         if not (type(self.total_budget) is int and self.total_budget > 0):
             raise ValueError(f"total_budget must be a positive int, got {self.total_budget!r}")
+        object.__setattr__(self, "cap_headroom", parse_cap(self.cap_headroom, "cap_headroom", low=0))
+        object.__setattr__(self, "max_len", parse_cap(self.max_len, "max_len"))
 
     def replace(self, **kw):
         return replace(self, **kw)
@@ -76,11 +77,6 @@ class Outcome:
     path: tuple              # ac_path: moves that replay on the row; stable_cert: the leg on ``image.pres``
     cap: int | None          # cap of the search leg
     cyclic: bool = True      # the search leg's reduction
-
-    def to_json(self):
-        steps = [] if self.kind == "ac_path" or self.image is None else list(self.image.steps)
-        return {"kind": self.kind, "family": FAMILY_TAG, "image": self.image and self.image.tag, "steps": steps,
-                "path": encode_path(self.path), "pops": self.result.pops, "cyclic": self.cyclic}
 
 
 @dataclass(frozen=True)

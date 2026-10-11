@@ -1,249 +1,156 @@
 # AC-SolverX
 
 **Code and datasets for *The Two-Hump Problem: Bridging the Difficulty Gap in
-Mathematical Reinforcement Learning* (ICML 2026).**
+Mathematical Reinforcement Learning* (ICML 2026), and the stable Andrews-Curtis follow-up.**
 
-- 📄 **Project page:** https://icml.cc/virtual/2026/poster/64251
-- 📝 **arXiv:** https://arxiv.org/abs/2606.21611
+- **Project page:** https://icml.cc/virtual/2026/poster/64251
+- **arXiv:** https://arxiv.org/abs/2606.21611
 
-AC-SolverX trains reinforcement-learning agents to trivialize balanced
-presentations of the trivial group, the search problem at the heart of the
-**Andrews–Curtis (AC) conjecture**, using composite **substitution** supermoves
-together with a domain-specific **Dual-Ring Transformer** architecture. The code
-is JAX-based and uses
-gymnax-style environments. This repository also releases **AC-19** and **AC-1M**,
-the first large-scale public datasets of AC-trivial presentations.
+The Andrews-Curtis (AC) conjecture says that every balanced presentation of the trivial group,
+`<x, y | r1, r2>`, reaches the trivial presentation `<x, y | x, y>` by AC moves (invert a relator,
+multiply one relator by another, conjugate a relator). *Stable* AC also allows adding and removing a
+generator with a matching relator (AC4/AC5). This repository is `acx`, one small package that searches
+for such paths and **verifies every path it reports by replaying it on the presentation it claims to
+solve**:
 
-## Background: the Andrews–Curtis conjecture
+- **greedy**: best-first search over substitution moves (one S-move = multiply a relator by a conjugate of
+  the other, at least one letter cancelling), ordered by total length (the baseline) or by **S20_MK2**
+  (`L + 20 S + 2 MK`). Two backends: `spec` (pure Python, the reference) and `fast` (numba, the same search
+  step for step, about 40x faster). The fast kernels are a library the other methods run on.
+- **aut**: search the Whitehead (Aut(F2)-minimal) representative, then transport the path back to the row.
+- **cov**: one-shot change of variables (family `subnc2pxysb`); a solve is a stable-AC certificate.
+- **hybrid**: the solve-everything mode: Nielsen/pinch cascade, then one best-first search over rank two
+  and higher rank; every certificate is written out as elementary (and stable) moves on the row.
+- **ngen**: n-generator search and the transform to relators of length <= 3 (SAC), lifted to a stable path.
+- **rl** (optional, PyTorch): the paper's 610model PPO policy (step 1000) as a beam search.
 
-The Andrews–Curtis conjecture concerns *balanced* presentations of the trivial
-group, `<x, y | r1, r2>`, where the generators are `x` and `y` and the two
-relators `r1, r2` are words that the presentation declares equal to the
-identity. It states that any such presentation can be transformed into the
-trivial presentation `<x, y | x, y>` by a finite sequence of three elementary
-moves (the **AC-moves**):
+Every solve is typed: an **`ac_path`** (AC moves on the row), an **aut-assisted** `ac_path` (the search
+changed basis; the path is carried back to the row and replayed there), or a **`stable_cert`** (proves
+stable AC-triviality; reported separately, never merged into `ac_path`).
 
-- **(AC1)** replace a relator `r_i` by its inverse `r_i⁻¹`;
-- **(AC2)** replace `r_i` by the product `r_i r_j` (`i ≠ j`);
-- **(AC3)** replace `r_i` by a conjugate `w r_i w⁻¹` for any word `w`.
-
-A presentation that can be connected to the trivial presentation this way is
-called **AC-trivial**. Deciding whether a given presentation is AC-trivial is a
-search problem on an enormous graph whose vertices are balanced presentations
-and whose edges are single AC-moves. The conjecture has resisted proof for over
-60 years; a genuine counterexample would also disprove the Generalized Property
-R conjecture and yield a counterexample to the smooth 4-dimensional Poincaré
-conjecture. Well-known candidate counterexamples include the Akbulut–Kirby
-family `AK(n)` and the Miller–Schupp family `MS(n, w)`.
-
-These properties make AC a clean but unforgiving testbed for reinforcement
-learning: rewards are extremely sparse, and difficulty is sharply bimodal: most
-presentations are either trivially easy or effectively impossible, with very few
-"hard-but-solvable" instances in between. We call this the **Two-Hump
-distribution**, and bridging the gap between the humps is the central challenge
-this work addresses.
-
-## What's in this work
-
-- **Substitution supermoves.** A substitution treats both relators as cyclic
-  rings and splices one into the other so that at least one letter cancels,
-  collapsing many elementary AC-moves into a single action. This enables much
-  larger steps and a smaller effective state space, giving our greedy search an
-  ~1600× exploration-efficiency improvement over the prior baseline.
-- **The Dual-Ring Transformer.** A specialized policy/value network that
-  respects the cyclic symmetry of the relators (via cyclic relative positional
-  encodings and cross-attention) while operating over the large substitution
-  action space.
-- **Targeted data generation.** Exhaustive enumeration produces **AC-19**, and
-  an automorphism-based generator–solver game produces **AC-1M**, together
-  populating the sparse difficulty "valley" between the two humps.
-- **Concrete mathematical progress.** Our methods trivialize over 100
-  previously open Miller–Schupp presentations and reduce the remaining unsolved
-  cases to a smaller set of AC-equivalence classes with minimal representatives.
-
-On the 1190-presentation Miller–Schupp benchmark, our PPO agent solves **610**
-presentations versus **457** for the prior RL baseline, and consistently finds
-shorter trivialization paths than classical greedy search, especially on hard
-presentations.
-
-## Quickstart
-
-Install the dependencies for your accelerator, then evaluate the released model
-on the Miller–Schupp benchmark with beam search:
+## Install and run
 
 ```bash
-# 1. Install (pick the file matching your hardware)
-pip install -r requirements-cuda.txt        # NVIDIA CUDA 12
-# or: pip install -r requirements-rocm.txt   # AMD ROCm
-
-# 2. Run beam search with the pretrained 610-solve checkpoint
-python beam/beam_search.py --ckpt_path 610model --beam_width 1024
+python3.12 -m venv .venv && . .venv/bin/activate
+pip install -e .[dev]            # numpy 2.1.3, numba 0.63.1, pytest;  add [rl] for torch
+                                 # (install editable: acx reads data/ and benchmark/ from the checkout)
+pytest                           # default selection, a few minutes;  pytest -m "" runs the slow tests too
+python run.py --config configs/smoke.toml      # seconds
 ```
 
-See [Setup](#setup) for backend details and [Training](#training) to train your
-own agent from scratch.
+One command per method (`--set key=value` overrides any config value, dotted keys reach sections;
+`--rows a:b` slices the benchmark; results go to `results/<name>/{paths.jsonl, summary.json}`):
 
-## Code overview
+| method | command |
+|---|---|
+| slow baseline (pure-Python length greedy) | `python run.py --config configs/baseline_spec.toml` |
+| fast greedy, length / S20_MK2 | `python run.py --config configs/greedy_fast.toml` / `configs/s20_mk2_fast.toml` |
+| Aut-min + transport | `python run.py --config configs/aut.toml` |
+| change of variables | `python run.py --config configs/cov.toml` |
+| hybrid | `python run.py --config configs/hybrid.toml` |
+| n-generator SAC | `python run.py --config configs/ngen_sac.toml` |
+| RL beam (needs `pip install -e .[rl]`) | `python run.py --config configs/rl.toml` |
+| the difficulty ladder | `python run.py --config configs/ladder.toml` |
 
-A presentation is a flat `jnp.array` of length `2 * max_length`: two relators of
-`max_length` each, zero-padded (here `n_gen = 2`, so this equals the code's
-`n_gen * max_length`). The agent picks a substitution move `[i, j, k1, k2]`
-packed into a single integer action index; the goal is to reach the trivial
-presentation `<x, y | x, y>`.
+Benchmarks by name (`--set benchmark=...`): `ms640`, `1190ms`, `bench10`..`bench60`, `ladder20`..`ladder500`,
+`ladder20_s20hard`..`ladder300_s20hard`, `ac1m_hard_holdout60`, `ac19_autmin`, `ac1m_autmin`, `u124`
+([benchmark/README.md](benchmark/README.md)). In Python: `from acx import search, replay, Presentation`
+([docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)).
 
-## Layout
+## Headline numbers
 
-```
-envs/                environment logic
-  environment.py     gymnax base Environment (reset/step take idx, sample, probs)
-  ac_s.py            ACS: the substitution environment (EnvState, step_env, reset_env)
-  ac_moves.py        substitution-move implementation (setup_s_actions)
-  utils.py           presentation padding/length helpers
-  int_box.py         minimal integer Box space
-network.py           RelativeDualRingActorCritic (used by PPO) and DualRingActorCritic
-wrappers.py          LogWrapper, NormalizeVecReward, LogPathsProbsS
-ppo_ac_s.py          PPO training entry point
-greedy_search.ipynb  greedy search with substitutions (GS-Sub); standalone (numpy + numba)
-beam/
-  beam_search.py     beam search that loads a trained checkpoint
-scripts/
-  check_checkpoint_paths.py  validate stored paths in a checkpoint's solve_data
-data/                initial-state datasets (one Python-literal presentation per line)
-```
+Reproduced on this branch: every number below is a `results/<run>/summary.json` written by `run.py` with the current
+code, each record replayed on its row before it was written, and checked against an independent replay and against the
+original code's per-row reference (0 mismatches in solved flag, pops or units, and path length). Shared 4-core VM, one
+core per worker, cap 24 unless stated. Path lengths are totals over the solved rows (median per row) in two units:
+**S-moves** (substitution moves of the search; for the hybrid its S-move steps, automorphism steps not counted) and
+**elementary** moves (invert / swap / conjugate by a letter / multiply: the path replayed on the row). The length
+columns count AC paths only (`ac_path`, aut-assisted included); `stable_cert` lengths are in the footnotes, never in
+these columns. Cost is heap pops for searches and work units for the hybrid.
+
+| benchmark | method (run) | solved | ac_path / aut-assisted / stable_cert | cost | S-moves | elementary |
+|---|---|---:|---|---:|---:|---:|
+| MS640 (640) | length greedy, 10k pops, `spec` (`ms640_length_spec`) | 606 | 606 / 0 / 0 | 576,053 pops | 12,103 (8) | 114,828 (54) |
+| MS640 | length greedy, 10k pops, `fast` (`ms640_length_fast`) | 606 | 606 / 0 / 0 | 576,053 pops | 12,103 (8) | 114,828 (54) |
+| MS640 | S20_MK2, 10k pops (`ms640_s20_mk2_fast`) | 626 | 626 / 0 / 0 | 382,718 pops | 16,872 (9) | 168,702 (56.5) |
+| MS640 | hybrid, 1,000 units (`ms640_hybrid`) | **640** | 128 / 512 / 0 | 25,064 units | 12,346 (10) | 89,055 (54) |
+| AC19 Aut-min (72,779) | hybrid (`ac19_hybrid`) | **72,779** | 36,811 / 35,780 / 188 [a] | 2,489,726 units | 1,232,877 (11) | 7,341,111 (71) |
+| AC1M Aut-min (71,283) | hybrid (`ac1m_hybrid`) | **71,281** | 34,649 / 36,508 / 124 [b] | 2,384,509 units | 1,136,288 (11) | 7,239,114 (71) |
+| bench60 (60) | length greedy, 10k pops (`bench60_length`) | 40 | 40 / 0 / 0 | 248,227 pops | 1,475 (24) | 15,028 (217) |
+| bench60 | S20_MK2, 10k pops (`bench60_s20_mk2`) | 52 | 52 / 0 / 0 | 141,740 pops | 3,237 (31.5) | 34,173 (281) |
+| bench60 | hybrid (`bench60_hybrid`) | **60** | 7 / 53 / 0 | 4,783 units | 3,382 (16.5) | 27,641 (170) |
+| ac1m_hard holdout 60 | length / S20_MK2, 10k pops (`holdout60_length`, `holdout60_s20_mk2`) | 44 / 50 | all ac_path | 329,601 / 165,049 pops | 2,447 / 3,069 | 26,589 / 33,345 |
+| ac1m_hard holdout 60 | length / S20_MK2, 1k pops, cap 48, the published protocol (`holdout60_*_1k_cap48`) | 0 / 33 | all ac_path | 60,000 / 41,953 pops | - / 1,465 (36) | - / 15,128 (342) |
+| ac1m_hard holdout 60 | hybrid (`holdout60_hybrid`) | **60** | 0 / 60 / 0 | 3,770 units | 1,697 (16) | 17,593 (223.5) |
+| U124 (124) | S20_MK2 10k pops; hybrid 1,000 units (`u124_s20_mk2`, `u124_hybrid`) | **0 / 0** | | 1,149,399 pops; 124,000 units | | |
+| ladder200 (188) | length / S20_MK2, 10k pops (`ladder200_length`, `ladder200_s20_mk2`) | 40 / 116 | all ac_path | 1,551,196 / 1,063,702 pops | 1,991 / 7,697 | 21,108 / 86,172 |
+| ladder200 | hybrid (`ladder200_hybrid`) | **188** | 8 / 173 / 7 [c] | 22,319 units | 7,612 (20) | 80,878 (301) |
+
+[a] the 188 stable certificates: 2,722 S-moves and 93,692 elementary and AC4/AC5 moves. [b] 124: 1,662 and 62,312;
+misses `ac1m_54083`, `ac1m_68740`. [c] 7: 117 and 6,051. The hybrid's MS640 finishing stages are relator descent 98,
+pinch cascade 328, search 214, each row's units and stage equal to the original code's run.
+
+Commands, as run (`python run.py --config configs/<file>.toml --set name=<run> ...`; the full list is in
+[docs/RESULTS.md](docs/RESULTS.md) section 0): MS640 rows use the configs as shipped (`baseline_spec`, `greedy_fast`,
+`s20_mk2_fast`, `hybrid`); the others add `--set benchmark=<name> --set workers=4`, e.g.
+`python run.py --config configs/hybrid.toml --set name=ac19_hybrid --set benchmark=ac19_autmin --set workers=4`
+(about 4.5 minutes on 4 cores); the published holdout protocol adds `--set search.budget=1000 --set search.cap=48`.
+
+The ladder (the headline benchmark; [benchmark/README.md](benchmark/README.md)) by level, `ladder200`, 10k pops at
+cap 24 (`configs/ladder.toml`, `--set search.priority=length`, and `configs/hybrid.toml --set benchmark=ladder200`):
+
+| level | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| rows | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 19 | 9 |
+| length greedy | 20 | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| S20_MK2 | 20 | 20 | 13 | 14 | 12 | 18 | 7 | 6 | 6 | 0 |
+| hybrid (1,000 units) | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 19 | 9 |
+
+Level 9 is defined by "length greedy fails at 10M pops, S20_MK2 solves"; level 10 by "both fail at 10M, only the
+cascades solve". Those 10M grades are by record (a 10M-pop run needs about 50 GB) and were not rerun; at 10,000 pops no
+greedy arm solves level 10 and the hybrid solves every row. Published lines (not rerun here;
+[docs/RESULTS.md](docs/RESULTS.md)): the paper's PPO agent solves 610 Miller-Schupp presentations against 457 for the
+prior RL baseline (`main`'s README says "610 of the 1,190" in one place and "610 of the first 634" in another; confirm
+the denominator against the paper before quoting it); S20_MK2 solves 72,519 of the 72,779 AC19 Aut-min orbits at 10k
+pops (cap 48) against 71,936 for length greedy; U124 stays at 0/124 under S20_MK2 at 10,000,000 pops (cap 64) and every
+other probe on record.
+
+## Docs
+
+- [docs/METHODS.md](docs/METHODS.md): moves, the cap, the search, priorities, backends and their parity
+  contract, automorphisms and transport, units, hybrid, change of variables (what `subnc2pxysb` means),
+  n-generator search, verification.
+- [docs/RESULTS.md](docs/RESULTS.md): every number with its source; what was tried and dropped; open experiments.
+- [docs/PROVENANCE.md](docs/PROVENANCE.md): component -> branch -> commit for everything here.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): the module map and the exact interfaces.
+- [benchmark/README.md](benchmark/README.md): the frozen evaluation sets, the ladder, the AC1M hard split.
+- Theory (no code here): the AK(3) and U124 notes live on `codex/proofs`, `fable/proofs` and
+  `cursor/u124-stable-ac-1b54`; the equivalence certificates of the 124 unsolved classes ship as
+  `data/equivalence_classes/certificates.json`, checked by `acx.aut.equivalence.check`.
 
 ## Datasets (`data/`)
 
-Each line is one presentation as a Python literal (a flat list of length
-`2 * max_length`, i.e. two zero-padded relators). Generators are encoded as
-integers: `x → 1`, `y → 2`, `x⁻¹ → -1`, `y⁻¹ → -2`, and `0` is padding.
-"Length" below means the number of nonzero entries (the total word length).
+Each `.txt` line is a flat list of two zero-padded relators (`x -> 1`, `y -> 2`, inverses negative, `0` padding).
 
-For example, the first line of `1190MS.txt` begins
-`[-2, -2, -1, 2, 1, 0, …]`: the first relator is `y⁻¹ y⁻¹ x⁻¹ y x`, with the rest
-of its 24-slot block zero-padded, followed by the second relator's block.
+- **`1190MS.txt`**: the 1,190 Miller-Schupp benchmark, in canonical form. **`ms640_solved.txt`**: 640 Miller-Schupp
+  presentations (MS640), every one solved by the length greedy at 1,000,000 pops.
+- **`AC19_extended.txt`**: 156,762 presentations (the first 634 are the first 634 of `1190MS.txt`, then AC19 and
+  longer ones); **`AC19.txt`**: 140,535 of length <= 19. **`AC19_extended_aut_min.csv`**: its 72,779 Aut(F2) orbits.
+- **`AC1M.txt.gz`**: 1,136,154 presentations; **`AC1M_aut_min.csv.gz`**: its 71,283 orbits.
+- **`ms_unsolved_reps/`**: the unsolved Miller-Schupp representatives and the 124 classes (U124).
+- **`equivalence_classes/certificates.json`**: certificates joining the 261 U124 presentations into 124 classes.
 
-- **`1190MS.txt`**: the 1190-presentation Miller–Schupp benchmark (the
-  validation set from prior work), stored in **canonical form**: each relator is
-  the lexicographically minimal element among the cyclic rotations of itself and
-  of its inverse, and the two relators are ordered lexicographically. This gives
-  a unique representative per equivalence class under cyclic rotation, inversion,
-  and relator ordering.
-- **`AC19_extended.txt`**: the default training set (156,762 presentations).
-  Its structure:
-    - the **first 634** lines are the first 634 presentations of `1190MS.txt`;
-    - the remaining lines are **AC19** (presentations of length ≤ 19) together
-      with some other longer presentations (length > 19).
-  (Of the 156,762: 140,874 have length ≤ 19 and 15,888 have length > 19.)
-- **`AC19.txt`**: `AC19_extended.txt` with the first 634 presentations removed
-  and then filtered to length ≤ 19 (140,535 presentations).
-- **`AC1M.txt.gz`**: a larger set of 1,136,154 presentations, shipped
-  gzip-compressed (246 MB uncompressed). Decompress before using it as a
-  dataset:
-  ```bash
-  gunzip -k data/AC1M.txt.gz   # -> data/AC1M.txt, then use stem "AC1M"
-  ```
-
-`ACS(initial_states_file=...)` takes the bare stem (no `data/` prefix, no
-`.txt`).
-
-## Setup
-
-Dependencies are split so the JAX stack can target either backend. The
-platform-independent packages live in `requirements.txt`; install it together
-with one platform file:
-
-```bash
-pip install -r requirements-rocm.txt   # AMD ROCm
-pip install -r requirements-cuda.txt   # NVIDIA CUDA 12
-```
-
-Each platform file does `-r requirements.txt` and then pins JAX 0.6.0 plus the
-matching `jaxlib`/plugin. For the ROCm build, make sure a compatible ROCm
-runtime is available in your environment before running.
-
-## Greedy search
-
-`greedy_search.ipynb` implements **GS-Sub**, the classical greedy (best-first)
-search over substitution moves used as a baseline throughout the paper. It is
-self-contained and depends only on `numpy` and `numba`: no JAX, no GPU, and no
-checkpoint required. The notebook:
-
-- maintains presentations in **canonical form** (minimal cyclic rotation via
-  Booth's algorithm, inversion, and relator ordering);
-- expands states in order of total length (`|r1| + |r2|`), exploring shorter
-  presentations first;
-- recognizes the trivial presentation and known potential counterexamples
-  (`AK(n)`, the length-14 pairs).
-
-Open it and run the cells. The final cell is a worked example on a
-Miller–Schupp presentation:
-
-```python
-r1, r2 = MS(3, 'YXyxy')
-solver = ACRelatorSolver(r1, r2, max_nodes=10000, max_len=20)
-path, nodes, seen = solver.solve()
-```
-
-Key knobs are `max_nodes` (search budget) and `max_len` (the largest relator
-length the search will consider, smaller is faster). Relators are written as
-strings over `x, X, y, Y` (where `X = x⁻¹`, `Y = y⁻¹`).
-
-## Training
-
-Run from the repository root. To train and write Orbax checkpoints (needed by
-the beam search) under `ppo_checkpoints/<name>/`:
-
-```bash
-python ppo_ac_s.py --ckpt_path my_run --save_every 50
-```
-
-Without `--ckpt_path`, training runs but saves nothing. Useful flags:
-`--w 0` (disable wandb), `--lr`, `--ent_coef`, `--seed`, and the reward-shaping
-penalties `--cycle_penalty` / `--noop_penalty` (default `0.0`). The training
-dataset and `max_length` (`L = 24`) are set at the top of `make_train`.
-
-The network is `RelativeDualRingActorCritic` (relative-position attention,
-cyclic relators). `DualRingActorCritic` (absolute positional encoding) is
-provided in `network.py` as an alternative.
-
-## Beam search
-
-Loads a trained checkpoint and runs beam search per presentation. Run from the
-repository root so `data/` and `ppo_checkpoints/` resolve:
-
-```bash
-python beam/beam_search.py --ckpt_path my_run --beam_width 1024 \
-    --start 0 --end 634 --out_csv beam_paths.csv
-```
-
-The action packing/unpacking in `beam_search.py` must match `ppo_ac_s.py`
-(`L = 24`).
-
-## Pretrained checkpoint
-
-A trained model is provided under `ppo_checkpoints/610model/` (latest step
-1000) that solves 610 of the first 634 presentations (the `1190MS.txt`-derived
-benchmark set at the start of `AC19_extended.txt`). Use it directly with the
-beam search or the path validator:
-
-```bash
-python beam/beam_search.py --ckpt_path 610model --beam_width 1024
-python scripts/check_checkpoint_paths.py --ckpt_path 610model --max_paths 10
-```
+Large certificate and path files are not committed: `run.py` regenerates them (`results/<name>/paths.jsonl`); the
+`summary.json` and `config.json` behind every number above are committed under `results/`.
 
 ## License
 
 - **Code** is released under the [MIT License](LICENSE).
-- **Datasets** (`data/`, including AC-19 and AC-1M) are released under
-  [CC BY 4.0](LICENSE-DATA).
-
-Both licenses permit free use, modification, and redistribution, including
-commercially, as long as you give appropriate credit. We ask that you
-attribute this work by citing the paper below.
+- **Datasets** (`data/`, including AC-19 and AC-1M) are released under [CC BY 4.0](LICENSE-DATA).
+- Two binary files are kept on purpose: the RL checkpoint `acx/rl/checkpoint/610model_1000.pt` (0.6 MB, the paper's
+  step-1000 weights) and `benchmark/subsets/subset_coverage.png` (from `main`). No other binaries or PDFs are tracked.
 
 ## Citation
-
-If you use this code or the AC-19 / AC-1M datasets, please cite:
 
 ```bibtex
 @inproceedings{fagan2026twohump,

@@ -1,0 +1,75 @@
+{
+ "name": "ladder200_cov",
+ "method": "cov",
+ "benchmark": "ladder200",
+ "rows": 188,
+ "solved": 92,
+ "ac_path": 21,
+ "aut_assisted": 23,
+ "stable_cert": 48,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 1357023,
+  "on_solved": 397023
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 21,
+    "sum": 382,
+    "mean": 18.19,
+    "median": 10,
+    "max": 69
+   },
+   "elem_moves": {
+    "n": 21,
+    "sum": 3458,
+    "mean": 164.67,
+    "median": 59,
+    "max": 719
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 23,
+    "sum": 833,
+    "mean": 36.22,
+    "median": 26,
+    "max": 113
+   },
+   "elem_moves": {
+    "n": 23,
+    "sum": 56863,
+    "mean": 2472.3,
+    "median": 1733,
+    "max": 9943
+   }
+  },
+  "stable_cert": {
+   "sub_moves": {
+    "n": 48,
+    "sum": 2077,
+    "mean": 43.27,
+    "median": 39.0,
+    "max": 120
+   },
+   "elem_moves": null
+  }
+ },
+ "wall_seconds": 39.4,
+ "row_seconds": 155.32,
+ "config": {
+  "method": "cov",
+  "benchmark": "ladder200",
+  "search": {
+   "backend": "fast",
+   "budget": 1000
+  },
+  "cov": {
+   "total_budget": 10000
+  },
+  "name": "ladder200_cov",
+  "workers": 4
+ }
+}

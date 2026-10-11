@@ -1,0 +1,47 @@
+{
+ "name": "ladder60_s20_mk2",
+ "method": "greedy",
+ "benchmark": "ladder60",
+ "rows": 60,
+ "solved": 33,
+ "ac_path": 33,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 365386,
+  "on_solved": 95386
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 33,
+    "sum": 2180,
+    "mean": 66.06,
+    "median": 64,
+    "max": 375
+   },
+   "elem_moves": {
+    "n": 33,
+    "sum": 24343,
+    "mean": 737.67,
+    "median": 713,
+    "max": 4618
+   }
+  }
+ },
+ "wall_seconds": 8.23,
+ "row_seconds": 32.1,
+ "config": {
+  "method": "greedy",
+  "benchmark": "ladder60",
+  "workers": 4,
+  "search": {
+   "backend": "fast",
+   "priority": "s20_mk2",
+   "budget": 10000
+  },
+  "name": "ladder60_s20_mk2"
+ }
+}

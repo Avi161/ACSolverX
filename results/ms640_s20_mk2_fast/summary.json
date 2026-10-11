@@ -1,0 +1,47 @@
+{
+ "name": "ms640_s20_mk2_fast",
+ "method": "greedy",
+ "benchmark": "ms640",
+ "rows": 640,
+ "solved": 626,
+ "ac_path": 626,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 382718,
+  "on_solved": 242718
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 626,
+    "sum": 16872,
+    "mean": 26.95,
+    "median": 9.0,
+    "max": 383
+   },
+   "elem_moves": {
+    "n": 626,
+    "sum": 168702,
+    "mean": 269.49,
+    "median": 56.5,
+    "max": 4618
+   }
+  }
+ },
+ "wall_seconds": 51.1,
+ "row_seconds": 51.01,
+ "config": {
+  "method": "greedy",
+  "benchmark": "ms640",
+  "search": {
+   "backend": "fast",
+   "priority": "s20_mk2",
+   "budget": 10000,
+   "cap": 24
+  },
+  "name": "ms640_s20_mk2_fast"
+ }
+}

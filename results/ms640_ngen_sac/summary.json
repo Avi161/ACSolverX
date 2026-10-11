@@ -1,0 +1,49 @@
+{
+ "name": "ms640_ngen_sac",
+ "method": "ngen",
+ "benchmark": "ms640",
+ "rows": 640,
+ "solved": 298,
+ "ac_path": 0,
+ "aut_assisted": 0,
+ "stable_cert": 298,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 3729167,
+  "on_solved": 309167
+ },
+ "path_length": {
+  "stable_cert": {
+   "sub_moves": {
+    "n": 298,
+    "sum": 5035,
+    "mean": 16.9,
+    "median": 15.0,
+    "max": 40
+   },
+   "elem_moves": {
+    "n": 298,
+    "sum": 229196,
+    "mean": 769.11,
+    "median": 690.5,
+    "max": 2230
+   }
+  }
+ },
+ "wall_seconds": 79.11,
+ "row_seconds": 313.68,
+ "config": {
+  "method": "ngen",
+  "benchmark": "ms640",
+  "search": {
+   "backend": "fast",
+   "budget": 10000
+  },
+  "ngen": {
+   "sac": true
+  },
+  "name": "ms640_ngen_sac",
+  "workers": 4
+ }
+}

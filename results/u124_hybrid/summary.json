@@ -1,0 +1,28 @@
+{
+ "name": "u124_hybrid",
+ "method": "hybrid",
+ "benchmark": "u124",
+ "rows": 124,
+ "solved": 0,
+ "ac_path": 0,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "units",
+  "total": 124000,
+  "on_solved": 0
+ },
+ "path_length": {},
+ "wall_seconds": 142.79,
+ "row_seconds": 565.74,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "u124",
+  "hybrid": {
+   "budget": 1000
+  },
+  "name": "u124_hybrid",
+  "workers": 4
+ }
+}

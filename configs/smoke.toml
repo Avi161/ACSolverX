@@ -1,0 +1,9 @@
+# Seconds: the fast greedy on the first 20 MS640 rows, every path replayed and decoded.
+method = "greedy"
+benchmark = "ms640"
+rows = "0:20"
+
+[search]
+backend = "fast"
+priority = "s20_mk2"
+budget = 1000

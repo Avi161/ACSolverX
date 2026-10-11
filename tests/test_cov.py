@@ -12,7 +12,7 @@ import pytest
 from acx import data
 from acx.aut import orbit_key
 from acx.core.config import SearchConfig
-from acx.core.moves import decode_path
+from acx.core.moves import decode_path, encode_path
 from acx.core.words import Presentation, parse
 from acx.cov import CoVConfig, ReplayError, apply_steps, check_cert, enumerate_images, verify
 from acx.cov.cov import Z, relabel, subwords, substitute
@@ -158,10 +158,9 @@ def test_certificates_on_bench60():
                                     total_budget=400, control=False))
         for o in out.outcomes:
             verify(r.pres, o)
-            j = json.loads(json.dumps(o.to_json()))
-            path = decode_path(j["path"])
+            path = decode_path(json.loads(json.dumps(encode_path(o.path))))
             if o.kind == "stable_cert":
-                check_cert(r.pres, j["steps"], path)
+                check_cert(r.pres, json.loads(json.dumps(o.image.steps)), path)
             else:
                 replay(r.pres, path, normalize=False)
             kinds.append(o.kind)

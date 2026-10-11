@@ -1,0 +1,8 @@
+# Search the Aut-minimal representative, then transport the path back to the row.
+method = "aut"
+benchmark = "bench60"
+
+[search]
+backend = "fast"
+priority = "s20_mk2"
+budget = 10000

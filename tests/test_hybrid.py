@@ -26,6 +26,7 @@ def test_nielsen_indices():
                                                                           ("x", "yx"), ("x", "yX"))]
 
 
+@pytest.mark.slow
 def test_frontier_backends_agree(ms640):
     (sx, st), (fx, ft) = backend("spec"), backend("fast")
     for pres in ms640[::16]:
@@ -70,6 +71,7 @@ def test_rank_two_cap_is_counted_and_backends_agree(ms640):
         HybridConfig(r2_cap="24")
 
 
+@pytest.mark.slow
 def test_ac19_aut_min_sample():
     rows = data.load_csv("data/AC19_extended_aut_min.csv")[:2000]
     res = [solve(r.pres) for r in rows]                      # certify=True: every path replayed

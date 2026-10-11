@@ -3,7 +3,7 @@ import random
 
 import pytest
 
-from acx.aut.whitehead import _apply
+from acx.aut.whitehead import apply_table
 from acx.core.config import SearchConfig
 from acx.core.words import Presentation, canonical_word, inverse, parse, reduce
 from acx.ngen import NGenConfig, check, define, lift, solve, triangulate, verify
@@ -63,7 +63,7 @@ def test_define_keeps_the_group_element():
         out = define(Presentation(2, (w, (1,))), d)
         assert out.rels[-1] == inverse(d) + (3,)
         tab = {1: (1,), -1: (-1,), 2: (2,), -2: (-2,), 3: d, -3: inverse(d)}
-        assert canonical_word(reduce(_apply(out.rels[0], tab))) == canonical_word(w)
+        assert canonical_word(reduce(apply_table(out.rels[0], tab))) == canonical_word(w)
         assert len(out.rels[0]) < len(w)
 
 

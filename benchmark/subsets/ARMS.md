@@ -37,7 +37,7 @@ priority(r1, r2) = L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb   (one segment,
 
 Lower is popped first. Every term is a pure function of the state and rotation-invariant — a priority reading `depth` or the parent would make pop order depend on discovery order and stop being reproducible. It is a **single segment with no length threshold**: the earlier phased form is unnecessary here, because `S` and `MK` both fall as a pair approaches the trivial state, so the climb self-regulates.
 
-Shipped as `RECOMMENDED` in [`experiments/search/heuristics.py`](../../experiments/search/heuristics.py), documented in [`HEURISTICS.md`](../../experiments/search/HEURISTICS.md), and pinned by `test_recommended_is_the_formula_the_docs_publish` in [`tests/test_greedy_heuristic.py`](../../tests/test_greedy_heuristic.py) — the weights above and the code cannot drift apart.
+`RECOMMENDED` was shipped on `main` (`experiments/search/heuristics.py`) and is **withdrawn as overfit** on this branch: no code, see `docs/RESULTS.md` (Tried). Its numbers below are kept as recorded.
 
 ## Columns
 

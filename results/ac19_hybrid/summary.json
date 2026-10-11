@@ -1,0 +1,77 @@
+{
+ "name": "ac19_hybrid",
+ "method": "hybrid",
+ "benchmark": "ac19_autmin",
+ "rows": 72779,
+ "solved": 72779,
+ "ac_path": 36811,
+ "aut_assisted": 35780,
+ "stable_cert": 188,
+ "skipped": 0,
+ "cost": {
+  "unit": "units",
+  "total": 2489726,
+  "on_solved": 2489726
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 36811,
+    "sum": 590093,
+    "mean": 16.03,
+    "median": 10,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 36811,
+    "sum": 2681228,
+    "mean": 72.84,
+    "median": 55,
+    "max": 678
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 35780,
+    "sum": 642784,
+    "mean": 17.96,
+    "median": 13.0,
+    "max": 153
+   },
+   "elem_moves": {
+    "n": 35780,
+    "sum": 4659883,
+    "mean": 130.24,
+    "median": 98.0,
+    "max": 1405
+   }
+  },
+  "stable_cert": {
+   "sub_moves": {
+    "n": 188,
+    "sum": 2722,
+    "mean": 14.48,
+    "median": 14.0,
+    "max": 30
+   },
+   "elem_moves": {
+    "n": 188,
+    "sum": 93692,
+    "mean": 498.36,
+    "median": 439.0,
+    "max": 1351
+   }
+  }
+ },
+ "wall_seconds": 263.72,
+ "row_seconds": 987.28,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "ac19_autmin",
+  "hybrid": {
+   "budget": 1000
+  },
+  "name": "ac19_hybrid",
+  "workers": 4
+ }
+}

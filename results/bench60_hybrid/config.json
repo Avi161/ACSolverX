@@ -1,0 +1,8 @@
+{
+ "method": "hybrid",
+ "benchmark": "bench60",
+ "hybrid": {
+  "budget": 1000
+ },
+ "name": "bench60_hybrid"
+}

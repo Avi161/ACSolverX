@@ -1,0 +1,10 @@
+{
+ "method": "aut",
+ "benchmark": "ms640",
+ "search": {
+  "backend": "fast",
+  "priority": "s20_mk2",
+  "budget": 10000
+ },
+ "name": "ms640_aut"
+}

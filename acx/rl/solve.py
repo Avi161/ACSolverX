@@ -17,11 +17,10 @@ from ..core.moves import apply_raw, enumerate_moves
 from ..core.words import Presentation, canonical_rels, canonical_word, reduce
 from ..search.engine import Result, as_presentation
 from ..verify.replay import replay
+from . import L
 from .beam import beam_search
 from .moves import decode_action, s_move
 from .policy import pretrained
-
-L = 24
 
 
 def encode(rels, L=L):

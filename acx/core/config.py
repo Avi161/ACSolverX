@@ -4,8 +4,9 @@
 
 TOML keys are the field names, at the top level or under ``[search]``. An
 override is ``key=value`` with a TOML value (``48``, ``true``, ``"s20_mk2"``)
-or a bare word (``s20_mk2``). ``cap = "none"`` (or ``0``) means uncapped. Unknown
-keys are an error, never ignored.
+or a bare word (``s20_mk2``). ``cap = "none"`` means uncapped (TOML has no null);
+every relator cap of every config goes through ``parse_cap``. Unknown keys are an
+error, never ignored.
 """
 import tomllib
 from dataclasses import asdict, dataclass, fields, replace
@@ -26,11 +27,7 @@ class SearchConfig:
     trace: bool = False          # return the popped states in order (parity tests)
 
     def __post_init__(self):
-        cap = self.cap
-        if (isinstance(cap, str) and cap.lower() in ("none", "null")) or (type(cap) is int and cap == 0):
-            object.__setattr__(self, "cap", None)
-        elif cap is not None and not (type(cap) is int and cap > 0):
-            raise ValueError(f"cap must be a positive int or None, got {cap!r}")
+        object.__setattr__(self, "cap", parse_cap(self.cap))
         if self.priority not in PRIORITIES:
             raise ValueError(f"priority {self.priority!r} not in {sorted(PRIORITIES)}")
         if self.backend not in BACKENDS:
@@ -43,9 +40,6 @@ class SearchConfig:
 
     def with_overrides(self, items=()):
         return self.from_dict({**asdict(self), **dict(parse_override(s) for s in items)})
-
-    def to_dict(self):
-        return asdict(self)
 
     @classmethod
     def from_dict(cls, d):
@@ -64,6 +58,22 @@ class SearchConfig:
             d = d.get("search", d)
         cfg = cls.from_dict(d)
         return cfg.with_overrides(overrides)
+
+
+def parse_cap(value, name="cap", low=1, keep=()):
+    """A length limit: an int ``>= low``, or ``None`` / ``"none"`` (no limit); strings in ``keep`` pass as they are.
+
+    The one reading of a cap for every config (``SearchConfig.cap``, ``HybridConfig.r2_cap`` and ``dyn_cap``,
+    ``CoVConfig.max_len`` and ``cap_headroom``, the RL beam's ``cap``). Bools and ``0`` (for a cap) raise.
+    """
+    if value is None or (isinstance(value, str) and value.lower() == "none"):
+        return None
+    if isinstance(value, str) and value in keep:
+        return value
+    if type(value) is int and value >= low:
+        return value
+    allowed = " or ".join([f"an int >= {low}", "'none'", *map(repr, keep)])
+    raise ValueError(f"{name} must be {allowed}, got {value!r}")
 
 
 def parse_override(item):

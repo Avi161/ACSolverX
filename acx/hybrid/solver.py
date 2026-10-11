@@ -47,7 +47,9 @@ import itertools
 import time
 from dataclasses import dataclass, field, replace
 
+from ..core.config import parse_cap
 from ..core.moves import Move
+from ..core.priority import length
 from ..core.words import Presentation, canonical_rels
 from . import dynrank as D
 from .cascade import NIELSEN, Aut, Budget, Run, cascade, gate_applicable, gate_precheck_key, is_terminal, run_gates
@@ -63,7 +65,7 @@ class HybridConfig:
     penalty: int = 5                  # priority letters per generator above two
     dyn_ratio: float | None = 0.5     # higher-rank pops <= dyn_ratio * rank-two pops + 20
     dyn_max: int | None = None        # at most this many higher-rank pops
-    dyn_cap: int = 8                  # longest relator a higher-rank product or elimination may create
+    dyn_cap: int | None = 8           # longest relator a higher-rank product or elimination may create; None = uncapped
     slack: int = 8                    # higher-rank total-length ceiling above the search root
     min_uses: int = 2                 # a defined digram must occur this often
     r2_cap: int | str | None = "parent"   # rank-two relator cap: "parent" (the parent's total length, the source's rule), an int, or None (uncapped)
@@ -75,8 +77,8 @@ class HybridConfig:
     def __post_init__(self):
         if self.backend not in BACKENDS:
             raise ValueError(f"backend {self.backend!r} not in {BACKENDS}")
-        if not (self.r2_cap in ("parent", None) or isinstance(self.r2_cap, int)):
-            raise ValueError(f"r2_cap {self.r2_cap!r} is not 'parent', an int or None")
+        object.__setattr__(self, "r2_cap", parse_cap(self.r2_cap, "r2_cap", keep=("parent",)))
+        object.__setattr__(self, "dyn_cap", parse_cap(self.dyn_cap, "dyn_cap"))
 
     def replace(self, **kw):
         return replace(self, **kw)
@@ -157,7 +159,7 @@ def search(run, cfg, budget):
             offer((pack(canonical_rels(ckey)), parent, cstep, R2), depth)
             return
         st["max_rank"] = max(st["max_rank"], len(ckey))
-        prio = float(D.total_length(ckey) + cfg.penalty * (len(ckey) - 2))
+        prio = float(length(ckey) + cfg.penalty * (len(ckey) - 2))
         push(dheap, (prio, depth, tick(), (ckey, parent, cstep, DYN)))
 
     try:
@@ -179,7 +181,7 @@ def search(run, cfg, budget):
             if kind == DEFS:                            # the deferred define children (no charge)
                 state = steps                           # a placeholder carries its parent's pair here
                 for cw, event in _dedup_sorted(D.defines(D.normalize(state), cfg.min_uses)):
-                    if D.total_length(cw) > ceiling:
+                    if length(cw) > ceiling:
                         st["dyn_rejected"] += 1
                     else:
                         offer_dyn(*D.make_key(cw), parent, event, depth)

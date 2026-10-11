@@ -1,0 +1,31 @@
+{
+ "name": "u124_s20_mk2",
+ "method": "greedy",
+ "benchmark": "u124",
+ "rows": 124,
+ "solved": 0,
+ "ac_path": 0,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 1149399,
+  "on_solved": 0
+ },
+ "path_length": {},
+ "wall_seconds": 19.1,
+ "row_seconds": 75.32,
+ "config": {
+  "method": "greedy",
+  "benchmark": "u124",
+  "search": {
+   "backend": "fast",
+   "priority": "s20_mk2",
+   "budget": 10000,
+   "cap": 24
+  },
+  "name": "u124_s20_mk2",
+  "workers": 4
+ }
+}

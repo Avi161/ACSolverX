@@ -48,34 +48,19 @@ source (``hfhybrid.verify_hybrid``, ``origin/claude/vigilant-babbage-nnbuj0``)
 replayed the mixed steps directly and took ``define``/``eliminate`` as Lemma-11
 composites without writing them out.
 """
-from ..aut.whitehead import AUTOS, _apply
+from ..aut.whitehead import AUTOS, apply_table
 from ..core.moves import seam_cancels
-from ..core.words import canonical_rels, canonical_word, inverse, reduce, rotate, to_char
+from ..core.words import canonical_rels, canonical_word, conjugators, free, inverse, reduce, rotate, to_char
 from ..verify.replay import replay
 from . import dynrank as D
 from .cascade import Aut, aut_child, is_terminal, move_child
 
 
-def _free(w):
-    return reduce(w, cyclic=False)
-
-
-def _conjugators(w, t):
-    """Every ``(sign, c)`` with ``c^-1 w^sign c == t`` after free reduction (two per matching rotation)."""
-    w, t = _free(w), _free(t)
-    cw, ct = reduce(w), reduce(t)
-    a, b = w[:(len(w) - len(cw)) // 2], t[:(len(t) - len(ct)) // 2]
-    for sign, cs in ((1, cw), (-1, inverse(cw))):
-        for k in range(max(len(cs), 1)):
-            if cs[k:] + cs[:k] == ct:
-                yield sign, _free(a + cs[:k] + inverse(b))
-                yield sign, _free(a + inverse(cs[k:]) + inverse(b))
-
-
 class _Real:
     """The real presentation ``W`` and the elementary moves applied to it (``acx.core.moves``' dict schema).
 
-    Words are plain tuples (the path is checked once, by ``acx.verify.replay``). Conjugations are
+    Not an ``acx.core.moves.Trace``: words are plain tuples (the path is checked once, by
+    ``acx.verify.replay``), and stabilisations and lazy conjugations are its own. Conjugations are
     held back per relator and merged (a conjugation commutes with inverting and swapping), so
     ``c`` then ``c^-1`` on one relator costs nothing; they are written out before a multiply that
     reads the relator and at the end."""
@@ -85,12 +70,12 @@ class _Real:
         self.pend = [()] * len(self.rels)
 
     def conj(self, t, c):
-        self.pend[t] = _free(self.pend[t] + tuple(c))
+        self.pend[t] = free(self.pend[t] + tuple(c))
 
     def flush(self, t):
         c, self.pend[t] = self.pend[t], ()
         self.ops.extend({"op": "conjugate", "target": t + 1, "by": to_char(g)} for g in c)
-        self.rels[t] = _free(inverse(c) + self.rels[t] + c)
+        self.rels[t] = free(inverse(c) + self.rels[t] + c)
 
     def invert(self, t):
         self.ops.append({"op": "invert", "target": t + 1})
@@ -108,7 +93,7 @@ class _Real:
         if e < 0:
             self.invert(s)
         self.ops.append({"op": "multiply", "target": t + 1, "source": s + 1})
-        self.rels[t] = _free(self.rels[t] + self.rels[s])
+        self.rels[t] = free(self.rels[t] + self.rels[s])
         if e < 0:
             self.invert(s)
 
@@ -142,10 +127,10 @@ class Frame:
 
     # moves on E, mirrored on W
     def conj(self, i, c):
-        c = _free(c)
+        c = free(c)
         if c:
-            self.E[i] = _free(inverse(c) + self.E[i] + c)
-            self.w.conj(i, _apply(c, self.tab))
+            self.E[i] = free(inverse(c) + self.E[i] + c)
+            self.w.conj(i, apply_table(c, self.tab))
 
     def invert(self, i):
         self.E[i] = inverse(self.E[i])
@@ -157,11 +142,11 @@ class Frame:
             self.w.swap(a, b)
 
     def witness(self, w, t):
-        """The ``(sign, c)`` of ``_conjugators`` whose ``psi(c)`` is shortest."""
-        found = list(_conjugators(w, t))
+        """The ``(sign, c)`` of ``conjugators`` whose ``psi(c)`` is shortest."""
+        found = list(conjugators(w, t))
         if not found:
             raise ValueError(f"{w} is not conjugate to {t} or its inverse")
-        return min(found, key=lambda sc: len(_apply(sc[1], self.tab)))
+        return min(found, key=lambda sc: len(apply_table(sc[1], self.tab)))
 
     def cmul(self, i, j, m):
         """``E_i <- E_i . m`` for a word ``m`` conjugate to ``E_j`` or its inverse."""
@@ -169,7 +154,7 @@ class Frame:
         if s < 0:
             self.invert(j)
         self.conj(j, c)
-        self.E[i] = _free(self.E[i] + self.E[j])
+        self.E[i] = free(self.E[i] + self.E[j])
         self.w.multiply(i, j)
         self.conj(j, inverse(c))
         if s < 0:
@@ -207,8 +192,8 @@ class Frame:
     def transvect(self, i, j, e):
         """``x_i -> x_i x_j^e``."""
         f = {i: (i, e * j), -i: (-e * j, -i)}
-        self.E = [_free(y for x in w for y in f.get(x, (x,))) for w in self.E]
-        self.tab[i] = _free(self.tab[i] + self.tab[-e * j])
+        self.E = [free(y for x in w for y in f.get(x, (x,))) for w in self.E]
+        self.tab[i] = free(self.tab[i] + self.tab[-e * j])
         self.tab[-i] = inverse(self.tab[i])
         self.factors.append(("tv", i, j, e))
 
@@ -290,11 +275,11 @@ def _define(fr, words, ev):
     expand = {h: d, -h: inverse(d)}
     for i, t in enumerate(ev["templates"]):
         t = tuple(t)
-        fr.set_word(i, _free(y for x in t for y in expand.get(x, (x,))))
+        fr.set_word(i, free(y for x in t for y in expand.get(x, (x,))))
         for p in reversed(range(len(t))):
             if abs(t[p]) == h:
                 q, de = t[p + 1:], (d if t[p] > 0 else inverse(d))
-                fr.cmul(i, n, _free(inverse(q) + inverse(de) + (t[p],) + q))
+                fr.cmul(i, n, free(inverse(q) + inverse(de) + (t[p],) + q))
         if fr.E[i] != t:
             raise ValueError(f"template {t} does not expand to relator {words[i]}")
     return D.normalize(((-h,) + d,) + tuple(map(tuple, ev["templates"])))
@@ -313,7 +298,7 @@ def _eliminate(fr, words, ev):
             if abs(w[p]) == g:
                 f = 1 if w[p] > 0 else -1
                 s = D.substitute(w[p + 1:], g, image)
-                fr.cmul(k, i, _free(inverse(s) + (-f * g,) + (image if f > 0 else inverse(image)) + s))
+                fr.cmul(k, i, free(inverse(s) + (-f * g,) + (image if f > 0 else inverse(image)) + s))
         if fr.E[k] != D.substitute(w, g, image):
             raise AssertionError("substitution differs")
     fr.set_word(i, (g,) + inverse(image))

@@ -1,0 +1,10 @@
+# SAC transform (relators of length <= 3), search the triangle root, lift to a stable AC path.
+method = "ngen"
+benchmark = "bench60"
+
+[search]
+backend = "fast"
+budget = 10000
+
+[ngen]
+sac = true

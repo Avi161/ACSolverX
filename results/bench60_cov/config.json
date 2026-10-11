@@ -1,0 +1,12 @@
+{
+ "method": "cov",
+ "benchmark": "bench60",
+ "search": {
+  "backend": "fast",
+  "budget": 1000
+ },
+ "cov": {
+  "total_budget": 10000
+ },
+ "name": "bench60_cov"
+}

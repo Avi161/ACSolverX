@@ -1,6 +1,6 @@
 """acx: Andrews-Curtis search, change of variables and verification.
 
-Start with ``acx/INTERFACES.md``. The core entry points::
+Start with ``docs/ARCHITECTURE.md``. The core entry points::
 
     from acx import Presentation, SearchConfig, search, replay
     res = search(Presentation.parse("xxYXY", "xyyXY"), SearchConfig(budget=1000))

@@ -100,7 +100,7 @@ def child_width(lens):
 
 
 @njit(inline="always")
-def _reduce(buf, m, cyclic):
+def reduce_buf(buf, m, cyclic):
     """Free reduction of ``buf[:m]`` in place, then main's cyclic tail; the result is ``buf[lo:lo+n]``."""
     n = 0
     for t in range(m):
@@ -148,7 +148,7 @@ def _least_start(w, lo, m, inv):
 
 
 @njit(inline="always")
-def _canon(w, lo, m, out):
+def canon_buf(w, lo, m, out):
     """Write the canonical form of ``w[lo:lo+m]`` to ``out[:m]``."""
     if m == 0:
         return
@@ -169,7 +169,7 @@ def _canon(w, lo, m, out):
 
 
 @njit(inline="always")
-def _rel_less(a, la, b, lb):
+def rel_less(a, la, b, lb):
     """``(len, Booth order)``: the relator order of ``sort_rels``."""
     if la != lb:
         return la < lb
@@ -198,8 +198,8 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
     for r in range(R):
         for t in range(lens[r]):
             buf[t] = syms[r, t]
-        lo, m = _reduce(buf, lens[r], cyclic)
-        _canon(buf, lo, m, can[r])
+        lo, m = reduce_buf(buf, lens[r], cyclic)
+        canon_buf(buf, lo, m, can[r])
         cl[r] = m
     new = np.empty(2 * mx, dtype=np.uint8)
     seen = np.zeros(mx * mx, dtype=np.bool_)
@@ -246,13 +246,13 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
                         for t in range(lo):
                             u = t - k2
                             buf[li + t] = _src(syms, j, lo, s, u + lo if u < 0 else u)
-                        r0, m = _reduce(buf, li + lo, cyclic)
+                        r0, m = reduce_buf(buf, li + lo, cyclic)
                         if cap >= 0 and m > cap:
                             rejected += 1
                             continue
                         if cyclic:
                             seen[k1 * lo + k2] = True
-                        _canon(buf, r0, m, new)
+                        canon_buf(buf, r0, m, new)
                         # insertion sort of the R relators (the new one stands at index i)
                         for a in range(R):
                             order[a] = a
@@ -261,7 +261,7 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
                                 x, y = order[b - 1], order[b]
                                 xa = new if x == i else can[x]
                                 ya = new if y == i else can[y]
-                                if _rel_less(ya, m if y == i else cl[y], xa, m if x == i else cl[x]):
+                                if rel_less(ya, m if y == i else cl[y], xa, m if x == i else cl[x]):
                                     order[b - 1], order[b] = y, x
                                     b -= 1
                                 else:

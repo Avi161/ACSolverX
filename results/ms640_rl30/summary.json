@@ -1,0 +1,46 @@
+{
+ "name": "ms640_rl30",
+ "method": "rl",
+ "benchmark": "ms640",
+ "rows": 30,
+ "solved": 30,
+ "ac_path": 30,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "cost": {
+  "unit": "evaluations",
+  "total": 9650,
+  "on_solved": 9650
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 30,
+    "sum": 133,
+    "mean": 4.43,
+    "median": 4.0,
+    "max": 10
+   },
+   "elem_moves": {
+    "n": 30,
+    "sum": 845,
+    "mean": 28.17,
+    "median": 25.5,
+    "max": 68
+   }
+  }
+ },
+ "wall_seconds": 20.3,
+ "row_seconds": 20.3,
+ "config": {
+  "method": "rl",
+  "benchmark": "ms640",
+  "rows": "0:30",
+  "rl": {
+   "width": 256,
+   "steps": 150
+  },
+  "name": "ms640_rl30"
+ }
+}

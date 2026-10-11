@@ -108,18 +108,22 @@ def test_reps_match_the_published_orbit_table():
 
 # --- pure vs numba --------------------------------------------------------------------------------
 
-def test_fast_matches_pure_on_ac19_extended():
-    pytest.importorskip("numba")
+def _parity_sample(n, n_random):
     rows = dataset("data/AC19_extended.txt")
-    sample = rows[::len(rows) // 2000][:2000]
-    assert len(sample) == 2000
+    sample = rows[::len(rows) // n][:n]
     rng = random.Random(11)
-    sample += [_walk(p, rng) for p in sample[:100]]                        # the long-word regime
+    sample += [_walk(p, rng) for p in sample[:n // 20]]                    # the long-word regime
     sample += [_p(*s) for s in [("x", "y"), ("xyXY", "x"), ("xx", "yy"), ("", "xy"), ("xYxy", ""),
                                 ("xX", "y"), ("xxxYYYY", "xyxYXY")]]       # degenerate words
-    for _ in range(200):
+    for _ in range(n_random):
         sample.append(_p(*("".join(rng.choice("xXyY") for _ in range(rng.randint(1, 18))) for _ in "ab")))
-    for pres in sample:
+    return sample
+
+
+@pytest.mark.parametrize("n,n_random", [(200, 50), pytest.param(2000, 200, marks=pytest.mark.slow)])
+def test_fast_matches_pure_on_ac19_extended(n, n_random):
+    pytest.importorskip("numba")
+    for pres in _parity_sample(n, n_random):
         assert orbit_key(pres, "fast") == orbit_key(pres, "spec"), pres
 
 

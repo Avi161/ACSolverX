@@ -1,5 +1,5 @@
 """acx.search: the spec backend against main's baseline, budget-prefix invariance, the cap."""
-import importlib.util
+import sys
 
 import pytest
 from conftest import dataset, golden_entries
@@ -86,8 +86,7 @@ def test_three_generators():
     assert r.solved and r.end.n_gen == 3 and r.end.is_trivial()
 
 
-@pytest.mark.skipif(importlib.util.find_spec("acx.search.fast") is not None,
-                    reason="the fast backend exists; its parity tests own it")
-def test_missing_fast_backend_is_a_clear_error():
+def test_missing_fast_backend_is_a_clear_error(monkeypatch):
+    monkeypatch.setitem(sys.modules, "acx.search.fast", None)        # as if numba were not installed
     with pytest.raises(BackendUnavailable):
         search(("YYXyx", "Yx"), backend="fast")

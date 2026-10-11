@@ -38,9 +38,10 @@ replaces them.
 from collections import namedtuple
 from itertools import groupby
 
-from ..aut.whitehead import _TABLES, _apply
+from ..aut.whitehead import TABLES, apply_table
 from ..core.moves import Move, apply_raw
-from ..core.words import _bstr, canonical_rels, canonical_word, inverse, reduce, rotate
+from ..core.priority import length
+from ..core.words import booth_str, canonical_rels, canonical_word, inverse, reduce, rotate
 
 Aut = namedtuple("Aut", "k")
 NIELSEN = (14, 17, 8, 11)       # AUTOS indices of x -> xy, x -> xY, y -> yx, y -> yX
@@ -52,7 +53,7 @@ class Budget(Exception):
 
 def image(w, k):
     """``AUTOS[k](w)``, cyclically reduced."""
-    return reduce(_apply(w, _TABLES[k]))
+    return reduce(apply_table(w, TABLES[k]))
 
 
 def aut_child(state, k):
@@ -61,10 +62,6 @@ def aut_child(state, k):
 
 def move_child(state, m):
     return canonical_rels(tuple(reduce(r) for r in apply_raw(state, m)))
-
-
-def total_length(state):
-    return len(state[0]) + len(state[1])
 
 
 def is_terminal(state):
@@ -89,7 +86,7 @@ def from_syllables(syl):
 
 
 def _find(hay, needle):
-    return _bstr(hay).find(_bstr(needle))
+    return booth_str(hay).find(booth_str(needle))
 
 
 def _count(w, g):
@@ -165,7 +162,7 @@ def stage_pair_descent(run):
         best = None
         for k in NIELSEN:
             run.charge()
-            gain = total_length(run.state) - sum(len(image(r, k)) for r in run.state)
+            gain = length(run.state) - sum(len(image(r, k)) for r in run.state)
             if gain > 0 and (best is None or gain > best[0]):
                 best = (gain, k)
         if best is None:
@@ -182,8 +179,8 @@ def _relator_descent(run, index):
         for k in NIELSEN:
             run.charge()
             cand = canonical_word(image(donor, k))
-            if len(cand) < len(donor) and (best is None or (len(cand), _bstr(cand)) < best[0]):
-                best = ((len(cand), _bstr(cand)), k, cand)
+            if len(cand) < len(donor) and (best is None or (len(cand), booth_str(cand)) < best[0]):
+                best = ((len(cand), booth_str(cand)), k, cand)
         if best is None:
             return None
         run.apply_aut(best[1])

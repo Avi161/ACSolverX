@@ -15,7 +15,7 @@ from numba import njit
 from ..aut.whitehead import AUTOS
 from ..core.moves import Move
 from ..core.words import inverse
-from ..search.fast.kernels import _canon, _reduce, _rel_less, child_width, expand as _expand, max_children
+from ..search.fast.kernels import canon_buf, reduce_buf, rel_less, child_width, expand as _expand, max_children
 
 _BOOTH = np.array([0, 2, 0, 3, 1], dtype=np.uint8)      # key code -> Booth symbol (Y=0 y=1 X=2 x=3)
 _KEYC = np.array([2, 4, 1, 3], dtype=np.uint8)          # Booth symbol -> key code
@@ -93,10 +93,10 @@ def transform_key(codes, tab, tlen):
             for u in range(tlen[b]):
                 buf[m] = tab[b, u]
                 m += 1
-        lo, size = _reduce(buf, m, True)
-        _canon(buf, lo, size, can[w])
+        lo, size = reduce_buf(buf, m, True)
+        canon_buf(buf, lo, size, can[w])
         cl[w] = size
-    first = 1 if _rel_less(can[1], cl[1], can[0], cl[0]) else 0
+    first = 1 if rel_less(can[1], cl[1], can[0], cl[0]) else 0
     out = np.empty(cl[0] + cl[1] + 1, dtype=np.uint8)
     _write(out, 0, can[first], cl[first])
     out[cl[first]] = 0

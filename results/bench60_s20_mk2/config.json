@@ -1,0 +1,11 @@
+{
+ "method": "greedy",
+ "benchmark": "bench60",
+ "search": {
+  "backend": "fast",
+  "priority": "s20_mk2",
+  "budget": 10000,
+  "cap": 24
+ },
+ "name": "bench60_s20_mk2"
+}

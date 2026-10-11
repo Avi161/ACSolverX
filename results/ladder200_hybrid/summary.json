@@ -1,0 +1,77 @@
+{
+ "name": "ladder200_hybrid",
+ "method": "hybrid",
+ "benchmark": "ladder200",
+ "rows": 188,
+ "solved": 188,
+ "ac_path": 8,
+ "aut_assisted": 173,
+ "stable_cert": 7,
+ "skipped": 0,
+ "cost": {
+  "unit": "units",
+  "total": 22319,
+  "on_solved": 22319
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 8,
+    "sum": 435,
+    "mean": 54.38,
+    "median": 9.0,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 8,
+    "sum": 1407,
+    "mean": 175.88,
+    "median": 46.0,
+    "max": 679
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 173,
+    "sum": 7177,
+    "mean": 41.49,
+    "median": 20,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 173,
+    "sum": 79471,
+    "mean": 459.37,
+    "median": 308,
+    "max": 2783
+   }
+  },
+  "stable_cert": {
+   "sub_moves": {
+    "n": 7,
+    "sum": 117,
+    "mean": 16.71,
+    "median": 15,
+    "max": 20
+   },
+   "elem_moves": {
+    "n": 7,
+    "sum": 6051,
+    "mean": 864.43,
+    "median": 857,
+    "max": 1351
+   }
+  }
+ },
+ "wall_seconds": 10.35,
+ "row_seconds": 37.52,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "ladder200",
+  "hybrid": {
+   "budget": 1000
+  },
+  "name": "ladder200_hybrid",
+  "workers": 4
+ }
+}

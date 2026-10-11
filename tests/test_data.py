@@ -110,9 +110,49 @@ def test_certificates_cover_unsolved_classes():
     assert sum(c["size"] for c in classes) == 261
 
 
+def test_certificates_check():
+    from acx.aut.equivalence import check, check_side
+    assert check(path("data/equivalence_classes/certificates.json")) == dict(
+        classes=124, presentations=261, cv=93, ac=44, pure_ac=6)
+    edge = next(e for c in read_json("data/equivalence_classes/certificates.json")["classes"]
+                for e in c["edges"] if e["side_a"]["steps"])
+    bad = dict(edge["side_a"], steps=[dict(edge["side_a"]["steps"][0], phi={"x": "xx", "y": "y"})])
+    with pytest.raises(ValueError):
+        check_side(bad)
+
+
+@pytest.mark.parametrize("forge", ["drop_edge", "flip_pure"])
+def test_certificates_check_rejects_a_forged_class(tmp_path, forge):
+    """A class whose edges do not connect its members, or a wrong ``pure_ac_path`` flag, is rejected."""
+    from acx.aut.equivalence import check
+    doc = read_json("data/equivalence_classes/certificates.json")
+    c = next(c for c in doc["classes"] if c["size"] > 1)
+    if forge == "drop_edge":
+        c["edges"].pop()
+    else:
+        c["edges"][0]["pure_ac_path"] = not c["edges"][0].get("pure_ac_path")
+    forged = tmp_path / "certificates.json"
+    forged.write_text(json.dumps(doc))
+    with pytest.raises(ValueError):
+        check(str(forged))
+
+
 def test_ac1m_aut_min_rows():
+    rows = data.rows("ac1m_autmin")
+    assert len(rows) == 71283 and rows[0].id == "ac1m_0"
     with gzip.open(path("data/AC1M_aut_min.csv.gz"), "rt") as f:
         assert sum(1 for _ in csv.DictReader(f)) == 71283
+
+
+@pytest.mark.parametrize("name,n", [("ms640", 640), ("bench60", 60), ("ladder20", 20), ("ladder300_s20hard", 268),
+                                    ("ac1m_hard_holdout60", 60), ("u124", 124), ("ac19_autmin", 72779)])
+def test_rows_by_name(name, n):
+    assert len(data.rows(name)) == n
+
+
+def test_families():
+    assert data.AK(3).strs == ("xyxYXY", "xxxYYYY")
+    assert data.MS(3, "YXyxy").strs == ("XyyyxYYYY", "XYXyxy")
 
 
 def test_ac1m_hard_aut_train_and_holdout():

@@ -50,11 +50,11 @@ DESCENT = range(8, len(AUTOS))       # only these change the length
 IDENTITY = ((1,), (2,))
 
 
-def _table(img):
+def sub_table(img):
     return {1: img[0], -1: inverse(img[0]), 2: img[1], -2: inverse(img[1])}
 
 
-def _apply(w, tab):
+def apply_table(w, tab):
     out = []
     for g in w:
         for h in tab[g]:
@@ -67,7 +67,7 @@ def _apply(w, tab):
 
 def apply(w, img):
     """The image of word ``w`` under the endomorphism ``x -> img[0], y -> img[1]``, freely reduced."""
-    return _apply(w, _table(img))
+    return apply_table(w, sub_table(img))
 
 
 def images(phi):
@@ -83,7 +83,7 @@ def _inverse_index(k):
 
 
 INVERSE = tuple(_inverse_index(k) for k in range(len(AUTOS)))
-_TABLES = tuple(map(_table, AUTOS))
+TABLES = tuple(map(sub_table, AUTOS))
 
 
 def invert(phi):
@@ -92,8 +92,8 @@ def invert(phi):
 
 
 def apply_pres(pres, phi):
-    tab = _table(images(phi))
-    return Presentation(2, tuple(_apply(r, tab) for r in pres.rels))
+    tab = sub_table(images(phi))
+    return Presentation(2, tuple(apply_table(r, tab) for r in pres.rels))
 
 
 def _two_gen(pres):
@@ -103,7 +103,7 @@ def _two_gen(pres):
 
 
 def _image(rels, k):
-    return tuple(reduce(_apply(r, _TABLES[k])) for r in rels)
+    return tuple(reduce(apply_table(r, TABLES[k])) for r in rels)
 
 
 def peak_reduce(rels):
