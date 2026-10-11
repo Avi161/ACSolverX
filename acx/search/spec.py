@@ -26,9 +26,9 @@ does not depend on discovery order. ``cap=None`` disables it.
 """
 from heapq import heappop, heappush
 
-from ..core.moves import enumerate_moves, rotate, source_word
+from ..core.moves import enumerate_moves, source_word
 from ..core.priority import get as get_priority
-from ..core.words import Presentation, booth_key, canonical_word, fmt, reduce, state_key
+from ..core.words import Presentation, canonical_word, fmt, reduce, rotate, sort_rels, state_key
 from .engine import Result
 
 
@@ -74,8 +74,7 @@ def run(start, cfg):
             if cap is not None and (len(new) > cap or any(L > cap for k, L in enumerate(lens) if k != i)):
                 cap_rejected += 1
                 continue
-            child = can[:i] + (canonical_word(new),) + can[i + 1:]
-            child = tuple(sorted(child, key=lambda r: (len(r), booth_key(r))))
+            child = sort_rels(can[:i] + (canonical_word(new),) + can[i + 1:])
             ckey = state_key(child, n)
             if ckey in parent:
                 continue

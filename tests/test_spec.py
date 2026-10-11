@@ -5,8 +5,8 @@ import pytest
 from conftest import dataset, golden_entries
 
 from acx.core.config import SearchConfig
-from acx.core.moves import enumerate_moves, rotate, source_word
-from acx.core.words import Presentation, parse, reduce
+from acx.core.moves import enumerate_moves, source_word
+from acx.core.words import Presentation, parse, reduce, rotate
 from acx.search import BackendUnavailable, search
 
 # Every golden entry that costs well under a second, plus the deepest solve inside budget 1,000

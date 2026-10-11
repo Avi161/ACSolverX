@@ -97,8 +97,13 @@ class _Table(dict):
         return v
 
 
+def _sym(c):
+    v = 0x1000 - ord(c)                   # 2|g| - (g > 0)
+    return (v + 1) // 2 if v % 2 else -(v // 2)
+
+
 _BCHAR = _Table(lambda g: chr(0x1000 - 2 * abs(g) + (g > 0)))
-_BSYM = _Table(lambda c: (lambda v: (v + 1) // 2 if v % 2 else -(v // 2))(0x1000 - ord(c)))
+_BSYM = _Table(_sym)
 
 
 def _bstr(w):
@@ -107,11 +112,6 @@ def _bstr(w):
 
 def _from_bstr(s):
     return tuple([_BSYM[c] for c in s])
-
-
-def booth_key(w):
-    """Sort key of ``w`` in Booth order (``Y < y < X < x``)."""
-    return _bstr(w)
 
 
 def canonical_word(w):
@@ -124,9 +124,14 @@ def canonical_word(w):
     return _from_bstr(min(min(s[i:i + n] for i in range(n)), min(t[i:i + n] for i in range(n))))
 
 
+def sort_rels(rels):
+    """Relators sorted by ``(length, Booth order)``: main's pair order."""
+    return tuple(sorted(rels, key=lambda r: (len(r), _bstr(r))))
+
+
 def canonical_rels(rels):
-    """Each relator canonical, then sorted by ``(length, Booth order)`` (``canonical_pair_nj``)."""
-    return tuple(sorted((canonical_word(r) for r in rels), key=lambda r: (len(r), _bstr(r))))
+    """Each relator canonical, then sorted (``canonical_pair_nj``)."""
+    return sort_rels([canonical_word(r) for r in rels])
 
 
 def code(g, n_gen=2):

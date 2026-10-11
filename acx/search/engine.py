@@ -71,7 +71,7 @@ def backend(name):
 
 def search(pres, cfg=None, **overrides):
     """Best-first search from ``pres`` (a ``Presentation`` or relator strings)."""
-    cfg = (cfg or SearchConfig()).replace(**overrides) if overrides else (cfg or SearchConfig())
+    cfg = (cfg or SearchConfig()).replace(**overrides)
     pres = as_presentation(pres)
     start = pres.reduced(cfg.cyclic).canonical()
     t0 = time.perf_counter()
