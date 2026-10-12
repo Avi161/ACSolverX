@@ -4,12 +4,13 @@ import tomllib
 from dataclasses import fields
 
 from ..core.config import SearchConfig, parse_cap, parse_override
+from .output import check_output, keeps_path
 
 # The config sections each method reads; any other section is an error.
 SECTIONS = {"greedy": ("search",), "aut": ("search",), "cov": ("search", "cov"), "ngen": ("search", "ngen"),
             "hybrid": ("hybrid",), "rl": ("rl",), "rankn": ("search", "rankn")}
 METHODS = tuple(SECTIONS)
-TOP_LEVEL_KEYS = {"name", "method", "benchmark", "rows", "workers", "decode"}
+TOP_LEVEL_KEYS = {"name", "method", "benchmark", "rows", "workers", "decode", "path", "fields"}
 ALL_KEYS = TOP_LEVEL_KEYS | {section for sections in SECTIONS.values() for section in sections}
 RL_KEYS = {"width", "steps", "alpha", "cap"}
 
@@ -19,7 +20,10 @@ def load_config(path, overrides=()):
 
     Top level: ``name`` (the results folder, default the file's stem), ``method``, ``benchmark`` (a name of
     ``acx.data.rows`` or a path), ``rows`` (optional: a slice ``"a:b[:c]"`` or ids ``"3,17"``), ``workers``
-    (processes, default 1) and ``decode`` (default true: elementary length of S-move paths).
+    (processes, default 1) and ``decode`` (default true: elementary length of S-move paths). Two options shape the
+    records (``acx.runner.output``): ``path`` (default true: store each solve's path and replay it on the row; false:
+    search without the path, which is faster, with ``path`` and ``elementary`` null and ``verified`` false) and
+    ``fields`` (optional list: write only these record keys, besides ``id``, ``solved`` and ``error``).
     A method reads only its own sections (``SECTIONS``): ``[search]`` is ``SearchConfig``, ``[cov]`` ``CoVConfig``
     and ``[ngen]`` ``NGenConfig`` without their ``search``, ``[hybrid]`` ``HybridConfig``, ``[rl]`` the keywords of
     ``acx.rl.solve.solve``. Any other section, unknown key or invalid value raises ``ValueError`` here, before
@@ -31,8 +35,15 @@ def load_config(path, overrides=()):
     for item in overrides:
         _apply_override(cfg, item)
     _check_keys(cfg)
+    check_output(cfg)
     method_config(cfg)
     return cfg
+
+
+def run_config(cfg):
+    """``cfg`` as stored with a run (``config.json``, ``summary.json``): without ``rows`` and ``workers``, which may
+    differ between the invocations that make up one run."""
+    return {key: value for key, value in cfg.items() if key not in ("rows", "workers")}
 
 
 def _apply_override(cfg, item):
@@ -62,8 +73,9 @@ def _check_keys(cfg):
 def method_config(cfg):
     """The method's settings object (a dict of keywords for ``rl``), built from its sections.
 
-    ``ValueError`` on an unknown key or an invalid value. ``[search]`` always captures paths, since every solve
-    is replayed.
+    ``ValueError`` on an unknown key or an invalid value. The path switches of the methods (``search.capture_path``,
+    ``hybrid.certify``, ``ngen.lift``) are set from the top-level ``path``: a solve is replayed exactly when its
+    path is kept.
     """
     method = cfg["method"]
     if method == "rankn":
@@ -73,9 +85,9 @@ def method_config(cfg):
         return _rl_keywords(cfg.get("rl", {}))
     if method == "hybrid":
         from ..hybrid import HybridConfig
-        return _build(HybridConfig, {**cfg.get("hybrid", {}), "certify": True})
+        return _build(HybridConfig, {**cfg.get("hybrid", {}), "certify": keeps_path(cfg)})
     default_budget = {"budget": 1_000} if method == "cov" else {}
-    search = SearchConfig.from_dict({**default_budget, **cfg.get("search", {}), "capture_path": True})
+    search = SearchConfig.from_dict({**default_budget, **cfg.get("search", {}), "capture_path": keeps_path(cfg)})
     if method == "cov":
         from ..cov import CoVConfig
         return _build(CoVConfig, cfg.get("cov", {}), search=search)
@@ -96,7 +108,7 @@ def _build(cls, values, **fixed):
 def _ngen_config(cfg, search):
     """``NGenConfig`` from ``[ngen]`` and ``search``; the SAC phase has only the 'length' priority."""
     from ..ngen import NGenConfig
-    config = _build(NGenConfig, {**cfg.get("ngen", {}), "lift": True}, search=search)
+    config = _build(NGenConfig, {**cfg.get("ngen", {}), "lift": keeps_path(cfg)}, search=search)
     if config.sac and search.priority != "length":
         raise ValueError("ngen with sac=true searches past two generators, where only priority 'length' is defined")
     return config

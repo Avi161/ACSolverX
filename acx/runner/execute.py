@@ -7,7 +7,9 @@ from multiprocessing import Pool
 
 from .. import data
 from ..verify.replay import ReplayError, abs_det
+from .config import run_config
 from .methods import SOLVERS, record
+from .output import shape
 from .summary import summarize
 
 
@@ -45,12 +47,20 @@ def _unsolvable(pres):
 
 
 def _solve_row(args):
-    """``(cfg, row)`` -> the row's record; a row no AC path can start from is an unsolved record with an ``error``."""
+    """``(cfg, row)`` -> the row's record, shaped by the config's ``path`` and ``fields``.
+
+    A row no AC path can start from, and a row whose method raises, are unsolved records with an ``error``
+    (``Type: message``): one bad row does not end the run. ``cpu_seconds`` is this process's CPU time for the row.
+    """
     cfg, row = args
-    start = time.perf_counter()
-    why = _unsolvable(row.pres)
-    rec = record(False, error=why) if why else SOLVERS[cfg["method"]](row.pres, cfg)
-    return {"id": row.id, **rec, "seconds": round(time.perf_counter() - start, 4)}
+    wall, cpu = time.perf_counter(), time.process_time()
+    try:
+        why = _unsolvable(row.pres)
+        rec = record(False, error=why) if why else SOLVERS[cfg["method"]](row.pres, cfg)
+    except Exception as e:
+        rec = record(False, error=f"{type(e).__name__}: {e}")
+    return shape({"id": row.id, **rec, "seconds": round(time.perf_counter() - wall, 4),
+                  "cpu_seconds": round(time.process_time() - cpu, 6)}, cfg)
 
 
 def _load_done(paths_file):
@@ -83,7 +93,7 @@ def _prepare_run_dir(run_dir, cfg, fresh):
         for name in (paths_file, config_file, os.path.join(run_dir, "summary.json")):
             if os.path.exists(name):
                 os.remove(name)
-    config = {k: v for k, v in cfg.items() if k not in ("rows", "workers")}      # the rows may grow on resume
+    config = run_config(cfg)
     if os.path.exists(config_file):
         with open(config_file) as f:
             if json.load(f) != config:
@@ -113,8 +123,9 @@ def run(cfg, out="results", fresh=False, log=print):
 
     Writes ``<out>/<name>/``: ``config.json``, ``paths.jsonl`` (one record per row, flushed as it is solved) and
     ``summary.json``. Rows already in ``paths.jsonl`` are skipped, so an interrupted run resumes and a run under
-    another config needs ``fresh`` or another name; the summary covers every record in ``paths.jsonl``.
-    The record fields are in ``acx.runner.methods.record``.
+    another config (``path`` and ``fields`` included) needs ``fresh`` or another name; the summary covers every
+    record in ``paths.jsonl``, error rows included (a row that raised is recorded, not retried on resume).
+    The record fields are in ``acx.runner.methods.record`` and ``acx.runner.output``.
     """
     check_method(cfg)
     if cfg["method"] == "rankn":
