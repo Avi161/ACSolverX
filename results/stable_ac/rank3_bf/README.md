@@ -2,7 +2,9 @@
 
 **Status, 12 Oct 2026: final at cap 24.** In this directory: word lengths 1 to 10 at budget
 1,000, lengths 1 to 7 at budget 10,000, rank 4 and rank 5. Every sweep finished and passed its
-verifier. Still running: the reruns at caps 32 and 48 (section "Relator-length cap").
+verifier. The cap changed no search wherever it was measured (section "Relator-length cap");
+the per-search cap counters are stored for lengths 1 to 8 at budget 1,000 and 1 to 5 at budget
+10,000, for the inverse words, and for every control and relator-subword row.
 
 ## Setup and terms
 
@@ -202,7 +204,9 @@ larger one.
 
 Not like for like in two ways, both in CoV's favour: several CoV starts can share a word and
 the best is taken, and CoV ran at cap max(24, longest relator + 16) (median 33 over its rows;
-PLAN §11 item 6 estimated 32) against 24 here.
+PLAN §11 item 6 estimated 32) against 24 here. The cap does not hold rank 3 back: none of
+the 69,816 relator-subword searches could bind at cap 24 at either budget (section
+"Relator-length cap"), so each is the search rank 3 runs at CoV's cap.
 
 The plan expected any gain to concentrate in relator subwords. At budget 1,000, lengths 1 to
 10, per start it does, slightly: inside the brute-force family, words that are a cyclic subword
@@ -250,21 +254,81 @@ a sampling choice (half of the 118,096 words up to length 10), not an exact symm
 ## Relator-length cap
 
 The control and every start run at the same cap: a child with a relator longer than 24 letters
-is dropped. That is the repo's baseline setting, and every stored path was replayed against
-it. Two measurements of whether the cap changes anything:
+is dropped, that is, never pushed on the heap. That is the repo's baseline setting, and every
+stored path was replayed against it. Three measurements of whether the cap changes a result.
+None found a search it changed.
 
-- **The cap never ended a search.** A search stops below its node budget only when the cap
-  has dropped every child it had left. Of the 40,098,032 searches stored here (both controls,
-  every rank-3 length, the inverse words, the relator subwords, rank 4 and rank 5; 13,516,429
-  of them unsolved), 0 stopped below the budget
-  ([`cap/cap_exhaustion_all_cap24.md`](cap/cap_exhaustion_all_cap24.md), from
-  `cap_exhaustion.py`). `indep_words_classes.py` reports the same 0 for the 25 result arrays.
-- **Larger caps (in progress).** That count does not see children dropped inside a search
-  that went on. The control, every word of length 1 to 6 and the relator subwords are being
-  rerun at caps 32 and 48 at budget 1,000 (PLAN §11 item 26). Cap 32 has finished: the
-  control solves the same 554, the subword starts the same 39,968 of 69,816, and every word
-  length the same number of searches as at cap 24 (from the run log). The search-by-search
-  comparison and cap 48 are added here when the run ends.
+**1. The cap never ended a search.** A search stops below its node budget only when the cap
+has dropped every child it had left. Of the 40,098,032 searches stored here (both controls,
+every rank-3 length, the inverse words, the relator subwords, rank 4 and rank 5; 13,516,429
+of them unsolved), 0 stopped below the budget
+([`cap/cap_exhaustion_all_cap24.md`](cap/cap_exhaustion_all_cap24.md), from
+`cap_exhaustion.py`). `indep_words_classes.py` reports the same 0 for the 25 result arrays.
+
+**2. Every rerun result records what the cap dropped, and in none could it matter.** The
+count above does not see a child dropped inside a search that went on. So the baseline was
+run again at cap 24 (commit `64b41ff`) with three counters per search
+(`run_rank3_bf.CAP_DOC`):
+
+| field | meaning |
+|---|---|
+| `cap_dropped` | children not pushed because one of their relators is longer than the cap |
+| `cap_dropped_min_total` | the smallest total length among them (empty when there are none) |
+| `cap_first_bind` | the number of the first pop (1 = the start) at which a child dropped earlier had a heap key (total length, depth) no larger than the popped state's; empty when there is no such pop |
+
+The heap is ordered by (total length, depth, state), and a state is popped only after it was
+pushed. With `cap_first_bind` empty, every dropped child sorts after every state the search
+popped, so at any larger cap the search pops the same states in the same order: same solved
+flag, same node count, same path. `cap_dropped = 0` is the stronger statement that nothing
+was dropped at all. `tests/stable_ac/test_solvern_fast.py` tests the claim on searches run at
+seven caps, including caps that do bind.
+
+| rerun at cap 24 | searches | the cap dropped a child | it could bind |
+|---|---|---|---|
+| budget 1,000: control | 640 | 14 | 0 |
+| budget 1,000: relator subwords | 69,816 | 10,630 | 0 |
+| budget 1,000: words of length 1 to 8 | 4,198,400 | 23,509 | 0 |
+| budget 1,000: inverse words of length 1 to 6 | 465,920 | 216 | 0 |
+| budget 10,000: control | 640 | 26 | 0 |
+| budget 10,000: relator subwords | 69,816 | 10,708 | 0 |
+| budget 10,000: words of length 1 to 5 | 154,880 | 212 | 0 |
+| all | 4,960,112 | 45,315 | 0 |
+
+The cap dropped a child in 0.9% of these searches and could bind in none, so each of the
+4,960,112 is the search every larger cap runs, a cap of 64 letters per relator included. Per
+file:
+[`cap/cap_counters_cap24.md`](cap/cap_counters_cap24.md). The rerun is search for search the
+first run (section "Checks"), so the tables and graphs above, computed from the first run,
+stand.
+
+Where the counters are stored:
+
+- control rows: `n2_cap_dropped`, `n2_cap_dropped_min_total`, `n2_cap_first_bind` for the
+  2-generator search and the same three under `null_` for the empty-word start;
+- relator-subword rows and sampled rows: `cap_dropped`, `cap_dropped_min_total`,
+  `cap_first_bind`;
+- every word of a length: `..._L<n>_capcount.npz` (and `..._L<n>_inv_capcount.npz`) beside
+  the result array, same `pres_ids` and `words`.
+
+Without counters as of this commit, because their rerun had not finished: words of length 9
+and 10 at budget 1,000 (33,592,320 searches), lengths 6 and 7 at budget 10,000 (1,244,160),
+rank 4 and rank 5. For those, measurement 1 applies and nothing else.
+
+**3. Runs at other caps are the same searches.** A cross-check of the counters on the short
+words, by running the searches themselves at other caps (no counters in those runs). Budget
+1,000 at caps 20, 32 and 48: the control, the relator subwords and every word of length 1 to
+6, 536,376 searches per cap. Budget 10,000 at cap 32: the control, the relator subwords and
+lengths 1 to 4, 121,656 searches. At every cap, 0 searches differ from cap 24 in solved flag,
+node count or path length ([`cap/cap_compare_b1000.md`](cap/cap_compare_b1000.md),
+[`cap/cap_compare_b10000.md`](cap/cap_compare_b10000.md)). Read against the counters
+([`cap/cap_bind_b1000_cap24.md`](cap/cap_bind_b1000_cap24.md),
+[`cap/cap_bind_b10000_cap24.md`](cap/cap_bind_b10000_cap24.md)): no search with an empty
+`cap_first_bind` differs at cap 32 or 48, as the counter promises.
+
+**Not covered.** The counters prove "the same at every larger cap", not "the same at a smaller
+cap"; cap 20 was measured by running it, on the short words only. No search above cap 24 was
+run at budget 10,000 beyond cap 32, or on words longer than 6 (4 at budget 10,000): there the
+counters are the evidence.
 
 ## Checks
 
@@ -304,6 +368,17 @@ post-processing machine (commit `a27bf4e`). Logs: `post_*.txt`.
 319 classes (318 of two, one of four) as `class_view`, and 117,612 starts (58,806 pairs) that
 duplicate another start of their own presentation, out of the 37,790,720 of lengths 1 to 10.
 
+- **Counted rerun** (the files committed here, on an AWS box at commit `1db8166`,
+  `aws_rank3_check_box.sh`; logs `cap/check_*.txt`). `tests/stable_ac` passes (486 tests, 1
+  skipped), among them the repo-wide replay of every solved row under `results/stable_ac`.
+  `verify_rank3_bf --recheck 10` exits 0: 121,549 stored paths replayed, the counters of every
+  file consistent with its node counts, 250 stored results re-run with the reference solver
+  and equal, counters included. The rerun is the first run search for search: its 19 result
+  files (4,819,200 searches, inverse words included) equal the first run's array for
+  array ([`cap/check_arrays.txt`](cap/check_arrays.txt)), and its 1,280 control rows and
+  139,632 relator-subword rows have the same solved flag, node count and path length
+  ([`cap/same_b1000.md`](cap/same_b1000.md), [`cap/same_b10000.md`](cap/same_b10000.md)).
+
 **Not independently recomputed.** One derived count per budget (on how many gained
 presentations the shortlex cost is below the control's; the two columns it compares are both
 checked), and the CoV sweep's own searches, which are taken from its file as they are. The
@@ -314,9 +389,10 @@ left out and the readings its tester had to choose.
 
 | file | what |
 |---|---|
-| `rank3_bf_ms640_b<B>_cap24_control.jsonl` | 640 control rows, with the n-generator solver's copy (`n2_*`) and the empty-word start (`null_*`) |
+| `rank3_bf_ms640_b<B>_cap24_control.jsonl` | 640 control rows, with the n-generator solver's copy (`n2_*`) and the empty-word start (`null_*`), their cap counters, and `path_moves` on every solved row |
 | `..._L<n>.npz` | every word of length n on every presentation: `pres_ids` [640], `words` [K], `nodes` uint16 [640, K], `path_len` int16 (-1 = unsolved), `min_total`, `block_seconds`, `meta` |
 | `..._L<n>_inv.npz` | the same for the inverse words, n <= 6, budget 1,000 |
+| `..._L<n>_capcount.npz`, `..._L<n>_inv_capcount.npz` | the cap counters of the same searches: `cap_dropped` uint32, `cap_dropped_min_total` int16 (-1 = none), `cap_first_bind` int32 (-1 = never), each [640, K], with `pres_ids`, `words`, `meta` (n <= 8 at budget 1,000, n <= 5 at 10,000) |
 | `..._L<n>_sample.jsonl`, `..._sample_paths.jsonl` | 769 to 1,694 solved (presentation, word) rows per length with their full move paths (PLAN §5 said about 2,000: that target counts unsolved rows too) |
 | `..._relsub.jsonl.gz`, `..._relsub_paths.jsonl.gz` | every cyclic subword of a relator as w (69,816 rows per budget, 59,486 proper), every solved row with its path |
 | `rankn_bf_ms640_b1000_cap24_r4.npz`, `..._r5.npz` | rank 4 and 5: `pres_ids`, `combos` [C, k] (word indices), `nodes`, `path_len` [640, C], `base` (control), `null` (empty words), `meta`; `_sample_paths.jsonl` and `_summary.json` beside each |
@@ -324,6 +400,7 @@ left out and the readings its tester had to choose.
 | `*_control_vs_start*.png` / `.md` | `plot_rankn_vs_control` |
 | `*_class_view.md` / `.json` | `class_view` |
 | `indep_*.json`, `post_*.txt`, `checks_reference.json` | check results and logs |
+| `cap/` | cap tables: searches ended by the cap, the counters per file, the comparisons with caps 20, 32 and 48, and the logs of the check of the rerun (`check_*.txt`) |
 
 Not committed: the per-block partial files and the machine logs, in
 `s3://acsolver-u124-205558941715/cov_all/rank3_bf/`.
@@ -338,6 +415,8 @@ Reproduce / check (repo root, `PYTHONPATH=.`; `D=results/stable_ac/rank3_bf`,
     python3 -m experiments.stable_ac.rank3.plot_rankn_vs_control --rank3 $D --budget 1000 [--lengths 1-4]
     python3 -m experiments.stable_ac.rank3.plot_rankn_vs_control --rankn $D/rankn_bf_ms640_b1000_cap24_r4.npz
     python3 -m experiments.stable_ac.rank3.class_view --rank3 $D --budget 1000
+    python3 -m experiments.stable_ac.rank3.cap_exhaustion --dir $D --out OUT.json    # cap tables
+    python3 -m experiments.stable_ac.rank3.cap_compare --base $D --other OTHER_CAP_DIR --budget 1000 --out OUT.json
     python3 -I experiments/stable_ac/rank3/indep/indep_search.py $D data/ms640_solved.txt OUT.json 8 40
 
 The independent scripts read plain `.jsonl`; gunzip the four subword files first.

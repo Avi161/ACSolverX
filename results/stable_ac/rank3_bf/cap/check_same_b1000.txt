@@ -1,0 +1,4 @@
+b1000 cap 24 vs 24: control, 2 generators: 640 searches, solved 554 vs 554, only-base 0, only-other 0, nodes differ 0, path differs 0, differ 0, bind at the smaller cap None, differ with no bind None
+b1000 cap 24 vs 24: relator subwords: 69,816 searches, solved 39,968 vs 39,968, only-base 0, only-other 0, nodes differ 0, path differs 0, differ 0, bind at the smaller cap None, differ with no bind None
+b1000 cap 24 vs 24: all word lengths compared: 37,790,720 searches, solved 24,872,985 vs 24,872,985, only-base 0, only-other 0, nodes differ 0, path differs 0, differ 0, bind at the smaller cap None, differ with no bind None
+/opt/r3/out/same_b1000.json

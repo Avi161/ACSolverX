@@ -426,6 +426,32 @@ Recorded 12 Oct 2026, 08:45 UTC.
     cap-24 number enters a cap-32 or cap-48 table. Outputs:
     `results/stable_ac/rank3_bf/cap/`, raw files in
     `cov_all/rank3_bf/cap/` in S3.
+    Results, 12 Oct. (a) 0 of the 40,098,032 stored searches stopped below
+    their budget. (b) Box D finished caps 32 and 48 at budget 1,000. A second
+    box (`i-02fc12f15f6a2dd6c`, the same script) added cap 32 at budget 10,000
+    (control, relator subwords, lengths 1 to 4) and cap 20 at budget 1,000,
+    and was stopped during cap 48 at budget 10,000: redundant once every
+    search carries counters. Every finished run is search for search the
+    cap-24 run: 536,376 searches per cap at budget 1,000, 121,656 at budget
+    10,000.
+    (c) Counters, commit `ec5dde8`: both solvers return `cap_dropped`,
+    `cap_dropped_min_total` and `cap_first_bind` for every search
+    (`run_rank3_bf.CAP_DOC`). An empty `cap_first_bind` means no dropped child
+    ever had a heap key at or below a popped state's, so the search is the
+    same at every larger cap. Solved control rows also store `path_moves`
+    (commit `878d939`).
+    (d) Counted rerun: box E (`i-06f654117e39eb529`, c7a.48xlarge spot,
+    us-east-1d, launched 13:07 UTC, commit `64b41ff`, user-data
+    `aws_rank3_counted_box.sh`, `DEADMAN` 780) reruns the baseline at cap 24
+    with the counters, under `cov_all/rank3_bf/cap/counted/` in S3, and no
+    search at any other cap. Committed at `ef770ba`: budget 1,000 control,
+    relator subwords, lengths 1 to 8 and inverse words 1 to 6; budget 10,000
+    control, relator subwords and lengths 1 to 5. 4,960,112 searches, a child
+    dropped in 45,315, a possible bind in 0. Not rerun at that commit:
+    lengths 9 and 10 at budget 1,000, 6 and 7 at budget 10,000, ranks 4
+    and 5.
+    (e) Check of the committed files: `aws_rank3_check_box.sh` on a
+    c7a.4xlarge on demand at commit `1db8166`. All jobs exit 0: 486 tests pass; the verifier replays 121,549 paths and re-runs 250 results; every rerun file equals the first run (127 arrays compared, both control files, both relator-subword files).
 
 ### Boxes
 
