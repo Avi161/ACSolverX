@@ -1,7 +1,10 @@
 # Rank-3 brute-force baseline on MS640: plan
 
 Written 12 Oct 2026 (UTC), before the sweep was launched. Later changes go in
-[Deviations](#11-deviations), not into the sections above it.
+[Deviations](#11-deviations), not into the sections above it. Two corrections
+made in place after the literature review are marked *(corrected)* and listed
+there. Sections 12 and 13 were added after launch and before any result was
+read.
 
 ## 1. Question
 
@@ -134,12 +137,18 @@ Per presentation p with control cost c_p (nodes, or unsolved at 1,000):
 8. **Gained and lost**: control-unsolved presentations some word solves, and
    control-solved presentations a word loses, by length.
 
-Expected, to be checked: a word that is not a subword of a relator gives the
-search nothing to substitute, so `Z·w` is dead weight that must be reduced to
-`Z` at the end, costing at least |w| extra moves; such words should be slower.
-Subwords of a relator let one S-move shorten that relator by |w| − 1, which is
-the CoV substitution performed inside the search, so any gain should
-concentrate in relsub.
+Expected, to be checked *(corrected)*: a word that is not a subword of a
+relator gives the search nothing to substitute, so `Z·w` is dead weight that
+must be reduced to `Z` before the end. Given a rank-2 trivialization of s
+moves, `Z·w` can be stripped letter by letter once r1, r2 are single letters,
+so a rank-3 path of at most s + |w| moves always exists: |w| is an **upper**
+bound on the extra path length, not a lower one (w = r1 needs one extra move).
+Path length is not node count; the greedy can still spend many more pops, and
+that is what is measured. Subwords of a relator let one S-move shorten that
+relator by |w| − 1, which is the CoV substitution performed inside the search,
+so any gain should concentrate in relsub. Whole rotations of a relator are the
+control in disguise (one move turns `Z·w` into `Z`) and are reported
+separately.
 
 ## 7. Verification
 
@@ -203,4 +212,159 @@ controls: the best single word, and the null double stabilization.
 
 ## 11. Deviations
 
-None yet.
+Recorded 12 Oct 2026, 04:15 UTC, after launch and before any result was read.
+
+1. **§6, corrected in place.** The first version said a non-subword costs "at
+   least |w| extra moves". It is at most s + |w| (see §6 and §12).
+2. **Second box.** §4 said budget 10,000 for L <= 7 "if the first is healthy".
+   It was launched with the first, for L <= 8, because the spot quota allowed
+   both (288 of 300 vCPU).
+3. **Box script.** The user-data both boxes run is `aws_rank3_bf_box.sh` of
+   the pinned commit plus an `EXTRA` variable for extra runner flags, empty on
+   both. The repository code both boxes run is `8b3a51d`.
+4. **Shard identity (audit E1).** At `8b3a51d` a shard file carries no budget,
+   cap or dataset, so a second run with other parameters in the same
+   `--out-dir` would reuse it. Not reachable in these runs: one box per
+   budget, each with its own disk and its own S3 prefix, both logged
+   "restored 0 files". Fixed after launch (shards live under the run's stem
+   and store what they hold; a mismatch is refused), with a test. A relaunch
+   after a spot interruption must use the same user-data as the box it
+   replaces.
+5. **Not logged.** Children generated per pop. The cost axis is pops; the
+   extra work per rank-3 pop shows only in wall time (`block_seconds`).
+6. **relsub vs CoV is not at equal caps.** The CoV sweep (PR #26) runs each
+   start at cap max(24, longest relator + 16), median 32; only 4% of its rows
+   ran at 24. Rank 3 runs at 24 throughout. The CoV rows also keep one row
+   per class of outputs under one representative word, so the same-word join
+   covers only (presentation, word) pairs that have a CoV row.
+
+Recorded 12 Oct 2026, 04:30 UTC, after lengths 1 to 6 of box A were read.
+
+7. **Scope, from Truett (03:44 to 04:25 UTC messages).** This is the baseline
+   of the stable-AC paper, so ranks 4 and 5 are part of it, not a follow-up
+   (§10). Spend rate at most $5 per hour. No compute on the laptop: tests and
+   re-checks run on AWS. Branch only, no pull request.
+8. **Rank 4 and 5 arms (new, box C).** `rankn_bf.py`: start
+   `<x,y,z1..zk | r1, r2, Z1·w1, .., Zk·wk>` for every multiset of folded
+   reduced words: rank 4 with |w| <= 3 (26 words, 351 multisets), rank 5 with
+   |w| <= 2 (8 words, 120 multisets); 301,440 searches, same solver, cap 24,
+   budget 1,000. Per presentation the 2-generator control and the null
+   stabilization `Z1, .., Zk` must agree node for node. The script was
+   syntax-checked only before launch; its first real test is the box's own
+   preflight on presentations 0, 320, 639, re-run with the reference solver.
+9. **Reference re-check (new, box C).** `rankn_checks.py` re-runs random
+   cells of the rank-3 files (lengths 1 to 7), of the rank-4/5 files, and
+   both sides of mirror-twin pairs whose solved flags differ, with
+   `solvern.search_n`, and compares (solved, nodes, path length). Time-boxed.
+10. **MS640 is 319 classes, not 640 (found 04:20 UTC).** Under the 8 signed
+    relabelings of {x, y} the 640 rows form 318 classes of two and one of
+    four; 317 pairs are y <-> Y mirrors (r1 is its own mirror up to rotation
+    and inversion). So (row, w) and (mirror row, mirror w) are the same
+    problem. Only rows 7 and 9 are symmetric themselves (58,806 of 37,790,720
+    starts duplicated inside a row). The greedy breaks ties by letter, so
+    mirror copies are not identical runs: on lengths 1 to 5 the solved flag
+    differs on 0.16 to 0.90% of mirror pairs, the node count is equal on
+    about 60% of both-solved pairs, and the 90th percentile of the node gap
+    is 13 to 17%. Consequences: all 640 rows are kept (each compared with its
+    own control); every table is also given per class; a node difference
+    inside the mirror gap is reported as relabeling noise, not as faster or
+    slower. The control and the CoV sweep carry the same doubling.
+11. **Box B and its timer.** At 0.6 to 0.8 core-seconds per search, length 8
+    at budget 10,000 will probably not finish inside the 600-minute timer.
+    Shards are in S3; the remainder is finished by a relaunch with the same
+    user-data and commit `8b3a51d`.
+
+### Boxes
+
+Box C: c7a.2xlarge spot, 8 vCPU, launched 12 Oct 04:29:03 UTC, commit
+`8b3a51d` plus `rankn_bf.py` and `rankn_checks.py` from
+`cov_all/rank3_bf/rankn/code/`, `DEADMAN` 420, `PREFIX`
+`cov_all/rank3_bf/rankn`, user-data `aws_rankn_box.sh`.
+
+| | Box A | Box B |
+|---|---|---|
+| Instance | c7a.48xlarge spot, 192 vCPU | m7a.24xlarge spot, 96 vCPU |
+| Launched (UTC) | 12 Oct 04:02:51 | 12 Oct 04:03:19 |
+| Commit | `8b3a51d` | `8b3a51d` |
+| `BUDGET` | 1000 | 10000 |
+| `MAX_LEN` | 10 | 8 |
+| `INV_MAX_LEN` | 6 | 0 |
+| `WORKERS` | 192 | 96 |
+| `EXTRA` | empty | empty |
+| `PRE_IDS`, `PRE_MAX_LEN` | 0,320 and 4 | 0,320 and 4 |
+| `DEADMAN` (minutes) | 720 | 600 |
+| `PREFIX` | `cov_all/rank3_bf/b1000` | `cov_all/rank3_bf/b10000` |
+
+## 12. Literature: what exists, and what a rank-3 baseline has to state
+
+No published source read for this plan reports a search-found trivialization
+that used a third generator.
+
+| Source | What it did with rank 3 or stabilization |
+|---|---|
+| Miasnikov 1999 (genetic algorithm) | tried the stabilization move; no efficiency gain |
+| Myasnikov–Myasnikov–Shpilrain 2002 | AK(3) stabilized by hand with z = y⁻³, then y eliminated; the proof has a misprint, so stable AC-triviality of AK(3) is open |
+| Krawiec–Swan 2016 (genetic algorithm) | rank-3 instances included, none solved; 19 rank-2 instances solved |
+| Shehper et al. 2024, §9, Lemma 11 | defines the `z⁻¹w` stabilization and the elimination; no search |
+| Lisitsa 2025 | states no known computational approach searches stable AC-transformations directly |
+| Lackenby 2023 | generalized stable move restricted to \|w\| <= 2; double-exponential upper bound for thickenable presentations |
+| Bridson; Lishak | tower-type lower bounds on moves that hold with stabilization allowed (rank >= 4; rank 3) |
+| Fagan et al. 2026 (Two-Hump) | the greedy and benchmark used here; 533 / 604 / 634 / 640 / 640 solved at 614 / 10K / 100K / 1M / 10M nodes; no stable-AC experiment |
+| This project, `nocov` | 16 hand-picked words and thinned prefixes, cap 64, 11 to 66 presentations: 51/176 at 1,000 nodes, AK(3) 0/102 |
+| Mentor email, 1 Jul 2026 | names `<x,y,z | r1,r2,z>` and the 4-, 5-generator versions as the baselines to have, then Lemma 11 words |
+
+What follows for this run:
+
+- **Moves.** The Two-Hump substitution move on every ordered pair of the three
+  relators (6 instead of 2), cancelling seam only. `solvern` does this.
+- **Cost unit.** Nodes popped, as in the repo's baseline. Shehper et al. count
+  enqueued states; the Two-Hump text says "visited" without saying which. No
+  published figure exists at 1,000 nodes, so the only valid comparator is the
+  control run here, with the same code.
+- **Cap.** 24 per relator on all three relators. It is the repo's baseline
+  setting, not a number from the paper.
+- **Solved.** Every relator has length 1, in rank 3. Reaching a solved rank-2
+  pair by eliminating z is the CoV experiment, not this one.
+- **What a solve certifies.** `Z·w` is the image of `Z` under z -> z·w⁻¹, so a
+  rank-3 solve certifies stable AC-triviality with one stabilization. All 640
+  are already AC-trivial; the measurement is cost.
+- **Derived, not in a source.** (a) A rank-2 trivialization of s moves gives a
+  rank-3 one of at most s + |w| from `Z·w`. (b) Every CoV solve lifts to a
+  rank-3 path from `Z·w` (each substitution and each elimination step is a
+  legal rank-3 move), so an uncapped, unbounded rank-3 search contains CoV;
+  what differs is the order the greedy visits things in, the cap, and the
+  extra relator in the length objective. (c) All starts `Z·w` for one
+  presentation lie in one AC component of rank 3: the sweep over w is a
+  multi-start inside one component, not a jump between components. (d) The
+  only length-preserving symmetry between words for a fixed presentation is
+  w <-> w⁻¹.
+- **Limits.** Failure at 1,000 or 10,000 nodes says nothing about stable
+  triviality. An any-word count is best-of-many and is priced (§6.4).
+
+## 13. Audit of the existing rank-3 branch, in full
+
+Search kernel: matches the pure-Python spec on 16 of 16 re-run rows (solved,
+nodes, minimum length, moves). No bug found in moves, seam test, reduction or
+canonical form.
+
+Found, and what this run does about each:
+
+| Finding in `nocov` | Effect | Here |
+|---|---|---|
+| A start relator longer than the cap is searched but rejected by the verifier | unreachable while 1 + \|w\| <= cap | asserted (longest relator 17, cap 24) |
+| Terminal test accepts single letters without checking they are distinct | sound only for \|det\| = 1 starts | \|det\| = 1 asserted on the dataset |
+| Tie-break not invariant under z <-> Z: w and w⁻¹ differ in nodes on 12 of 40 pairs, never in solved status | a 10% node gap between two words is label noise | `inv` arm measures it on every word to length 6 |
+| A2 contains whole rotations of a relator (563 jobs, 336 solved, control + 1 node) | inflates pooled solve rates | flagged and reported apart |
+| 197 duplicate (presentation, word) jobs across families; 45 to 96 jobs per presentation | pooled rates weight presentations unequally | one family, same words for every presentation, per-presentation means |
+| Results row written before its certificate | a crash leaves a solved row with no path | paths written first |
+| Resume key not bound to relators, cap or budget; files with mixed commits | stale rows under a new name | shard identity checked; verifier binds rows to the dataset |
+| Verifier replays paths only | node counts never re-derived | sampled rows re-run with the reference search |
+
+Recount of the old data, combined_66 at 10,000 nodes: the best of up to 96
+words solves 41 of 60 ladder rows, the control 40. On the 40 control-solved
+rows, with each presentation weighted equally, a word is cheaper than the
+control 1.9% of the time, the same 0.0%, more expensive 60.8%, unsolved 37.3%.
+
+An older branch (`test/stable-ac-moves`, `z` in {x, y, r1, r2}, 500,000 nodes,
+another tie-break and cap 23) points the same way: every arm solved a strict
+subset of the baseline's 634 (619, 602, 540, 523).

@@ -103,16 +103,17 @@ class _SerialPool:
         return map(fn, tasks)
 
 
-def _run(tmp_path, max_len, inv_max_len, pres):
+def _run(tmp_path, max_len, inv_max_len, pres, budget=300):
     import argparse
     rows = [r for r in MS640 if r[0] in pres]
-    a = argparse.Namespace(source="ms640", budget=300, cap=R.CAP,
+    a = argparse.Namespace(source="ms640", budget=budget, cap=R.CAP,
                            path_sample_target=10 ** 9, log_every=1e9)
     out = str(tmp_path)
     log = []
     ctrl = R.run_control(_SerialPool(), rows, a, out, log.append)
     R.run_sub(_SerialPool(), rows, a, out, log.append)
-    meta = {"node_budget": a.budget, "max_relator_length_cap": a.cap}
+    meta = {"source": a.source, "node_budget": a.budget,
+            "max_relator_length_cap": a.cap}
     for n in range(1, max_len + 1):
         R.run_bf(_SerialPool(), rows, ctrl, n, "fwd", a, out, meta, log.append)
         if n <= inv_max_len:
@@ -140,7 +141,7 @@ def test_runner_end_to_end_matches_the_reference_search_and_verifies(tmp_path):
     with np.load(f"{stem}_L2_inv.npz") as z:
         assert list(z["words"]) == [word_to_str(W.inverse(w))
                                     for w in W.words_of_length(2)]
-    assert not os.path.exists(os.path.join(out, "shards", "L3"))
+    assert not os.listdir(os.path.join(out, "shards"))
     # every solved row of the sample and of the subword arm is a certificate
     # the independent verifier accepts
     n_rows, n_solved, failures = verify_results.verify_file(f"{stem}_L3_sample.jsonl")
@@ -166,16 +167,75 @@ def test_runner_resumes_from_shards_and_skips_merged_lengths(tmp_path):
     assert len(keys) == len(set(keys))
     # a half-finished length: a leftover shard is reused, not recomputed
     os.remove(f"{stem}_L2.npz")
-    shard_dir = os.path.join(out, "shards", "L2")
-    os.makedirs(shard_dir)
-    np.savez(os.path.join(shard_dir, "p0000_b000.npz"),
-             nodes=np.full(W.n_words(2), 7, dtype=np.uint16),
-             path_len=np.full(W.n_words(2), -1, dtype=np.int16),
-             min_total=np.full(W.n_words(2), 9, dtype=np.uint8),
-             seconds=np.float32(0), paths=np.array("[]"))
+    _fake_shard(out, rows[0], 300)
     _run(tmp_path, 2, 0, {0})
     with np.load(f"{stem}_L2.npz") as z:
         assert (z["nodes"] == 7).all() and not (first == 7).all()
+
+
+def _fake_shard(out, row, budget, ident_budget=None):
+    pres_id, r1, r2 = row
+    shard_dir = R.shard_dir_for(out, "ms640", budget, R.CAP, 2, "fwd")
+    os.makedirs(shard_dir)
+    np.savez(os.path.join(shard_dir, f"p{pres_id:04d}_b000.npz"),
+             nodes=np.full(W.n_words(2), 7, dtype=np.uint16),
+             path_len=np.full(W.n_words(2), -1, dtype=np.int16),
+             min_total=np.full(W.n_words(2), 9, dtype=np.uint8),
+             seconds=np.float32(0), paths=np.array("[]"),
+             ident=np.array(R.shard_ident("ms640", ident_budget or budget, R.CAP,
+                                          2, "fwd", 0, pres_id, r1, r2)))
+
+
+def test_a_shard_from_another_run_is_refused_not_merged(tmp_path):
+    # another budget in the same out-dir uses its own shard directory
+    _run(tmp_path, 1, 0, {320}, budget=5)
+    _run(tmp_path, 1, 0, {320}, budget=300)
+    out = str(tmp_path)
+    a, b = (np.load(os.path.join(out, R.stem("ms640", bud, R.CAP) + "_L1.npz"))
+            for bud in (5, 300))
+    assert a["nodes"].max() <= 5 < b["nodes"].max()
+    # a shard whose stored identity is another budget, cap or dataset row
+    _fake_shard(out, MS640[0], 300, ident_budget=50)
+    with pytest.raises(SystemExit, match="not from this run"):
+        _run(tmp_path, 2, 0, {0})
+    os.remove(os.path.join(R.shard_dir_for(out, "ms640", 300, R.CAP, 2, "fwd"),
+                           "p0000_b000.npz"))
+    _fake_shard_dir = R.shard_dir_for(out, "ms640", 300, R.CAP, 2, "fwd")
+    os.rmdir(_fake_shard_dir)
+    _fake_shard(out, MS640[1], 300)          # row 1's relators under row 0's name
+    os.rename(os.path.join(_fake_shard_dir, "p0001_b000.npz"),
+              os.path.join(_fake_shard_dir, "p0000_b000.npz"))
+    with pytest.raises(SystemExit, match="not from this run"):
+        _run(tmp_path, 2, 0, {0})
+
+
+def test_every_job_starts_from_a_trivial_group_presentation_under_the_cap():
+    assert all(R.abs_det(r1, r2) == 1 for _, r1, r2 in MS640)
+    assert R.abs_det((1, 1), (2,)) == 2
+    longest = max(len(r) for _, r1, r2 in MS640 for r in (r1, r2))
+    assert 1 + longest <= R.CAP
+    for _, r1, r2 in SAMPLE:
+        for w, _ in W.relator_subwords(r1, r2):
+            assert _reduced(w) and set(map(abs, w)) <= {1, 2}
+            assert 1 + len(w) <= R.CAP
+
+
+def test_inverse_word_is_the_same_start_up_to_renaming_z():
+    # z <-> Z maps Z.w to a rotation of (Z.w^-1)^-1: same canonical start
+    from experiments.stable_ac.solvern import canonical_presentation
+    _, r1, r2 = MS640[100]
+    for w in W.words_of_length(4)[:20]:
+        flipped = [tuple(-g if abs(g) == 3 else g for g in r)
+                   for r in R.rank3(r1, r2, w).relators]
+        assert canonical_presentation(flipped) == canonical_presentation(
+            R.rank3(r1, r2, W.inverse(w)).relators)
+
+
+def test_verifier_rejects_a_renamed_budget(tmp_path):
+    _, out, _ = _run(tmp_path, 1, 0, {0}, budget=50)
+    for f in os.listdir(out):
+        os.rename(os.path.join(out, f), os.path.join(out, f.replace("_b50_", "_b300_")))
+    assert V.main(["--dir", out]) == 1
 
 
 def test_verifier_rejects_a_tampered_array(tmp_path):

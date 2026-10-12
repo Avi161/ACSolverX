@@ -21,6 +21,7 @@ BUDGET=1000
 MAX_LEN=10
 INV_MAX_LEN=6
 WORKERS=""               # empty = every online core
+EXTRA=""                 # extra run_rank3_bf arguments, e.g. "--pres 0,1,2 --no-sub"
 PRE_IDS="0,320"
 PRE_MAX_LEN=4
 PREFIX=cov_all/rank3_bf/b1000
@@ -85,7 +86,7 @@ SYNC=$!
 
 say "full start"
 $PY -m $MOD.run_rank3_bf --budget $BUDGET --workers $N --max-len $MAX_LEN \
-  --inv-max-len $INV_MAX_LEN || fail full-run
+  --inv-max-len $INV_MAX_LEN $EXTRA || fail full-run
 push
 $PY -m $MOD.verify_rank3_bf --dir $RD --recheck 20 --cov-control $CTRL
 V=$?

@@ -94,6 +94,36 @@ def stem(source, budget, cap):
     return f"rank3_bf_{source}_b{budget}_cap{cap}"
 
 
+def abs_det(r1, r2):
+    """|det| of the exponent-sum matrix; 1 for a presentation of the trivial group."""
+    e = [[sum((g > 0) - (g < 0) for g in r if abs(g) == k) for k in (1, 2)]
+         for r in (r1, r2)]
+    return abs(e[0][0] * e[1][1] - e[0][1] * e[1][0])
+
+
+def shard_dir_for(out_dir, source, budget, cap, n, side):
+    return os.path.join(out_dir, "shards", stem(source, budget, cap),
+                        f"L{n}" + ("_inv" if side == "inv" else ""))
+
+
+def shard_ident(source, budget, cap, n, side, block, pres_id, r1, r2):
+    """What a shard holds. Stored in it and compared on reuse, so a shard left
+    by a run with another budget, cap or dataset is refused, never merged."""
+    return json.dumps({"source": source, "node_budget": budget,
+                       "max_relator_length_cap": cap, "z_len": n, "side": side,
+                       "block": block, "pres_id": pres_id,
+                       "r1": word_to_str(r1), "r2": word_to_str(r2)},
+                      sort_keys=True, separators=(",", ":"))
+
+
+def check_shard(path, ident):
+    with np.load(path) as z:
+        got = str(z["ident"]) if "ident" in z.files else None
+    if got != ident:
+        raise SystemExit(f"shard {path} is not from this run: has {got}, "
+                         f"expected {ident}")
+
+
 # ---------------------------------------------------------------------------
 # workers
 # ---------------------------------------------------------------------------
@@ -126,8 +156,9 @@ def _paths_json(paths):
 
 def block_task(args):
     """One (presentation, length, block): search every word of the block."""
-    (pres_id, r1, r2, n, block, side, budget, cap, frac, shard) = args
+    (pres_id, r1, r2, n, block, side, budget, cap, frac, shard, ident) = args
     if os.path.exists(shard):
+        check_shard(shard, ident)
         return pres_id, n, block, 0, 0, 0.0
     lo, hi = W.block_slice(n, block)
     ws = W.words_of_length(n)[lo:hi]
@@ -152,7 +183,8 @@ def block_task(args):
     secs = time.time() - t0
     tmp = shard + f".tmp{os.getpid()}.npz"
     np.savez(tmp, nodes=nodes, path_len=plen, min_total=mint,
-             seconds=np.float32(secs), paths=_paths_json(paths))
+             seconds=np.float32(secs), paths=_paths_json(paths),
+             ident=np.array(ident))
     os.replace(tmp, shard)
     return pres_id, n, block, len(ws), int((plen >= 0).sum()), secs
 
@@ -163,6 +195,7 @@ def sub_task(args):
     r1s, r2s = word_to_str(r1), word_to_str(r2)
     rows, paths = [], []
     for w, proper in W.relator_subwords(r1, r2):
+        assert 1 + len(w) <= cap, "start relator Z.w is over the cap"
         t0 = time.time()
         res = search_n_fast(rank3(r1, r2, w), budget, cap=cap, cyclic=True)
         ws_ = word_to_str(w)
@@ -253,6 +286,8 @@ def merge_length(n, side, rows, a, out_dir, shard_dir, meta, say):
         for b in range(nb):
             shard = os.path.join(shard_dir, f"p{pres_id:04d}_b{b:03d}.npz")
             lo, hi = W.block_slice(n, b)
+            check_shard(shard, shard_ident(a.source, a.budget, a.cap, n, side,
+                                           b, pres_id, r1, r2))
             with np.load(shard) as z:
                 nodes[i, lo:hi] = z["nodes"]
                 plen[i, lo:hi] = z["path_len"]
@@ -289,10 +324,11 @@ def merge_length(n, side, rows, a, out_dir, shard_dir, meta, say):
     os.replace(tmp, base + ".npz")
     for s in used:
         os.remove(s)
-    try:
-        os.rmdir(shard_dir)
-    except OSError:
-        pass
+    for d in (shard_dir, os.path.dirname(shard_dir)):
+        try:
+            os.rmdir(d)
+        except OSError:
+            pass
     n_solved = int((plen >= 0).sum())
     say(f"merged L{n}{suffix}: {nodes.size} searches, {n_solved} solved "
         f"({100 * n_solved / nodes.size:.2f}%), {len(sample)} sampled paths, "
@@ -305,7 +341,7 @@ def run_bf(pool, rows, ctrl, n, side, a, out_dir, meta, say):
     if os.path.exists(base + ".npz"):
         say(f"L{n}{suffix}: already merged, skipping")
         return
-    shard_dir = os.path.join(out_dir, "shards", f"L{n}{suffix}")
+    shard_dir = shard_dir_for(out_dir, a.source, a.budget, a.cap, n, side)
     os.makedirs(shard_dir, exist_ok=True)
     frac = min(1.0, a.path_sample_target / (W.n_words(n) * len(rows)))
     for f in os.listdir(shard_dir):
@@ -315,9 +351,13 @@ def run_bf(pool, rows, ctrl, n, side, a, out_dir, meta, say):
     for pres_id, r1, r2 in rows:
         for b in range(W.n_blocks(n)):
             shard = os.path.join(shard_dir, f"p{pres_id:04d}_b{b:03d}.npz")
-            if not os.path.exists(shard):
+            ident = shard_ident(a.source, a.budget, a.cap, n, side, b,
+                                pres_id, r1, r2)
+            if os.path.exists(shard):
+                check_shard(shard, ident)
+            else:
                 tasks.append((pres_id, r1, r2, n, b, side, a.budget, a.cap,
-                              frac, shard))
+                              frac, shard, ident))
     total = len(rows) * W.n_blocks(n)
     say(f"L{n}{suffix}: {W.n_words(n)} words x {len(rows)} presentations = "
         f"{W.n_words(n) * len(rows)} searches in {total} tasks, {len(tasks)} to run")
@@ -392,7 +432,12 @@ def main(argv=None):
     a = ap.parse_args(argv)
     os.chdir(find_repo_root(os.path.dirname(os.path.abspath(__file__))))
 
+    assert 0 < a.budget <= 65535, "node counts are stored as uint16"
+    assert 1 + max(a.max_len, a.inv_max_len) <= a.cap, \
+        "start relator Z.w is over the cap"
     rows = load_ms640(a.dataset)
+    bad = [p for p, r1, r2 in rows if abs_det(r1, r2) != 1]
+    assert not bad, f"not presentations of the trivial group: pres_ids {bad[:10]}"
     if a.pres:
         keep = {int(x) for x in a.pres.split(",")}
         rows = [r for r in rows if r[0] in keep]

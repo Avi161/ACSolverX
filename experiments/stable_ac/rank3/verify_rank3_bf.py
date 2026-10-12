@@ -26,6 +26,7 @@ import gzip
 import json
 import os
 import random
+import re
 import sys
 
 import numpy as np
@@ -42,9 +43,16 @@ def _rows(path):
         return [json.loads(ln) for ln in f if ln.strip()]
 
 
-def check_control(path, cov_control, fail):
+def check_control(path, cov_control, dataset, fail):
     rows = _rows(path)
+    ms = {p: (word_to_str(r1), word_to_str(r2)) for p, r1, r2 in load_ms640(dataset)}
+    if len({r["pres_id"] for r in rows}) != len(rows):
+        fail(f"{path}: duplicate presentations")
     for r in rows:
+        if ms.get(r["pres_id"]) != (r["r1"], r["r2"]):
+            fail(f"control pres {r['pres_id']}: relators are not the dataset row")
+        if not 0 < r["nodes_explored"] <= r["node_budget"]:
+            fail(f"control pres {r['pres_id']}: nodes outside (0, budget]")
         a = (r["solved"], r["nodes_explored"], r["path_length"])
         if not (a == (r["n2_solved"], r["n2_nodes"], r["n2_path_length"])
                 == (r["null_solved"], r["null_nodes"], r["null_path_length"])):
@@ -80,6 +88,17 @@ def check_npz(path, fail):
         nodes, plen, words = z["nodes"], z["path_len"], z["words"]
         pres_ids = z["pres_ids"]
     n, side = meta["z_len"], meta["side"]
+    m = re.fullmatch(r"rank3_bf_(.+)_b(\d+)_cap(\d+)_L(\d+)(_inv)?\.npz",
+                     os.path.basename(path))
+    named = m and (m.group(1), int(m.group(2)), int(m.group(3)), int(m.group(4)),
+                   "inv" if m.group(5) else "fwd")
+    if named != (meta["source"], meta["node_budget"],
+                 meta["max_relator_length_cap"], n, side):
+        fail(f"{path}: file name does not match its meta {named}")
+    if len(set(pres_ids.tolist())) != len(pres_ids):
+        fail(f"{path}: duplicate presentations")
+    if ((plen >= 0) & (plen > nodes.astype(np.int64))).any():
+        fail(f"{path}: a path longer than the nodes popped")
     want = [word_to_str(W.inverse(w) if side == "inv" else w)
             for w in W.words_of_length(n)]
     if list(words) != want:
@@ -96,6 +115,9 @@ def check_npz(path, fail):
 
 def check_sample(base, meta, nodes, plen, pres_ids, fail):
     spath = base + "_sample.jsonl"
+    if not os.path.exists(spath):
+        fail(f"{spath}: missing")
+        return 0
     rows = _rows(spath)
     if rows:
         _, n_solved, failures = verify_results.verify_file(spath)
@@ -157,7 +179,7 @@ def main(argv=None):
         print("FAIL:", msg)
 
     for path in sorted(glob.glob(os.path.join(d, "*_control.jsonl"))):
-        check_control(path, cov_control, fail)
+        check_control(path, cov_control, a.dataset, fail)
     npzs = sorted(glob.glob(os.path.join(d, "*_L*.npz")))
     n_cert = 0
     for path in npzs:
