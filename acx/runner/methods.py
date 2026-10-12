@@ -1,7 +1,8 @@
 """One function per method: solve a presentation, verify the certificate on it, return a record.
 
 Each function takes the row's presentation and the run config. A record is written only after its certificate
-is verified on the row (``acx.verify.replay``; a CoV ``stable_cert`` by ``acx.cov.verify``).
+is verified on the row (``acx.verify.replay``; a CoV ``stable_cert`` by ``acx.cov.verify``). With ``path = false`` no
+certificate is made where the method can skip it, and none is verified.
 """
 from functools import lru_cache
 
@@ -10,6 +11,7 @@ from ..verify.decode import decode_and_replay, pack
 from ..verify.replay import replay
 from .caps import record_caps
 from .config import method_config
+from .output import keeps_path
 
 
 def record(solved, kind=None, aut_assisted=False, cost=0, sub_moves=None, elem_moves=None, path=None,
@@ -20,17 +22,23 @@ def record(solved, kind=None, aut_assisted=False, cost=0, sub_moves=None, elem_m
     another basis. ``cost``: pops, hybrid units or network evaluations. ``sub_moves``: substitution moves.
     ``elem_moves``: elementary AC moves on the row (None for a CoV ``stable_cert``). ``path``: the S-moves
     (``acx.core.moves.encode_path``). ``elementary``: the elementary moves (``acx.verify.decode.pack``).
+    ``verified`` starts false; ``output.shape`` sets it for a solve whose path was kept, as each method replays it.
     """
     return dict(solved=solved, kind=kind, aut_assisted=aut_assisted, cost=cost, sub_moves=sub_moves,
                 elem_moves=elem_moves, path=None if path is None else encode_path(path),
-                elementary=None if elementary is None else pack(elementary), **extra)
+                elementary=None if elementary is None else pack(elementary), verified=False, **extra)
 
 
 def decoded_length(pres, path, cfg):
-    """Elementary length of an S-move path (``decode = true`` and cyclic reduction on), else None."""
-    if not cfg.get("decode", True) or not cfg.get("search", {}).get("cyclic", True):
+    """Elementary length of an S-move path (``path`` and ``decode`` true, cyclic reduction on), else None."""
+    if not (keeps_path(cfg) and cfg.get("decode", True) and cfg.get("search", {}).get("cyclic", True)):
         return None
     return len(decode_and_replay(pres.reduced(False), path)[0])
+
+
+def length(moves):
+    """The number of moves, None when there is no path."""
+    return None if moves is None else len(moves)
 
 
 def greedy(pres, cfg):
@@ -41,8 +49,9 @@ def greedy(pres, cfg):
     caps = record_caps(res.stats)
     if not res.solved:
         return record(False, cost=res.pops, **caps)
-    replay(pres, res.path, cyclic=config.cyclic, cap=config.cap)
-    return record(True, "ac_path", cost=res.pops, sub_moves=len(res.path),
+    if keeps_path(cfg):
+        replay(pres, res.path, cyclic=config.cyclic, cap=config.cap)
+    return record(True, "ac_path", cost=res.pops, sub_moves=res.path_length,
                   elem_moves=decoded_length(pres, res.path, cfg), path=res.path, **caps)
 
 
@@ -54,7 +63,8 @@ def cov(pres, cfg):
     found = res.ac_path or res.stable_cert
     if found is None:
         return record(False, cost=res.pops, **caps)
-    verify(pres, found)
+    if keeps_path(cfg):
+        verify(pres, found)
     image = found.image and found.image.tag
     if found.kind == "stable_cert":
         return record(True, "stable_cert", cost=res.pops, sub_moves=len(found.path), path=found.path,
@@ -74,15 +84,16 @@ def aut(pres, cfg):
     config = method_config(cfg)
     res, moves = solve_via_aut_min(pres, config)
     caps = record_caps(res.stats)
-    if moves is None:
+    if not res.solved:
         return record(False, cost=res.pops, **caps)
-    replay(pres, moves, normalize=False)
     carried_back = res.start != pres.normal(config.cyclic)      # False: the row is its own Aut-minimal form
-    if not carried_back and config.cyclic:
-        # The S-moves replay on the row itself and may decode shorter than the transported path.
-        moves = min(moves, decode_and_replay(pres.reduced(False), res.path)[0], key=len)
-    return record(True, "ac_path", aut_assisted=carried_back, cost=res.pops, sub_moves=len(res.path),
-                  elem_moves=len(moves), path=res.path, elementary=moves, rep=list(res.start.strs), **caps)
+    if keeps_path(cfg):
+        replay(pres, moves, normalize=False)
+        if not carried_back and config.cyclic:
+            # The S-moves replay on the row itself and may decode shorter than the transported path.
+            moves = min(moves, decode_and_replay(pres.reduced(False), res.path)[0], key=len)
+    return record(True, "ac_path", aut_assisted=carried_back, cost=res.pops, sub_moves=res.path_length,
+                  elem_moves=length(moves), path=res.path, elementary=moves, rep=list(res.start.strs), **caps)
 
 
 def hybrid(pres, cfg):
@@ -94,10 +105,11 @@ def hybrid(pres, cfg):
     caps = record_caps(res.stats)
     if not res.solved:
         return record(False, cost=res.units, **caps)
-    replay(pres, res.path, normalize=False)
+    if keeps_path(cfg):
+        replay(pres, res.path, normalize=False)
     used_aut = res.kind == "ac_path" and any(isinstance(step, Aut) for step in res.steps)
     return record(True, res.kind, aut_assisted=used_aut, cost=res.units,
-                  sub_moves=sum(isinstance(step, Move) for step in res.steps), elem_moves=len(res.path),
+                  sub_moves=sum(isinstance(step, Move) for step in res.steps), elem_moves=length(res.path),
                   elementary=res.path, stage=res.stage, steps=encode_steps(res.steps), **caps)
 
 
@@ -109,12 +121,13 @@ def ngen(pres, cfg):
     caps = record_caps(res.search.stats)
     if not res.solved:
         return record(False, cost=res.search.pops, rank=res.rank, **caps)
-    verify(pres, res, cyclic=config.search.cyclic)
-    path = res.search.path
+    if keeps_path(cfg):
+        verify(pres, res, cyclic=config.search.cyclic)
+    path, sub_moves = res.search.path, res.search.path_length
     if res.kind == "ac_path":
-        return record(True, "ac_path", cost=res.search.pops, sub_moves=len(path),
+        return record(True, "ac_path", cost=res.search.pops, sub_moves=sub_moves,
                       elem_moves=decoded_length(pres, path, cfg), path=path, rank=res.rank, **caps)
-    return record(True, "stable_cert", cost=res.search.pops, sub_moves=len(path), elem_moves=len(res.moves),
+    return record(True, "stable_cert", cost=res.search.pops, sub_moves=sub_moves, elem_moves=length(res.moves),
                   path=path, elementary=res.moves, rank=res.rank, **caps)
 
 
@@ -133,8 +146,9 @@ def rl(pres, cfg):
     if not res.solved:
         skipped = {"skipped": res.stats["skipped"]} if "skipped" in res.stats else {}
         return record(False, cost=res.pops, **skipped, **caps)
-    replay(pres, res.path, cap=res.stats["cap"])
-    return record(True, "ac_path", cost=res.pops, sub_moves=len(res.path),
+    if keeps_path(cfg):
+        replay(pres, res.path, cap=res.stats["cap"])
+    return record(True, "ac_path", cost=res.pops, sub_moves=res.path_length,
                   elem_moves=decoded_length(pres, res.path, cfg), path=res.path, **caps)
 
 

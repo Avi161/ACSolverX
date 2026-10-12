@@ -4,6 +4,7 @@ from ..core.capcount import summarize as summarize_counter
 
 CAP_PREFIXES = ("cap", "dyn_cap", "slack")     # counter prefixes a method's stats may hold
 CAP_EXTRA = ("cap_legs_bound",)                # CoV: legs whose counter bound
+CAP_KEYS = tuple(field for prefix in CAP_PREFIXES for field in counter_fields(prefix)) + CAP_EXTRA
 
 
 def record_caps(stats):

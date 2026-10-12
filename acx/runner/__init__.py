@@ -2,6 +2,7 @@
 
 - ``config``: read and check a config (``load_config``), build a method's settings (``method_config``).
 - ``methods``: one function per method, turning a solve into a record.
+- ``output``: the ``path`` and ``fields`` options: which record keys are written, and whether paths are kept.
 - ``caps``: the cap counters of a record and their ``summary.json`` block.
 - ``summary``: ``summary.json`` from a run's records.
 - ``execute``: pick the rows (``select``), solve them, resume, write ``results/<name>/`` (``run``).
