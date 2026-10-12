@@ -8,6 +8,7 @@
  "aut_assisted": 0,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "pops",
   "total": 576053,
@@ -31,8 +32,23 @@
    }
   }
  },
- "wall_seconds": 64.53,
- "row_seconds": 64.46,
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 640,
+   "rows_dropped": 26,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 12195104,
+   "would_pop": 0,
+   "dropped_min_total": 32,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 80.5,
+ "row_seconds": 80.39,
  "config": {
   "method": "greedy",
   "benchmark": "ms640",
@@ -42,6 +58,7 @@
    "budget": 10000,
    "cap": 24
   },
-  "name": "ms640_length_fast"
+  "name": "ms640_length_fast",
+  "workers": 1
  }
 }

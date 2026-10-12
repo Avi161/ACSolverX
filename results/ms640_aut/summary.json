@@ -8,6 +8,7 @@
  "aut_assisted": 615,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "pops",
   "total": 408174,
@@ -24,10 +25,10 @@
    },
    "elem_moves": {
     "n": 11,
-    "sum": 29997,
-    "mean": 2727.0,
-    "median": 400,
-    "max": 17378
+    "sum": 7899,
+    "mean": 718.09,
+    "median": 146,
+    "max": 4454
    }
   },
   "aut_assisted": {
@@ -47,8 +48,44 @@
    }
   }
  },
- "wall_seconds": 21.43,
- "row_seconds": 83.72,
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 640,
+   "rows_dropped": 76,
+   "rows_would_pop": 20,
+   "raise_ids": [
+    "527",
+    "529",
+    "616",
+    "617",
+    "618",
+    "619",
+    "620",
+    "621",
+    "622",
+    "623",
+    "624",
+    "625",
+    "628",
+    "629",
+    "630",
+    "633",
+    "636",
+    "637",
+    "638",
+    "639"
+   ],
+   "dropped": 12013436,
+   "would_pop": 1224,
+   "dropped_min_total": 30,
+   "first_bind_min": 766,
+   "needed_min": 25,
+   "needed_max": 25
+  }
+ },
+ "wall_seconds": 106.87,
+ "row_seconds": 106.26,
  "config": {
   "method": "aut",
   "benchmark": "ms640",
@@ -58,6 +95,6 @@
    "budget": 10000
   },
   "name": "ms640_aut",
-  "workers": 4
+  "workers": 1
  }
 }

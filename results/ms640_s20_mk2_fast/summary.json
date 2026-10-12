@@ -8,6 +8,7 @@
  "aut_assisted": 0,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "pops",
   "total": 382718,
@@ -31,8 +32,44 @@
    }
   }
  },
- "wall_seconds": 51.1,
- "row_seconds": 51.01,
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 640,
+   "rows_dropped": 74,
+   "rows_would_pop": 20,
+   "raise_ids": [
+    "527",
+    "529",
+    "616",
+    "617",
+    "618",
+    "619",
+    "620",
+    "621",
+    "622",
+    "623",
+    "624",
+    "625",
+    "628",
+    "629",
+    "630",
+    "633",
+    "636",
+    "637",
+    "638",
+    "639"
+   ],
+   "dropped": 10128166,
+   "would_pop": 801,
+   "dropped_min_total": 30,
+   "first_bind_min": 309,
+   "needed_min": 25,
+   "needed_max": 25
+  }
+ },
+ "wall_seconds": 64.39,
+ "row_seconds": 64.17,
  "config": {
   "method": "greedy",
   "benchmark": "ms640",
@@ -42,6 +79,7 @@
    "budget": 10000,
    "cap": 24
   },
-  "name": "ms640_s20_mk2_fast"
+  "name": "ms640_s20_mk2_fast",
+  "workers": 1
  }
 }

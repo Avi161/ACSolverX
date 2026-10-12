@@ -8,6 +8,7 @@
  "aut_assisted": 0,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "pops",
   "total": 102,
@@ -31,8 +32,23 @@
    }
   }
  },
- "wall_seconds": 0.52,
- "row_seconds": 0.52,
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 20,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 0.3,
+ "row_seconds": 0.3,
  "config": {
   "method": "greedy",
   "benchmark": "ms640",
@@ -42,6 +58,7 @@
    "priority": "s20_mk2",
    "budget": 1000
   },
-  "name": "smoke"
+  "name": "smoke",
+  "workers": 1
  }
 }
