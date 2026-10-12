@@ -15,10 +15,12 @@ import csv
 import gzip
 import json
 import os
+import random
 
 import pytest
 
 from acx import data
+from acx.core.words import Presentation
 from acx.search import search
 from acx.verify.replay import abs_det
 
@@ -220,3 +222,245 @@ def test_search_reproduces_recorded_ladder_pops():
     for r in rows:
         res = search([r["r1"], r["r2"]], cap=int(r["greedy_cap"]), budget=1001)
         assert (res.solved, res.pops) == (True, int(r["greedy_nodes"])), r["name"]
+
+
+# --- Your own files: LETTERS .txt lines, .csv with r1..rN, .jsonl (the formats are in the acx/data.py docstring) ---
+
+AK2 = Presentation(2, ((1, 1, -2, -2, -2), (1, 2, 1, -2, -1, -2)))             # xxYYY, xyxYXY
+AK3 = Presentation(2, ((1, 2, 1, -2, -1, -2), (1, 1, 1, -2, -2, -2, -2)))      # xyxYXY, xxxYYYY
+THREE = Presentation(3, ((1, 2), (2, 3), (3,)))                                 # xy, yz, z
+
+LETTERS = """\
+# Akbulut-Kirby, n = 2 and 3
+xxYYY, xyxYXY
+
+xyxYXY xxxYYYY   # relators split by a space
+"""
+
+JSONL = """\
+{"id": "AK2", "relators": ["xxYYY", "xyxYXY"], "note": "easy", "levels": [1, 2]}
+
+{"relators": ["xyxYXY", "xxxYYYY"]}
+{"id": 7, "relators": ["xy", "yz", "z"]}
+"""
+
+SAME_TWO = {"txt": "xxYYY, xyxYXY\nxyxYXY, xxxYYYY\n",
+            "csv": "r1,r2\nxxYYY,xyxYXY\nxyxYXY,xxxYYYY\n",
+            "jsonl": '{"relators": ["xxYYY", "xyxYXY"]}\n{"relators": ["xyxYXY", "xxxYYYY"]}\n'}
+
+
+def write(tmp_path, name, text):
+    """The file ``name`` holding ``text`` (gzipped if the name ends in .gz); its path as a string."""
+    p = tmp_path / name
+    if name.endswith(".gz"):
+        with gzip.open(p, "wt", newline="") as f:
+            f.write(text)
+    else:
+        p.write_text(text)
+    return str(p)
+
+
+def error_of(path):
+    """The message of the ``ValueError`` that reading ``path`` raises."""
+    with pytest.raises(ValueError) as e:
+        data.rows(path)
+    return str(e.value)
+
+
+@pytest.mark.parametrize("text", ["xxYYY, xyxYXY", "xxYYY,xyxYXY", "xxYYY xyxYXY", "  xxYYY ,\txyxYXY ,  "])
+def test_parse_presentation_separators(text):
+    assert data.parse_presentation(text) == AK2
+
+
+def test_parse_presentation_generators_and_inverses():
+    assert data.parse_presentation("xy, yz, z") == THREE
+    assert data.parse_presentation("XYZ a") == Presentation(4, ((-1, -2, -3), (4,)))     # x y z a b ...; upper case inverts
+    assert data.parse_presentation("xyxYXY").n_gen == 2                                  # never fewer than two generators
+
+
+@pytest.mark.parametrize("text,fragment", [("", "no relators"), (" , ,", "no relators"), ("xy1X", "'1'"),
+                                           ("x-y", "'-'"), ("x|y", "'|'"), ("xéy", "'é'"), ("g27", "'27'")])
+def test_parse_presentation_rejects_what_is_not_a_presentation(text, fragment):
+    with pytest.raises(ValueError) as e:
+        data.parse_presentation(text)
+    assert fragment in str(e.value)
+
+
+@pytest.mark.parametrize("pres", [AK2, AK3, THREE, data.AK(3), data.MS(3, "YXyxy")])
+def test_parse_presentation_reads_what_strs_prints(pres):
+    assert data.parse_presentation(", ".join(pres.strs)) == pres
+
+
+@pytest.mark.parametrize("line", ["[1, 2, 0, 0, -2, 1, 0, 0]", "(1, 2, 0, 0, -2, 1, 0, 0)", " 1,2,0,0,-2,1,0,0 "])
+def test_parse_line_flat_ints_and_letters(line):
+    assert data.parse_line(line) == Presentation(2, ((1, 2), (-2, 1)))
+    assert data.parse_line("xxYYY, xyxYXY") == AK2
+
+
+@pytest.mark.parametrize("name,newline", [("mine.txt", "\n"), ("mine.txt.gz", "\n"), ("crlf.txt", "\r\n")])
+def test_txt_letters_comments_blank_lines_and_ids(tmp_path, name, newline):
+    rows = data.rows(write(tmp_path, name, LETTERS.replace("\n", newline)))
+    assert [(r.id, r.pres, r.meta) for r in rows] == [("0", AK2, {}), ("1", AK3, {})]      # ids count presentations
+
+
+def test_txt_flat_ints_and_letters_can_share_a_file(tmp_path):
+    with open(path("data/ms640_solved.txt")) as f:
+        flat = f.readline().strip()
+    ms0 = data.load("ms640")[0].pres
+    rows = data.rows(write(tmp_path, "mixed.txt", f"{flat}\n{', '.join(ms0.strs)}  # the same row, as letters\n"))
+    assert [r.pres for r in rows] == [ms0, ms0]
+
+
+def test_load_ids_pick_presentations_by_position_in_the_requested_order(tmp_path):
+    assert [r.id for r in data.load("ms640", ids=[3, 1, 3])] == ["3", "1", "3"]
+    assert [r.pres for r in data.load(write(tmp_path, "mine.txt", LETTERS), ids=["1", 0])] == [AK3, AK2]
+
+
+@pytest.mark.parametrize("line", ["xy1X, y", "x|y", "[1, 7]", "1, 2, 3", "1 2", "[x, y]"])
+def test_bad_txt_line_is_a_valueerror_with_its_file_line(tmp_path, line):
+    p = write(tmp_path, "bad.txt", f"# header\nxxYYY, xyxYXY\n\n{line}\n")           # the bad line is physical line 4
+    assert error_of(p).startswith(f"{p}:4: ")
+
+
+def test_csv_any_number_of_relator_columns_ids_and_meta(tmp_path):
+    p = write(tmp_path, "mine.csv", "id,r1,r2,r3,note\nAK2,xxYYY,xyxYXY,,easy\nthree,xy,yz,z,3 generators\n")
+    rows = data.rows(p)
+    assert [(r.id, r.pres) for r in rows] == [("AK2", AK2), ("three", THREE)]               # a blank cell is no relator
+    assert [r.meta["note"] for r in rows] == ["easy", "3 generators"]
+    assert not {"r1", "r2", "r3"} & rows[0].meta.keys()
+
+
+def test_csv_relator_columns_are_ordered_by_their_number(tmp_path):
+    assert data.rows(write(tmp_path, "mine.csv", "r10,r2,r1\nz,yz,xy\n"))[0].pres == THREE
+
+
+def test_csv_spaces_after_commas_are_ignored(tmp_path):
+    rows = data.rows(write(tmp_path, "mine.csv", "id, r1, r2\nAK2, xxYYY, xyxYXY\n"))
+    assert [(r.id, r.pres) for r in rows] == [("AK2", AK2)]
+
+
+@pytest.mark.parametrize("header,row,expected", [
+    ("id,name,pres_id,r1,r2", "a,b,c,xx,yy", "a"),
+    ("name,pres_id,r1,r2", "b,c,xx,yy", "b"),
+    ("pres_id,r1,r2", "c,xx,yy", "c"),
+    ("r1,r2", "xx,yy", "0"),
+    ("id,r1,r2", ",xx,yy", "0")])
+def test_csv_row_id_is_id_then_name_then_pres_id_then_position(tmp_path, header, row, expected):
+    assert data.rows(write(tmp_path, "ids.csv", f"{header}\n{row}\n"))[0].id == expected
+
+
+def test_csv_meta_keeps_every_column_but_the_relators():
+    row = data.load_csv("benchmark/ladder/ladder_20.csv")[0]
+    assert row.id == row.meta["name"] == "ac19_6582" and "r1" not in row.meta
+
+
+@pytest.mark.parametrize("name,text,row_id", [("excel.csv", "id,r1,r2\nAK2,xxYYY,xyxYXY\n", "AK2"),
+                                              ("notepad.txt", "xxYYY, xyxYXY\n", "0"),
+                                              ("notepad.jsonl", '{"id": "AK2", "relators": ["xxYYY", "xyxYXY"]}\n', "AK2")])
+def test_a_byte_order_mark_is_ignored(tmp_path, name, text, row_id):
+    (tmp_path / name).write_bytes(b"\xef\xbb\xbf" + text.encode())                  # what spreadsheets and Notepad write
+    assert [(r.id, r.pres) for r in data.rows(str(tmp_path / name))] == [(row_id, AK2)]
+
+
+def test_csv_without_relator_columns_is_a_clear_error(tmp_path):
+    for p in (write(tmp_path, "mine.csv", "id,a,b\n1,xx,yy\n"), write(tmp_path, "empty.csv", ""),
+              path("benchmark/ladder/ladder_pairs.csv")):                               # a shipped table, not a benchmark
+        assert "no relator columns" in error_of(p)
+
+
+@pytest.mark.parametrize("row", ["bad,xx1,yy", "none,,", "x,xx|y,yy"])
+def test_bad_csv_row_is_a_valueerror_with_its_file_line(tmp_path, row):
+    p = write(tmp_path, "bad.csv", f"id,r1,r2\nok,xxYYY,xyxYXY\n{row}\n")
+    assert error_of(p).startswith(f"{p}:3: ")
+
+
+@pytest.mark.parametrize("name", ["mine.jsonl", "mine.jsonl.gz"])
+def test_jsonl_ids_meta_and_blank_lines(tmp_path, name):
+    rows = data.rows(write(tmp_path, name, JSONL))
+    assert [(r.id, r.pres) for r in rows] == [("AK2", AK2), ("1", AK3), ("7", THREE)]        # no id: the position
+    assert [r.meta for r in rows] == [{"note": "easy", "levels": [1, 2]}, {}, {}]
+
+
+@pytest.mark.parametrize("line", ['{"relators": ["xx1", "y"]}', '{"id": "a"}', '{"relators": "xxYYY, xyxYXY"}',
+                                  '{"relators": []}', '{"relators": ["xx", 5]}', '{"relators": [true, "yy"]}',
+                                  '["xx", "y"]', '{"relators": ["xx",', "xxYYY, xyxYXY"])
+def test_bad_jsonl_line_is_a_valueerror_with_its_file_line(tmp_path, line):
+    p = write(tmp_path, "bad.jsonl", '{"relators": ["xxYYY", "xyxYXY"]}\n' + line + "\n")
+    assert error_of(p).startswith(f"{p}:2: ")
+
+
+@pytest.mark.parametrize("name,text,line,first", [
+    ("dup.csv", "id,r1,r2\na,xx,yy\nb,xx,yy\na,xx,yy\n", 4, 2),
+    ("dup.jsonl", '{"id": "a", "relators": ["xx"]}\n{"id": "b", "relators": ["xx"]}\n{"id": "a", "relators": ["xx"]}\n', 3, 1),
+    ("pos.jsonl", '{"id": "1", "relators": ["xx"]}\n{"relators": ["xx"]}\n', 2, 1)])     # row 1 without an id is "1"
+def test_duplicate_row_ids_are_rejected_naming_both_lines(tmp_path, name, text, line, first):
+    p = write(tmp_path, name, text)
+    message = error_of(p)
+    assert message.startswith(f"{p}:{line}: duplicate id") and f"first on line {first}" in message
+
+
+@pytest.mark.parametrize("kind", sorted(SAME_TWO))
+def test_damaged_files_raise_only_a_valueerror_that_names_the_file(tmp_path, kind):
+    """Valid files with a few characters replaced: any rows, or a ``ValueError`` starting with the path; nothing else."""
+    rng = random.Random(0)
+    for i in range(300):
+        text = list(SAME_TWO[kind])
+        for _ in range(rng.randint(1, 4)):
+            text[rng.randrange(len(text))] = rng.choice("xyzXYZ019-,;|[]{}\"' \t#\\é")
+        p = write(tmp_path, f"damaged{i}.{kind}", "".join(text))
+        try:
+            data.rows(p)
+        except ValueError as e:
+            assert str(e).startswith(p), "".join(text)
+
+
+@pytest.mark.parametrize("name", ["mine.txt", "mine.txt.gz", "mine.csv", "mine.csv.gz", "mine.jsonl", "mine.jsonl.gz", "MINE.CSV"])
+def test_rows_reads_every_format_by_path(tmp_path, name):
+    kind = name.lower().removesuffix(".gz").rpartition(".")[2]
+    rows = data.rows(write(tmp_path, name, SAME_TWO[kind]))
+    assert [(r.id, r.pres) for r in rows] == [("0", AK2), ("1", AK3)]
+
+
+def test_rows_unknown_name_lists_the_names_and_the_formats():
+    with pytest.raises(KeyError) as e:
+        data.rows("nope")
+    message = e.value.args[0]
+    assert "'nope'" in message and all(word in message for word in ("ms640", "bench60", "ac1m_hard_holdout60", ".jsonl"))
+
+
+def test_rows_accepts_a_path_object(tmp_path):
+    write(tmp_path, "mine.txt", LETTERS)
+    assert [r.pres for r in data.rows(tmp_path / "mine.txt")] == [AK2, AK3]
+
+
+@pytest.mark.parametrize("name", ["mine.json", "mine.xlsx", "mine", "mine.txt.bak"])
+def test_rows_unsupported_extension(tmp_path, name):
+    with pytest.raises(KeyError, match="unknown benchmark"):
+        data.rows(write(tmp_path, name, "xx, yy\n"))
+
+
+@pytest.mark.parametrize("name", ["none.txt", "none.csv", "none.jsonl", "none.txt.gz"])
+def test_rows_missing_file_names_the_path(tmp_path, name):
+    with pytest.raises(FileNotFoundError, match=name):
+        data.rows(str(tmp_path / name))
+
+
+@pytest.mark.parametrize("name,text", [("empty.txt", ""), ("comments.txt", "# nothing\n\n  # here\n"),
+                                       ("blank.jsonl", "\n\n"), ("header.csv", "id,r1,r2\n")])
+def test_a_file_without_presentations_has_no_rows(tmp_path, name, text):
+    assert data.rows(write(tmp_path, name, text)) == []
+
+
+def test_relators_are_kept_as_written_and_the_last_line_needs_no_newline(tmp_path):
+    rows = data.rows(write(tmp_path, "raw.txt", "xXx, yYy\nxxxYYY yX"))
+    assert [r.pres.strs for r in rows] == [("xXx", "yYy"), ("xxxYYY", "yX")]               # not reduced by the loader
+
+
+def test_relative_paths_start_from_the_current_directory(tmp_path, monkeypatch):
+    write(tmp_path, "mine.txt", "xxYYY, xyxYXY\n")
+    (tmp_path / "data").mkdir()
+    write(tmp_path, "data/ms640_solved.txt", "xy, yz, z\n")                              # a lookalike of a shipped file
+    monkeypatch.chdir(tmp_path)
+    assert [r.pres for r in data.rows("mine.txt")] == [AK2]
+    assert len(data.rows("ms640")) == 640                                                # a name is always the shipped file
+    assert len(data.rows("benchmark/subsets/benchmark_subset_10.csv")) == 10            # not here: from the repository root
