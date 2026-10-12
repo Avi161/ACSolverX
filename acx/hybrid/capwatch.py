@@ -15,13 +15,15 @@ prefix      limit                                         ``<prefix>_needed`` is
             the search root)                              child's total length minus the root's)
 ==========  ============================================  =============================================
 
-``<prefix>_dropped_min_total`` is always an absolute total length. ``<prefix>_first_bind`` is a work
-unit of the search (the unit number of the pop that would have been preceded by a dropped state; the
-cascade's units before the search are not counted).
+``<prefix>_dropped`` counts rejected moves (as ``dyn_rejected`` always did, duplicates included),
+``<prefix>_would_pop`` distinct states; ``<prefix>_dropped_min_total`` is always an absolute total length.
+``<prefix>_first_bind`` is a work unit of the search (the unit number of the pop that a dropped state
+would have preceded; the cascade's units before the search are not counted).
 
 **The search is not a plain best-first queue**, so the comparison is made per pop against what the
-loop actually served. A dropped child waits in a pool with the key ``(priority, depth, tick - 0.5)``
-the child would have been pushed under (``tick`` the last insertion number used), bound for the
+loop actually served. A dropped child waits in a pool with the key ``(priority, depth, tick)``
+the child would have been pushed under (it takes the next insertion number: ticks are only compared,
+so the place in the insertion order is what counts), bound for the
 rank-two heap (pool 0) or the higher-rank heap (pool 1). Every loop iteration that pops an entry
 (placeholders and entries skipped as seen included) gives each pool a bar:
 
@@ -33,13 +35,19 @@ rank-two heap (pool 0) or the higher-rank heap (pool 1). Every loop iteration th
   the ratio and ``dyn_max`` rules would have allowed the higher-rank heap, none otherwise.
 
 The hybrid dedups when it pops (the ``seen`` sets), so a drained entry counts only if its popped
-identity is not seen yet and was not drained before (``accept``); a dropped rank-two child that would
-have gone straight to the finishing gates (``gate_precheck_key``) counts at once. When the search ends
-with both heaps empty (or only deferred higher-rank entries that are not served) the pending entries
-would have popped next. The counts are first order: a dropped state is judged against the run that
-happened, not against the run it would have changed. So a zero in all three counters guarantees that a
-larger ``r2_cap``, ``dyn_cap`` or ``slack`` runs the same units and the same certificate, and a nonzero
-count says the run may change.
+identity is not seen yet and was not drained before (``accept``). A dropped rank-two child that
+``offer`` would have sent through the finishing gates counts at once if the gates would have acted
+(solved it or charged units); gates that fail for free change nothing. When the search ends with both
+heaps empty (or only deferred higher-rank entries that are not served) the pending entries would have
+popped next. The counts are first order: a dropped state is judged against the run that happened, not
+against the run it would have changed. So a zero in all three counters guarantees that a larger
+``r2_cap``, ``dyn_cap`` or ``slack`` pops the same states in the same order (the same units and
+certificate), and a nonzero count says the run may change.
+
+**Cost.** Under the default ``"parent"`` cap nothing is rejected at rank two, and the other two limits
+drop few children (766 moves over MS640), so the default run is not measurably slower. An integer
+``r2_cap`` that rejects tens of thousands of moves pays about 150 microseconds per rejected move
+(listing it in Python, and canonicalising it if it drains).
 """
 from ..core.capcount import CapCount, blank, fields
 
@@ -64,6 +72,8 @@ class Watch:
             if limits[name] is not None:
                 self.pools[name] = (CapCount(limits[name], accept=self._accept(seen_r2, ident_r2)),
                                     CapCount(limits[name], accept=self._accept(seen_dyn, ident_dyn)))
+        self.moves = dict.fromkeys(self.pools, 0)       # rejected moves per limit (a pool keeps distinct states)
+        self.mintot = dict.fromkeys(self.pools)
         self.armed = False                        # set by the first drop: until then no pop has anything to compare
 
     @staticmethod
@@ -80,6 +90,12 @@ class Watch:
 
     def has(self, name):
         return name in self.pools
+
+    def moved(self, name, total):
+        """One move rejected by ``name`` leading to a child of ``total`` letters (every move, duplicates too)."""
+        self.moves[name] += 1
+        if self.mintot[name] is None or total < self.mintot[name]:
+            self.mintot[name] = total
 
     def drop(self, name, pool, key, total, needed, payload):
         self.armed = True
@@ -126,9 +142,9 @@ class Watch:
         f = fields(name)
         a, b = (cc.record(name) for cc in self.pools[name])
         out = dict(a)
-        out[f[1]] = a[f[1]] + b[f[1]]
+        out[f[1]], out[f[2]] = self.moves[name], self.mintot[name]
         out[f[3]] = a[f[3]] + b[f[3]]
-        for i in (2, 4, 5):
+        for i in (4, 5):
             xs = [r[f[i]] for r in (a, b) if r[f[i]] is not None]
             out[f[i]] = min(xs) if xs else None
         return out

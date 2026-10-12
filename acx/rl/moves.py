@@ -5,7 +5,7 @@ tip c73b11f2), kept bug for bug because the shipped policy was trained against i
 
 * ``concatenate``: when nothing cancels at the seam the cancellation count is 0 (``argmin`` of an
   all-true mask); a product longer than ``L`` (or a smaller ``cap``) is dropped but the left factor is
-  still cyclically reduced. The beam kills such no-ops and counts them as ``cap_rejected``.
+  still cyclically reduced. The beam kills such no-ops and counts them in its cap counters.
 * ``booth_rotation_index`` is NOT the least rotation (its ``set_f`` block compares ``s2[i] != s2[k]``
   where Booth compares ``s2[i] != s2[k+j+1]``; ~6% of random words at ``L=24`` differ). It only fixes
   the representative shown to the policy; ``acx`` canonicalises independently of it.
@@ -45,8 +45,9 @@ def cyclic_reduce(r):
 
 
 def concatenate(ri, rj, cap):
-    """``(ri . rj`` with the seam cancelled and cyclically reduced, ``over)``: ``over`` marks a seam-reduced
-    product longer than ``cap``, which is dropped (the result is then ``ri`` cyclically reduced)."""
+    """``(ri . rj`` with the seam cancelled and cyclically reduced, ``over``, ``size``): ``over`` marks a
+    seam-reduced product longer than ``cap``, which is dropped (the result is then ``ri`` cyclically
+    reduced); ``size`` is that seam-reduced length, before the cyclic reduction."""
     B, L = ri.shape
     pos = _pos(L, ri.device)[None]
     miss = rj != -reverse_nonzero(ri)
@@ -57,7 +58,7 @@ def concatenate(ri, rj, cap):
     rolled = torch.gather(rj, 1, (pos - (li - 2 * cancel)) % L)
     out = torch.where((pos >= head) & (pos < size), rolled, torch.where(pos < head, ri, torch.zeros_like(ri)))
     over = size > cap
-    return cyclic_reduce(torch.where(over, ri, out)), over.squeeze(-1)
+    return cyclic_reduce(torch.where(over, ri, out)), over.squeeze(-1), size.squeeze(-1)
 
 
 def rotate_left(r, k):
@@ -95,20 +96,27 @@ def booth_rotation_index(r):
     return k
 
 
-def s_move(x, i, r, k1, k2, L, cap=None):
+def s_move(x, i, r, k1, k2, L, cap=None, sizes=False):
     """Apply ``(i, r, k1, k2)`` to the ``(B, 2L)`` presentations ``x``; returns ``(new x, over)``.
 
     ``cap`` (default and at most ``L``) is the length limit on the seam-reduced product; a product over
     it leaves the row unchanged (a no-op) and sets ``over``. At ``cap = L`` this is the environment.
+    ``sizes=True`` returns ``(new x, over, size, total)`` instead: the seam-reduced length of the product
+    and the total relator length the move would give (product plus the relator it leaves alone), which
+    the beam hands to its cap counter for a child that ``over`` dropped.
     """
     r1, r2 = x[:, :L], x[:, L:]
     r2 = torch.where(r.reshape(-1, 1) == 1, -reverse_nonzero(r2), r2)
     a = rotate_left(r1, k1)
-    prod, over = concatenate(a, rotate_left(r2, k2), L if cap is None else cap)
+    prod, over, size = concatenate(a, rotate_left(r2, k2), L if cap is None else cap)
     rot = rotate_left(prod, booth_rotation_index(prod))
     into0 = i.reshape(-1, 1) == 0
     out = torch.cat([torch.where(into0, rot, x[:, :L]), torch.where(into0, x[:, L:], rot)], 1)
-    return torch.where((prod == a).all(-1, keepdim=True), x, out), over
+    new = torch.where((prod == a).all(-1, keepdim=True), x, out)
+    if not sizes:
+        return new, over
+    other = torch.where(i == 0, (r2 != 0).sum(-1), (r1 != 0).sum(-1))
+    return new, over, size, size + other
 
 
 def decode_action(flat, L):

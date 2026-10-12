@@ -13,6 +13,7 @@ import time
 
 import torch
 
+from ..core.capcount import blank
 from ..core.moves import apply_raw, enumerate_moves
 from ..core.words import Presentation, canonical_rels, canonical_word, reduce
 from ..search.engine import Result, as_presentation
@@ -74,8 +75,10 @@ def solve(pres, model=None, width=1024, steps=150, alpha=0.0, cap=L):
     actions = None
     if start.is_trivial():
         actions = []
+        stats.update(blank(cap=cap))
     elif pres.n_gen != 2 or len(rels) != 2 or not all(0 < len(r) <= cap for r in rels):
         stats["skipped"] = "needs 2 generators and 2 nonempty relators of length <= cap"
+        stats.update(blank(cap=cap))
     else:
         actions, beam_stats = beam_search(model or pretrained(), encode(rels), L=L, cap=cap,
                                           width=width, steps=steps, alpha=alpha)

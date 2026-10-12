@@ -21,6 +21,7 @@ from acx.search import BackendUnavailable, search
 from acx.search.engine import backend as load_backend
 from acx.verify import replay
 
+CAP_KEYS = ("cap", "cap_dropped", "cap_dropped_min_total", "cap_would_pop", "cap_first_bind", "cap_needed", "cap_legs_bound")
 AK3 = Presentation.parse("xyxYXY", "xxxYYYY")
 # Planted: built from the trivial T = <x, y | xYX, xYxYX> by running a CoV backwards (T is the image of
 # P under z = Xyy, eliminating x), so P has an image that a search solves in 3 pops. T is not in P's Aut orbit.
@@ -190,7 +191,7 @@ def test_spec_and_fast_runs_agree(pid, cap):
     a = run(row.pres, cfg)
     b = run(row.pres, cfg.replace(search=cfg.search.replace(backend="fast")))
     assert a.pops == b.pops and [(o.kind, o.path, o.cap) for o in a.outcomes] == [(o.kind, o.path, o.cap) for o in b.outcomes]
-    assert {k: a.stats[k] for k in ("tried", "duplicates", "cap_rejected")} == {k: b.stats[k] for k in ("tried", "duplicates", "cap_rejected")}
+    assert {k: a.stats[k] for k in ("tried", "duplicates", *CAP_KEYS)} == {k: b.stats[k] for k in ("tried", "duplicates", *CAP_KEYS)}
 
 
 @needs_fast
@@ -202,3 +203,76 @@ def test_bench60_against_plain_greedy():
     outs = [run(r.pres, cfg) for r in rows]
     kinds = [o.outcomes[0].kind for o in outs if o.solved]
     assert (plain, len(kinds), kinds.count("ac_path"), kinds.count("stable_cert")) == (29, 29, 7, 22)
+
+
+def _legs(pres, cfg):
+    """The legs ``run`` searches for ``pres`` (control first, duplicates once), with the pops spent before each."""
+    s, seen, pops, out = cfg.search, set(), 0, []
+    for img in ([None] if cfg.control else []) + list(enumerate_images(pres, cfg.max_len)):
+        if cfg.total_budget - pops <= 0:
+            break
+        start = (pres if img is None else img.pres).reduced(s.cyclic).canonical()
+        if start in seen:
+            continue
+        seen.add(start)
+        cap = s.cap
+        if img is not None and cap is not None and cfg.cap_headroom is not None:
+            cap = max(cap, max(map(len, img.pres.rels)) + cfg.cap_headroom)
+        res = search(start, s.replace(budget=min(s.budget, cfg.total_budget - pops), cap=cap, capture_path=True))
+        out.append(({k: res.stats[k] for k in CAP_KEYS[:6]}, pops))
+        pops += res.pops
+        if res.solved:
+            break
+    return out
+
+
+@needs_fast
+@pytest.mark.parametrize("pid, cap", [(11, 10), (24, 10), (24, 14), (15, 10), (4, 10), (0, 10)])
+def test_row_counters_aggregate_the_legs(pid, cap):
+    """The row's counters are the legs' (sums of dropped and would-pop, minima of min-total and needed, the first
+    binding leg's bind in row pops) and ``cap_legs_bound`` counts the legs that bind."""
+    row = data.load_csv("bench60")[pid]
+    cfg = CoVConfig(search=SearchConfig(budget=60, cap=cap, backend="fast"), total_budget=300)
+    legs = _legs(row.pres, cfg)
+    st = run(row.pres, cfg).stats
+    recs = [r for r, _ in legs]
+    want = {"cap": cap, "cap_dropped": sum(r["cap_dropped"] for r in recs), "cap_would_pop": sum(r["cap_would_pop"] for r in recs),
+            "cap_legs_bound": sum(1 for r in recs if r["cap_would_pop"])}
+    low = lambda k: min((r[k] for r in recs if r[k] is not None), default=None)  # noqa: E731
+    want |= {"cap_dropped_min_total": low("cap_dropped_min_total"), "cap_needed": low("cap_needed"),
+             "cap_first_bind": next((before + r["cap_first_bind"] for r, before in legs if r["cap_would_pop"]), None)}
+    assert {k: st[k] for k in want} == want
+    assert (want["cap_would_pop"] > 0) == (want["cap_first_bind"] is not None) == (want["cap_needed"] is not None)
+
+
+@needs_fast
+def test_row_counters_cover_every_case():
+    """A binding row, a row where the cap dropped children that never mattered, a clean row and the uncapped row."""
+    rows = data.load_csv("bench60")
+    cfg = CoVConfig(search=SearchConfig(budget=60, cap=10, backend="fast"), total_budget=300)
+    bound, loose, clean = (run(rows[i].pres, cfg).stats for i in (24, 15, 0))
+    assert bound["cap_legs_bound"] >= 1 and bound["cap_would_pop"] > 0 and bound["cap_first_bind"] >= 2
+    assert loose["cap_dropped"] > 0 and loose["cap_would_pop"] == 0 and loose["cap_first_bind"] is None and loose["cap_legs_bound"] == 0
+    assert clean["cap_dropped"] == 0 and clean["cap_dropped_min_total"] is None
+    free = run(rows[24].pres, cfg.replace(search=cfg.search.replace(cap=None))).stats
+    assert free["cap"] is None and free["cap_dropped"] == free["cap_would_pop"] == free["cap_legs_bound"] == 0
+    assert free["cap_first_bind"] is None and free["cap_needed"] is None
+
+
+@needs_fast
+def test_row_with_no_binding_leg_is_the_same_row_at_any_larger_cap():
+    """``cap_would_pop == 0`` on every leg: a larger cap (every image cap follows) gives the same pops and paths."""
+    rows = data.load_csv("bench60")
+    zero = nonzero = 0
+    for pid in (0, 4, 11, 15, 24, 27, 50, 55):
+        for cap in (10, 14):
+            cfg = CoVConfig(search=SearchConfig(budget=60, cap=cap, backend="fast"), total_budget=300)
+            a = run(rows[pid].pres, cfg)
+            if a.stats["cap_would_pop"]:
+                nonzero += 1
+                continue
+            zero += 1
+            for bigger in (cap + 6, None):
+                b = run(rows[pid].pres, cfg.replace(search=cfg.search.replace(cap=bigger)))
+                assert a.pops == b.pops and [(o.kind, o.path) for o in a.outcomes] == [(o.kind, o.path) for o in b.outcomes]
+    assert zero >= 6 and nonzero >= 3

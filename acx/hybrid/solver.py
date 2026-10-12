@@ -45,6 +45,7 @@ Defaults are the source's final setting (budget 1,000 units, penalty 5,
 dyn_ratio 0.5, cap 8, slack 8): MS640 640/640, AC19 aut-min 72,779/72,779.
 """
 import heapq
+import itertools
 import time
 from dataclasses import dataclass, field, replace
 
@@ -56,7 +57,7 @@ from . import dynrank as D
 from .cascade import NIELSEN, Aut, Budget, Run, cascade, gate_applicable, gate_precheck_key, is_terminal, run_gates
 from .capwatch import DYNPOOL, R2POOL, Watch, blank_records
 from .certify import certify
-from .frontier import BACKENDS, backend, pack, perm_min, spec_dropped, unpack
+from .frontier import BACKENDS, backend, pack, pair_precheck, perm_min, spec_dropped, unpack
 
 R2, DYN, DEFS = 0, 1, 2
 
@@ -110,11 +111,6 @@ class _Done(Exception):
     pass
 
 
-def _order(move):
-    """The position of a rank-two move in the search order (``i -> j -> s -> k1 -> k2``, ``s = 1`` first)."""
-    return (move.i, -move.s, move.k1, move.k2)
-
-
 def search(run, cfg, budget):
     """The best-first hybrid search from ``run.state``; ``(solved, steps, stats)``."""
     expand, transform = backend(cfg.backend)
@@ -127,32 +123,50 @@ def search(run, cfg, budget):
     heap = [(float(len(root_key) - 1), 0, 0, (root_key, None, (), R2))]
     dheap, seen_r2, seen_dyn = [], set(), set()
     st = dict(pops=0, dyn_pops=0, max_rank=2, dyn_rejected=0)
-    ticks = [0]                                         # insertion order, the last tie-break
-
-    def tick():
-        ticks[0] += 1
-        return ticks[0]
-
+    tick = itertools.count(1).__next__                  # insertion order, the last tie-break (only compared, so a
+                                                        # dropped child may take a number: it is the place it would have had)
     push, pop = heapq.heappush, heapq.heappop
     result = []
     base = ceiling - cfg.slack                          # the root's total length
-    watch = Watch({"cap": cfg.r2_cap, "dyn_cap": cfg.dyn_cap, "slack": cfg.slack},
-                  (lambda key: perm_min(key, transform)[0]) if cfg.perms else (lambda key: key),
+    least = {}                                          # canonical key -> the key a popped state would be stored under
+
+    def ident_r2(pair):
+        key = pack(canonical_rels(pair))
+        if not cfg.perms:
+            return key
+        if key not in least:
+            least[key] = perm_min(key, transform)[0]
+        return least[key]
+
+    watch = Watch({"cap": cfg.r2_cap, "dyn_cap": cfg.dyn_cap, "slack": cfg.slack}, ident_r2,
                   lambda words: D.make_key(words)[0], seen_r2, seen_dyn)
-    units_left = lambda: budget - st["pops"]            # noqa: E731
 
-    def can_dyn():
-        dyn_pops = st["dyn_pops"]
+    def can_dyn(pops, dyn_pops):
+        """May the higher-rank heap be served (the ratio and ``dyn_max`` rules)?"""
         return (cfg.dyn_max is None or dyn_pops < cfg.dyn_max) and (
-            cfg.dyn_ratio is None or dyn_pops <= cfg.dyn_ratio * (st["pops"] - dyn_pops) + 20)
+            cfg.dyn_ratio is None or dyn_pops <= cfg.dyn_ratio * (pops - dyn_pops) + 20)
 
-    def drop_r2(ckey, total, needed, depth):
-        """A rank-two child the cap rejected: pending in the rank-two pool, or counted now if it would have
-        gone straight to the finishing gates."""
-        if gate_precheck_key(ckey):
-            watch.drop_now("cap", total, needed, st["pops"] + 1)
+    def gates_act(pair):
+        """Would ``offer`` have run the finishing gates on this rank-two child (a pair of relators) to some
+        effect (a solve, or a charge of units)? Gates that fail for free change nothing."""
+        if not pair_precheck(pair):
+            return False
+        state = canonical_rels(pair)
+        if not gate_applicable(state):
+            return False
+        gate = Run(state, max(budget - st["pops"], 0))
+        try:
+            return run_gates(gate) or gate.units > 0
+        except Budget:
+            return True
+
+    def drop_r2(name, pair, total, needed, depth):
+        """A rank-two child a limit rejected: counted now if the finishing gates would have acted on it at
+        once, else pending in the rank-two pool (as the pair; it is canonicalised only if it drains)."""
+        if gates_act(pair):
+            watch.drop_now(name, total, needed, st["pops"] + 1)
         else:
-            watch.drop("cap", R2POOL, (float(total), depth, ticks[0] + 0.5), total, needed, ckey)
+            watch.drop(name, R2POOL, (float(total), depth, tick()), total, needed, pair)
 
     def drop_dyn(reason, state, needed, depth):
         """A higher-rank move the dyn_cap (reason "cap") or the ceiling (reason "slack") rejected."""
@@ -160,13 +174,9 @@ def search(run, cfg, budget):
         if name == "slack":
             needed -= base
         if n == 2:                                      # an elimination back to rank two: offer() would run the gates
-            ckey = pack(canonical_rels(D.make_key(state)[0]))
-            if gate_precheck_key(ckey):
-                watch.drop_now(name, total, needed, st["pops"] + 1)
-            else:
-                watch.drop(name, R2POOL, (float(total), depth, ticks[0] + 0.5), total, needed, ckey)
+            drop_r2(name, D.make_key(state)[0], total, needed, depth)
         else:
-            watch.drop(name, DYNPOOL, (float(total + cfg.penalty * (n - 2)), depth, ticks[0] + 0.5), total, needed, state)
+            watch.drop(name, DYNPOOL, (float(total + cfg.penalty * (n - 2)), depth, tick()), total, needed, state)
 
     def chain(node):
         out = []
@@ -208,8 +218,8 @@ def search(run, cfg, budget):
 
     try:
         while (heap or dheap) and st["pops"] < budget:
-            ok = can_dyn()
-            allowed = bool(dheap) and ok
+            allowed = bool(dheap) and can_dyn(st["pops"], st["dyn_pops"])
+            ok = allowed or (watch.armed and can_dyn(st["pops"], st["dyn_pops"]))
             if allowed and (not heap or dheap[0][0] <= heap[0][0]):
                 if watch.armed:
                     watch.step(None, dheap[0], ok, st["pops"] + 1)
@@ -230,6 +240,7 @@ def search(run, cfg, budget):
                 for cw, event in _dedup_sorted(D.defines(D.normalize(state), cfg.min_uses)):
                     if length(cw) > ceiling:
                         st["dyn_rejected"] += 1
+                        watch.moved("slack", length(cw))
                         drop_dyn("slack", cw, length(cw), depth)
                     else:
                         offer_dyn(*D.make_key(cw), parent, event, depth)
@@ -250,12 +261,17 @@ def search(run, cfg, budget):
                 if rejected and watch.has("cap"):       # never under "parent": its children are shorter than the parent
                     lost = spec_dropped(rep, rcap)
                     assert len(lost) == rejected
-                    for entry in sorted([(_order(mv), 0, child, mv) for child, mv in children]
-                                        + [(_order(mv), 1, ckey, total, needed) for ckey, mv, total, needed in lost]):
-                        if entry[1]:
-                            drop_r2(entry[2], entry[3], entry[4], depth)
-                        else:
-                            offer((entry[2], node, (entry[3],), R2), depth)
+                    at = 0                              # merge the rejected moves into the kept ones, in search order
+                    for child, move in children:
+                        order = (move.i, -move.s, move.k1, move.k2)
+                        while at < len(lost) and lost[at][0] < order:
+                            watch.moved("cap", lost[at][2])
+                            drop_r2("cap", lost[at][1], lost[at][2], lost[at][3], depth)
+                            at += 1
+                        offer((child, node, (move,), R2), depth)
+                    for _, pair, total, longest in lost[at:]:
+                        watch.moved("cap", total)
+                        drop_r2("cap", pair, total, longest, depth)
                 else:
                     for child, move in children:
                         offer((child, node, (move,), R2), depth)
@@ -268,6 +284,8 @@ def search(run, cfg, budget):
                 lost = []
                 edges, rejected = D.children(rep, cfg.dyn_cap, ceiling, cfg.min_uses, cfg.nielsen, lost)
                 st["dyn_rejected"] += rejected
+                for reason, dstate, _ in lost:
+                    watch.moved("dyn_cap" if reason == "cap" else "slack", length(dstate))
                 for cw, event in _dedup_sorted(edges + [(state, (reason, needed)) for reason, state, needed in lost]):
                     if event.__class__ is tuple:
                         drop_dyn(event[0], cw, event[1], depth)
@@ -276,7 +294,7 @@ def search(run, cfg, budget):
     except _Done:
         pass
     st["pops"] = min(st["pops"], budget)
-    watch.end(not result and st["pops"] < budget, can_dyn(), units_left(), st["pops"])
+    watch.end(not result and st["pops"] < budget, can_dyn(st["pops"], st["dyn_pops"]), budget - st["pops"], st["pops"])
     st.update(watch.records())
     return bool(result), (result[0] if result else ()), st
 

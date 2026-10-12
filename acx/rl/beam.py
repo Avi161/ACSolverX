@@ -16,10 +16,21 @@ alpha 0, greedy). Deviations:
   stops when no beam is alive.
 
 ``cap`` (at most ``L = 24``, the width of the observation) limits the seam-reduced product of every
-child; a selected child over it is killed and counted in ``cap_rejected``.
+child; a selected child over it is killed and counted by the cap counters (``acx.core.capcount``).
+
+**Cap counters.** A beam has no queue: its "pop" is the selection of the global top-``width`` children,
+made from the network's scores before any move is applied, so the cap never changes what is selected. A
+selected child over the cap took a beam slot that a larger cap would have filled with it, so it would
+have been "popped" by definition: ``cap_would_pop == cap_dropped`` (a child counts once per step; the
+beam keeps no per-state dedup of dropped children), ``cap_first_bind`` is the first step (1-based) that
+selected one and ``cap_needed`` the shortest such seam-reduced product (the cap that admits it). Zero
+means the run is the same at every cap up to ``L``; a ``cap_needed`` above ``L`` is a state the policy
+cannot see at all (the observation holds ``L`` letters per relator). ``cap_dropped_min_total`` is the
+least total (seam-reduced product plus the relator the move leaves alone) among them.
 """
 import torch
 
+from ..core.capcount import CapCount
 from .moves import decode_action, s_move
 
 NEVER = torch.iinfo(torch.int64).max
@@ -41,7 +52,8 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
 
     ``actions`` is the list of flat actions of the best beam that reaches both relators of length 1
     (``None`` if none does within ``steps``); ``stats`` has ``evaluated`` (states scored by the
-    network) and ``cap_rejected`` (selected legal children whose product exceeded ``cap``).
+    network) and the cap counters (``acx.core.capcount.FIELDS``: the selected legal children whose
+    product exceeded ``cap``, module docstring).
     """
     B, n_act, minf = width, 4 * L * L, float("-inf")
     hv = hash_vector(x0.numel())
@@ -53,7 +65,8 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
     visited = torch.full((B * steps,), NEVER, dtype=torch.int64)
     visited[0] = (x0 * hv).sum()
     visited = visited.sort().values
-    stats = dict(evaluated=0, cap_rejected=0)
+    stats = dict(evaluated=0)
+    cc = CapCount(L if cap is None else cap)
     for t in range(steps):
         live = alive.nonzero().squeeze(1)
         if not len(live):
@@ -65,11 +78,15 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
         top, idx = torch.topk((cum[:, None] + scores).reshape(-1), B)
         parent, action = idx // n_act, idx % n_act
         old = states[parent]
-        new, over = s_move(old, *decode_action(action, L), L, cap)
+        new, over, size, total = s_move(old, *decode_action(action, L), L, cap, sizes=True)
         seqs = seqs[parent]
         seqs[:, t] = action
         real = top > minf                                            # a live parent and a legal action
-        stats["cap_rejected"] += int((real & over).sum())
+        cc.pop(None)                                                 # step t + 1 selected
+        hit = real & over
+        if hit.any():
+            for tot, longest in zip(total[hit].tolist(), size[hit].tolist()):
+                cc.drop_now(tot, longest)
         done = (new != 0).sum(-1) == 2
         solved = done & real
         alive = real & ~done & (t + 1 < steps) & ~(old == new).all(-1)
@@ -86,5 +103,5 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
         visited = torch.cat([visited, torch.where(alive, h, torch.full_like(h, NEVER))]).sort().values[:B * steps]
         states = new
         if solved.any():
-            return seqs[int(solved.nonzero()[0]), :t + 1].tolist(), stats
-    return None, stats
+            return seqs[int(solved.nonzero()[0]), :t + 1].tolist(), {**stats, **cc.record()}
+    return None, {**stats, **cc.record()}

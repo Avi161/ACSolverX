@@ -72,9 +72,9 @@ def test_beam_solves_easy_ms640_rows_and_replays(model):
 def test_cap_is_applied_counted_and_bounded(model):
     pres = data.load("ms640", ids=[4])[0].pres
     res = rl_solve.solve(pres, model, width=64, steps=30, cap=6)
-    assert res.solved and res.stats["cap_rejected"] > 0 and res.stats["cap"] == 6
+    assert res.solved and res.stats["cap_dropped"] > 0 and res.stats["cap"] == 6
     assert all(len(r) <= 6 for st in replay(pres, res.path, cap=6) for r in st.rels)
-    assert rl_solve.solve(pres, model, width=64, steps=30).stats["cap_rejected"] == 0
+    assert rl_solve.solve(pres, model, width=64, steps=30).stats["cap_dropped"] == 0
     skipped = rl_solve.solve(pres, model, cap=4)                    # a start relator over the cap
     assert not skipped.solved and "skipped" in skipped.stats
     for bad in (None, 0, 25):
@@ -123,3 +123,54 @@ def test_ppo_smoke():
     model = train(states, 2, n_pinned=3, envs=8, steps=6, minibatches=2, micro=16, log=lambda *_: None,
                   model=policy.ActorCritic())
     assert any(not torch.equal(v, before[k]) for k, v in model.state_dict().items())
+
+
+def test_s_move_sizes_describe_the_dropped_product():
+    """``sizes=True`` leaves the move alone and adds the seam-reduced product length and the child's total."""
+    x = torch.tensor([m[0] for m in REF["moves"]])
+    a = torch.tensor([m[1] for m in REF["moves"]])
+    args = moves.decode_action(a, 24)
+    for cap in (None, 10):
+        plain = moves.s_move(x, *args, 24, cap)
+        new, over, size, total = moves.s_move(x, *args, 24, cap, sizes=True)
+        assert (new == plain[0]).all() and (over == plain[1]).all()
+        limit = 24 if cap is None else cap
+        assert (size[over] > limit).all() and (size[~over] <= limit).all()
+        other = torch.where(args[0] == 0, (x[:, 24:] != 0).sum(-1), (x[:, :24] != 0).sum(-1))
+        assert (total == size + other).all()
+    assert over.any()
+
+
+def test_beam_cap_counters(model):
+    """The beam selects before it applies a move, so a selected over-cap child always took a beam slot."""
+    pres = data.load("ms640", ids=[4])[0].pres
+    s = rl_solve.solve(pres, model, width=64, steps=30, cap=6).stats
+    assert s["cap"] == 6 and s["cap_dropped"] > 0 and s["cap_would_pop"] == s["cap_dropped"]
+    assert 1 <= s["cap_first_bind"] <= 30 and s["cap_needed"] > 6 and s["cap_dropped_min_total"] > 6
+    assert s["cap_dropped_min_total"] >= s["cap_needed"]
+    clean = rl_solve.solve(pres, model, width=64, steps=30).stats                 # the default cap is 24
+    assert clean["cap"] == 24 and clean["cap_dropped"] == 0 and clean["cap_would_pop"] == 0
+    assert clean["cap_first_bind"] is None and clean["cap_needed"] is None and clean["cap_dropped_min_total"] is None
+
+
+def test_beam_zero_dropped_means_the_same_run_at_every_larger_cap(model):
+    zero = nonzero = 0
+    for row in data.load("ms640", ids=range(10)):
+        big = rl_solve.solve(row.pres, model, width=64, steps=40, cap=24)
+        assert big.stats["cap_dropped"] == 0                                         # nothing over 24 here
+        for cap in (8, 12, 16):
+            res = rl_solve.solve(row.pres, model, width=64, steps=40, cap=cap)
+            if res.stats["cap_dropped"] == 0:
+                zero += 1
+                assert (res.path, res.pops) == (big.path, big.pops)
+            else:
+                nonzero += 1
+    assert zero > 5 and nonzero > 5
+
+
+def test_beam_counters_on_skipped_and_trivial_rows(model):
+    pres = data.load("ms640", ids=[4])[0].pres
+    for res in (rl_solve.solve(pres, model, cap=4), rl_solve.solve(Presentation(2, ((1,), (2,))), model, cap=7)):
+        assert res.stats["cap_dropped"] == res.stats["cap_would_pop"] == 0
+        assert res.stats["cap_first_bind"] is None and res.stats["cap_needed"] is None
+    assert res.stats["cap"] == 7

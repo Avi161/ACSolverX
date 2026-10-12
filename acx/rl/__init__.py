@@ -6,7 +6,7 @@ Source: ``origin/experiments/ppo:experiments/ppo`` (tip c73b11f2), the PyTorch p
 
     moves.py    batched substitution move, bug for bug (0 mismatches on 7,500 legal transitions vs JAX)
     policy.py   ``ActorCritic`` (2 layers, 4 heads, ring attention) and ``pretrained()``; 2.7e-5 vs JAX
-    beam.py     ``beam_search``: width x steps decode, 64-bit visited set, illegal actions dead, cap counted
+    beam.py     ``beam_search``: width x steps decode, 64-bit visited set, illegal actions dead, cap counters
     solve.py    ``solve(pres, cap=24)``: beam, translation to ``acx`` S-moves, ``acx.verify.replay``
     env.py ppo.py   training: ``VecEnv`` and ``train(states, updates)``
     convert.py  one-time orbax -> torch ``state_dict`` (needs jax + orbax-checkpoint)

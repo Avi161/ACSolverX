@@ -12,6 +12,9 @@ Pipeline (each module's docstring has the details):
   signed-permutation canonical form; ``frontier``, on backend ``spec`` or
   ``fast``) and higher rank (``dynrank``: products, digram definitions,
   eliminations, transvections), one budget of work units;
+* ``capwatch``: the cap counters of its three limits (``r2_cap``, ``dyn_cap``, ``slack``): what each
+  dropped and whether a dropped state would have been popped (``stats``: ``cap_*``, ``dyn_cap_*``,
+  ``slack_*``; the fields of ``acx.core.capcount``);
 * ``certify``: the certificate becomes elementary AC moves on the presentation
   itself (plus AC4/AC5 when higher rank was used) and is replayed by
   ``acx.verify.replay`` before ``solve`` returns it.

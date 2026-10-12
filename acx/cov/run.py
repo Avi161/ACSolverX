@@ -20,6 +20,16 @@ Outcomes are typed, and kept apart:
   not that it has an AC path. ``Outcome.path`` is the search leg on the image
   and ``image.steps`` the transform; ``acx.cov.check_cert`` replays both.
 
+**Cap counters.** Every leg is a plain ``acx.search`` with its own cap and its own counters
+(``acx.core.capcount``); the row's ``stats`` hold their aggregate under the usual names: ``cap`` is
+``search.cap`` (the row's leg; image legs follow from it and ``cap_headroom``), ``cap_dropped`` and
+``cap_would_pop`` are sums over the legs tried, ``cap_dropped_min_total`` and ``cap_needed`` minima over
+them (``cap_needed`` in absolute letters of the binding leg's own cap), ``cap_first_bind`` is a pop number
+of the row (the pops spent on earlier legs plus the first binding leg's) and ``cap_legs_bound`` the
+number of legs with ``cap_would_pop > 0``. When no leg binds every leg is the same at any larger cap, so
+the row spends the same pops. ``max_len`` is a filter on which images exist, not a heap cap, so it has no
+counter (``stats["images"]`` already reports it).
+
 The cap of an image's search is ``max(search.cap, longest image relator (as
 written) + cap_headroom)``: an image is usually longer than the row, and a relator
 sitting at the cap cannot grow over the hump.  With this policy the 6,722 images of
@@ -36,11 +46,14 @@ import time
 from dataclasses import dataclass, field, replace
 
 from ..aut import automorphism, transport
+from ..core.capcount import blank, combine
 from ..core.config import SearchConfig, parse_cap
 from ..search import Result, search
 from ..search.engine import as_presentation
 from ..verify.replay import replay
 from .cov import MAX_LEN, CoVImage, check_cert, enumerate_images
+
+CAP_FIELDS = tuple(blank())
 
 
 @dataclass(frozen=True)
@@ -130,7 +143,8 @@ def run(pres, cfg=None, **overrides):
     images = enumerate_images(pres, cfg.max_len)
     cands = ([None] if cfg.control else []) + list(images)
     seen, outcomes = set(), []
-    pops = dups = tried = rejected = 0
+    pops = dups = tried = 0
+    legs = []                           # (cap counter record, pops spent before the leg)
     for img in cands:
         left = cfg.total_budget - pops
         if left <= 0:
@@ -144,12 +158,15 @@ def run(pres, cfg=None, **overrides):
         if img is not None and cap is not None and cfg.cap_headroom is not None:
             cap = max(cap, max(map(len, img.pres.rels)) + cfg.cap_headroom)
         res = search(start, s.replace(budget=min(s.budget, left), cap=cap, capture_path=True))
-        tried, pops, rejected = tried + 1, pops + res.pops, rejected + res.stats["cap_rejected"]
+        legs.append(({f: res.stats[f] for f in CAP_FIELDS}, pops))
+        tried, pops = tried + 1, pops + res.pops
         if res.solved:
             outcomes.append(_typed(pres, img, res, cap, s.cyclic))
             verify(pres, outcomes[-1])
             if cfg.until == "solve" or outcomes[-1].kind == "ac_path":
                 break
-    stats = {"images": len(images), "tried": tried, "duplicates": dups,
-             "cap_rejected": rejected, "seconds": time.perf_counter() - t0}
+    caps = combine(legs) if legs else blank()
+    caps["cap"] = s.cap
+    stats = {"images": len(images), "tried": tried, "duplicates": dups, **caps,
+             "cap_legs_bound": sum(1 for rec, _ in legs if rec["cap_would_pop"]), "seconds": time.perf_counter() - t0}
     return CoVResult(tuple(outcomes), pops, stats)

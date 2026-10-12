@@ -191,3 +191,14 @@ def test_transport_rejects_a_wrong_frame():
     res = search(ac.rep, budget=2000)
     with pytest.raises(ValueError, match="matches"):
         transport(pres, (), res.path, res.start)                           # identity is not the witness
+
+
+def test_aut_min_search_carries_the_cap_counters():
+    """The Aut-minimal representative is searched by ``acx.search``, so its result reports the cap counters of that search
+    (the runner copies them into the record); transport and replay add no search and no counters."""
+    fields = ("cap", "cap_dropped", "cap_dropped_min_total", "cap_would_pop", "cap_first_bind", "cap_needed")
+    for strs in [("x", "y"), ("xy", "y"), ("Xyx", "x")]:
+        res, _ = solve_via_aut_min(_p(*strs), budget=50, cap=24)
+        assert all(f in res.stats for f in fields) and res.stats["cap"] == 24 and res.stats["cap_would_pop"] == 0
+    res, _ = solve_via_aut_min(dataset("data/ms640_solved.txt")[100], budget=100, cap=None)
+    assert res.stats["cap"] is None and res.stats["cap_dropped"] == 0 and res.stats["cap_first_bind"] is None
