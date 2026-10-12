@@ -96,3 +96,20 @@ def test_numba_twin_matches_the_plain_counter(seed):
     plain.end(dry, left)
     twin.end(dry, left)
     assert twin.record() == plain.record()
+
+
+def test_package_keeps_the_public_names():
+    """Everything other modules import from ``acx.core.capcount`` is still there after the split into submodules."""
+    from acx.core import capcount
+
+    for name in ("FIELDS", "fields", "blank", "combine", "summarize", "CapCount", "CapArrays",
+                 "cc_drop", "cc_free", "cc_known", "cc_pop", "C_POOL"):
+        assert hasattr(capcount, name), name
+
+
+def test_field_names_address_a_record_by_short_name():
+    from acx.core.capcount.records import field_names
+
+    assert field_names().would_pop == "cap_would_pop"
+    assert field_names("dyn_cap").first_bind == "dyn_cap_first_bind"
+    assert tuple(field_names("slack")) == fields("slack")
