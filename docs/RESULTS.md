@@ -14,7 +14,8 @@ source. A line tagged **[rerun]** was reproduced with the unmodified original co
 after the cap counters were added, so each record carries the cap fields and each `summary.json` the `caps` block
 (section "Relator-length cap"). Fast backend unless stated, cap 24 unless stated, one core
 per worker on a shared 4-core 2.8 GHz VM. Each record was written only after its certificate replayed on the row, and
-every solved record of every run was replayed again by an independent script (0 failures). Path lengths are totals over
+after the reruns the stored paths of the solved records were replayed again from the files by a separate script (77,723
+records of every run but `ac1m_hybrid`, 0 failures; the 103 CoV `stable_cert`s are checked by `acx.cov.verify` when written). Path lengths are totals over
 solved rows (median per row): the S-move and elementary columns count AC paths (`ac_path`, aut-assisted included); the
 **stable** columns count `stable_cert`s (S-moves of the search leg / elementary plus AC4/AC5 moves; a CoV `stable_cert`
 has no elementary path). "aut" is an aut-assisted `ac_path`. CPU s is the sum of per-row seconds.
@@ -114,9 +115,10 @@ Every run except the MS640 configs as shipped also sets `workers=4`; `ladder` al
 | `rank4_bf`, extra 2, lengths 1-3 (`--rows 0:201`, `207:640:20`) | 223 | 351 | 78,273 | 219 | 216 | slice of the baseline's 506 / 640, not comparable |
 | `rank5_bf`, extra 3, lengths 1-2 (`--rows 0:640:20`) | 32 | 120 | 3,840 | 28 | 21 | slice of the baseline's 416 / 640, not comparable |
 
-  The rank 4 and 5 runs are row slices (a full rank-4 run is two to three core-hours here); the 15-minute limit also
-  made `rank4_bf` a contiguous block of the first 201 rows plus a stride, so its rows are easier than the benchmark.
-  The rank-3 run covers all of MS640 and equals the baseline's published tables (random word solves 60.1% / 68.4% /
+  The rank 4 and 5 runs are row slices (a full rank-4 run is two to three core-hours here). `rank4_bf` is every 20th
+  row from 7 plus the first rows 0 to 200, which a full sweep had reached when it was stopped at the 15-minute limit; the
+  first rows are the easy ones (the control solves 219 of its 223), so its numbers are not those of MS640. The rank-3
+  run covers all of MS640 and equals the baseline's published tables (random word solves 60.1% / 68.4% /
   69.8% / 68.6% of its starts at length 1 / 2 / 3 / 4).
 
 ## Relator-length cap
@@ -167,7 +169,9 @@ smallest cap at which a row changes, and *first bind* the earliest pop at which 
 - **The cap matters under S20_MK2.** Its priority puts long relators early, so the cap drops children in 74 of 640 MS640
   rows and a dropped child would have been popped in 20 (`aut` searches the Aut-minimal form with the same priority:
   the same 20 rows). `cap_needed` is 25 in every one of those rows on MS640, bench60 and the holdout (25-26 on the
-  ladders), so cap 25 is the smallest cap at which any of them changes.
+  ladders), so cap 25 is the smallest cap at which any of them changes. Cap 25 is also enough to make the count 0 on
+  MS640 and bench60, but not on 4 of the 6 holdout rows, which still have `cap_would_pop` > 0 at 25 (`cap_needed`
+  26, 26, 26 and 27); the study below therefore goes uncapped.
 - **LENGTH has a few rows too**, deep in the budget: `holdout60_length` row 569291 (first bind at pop 6,708),
   `ladder60_length` row `ac19_50892` and `ladder200_length` rows `ac19_14060`, `ac19_27187` and `ac19_50892` (first
   binds 9,211 to 9,886). All four rows are unsolved at 10,000 pops, with and without the cap.
