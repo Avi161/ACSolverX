@@ -53,7 +53,7 @@ def test_ms640_parity_full(ms640, pid, priority):
 def test_caps(ms640, pid, cap, priority):
     r = parity(ms640[pid], priority=priority, cap=cap, budget=400)
     if cap is None:
-        assert r.stats["cap_rejected"] == 0
+        assert r.stats["cap_dropped"] == 0
 
 
 @pytest.mark.parametrize("priority", ["length", "s20_mk2"])
@@ -78,7 +78,7 @@ def test_s20_mk2_needs_two_generators():
 
 def test_start_over_the_cap():
     r = parity(Presentation.parse("xxxxxxyXYXYX", "xyXyXY"), cap=8, budget=10)
-    assert r.pops == 1 and r.stats["cap_rejected"] == len(list(enumerate_moves(r.start.rels)))
+    assert r.pops == 1 and r.stats["cap_dropped"] == len(list(enumerate_moves(r.start.rels)))
 
 
 def test_uncapped_rows_widen():
@@ -124,6 +124,32 @@ def test_children_kernel(ms640, priority):
         assert rejected == len(list(enumerate_moves(rels))) - len(want)
         kept, total, rejected_all = kept + len(got), total + len(want), rejected_all + rejected
     assert kept < total and rejected_all > 0
+
+
+def spec_dropped(rels, cap):
+    """Spec's over-cap children of one state (canonical, sorted), one per move, in enumeration order."""
+    out = []
+    for m in enumerate_moves(rels):
+        new = reduce(rotate(rels[m.i], m.k1) + rotate(source_word(rels, m), m.k2))
+        if len(new) > cap or any(len(r) > cap for k, r in enumerate(rels) if k != m.i):
+            out.append(sort_rels(rels[:m.i] + (canonical_word(new),) + rels[m.i + 1:]))
+    return out
+
+
+@pytest.mark.parametrize("priority", ["length", "s20_mk2"])
+@pytest.mark.parametrize("cap", [12, 16, 20])
+def test_dropped_children_kernel(ms640, priority, cap):
+    """``children(drops=True)``: every distinct over-cap child, in first-occurrence order, scored (from the
+    reduced relator, before canonicalisation) exactly as acx.core.priority scores the child."""
+    prio = get_priority(priority)
+    for pid in (7, 120, 466, 600, 620):
+        rels = ms640[pid].canonical().rels
+        *_, rejected, dsyms, dlens, dscores = children(rels, cap=cap, priority=priority, drops=True)
+        got = [decode(s, n, 2) for s, n in zip(dsyms, dlens)]
+        want = spec_dropped(rels, cap)
+        assert rejected == len(want) >= len(got)
+        assert list(dict.fromkeys(got)) == list(dict.fromkeys(want))
+        assert list(dscores) == [prio(c) for c in got]
 
 
 @pytest.mark.slow

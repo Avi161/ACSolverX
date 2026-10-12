@@ -155,6 +155,13 @@ def state_key(rels, n_gen=2):
     return tuple(tuple(n_gen + g if g > 0 else -g for g in r) for r in rels)
 
 
+def state_bytes(rels, n_gen=2):
+    """``state_key`` packed as bytes: each relator's codes followed by a 0. Codes are ``>= 1``, so bytes
+    order is ``state_key``'s tuple order (a relator that is a proper prefix sorts first); the fast
+    engine's ``kernels.tie_bytes`` writes the same bytes. Used for compact keys (cap counters)."""
+    return bytes(c for r in rels for c in (*(n_gen + g if g > 0 else -g for g in r), 0))
+
+
 @dataclass(frozen=True)
 class Presentation:
     """A balanced-or-not presentation ``<x_1..x_n_gen | rels>``; words as int tuples."""

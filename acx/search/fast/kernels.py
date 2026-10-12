@@ -18,8 +18,17 @@ builds them (``i -> j -> s -> k1 -> k2`` order; each relator reduced and
 canonical, relators sorted by ``(length, Booth order)``), into ``out[c]`` /
 ``out_len[c]`` with its move ``(i, j, s, k1, k2)`` in ``out_mv[c]``. ``cap < 0``
 means uncapped. ``rejected`` counts the legal moves whose child has a relator
-over the cap (spec's ``cap_rejected``). The caller sizes ``out`` with
+over the cap (spec's ``cap_dropped``). The caller sizes ``out`` with
 ``max_children(lens)`` rows and at least ``child_width(lens)`` columns.
+
+``expand_drops(..., dout, dout_len) -> (count, rejected, dcount)`` does the same
+and also builds the dropped children (canonical and sorted, the same assembly
+as a kept child) into ``dout[:dcount]`` / ``dout_len``, for the cap counters
+(``acx.core.capcount``): one per distinct conjugacy repeat class, so
+``dcount <= rejected``. ``dout`` needs ``max_children(lens)`` rows and
+``child_width(lens)`` columns (a dropped relator is longer than the cap).
+``tie_bytes`` writes a state's heap tie-break key as bytes
+(``acx.core.words.state_bytes``).
 
 The one change to the child stream is hexpand's **cut-shift skip** (cyclic
 reduction only). In a ``(i, j, s)`` block the child of ``(k1, k2)`` is a
@@ -27,9 +36,11 @@ conjugate of the child of ``(k1 - 1, k2 + 1)`` whenever that predecessor's seam
 cancels, so both reduce to the same canonical relator and the later one is a
 repeat the dedup table would drop anyway. A per-block bitmap marks a move when
 its child is written or skipped; ``(k1, k2)`` is skipped only when its
-predecessor is marked. A cap-rejected child is never marked, and the cyclically
-reduced length is a conjugacy invariant, so the cap count is exact too. This
-removes about half of the children before any per-child work.
+predecessor is marked. Dropped (over-cap) moves get their own bitmap: the
+cyclically reduced length is a conjugacy invariant, so the successor of a
+dropped move is dropped too and is counted without being reduced or built.
+The per-move cap count stays exact. This removes about half of the children
+before any per-child work.
 
 Canonical form: the least rotation (two-pointer minimum-rotation scan) of the
 word and of its inverse, the smaller of the two (Booth order, so the same
@@ -75,6 +86,19 @@ def decode(syms, lens, n_gen):
 def key_code(b, n):
     g = n - (b >> 1)
     return n + g if b & 1 else g
+
+
+@njit(inline="always")
+def tie_bytes(row, rlen, n_gen, buf, o):
+    """Write the state's ``state_bytes`` (key codes, a 0 after each relator) at ``buf[o:]``; return the count."""
+    k = o
+    for r in range(len(rlen)):
+        for t in range(rlen[r]):
+            buf[k] = key_code(row[r, t], n_gen)
+            k += 1
+        buf[k] = 0
+        k += 1
+    return k - o
 
 
 @njit(cache=True)
@@ -185,8 +209,55 @@ def _src(syms, j, lo, s, t):
     return syms[j, t] if s == 1 else syms[j, lo - 1 - t] ^ 1
 
 
-@njit(cache=True)
-def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
+@njit(inline="always")
+def _rel_stats(w, lo, m, n_gen):
+    """S20_MK2 terms of one relator ``w[lo:lo+m]`` (``m > 0``): ``(x letters, y letters, x blocks, y blocks,
+    knots)``, blocks read cyclically (rotation and inversion invariant, so any representative will do).
+
+    A cyclic word in x and y alternates x- and y-blocks, so with ``T`` cyclic generator changes there are
+    ``T / 2`` blocks of each (one block of one generator when ``T == 0``): the per-letter loop has no branch.
+    """
+    xg = n_gen - 1                                  # Booth symbol >> 1 of x (the other generator counts as y)
+    prev = (w[lo + m - 1] >> 1) == xg
+    sx = T = 0
+    for t in range(m):
+        cur = (w[lo + t] >> 1) == xg
+        sx += cur
+        T += cur != prev
+        prev = cur
+    if T == 0:
+        return sx, m - sx, 1 if sx else 0, 0 if sx else 1, 0
+    h = T >> 1
+    return sx, m - sx, h, h, h
+
+
+@njit(inline="always")
+def _s20(L, mk, nx, ny, sx, sy):
+    """``L + 20 S + 2 MK`` in the reference operation order (bit-identical to ``acx.core.priority``)."""
+    mxv = sx / nx if nx else 0.0
+    myv = sy / ny if ny else 0.0
+    if nx == 0 or ny == 0:
+        sv = myv if mxv == 0.0 else mxv
+    else:
+        sv = mxv if mxv < myv else myv
+    acc = 0.0
+    acc += 1.0 * L
+    acc += 2.0 * mk
+    acc += 20.0 * sv
+    return acc
+
+
+@njit(inline="always")
+def _expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv, dout, dout_len, dprio, pid, dmax, kept):
+    """The kernel behind ``expand`` / ``expand_drops`` / the engine's cap counter.
+
+    ``pid >= 0``: score every dropped child (``LENGTH``/``S20_MK2``, from its reduced relator, before any
+    canonicalisation; when nothing is built, an S20_MK2 child whose lower bound ``L + 2 MK_untouched + 20``
+    cannot lower ``dmin`` is not scored) and return the least score ``dmin`` and least total ``tmin`` over
+    the drops; build
+    (canonical, sorted) into ``dout`` / ``dout_len`` / ``dprio`` the drops scoring ``<= dmax`` (one per
+    cut-shift repeat class). ``kept`` False skips building the kept children (the cut-shift marks stay).
+    Returns ``(count, rejected, dcount, dmin, tmin)``."""
     R = len(lens)
     mx = 1
     for r in range(R):
@@ -201,11 +272,26 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
         lo, m = reduce_buf(buf, lens[r], cyclic)
         canon_buf(buf, lo, m, can[r])
         cl[r] = m
+    track = pid >= 0
+    build = track and len(dout) > 0
+    # per relator S20_MK2 terms of the untouched relators (drop scores add the new relator's)
+    ust = np.zeros((R, 5), dtype=np.int64)
+    if track and pid == S20_MK2:
+        for r in range(R):
+            if cl[r] > 0:
+                a0, a1, a2, a3, a4 = _rel_stats(can[r], 0, cl[r], n_gen)
+                ust[r, 0], ust[r, 1], ust[r, 2], ust[r, 3], ust[r, 4] = a0, a1, a2, a3, a4
+    total = 0
+    for r in range(R):
+        total += cl[r]
     new = np.empty(2 * mx, dtype=np.uint8)
     seen = np.zeros(mx * mx, dtype=np.bool_)
+    dseen = np.zeros(mx * mx, dtype=np.bool_)                  # dropped moves (cut-shift repeats of drops)
     order = np.empty(R, dtype=np.int64)
     hist = np.zeros(2 * n_gen, dtype=np.int64)
-    count = rejected = 0
+    count = rejected = dcount = 0
+    dmin = np.inf
+    tmin = -1
     for i in range(R):
         li = lens[i]
         if li == 0:
@@ -215,21 +301,33 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
             for k in range(R):
                 if k != i and cl[k] > cap:
                     over = True
-        if over:   # every legal move of r_i is rejected: count them without building children
+        fast_over = over and not track
+        if fast_over:   # every legal move of r_i is dropped: count them without building children
             hist[:] = 0
             for t in range(li):
                 hist[syms[i, t]] += 1
+        rest = total - cl[i]
+        sx0 = sy0 = bx0 = by0 = mk0 = 0
+        if track and pid == S20_MK2:
+            for k in range(R):
+                if k != i:
+                    sx0 += ust[k, 0]
+                    sy0 += ust[k, 1]
+                    bx0 += ust[k, 2]
+                    by0 += ust[k, 3]
+                    mk0 = max(mk0, ust[k, 4])
         for j in range(R):
             lo = lens[j]
             if j == i or lo == 0:
                 continue
             for s in (1, -1):
-                if over:
+                if fast_over:
                     for t in range(lo):
                         rejected += hist[_src(syms, j, lo, s, t) ^ 1]
                     continue
                 if cyclic:
                     seen[:li * lo] = False
+                    dseen[:li * lo] = False
                 for k1 in range(li):
                     last = syms[i, li - 1 - k1]                       # rotate(r_i, k1)[-1]
                     for k2 in range(lo):
@@ -240,6 +338,10 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
                             if seen[p]:                               # cut-shift repeat
                                 seen[k1 * lo + k2] = True
                                 continue
+                            if dseen[p]:                              # cut-shift repeat of a dropped move
+                                dseen[k1 * lo + k2] = True
+                                rejected += 1
+                                continue
                         for t in range(li):
                             u = t - k1
                             buf[t] = syms[i, u + li if u < 0 else u]
@@ -247,11 +349,35 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
                             u = t - k2
                             buf[li + t] = _src(syms, j, lo, s, u + lo if u < 0 else u)
                         r0, m = reduce_buf(buf, li + lo, cyclic)
-                        if cap >= 0 and m > cap:
+                        dropped = over or (cap >= 0 and m > cap)
+                        dp = 0.0
+                        if dropped:
                             rejected += 1
-                            continue
-                        if cyclic:
-                            seen[k1 * lo + k2] = True
+                            if cyclic:
+                                dseen[k1 * lo + k2] = True
+                            if not track:
+                                continue
+                            ct = rest + m
+                            if tmin < 0 or ct < tmin:
+                                tmin = ct
+                            if pid == LENGTH:
+                                dp = float(ct)
+                            elif not build and ct + 2.0 * mk0 + 20.0 >= dmin:
+                                continue        # cannot lower dmin: S >= 1 and MK >= the untouched knots
+                            else:
+                                a0 = a1 = a2 = a3 = a4 = 0
+                                if m > 0:
+                                    a0, a1, a2, a3, a4 = _rel_stats(buf, r0, m, n_gen)
+                                dp = _s20(ct, max(mk0, a4), bx0 + a2, by0 + a3, sx0 + a0, sy0 + a1)
+                            if dp < dmin:
+                                dmin = dp
+                            if not build or dp > dmax:
+                                continue
+                        else:
+                            if cyclic:
+                                seen[k1 * lo + k2] = True
+                            if not kept:
+                                continue
                         canon_buf(buf, r0, m, new)
                         # insertion sort of the R relators (the new one stands at index i)
                         for a in range(R):
@@ -266,6 +392,17 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
                                     b -= 1
                                 else:
                                     break
+                        if dropped:
+                            for a in range(R):
+                                x = order[a]
+                                n = m if x == i else cl[x]
+                                src = new if x == i else can[x]
+                                for t in range(n):
+                                    dout[dcount, a, t] = src[t]
+                                dout_len[dcount, a] = n
+                            dprio[dcount] = dp
+                            dcount += 1
+                            continue
                         for a in range(R):
                             x = order[a]
                             n = m if x == i else cl[x]
@@ -279,7 +416,23 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
                         out_mv[count, 3] = k1
                         out_mv[count, 4] = k2
                         count += 1
+    return count, rejected, dcount, dmin, tmin
+
+
+@njit(cache=True)
+def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
+    dout = np.empty((0, 1, 1), dtype=np.uint8)
+    dout_len = np.empty((0, 1), dtype=np.int32)
+    dprio = np.empty(0, dtype=np.float64)
+    count, rejected, _, _, _ = _expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv,
+                                       dout, dout_len, dprio, -1, np.inf, True)
     return count, rejected
+
+
+@njit(cache=True)
+def expand_drops(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv, dout, dout_len, dprio, pid, dmax, kept):
+    """``_expand`` for callers that score or build dropped children (the engine's cap counter)."""
+    return _expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv, dout, dout_len, dprio, pid, dmax, kept)
 
 
 @njit(cache=True)
@@ -292,53 +445,37 @@ def score(row, rlen, n_gen, prio):
         return float(L)
     mk = nx = ny = sx = sy = 0
     for r in range(len(rlen)):
-        m = rlen[r]
-        bx = by = 0
-        for t in range(m):
-            g = n_gen - (row[r, t] >> 1)
-            if t == 0 or g != n_gen - (row[r, t - 1] >> 1):
-                if g == 1:
-                    bx += 1
-                else:
-                    by += 1
-            if g == 1:
-                sx += 1
-            else:
-                sy += 1
-        if bx + by > 1 and (row[r, 0] >> 1) == (row[r, m - 1] >> 1):   # a run wraps the seam
-            if n_gen - (row[r, 0] >> 1) == 1:
-                bx -= 1
-            else:
-                by -= 1
-        if bx > 0 and by > 0:
-            mk = max(mk, max(bx, by))
-        nx += bx
-        ny += by
-    mxv = sx / nx if nx else 0.0
-    myv = sy / ny if ny else 0.0
-    if nx == 0 or ny == 0:
-        sv = myv if mxv == 0.0 else mxv
-    else:
-        sv = mxv if mxv < myv else myv
-    acc = 0.0
-    acc += 1.0 * L
-    acc += 2.0 * mk
-    acc += 20.0 * sv
-    return acc
+        if rlen[r] > 0:
+            a0, a1, a2, a3, a4 = _rel_stats(row[r], 0, rlen[r], n_gen)
+            sx, sy, nx, ny, mk = sx + a0, sy + a1, nx + a2, ny + a3, max(mk, a4)
+    return _s20(L, mk, nx, ny, sx, sy)
 
 
-def children(rels, n_gen=2, cap=24, cyclic=True, priority="length"):
+def children(rels, n_gen=2, cap=24, cyclic=True, priority="length", drops=False):
     """Python entry for other searches: the scored children of one canonical state.
 
     Returns ``(syms, lens, moves, scores, rejected)``; child ``c`` is
-    ``decode(syms[c], lens[c], n_gen)``, reached by ``Move(*moves[c])``.
+    ``decode(syms[c], lens[c], n_gen)``, reached by ``Move(*moves[c])``. With ``drops`` it appends
+    ``(dsyms, dlens, dscores)``: the children the cap dropped, one per cut-shift repeat class
+    (``expand_drops``), for the cap counters.
     """
     syms, lens = encode(rels, n_gen)
     mc, w = max_children(lens), max(child_width(lens), syms.shape[1])
     out = np.zeros((max(mc, 1), len(lens), w), dtype=np.uint8)
     out_len = np.zeros((max(mc, 1), len(lens)), dtype=np.int32)
     out_mv = np.zeros((max(mc, 1), 5), dtype=np.int32)
-    count, rejected = expand(syms, lens, n_gen, -1 if cap is None else cap, cyclic, out, out_len, out_mv)
+    c_ = -1 if cap is None else cap
     pid = priority_id(priority, rels)
+    if not drops:
+        count, rejected = expand(syms, lens, n_gen, c_, cyclic, out, out_len, out_mv)
+    else:
+        dout = np.zeros((max(mc, 1), len(lens), w), dtype=np.uint8)
+        dout_len = np.zeros((max(mc, 1), len(lens)), dtype=np.int32)
+        dprio = np.zeros(max(mc, 1), dtype=np.float64)
+        count, rejected, dcount, _, _ = expand_drops(syms, lens, n_gen, c_, cyclic, out, out_len, out_mv,
+                                                     dout, dout_len, dprio, pid, np.inf, True)
     scores = np.array([score(out[c], out_len[c], n_gen, pid) for c in range(count)])
-    return out[:count], out_len[:count], out_mv[:count], scores, rejected
+    res = (out[:count], out_len[:count], out_mv[:count], scores, rejected)
+    if drops:
+        res += (dout[:dcount], dout_len[:dcount], dprio[:dcount])
+    return res

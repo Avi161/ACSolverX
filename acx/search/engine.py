@@ -19,16 +19,26 @@ strict total order on heap entries::
 
 Every solved path is replayed through ``acx.verify.replay`` before it is
 returned; a backend that emits an invalid path raises here.
+
+Cap counters: ``Result.stats`` holds ``acx.core.capcount.FIELDS`` (``cap``,
+``cap_dropped``, ``cap_dropped_min_total``, ``cap_would_pop``,
+``cap_first_bind``, ``cap_needed``), equal on both backends. They only
+observe: ``cap_would_pop == 0`` means the search is the same at every larger
+cap; otherwise ``cap_needed`` is the smallest cap that changes it. Other
+searches build the same fields with ``acx.core.capcount.CapCount``.
+``stats["cap_rejected"]`` is a transitional alias of ``cap_dropped`` for callers
+not yet migrated.
 """
 import importlib
 import time
 from dataclasses import dataclass, field
 
+from ..core.capcount import FIELDS as CAP_FIELDS
 from ..core.config import SearchConfig
 from ..core.words import Presentation
 
 # Stats every backend must report with identical values.
-PARITY_STATS = ("discovered", "cap_rejected", "min_total", "max_total",
+PARITY_STATS = ("discovered", *CAP_FIELDS, "min_total", "max_total",
                 "max_total_expanded", "max_expanded")
 
 

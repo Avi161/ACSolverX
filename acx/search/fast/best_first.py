@@ -17,21 +17,43 @@ over the lengths and symbols, linear probing).
 
 ``_run`` pops until solved, empty or out of budget, and returns early (before
 popping) when the next pop's children might not fit: ``NEED_CAPACITY`` (the
-arrays and table are doubled and rehashed) or, uncapped only, ``NEED_WIDTH``
-(the arena is re-laid at a wider row). With a cap the row width is
-``max(cap, longest start relator)`` and never changes.
+arrays and table are doubled and rehashed), ``NEED_CC`` (the cap counter's
+arrays are grown) or, uncapped only, ``NEED_WIDTH`` (the arena is re-laid at a
+wider row). With a cap the row width is ``max(cap, longest start relator)`` and
+never changes.
+
+Cap counters (``acx.core.capcount``), with spec's exact values, in two stages
+so that a cap that never binds costs almost nothing:
+
+1. The search scores every dropped child from its reduced relator (no
+   canonicalisation; ``expand_drops`` with ``dmax = -inf`` builds none) and
+   keeps, per pop, the popped state id and the least dropped score ``dmin``,
+   plus the per-move count and least total.
+2. A dropped child can only be popped before a later bar if its score is at
+   most the largest score popped after it (``smax``, a suffix maximum). Pops
+   with ``dmin <= smax`` are the only ones whose drops can matter: none, and
+   ``cap_would_pop`` is 0. Otherwise ``_replay`` walks the recorded pops again
+   with the numba twin of ``CapCount``: each pop's bar (``cc_pop``) and, at those
+   pops, the drops scoring ``<= smax`` (``cc_drop``, keyed ``(prio, depth,
+   tie bytes)``). A drop scoring above ``smax`` never drains, and neither does
+   any later drop of the same state (same score, ``smax`` only falls), so
+   leaving them out changes no count. The start's bytes are seeded as known.
+
+Uncapped searches skip all of it.
 """
 import numpy as np
 from numba import njit
 
+from ...core.capcount import C_POOL, CapArrays, blank, cc_drop, cc_free, cc_pop
 from ...core.moves import Move
-from ...core.words import Presentation, fmt
+from ...core.words import Presentation, fmt, state_bytes
 from ..engine import Result
-from .kernels import child_width, decode, encode, expand, key_code, max_children, priority_id, score
+from .kernels import child_width, decode, encode, expand_drops, key_code, max_children, priority_id, score, tie_bytes
 
-OK, SOLVED, NEED_CAPACITY, NEED_WIDTH = 0, 1, 2, 3
+OK, SOLVED, NEED_CAPACITY, NEED_WIDTH, NEED_CC = 0, 1, 2, 3, 4
 # st slots
-NODES, HEAP_LEN, N_DISC, MIN_T, MAX_T, EXP_T, EXP_ID, SOLVED_ID, REJECTED = range(9)
+# st slots; DROPPED / DMIN_T: the cap's per-move count and least dropped total (-1: none)
+NODES, HEAP_LEN, N_DISC, MIN_T, MAX_T, EXP_T, EXP_ID, SOLVED_ID, DROPPED, DMIN_T = range(10)
 
 
 @njit(inline="always")
@@ -93,7 +115,11 @@ def _less(a, b, prio, depth, arena, lens, n_gen):
 
 @njit(cache=True)
 def _run(arena, lens, depth, prio, parent, pmove, heap, table, trace, st,
-         budget, n_gen, cap, cyclic, pid, track, out, out_len, out_mv):
+         budget, n_gen, cap, cyclic, pid, track, out, out_len, out_mv, popped, dmin):
+    counting = len(popped) > 0
+    dout = np.empty((0, 1, 1), dtype=np.uint8)
+    dout_len = np.empty((0, 1), dtype=np.int32)
+    dprio = np.empty(0, dtype=np.float64)
     while st[NODES] < budget:
         hl = st[HEAP_LEN]
         if hl == 0:
@@ -128,7 +154,11 @@ def _run(arena, lens, depth, prio, parent, pmove, heap, table, trace, st,
             heap[i] = v
         if len(trace) > 0:
             trace[st[NODES]] = top
+        t_pop = st[NODES]
         st[NODES] += 1
+        if counting:
+            popped[t_pop] = top
+            dmin[t_pop] = np.inf
         tot = 0
         done = True
         for r in range(lens.shape[1]):
@@ -140,8 +170,14 @@ def _run(arena, lens, depth, prio, parent, pmove, heap, table, trace, st,
         if done:
             st[SOLVED_ID] = top
             return SOLVED
-        count, rej = expand(arena[top], lens[top], n_gen, cap, cyclic, out, out_len, out_mv)
-        st[REJECTED] += rej
+        # stage 1 of the cap counter: score the drops, build none
+        count, rej, _, dm, tm = expand_drops(arena[top], lens[top], n_gen, cap, cyclic, out, out_len, out_mv,
+                                             dout, dout_len, dprio, pid if counting else -1, -np.inf, True)
+        if rej > 0:
+            st[DROPPED] += rej
+            if st[DMIN_T] < 0 or tm < st[DMIN_T]:
+                st[DMIN_T] = tm
+            dmin[t_pop] = dm
         d1 = depth[top] + 1
         for c in range(count):
             row, rlen = out[c], out_len[c]
@@ -177,6 +213,56 @@ def _run(arena, lens, depth, prio, parent, pmove, heap, table, trace, st,
             heap[i] = sid
             st[HEAP_LEN] = hl
     return OK
+
+
+@njit(cache=True)
+def _suffix_max(prio, popped, n, dry):
+    """``smax[t]``: the largest score popped after pop ``t`` (``inf`` from a dry queue, whose pending
+    drops would pop next)."""
+    smax = np.empty(n, dtype=np.float64)
+    m = np.inf if dry else -np.inf
+    for t in range(n - 1, -1, -1):
+        smax[t] = m
+        m = max(m, prio[popped[t]])
+    return smax
+
+
+@njit(cache=True)
+def _replay(arena, lens, depth, prio, popped, n, t0, smax, live, n_gen, cap, cyclic, pid,
+            out, out_len, out_mv, dout, dout_len, dprio, bar, cc):
+    """Stage 2: the exact counter over the recorded pops ``t0..n-1`` (``live[t]``: pop ``t``'s drops may
+    matter). Returns the pop to resume from when the counter's arrays need to grow, else ``n``."""
+    R = lens.shape[1]
+    for t in range(t0, n):
+        top = popped[t]
+        if live[t]:
+            mc = max_children(lens[top])
+            if not cc_free(cc, mc, mc * (R * dout.shape[2] + R)):
+                return t
+            if mc > len(out):
+                out = np.empty((2 * mc, R, out.shape[2]), dtype=np.uint8)
+                out_len = np.empty((2 * mc, R), dtype=np.int32)
+                out_mv = np.empty((2 * mc, 5), dtype=np.int32)
+                dout = np.empty((2 * mc, R, dout.shape[2]), dtype=np.uint8)
+                dout_len = np.empty((2 * mc, R), dtype=np.int32)
+                dprio = np.empty(2 * mc, dtype=np.float64)
+        # the bar, before this pop's own drops (the solving pop included)
+        cc_pop(cc, prio[top], depth[top], bar, tie_bytes(arena[top], lens[top], n_gen, bar, 0))
+        if not live[t]:
+            continue
+        _, _, dcount, _, _ = expand_drops(arena[top], lens[top], n_gen, cap, cyclic, out, out_len, out_mv,
+                                          dout, dout_len, dprio, pid, smax[t], False)
+        d1 = depth[top] + 1
+        pool = cc[8]
+        for c in range(dcount):
+            drow, dlen = dout[c], dout_len[c]
+            ct = lg = 0
+            for r in range(R):
+                ct += dlen[r]
+                lg = max(lg, dlen[r])
+            nb = tie_bytes(drow, dlen, n_gen, pool, cc[0][C_POOL])
+            cc_drop(cc, dprio[c], d1, nb, ct, lg)
+    return n
 
 
 class _Arrays:
@@ -218,18 +304,21 @@ def run(start, cfg):
     a.parent[0] = -1
     _rehash(a.table, a.arena, a.lens, 1)
     tot0 = int(lens0.sum())
-    st = np.zeros(9, dtype=np.int64)
-    st[HEAP_LEN], st[N_DISC], st[SOLVED_ID] = 1, 1, -1
+    st = np.zeros(10, dtype=np.int64)
+    st[HEAP_LEN], st[N_DISC], st[SOLVED_ID], st[DMIN_T] = 1, 1, -1, -1
     st[MIN_T] = st[MAX_T] = st[EXP_T] = tot0
     trace = np.empty(cfg.budget if cfg.trace else 0, dtype=np.int32)
     mc = max(int(max_children(lens0)), 64)
     out = np.empty((mc, R, W), dtype=np.uint8)
     out_len = np.empty((mc, R), dtype=np.int32)
     out_mv = np.empty((mc, 5), dtype=np.int32)
+    counting = cfg.cap is not None
+    popped = np.empty(cfg.budget if counting else 0, dtype=np.int32)
+    dmin = np.empty(cfg.budget if counting else 0, dtype=np.float64)
     while True:
         status = _run(a.arena, a.lens, a.depth, a.prio, a.parent, a.pmove, a.heap, a.table, trace, st,
                       cfg.budget, n, cap, cfg.cyclic, pid, cfg.capture_path,
-                      out, out_len, out_mv)
+                      out, out_len, out_mv, popped, dmin)
         if status == NEED_CAPACITY:
             a = a.grow(2 * len(a.depth), W, int(st[N_DISC]), int(st[HEAP_LEN]))
         elif status == NEED_WIDTH:
@@ -244,6 +333,7 @@ def run(start, cfg):
 
     solved = status == SOLVED
     sid = int(st[SOLVED_ID])
+    caps = _cap_counts(a, st, start, cfg, pid, popped, dmin, solved) if counting else blank()
     path = end = None
     if solved:
         end = Presentation(n, rels(sid))
@@ -253,9 +343,48 @@ def run(start, cfg):
                 path.append(Move(*map(int, a.pmove[sid])))
                 sid = int(a.parent[sid])
             path = tuple(reversed(path))
-    stats = {"discovered": int(st[N_DISC]), "cap_rejected": int(st[REJECTED]),
+    stats = {"discovered": int(st[N_DISC]), **caps, "cap_rejected": caps["cap_dropped"],
              "min_total": int(st[MIN_T]), "max_total": int(st[MAX_T]),
              "max_total_expanded": int(st[EXP_T]),
              "max_expanded": tuple(map(fmt, rels(int(st[EXP_ID])))), "row_width": W}
     tr = tuple(tuple(map(fmt, rels(int(s)))) for s in trace[:st[NODES]]) if cfg.trace else None
     return Result(solved, int(st[NODES]), path, start, end, stats, tr)
+
+
+def _cap_counts(a, st, start, cfg, pid, popped, dmin, solved):
+    """The cap counter's record (stage 2 when some pop's drops may matter; module docstring)."""
+    n, R = int(st[NODES]), len(start.rels)
+    left = cfg.budget - n
+    dry = not solved and st[HEAP_LEN] == 0 and left > 0
+    rec = blank(cap=cfg.cap)
+    rec["cap_dropped"] = int(st[DROPPED])
+    rec["cap_dropped_min_total"] = int(st[DMIN_T]) if st[DMIN_T] >= 0 else None
+    if not rec["cap_dropped"]:
+        return rec
+    smax = _suffix_max(a.prio, popped, n, dry)
+    live = (dmin[:n] < np.inf) & (dmin[:n] <= smax)
+    if not live.any():
+        return rec
+    ca = CapArrays(cfg.cap)
+    ca.known(state_bytes(start.rels, start.n_gen))
+    lens0 = a.lens[popped[:n]]
+    W = a.arena.shape[2]
+    Wd = max(2 * cfg.cap, int(lens0.max(axis=1).max()) * 2)          # child_width of any popped state
+    mc = 64
+    out = np.empty((mc, R, W), dtype=np.uint8)
+    out_len = np.empty((mc, R), dtype=np.int32)
+    out_mv = np.empty((mc, 5), dtype=np.int32)
+    dout = np.empty((mc, R, Wd), dtype=np.uint8)
+    dout_len = np.empty((mc, R), dtype=np.int32)
+    dprio = np.empty(mc, dtype=np.float64)
+    bar = np.empty(R * (W + 1), dtype=np.uint8)
+    t = 0
+    while t < n:
+        t = _replay(a.arena, a.lens, a.depth, a.prio, popped, n, t, smax, live, start.n_gen, cfg.cap, cfg.cyclic,
+                    pid, out, out_len, out_mv, dout, dout_len, dprio, bar, ca.cc)
+        if t < n:
+            k = int(max_children(a.lens[popped[t]]))
+            ca.grow(k, k * (R * Wd + R))
+    ca.end(dry, left)
+    r = ca.record()
+    return {**rec, **{k: r[k] for k in ("cap_would_pop", "cap_first_bind", "cap_needed")}}

@@ -1,0 +1,22 @@
+{
+ "rank": 4,
+ "combos_per_presentation": 351,
+ "searches": 224640,
+ "core_seconds": 16784,
+ "ms_per_search": 74.7,
+ "null_mismatch_pres_ids": [],
+ "control_solved": 554,
+ "mean_solve_rate_per_presentation": 0.5914,
+ "mean_solve_rate_on_control_solved": 0.6833,
+ "mean_solve_rate_on_control_unsolved": 0.0,
+ "solved_by_some_combo": 506,
+ "gained_presentations": [],
+ "lost_by_every_combo": 48,
+ "share_of_solved_combos_faster_than_control": 0.0027,
+ "presentations_where_some_combo_is_faster": 49,
+ "best_single_combo_solved": 454,
+ "best_single_combo": [
+  "yxY",
+  "Yxy"
+ ]
+}

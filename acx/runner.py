@@ -25,6 +25,13 @@ AC path), and the certificate: ``path`` (S-moves, ``encode_path``), ``elementary
 row, ``acx.verify.decode.pack``) and ``steps`` (a CoV transform or a hybrid certificate). A record is written only after its certificate replays on the row
 (``acx.verify.replay``; a CoV ``stable_cert`` through ``acx.cov.verify``). Rows already in ``paths.jsonl``
 are skipped, so an interrupted run resumes; ``summary.json`` covers the selected rows.
+
+Every record, solved or not, also carries the cap counters of its search (``acx.core.capcount.FIELDS``:
+``cap``, ``cap_dropped``, ``cap_dropped_min_total``, ``cap_would_pop``, ``cap_first_bind``, ``cap_needed``),
+for each counter prefix the method's ``stats`` hold (``CAP_PREFIXES``: the hybrid adds ``dyn_cap_*`` and
+``slack_*``; CoV adds ``cap_legs_bound``). ``summary.json`` sums them in ``caps``, one entry per prefix
+(``acx.core.capcount.summarize``): rows where the cap dropped anything, the "raise the cap" rows
+(``cap_would_pop > 0``) with their ids, and the smallest and largest ``cap_needed``.
 """
 import json
 import os
@@ -36,6 +43,8 @@ from functools import lru_cache
 from multiprocessing import Pool
 
 from . import data
+from .core.capcount import fields as cap_fields
+from .core.capcount import summarize as cap_summary
 from .core.config import SearchConfig, parse_cap, parse_override
 from .core.moves import encode_path
 from .verify.decode import decode_and_replay, pack
@@ -48,6 +57,8 @@ KEYS = {"name", "method", "benchmark", "rows", "workers", "decode"}
 TOP = KEYS | {s for v in SECTIONS.values() for s in v}
 RL_KEYS = {"width", "steps", "alpha", "cap"}
 COST_UNIT = {"hybrid": "units", "rl": "evaluations"}
+CAP_PREFIXES = ("cap", "dyn_cap", "slack")      # counter prefixes a method's stats may hold
+CAP_EXTRA = ("cap_legs_bound",)                  # CoV: legs whose counter bound
 
 
 def load_config(path, overrides=()):
@@ -142,42 +153,54 @@ def _rec(solved, kind=None, aut=False, cost=0, sub=None, elem=None, path=None, e
                 elementary=None if elementary is None else pack(elementary), **extra)
 
 
+def _caps(stats):
+    """The cap counter fields of a result's ``stats``: every prefix whose ``<prefix>_dropped`` is present."""
+    stats = stats or {}
+    out = {f: stats[f] for p in CAP_PREFIXES if f"{p}_dropped" in stats for f in cap_fields(p)}
+    return {**out, **{k: stats[k] for k in CAP_EXTRA if k in stats}}
+
+
 def greedy(pres, cfg):
     from .search import search
     s = method_config(cfg)
     res = search(pres, s)
+    caps = _caps(res.stats)
     if not res.solved:
-        return _rec(False, cost=res.pops)
+        return _rec(False, cost=res.pops, **caps)
     replay(pres, res.path, cyclic=s.cyclic, cap=s.cap)
-    return _rec(True, "ac_path", False, res.pops, len(res.path), _elementary(pres, res.path, cfg), res.path)
+    return _rec(True, "ac_path", False, res.pops, len(res.path), _elementary(pres, res.path, cfg), res.path, **caps)
 
 
 def cov(pres, cfg):
     from .cov import run_cov, verify
     res = run_cov(pres, method_config(cfg))
+    caps = _caps(res.stats)
     o = res.ac_path or res.stable_cert
     if o is None:
-        return _rec(False, cost=res.pops)
+        return _rec(False, cost=res.pops, **caps)
     verify(pres, o)
     img = o.image and o.image.tag
     if o.kind == "stable_cert":
         return _rec(True, "stable_cert", False, res.pops, len(o.path), None, o.path, image=img,
-                    steps=list(o.image.steps))
+                    steps=list(o.image.steps), **caps)
     if not (o.path and isinstance(o.path[0], dict)):          # S-moves on the row (the row, or an image equal to it)
-        return _rec(True, "ac_path", False, res.pops, len(o.path), _elementary(pres, o.path, cfg), o.path, image=img)
-    return _rec(True, "ac_path", True, res.pops, len(o.result.path), len(o.path), o.result.path, o.path, image=img)
+        return _rec(True, "ac_path", False, res.pops, len(o.path), _elementary(pres, o.path, cfg), o.path, image=img,
+                    **caps)
+    return _rec(True, "ac_path", True, res.pops, len(o.result.path), len(o.path), o.result.path, o.path, image=img,
+                **caps)
 
 
 def aut(pres, cfg):
     from .aut import solve_via_aut_min
     s = method_config(cfg)
     res, moves = solve_via_aut_min(pres, s)
+    caps = _caps(res.stats)
     if moves is None:
-        return _rec(False, cost=res.pops)
+        return _rec(False, cost=res.pops, **caps)
     replay(pres, moves, normalize=False)
     moved = res.start != pres.reduced(s.cyclic).canonical()   # False: the row is its own Aut-minimal form
     return _rec(True, "ac_path", moved, res.pops, len(res.path), len(moves), res.path, moves,
-                rep=list(res.start.strs))
+                rep=list(res.start.strs), **caps)
 
 
 def hybrid(pres, cfg):
@@ -185,25 +208,29 @@ def hybrid(pres, cfg):
     from .hybrid import encode_steps, solve
     from .hybrid.cascade import Aut
     res = solve(pres, method_config(cfg))
+    caps = _caps(res.stats)
     if not res.solved:
-        return _rec(False, cost=res.units)
+        return _rec(False, cost=res.units, **caps)
     replay(pres, res.path, normalize=False)
     return _rec(True, res.kind, res.kind == "ac_path" and any(isinstance(s, Aut) for s in res.steps), res.units,
                 sum(isinstance(s, Move) for s in res.steps), len(res.path), None, res.path, stage=res.stage,
-                steps=encode_steps(res.steps))
+                steps=encode_steps(res.steps), **caps)
 
 
 def ngen(pres, cfg):
     from .ngen import solve, verify
     c = method_config(cfg)
     res = solve(pres, c)
+    caps = _caps(res.search.stats)
     if not res.solved:
-        return _rec(False, cost=res.search.pops, rank=res.rank)
+        return _rec(False, cost=res.search.pops, rank=res.rank, **caps)
     verify(pres, res, cyclic=c.search.cyclic)
     p = res.search.path
     if res.kind == "ac_path":
-        return _rec(True, "ac_path", False, res.search.pops, len(p), _elementary(pres, p, cfg), p, rank=res.rank)
-    return _rec(True, "stable_cert", False, res.search.pops, len(p), len(res.moves), p, res.moves, rank=res.rank)
+        return _rec(True, "ac_path", False, res.search.pops, len(p), _elementary(pres, p, cfg), p, rank=res.rank,
+                    **caps)
+    return _rec(True, "stable_cert", False, res.search.pops, len(p), len(res.moves), p, res.moves, rank=res.rank,
+                **caps)
 
 
 @lru_cache(maxsize=1)
@@ -215,10 +242,12 @@ def _policy():
 def rl(pres, cfg):
     from .rl.solve import solve
     res = solve(pres, _policy(), **method_config(cfg))
+    caps = _caps(res.stats)
     if not res.solved:
-        return _rec(False, cost=res.pops, **({"skipped": res.stats["skipped"]} if "skipped" in res.stats else {}))
+        return _rec(False, cost=res.pops, **({"skipped": res.stats["skipped"]} if "skipped" in res.stats else {}),
+                    **caps)
     replay(pres, res.path, cap=res.stats["cap"])
-    return _rec(True, "ac_path", False, res.pops, len(res.path), _elementary(pres, res.path, cfg), res.path)
+    return _rec(True, "ac_path", False, res.pops, len(res.path), _elementary(pres, res.path, cfg), res.path, **caps)
 
 
 def _solve_row(args):
@@ -256,7 +285,23 @@ def summarize(cfg, recs, wall):
                   on_solved=sum(r["cost"] for r in solved)),
         path_length={k: dict(sub_moves=_stats(r["sub_moves"] for r in v), elem_moves=_stats(r["elem_moves"] for r in v))
                      for k, v in groups.items() if v},
+        caps=caps_block(recs),
         wall_seconds=round(wall, 2), row_seconds=round(sum(r["seconds"] for r in recs), 2), config=cfg)
+
+
+def caps_block(recs):
+    """``summary.json``'s ``caps``: one ``acx.core.capcount.summarize`` entry per counter prefix the rows carry."""
+    out = {}
+    for p in CAP_PREFIXES:
+        block = cap_summary(recs, p)
+        if block is not None:
+            if p == "cap":
+                for k in CAP_EXTRA:
+                    xs = [r[k] for r in recs if k in r]
+                    if xs:
+                        block[k] = sum(xs)
+            out[p] = block
+    return out
 
 
 def run(cfg, out="results", fresh=False, log=print):

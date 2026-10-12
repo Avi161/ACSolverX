@@ -39,7 +39,7 @@ def test_budget_prefix_invariance(ms640, priority, pid):
         assert (long.pops, long.path) == (short.pops, short.path)
 
 
-def brute_cap_rejected(trace, cap):
+def brute_cap_dropped(trace, cap):
     """Over-cap children of every expanded (non-final) popped state, counted from scratch."""
     n = 0
     for strs in trace:
@@ -56,16 +56,16 @@ def brute_cap_rejected(trace, cap):
 def test_cap_is_applied_at_generation_and_counted(ms640, cap):
     r = search(ms640[322], SearchConfig(cap=cap, budget=150, trace=True))
     assert all(len(w) <= cap for strs in r.trace[1:] for w in strs)
-    assert r.stats["cap_rejected"] == brute_cap_rejected(r.trace, cap) > 0
+    assert r.stats["cap_dropped"] == brute_cap_dropped(r.trace, cap) > 0
     free = search(ms640[322], SearchConfig(cap=None, budget=150))
-    assert free.stats["cap_rejected"] == 0
+    assert free.stats["cap_dropped"] == 0
 
 
 def test_start_over_the_cap_rejects_every_child():
     p = Presentation.parse("xxxxxxyXYXYX", "xyXyXY")
     r = search(p, SearchConfig(cap=8, budget=10))
     assert r.pops == 1 and not r.solved
-    assert r.stats["cap_rejected"] == len(list(enumerate_moves(r.start.rels)))
+    assert r.stats["cap_dropped"] == len(list(enumerate_moves(r.start.rels)))
 
 
 def test_s20_mk2_solves_and_differs_from_length(ms640):

@@ -88,3 +88,20 @@ def test_rl_method(tmp_path):
     pytest.importorskip("torch")
     s = runner.run(cfg("rl", 'rows="0:3"', "rl.width=64", "rl.steps=60"), str(tmp_path), log=lambda *a: None)
     assert s["solved"] == s["ac_path"] == 3
+
+
+def test_cap_counters_in_records_and_summary(tmp_path):
+    """Every record carries the search's cap counters; summary.json sums them under ``caps``."""
+    from acx.core.capcount import FIELDS
+    s = runner.run(cfg("smoke", 'rows="7,500,620,639"', "search.cap=16", "search.priority=length"), str(tmp_path),
+                   log=lambda *a: None)
+    recs = records(tmp_path, s["name"])
+    assert all(set(FIELDS) <= set(r) and r["cap"] == 16 for r in recs)
+    c = s["caps"]["cap"]
+    assert c["cap"] == 16 and c["rows"] == 4
+    assert c["rows_dropped"] == sum(1 for r in recs if r["cap_dropped"]) >= 3
+    assert c["raise_ids"] == [r["id"] for r in recs if r["cap_would_pop"]] and {"620", "639"} <= set(c["raise_ids"])
+    assert c["rows_would_pop"] == len(c["raise_ids"]) and c["needed_min"] == 17
+    assert c["would_pop"] == sum(r["cap_would_pop"] for r in recs)
+    free = runner.run(cfg("smoke", 'rows="620"', "search.cap=none"), str(tmp_path / "free"), log=lambda *a: None)
+    assert free["caps"]["cap"]["dropped"] == 0 and free["caps"]["cap"]["cap"] is None
