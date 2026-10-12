@@ -210,6 +210,9 @@ reason; results always jsonl). [[WORKS]](lessons/colab-notebook-pattern.md)
 - [`BRANCH` must match git](lessons/notebook-branch-must-match-git.md) · [don't nest the clone](lessons/colab-setup-nested-clone.md) · [Drive mount root isn't writable](lessons/colab-drive-mount-root-not-writable.md)
 - [Colab login is flaky](lessons/wandb-colab-login-flaky.md) · [promptless auth needs a Colab Secret](lessons/wandb-auto-auth-colab-secret.md)
 
+**`stable_ac/rank3/aws_rank3_*_box.sh`** — EC2 user-data, one box per script.
+- The instance type is a choice, not a default: benchmark with `aws_rank3_bench_box.sh` and take the most nodes per dollar whose digest matches (Graviton4 spot as of 12 Oct 2026). [the measurement and the process](lessons/pick-the-cpu-by-nodes-per-dollar.md)
+
 ## Adding a lesson
 
 **Never paste a full entry into a CLAUDE.md** — both are loaded into context, so an entry

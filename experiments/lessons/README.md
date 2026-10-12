@@ -1,6 +1,6 @@
 # `experiments/lessons/`
 
-68 write-ups. **Each one is a bug that already shipped, or an approach that was measured and worked.**
+69 write-ups. **Each one is a bug that already shipped, or an approach that was measured and worked.**
 
 You are not meant to browse this folder. The operative rules — one sentence each, which is all you
 need to avoid the trap — are indexed in the two `CLAUDE.md` files, and those are loaded automatically:
@@ -84,6 +84,12 @@ Open a file here only when you need the evidence behind a rule you have already 
 | `TRAP` | [A push does not reach a running Colab](notebook-push-does-not-reach-colab.md) |
 | `TRAP` | [The notebook's `BRANCH` must match the actual git branch](notebook-branch-must-match-git.md) |
 | `TRAP` | [zsh aborts a `&&` chain when a glob matches nothing](zsh-glob-nomatch-aborts-chain.md) |
+
+## AWS compute
+
+| | lesson |
+|---|---|
+| `WORKS` | [Pick the machine by measured nodes per second per dollar; ARM Graviton4 spot won](pick-the-cpu-by-nodes-per-dollar.md) |
 
 ---
 
