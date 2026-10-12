@@ -8,6 +8,7 @@
  "aut_assisted": 10,
  "stable_cert": 15,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "pops",
   "total": 430114,
@@ -57,8 +58,24 @@
    "elem_moves": null
   }
  },
- "wall_seconds": 13.84,
- "row_seconds": 53.6,
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 60,
+   "rows_dropped": 24,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 1983514,
+   "would_pop": 0,
+   "dropped_min_total": 33,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null,
+   "cap_legs_bound": 0
+  }
+ },
+ "wall_seconds": 47.61,
+ "row_seconds": 94.32,
  "config": {
   "method": "cov",
   "benchmark": "ladder60",
@@ -70,6 +87,6 @@
    "total_budget": 10000
   },
   "name": "ladder60_cov",
-  "workers": 4
+  "workers": 2
  }
 }

@@ -8,6 +8,7 @@
  "aut_assisted": 512,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "units",
   "total": 25064,
@@ -47,14 +48,56 @@
    }
   }
  },
- "wall_seconds": 11.69,
- "row_seconds": 11.58,
+ "caps": {
+  "cap": {
+   "cap": "parent",
+   "rows": 640,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "dyn_cap": {
+   "dyn_cap": 8,
+   "rows": 640,
+   "rows_dropped": 2,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 766,
+   "would_pop": 0,
+   "dropped_min_total": 19,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "slack": {
+   "slack": 8,
+   "rows": 640,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 21.26,
+ "row_seconds": 20.85,
  "config": {
   "method": "hybrid",
   "benchmark": "ms640",
   "hybrid": {
    "budget": 1000
   },
-  "name": "ms640_hybrid"
+  "name": "ms640_hybrid",
+  "workers": 1
  }
 }

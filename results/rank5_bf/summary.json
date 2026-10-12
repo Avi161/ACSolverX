@@ -1,0 +1,50 @@
+{
+ "rows": 32,
+ "extra": 3,
+ "lengths": [
+  1,
+  2
+ ],
+ "budget": 1000,
+ "cap": 24,
+ "starts_per_row": 120,
+ "searches": 3840,
+ "control_solved": 28,
+ "buckets": {
+  "all": {
+   "starts": 120,
+   "solved": 0.5747,
+   "solved_on_control_solved": 0.6568,
+   "solved_on_control_unsolved": 0.0,
+   "fewer": 0.0016,
+   "same": 0.0003,
+   "more": 0.5729,
+   "unsolved": 0.4253,
+   "oracle": {
+    "solved_by_some": 21,
+    "gained_over_control": 0,
+    "control_solved_lost_by_every": 7,
+    "some_faster_than_control": 1
+   }
+  }
+ },
+ "best_single": {
+  "word": "xx,xy,yx",
+  "solved": 20
+ },
+ "cap_counters": {
+  "fields": [
+   "cap_dropped",
+   "cap_dropped_min_total",
+   "cap_would_pop",
+   "cap_first_bind",
+   "cap_needed"
+  ],
+  "searches": 3840,
+  "dropped": 0,
+  "could_bind": 0,
+  "solved_could_bind": 0,
+  "below_budget": 0
+ },
+ "core_seconds": 541.84
+}

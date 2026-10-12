@@ -1,5 +1,5 @@
 {
- "rows": 16,
+ "rows": 223,
  "extra": 2,
  "lengths": [
   1,
@@ -8,29 +8,29 @@
  "budget": 1000,
  "cap": 24,
  "starts_per_row": 351,
- "searches": 5616,
- "control_solved": 14,
+ "searches": 78273,
+ "control_solved": 219,
  "buckets": {
   "all": {
    "starts": 351,
-   "solved": 0.5598,
-   "solved_on_control_solved": 0.6398,
+   "solved": 0.8321,
+   "solved_on_control_solved": 0.8473,
    "solved_on_control_unsolved": 0.0,
-   "fewer": 0.0002,
+   "fewer": 0.0007,
    "same": 0.0,
-   "more": 0.5597,
-   "unsolved": 0.4402,
+   "more": 0.8313,
+   "unsolved": 0.1679,
    "oracle": {
-    "solved_by_some": 12,
+    "solved_by_some": 216,
     "gained_over_control": 0,
-    "control_solved_lost_by_every": 2,
-    "some_faster_than_control": 1
+    "control_solved_lost_by_every": 3,
+    "some_faster_than_control": 9
    }
   }
  },
  "best_single": {
-  "word": "yX,yyX",
-  "solved": 11
+  "word": "yxY,Yxy",
+  "solved": 208
  },
  "cap_counters": {
   "fields": [
@@ -40,12 +40,11 @@
    "cap_first_bind",
    "cap_needed"
   ],
-  "searches": 5616,
+  "searches": 78273,
   "dropped": 0,
   "could_bind": 0,
   "solved_could_bind": 0,
   "below_budget": 0
  },
- "core_seconds": 262.29,
- "wall_seconds": 135.97
+ "core_seconds": 3374.56
 }

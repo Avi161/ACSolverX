@@ -8,6 +8,7 @@
  "aut_assisted": 60,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "units",
   "total": 3770,
@@ -31,8 +32,49 @@
    }
   }
  },
- "wall_seconds": 1.1,
- "row_seconds": 3.94,
+ "caps": {
+  "cap": {
+   "cap": "parent",
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "dyn_cap": {
+   "dyn_cap": 8,
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "slack": {
+   "slack": 8,
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 6.14,
+ "row_seconds": 11.63,
  "config": {
   "method": "hybrid",
   "benchmark": "ac1m_hard_holdout60",
@@ -40,6 +82,6 @@
    "budget": 1000
   },
   "name": "holdout60_hybrid",
-  "workers": 4
+  "workers": 2
  }
 }

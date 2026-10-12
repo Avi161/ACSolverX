@@ -8,6 +8,7 @@
  "aut_assisted": 53,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "units",
   "total": 4783,
@@ -47,8 +48,49 @@
    }
   }
  },
- "wall_seconds": 1.84,
- "row_seconds": 6.8,
+ "caps": {
+  "cap": {
+   "cap": "parent",
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "dyn_cap": {
+   "dyn_cap": 8,
+   "rows": 60,
+   "rows_dropped": 1,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 383,
+   "would_pop": 0,
+   "dropped_min_total": 19,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "slack": {
+   "slack": 8,
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 12.93,
+ "row_seconds": 24.61,
  "config": {
   "method": "hybrid",
   "benchmark": "bench60",
@@ -56,6 +98,6 @@
    "budget": 1000
   },
   "name": "bench60_hybrid",
-  "workers": 4
+  "workers": 2
  }
 }

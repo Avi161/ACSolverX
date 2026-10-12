@@ -2,31 +2,31 @@
  "name": "ms640_length_spec",
  "method": "greedy",
  "benchmark": "ms640",
- "rows": 618,
- "solved": 602,
- "ac_path": 602,
+ "rows": 640,
+ "solved": 606,
+ "ac_path": 606,
  "aut_assisted": 0,
  "stable_cert": 0,
  "skipped": 0,
  "errors": 0,
  "cost": {
   "unit": "pops",
-  "total": 382153,
-  "on_solved": 222153
+  "total": 576053,
+  "on_solved": 236053
  },
  "path_length": {
   "ac_path": {
    "sub_moves": {
-    "n": 602,
-    "sum": 11911,
-    "mean": 19.79,
+    "n": 606,
+    "sum": 12103,
+    "mean": 19.97,
     "median": 8.0,
     "max": 294
    },
    "elem_moves": {
-    "n": 602,
-    "sum": 112807,
-    "mean": 187.39,
+    "n": 606,
+    "sum": 114828,
+    "mean": 189.49,
     "median": 54.0,
     "max": 3886
    }
@@ -35,20 +35,20 @@
  "caps": {
   "cap": {
    "cap": 24,
-   "rows": 618,
-   "rows_dropped": 12,
+   "rows": 640,
+   "rows_dropped": 26,
    "rows_would_pop": 0,
    "raise_ids": [],
-   "dropped": 2722582,
+   "dropped": 12195104,
    "would_pop": 0,
-   "dropped_min_total": 33,
+   "dropped_min_total": 32,
    "first_bind_min": null,
    "needed_min": null,
    "needed_max": null
   }
  },
- "wall_seconds": 541.75,
- "row_seconds": 1982.32,
+ "wall_seconds": 0.08,
+ "row_seconds": 3507.34,
  "config": {
   "method": "greedy",
   "benchmark": "ms640",
@@ -59,7 +59,6 @@
    "budget": 10000,
    "cap": 24
   },
-  "name": "ms640_length_spec",
-  "rows": "585:618"
+  "name": "ms640_length_spec"
  }
 }

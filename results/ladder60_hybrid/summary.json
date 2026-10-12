@@ -8,6 +8,7 @@
  "aut_assisted": 57,
  "stable_cert": 2,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "units",
   "total": 8077,
@@ -63,8 +64,57 @@
    }
   }
  },
- "wall_seconds": 5.61,
- "row_seconds": 16.59,
+ "caps": {
+  "cap": {
+   "cap": "parent",
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "dyn_cap": {
+   "dyn_cap": 8,
+   "rows": 60,
+   "rows_dropped": 7,
+   "rows_would_pop": 7,
+   "raise_ids": [
+    "ac19_54765",
+    "ac19_39288",
+    "ac19_20270",
+    "ac19_15507",
+    "ac19_67987",
+    "ac19_65753",
+    "ac19_51034"
+   ],
+   "dropped": 273121,
+   "would_pop": 192,
+   "dropped_min_total": 15,
+   "first_bind_min": 54,
+   "needed_min": 9,
+   "needed_max": 13
+  },
+  "slack": {
+   "slack": 8,
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 36.74,
+ "row_seconds": 71.34,
  "config": {
   "method": "hybrid",
   "benchmark": "ladder60",
@@ -72,6 +122,6 @@
    "budget": 1000
   },
   "name": "ladder60_hybrid",
-  "workers": 4
+  "workers": 2
  }
 }

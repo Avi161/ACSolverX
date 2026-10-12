@@ -1,0 +1,99 @@
+{
+ "rows": 640,
+ "extra": 1,
+ "lengths": [
+  1,
+  4
+ ],
+ "budget": 1000,
+ "cap": 24,
+ "starts_per_row": 80,
+ "searches": 51200,
+ "control_solved": 554,
+ "buckets": {
+  "L1": {
+   "starts": 2,
+   "solved": 0.6008,
+   "solved_on_control_solved": 0.694,
+   "solved_on_control_unsolved": 0.0,
+   "fewer": 0.0,
+   "same": 0.0,
+   "more": 0.6008,
+   "unsolved": 0.3992,
+   "oracle": {
+    "solved_by_some": 403,
+    "gained_over_control": 0,
+    "control_solved_lost_by_every": 151,
+    "some_faster_than_control": 0
+   }
+  },
+  "L2": {
+   "starts": 6,
+   "solved": 0.6841,
+   "solved_on_control_solved": 0.7903,
+   "solved_on_control_unsolved": 0.0,
+   "fewer": 0.0112,
+   "same": 0.0005,
+   "more": 0.6724,
+   "unsolved": 0.3159,
+   "oracle": {
+    "solved_by_some": 472,
+    "gained_over_control": 0,
+    "control_solved_lost_by_every": 82,
+    "some_faster_than_control": 35
+   }
+  },
+  "L3": {
+   "starts": 18,
+   "solved": 0.6981,
+   "solved_on_control_solved": 0.8065,
+   "solved_on_control_unsolved": 0.0,
+   "fewer": 0.0056,
+   "same": 0.0002,
+   "more": 0.6923,
+   "unsolved": 0.3019,
+   "oracle": {
+    "solved_by_some": 516,
+    "gained_over_control": 0,
+    "control_solved_lost_by_every": 38,
+    "some_faster_than_control": 60
+   }
+  },
+  "L4": {
+   "starts": 54,
+   "solved": 0.6856,
+   "solved_on_control_solved": 0.7918,
+   "solved_on_control_unsolved": 0.0017,
+   "fewer": 0.011,
+   "same": 0.0002,
+   "more": 0.6745,
+   "unsolved": 0.3144,
+   "oracle": {
+    "solved_by_some": 540,
+    "gained_over_control": 4,
+    "control_solved_lost_by_every": 18,
+    "some_faster_than_control": 134
+   }
+  }
+ },
+ "best_single": {
+  "word": "yXYx",
+  "solved": 506
+ },
+ "cap_counters": {
+  "fields": [
+   "cap_dropped",
+   "cap_dropped_min_total",
+   "cap_would_pop",
+   "cap_first_bind",
+   "cap_needed"
+  ],
+  "searches": 51200,
+  "dropped": 8,
+  "could_bind": 0,
+  "solved_could_bind": 0,
+  "below_budget": 0
+ },
+ "core_seconds": 5849.67,
+ "wall_seconds": 1.98
+}
