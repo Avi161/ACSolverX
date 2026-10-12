@@ -357,15 +357,19 @@ def _cap_cases():
         for w in ("x", "xy", "yXY", "xyyX", "YYxyx"):
             p = _nocov(idx, w)
             longest = max(len(r) for r in p.relators)
-            cases.append((p, [longest, longest + 1, longest + 2, longest + 4]))
+            # cap 2 drops every child; below ``longest`` the start is over the cap
+            cases.append((p, [2, longest - 2, longest - 1, longest, longest + 1,
+                              longest + 2, longest + 4]))
     return cases
 
 
 def test_no_bind_proves_the_search_is_the_same_at_every_larger_cap():
     """``cap_first_bind is None`` is a proof, so it must hold on every case;
-    the counts at the end say the cases cover all three outcomes."""
+    the counts at the end say the cases cover every outcome: children dropped
+    with no bind, and a bind that changed the search, found at a pop and found
+    because the frontier ran out."""
     same = ("solved", "nodes_explored", "path_length", "path_moves")
-    dropped_no_bind = bind_same = bind_differs = 0
+    dropped_no_bind = bind_same = at_pop_differs = frontier_differs = 0
     for pres, caps in _cap_cases():
         wide = [search_n_fast(pres, 300, cap=c) for c in (caps[-1] + 8, 64)]
         for cap in caps:
@@ -379,21 +383,23 @@ def test_no_bind_proves_the_search_is_the_same_at_every_larger_cap():
                 dropped_no_bind += r["cap_dropped"] > 0
             else:
                 assert 1 < r["cap_first_bind"] <= r["nodes_explored"] + 1
-                bind_differs += differs
+                at_pop = r["cap_first_bind"] <= r["nodes_explored"]
+                at_pop_differs += differs and at_pop
+                frontier_differs += differs and not at_pop
                 bind_same += not differs
-    assert dropped_no_bind > 0 and bind_differs > 0, (
-        dropped_no_bind, bind_same, bind_differs)
+    assert min(dropped_no_bind, at_pop_differs, frontier_differs) > 0, (
+        dropped_no_bind, bind_same, at_pop_differs, frontier_differs)
 
 
 def test_the_cap_counters_agree_with_the_reference_search():
     seen = set()
     for pres, caps in _cap_cases()[::7]:
-        for cap in caps[:2]:
+        for cap in caps[:5]:
             a = solvern.search_n(pres, 200, cap=cap)
             b = search_n_fast(pres, 200, cap=cap)
             assert a == b, (pres, cap)
             seen.add((a["cap_dropped"] > 0, a["cap_first_bind"] is None))
-    assert (True, False) in seen and len(seen) > 1, seen
+    assert {(True, False), (True, True)} <= seen, seen
 
 
 def test_a_frontier_emptied_by_the_cap_is_reported_as_a_bind():

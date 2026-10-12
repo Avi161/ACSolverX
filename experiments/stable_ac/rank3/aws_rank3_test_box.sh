@@ -27,8 +27,8 @@ git clone -q --branch $BRANCH --single-branch https://github.com/Avi161/ACSolver
 cd acsx
 git checkout -q $SHA || fail checkout
 python3.12 -m venv /opt/r3/venv || fail venv
-/opt/r3/venv/bin/pip -q install numpy==2.1.3 numba==0.63.1 pytest matplotlib \
-  || /opt/r3/venv/bin/pip -q install numpy numba pytest matplotlib || fail pip
+/opt/r3/venv/bin/pip -q install numpy==2.1.3 numba==0.63.1 pytest matplotlib pyyaml \
+  || /opt/r3/venv/bin/pip -q install numpy numba pytest matplotlib pyyaml || fail pip
 PY=/opt/r3/venv/bin/python3
 export PYTHONPATH=. NUMBA_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONUNBUFFERED=1 MPLBACKEND=Agg
 say "env commit=$(git rev-parse --short HEAD)"
