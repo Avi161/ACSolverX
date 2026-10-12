@@ -96,6 +96,34 @@ def test_beam_solves_easy_ms640_rows_and_replays(model):
     assert res.solved and res.pops < 50
 
 
+class Uniform(torch.nn.Module):
+    """The policy's legal-move mask with every legal action scored 0, so the beam alone decides what it keeps."""
+
+    def __init__(self, inner):
+        super().__init__()
+        self.inner = inner
+
+    def forward(self, x):
+        logits, value = self.inner(x)
+        return torch.where(logits < -1e8, logits, torch.zeros_like(logits)), value
+
+
+@pytest.mark.parametrize("row, evaluated", [(0, 7), (2, 114), (4, 481)])
+def test_beam_never_takes_an_illegal_action_under_a_uniform_model(model, row, evaluated):
+    """These rows have 10 to 22 legal moves at the start and the beam holds 512, so an illegal action scoring above
+    -inf would enter it. Every action of the path found is legal under the real policy and the path replays."""
+    pres = data.load("ms640", ids=[row])[0].pres
+    x = rl_solve.encode(pres.reduced().rels)
+    actions, stats = beam.beam_search(Uniform(model), x, cap=24, width=512, steps=12)
+    assert actions and stats["evaluated"] == evaluated
+    with torch.no_grad():
+        for action in actions:
+            assert model(x[None])[0][0, action] > -1e8
+            x = moves.s_move(x[None], *moves.decode_action(torch.tensor([action]), 24), 24)[0][0]
+    assert int((x != 0).sum()) == 2                                          # both relators of length 1
+    assert replay(pres, rl_solve.to_acx_path(pres, actions), cap=24)[-1].is_trivial()
+
+
 def test_cap_is_applied_counted_and_bounded(model):
     pres = data.load("ms640", ids=[4])[0].pres
     res = rl_solve.solve(pres, model, width=64, steps=30, cap=6)
