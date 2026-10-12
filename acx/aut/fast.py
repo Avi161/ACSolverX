@@ -11,10 +11,11 @@ from numba import njit
 
 from ..core.words import Presentation, state_key
 from ..search.fast.kernels import canon_buf, encode, reduce_buf, rel_less
-from .whitehead import AUTOS
+from .autos import AUTOS, DESCENT
 
 N_AUTOS = len(AUTOS)
-_IMG = np.stack([encode(a, 2, 3)[0] for a in AUTOS])                    # (auto, generator, letter) symbols
+FIRST_SECOND_KIND = DESCENT.start                       # a plain int, which numba can freeze
+_IMG = np.stack([encode(a, 2, 3)[0] for a in AUTOS])  # (auto, generator, letter) symbols
 _LEN = np.array([[len(w) for w in a] for a in AUTOS], dtype=np.int64)
 
 
@@ -44,11 +45,12 @@ def _canon_pair(a, b):
 
 @njit(cache=True)
 def _peak_reduce(r1, r2, img, lens):
+    """``(total, r1, r2)`` after descending by the second-kind autos (``DESCENT``) as long as the total drops."""
     c1, c2 = _image(r1, 0, img, lens), _image(r2, 0, img, lens)
     tot = c1.shape[0] + c2.shape[0]
     while True:
         best_t, best_k = tot, -1
-        for k in range(8, N_AUTOS):
+        for k in range(FIRST_SECOND_KIND, N_AUTOS):
             t = _image(c1, k, img, lens).shape[0] + _image(c2, k, img, lens).shape[0]
             if t < best_t:
                 best_t, best_k = t, k

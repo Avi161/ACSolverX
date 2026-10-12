@@ -1,11 +1,12 @@
-"""Decode a substitution (S-move) path into elementary AC moves (``decode``) and pack them for JSON (``pack``).
+"""Decode a substitution (S-move) path into elementary AC moves (``decode``).
 
 An S-move is expanded into conjugations that rotate the relators, one ``multiply`` (with ``invert`` and the undo
 of the source's changes), and the canonical form of every relator again plus ``swap`` to sort them; the shortest
-of the conjugator choices wins. Only ``cyclic=True`` S-moves are decoded.
+of the conjugator choices wins. Only ``cyclic=True`` S-moves are decoded. The JSON form of the result is in ``pack``.
 """
 from ..core.moves import Move, Trace, step
 from ..core.words import canonical_rels, canonical_word, inverse, reduce, rotate
+from .pack import pack, unpack  # noqa: F401  (importable from here: acx.runner and the tests do)
 from .replay import replay
 
 
@@ -15,43 +16,61 @@ def _rot_conjugators(w, k):
     return w[:len(w) - k], inverse(w[len(w) - k:])
 
 
+def _oriented(w, sign):
+    """``w`` for ``sign > 0``, its inverse otherwise."""
+    return w if sign > 0 else inverse(w)
+
+
 def _canonicalize_relator(tr, t):
     """Cyclically reduce ``r_t`` and bring it to ``canonical_word`` (cheapest orientation and rotation)."""
     w = tr.pres.rels[t]
     core = reduce(w)
-    tr.conj(t, w[:(len(w) - len(core)) // 2])
+    tr.conj(t, w[:(len(w) - len(core)) // 2])             # strip the free-reduction prefix
     if not core:
         return
     goal = canonical_word(core)
-    plans = [(sign < 0, min(_rot_conjugators(o, k), key=len))
-             for sign, o in ((1, core), (-1, inverse(core)))
-             for k in range(len(o)) if rotate(o, k) == goal]
-    flip, c = min(plans, key=lambda p: len(p[1]) + p[0])
+    plans = []                                            # (needs an inversion, shortest conjugator)
+    for sign in (1, -1):
+        oriented = _oriented(core, sign)
+        for k in range(len(oriented)):
+            if rotate(oriented, k) == goal:
+                plans.append((sign < 0, min(_rot_conjugators(oriented, k), key=len)))
+    flip, conjugator = min(plans, key=lambda plan: len(plan[1]) + plan[0])
     if flip:
         tr.invert(t)
-    tr.conj(t, c)
+    tr.conj(t, conjugator)
 
 
 def _canonicalize(tr):
     """Every relator canonical, then sorted by swaps: ``canonical_rels``."""
     for t in range(len(tr.pres.rels)):
         _canonicalize_relator(tr, t)
-    for p, g in enumerate(canonical_rels(tr.pres.rels)):
-        q = tr.pres.rels.index(g, p)
+    for p, goal in enumerate(canonical_rels(tr.pres.rels)):
+        q = tr.pres.rels.index(goal, p)
         if q != p:
             tr.do({"op": "swap", "a": p + 1, "b": q + 1})
 
 
+def _rotation_to(w, goal):
+    """``(sign, k)`` with ``rotate(w ** sign, k) == goal``; literal, so ``w`` need not be cyclically reduced."""
+    for sign in (1, -1):
+        oriented = _oriented(w, sign)
+        for k in range(len(oriented) or 1):
+            if rotate(oriented, k) == goal:
+                return sign, k
+    raise ValueError(f"{w} is not a rotation of {goal} or its inverse")
+
+
 def _frame(rels):
     """Per relator of ``canonical_rels(rels)`` (the words an S-move indexes): ``(t, sign, k)`` with
-    ``rotate(rels[t] ** sign, k)`` equal to it. Literal, so it holds for words that are not cyclically reduced."""
-    free, out = list(range(len(rels))), []
-    for u in canonical_rels(rels):
-        t = next(t for t in free if canonical_word(rels[t]) == u)
-        free.remove(t)
-        out.append(next((t, sg, k) for sg, o in ((1, rels[t]), (-1, inverse(rels[t])))
-                        for k in range(len(o) or 1) if rotate(o, k) == u))
-    return out
+    ``rotate(rels[t] ** sign, k)`` equal to it."""
+    unused = list(range(len(rels)))
+    frame = []
+    for goal in canonical_rels(rels):
+        t = next(t for t in unused if canonical_word(rels[t]) == goal)
+        unused.remove(t)
+        frame.append((t, *_rotation_to(rels[t], goal)))
+    return frame
 
 
 def _expand_move(tr, m):
@@ -60,21 +79,22 @@ def _expand_move(tr, m):
     The move acts on ``canonical_rels(tr)``; ``_frame`` folds that rotation and inversion into the move's own
     rotations (``inverse(rotate(w, k)) = rotate(inverse(w), -k)``), so ``tr`` need not be canonical first.
     """
-    fr = _frame(tr.pres.rels)
-    (i, si, ki), (j, sj, kj) = fr[m.i], fr[m.j]
-    sj, kj = sj * m.s, kj * m.s
-    ri, oj = (w if sg > 0 else inverse(w) for w, sg in ((tr.pres.rels[i], si), (tr.pres.rels[j], sj)))
+    frame = _frame(tr.pres.rels)
+    (i, sign_i, k_i), (j, sign_j, k_j) = frame[m.i], frame[m.j]
+    sign_j, k_j = sign_j * m.s, k_j * m.s
+    target = _oriented(tr.pres.rels[i], sign_i)
+    source = _oriented(tr.pres.rels[j], sign_j)
     best = None
-    for c1 in _rot_conjugators(ri, ki + m.k1):
-        for c2 in _rot_conjugators(oj, kj + m.k2):
-            t = tr.copy()
-            if si < 0:
-                t.invert(i)
-            t.conj(i, c1)
-            t.conjugated_multiply(i, j, sj, c2)
-            _canonicalize(t)
-            if best is None or len(t.moves) < len(best.moves):
-                best = t
+    for c1 in _rot_conjugators(target, k_i + m.k1):
+        for c2 in _rot_conjugators(source, k_j + m.k2):
+            trial = tr.copy()
+            if sign_i < 0:
+                trial.invert(i)
+            trial.conj(i, c1)
+            trial.conjugated_multiply(i, j, sign_j, c2)
+            _canonicalize(trial)
+            if best is None or len(trial.moves) < len(best.moves):
+                best = trial
     tr.pres, tr.moves = best.pres, best.moves
 
 
@@ -108,20 +128,3 @@ def decode_and_replay(pres, path):
     """``(moves, states)``: the decoded moves and their replay on ``pres`` (raises ``ReplayError``)."""
     moves = decode(pres, path)
     return moves, replay(pres, moves, normalize=False)
-
-
-_FIELDS = {"invert": ("target",), "swap": ("a", "b"), "conjugate": ("target", "by"),
-           "multiply": ("target", "source"), "stabilize": (), "destabilize": ()}
-_CODE = dict(zip(_FIELDS, "ISCMZD"))
-_OP = {c: op for op, c in _CODE.items()}
-
-
-def pack(moves):
-    """Compact JSON form (``decode_ac_jsonl``'s): ``["I", t]``, ``["S", a, b]`` (``["S"]``: swap 1 and 2),
-    ``["C", t, letter]``, ``["M", t, s]``, ``["Z"]``, ``["D"]``."""
-    return [[_CODE[m["op"]], *(m[k] for k in _FIELDS[m["op"]] if k in m)] for m in moves]
-
-
-def unpack(items):
-    """Inverse of ``pack``."""
-    return [{"op": _OP[c], **dict(zip(_FIELDS[_OP[c]], args))} for c, *args in items]

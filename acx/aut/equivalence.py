@@ -8,7 +8,7 @@ import json
 
 from ..core.moves import apply_raw, from_legacy, seam_cancels
 from ..core.words import Presentation, parse, reduce
-from .whitehead import AUTOS, DESCENT, apply
+from .autos import AUTOS, DESCENT, apply
 
 
 def is_automorphism(img):
@@ -56,6 +56,43 @@ def check_side(side):
 IDENTITY = {"x": "x", "y": "y"}
 
 
+def check_edge(edge, members):
+    """Check one edge against its class's ``members`` (name -> relators); return ``True`` if it is a pure-AC edge."""
+    a, b = edge["side_a"], edge["side_b"]
+    if (tuple(a["start"]), tuple(b["start"])) != (members[edge["a"]["name"]], members[edge["b"]["name"]]):
+        raise ValueError(f"edge {edge['claim']!r} does not start at its members")
+    if not check_side(a) == check_side(b) == canon(edge["meet"]):
+        raise ValueError(f"edge {edge['claim']!r}: the sides do not meet")
+    if edge["kind"] == "cv" and canon(_image(a["start"], edge["subst"])) != canon(b["start"]):
+        raise ValueError(f"edge {edge['claim']!r}: subst(a) is not b")
+    steps = [st for side in (a, b) for st in side["steps"]]
+    pure = edge["kind"] == "ac" and all(st["phi"] == IDENTITY for st in steps)
+    if pure != bool(edge.get("pure_ac_path")):
+        raise ValueError(f"edge {edge['claim']!r}: pure_ac_path is {edge.get('pure_ac_path')}, the steps say {pure}")
+    return pure
+
+
+def check_class(cls, counts):
+    """Check one class: its member count, every edge, and that the edges join all its members; update ``counts``."""
+    members = {m["name"]: (m["r1"], m["r2"]) for m in cls["members"]}
+    if len(members) != cls["size"]:
+        raise ValueError(f"class {cls['class_id']} lists {len(members)} members, not {cls['size']}")
+    counts["presentations"] += len(members)
+    parent = {name: name for name in members}              # union-find over the member names
+
+    def find(name):
+        while parent[name] != name:
+            name = parent[name]
+        return name
+
+    for edge in cls["edges"]:
+        counts["pure_ac"] += check_edge(edge, members)
+        counts[edge["kind"]] += 1
+        parent[find(edge["a"]["name"])] = find(edge["b"]["name"])
+    if len({find(name) for name in members}) != 1:
+        raise ValueError(f"class {cls['class_id']}: its edges do not connect its {len(members)} members")
+
+
 def check(path):
     """Check every edge of the file and that each class's edges join all its members into one component.
 
@@ -65,32 +102,6 @@ def check(path):
     with open(path) as f:
         classes = json.load(f)["classes"]
     counts = dict(classes=len(classes), presentations=0, cv=0, ac=0, pure_ac=0)
-    for c in classes:
-        members = {m["name"]: (m["r1"], m["r2"]) for m in c["members"]}
-        if len(members) != c["size"]:
-            raise ValueError(f"class {c['class_id']} lists {len(members)} members, not {c['size']}")
-        counts["presentations"] += len(members)
-        root = {m: m for m in members}
-
-        def find(m):
-            while root[m] != m:
-                m = root[m]
-            return m
-
-        for e in c["edges"]:
-            a, b = e["side_a"], e["side_b"]
-            if (tuple(a["start"]), tuple(b["start"])) != (members[e["a"]["name"]], members[e["b"]["name"]]):
-                raise ValueError(f"edge {e['claim']!r} does not start at its members")
-            if not check_side(a) == check_side(b) == canon(e["meet"]):
-                raise ValueError(f"edge {e['claim']!r}: the sides do not meet")
-            if e["kind"] == "cv" and canon(_image(a["start"], e["subst"])) != canon(b["start"]):
-                raise ValueError(f"edge {e['claim']!r}: subst(a) is not b")
-            pure = e["kind"] == "ac" and all(st["phi"] == IDENTITY for side in (a, b) for st in side["steps"])
-            if pure != bool(e.get("pure_ac_path")):
-                raise ValueError(f"edge {e['claim']!r}: pure_ac_path is {e.get('pure_ac_path')}, the steps say {pure}")
-            counts[e["kind"]] += 1
-            counts["pure_ac"] += pure
-            root[find(e["a"]["name"])] = find(e["b"]["name"])
-        if len({find(m) for m in members}) != 1:
-            raise ValueError(f"class {c['class_id']}: its edges do not connect its {len(members)} members")
+    for cls in classes:
+        check_class(cls, counts)
     return counts
