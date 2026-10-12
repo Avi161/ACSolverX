@@ -12,6 +12,7 @@ presentation (control, cap 24) and from every distinct change-of-variables class
 | `cov_all_suballpxyb8_ms640_b10000_subset60_summary.*` | the budget 10,000 statistics restricted to subset 60's 60 `pres_id`s (their rows are in the b10000 file) |
 | `cov_all_suballpxyb8_ms640_b100000.jsonl.gz` | budget 100,000: the same 114,682 rows, same 2% path sample |
 | `*_control_vs_cov.png` / `.md` | nodes from a random CoV start against nodes from the control, with y = x (`plot_cov_all_control_vs_cov`; budgets 10,000 and 100,000) |
+| `cov_all_suballpxyb8_ms640_b100000_per_presentation.csv` | one row per presentation from the budget 100,000 file: the control's result, its number of starts, the best start and the substitution that made it, and the cheaper / equal / dearer / unsolved split (`table_cov_all_per_presentation`); its node counts answer every smaller budget too |
 | `*_summary.md` / `*_summary.json` | per-presentation statistics aggregated across presentations (`summarize_cov_all`) |
 | `*.log` | runner log: start, enumeration, progress, wall time |
 
@@ -27,6 +28,11 @@ Reproduce / check (repo root, `PYTHONPATH=.`, gunzip first):
     python3 -m experiments.stable_ac.cov.verify.verify_cov_all FILE.jsonl --counts --dataset data/ms640_solved.txt --path-sample 1
     python3 -m experiments.stable_ac.cov.run.summarize_cov_all FILE.jsonl
     python3 -m experiments.stable_ac.cov.run.plot_cov_all_control_vs_cov FILE.jsonl
+    python3 -m experiments.stable_ac.cov.run.table_cov_all_per_presentation FILE.jsonl
+
+The budget 100,000 run was one autonomous AWS box per attempt, started from
+`experiments/stable_ac/cov/run/aws_cov_all_box.sh` as EC2 user-data (settings and the launch
+command are at the top of that file).
 
 Budget 100 check: 114,682 rows, 14,051 one-pattern, 90,234 solved, 90,234 paths replayed through
 `greedy_tests/spec` to the trivial presentation, 0 failures.
