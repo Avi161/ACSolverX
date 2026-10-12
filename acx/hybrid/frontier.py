@@ -17,15 +17,18 @@ _LETTER = (0, -1, -2, 1, 2)
 
 
 def pack(rels):
+    """The key of a canonical pair of relators."""
     return bytes(_CODE[g] for g in rels[0]) + b"\0" + bytes(_CODE[g] for g in rels[1])
 
 
 def unpack(key):
+    """The pair of relators of a key."""
     i = key.index(0)
     return tuple(map(_LETTER.__getitem__, key[:i])), tuple(map(_LETTER.__getitem__, key[i + 1:]))
 
 
 def spec_expand(key, cap):
+    """``(children, rejected)`` of ``key`` by the S-moves in pure Python: ``(child key, Move)`` pairs, and the count of moves a cap rejected."""
     rels = unpack(key)
     out, rejected = [], 0
     for i in (0, 1):
@@ -58,6 +61,7 @@ def spec_expand(key, cap):
 
 
 def spec_transform(key, k):
+    """The key after the automorphism ``AUTOS[k]``, in pure Python."""
     return pack(aut_child(unpack(key), k))
 
 

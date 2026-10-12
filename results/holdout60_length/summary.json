@@ -8,6 +8,7 @@
  "aut_assisted": 0,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "pops",
   "total": 329601,
@@ -31,8 +32,25 @@
    }
   }
  },
- "wall_seconds": 7.95,
- "row_seconds": 30.54,
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 60,
+   "rows_dropped": 21,
+   "rows_would_pop": 1,
+   "raise_ids": [
+    "569291"
+   ],
+   "dropped": 8233266,
+   "would_pop": 1518,
+   "dropped_min_total": 31,
+   "first_bind_min": 6708,
+   "needed_min": 25,
+   "needed_max": 25
+  }
+ },
+ "wall_seconds": 39.11,
+ "row_seconds": 39.08,
  "config": {
   "method": "greedy",
   "benchmark": "ac1m_hard_holdout60",
@@ -43,6 +61,6 @@
    "cap": 24
   },
   "name": "holdout60_length",
-  "workers": 4
+  "workers": 1
  }
 }

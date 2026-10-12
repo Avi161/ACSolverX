@@ -7,22 +7,24 @@ census 72,779/72,779 with 2,489,726 units, 188 certificates using higher rank. T
 (about 190 s on 4 workers, certification included) is not run here; its first 2,000 rows are.
 """
 import heapq
-import sys
 import random
+import sys
 import time
+from bisect import bisect_left
 from types import SimpleNamespace
 
+import numpy as np
 import pytest
 
 from acx import data
 from acx.aut.whitehead import AUTOS
-from acx.core.words import Presentation, canonical_rels, parse
-from acx.hybrid import HybridConfig, certify, decode_steps, encode_steps, solve
-from acx.hybrid.cascade import NIELSEN
 from acx.core.capcount import blank, fields
-from acx.hybrid import capwatch, solver as hybrid_solver
-from acx.hybrid.cascade import gate_precheck_key
-from acx.hybrid.frontier import backend, pack, pair_precheck, spec_dropped, unpack
+from acx.core.words import Presentation, parse
+from acx.hybrid import HybridConfig, capwatch, certify, decode_steps, dynrank, encode_steps, solve
+from acx.hybrid import search as hybrid_search
+from acx.hybrid.cascade import NIELSEN, Budget, Run, cascade, gate_applicable, gate_precheck_key, run_gates
+from acx.hybrid.frontier import backend, orbit, over_cap, pack, unpack
+from acx.hybrid.pinch import conjugation_forms, from_syllables, syllables
 from acx.verify import is_valid, replay
 
 FAST = HybridConfig(certify=False)
@@ -127,12 +129,12 @@ def run_with_pops(pres, **kw):
         e = heapq.heappop(h)
         log.append((e[0], e[1], e[3][3], e[3][0]))
         return e
-    old = hybrid_solver.heapq
-    hybrid_solver.heapq = SimpleNamespace(heappush=heapq.heappush, heappop=pop)
+    old = hybrid_search.heapq
+    hybrid_search.heapq = SimpleNamespace(heappush=heapq.heappush, heappop=pop)
     try:
         return solve(pres, HybridConfig(certify=False, **kw)), log
     finally:
-        hybrid_solver.heapq = old
+        hybrid_search.heapq = old
 
 
 def ac19_row(rid):
@@ -164,37 +166,120 @@ def test_parent_cap_rejects_nothing_on_all_of_ms640(ms640):
     assert sum(r.stats["dyn_cap_would_pop"] + r.stats["slack_would_pop"] for r in res) == 0
 
 
-def test_spec_dropped_lists_every_rejected_move_of_both_backends(ms640):
-    (sx, _), (fx, _) = backend("spec"), backend("fast")
-    seen = 0
-    for pres in ms640[::16]:
-        key = pack(pres.reduced().canonical().rels)
-        for cap in (None, len(key) - 1, 8, 6, 3):
-            lost = spec_dropped(key, cap)
-            kept, rejected = sx(key, cap)
-            assert len(lost) == rejected == fx(key, cap)[1]
-            orders = [(mv.i, -mv.s, mv.k1, mv.k2) for _, mv in kept]
-            assert orders == sorted(orders) and [o for o, *_ in lost] == sorted(o for o, *_ in lost)
-            assert not set(orders) & {o for o, *_ in lost}
-            assert cap is None or all(longest > cap for *_, longest in lost)
-            assert cap is None or all(max(map(len, k.split(b"\0"))) <= cap for k, _ in kept)
-            for _, pair, total, longest in lost:
-                assert total == sum(map(len, pair)) and longest == max(map(len, pair))
-                assert canonical_rels(pair) == canonical_rels(unpack(pack(canonical_rels(pair))))
-            seen += len(lost)
-    assert seen > 500
+def sample_keys(ms640, stride=16):
+    return [pack(p.reduced().canonical().rels) for p in ms640[::stride]]
 
 
-def test_pair_precheck_is_the_free_gate_test_without_packing(ms640):
-    rng = random.Random(5)
-    n = 0
-    for pres in ms640[::5]:
-        for _ in range(20):
-            pair = tuple(tuple(rng.choice((1, -1, 2, -2)) for _ in range(rng.randint(1, 9))) for _ in range(2))
-            assert pair_precheck(pair) == gate_precheck_key(pack(pair))
-            n += pair_precheck(pair)
-        assert pair_precheck(pres.rels) == gate_precheck_key(pack(pres.rels))
-    assert 0 < n < 128 * 20
+@pytest.mark.parametrize("name", ["spec", "fast"])
+def test_full_children_are_the_kept_children_plus_the_over_cap_ones(ms640, name):
+    """``full`` lists every child; the children a cap keeps are those of ``full`` that ``over_cap`` does not pick,
+    in the same order, and each picked one carries its total, its longest relator and the free gate test."""
+    expand, full, _ = backend(name)
+    picked = 0
+    for key in sample_keys(ms640):
+        raw, offs, first = full(key)
+        everything = expand(key, None)[0]
+        assert [raw[a:b] for a, b in zip(offs[:-1], offs[1:])] == [k for k, _ in everything]
+        for cap in (len(key) - 1, 8, 6, 3):
+            kept, rejected = expand(key, cap)
+            d = over_cap((raw, offs, first), cap)
+            keep = np.setdiff1d(np.arange(len(everything)), d.pos)
+            assert [everything[i] for i in keep] == kept
+            assert len(d.pos) <= rejected and (len(d.pos) == 0) == (rejected == 0)
+            assert (d.before == [int(np.searchsorted(keep, p)) for p in d.pos]).all()
+            for i, pos in enumerate(d.pos.tolist()):
+                child = d.raw[d.start[i]:d.end[i]]
+                assert child == everything[pos][0]
+                assert d.total[i] == len(child) - 1 == sum(map(len, unpack(child)))
+                assert d.longest[i] == max(map(len, unpack(child))) > cap
+                assert d.flag[i] == gate_precheck_key(child)
+            picked += len(d.pos)
+    assert picked > 500
+
+
+def test_backends_list_the_same_children(ms640):
+    (_, spec_full, _), (_, fast_full, _) = backend("spec"), backend("fast")
+    for key in sample_keys(ms640, 8):
+        (r1, o1, f1), (r2, o2, f2) = spec_full(key), fast_full(key)
+        assert r1 == r2 and (np.asarray(o1) == np.asarray(o2)).all() and (f1 == f2).all()
+
+
+def test_the_visited_set_of_rank_two_is_closed_under_the_signed_permutations(ms640):
+    transform = backend("fast")[2]
+    rows = [p for p in ms640 if solve(p, FAST).stage == "H"][::25]
+    for p in rows:
+        run = Run(p.rels, 1000)
+        assert cascade(run) is None
+        search = hybrid_search.BestFirst(run, FAST, 100)
+        search.go()
+        assert len(search.seen_r2) > 8
+        assert all(set(orbit(key, transform)) <= search.seen_r2 for key in search.seen_r2)
+
+
+def test_gates_act_does_not_depend_on_the_budget(ms640):
+    """``capwatch.gates_act``: would the gates solve the pair or spend units? A budget too small to finish also
+    shows as acting (``Budget`` or units spent), so the answer is the same at every budget."""
+    states = []
+    for key in sample_keys(ms640, 4):
+        d = over_cap(backend("fast")[1](key), 6)
+        states += [unpack(d.raw[d.start[i]:d.end[i]]) for i in np.flatnonzero(d.flag)[:6]]
+    acts, idle = [], 0
+    for state in states:
+        if not gate_applicable(state):
+            assert not capwatch.gates_act(pack(state))
+            idle += 1
+            continue
+        for budget in (1, 3, 1000):
+            run = Run(state, budget)
+            try:
+                acted = run_gates(run) or run.units > 0
+            except Budget:
+                acted = True
+            assert acted == capwatch.gates_act(pack(state)), (state, budget)
+        acts.append(capwatch.gates_act(pack(state)))
+    assert any(acts) and idle > 0
+
+
+def test_syllables_read_a_cyclic_word_and_conjugation_forms_find_the_pinch_shape():
+    rng = random.Random(3)
+    for _ in range(200):
+        w = [rng.choice((1, -1, 2, -2)) for _ in range(rng.randint(1, 12))]
+        w = tuple(x for i, x in enumerate(w) if i == 0 or x != -w[i - 1])
+        while len(w) > 1 and w[0] == -w[-1]:
+            w = w[1:-1]
+        back = from_syllables(syllables(w))
+        assert len(back) == len(w) and (not w or any(back == w[k:] + w[:k] for k in range(len(w))))
+    word = (1, 1, 2, 2, 2, -1, -1, -2)                       # x^2 y^3 x^-2 y^-1
+    assert (1, 2, 2, 3, -1) in conjugation_forms(word)
+    assert conjugation_forms((1, 2, 1, 2, 1)) == ()
+
+
+def test_lazy_entries_come_in_key_order_and_equal_the_eager_list(ms640):
+    """The generator behind the dyn pool: every dropped state not offered, once per priority group, in key order,
+    each placed between the offered neighbours it would have been pushed between."""
+    p = next(p for p in ms640 if solve(p, FAST).stage == "H")
+    words = dynrank.normalize(dynrank.defines(dynrank.normalize(Run(p.rels, 9).state))[0][0])
+    kept, cut, _ = dynrank.children(words, 3, 99, 2)
+    items = [t for t in cut if t[2] > 2]
+    assert items and kept
+    offered = sorted(state for state, _ in kept)
+    penalty, depth, base = 5, 4, 100
+    entries = list(capwatch.lazy_entries(depth, base, penalty, 0, words, offered, items))
+    states = [e for e in entries if e[3] is not None]
+    markers = [e for e in entries if e[3] is None]
+    assert markers and [e[0] for e in states] == sorted(e[0] for e in states)
+    eager = set()
+    for total, _, rank, (i, product) in items:
+        state = tuple(sorted(words[:i] + (product,) + words[i + 1:]))
+        if state not in offered:
+            eager.add((float(total + penalty * (rank - 2)), state))
+    assert {(e[0][0], e[3]) for e in states} == eager and len(states) == len(eager)
+    for key, _, _, state in states:
+        at = base + bisect_left(offered, state)
+        assert at < key[2] < at + 1 and key[1] == depth
+    for marker in markers:                                    # a marker bounds its group from below
+        later = [e for e in entries[entries.index(marker) + 1:] if e[0][0] == marker[0][0]]
+        assert all(marker[0] <= e[0] for e in later)
 
 
 def backends_agree_on_counters(ms640, configs, stride):

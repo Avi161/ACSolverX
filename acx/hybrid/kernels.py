@@ -1,13 +1,8 @@
-"""Numba kernels of the hybrid's rank-two frontier (backend ``"fast"`` of ``acx.hybrid.frontier``).
+"""Numba kernels of the rank-two frontier (backend ``"fast"`` of ``acx.hybrid.frontier``).
 
-``fast_expand`` decodes a key into the Booth-symbol layout of
-``acx.search.fast.kernels`` and runs its ``expand`` (the same children, order,
-cut-shift skip and cap count as the pure-Python ``spec_expand``), then writes the
-children back as keys in one buffer. ``fast_transform`` applies one of the 20
-``AUTOS`` (images of at most three letters) to a key, reduces and canonicalises
-with the same kernel helpers. The source used ``hexpand.expand_and_score_h`` and
-``basis_moves._apply_transform_nj`` (``origin/claude/vigilant-babbage-nnbuj0``),
-which these replace.
+``fast_expand`` and ``fast_full`` run ``acx.search.fast.kernels.expand`` on a key and write the children back as keys
+(same children, order, cut-shift skip and cap count as the pure-Python ``spec_expand``). ``fast_transform`` applies one
+of the 20 ``AUTOS`` (images of at most three letters) to a key, reduced and canonical.
 """
 import numpy as np
 from numba import njit
@@ -52,6 +47,7 @@ def _write(blob, o, row, n):
 
 @njit(cache=True)
 def expand_key(codes, cap):
+    """The children of a key's pair: ``(blob, offsets, moves, first relator lengths, rejected count)``."""
     sep = _split(codes)
     lens = np.array([sep, len(codes) - sep - 1], dtype=np.int32)
     syms = np.zeros((2, max(lens[0], lens[1], 1)), dtype=np.uint8)
@@ -81,6 +77,7 @@ def expand_key(codes, cap):
 
 @njit(cache=True)
 def transform_key(codes, tab, tlen):
+    """Apply the automorphism ``(tab, tlen)`` to a key's pair; reduced, canonical."""
     sep = _split(codes)
     n = len(codes) - 1
     buf = np.empty(3 * n + 1, dtype=np.uint8)
@@ -105,6 +102,7 @@ def transform_key(codes, tab, tlen):
 
 
 def fast_expand(key, cap):
+    """``(children, rejected)`` of ``key``, as ``frontier.spec_expand`` returns them."""
     blob, offs, mv, _, rejected = expand_key(np.frombuffer(key, dtype=np.uint8), -1 if cap is None else cap)
     raw, offs = blob.tobytes(), offs.tolist()
     return [(raw[offs[c]:offs[c + 1]], Move(*m)) for c, m in enumerate(mv.tolist())], int(rejected)
@@ -117,4 +115,5 @@ def fast_full(key):
 
 
 def fast_transform(key, k):
+    """The key after the automorphism ``AUTOS[k]``."""
     return transform_key(np.frombuffer(key, dtype=np.uint8), _TAB[k], _TLEN[k]).tobytes()

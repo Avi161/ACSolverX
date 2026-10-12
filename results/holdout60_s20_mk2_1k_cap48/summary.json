@@ -8,6 +8,7 @@
  "aut_assisted": 0,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "pops",
   "total": 41953,
@@ -31,8 +32,23 @@
    }
   }
  },
- "wall_seconds": 2.03,
- "row_seconds": 7.86,
+ "caps": {
+  "cap": {
+   "cap": 48,
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 7.5,
+ "row_seconds": 7.48,
  "config": {
   "method": "greedy",
   "benchmark": "ac1m_hard_holdout60",
@@ -43,6 +59,6 @@
    "cap": 48
   },
   "name": "holdout60_s20_mk2_1k_cap48",
-  "workers": 4
+  "workers": 1
  }
 }

@@ -1,37 +1,16 @@
-"""Higher-rank moves of the hybrid solver: products, digram definitions, eliminations, transvections.
+"""Higher-rank moves of the hybrid: products, digram definitions, eliminations, transvections.
 
-A dynamic-rank state is a balanced presentation ``(R_1, .., R_n)`` on generators
-``1..n`` in this module's own normal form: each relator cyclically reduced and
-replaced by the least of its rotations and those of its inverse in INT order
-(``-2 < -1 < 1 < 2``, not the Booth order of ``acx.core.words``), the tuple
-sorted. The search's tie-breaks depend on this order, so it is kept as the
-source had it. Moves, each returned as ``(normalized child, event)``:
+A state is a balanced presentation ``(R_1, .., R_n)`` on generators ``1..n``: each relator cyclically reduced and
+the least of its rotations and those of its inverse in int order (``-2 < -1 < 1 < 2``, not the Booth order of
+``acx.core.words``), the tuple sorted. The search's tie-breaks depend on this order. Every move returns
+``(normalized child, event)``; ``acx.hybrid.certify`` writes each event out as elementary and stable AC moves.
 
-``product``    ``R_i <- R_i[k1:] R_i[:k1] . B[k2:] B[:k2]`` with ``B = R_j^sign``
-               (left rotations), the result at most ``cap`` letters: an AC move.
-``define``     a cyclic digram ``d = (a, b)`` occurring at least ``min_uses``
-               times: add generator ``h = n + 1`` with relator ``h^-1 a b`` and
-               rewrite every relator, ``d -> h`` and ``d^-1 -> h^-1`` (shortest
-               tokenisation over its rotations). A stabilisation, the
-               automorphism ``h -> h^-1 a b`` and AC moves.
-``eliminate``  a generator ``g`` occurring once in ``R_i = g^e u``: substitute
-               ``g -> image`` (``u^-1`` or ``u``) in the other relators, drop
-               ``R_i``, renumber the generators above ``g``. AC moves, the
-               automorphism ``g -> g u`` and a destabilisation.
-``nielsen``    the transvection ``x_i -> x_i x_j^sign`` on every relator (an
-               automorphism of the free group).
+``product``    ``R_i <- R_i[k1:] R_i[:k1] . B[k2:] B[:k2]`` with ``B = R_j^sign``, at most ``cap`` letters.
+``define``     a digram ``d`` used at least ``min_uses`` times gets a new generator ``h`` with relator ``h^-1 d``.
+``eliminate``  a generator occurring once in ``R_i`` is substituted away and ``R_i`` dropped.
+``nielsen``    the transvection ``x_i -> x_i x_j^sign`` on every relator.
 
-``relabel_canonical`` quotients states by permutations of the generators
-(individualisation-refinement); the chosen permutation is part of the step so
-the certificate can be replayed. ``acx.hybrid.certify`` turns every event into
-elementary and stable moves (``define`` and ``eliminate`` are written out, not
-assumed), so a certificate that uses them is a replayable stable AC path.
-
-Port of ``origin/claude/vigilant-babbage-nnbuj0:research/ac_dynamic_rank_20260913/
-dynrank.py`` (moves, relabelling; ``tokenize`` is ``acx.ngen.sac``'s) and
-``research/ac_hashfree_cascade_20260914/hfunified.py`` (``nielsen_children``),
-commit 5ae1bd8e; the drivers (``best_first``, ``closure``) and ``triangulate``
-(``acx.ngen.sac``) are not ported.
+``relabel_canonical`` quotients states by permutations of the generators; the permutation is part of the step.
 """
 from collections import Counter
 
@@ -49,6 +28,7 @@ def dcanon(w):
 
 
 def normalize(words):
+    """The state: every relator in ``dcanon`` form, sorted."""
     return tuple(sorted(dcanon(w) for w in words))
 
 
@@ -119,6 +99,7 @@ def relabel_canonical(words, limit=20000):
 
 
 def make_key(words):
+    """``(canonical relabelling of words, {perm, signs})``: the state up to permuting the generators."""
     canon, perm, signs = relabel_canonical(words)
     return canon, {"perm": perm, "signs": signs}
 
@@ -156,6 +137,7 @@ def products(words, cap):
 
 
 def digram_counts(words):
+    """How often each cyclic digram occurs (a digram and its inverse count as one)."""
     counts = Counter()
     for w in words:
         m = len(w)
@@ -177,6 +159,7 @@ def define(words, d):
 
 
 def defines(words, min_uses=2):
+    """Every ``define`` child ``(normalized state, event)`` of a digram used at least ``min_uses`` times."""
     out = []
     for d, count in digram_counts(words).items():
         if count < min_uses:
@@ -188,6 +171,7 @@ def defines(words, min_uses=2):
 
 
 def substitute(word, g, image):
+    """``word`` with generator ``g`` replaced by ``image``, freely reduced."""
     out = []
     for x in word:
         out.extend(image if x == g else inverse(image) if x == -g else (x,))
@@ -195,6 +179,7 @@ def substitute(word, g, image):
 
 
 def renumber(word, g):
+    """``word`` with the generators above ``g`` shifted down by one."""
     return tuple((abs(x) - 1 if abs(x) > g else abs(x)) * (1 if x > 0 else -1) for x in word)
 
 
@@ -209,6 +194,7 @@ def eliminate(words, i, g):
 
 
 def eliminations(words):
+    """Every ``eliminate`` child ``(normalized state, event)``: each generator that occurs once in a relator."""
     out = []
     for i, r in enumerate(words):
         for g, c in Counter(abs(x) for x in r).items():
@@ -227,6 +213,7 @@ def transvection(word, i, j, sign):
 
 
 def nielsen_children(words):
+    """Every transvection ``x_i -> x_i x_j^s`` child ``(normalized state, event)``."""
     n = len(words)
     return [(normalize(transvection(w, i, j, s) for w in words), {"kind": "nielsen", "i": i, "j": j, "sign": s})
             for i in range(1, n + 1) for j in range(1, n + 1) if i != j for s in (1, -1)]

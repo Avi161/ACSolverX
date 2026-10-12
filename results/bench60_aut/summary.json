@@ -8,6 +8,7 @@
  "aut_assisted": 52,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "pops",
   "total": 147767,
@@ -31,8 +32,34 @@
    }
   }
  },
- "wall_seconds": 6.24,
- "row_seconds": 24.04,
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 60,
+   "rows_dropped": 27,
+   "rows_would_pop": 10,
+   "raise_ids": [
+    "628",
+    "633",
+    "625",
+    "622",
+    "624",
+    "623",
+    "637",
+    "639",
+    "638",
+    "636"
+   ],
+   "dropped": 5739822,
+   "would_pop": 668,
+   "dropped_min_total": 30,
+   "first_bind_min": 766,
+   "needed_min": 25,
+   "needed_max": 25
+  }
+ },
+ "wall_seconds": 29.58,
+ "row_seconds": 29.49,
  "config": {
   "method": "aut",
   "benchmark": "bench60",
@@ -42,6 +69,6 @@
    "budget": 10000
   },
   "name": "bench60_aut",
-  "workers": 4
+  "workers": 1
  }
 }

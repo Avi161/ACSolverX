@@ -8,6 +8,7 @@
  "aut_assisted": 0,
  "stable_cert": 0,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "evaluations",
   "total": 9650,
@@ -31,8 +32,29 @@
    }
   }
  },
- "wall_seconds": 20.3,
- "row_seconds": 20.3,
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 30,
+   "rows_dropped": 5,
+   "rows_would_pop": 5,
+   "raise_ids": [
+    "6",
+    "13",
+    "18",
+    "26",
+    "28"
+   ],
+   "dropped": 23,
+   "would_pop": 23,
+   "dropped_min_total": 35,
+   "first_bind_min": 5,
+   "needed_min": 25,
+   "needed_max": 27
+  }
+ },
+ "wall_seconds": 18.6,
+ "row_seconds": 18.59,
  "config": {
   "method": "rl",
   "benchmark": "ms640",
@@ -41,6 +63,7 @@
    "width": 256,
    "steps": 150
   },
-  "name": "ms640_rl30"
+  "name": "ms640_rl30",
+  "workers": 1
  }
 }

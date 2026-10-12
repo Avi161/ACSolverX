@@ -8,6 +8,7 @@
  "aut_assisted": 0,
  "stable_cert": 8,
  "skipped": 0,
+ "errors": 0,
  "cost": {
   "unit": "pops",
   "total": 531923,
@@ -31,8 +32,23 @@
    }
   }
  },
- "wall_seconds": 13.45,
- "row_seconds": 52.74,
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 64.62,
+ "row_seconds": 64.61,
  "config": {
   "method": "ngen",
   "benchmark": "bench60",
@@ -44,6 +60,6 @@
    "sac": true
   },
   "name": "bench60_ngen_sac",
-  "workers": 4
+  "workers": 1
  }
 }
