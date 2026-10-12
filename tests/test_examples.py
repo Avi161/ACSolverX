@@ -215,7 +215,7 @@ def template_runs(tmp_path_factory):
     for ext in ("txt", "csv", "jsonl"):
         out = tmp_path_factory.mktemp(f"template_{ext}")
         quietly("--config", str(TEMPLATE), "--input", str(EXAMPLES / f"presentations.{ext}"), "--out", str(out))
-        runs[ext] = out / "template"
+        runs[ext] = out / "template_presentations"    # --input names the run <config>_<file stem>
     return runs
 
 
@@ -224,7 +224,7 @@ def hybrid_run(tmp_path_factory):
     """The run folder of ``configs/hybrid.toml`` on ``presentations.jsonl``."""
     out = tmp_path_factory.mktemp("hybrid")
     quietly("--config", str(HYBRID), "--input", str(EXAMPLES / "presentations.jsonl"), "--out", str(out))
-    return out / "hybrid"
+    return out / "hybrid_presentations"
 
 
 @pytest.mark.parametrize("ext", ["txt", "csv", "jsonl"])
@@ -250,13 +250,14 @@ def test_the_template_leaves_the_hybrid_example_unsolved(template_runs):
     assert not by_id(read_records(template_runs["jsonl"]))["ms623"]["solved"]
 
 
-def test_path_false_keeps_no_path_and_greedy_keeps_no_length(tmp_path):
-    """The template's ``path`` comment: without the path the greedy record has no ``sub_moves`` (the search does not
-    count the length when it does not capture the path)."""
+def test_path_false_keeps_the_length_but_no_path(tmp_path):
+    """The template's ``path`` comment: without the path the greedy record keeps ``sub_moves`` (the solved state's
+    depth) and has no ``path`` or ``elem_moves``."""
     quietly("--config", str(TEMPLATE), "--input", str(EXAMPLES / "presentations.jsonl"), "--rows", "ak2",
             "--set", "path=false", "--set", "name=nopath", "--out", str(tmp_path))
     (rec,) = read_records(tmp_path / "nopath")
-    assert rec["solved"] and rec["path"] is None and rec["verified"] is False and rec["sub_moves"] is None
+    assert rec["solved"] and rec["path"] is None and rec["verified"] is False
+    assert rec["sub_moves"] > 0 and rec["elem_moves"] is None
 
 
 def test_the_hybrid_config_solves_the_hybrid_example(hybrid_run):

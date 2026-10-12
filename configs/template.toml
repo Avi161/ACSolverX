@@ -7,7 +7,7 @@ benchmark = "examples/presentations.txt"   # a benchmark name, or your own .txt/
 rows = ""                                  # "" = every row; a slice "0:3" or ids "ak2,gen3"
 workers = 1                                # processes; 1 runs in this process
 decode = true                              # elementary length of each solve's path (needs path = true)
-path = true                                # false: faster; no path, no replay; sub_moves null for greedy
+path = true                                # false: faster; no path, no replay, elem_moves null
 # fields = ["solved", "cost", "sub_moves"] # only these record keys (id, solved, error always); absent = all
 
 [search]
@@ -52,5 +52,5 @@ trace = false              # keep every popped state (parity tests only; memory 
 # extra = 1        # generators added to the presentation (1, 2 or 3)
 # min_len = 1      # shortest word w in the pool
 # max_len = 4      # longest word w in the pool
-# inverse = false  # also search w^-1
+# inverse = false  # search w^-1 instead of w
 # sample = 0.002   # fraction of solved paths kept
