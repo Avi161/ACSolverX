@@ -4,7 +4,7 @@
 # the independent checks in indep/.
 #
 # Pass "preview" runs at once on whatever is merged in S3. Pass "final" runs
-# when the budget-1,000 box has logged DONE, or at WAIT_UNTIL (UTC epoch) on
+# when both sweep boxes have logged DONE, or at WAIT_UNTIL (UTC epoch) on
 # whatever is merged by then. Outputs: s3://$BUCKET/$ROOT/post/<pass>/.
 ROOT=cov_all/rank3_bf
 DEADMAN=1020
@@ -99,9 +99,10 @@ pass(){
 pass preview
 
 if [ "$WAIT_UNTIL" -gt 0 ]; then
-  say "waiting for the budget-1,000 box (until $(date -u -d @$WAIT_UNTIL +%FT%TZ))"
+  say "waiting for both sweep boxes (until $(date -u -d @$WAIT_UNTIL +%FT%TZ))"
+  ended(){ aws s3 cp $B/$1/run.log - 2>/dev/null | grep -qE '== DONE verify=|== FAIL'; }
   while [ "$(date +%s)" -lt "$WAIT_UNTIL" ]; do
-    aws s3 cp $B/b1000/run.log - 2>/dev/null | grep -qE '== DONE verify=|== FAIL' && break
+    ended b1000 && ended b10000 && break
     sleep 300
   done
   sleep 180      # let the other boxes' last sync land

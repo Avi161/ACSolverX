@@ -379,6 +379,30 @@ Recorded 12 Oct 2026, 08:00 UTC, while writing the results README.
     presentations is not from this run: it is read from the 100,000-node
     control rows of the CoV sweep's file.
 
+Recorded 12 Oct 2026, 08:45 UTC.
+
+23. **Two more independent checks.** `indep/indep_class_view.py` and
+    `indep/indep_relsub_cov.py`, each written from `BRIEF.md` plus its own
+    `TASK_*.md` by a tester who was not shown `class_view.py`, the summarizer
+    or the CoV code, and each read line by line by a second tester. Neither
+    was executed before it was committed (no compute on the laptop); the
+    first run is the post box's. They recompute, from the dataset and the raw
+    result files: the relabeling-class view (classes, pairs of copies, node
+    gaps, per-presentation and per-class counts), and the relator-subword and
+    CoV blocks of the summaries (the subword set from its definition, the
+    same-word join, the control's cost on the gained presentations).
+24. **Budget-10,000 box interrupted (08:32 UTC).** AWS reclaimed the spot
+    instance (`instance-terminated-no-capacity`) with 636 of the 640 length-7
+    tasks in S3; presentations 636 to 639 were still running after 9,900
+    seconds (a task is one presentation: 1,458 searches on one core).
+    Relaunched at 08:34:45 as `i-02f9208da95f83c00`, a c7a.2xlarge on demand
+    (8 cores, $0.41 per hour): four single-core tasks do not need 96 cores,
+    and a second interruption would cost another three hours. Same user-data
+    and commit `8b3a51d` (`MAX_LEN` 7, `DEADMAN` 300). It restored 2,081
+    files and logged "640 tasks, 4 to run". The interrupted boot's log is
+    `b10000/run_box2.log`. `aws_rank3_post_box.sh` now waits for both sweep
+    boxes before its final pass.
+
 ### Boxes
 
 Box C: c7a.2xlarge spot, 8 vCPU, launched 12 Oct 04:29:03 UTC, commit

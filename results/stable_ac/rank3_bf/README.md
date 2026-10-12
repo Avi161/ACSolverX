@@ -1,6 +1,6 @@
 # 3-, 4- and 5-generator brute-force baseline on MS640
 
-**Status, 12 Oct 2026 08:10 UTC: interim.** In this directory: word lengths 1 to 9 at budget
+**Status, 12 Oct 2026 08:45 UTC: interim.** In this directory: word lengths 1 to 9 at budget
 1,000, lengths 1 to 6 at budget 10,000, rank 4 and rank 5. Still running on AWS: length 10 at
 budget 1,000 and length 7 at budget 10,000. The numbers below change only by those two lengths.
 
@@ -282,7 +282,8 @@ duplicate another start of their own presentation, out of the 37,790,720 of leng
 tests, and the replay of every solved subword path: the relator-subword numbers (544, 592 and
 the rest of that block), the whole comparison with CoV, the relabeling-class section (gaps and
 per-class counts), and the control's cost above 10,000 nodes on the gained presentations (read
-from the CoV sweep's file). Two more independent scripts for these blocks are being written.
+from the CoV sweep's file). Two more independent scripts for these blocks (`indep_class_view.py`,
+`indep_relsub_cov.py`) are written and read by a second tester; they have not been run yet.
 The `skipped` field of each `indep_*.json` and the notes in `indep/*.md` list the rest.
 
 ## Files
