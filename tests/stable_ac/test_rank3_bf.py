@@ -267,3 +267,61 @@ def test_verifier_reads_the_gzipped_subword_arm(tmp_path, capsys):
     os.remove(base + "_paths.jsonl.gz")
     assert V.main(["--dir", out]) == 1
 
+
+
+def test_cap_compare_counts_exactly_the_searches_that_differ(tmp_path):
+    from experiments.stable_ac.rank3 import cap_compare as C
+    dirs = []
+    for name in ("base", "other"):
+        (tmp_path / name).mkdir()
+        dirs.append(_run(tmp_path / name, 2, 0, {0, 320})[1])
+    base, other = dirs
+    out = str(tmp_path / "cmp.json")
+    args = ["--base", base, "--other", other, "--budget", "300", "--out", out]
+    diff = ("solved_only_base", "solved_only_other", "nodes_differ",
+            "path_length_differs", "both_solved_fewer_nodes_other",
+            "both_solved_more_nodes_other", "largest_node_difference")
+
+    C.main(args)
+    with open(out) as f:
+        rows = json.load(f)["comparisons"][0]["rows"]
+    assert [r["kind"] for r in rows] == [
+        "control, 2 generators", "control, rank-n code on 2 generators",
+        "control, third relator Z", "relator subwords", "words of length 1",
+        "words of length 2", "all word lengths compared"]
+    for r in rows:
+        assert r["searches"] > 0 and r["solved_base"] == r["solved_other"]
+        assert not any(r[k] for k in diff)
+
+    # change three searches on one side: each is counted once, where it is
+    stem = os.path.join(other, R.stem("ms640", 300, R.CAP))
+    with np.load(stem + "_L2.npz") as z:
+        d = {k: z[k] for k in z.files}
+    solved = np.argwhere(d["path_len"] >= 0)
+    assert len(solved) >= 2
+    d["nodes"], d["path_len"] = d["nodes"].copy(), d["path_len"].copy()
+    d["nodes"][tuple(solved[0])] += 1
+    d["path_len"][tuple(solved[1])] = -1
+    np.savez_compressed(stem + "_L2.npz", **d)
+    with open(stem + "_relsub.jsonl") as f:
+        sub = [json.loads(line) for line in f]
+    i = next(i for i, r in enumerate(sub) if r["solved"])
+    sub[i].update(solved=False, path_length=None)
+    with open(stem + "_relsub.jsonl", "w") as f:
+        f.write("".join(json.dumps(r) + "\n" for r in sub))
+
+    C.main(args)
+    with open(out) as f:
+        rows = {r["kind"]: r for r in json.load(f)["comparisons"][0]["rows"]}
+    for kind in ("words of length 2", "all word lengths compared"):
+        assert [rows[kind][k] for k in diff] == [1, 0, 1, 1, 0, 1, 1]
+        assert rows[kind]["solved_base"] == rows[kind]["solved_other"] + 1
+    assert [rows["relator subwords"][k] for k in diff] == [1, 0, 0, 1, 0, 0, 0]
+    for kind in ("control, 2 generators", "control, third relator Z", "words of length 1"):
+        assert not any(rows[kind][k] for k in diff)
+
+    # a search present on one side only is an error, not a silent skip
+    with open(stem + "_relsub.jsonl", "w") as f:
+        f.write("".join(json.dumps(r) + "\n" for r in sub[1:]))
+    with pytest.raises(SystemExit):
+        C.main(args)
