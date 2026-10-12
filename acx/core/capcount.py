@@ -1,44 +1,7 @@
 """Cap counters: what a relator cap dropped, and whether a dropped state would have been popped.
 
-The module knows no heuristic. A search tells a counter three things:
-
-* ``drop(key, total, longest, ident)``: the cap dropped a child (one call per move). ``key`` is the
-  full heap key the active priority would have pushed the child under, e.g. ``(priority, depth,
-  state_bytes)``; ``ident`` names the state, so that each state is judged once, under the key of
-  its FIRST drop (the search dedups on discovery, so a state is pushed at most once, by its
-  first discoverer).
-* ``pop(bar)``: the search popped an entry with key ``bar`` (call it BEFORE expanding that entry,
-  the solving pop included). Every pending dropped key that sorts strictly before the bar is a
-  state the search would have popped first had the cap been larger: ``cap_would_pop``.
-* ``end(ran_dry, left)``: the search stopped. ``ran_dry``: the queue emptied unsolved with
-  ``left > 0`` pops of budget left, so the pending dropped states would have popped next (up to
-  ``left`` of them). A search that solved or spent its budget passes ``ran_dry=False``.
-
-Keys are any totally ordered values; the counter only compares them. Fields (``FIELDS``, one
-counter = one cap; ``record(prefix)`` renames ``cap`` to ``prefix``):
-
-==========================  ==========================================================================
-``cap``                     the cap this counter watches (None = uncapped)
-``cap_dropped``             children not pushed because a relator is over the cap, one per move
-``cap_dropped_min_total``   least total relator length of a dropped child; None iff nothing dropped
-``cap_would_pop``           distinct dropped states whose first-drop key sorts before a later bar,
-                            plus, when the queue ran dry, the pending ones the budget would pop
-``cap_first_bind``          pop number (1 = the start) of the first such pop; ``pops + 1`` when the
-                            queue ran dry with dropped states pending; None iff ``cap_would_pop == 0``
-``cap_needed``              least longest relator over the would-pop states (and, on a dry queue,
-                            over every pending state): the smallest cap at which the search changes;
-                            None iff ``cap_would_pop == 0``
-==========================  ==========================================================================
-
-For a best-first search whose heap key is a strict total order (``acx.search``): ``cap_would_pop
-== 0`` holds exactly when the search at every larger cap pops the same states in the same order
-with the same path, and a cap ``C' < cap_needed`` gives the same search while ``C' >=
-cap_needed`` does not. Uncapped searches keep no counter and report ``blank()``.
-
-The numba twin (``CapArrays`` and the ``cc_*`` kernels) keeps the same state in flat arrays for
-the fast engine: keys are ``(float64 prio, int64 depth, uint8 bytes)``, bytes compared
-lexicographically with a proper prefix first. ``tests/test_capcount.py`` pins it to ``CapCount``.
-Without numba the kernels run as plain Python.
+Heuristic-agnostic: a search passes the heap keys its own priority gives, and the counters only compare them.
+``CapCount`` is the plain counter, ``CapArrays`` its numba twin for the fast engine; ``FIELDS`` are the stats.
 """
 from heapq import heappop, heappush
 
@@ -64,10 +27,42 @@ def blank(prefix="cap", cap=None):
 
 
 class CapCount:
-    """One counter per cap (module docstring). ``known``: idents already discovered (the start),
-    so a dropped child equal to one counts in ``cap_dropped`` only. ``accept(payload)``: optional
-    pop-time dedup (a search that dedups when it pops); a drained entry counts only if it returns
-    True."""
+    """The counter of one cap. A search tells it three things:
+
+    * ``drop(key, total, longest, ident)``: the cap dropped a child (one call per move). ``key`` is the full heap
+      key the active priority would have pushed the child under, e.g. ``(priority, depth, state_bytes)``; ``ident``
+      names the state, so each state is judged once, under the key of its first drop (a search dedups on
+      discovery, so a state is pushed at most once, by its first discoverer).
+    * ``pop(bar)``: the search popped an entry with key ``bar``; call it BEFORE expanding, the solving pop
+      included. Every pending dropped key sorting strictly before ``bar`` is a state the search would have popped
+      first with a larger cap.
+    * ``end(ran_dry, left)``: the search stopped. ``ran_dry``: the queue emptied unsolved with ``left > 0`` pops
+      of budget left, so the pending dropped states would have popped next (up to ``left``). A search that solved or
+      spent its budget passes ``ran_dry=False``.
+
+    Keys are any totally ordered values. ``record(prefix)`` returns the ``FIELDS`` (``cap`` renamed ``prefix``):
+
+    ==========================  ======================================================================
+    ``cap``                     the cap watched (None = uncapped)
+    ``cap_dropped``             children not pushed because a relator is over the cap, one per move
+    ``cap_dropped_min_total``   least total relator length of a dropped child; None iff nothing dropped
+    ``cap_would_pop``           distinct dropped states whose first-drop key sorts before a later bar, plus,
+                                on a dry queue, the pending ones the budget would pop
+    ``cap_first_bind``          pop number (1 = the start) of the first such pop; ``pops + 1`` when the queue
+                                ran dry with dropped states pending; None iff ``cap_would_pop == 0``
+    ``cap_needed``              least longest relator over the would-pop states (on a dry queue, over every
+                                pending state): the smallest cap at which the search changes; None iff
+                                ``cap_would_pop == 0``
+    ==========================  ======================================================================
+
+    For a best-first search with a strict total order on keys, ``cap_would_pop == 0`` holds exactly when every
+    larger cap pops the same states in the same order with the same path, and a cap below ``cap_needed`` gives
+    the same search while one at or above it does not.
+
+    ``known``: idents already discovered (the start), so a dropped child equal to one counts in ``cap_dropped``
+    only. ``accept(payload)``: optional pop-time dedup for a search that dedups when it pops; a drained entry
+    counts only if it returns True.
+    """
 
     __slots__ = ("cap", "accept", "dropped", "would_pop", "pops", "min_total", "first_bind", "needed",
                  "_pending", "_first", "_seq")
@@ -78,11 +73,14 @@ class CapCount:
         self.min_total = self.first_bind = self.needed = None
         self._pending, self._first, self._seq = [], set(known), 0
 
-    def drop(self, key, total, longest, ident=None, payload=None):
-        """The cap dropped a child (one call per move); ``ident`` None means no dedup."""
+    def _count(self, total):
         self.dropped += 1
         if self.min_total is None or total < self.min_total:
             self.min_total = total
+
+    def drop(self, key, total, longest, ident=None, payload=None):
+        """The cap dropped a child (one call per move); ``ident`` None means no dedup."""
+        self._count(total)
         if ident is not None:
             if ident in self._first:
                 return
@@ -92,9 +90,7 @@ class CapCount:
 
     def drop_now(self, total, longest):
         """A dropped child the search would have acted on at once (a beam slot, a finishing gate)."""
-        self.dropped += 1
-        if self.min_total is None or total < self.min_total:
-            self.min_total = total
+        self._count(total)
         self._hit(longest, self.pops)
 
     def pop(self, bar):
@@ -125,9 +121,11 @@ class CapCount:
 
     @property
     def pending(self):
+        """Number of dropped states still waiting for a later pop."""
         return len(self._pending)
 
     def record(self, prefix="cap"):
+        """The counter's ``FIELDS`` as a dict."""
         return dict(zip(fields(prefix), (self.cap, self.dropped, self.min_total, self.would_pop,
                                          self.first_bind, self.needed)))
 
@@ -156,7 +154,9 @@ def combine(parts, prefix="cap"):
 
 
 def summarize(records, prefix="cap", ids=None, keep=100):
-    """The ``summary.json`` block of one counter over a run's row records (rows lacking it skipped)."""
+    """The ``summary.json`` block of one counter over a run's row records (rows lacking it skipped): the cap(s),
+    rows seen, rows that dropped, rows with ``would_pop > 0`` (their ids, up to ``keep``), the sums, and the
+    least ``dropped_min_total``, ``first_bind`` and least/greatest ``needed``. None when no row has the counter."""
     f = fields(prefix)
     rows = [(i, r) for i, r in zip(ids or [r.get("id") for r in records], records) if f[1] in r]
     if not rows:
@@ -181,7 +181,9 @@ def summarize(records, prefix="cap", ids=None, keep=100):
 # ``heap`` an int32 min-heap of pending entry ids; ``table`` an open-addressing int32 set of entry
 # ids + 1 keyed by the bytes (first-drop dedup; drained entries stay in it). ``st`` slots below.
 # A caller writes a dropped child's key bytes at ``pool[st[C_POOL]:]`` (``cc_free`` gives the room
-# check) and calls ``cc_drop``; it calls ``cc_pop`` at each pop with the bar's key.
+# check) and calls ``cc_drop``; it calls ``cc_pop`` at each pop with the bar's key. Bytes compare
+# lexicographically, a proper prefix first. ``tests/test_capcount.py`` pins the twin to ``CapCount``;
+# without numba the kernels run as plain Python.
 
 C_DROPPED, C_WOULD, C_FIRST, C_NEED, C_MINTOT, C_POPS, C_NENT, C_NHEAP, C_POOL = range(9)
 
@@ -332,7 +334,9 @@ def cc_pop(cc, prio, depth, bar, n):
 
 
 class CapArrays:
-    """The twin's arrays (``cc`` tuple), grown by doubling what is short (``grow``)."""
+    """The twin of ``CapCount`` on flat arrays: ``cap`` is the cap watched, ``cc`` the state tuple the ``cc_*``
+    kernels take, and ``drop`` / ``known`` / ``pop`` / ``end`` / ``record`` mirror ``CapCount``'s. Arrays grow by
+    doubling what is short (``grow``)."""
 
     def __init__(self, cap, entries=1 << 12, nbytes=1 << 16):
         self.cap = cap
@@ -367,26 +371,31 @@ class CapArrays:
         self.cc = new
 
     def free(self, entries, nbytes):
+        """``cc_free`` on the current arrays."""
         return cc_free(self.cc, entries, nbytes)
 
     def tail(self):
         """The pool from the free offset: where the next key bytes are written."""
         return self.cc[8][self.cc[0][C_POOL]:]
 
-    def drop(self, prio, depth, key, total, longest):
-        """Python entry (tests, small searches): copy ``key`` bytes in, then ``cc_drop``."""
+    def _put(self, key):
+        """Write the key bytes at the free offset, growing the arrays first if they are full."""
         if not self.free(1, len(key)):
             self.grow(1, len(key))
         self.tail()[:len(key)] = np.frombuffer(bytes(key), np.uint8)
+
+    def drop(self, prio, depth, key, total, longest):
+        """Python entry (tests, small searches): copy ``key`` bytes in, then ``cc_drop``."""
+        self._put(key)
         cc_drop(self.cc, float(prio), int(depth), len(key), int(total), int(longest))
 
     def known(self, key):
-        if not self.free(1, len(key)):
-            self.grow(1, len(key))
-        self.tail()[:len(key)] = np.frombuffer(bytes(key), np.uint8)
+        """Seed ``key`` as already discovered."""
+        self._put(key)
         cc_known(self.cc, len(key))
 
     def pop(self, prio, depth, key):
+        """``CapCount.pop`` with the bar ``(prio, depth, key)``."""
         b = np.frombuffer(bytes(key), np.uint8)
         cc_pop(self.cc, float(prio), int(depth), b, len(b))
 
@@ -404,6 +413,7 @@ class CapArrays:
         st[C_NHEAP] = 0
 
     def record(self, prefix="cap"):
+        """The counter's ``FIELDS`` as a dict."""
         st = [int(x) for x in self.cc[0]]
         neg = lambda x: None if x < 0 else x         # noqa: E731
         return dict(zip(fields(prefix), (self.cap, st[C_DROPPED], neg(st[C_MINTOT]), st[C_WOULD],

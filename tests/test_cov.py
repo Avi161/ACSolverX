@@ -106,6 +106,21 @@ def test_config_cyclic_and_capture_path():
     assert solved
 
 
+@needs_fast
+@pytest.mark.parametrize("rid", [579, 380, 533, 538, 543, 544, 546])
+def test_noncyclic_rows_replay_on_the_row(rid):
+    """With ``cyclic = false`` the reduced canonical form is not a fixed point of itself. These bench60 rows raised
+    ``ReplayError`` twice over: ``verify`` replayed a stable certificate from a twice-normalised image, and
+    ``transport`` replayed a path from a start it had normalised again."""
+    row = next(r for r in data.load_csv("bench60") if int(r.id) == rid)
+    cfg = CoVConfig(search=SearchConfig(budget=300, cyclic=False, backend="fast"), total_budget=10_000, until="ac_path")
+    out = run(row.pres, cfg)
+    assert out.solved
+    for o in out.outcomes:
+        assert not o.cyclic
+        verify(row.pres, o)
+
+
 def test_image_cap_is_the_written_length_plus_headroom():
     """The source's per-image cap: max(cap, longest relator of the image as written + headroom).
 

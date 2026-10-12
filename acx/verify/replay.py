@@ -1,37 +1,17 @@
-"""Replay verifier: the authority on whether a path solves a presentation.
+"""The replay verifier, the authority on whether a path solves a presentation.
 
-``replay(pres, path)`` re-applies every move from the start and raises
-``ReplayError`` unless
-
-* every move is legal: an S-move (``acx.core.moves.Move``) is in range and its
-  seam cancels; an elementary/stable dict move is well formed (AC5 only drops a
-  generator that occurs nowhere else);
-* ``|det|`` of the exponent-sum matrix is 1 at the start and after every move.
-  An S-move adds +-1 times one row to another, canonicalisation inverts rows
-  (sign) and permutes them, AC4 borders the matrix with a unit row and column,
-  so ``|det|`` is an AC invariant and every AC-trivial balanced presentation
-  has ``|det| = 1``; a move that changes it is unsound;
-* with ``cap``, no relator produced by a move is longer than ``cap``;
-* the end is trivial: as many relators as generators, each cyclically reducing
-  to one letter, all generators present.
-
-``normalize=True`` (search paths) first replaces the start by its reduced
-canonical form, exactly the start the search used; elementary paths that act
-on the raw words pass ``normalize=False``.
-
-Sources: ``origin/test/greedy-test-suite:experiments/greedy_tests/spec/
-{invariants,search}.py`` (the |det| invariant, replay), and
-``origin/codex/ac-elementary-decoder:experiments/search/ac_decode.py``
-(``replay_elementary``).
+``replay`` re-applies every move and raises ``ReplayError`` unless each move is legal, ``|det|`` of the exponent
+matrix stays 1 (an AC invariant), no relator exceeds ``cap`` and the end is the trivial presentation.
 """
 from ..core.moves import step
 
 
 class ReplayError(ValueError):
-    pass
+    """A path is illegal, changes ``|det|``, breaks the cap or does not end trivial."""
 
 
 def exponent_matrix(pres):
+    """Row ``i`` holds the exponent sum of each generator in relator ``i``."""
     m = [[0] * pres.n_gen for _ in pres.rels]
     for i, r in enumerate(pres.rels):
         for g in r:
@@ -59,14 +39,22 @@ def det(m):
 
 
 def abs_det(pres):
+    """``|det|`` of the exponent matrix; ``ReplayError`` for an unbalanced presentation."""
     if len(pres.rels) != pres.n_gen:
         raise ReplayError(f"unbalanced presentation {pres}")
     return abs(det(exponent_matrix(pres)))
 
 
 def replay(pres, path, cyclic=True, cap=None, normalize=True, require_trivial=True):
-    """Replay ``path`` from ``pres``; return the list of states (start first)."""
-    cur = pres.reduced(cyclic).canonical() if normalize else pres
+    """Replay ``path`` from ``pres`` and return the states (start first); raise ``ReplayError`` on any failure.
+
+    An S-move (``acx.core.moves.Move``) must be in range with a cancelling seam; an elementary or stable dict move
+    must be well formed (AC5 only drops a generator that occurs nowhere else). ``|det| = 1`` is checked at the
+    start and after every move. ``cap`` bounds the relators an S-move produces. ``normalize`` (search paths) starts
+    from ``pres.normal(cyclic)``, the search's start; elementary paths on the raw words pass ``normalize=False``.
+    ``require_trivial``: the end has as many relators as generators, each cyclically reducing to one letter.
+    """
+    cur = pres.normal(cyclic) if normalize else pres
     if abs_det(cur) != 1:
         raise ReplayError(f"start has |det| != 1: {cur}")
     states = [cur]
@@ -86,6 +74,7 @@ def replay(pres, path, cyclic=True, cap=None, normalize=True, require_trivial=Tr
 
 
 def is_valid(pres, path, **kw):
+    """``replay`` as a boolean."""
     try:
         replay(pres, path, **kw)
         return True

@@ -15,7 +15,7 @@ from acx.core.moves import Move, enumerate_moves, source_word, step
 from acx.core.priority import get as get_priority
 from acx.core.words import Presentation, canonical_word, reduce, rotate, sort_rels
 from acx.search import PARITY_STATS, search
-from acx.search.fast import children, decode
+from acx.search.fast import children, decode, encode
 
 # 36 rows spread over the 566 MS640 rows whose spec cost (length + s20_mk2 pops at budget 10,000)
 # is at most 2,500, plus four rows costing 3,000-7,600 pops: about 22,000 spec pops in all.
@@ -97,14 +97,15 @@ def test_rotations_above_128():
     assert r.solved and r.path_length == 130
 
 
-def spec_children(rels, cap):
-    """Spec's children of one state, as (move, child) in enumeration order."""
-    out = []
+def spec_expand(rels, cap):
+    """Spec's children of one state, as (move, canonical sorted child) in enumeration order: ``(kept, dropped)``."""
+    kept, dropped = [], []
     for m in enumerate_moves(rels):
         new = reduce(rotate(rels[m.i], m.k1) + rotate(source_word(rels, m), m.k2))
-        if cap is None or (len(new) <= cap and all(len(r) <= cap for k, r in enumerate(rels) if k != m.i)):
-            out.append((m, sort_rels(rels[:m.i] + (canonical_word(new),) + rels[m.i + 1:])))
-    return out
+        child = sort_rels(rels[:m.i] + (canonical_word(new),) + rels[m.i + 1:])
+        over = cap is not None and (len(new) > cap or any(len(r) > cap for k, r in enumerate(rels) if k != m.i))
+        (dropped if over else kept).append((m, child))
+    return kept, dropped
 
 
 @pytest.mark.parametrize("priority", ["length", "s20_mk2"])
@@ -117,23 +118,13 @@ def test_children_kernel(ms640, priority):
         rels = ms640[pid].canonical().rels
         syms, lens, moves, scores, rejected = children(rels, cap=16, priority=priority)
         got = [(tuple(m), decode(s, n, 2)) for s, n, m in zip(syms, lens, moves)]
-        want = spec_children(rels, 16)
+        want = spec_expand(rels, 16)[0]
         assert set(got) <= set(want)
         assert list(dict.fromkeys(c for _, c in got)) == list(dict.fromkeys(c for _, c in want))
         assert list(scores) == [prio(c) for _, c in got]
         assert rejected == len(list(enumerate_moves(rels))) - len(want)
         kept, total, rejected_all = kept + len(got), total + len(want), rejected_all + rejected
     assert kept < total and rejected_all > 0
-
-
-def spec_dropped(rels, cap):
-    """Spec's over-cap children of one state (canonical, sorted), one per move, in enumeration order."""
-    out = []
-    for m in enumerate_moves(rels):
-        new = reduce(rotate(rels[m.i], m.k1) + rotate(source_word(rels, m), m.k2))
-        if len(new) > cap or any(len(r) > cap for k, r in enumerate(rels) if k != m.i):
-            out.append(sort_rels(rels[:m.i] + (canonical_word(new),) + rels[m.i + 1:]))
-    return out
 
 
 @pytest.mark.parametrize("priority", ["length", "s20_mk2"])
@@ -146,7 +137,7 @@ def test_dropped_children_kernel(ms640, priority, cap):
         rels = ms640[pid].canonical().rels
         *_, rejected, dsyms, dlens, dscores = children(rels, cap=cap, priority=priority, drops=True)
         got = [decode(s, n, 2) for s, n in zip(dsyms, dlens)]
-        want = spec_dropped(rels, cap)
+        want = [c for _, c in spec_expand(rels, cap)[1]]
         assert rejected == len(want) >= len(got)
         assert list(dict.fromkeys(got)) == list(dict.fromkeys(want))
         assert list(dscores) == [prio(c) for c in got]
@@ -167,3 +158,9 @@ def test_speed(ms640, capsys):
         print(f"\n  pops/s spec {rate['spec']:,.0f}  fast {rate['fast']:,.0f}  "
               f"({rate['fast'] / rate['spec']:.0f}x)")
     assert rate["fast"] > 5 * rate["spec"]
+
+
+def test_more_generators_than_the_byte_encoding_holds_is_refused():
+    with pytest.raises(ValueError, match="127"):
+        encode(((1,), (2,)), 128)
+    assert encode(((1,), (2,)), 127)[0].dtype.itemsize == 1

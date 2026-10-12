@@ -105,3 +105,70 @@ def test_cap_counters_in_records_and_summary(tmp_path):
     assert c["would_pop"] == sum(r["cap_would_pop"] for r in recs)
     free = runner.run(cfg("smoke", 'rows="620"', "search.cap=none"), str(tmp_path / "free"), log=lambda *a: None)
     assert free["caps"]["cap"]["dropped"] == 0 and free["caps"]["cap"]["cap"] is None
+
+
+def quiet(c, out, **kw):
+    return runner.run(c, str(out), log=lambda *a: None, **kw)
+
+
+@pytest.mark.parametrize("cut", [50, 1])
+def test_resume_survives_a_truncated_last_line(tmp_path, cut):
+    """An interrupted run leaves half a record (or one without its newline): resume drops it, redoes that row and
+    keeps the file clean."""
+    quiet(cfg("smoke", 'rows="0:3"'), tmp_path)
+    f = tmp_path / "smoke" / "paths.jsonl"
+    f.write_bytes(f.read_bytes()[:-cut])
+    s = quiet(cfg("smoke", 'rows="0:5"'), tmp_path)
+    recs = records(tmp_path, "smoke")
+    assert [r["id"] for r in recs] == ["0", "1", "2", "3", "4"] and s["rows"] == 5
+
+
+def test_rows_with_repeated_ids_run_once(tmp_path):
+    rows = [type("R", (), {"id": str(i)})() for i in range(4)]
+    assert [r.id for r in runner.select(rows, "1,1,2,1")] == ["1", "2"]
+    s = quiet(cfg("smoke", 'rows="1,1,2"'), tmp_path)
+    assert s["rows"] == 2 and [r["id"] for r in records(tmp_path, "smoke")] == ["1", "2"]
+
+
+def test_summary_covers_every_record_of_the_run(tmp_path):
+    """A re-check of fewer rows must not shrink summary.json below what paths.jsonl holds."""
+    quiet(cfg("smoke", 'rows="0:6"'), tmp_path)
+    quiet(cfg("smoke", 'rows="0:2"'), tmp_path)
+    with open(tmp_path / "smoke" / "summary.json") as f:
+        assert json.load(f)["rows"] == len(records(tmp_path, "smoke")) == 6
+
+
+def test_ngen_sac_needs_the_length_priority_at_load():
+    with pytest.raises(ValueError, match="length"):
+        cfg("ngen_sac", "search.priority=s20_mk2")
+    free = runner.method_config(cfg("ngen_sac", "ngen.sac=false", "search.priority=s20_mk2"))
+    assert free.search.priority == "s20_mk2"
+
+
+def test_rows_with_det_not_one_are_recorded_as_errors(tmp_path):
+    """No search can solve them: an unsolved record with an ``error``, counted in the summary, no exception."""
+    csv = tmp_path / "rows.csv"
+    csv.write_text("r1,r2\nX,x\nY,XyYx\nxxY,Yx\n")           # det 0, an empty relator, a good row
+    s = quiet(cfg("smoke", f'benchmark="{csv}"', "rows=", "name=bad"), tmp_path)
+    recs = {r["id"]: r for r in records(tmp_path, "bad")}
+    assert [bool(recs[i].get("error")) for i in "012"] == [True, True, False] and not recs["0"]["solved"]
+    assert s["errors"] == 2 and s["rows"] == 3
+
+
+def test_aut_row_that_is_its_own_representative_stores_the_decoded_path(tmp_path):
+    """Not ``aut_assisted``: the elementary path is the decoded S-move path, not the long transported one."""
+    from acx import data
+    from acx.core.moves import decode_path
+    from acx.verify.decode import decode_and_replay
+    quiet(cfg("aut", 'benchmark="ms640"', 'rows="7,177"', "name=autself"), tmp_path)
+    by_id = {r.id: r.pres for r in data.rows("ms640")}
+    for r in records(tmp_path, "autself"):
+        assert not r["aut_assisted"]
+        want = decode_and_replay(by_id[r["id"]].reduced(False), decode_path(r["path"]))[0]
+        assert r["elem_moves"] == len(r["elementary"]) == len(want) < 58 + 1 and len(want) in (13, 47)
+
+
+def test_cov_with_free_reduction_replays_its_images(tmp_path):
+    """Images whose normal form is unstable under free reduction (bench60 ids 579, 380) used to hit ReplayError."""
+    s = quiet(cfg("cov", 'rows="579,380"', "search.cyclic=false", "search.budget=300", "name=covlin"), tmp_path)
+    assert s["rows"] == 2 and s["errors"] == 0

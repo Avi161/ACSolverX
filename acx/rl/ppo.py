@@ -1,11 +1,7 @@
-"""PPO trainer matching ``ppo_ac_s.py`` knob for knob (training is optional; the shipped policy is step 1000).
-
-Port of ``origin/experiments/ppo:experiments/ppo/ppo.py`` (tip c73b11f2; no replication run exists, only
-the inference side was checked against JAX). Hyperparameters are ``ppo_ac_s.py:337-360``: Adam
-``lr 2.5e-3, eps 1e-5``, 96-step rollouts, 3 epochs x 8 minibatches, ``gamma 0.999``, GAE ``0.95``, clip
-``0.2``, entropy ``0.01``, value coefficient ``0.5``, PPO2 clipped value loss, advantages normalised PER
-MINIBATCH, global grad-norm clip ``0.5`` before the step. ``micro`` splits a minibatch into chunks with
-the same gradient (the actor grid is ``[B, L, L, 128]``). The reward is the plain dense one: no shaped arm.
+"""PPO trainer (optional; the shipped policy is step 1000): Adam ``lr 2.5e-3``, 96-step rollouts, 3 epochs x 8
+minibatches, ``gamma 0.999``, GAE ``0.95``, clip ``0.2``, entropy ``0.01``, value coefficient ``0.5``, clipped value
+loss, advantages normalised per minibatch, grad-norm clip ``0.5``. ``micro`` splits a minibatch into chunks with the
+same gradient. The reward is the plain dense one.
 
     states = encode_rows(data.load("ac19_extended"))
     model = train(states, updates=100, n_pinned=pinned_prefix(states, encode_rows(data.load("1190ms"))))
@@ -37,6 +33,7 @@ def pinned_prefix(states, ms_states):
 
 
 def rollout(model, env, cfg, gen):
+    """``steps`` environment steps under the sampled policy: the batch tensors, the last value and the solve count."""
     T, N = cfg["steps"], env.N
     obs, act, logp, val, rew, done = (torch.empty((T, N, *s), dtype=d) for s, d in
                                       [((2 * env.L,), torch.int64), ((), torch.int64), ((), torch.float32),
@@ -55,6 +52,7 @@ def rollout(model, env, cfg, gen):
 
 
 def gae(val, rew, done, last, gamma, lam):
+    """Generalised advantage estimate and the value targets ``(advantage, advantage + value)``."""
     adv, run, nxt = torch.zeros_like(rew), torch.zeros_like(last), last
     for t in reversed(range(len(rew))):
         delta = rew[t] + gamma * nxt * (1 - done[t]) - val[t]

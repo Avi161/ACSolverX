@@ -234,7 +234,7 @@ def nielsen_children(words):
             for i in range(1, n + 1) for j in range(1, n + 1) if i != j for s in (1, -1)]
 
 
-def children(words, cap, ceiling, min_uses=2, nielsen=True, dropped=None):
+def children(words, cap, ceiling, min_uses=2, dropped=None):
     """``(children, rejected)``: every admissible child ``(normalized child, event)`` within the
     total-length ``ceiling``, and the number of moves the cap or the ceiling rejected.
 
@@ -252,7 +252,7 @@ def children(words, cap, ceiling, min_uses=2, nielsen=True, dropped=None):
             kept.append((k, e))
         elif dropped is not None:
             dropped.append(("cap", k, max(map(len, k), default=0)))
-    cands = prods + defines(words, min_uses) + kept + (nielsen_children(words) if nielsen else [])
+    cands = prods + defines(words, min_uses) + kept + nielsen_children(words)
     out = []
     for k, e in cands:
         total = length(k)

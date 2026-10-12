@@ -7,10 +7,10 @@ import pytest
 
 from acx.core.config import SearchConfig, parse_override
 from acx.core.moves import (Move, apply_raw, destabilize, elementary_step, enumerate_moves,
-                            from_legacy, s_step, seam_cancels, stabilize, to_legacy)
+                            from_legacy, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
 from acx.core.words import (Presentation, canonical_rels, canonical_word, fmt, inverse,
-                            is_cyclically_reduced, parse, reduce, rotate, state_key)
+                            parse, reduce, rotate, state_key)
 
 RNG = random.Random(7)
 
@@ -45,7 +45,6 @@ def test_reduce():
     for _ in range(300):
         w = rand_word(RNG.randint(0, 14))
         r = reduce(w)
-        assert is_cyclically_reduced(r)
         assert reduce(r) == r
         ex = lambda u: (sum((g == 1) - (g == -1) for g in u), sum((g == 2) - (g == -2) for g in u))
         assert ex(r) == ex(w)
@@ -93,7 +92,7 @@ def test_enumerate_moves_is_every_cancelling_seam_in_main_order():
 
 def test_legacy_moves_and_s_step():
     m = from_legacy(2, -1, 3, 1)
-    assert m == Move(1, 0, -1, 3, 1) and to_legacy(m) == (2, -1, 3, 1)
+    assert m == Move(1, 0, -1, 3, 1)
     p = Presentation.parse("Yx", "YYXyx").canonical()
     for mv in enumerate_moves(p.rels):
         child = s_step(p, mv)
@@ -146,3 +145,31 @@ def test_config(tmp_path):
     for bad in (["nope=1"], ["cap=-1"], ["priority=recommended"], ["backend=gpu"], ["budget=0"]):
         with pytest.raises(ValueError):
             SearchConfig().with_overrides(bad)
+
+
+def test_normal_form_is_a_fixed_point():
+    """``normal`` is ``reduced().canonical()`` repeated to a fixed point: one pass when cyclic, more when not."""
+    unstable = Presentation.parse("YYYX", "XYxx")
+    assert unstable.reduced(False).canonical() != unstable.reduced(False).canonical().reduced(False).canonical()
+    for _ in range(300):
+        p = Presentation(2, (rand_word(RNG.randint(0, 8)), rand_word(RNG.randint(0, 8))))
+        assert p.normal() == p.reduced().canonical()
+        n = p.normal(cyclic=False)
+        assert n == n.reduced(False).canonical() and all(reduce(r, False) == r for r in n.rels)
+
+
+def test_generator_names_past_z_do_not_crash():
+    assert fmt((27, -27, 1)) == "g27G27x" and fmt(tuple(range(1, 27))) == "xyzabcdefghijklmnopqrstuvw"
+
+
+@pytest.mark.parametrize("s", [1, -1])
+def test_trace_conjugated_multiply(s):
+    """``r_i <- r_i . (c^-1 r_j^s c)`` (free reduction), ``r_j`` back as it was, every step an elementary move."""
+    from acx.core.moves import Trace
+    p = Presentation.parse("xyXy", "yxxY")
+    c = parse("xy")
+    tr = Trace(p)
+    tr.conjugated_multiply(0, 1, s, c)
+    src = p.rels[1] if s == 1 else inverse(p.rels[1])
+    want = reduce(p.rels[0] + reduce(inverse(c) + src + c, cyclic=False), cyclic=False)
+    assert tr.pres.rels == (want, p.rels[1]) and all(m["op"] in ("invert", "conjugate", "multiply") for m in tr.moves)

@@ -45,19 +45,20 @@ Defaults are the source's final setting (budget 1,000 units, penalty 5,
 dyn_ratio 0.5, cap 8, slack 8): MS640 640/640, AC19 aut-min 72,779/72,779.
 """
 import heapq
-import itertools
 import time
 from dataclasses import dataclass, field, replace
+
+import numpy as np
 
 from ..core.config import parse_cap
 from ..core.moves import Move
 from ..core.priority import length
 from ..core.words import Presentation, canonical_rels
 from . import dynrank as D
+from .capwatch import Watch, blank_records
 from .cascade import NIELSEN, Aut, Budget, Run, cascade, gate_applicable, gate_precheck_key, is_terminal, run_gates
-from .capwatch import DYNPOOL, R2POOL, Watch, blank_records
 from .certify import certify
-from .frontier import BACKENDS, backend, pack, pair_precheck, perm_min, spec_dropped, unpack
+from .frontier import BACKENDS, backend, orbit, over_cap, pack, unpack
 
 R2, DYN, DEFS = 0, 1, 2
 
@@ -66,14 +67,11 @@ R2, DYN, DEFS = 0, 1, 2
 class HybridConfig:
     budget: int = 1000                # work units
     penalty: int = 5                  # priority letters per generator above two
-    dyn_ratio: float | None = 0.5     # higher-rank pops <= dyn_ratio * rank-two pops + 20
-    dyn_max: int | None = None        # at most this many higher-rank pops
+    dyn_ratio: float = 0.5            # higher-rank pops <= dyn_ratio * rank-two pops + 20
     dyn_cap: int | None = 8           # longest relator a higher-rank product or elimination may create; None = uncapped
     slack: int = 8                    # higher-rank total-length ceiling above the search root
     min_uses: int = 2                 # a defined digram must occur this often
     r2_cap: int | str | None = "parent"   # rank-two relator cap: "parent" (the parent's total length, the source's rule), an int, or None (uncapped)
-    nielsen: bool = True              # Nielsen-map edges at rank two
-    perms: bool = True                # signed-permutation canonical form at rank two
     backend: str = "fast"             # rank-two expansion: "spec" (pure Python) | "fast" (numba)
     certify: bool = True              # write out and replay the elementary path
 
@@ -111,192 +109,179 @@ class _Done(Exception):
     pass
 
 
-def search(run, cfg, budget):
-    """The best-first hybrid search from ``run.state``; ``(solved, steps, stats)``."""
-    expand, transform = backend(cfg.backend)
-    ceiling = sum(map(len, run.state)) + cfg.slack
-    root_key, prefix = pack(run.state), ()
-    if cfg.perms:
-        best, k = perm_min(root_key, transform)
-        if k:
-            root_key, prefix = best, (Aut(k),)
-    heap = [(float(len(root_key) - 1), 0, 0, (root_key, None, (), R2))]
-    dheap, seen_r2, seen_dyn = [], set(), set()
-    st = dict(pops=0, dyn_pops=0, max_rank=2, dyn_rejected=0)
-    tick = itertools.count(1).__next__                  # insertion order, the last tie-break (only compared, so a
-                                                        # dropped child may take a number: it is the place it would have had)
-    push, pop = heapq.heappush, heapq.heappop
-    result = []
-    base = ceiling - cfg.slack                          # the root's total length
-    least = {}                                          # canonical key -> the key a popped state would be stored under
+class _Search:
+    """The best-first search from ``run.state`` with a budget of ``budget`` units; ``go()`` runs it."""
 
-    def ident_r2(pair):
-        key = pack(canonical_rels(pair))
-        if not cfg.perms:
-            return key
-        if key not in least:
-            least[key] = perm_min(key, transform)[0]
-        return least[key]
+    def __init__(self, run, cfg, budget):
+        self.cfg, self.budget, self.clock, self.result = cfg, budget, 0, []
+        self.expand, self.full, self.transform = backend(cfg.backend)
+        self.base = sum(map(len, run.state))              # the root's total length
+        self.ceiling = self.base + cfg.slack
+        root = pack(run.state)
+        images = orbit(root, self.transform)
+        root = min(images)
+        self.prefix = (Aut(images.index(root)),) if root != images[0] else ()
+        self.heap = [(float(len(root) - 1), 0, 0, (root, None, (), R2))]
+        self.dheap, self.seen_r2, self.seen_dyn = [], set(), set()
+        self.st = dict(pops=0, dyn_pops=0, max_rank=2, dyn_rejected=0)
+        self.watch = Watch({"cap": cfg.r2_cap, "dyn_cap": cfg.dyn_cap, "slack": cfg.slack}, self.seen_r2, self.seen_dyn)
 
-    watch = Watch({"cap": cfg.r2_cap, "dyn_cap": cfg.dyn_cap, "slack": cfg.slack}, ident_r2,
-                  lambda words: D.make_key(words)[0], seen_r2, seen_dyn)
+    def tick(self, n=1):
+        """The first of ``n`` new insertion numbers, the last tie-break of the heaps (only compared, so a dropped child
+        may take one: it is the place it would have had)."""
+        self.clock += n
+        return self.clock - n + 1
 
-    def can_dyn(pops, dyn_pops):
-        """May the higher-rank heap be served (the ratio and ``dyn_max`` rules)?"""
-        return (cfg.dyn_max is None or dyn_pops < cfg.dyn_max) and (
-            cfg.dyn_ratio is None or dyn_pops <= cfg.dyn_ratio * (pops - dyn_pops) + 20)
+    def can_dyn(self):
+        """May the higher-rank heap be served (its pops are at most ``dyn_ratio`` times the rank-two pops plus 20)?"""
+        return self.st["dyn_pops"] <= self.cfg.dyn_ratio * (self.st["pops"] - self.st["dyn_pops"]) + 20
 
-    def gates_act(pair):
-        """Would ``offer`` have run the finishing gates on this rank-two child (a pair of relators) to some
-        effect (a solve, or a charge of units)? Gates that fail for free change nothing."""
-        if not pair_precheck(pair):
-            return False
-        state = canonical_rels(pair)
-        if not gate_applicable(state):
-            return False
-        gate = Run(state, max(budget - st["pops"], 0))
-        try:
-            return run_gates(gate) or gate.units > 0
-        except Budget:
-            return True
-
-    def drop_r2(name, pair, total, needed, depth):
-        """A rank-two child a limit rejected: counted now if the finishing gates would have acted on it at
-        once, else pending in the rank-two pool (as the pair; it is canonicalised only if it drains)."""
-        if gates_act(pair):
-            watch.drop_now(name, total, needed, st["pops"] + 1)
-        else:
-            watch.drop(name, R2POOL, (float(total), depth, tick()), total, needed, pair)
-
-    def drop_dyn(reason, state, needed, depth):
-        """A higher-rank move the dyn_cap (reason "cap") or the ceiling (reason "slack") rejected."""
-        name, total, n = ("dyn_cap" if reason == "cap" else "slack"), length(state), len(state)
-        if name == "slack":
-            needed -= base
-        if n == 2:                                      # an elimination back to rank two: offer() would run the gates
-            drop_r2(name, D.make_key(state)[0], total, needed, depth)
-        else:
-            watch.drop(name, DYNPOOL, (float(total + cfg.penalty * (n - 2)), depth, tick()), total, needed, state)
-
-    def chain(node):
+    def chain(self, node):
         out = []
         while node[1] is not None:
             out.append(node[2])
             node = node[1]
-        return prefix + sum(reversed(out), ())
+        return self.prefix + sum(reversed(out), ())
 
-    def try_finish(node, state):
+    def try_finish(self, node, state):
+        """Stop if ``state`` is trivial or the finishing gates (``cascade.run_gates``) solve it."""
         if is_terminal(state):
-            result.append(chain(node))
+            self.result.append(self.chain(node))
             raise _Done()
         if not gate_applicable(state):
             return
-        gate = Run(state, budget - st["pops"])
+        gate = Run(state, self.budget - self.st["pops"])
         try:
             ok = run_gates(gate)
         except Budget:
-            st["pops"] = budget
+            self.st["pops"] = self.budget
             raise _Done()
-        st["pops"] += gate.units
+        self.st["pops"] += gate.units
         if ok:
-            result.append(chain(node) + tuple(gate.steps))
+            self.result.append(self.chain(node) + tuple(gate.steps))
             raise _Done()
 
-    def offer(cnode, depth):
+    def offer(self, cnode, depth, tick):
+        """A rank-two child: the gates first, then the rank-two heap."""
         if gate_precheck_key(cnode[0]):
-            try_finish(cnode, unpack(cnode[0]))
-        push(heap, (float(len(cnode[0]) - 1), depth, tick(), cnode))
+            self.try_finish(cnode, unpack(cnode[0]))
+        heapq.heappush(self.heap, (float(len(cnode[0]) - 1), depth, tick, cnode))
 
-    def offer_dyn(ckey, rl, parent, event, depth):
+    def offer_dyn(self, ckey, rl, parent, event, depth):
+        """A higher-rank child ``ckey`` (relabelled by ``rl``); a rank-two one goes to the rank-two heap."""
         cstep = ({"op": "dyn", "event": event, "relabel": rl, "after": ckey},)
         if len(ckey) == 2:
-            offer((pack(canonical_rels(ckey)), parent, cstep, R2), depth)
+            self.offer((pack(canonical_rels(ckey)), parent, cstep, R2), depth, self.tick())
             return
-        st["max_rank"] = max(st["max_rank"], len(ckey))
-        prio = float(length(ckey) + cfg.penalty * (len(ckey) - 2))
-        push(dheap, (prio, depth, tick(), (ckey, parent, cstep, DYN)))
+        self.st["max_rank"] = max(self.st["max_rank"], len(ckey))
+        prio = float(length(ckey) + self.cfg.penalty * (len(ckey) - 2))
+        heapq.heappush(self.dheap, (prio, depth, self.tick(), (ckey, parent, cstep, DYN)))
 
-    try:
-        while (heap or dheap) and st["pops"] < budget:
-            allowed = bool(dheap) and can_dyn(st["pops"], st["dyn_pops"])
-            ok = allowed or (watch.armed and can_dyn(st["pops"], st["dyn_pops"]))
-            if allowed and (not heap or dheap[0][0] <= heap[0][0]):
-                if watch.armed:
-                    watch.step(None, dheap[0], ok, st["pops"] + 1)
-                _, depth, _, node = pop(dheap)
-            elif heap:
-                if watch.armed:
-                    watch.step(heap[0], None, ok, st["pops"] + 1)
-                _, depth, _, node = pop(heap)
+    def drop_dyn(self, reason, state, needed, depth):
+        """A higher-rank move the dyn_cap (reason "cap") or the ceiling (reason "slack") rejected."""
+        name, total, n = ("dyn_cap" if reason == "cap" else "slack"), length(state), len(state)
+        if name == "slack":
+            needed -= self.base
+        if n == 2:                                      # an elimination back to rank two: offer() would run the gates
+            key = pack(canonical_rels(D.make_key(state)[0]))
+            self.watch.drop_child(name, depth, self.tick(), key, needed, self.st["pops"] + 1)
+        else:
+            key = (float(total + self.cfg.penalty * (n - 2)), depth, self.tick())
+            self.watch.drop(name, key, total, needed, state)
+
+    def expand_r2(self, rep, state, node, depth):
+        """Offer every child of the rank-two state ``rep`` (S-moves, then the four Nielsen maps), and park its defines."""
+        cfg, watch = self.cfg, self.watch
+        cap = len(rep) - 1 if cfg.r2_cap == "parent" else cfg.r2_cap
+        children, rejected = self.expand(rep, cap)
+        drops = over_cap(self.full(rep), cap) if rejected and watch.has("cap") else None   # never under "parent"
+        base = self.tick(len(children) + (len(drops.pos) if drops else 0))
+        hits, shift = [], ()
+        if drops:
+            watch.moved("cap", rejected, int(drops.total.min()))
+            hits = watch.drop_children("cap", depth, base, drops)
+            shift = np.searchsorted(drops.before, np.arange(len(children)), side="right").tolist()
+        for j, (child, move) in enumerate(children):
+            while hits and hits[0][0] <= j:
+                watch.drop_now("cap", *hits.pop(0)[1:], self.st["pops"] + 1)
+            self.offer((child, node, (move,), R2), depth, base + j + (shift[j] if shift else 0))
+        for k in NIELSEN:
+            self.offer((self.transform(rep, k), node, (Aut(k),), R2), depth, self.tick())
+        lower = float(len(rep) - 1 - max(D.digram_counts(state).values(), default=0) + 3 + cfg.penalty)
+        heapq.heappush(self.dheap, (lower, depth, self.tick(), (None, node, state, DEFS)))
+
+    def expand_dyn(self, rep, node, depth):
+        """Offer every child of the higher-rank state ``rep``."""
+        cfg, st = self.cfg, self.st
+        st["dyn_pops"] += 1
+        lost = []
+        edges, rejected = D.children(rep, cfg.dyn_cap, self.ceiling, cfg.min_uses, lost)
+        st["dyn_rejected"] += rejected
+        for reason, dstate, _ in lost:
+            self.watch.moved("dyn_cap" if reason == "cap" else "slack", 1, length(dstate))
+        for cw, event in _dedup_sorted(edges + [(state, (reason, needed)) for reason, state, needed in lost]):
+            if event.__class__ is tuple:
+                self.drop_dyn(event[0], cw, event[1], depth)
             else:
-                break                                   # only deferred higher-rank states remain
-            rep, parent, steps, kind = node
-            if kind == R2 and cfg.perms and parent is not None:
-                canon, k = perm_min(rep, transform)
-                if k:
-                    rep, node = canon, (canon, parent, steps + (Aut(k),), R2)
-            if kind == DEFS:                            # the deferred define children (no charge)
-                state = steps                           # a placeholder carries its parent's pair here
-                for cw, event in _dedup_sorted(D.defines(D.normalize(state), cfg.min_uses)):
-                    if length(cw) > ceiling:
-                        st["dyn_rejected"] += 1
-                        watch.moved("slack", length(cw))
-                        drop_dyn("slack", cw, length(cw), depth)
-                    else:
-                        offer_dyn(*D.make_key(cw), parent, event, depth)
-                continue
-            seen = seen_r2 if kind == R2 else seen_dyn
-            if rep in seen:
-                continue
-            seen.add(rep)
-            st["pops"] += 1
-            depth += 1
-            if kind == R2:
-                state = unpack(rep)
-                if is_terminal(state):
-                    result.append(chain(node))
-                    raise _Done()
-                rcap = len(rep) - 1 if cfg.r2_cap == "parent" else cfg.r2_cap
-                children, rejected = expand(rep, rcap)
-                if rejected and watch.has("cap"):       # never under "parent": its children are shorter than the parent
-                    lost = spec_dropped(rep, rcap)
-                    assert len(lost) == rejected
-                    at = 0                              # merge the rejected moves into the kept ones, in search order
-                    for child, move in children:
-                        order = (move.i, -move.s, move.k1, move.k2)
-                        while at < len(lost) and lost[at][0] < order:
-                            watch.moved("cap", lost[at][2])
-                            drop_r2("cap", lost[at][1], lost[at][2], lost[at][3], depth)
-                            at += 1
-                        offer((child, node, (move,), R2), depth)
-                    for _, pair, total, longest in lost[at:]:
-                        watch.moved("cap", total)
-                        drop_r2("cap", pair, total, longest, depth)
+                self.offer_dyn(*D.make_key(cw), node, event, depth)
+
+    def expand_defs(self, state, parent, depth):
+        """The deferred define children of a rank-two state (no charge)."""
+        for cw, event in _dedup_sorted(D.defines(D.normalize(state), self.cfg.min_uses)):
+            if length(cw) > self.ceiling:
+                self.st["dyn_rejected"] += 1
+                self.watch.moved("slack", 1, length(cw))
+                self.drop_dyn("slack", cw, length(cw), depth)
+            else:
+                self.offer_dyn(*D.make_key(cw), parent, event, depth)
+
+    def go(self):
+        """Run the search; ``(solved, steps, stats)``."""
+        st, watch, heap, dheap = self.st, self.watch, self.heap, self.dheap
+        try:
+            while (heap or dheap) and st["pops"] < self.budget:
+                dyn_ok = self.can_dyn()
+                served = dheap if dyn_ok and dheap and (not heap or dheap[0][0] <= heap[0][0]) else heap
+                if not served:
+                    break                               # only deferred higher-rank states remain
+                if watch.armed:
+                    watch.step(heap[0] if served is heap else None, dheap[0] if served is dheap else None,
+                               dyn_ok and bool(dheap or watch.armed), st["pops"] + 1)
+                _, depth, _, node = heapq.heappop(served)
+                rep, parent, steps, kind = node
+                if kind == DEFS:                        # a placeholder carries its parent's pair in ``steps``
+                    self.expand_defs(steps, parent, depth)
+                    continue
+                seen = self.seen_r2 if kind == R2 else self.seen_dyn
+                if rep in seen:
+                    continue
+                if kind == R2:                          # seen is closed under the signed permutations
+                    images = orbit(rep, self.transform)
+                    seen.update(images)
+                    best = min(images)
+                    if best != rep:
+                        rep, node = best, (best, parent, steps + (Aut(images.index(best)),), R2)
                 else:
-                    for child, move in children:
-                        offer((child, node, (move,), R2), depth)
-                for k in NIELSEN if cfg.nielsen else ():
-                    offer((transform(rep, k), node, (Aut(k),), R2), depth)
-                lower = float(len(rep) - 1 - max(D.digram_counts(state).values(), default=0) + 3 + cfg.penalty)
-                push(dheap, (lower, depth, tick(), (None, node, state, DEFS)))
-            else:
-                st["dyn_pops"] += 1
-                lost = []
-                edges, rejected = D.children(rep, cfg.dyn_cap, ceiling, cfg.min_uses, cfg.nielsen, lost)
-                st["dyn_rejected"] += rejected
-                for reason, dstate, _ in lost:
-                    watch.moved("dyn_cap" if reason == "cap" else "slack", length(dstate))
-                for cw, event in _dedup_sorted(edges + [(state, (reason, needed)) for reason, state, needed in lost]):
-                    if event.__class__ is tuple:
-                        drop_dyn(event[0], cw, event[1], depth)
-                    else:
-                        offer_dyn(*D.make_key(cw), node, event, depth)
-    except _Done:
-        pass
-    st["pops"] = min(st["pops"], budget)
-    watch.end(not result and st["pops"] < budget, can_dyn(st["pops"], st["dyn_pops"]), budget - st["pops"], st["pops"])
-    st.update(watch.records())
-    return bool(result), (result[0] if result else ()), st
+                    seen.add(rep)
+                st["pops"] += 1
+                if kind == DYN:
+                    self.expand_dyn(rep, node, depth + 1)
+                elif is_terminal(state := unpack(rep)):
+                    self.result.append(self.chain(node))
+                    raise _Done()
+                else:
+                    self.expand_r2(rep, state, node, depth + 1)
+        except _Done:
+            pass
+        st["pops"] = min(st["pops"], self.budget)
+        watch.end(not self.result and st["pops"] < self.budget, self.can_dyn(), self.budget - st["pops"], st["pops"])
+        st.update(watch.records())
+        return bool(self.result), (self.result[0] if self.result else ()), st
+
+
+def search(run, cfg, budget):
+    """The best-first hybrid search from ``run.state``; ``(solved, steps, stats)``."""
+    return _Search(run, cfg, budget).go()
 
 
 def solve(pres, cfg=None, **overrides):

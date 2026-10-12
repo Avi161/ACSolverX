@@ -1,21 +1,10 @@
-"""``RelativeDualRingActorCritic`` in PyTorch, plus the shipped step-1000 weights.
+"""``RelativeDualRingActorCritic`` in PyTorch, plus the shipped step-1000 weights (``checkpoint/610model_1000.pt``).
 
-Port of ``origin/experiments/ppo:experiments/ppo/policy.py`` (tip c73b11f2; bit-identical outputs), the torch
-version of the flax network (3.8e-5 in log-probability against JAX). Details that decide parity:
-
-* LayerNorm ``eps=1e-6`` (torch default 1e-5); GELU is the tanh form; masking is ``-1e9``, never
-  ``-inf``, and the ``1/sqrt(head_dim)`` scale comes after masking (a fully masked attention row
-  stays uniform instead of NaN).
-* The relator is a ring: relative distances are taken modulo the TRUE relator length, with one
-  learned ``rel_emb[H, L, Dh]`` per head. The relative term is ``einsum(q, rel_emb)`` then a gather
-  (same arithmetic as gathering the embedding first, without the ``B*H*L*L*Dh`` tensor).
-* The actor ``Dense(128)`` over the outer product of the two rings is applied separably
-  (``x1 W[:d] + x2 W[d:]`` broadcast), never materialising the ``[B, L, L, 2d]`` concatenation.
-
-``forward(obs)`` takes ``(B, 2L)`` int presentations and returns ``(logits, value)``; the logits
-cover the ``4 L^2`` flat actions of ``acx.rl.moves`` with illegal ones (seam does not cancel, padding)
-at ``-1e9``. Weights: ``checkpoint/610model_1000.pt`` is the 610model run (Math-AI-Caltech, seed 142,
-~23% of 1e9 steps) at step 1000, converted once from the orbax checkpoint by ``acx.rl.convert``.
+Details that decide parity with the trained network: LayerNorm ``eps=1e-6``; tanh GELU; masking with ``-1e9``, never
+``-inf``, and the ``1/sqrt(head_dim)`` scale after masking (a fully masked attention row stays uniform); the relator is a
+ring, so relative distances are taken modulo its TRUE length with one learned ``rel_emb[H, L, Dh]`` per head; the actor
+``Dense(128)`` over the outer product of the two rings is applied separably. ``forward(obs)`` takes ``(B, 2L)`` ints and
+returns ``(logits, value)``: logits over the ``4 L^2`` flat actions of ``acx.rl.moves``, illegal ones at ``-1e9``.
 """
 import math
 import os
@@ -28,10 +17,12 @@ CHECKPOINT = os.path.join(os.path.dirname(__file__), "checkpoint", "610model_100
 
 
 def gelu(x):
+    """The tanh form of GELU."""
     return F.gelu(x, approximate="tanh")
 
 
 def _dense(i, o, gain=None):
+    """``nn.Linear(i, o)`` with flax ``lecun_normal`` weights, or orthogonal ones of ``gain``; zero bias."""
     lin = nn.Linear(i, o)
     with torch.no_grad():
         if gain is None:                     # flax lecun_normal (truncated normal)
@@ -44,10 +35,13 @@ def _dense(i, o, gain=None):
 
 
 def _norm(d):
+    """LayerNorm with the network's ``eps``."""
     return nn.LayerNorm(d, eps=1e-6)
 
 
 class SelfAttention(nn.Module):
+    """Self-attention over one ring with learned relative-position embeddings."""
+
     def __init__(self, d, heads, dh, L):
         super().__init__()
         self.h, self.dh = heads, dh
@@ -57,6 +51,7 @@ class SelfAttention(nn.Module):
         self.register_buffer("dist", pos[None, :] - pos[:, None], persistent=False)
 
     def forward(self, x, mask):
+        """``x`` (B, L, d) with the validity ``mask`` (B, L) -> attended features."""
         B, L, _ = x.shape
         q, k, v = (t.permute(0, 2, 1, 3) for t in self.qkv(x).reshape(B, L, 3, self.h, self.dh).unbind(2))
         n = mask.sum(-1).clamp(min=1).view(B, 1, 1)
@@ -68,12 +63,15 @@ class SelfAttention(nn.Module):
 
 
 class CrossAttention(nn.Module):
+    """Attention from one ring to the other."""
+
     def __init__(self, d, heads, dh):
         super().__init__()
         self.h, self.dh = heads, dh
         self.q, self.kv, self.out = _dense(d, heads * dh), _dense(d, 2 * heads * dh), _dense(heads * dh, d)
 
     def forward(self, qs, kvs, qmask, kvmask):
+        """Queries ``qs`` attend to ``kvs``; the masks mark the real (non-padding) letters."""
         B, Lq, _ = qs.shape
         q = self.q(qs).reshape(B, Lq, self.h, self.dh).permute(0, 2, 1, 3)
         k, v = (t.permute(0, 2, 1, 3) for t in self.kv(kvs).reshape(B, kvs.shape[1], 2, self.h, self.dh).unbind(2))
@@ -93,6 +91,7 @@ class Block(nn.Module):
         self.mlp0_in, self.mlp0_out, self.mlp1_in, self.mlp1_out = _dense(d, mlp), _dense(mlp, d), _dense(d, mlp), _dense(mlp, d)
 
     def forward(self, x1, x2, m1, m2):
+        """Self-attend each ring, cross-attend them, then a per-ring MLP, all residual."""
         x1 = x1 + self.sa0(self.ln0(x1), m1)
         x2 = x2 + self.sa1(self.ln1(x2), m2)
         n1, n2 = self.ln2(x1), self.ln3(x2)
@@ -104,6 +103,8 @@ class Block(nn.Module):
 
 
 class ActorCritic(nn.Module):
+    """The two-ring network: ``forward(obs) -> (logits, value)``."""
+
     def __init__(self, layers=2, heads=4, dh=8, mlp=32, vocab=5, L=24):
         super().__init__()
         d = heads * dh
@@ -123,6 +124,7 @@ class ActorCritic(nn.Module):
         return legal[:, :, :, None, :].expand(-1, self.L, self.L, 2, 2).reshape(obs.shape[0], -1)
 
     def forward(self, obs):
+        """``(B, 2L)`` observations -> ``((B, 4 L^2)`` masked logits, ``(B,)`` values)."""
         B, L, d = obs.shape[0], self.L, self.d
         obs = obs.to(torch.long)
         r1, r2 = obs[:, :L], obs[:, L:]
@@ -139,6 +141,7 @@ class ActorCritic(nn.Module):
 
 
 def log_prob_entropy(logits, actions):
+    """Log-probability of ``actions`` and the entropy of each row."""
     lp = torch.log_softmax(logits, -1)
     return lp.gather(1, actions[:, None]).squeeze(1), -(lp.exp() * lp).sum(-1)
 

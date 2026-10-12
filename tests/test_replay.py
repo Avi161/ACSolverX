@@ -4,7 +4,7 @@ import json
 import pytest
 
 from acx.core.config import SearchConfig
-from acx.core.moves import Move, decode_path, encode_path, to_legacy
+from acx.core.moves import Move, decode_path, encode_path
 from acx.core.words import Presentation
 from acx.search import search
 from acx.verify import ReplayError, abs_det, replay
@@ -26,7 +26,7 @@ def test_every_solved_path_replays(ms640, priority):
 def test_legacy_and_json_paths_replay(ms640):
     pres = ms640[322]
     r = search(pres, budget=300)
-    legacy = ["_".join(map(str, to_legacy(m))) for m in r.path]       # main's path_moves strings
+    legacy = [f"{m.i + 1}_{m.s}_{m.k1}_{m.k2}" for m in r.path]       # the baseline's path_moves strings
     assert replay(pres, decode_path(legacy))[-1] == r.end
     assert decode_path(json.loads(json.dumps(encode_path(r.path)))) == list(r.path)
 

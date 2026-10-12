@@ -1,4 +1,4 @@
-# The solve-everything mode: cascade, then one best-first search over every rank (1,000 work units).
+# Cascade, then one best-first search over every rank (1,000 work units per row) on MS640.
 method = "hybrid"
 benchmark = "ms640"
 

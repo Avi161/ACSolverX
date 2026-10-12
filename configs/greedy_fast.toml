@@ -1,4 +1,4 @@
-# The same search on the numba backend (step for step equal to baseline_spec).
+# The LENGTH greedy with cap 24 on MS640, numba backend (step for step equal to baseline_spec).
 method = "greedy"
 benchmark = "ms640"
 

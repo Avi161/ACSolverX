@@ -1,28 +1,7 @@
-"""The move set: substitution (S-)moves, elementary AC moves, AC4/AC5.
+"""The moves: S-moves (``Move``) of the search and the elementary AC / stable moves (dicts) of certificates.
 
-S-move (Two-Hump paper, Def. 2.1), generalised past two relators::
-
-    Move(i, j, s, k1, k2):   r_i <- rot_{k1}(r_i) . rot_{k2}(r_j ** s)     (0-based i != j)
-
-valid only when the seam cancels: the last letter of ``rot_{k1}(r_i)`` is the
-inverse of the first letter of ``rot_{k2}(r_j ** s)``. The child is then reduced
-and canonicalised (``acx.core.words``). ``rotate`` follows main's ``np.roll``
-convention, so at two relators ``Move(t-1, 2-t, jsign, k1, k2)`` is main's
-stored ``(target, jsign, k1, k2)`` and the enumeration order
-``i -> j -> s -> k1 -> k2`` is main's ``get_neighbors_with_moves_nj`` order,
-which the heap's depth tie-break depends on.
-
-Elementary AC moves (dicts, the schema of
-``origin/codex/ac-elementary-decoder:experiments/search/ac_decode.py``,
-1-based relator indices, free reduction only, no canonicalisation):
-``{"op": "invert", "target": t}``, ``{"op": "swap"[, "a": a, "b": b]}``,
-``{"op": "conjugate", "target": t, "by": "x"}`` (``r_t <- by^-1 r_t by``),
-``{"op": "multiply", "target": t, "source": s}`` (``r_t <- r_t r_s``).
-Stable moves: ``{"op": "stabilize"}`` (AC4: add generator ``n+1`` and relator
-``(n+1,)``) and ``{"op": "destabilize"}`` (AC5, its inverse).
-
-Sources: ``origin/test/greedy-test-suite:experiments/greedy_tests/spec/
-{moves,presentation}.py``; ``origin/main:experiments/search/greedy_baseline.py``.
+S-move ``Move(i, j, s, k1, k2)``: ``r_i <- rot_k1(r_i) . rot_k2(r_j ** s)`` (0-based, ``i != j``), legal when the
+seam cancels; the child is reduced and canonicalised. Elementary moves are the dicts of ``elementary_step``.
 """
 from collections import namedtuple
 
@@ -32,34 +11,31 @@ Move = namedtuple("Move", "i j s k1 k2")
 
 
 def from_legacy(target, jsign, k1, k2):
-    """Main's 2-relator ``(target, jsign, k1, k2)`` (1-based target) -> ``Move``."""
+    """The baseline's two-relator move ``(target, jsign, k1, k2)`` (1-based target) as a ``Move``."""
     return Move(target - 1, 2 - target, jsign, k1, k2)
 
 
-def to_legacy(m):
-    if {m.i, m.j} != {0, 1}:
-        raise ValueError("the legacy move format holds two relators only")
-    return (m.i + 1, m.s, m.k1, m.k2)
-
-
 def source_word(rels, m):
+    """``r_j ** s`` of move ``m``."""
     return rels[m.j] if m.s == 1 else inverse(rels[m.j])
 
 
 def seam_cancels(rels, m):
+    """True when the last letter of ``rot_k1(r_i)`` is the inverse of the first of ``rot_k2(r_j ** s)``."""
     ri, oj = rels[m.i], source_word(rels, m)
     return bool(ri) and bool(oj) and rotate(ri, m.k1)[-1] == -rotate(oj, m.k2)[0]
 
 
 def apply_raw(rels, m):
-    """The unreduced child, exactly as the search builds it."""
+    """The unreduced child of move ``m``: ``rels`` with ``r_i`` replaced by ``rot_k1(r_i) . rot_k2(r_j ** s)``."""
     out = list(rels)
     out[m.i] = rotate(rels[m.i], m.k1) + rotate(source_word(rels, m), m.k2)
     return tuple(out)
 
 
 def enumerate_moves(rels):
-    """Every seam-cancelling ``Move`` of ``rels``, in search order."""
+    """Every seam-cancelling ``Move`` of ``rels`` in search order ``i -> j -> s -> k1 -> k2`` (the heap's depth
+    tie-break depends on it)."""
     n = len(rels)
     for i in range(n):
         ri = rels[i]
@@ -79,12 +55,8 @@ def enumerate_moves(rels):
 
 
 def s_step(pres, m, cyclic=True):
-    """Apply an S-move to the canonical form of ``pres``; return the reduced canonical child.
-
-    The move's rotations index ``canonical_rels(pres.rels)`` (a search state is
-    already canonical, so for search paths this is the stored state itself).
-    Raises ``ValueError`` when the move is out of range or its seam does not cancel.
-    """
+    """Apply the S-move ``m`` to ``canonical_rels(pres.rels)`` (a search state is already canonical) and return the
+    reduced canonical child; ``ValueError`` when the move is out of range or its seam does not cancel."""
     rels = canonical_rels(pres.rels)
     n = len(rels)
     if not (0 <= m.i < n and 0 <= m.j < n and m.i != m.j and m.s in (1, -1)):
@@ -98,13 +70,20 @@ def s_step(pres, m, cyclic=True):
 
 
 def _idx(pres, t):
+    """Relator number ``t`` (1-based) as a list index."""
     if isinstance(t, bool) or not isinstance(t, int) or not 1 <= t <= len(pres.rels):
         raise ValueError(f"relator index {t!r} out of range")
     return t - 1
 
 
 def elementary_step(pres, op):
-    """Apply one elementary AC or stable move (dict schema above)."""
+    """Apply one elementary AC or stable move to ``pres`` (1-based relator numbers, free reduction only):
+
+    ``{"op": "invert", "target": t}``; ``{"op": "swap"[, "a": a, "b": b]}`` (default 1 and 2);
+    ``{"op": "conjugate", "target": t, "by": "x"}`` (``r_t <- by^-1 r_t by``);
+    ``{"op": "multiply", "target": t, "source": s}`` (``r_t <- r_t r_s``); ``{"op": "stabilize"}`` (AC4) and
+    ``{"op": "destabilize"}`` (AC5). ``ValueError`` on anything malformed.
+    """
     rels = list(pres.rels)
     kind = op.get("op")
     if kind == "invert":
@@ -152,7 +131,7 @@ def destabilize(pres):
 
 
 def step(pres, mv, cyclic=True):
-    """Apply one path element: a ``Move`` (S-move) or an elementary/stable dict."""
+    """Apply one path element, a ``Move`` or an elementary/stable dict, to ``pres``."""
     return elementary_step(pres, mv) if isinstance(mv, dict) else s_step(pres, Move(*mv), cyclic)
 
 
@@ -164,9 +143,11 @@ class Trace:
         self.pres, self.moves = pres, list(moves)
 
     def copy(self):
+        """An independent trace at the same state."""
         return type(self)(self.pres, self.moves)
 
     def do(self, op):
+        """Apply the elementary move ``op`` and record it."""
         self.pres = elementary_step(self.pres, op)
         self.moves.append(op)
 
@@ -176,6 +157,7 @@ class Trace:
             self.do({"op": "conjugate", "target": t + 1, "by": to_char(g)})
 
     def invert(self, t):
+        """``r_t <- r_t^-1``."""
         self.do({"op": "invert", "target": t + 1})
 
     def multiply(self, t, s, e=1):
@@ -186,6 +168,16 @@ class Trace:
         if e < 0:
             self.invert(s)
 
+    def conjugated_multiply(self, i, j, s, c):
+        """``r_i <- r_i . (c^-1 r_j^s c)`` by inverting, conjugating and multiplying; ``r_j`` is left as it was."""
+        if s < 0:
+            self.invert(j)
+        self.conj(j, c)
+        self.multiply(i, j)
+        self.conj(j, inverse(c))
+        if s < 0:
+            self.invert(j)
+
 
 def encode_path(path):
     """JSON form: an S-move is the list ``[i, j, s, k1, k2]``, any other move its dict."""
@@ -193,7 +185,7 @@ def encode_path(path):
 
 
 def decode_path(items):
-    """Inverse of ``encode_path``; also reads main's ``'target_jsign_k1_k2'`` strings."""
+    """Inverse of ``encode_path``; also reads the baseline's ``'target_jsign_k1_k2'`` strings."""
     out = []
     for m in items:
         if isinstance(m, dict):

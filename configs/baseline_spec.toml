@@ -1,4 +1,4 @@
-# The slow baseline: pure-Python length-only greedy (main's GreedyBaselineSolver), cap 24.
+# The slow reference: pure-Python LENGTH greedy with cap 24 on MS640 (main's GreedyBaselineSolver).
 method = "greedy"
 benchmark = "ms640"
 workers = 4

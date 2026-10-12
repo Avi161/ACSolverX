@@ -76,7 +76,7 @@ def expand_key(codes, cap):
         _write(blob, o, out[c, 0], a)
         blob[o + a] = 0
         _write(blob, o + a + 1, out[c, 1], out_len[c, 1])
-    return blob, offs, out_mv[:count], rejected
+    return blob, offs, out_mv[:count], out_len[:count, 0], rejected
 
 
 @njit(cache=True)
@@ -105,9 +105,15 @@ def transform_key(codes, tab, tlen):
 
 
 def fast_expand(key, cap):
-    blob, offs, mv, rejected = expand_key(np.frombuffer(key, dtype=np.uint8), -1 if cap is None else cap)
+    blob, offs, mv, _, rejected = expand_key(np.frombuffer(key, dtype=np.uint8), -1 if cap is None else cap)
     raw, offs = blob.tobytes(), offs.tolist()
     return [(raw[offs[c]:offs[c + 1]], Move(*m)) for c, m in enumerate(mv.tolist())], int(rejected)
+
+
+def fast_full(key):
+    """Every child of ``key`` with no cap, as arrays: ``(raw, offsets, first relator lengths)``."""
+    blob, offs, _, l0, _ = expand_key(np.frombuffer(key, dtype=np.uint8), -1)
+    return blob.tobytes(), offs, l0.astype(np.int64)
 
 
 def fast_transform(key, k):

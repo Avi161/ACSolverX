@@ -7,6 +7,7 @@ census 72,779/72,779 with 2,489,726 units, 188 certificates using higher rank. T
 (about 190 s on 4 workers, certification included) is not run here; its first 2,000 rows are.
 """
 import heapq
+import sys
 import random
 import time
 from types import SimpleNamespace
@@ -19,7 +20,7 @@ from acx.core.words import Presentation, canonical_rels, parse
 from acx.hybrid import HybridConfig, certify, decode_steps, encode_steps, solve
 from acx.hybrid.cascade import NIELSEN
 from acx.core.capcount import blank, fields
-from acx.hybrid import solver as hybrid_solver
+from acx.hybrid import capwatch, solver as hybrid_solver
 from acx.hybrid.cascade import gate_precheck_key
 from acx.hybrid.frontier import backend, pack, pair_precheck, spec_dropped, unpack
 from acx.verify import is_valid, replay
@@ -280,3 +281,38 @@ def test_ceiling_counter_counts_a_dropped_state_that_would_pop():
                                                     tight.stats["slack_needed"]) == (1, 24, 1)
     assert tight.stats["slack_dropped_min_total"] > 0 and counters(loose)["slack"][3] == 0
     assert solve(pres, FAST, dyn_cap=None, slack=1).stats["slack_would_pop"] == 0
+
+
+# ------------------------------------------------------------------ cost of the rank-two counter
+def calls_and_seconds(pres, watch_cap, **kw):
+    """Python-level calls and wall seconds of one solve, with the ``r2_cap`` counter on or off."""
+    old = capwatch.Watch.has
+    capwatch.Watch.has = lambda self, name: (name != "cap" or watch_cap) and old(self, name)
+    n = 0
+
+    def prof(frame, event, arg):
+        nonlocal n
+        n += event in ("call", "c_call")
+    try:
+        t = time.perf_counter()
+        solve(pres, FAST, **kw)
+        seconds = time.perf_counter() - t
+        sys.setprofile(prof)
+        solve(pres, FAST, **kw)
+    finally:
+        sys.setprofile(None)
+        capwatch.Watch.has = old
+    return n, seconds
+
+
+def test_integer_r2_cap_counters_cost_under_ten_percent(ms640):
+    """A tight integer ``r2_cap`` drops hundreds of moves per pop; counting them must stay cheap (the first
+    version was 5x slower). Python calls are the deterministic measure, wall time the sanity check."""
+    solve(ms640[380], FAST)
+    kw = dict(r2_cap=8, budget=150)
+    for i in (380, 602):
+        on, t_on = calls_and_seconds(ms640[i], True, **kw)
+        off, t_off = calls_and_seconds(ms640[i], False, **kw)
+        assert solve(ms640[i], FAST, **kw).stats["cap_dropped"] > 10_000
+        assert on <= 1.10 * off, (i, on, off)
+        assert t_on <= 1.30 * t_off, (i, t_on, t_off)

@@ -1,22 +1,18 @@
-# Rank-3 brute force: add a generator z and the relator Z.w for every freely reduced word w of length 1..4
-# (one of each pair {w, w^-1}), search each start; the 2-generator control and the null stabilisation are
-# searched too. Reference numbers at budget 1,000 on MS640 are in docs/RANK3.md.
-# Run: python run.py --config configs/rank3_bf.toml   (or python -m acx.ngen.sweep --config ...)
-# Smoke: add  --rows 0:40  (seconds).
+# Rank-3 brute force on MS640: z.w for every word w of length 1-4 (cap 24, budget 1,000), with control.
 method = "rankn"
 benchmark = "ms640"
 workers = 4
 
 [search]
-priority = "length"      # the only priority defined past two generators
-cap = 24                 # an int, or "none" for uncapped; the cap counters record what it dropped
+priority = "length"
+cap = 24
 budget = 1000
 backend = "fast"
 cyclic = true
 
 [rankn]
-extra = 1                # added generators: rank = 2 + extra
+extra = 1
 min_len = 1
 max_len = 4
-inverse = false          # true: search w^-1 instead of w (the tie-break check)
-sample = 0.002           # fraction of solved starts whose path is kept for replay
+inverse = false
+sample = 0.002

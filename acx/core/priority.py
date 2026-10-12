@@ -1,28 +1,7 @@
-"""Heap priorities: LENGTH (default) and S20_MK2. Lower pops first.
+"""Heap priorities, lower pops first: ``length`` (total relator length, an int) and ``s20_mk2`` (a float).
 
-``length``  = L, the total relator length (main's baseline ordering; an int).
-
-``s20_mk2`` = L + 20*S + 2*MK (a float), the single shipped tuned vector
-(``origin/claude/heuristic-search-benchmark-e1f9l8:experiments/search/heuristics.py``,
-``S20_MK2``), two generators only. Every term reads relators as rings:
-
-* blocks: cyclic runs of one GENERATOR (``x`` and ``X`` are the same generator);
-  a run wrapping the seam is one block.
-* knots(r) = 0 if ``r`` is a pure power, else max(#x-blocks, #y-blocks);
-  MK = max knots over the relators.
-* S = the smaller mean block length: ``mx = x-letters / x-blocks`` and
-  ``my = y-letters / y-blocks`` pooled over all relators (0.0 when a generator
-  has no block); S = min(mx, my), or the one nonzero mean when a generator is
-  absent from the whole presentation.
-
-The float is evaluated in this exact operation order, which is the fast
-engine's (``hfast.expand_and_score_nj`` sums weights in feature-index order
-L, MK, S) so both backends produce bit-identical scores::
-
-    acc = 0.0; acc += 1.0 * L; acc += 2.0 * MK; acc += 20.0 * S
-
-(main's pure-Python ``make_priority`` adds S before MK; the two can differ in
-the last ulp, so the fast engine's order is the reference here.)
+``PRIORITIES`` maps names to functions of the relators; ``get`` looks one up. ``acx.search.fast.kernels.score``
+computes the same values, bit for bit.
 """
 
 
@@ -41,11 +20,18 @@ def _blocks(w):
 
 
 def length(rels):
+    """The ``length`` priority: total relator length."""
     return sum(map(len, rels))
 
 
 def features(rels):
-    """``(L, MK, S)`` for a two-generator presentation."""
+    """``(L, MK, S)`` of a two-generator presentation, reading relators as rings of generator runs.
+
+    ``L``: total length. Blocks are cyclic runs of one generator (``x`` and ``X`` count alike; a run across the
+    seam is one block). ``knots(r)`` is 0 for a pure power, else max(#x-blocks, #y-blocks); ``MK`` is the largest
+    knots. ``S`` is the smaller of the mean x-block and mean y-block lengths pooled over all relators (the one
+    nonzero mean when a generator is absent). ``ValueError`` past two generators.
+    """
     mk = nx = ny = sx = sy = 0
     for r in rels:
         b = _blocks(r)
@@ -66,6 +52,8 @@ def features(rels):
 
 
 def s20_mk2(rels):
+    """The ``s20_mk2`` priority ``L + 20 S + 2 MK`` (``features``), summed in the order L, MK, S: the fast
+    engine's order, so both backends give identical floats."""
     L, mk, s = features(rels)
     acc = 0.0
     acc += 1.0 * L
@@ -78,6 +66,7 @@ PRIORITIES = {"length": length, "s20_mk2": s20_mk2}
 
 
 def get(name):
+    """The priority function called ``name``; ``ValueError`` for an unknown name."""
     try:
         return PRIORITIES[name]
     except KeyError:

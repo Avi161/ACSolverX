@@ -1,15 +1,8 @@
 """Checker for ``data/equivalence_classes/certificates.json``: the 124 U124 classes and the edges joining their members.
 
-An edge joins two presentations ``a`` and ``b``. Each side is a chain
-
-    start --phi0--> aut_rep --(S-move, then phi)*--> end
-
-and both ends must be the canonical presentation ``meet``, so ``a`` and ``b`` are the same problem up to AC moves and
-automorphisms of F2 (ACA). A ``cv`` edge has no S-moves (a change of variables ``subst`` with
-``canon(subst(a)) == canon(b)``); an ``ac`` edge has Definition 2.1 S-moves (seam cancelling) between automorphisms.
-Every map must be an automorphism: its images reduce to a basis by Whitehead moves (``is_automorphism``; a reduction
-to letters proves it, so the test never accepts a non-automorphism). Source of the file: ``origin/codex/proofs:
-results/equivalence_classes/certificates.json``; the theory behind the classes is linked from ``docs/RESULTS.md``.
+An edge joins two presentations by chains ``start --phi0--> aut_rep --(S-move, then phi)*--> end`` meeting at one
+canonical presentation (a ``cv`` edge has no S-moves, an ``ac`` edge has Definition 2.1 S-moves between
+automorphisms); every ``phi`` must be an automorphism (``is_automorphism``: Whitehead descent reaches a basis).
 """
 import json
 
@@ -34,6 +27,7 @@ def canon(rels):
 
 
 def _image(rels, phi):
+    """``rels`` under the automorphism ``phi`` (``{"x": word, "y": word}``); raises if ``phi`` is not one."""
     img = (parse(phi["x"]), parse(phi["y"]))
     if not is_automorphism(img):
         raise ValueError(f"{phi} is not an automorphism of F2")

@@ -1,59 +1,31 @@
-"""The hybrid's cap counters: what each of its three limits dropped, and whether a drop would have popped.
+"""The hybrid's cap counters: what its three limits (``r2_cap``, ``dyn_cap``, ``slack``) dropped, and whether it would have popped.
 
-The hybrid cuts children in three places, each its own counter (``acx.core.capcount``; the field names are
-``FIELDS`` under the prefix):
-
-==========  ============================================  =============================================
-prefix      limit                                         ``<prefix>_needed`` is
-==========  ============================================  =============================================
-``cap``     ``r2_cap`` (rank-two S-moves; ``"parent"``    the least ``r2_cap`` that admits the child
-            never rejects: a child relator is at most     (its longest relator)
-            ``l_i + l_j - 2``, below the parent's total)
-``dyn_cap`` ``dyn_cap`` (higher-rank products and         the least ``dyn_cap`` that admits it
-            eliminations)
-``slack``   ``slack`` (the total-length ceiling above     the least ``slack`` that admits it (the
-            the search root)                              child's total length minus the root's)
-==========  ============================================  =============================================
-
-``<prefix>_dropped`` counts rejected moves (as ``dyn_rejected`` always did, duplicates included),
-``<prefix>_would_pop`` distinct states; ``<prefix>_dropped_min_total`` is always an absolute total length.
-``<prefix>_first_bind`` is a work unit of the search (the unit number of the pop that a dropped state
-would have preceded; the cascade's units before the search are not counted).
-
-**The search is not a plain best-first queue**, so the comparison is made per pop against what the
-loop actually served. A dropped child waits in a pool with the key ``(priority, depth, tick)``
-the child would have been pushed under (it takes the next insertion number: ticks are only compared,
-so the place in the insertion order is what counts), bound for the
-rank-two heap (pool 0) or the higher-rank heap (pool 1). Every loop iteration that pops an entry
-(placeholders and entries skipped as seen included) gives each pool a bar:
-
-* the higher-rank heap was served (top ``d``): rank-two pool bar ``(d.priority, -inf)`` (a rank-two
-  entry wins only with a strictly smaller priority: ties go to the higher-rank heap), higher-rank pool
-  bar ``d``;
-* the rank-two heap was served (top ``h``): rank-two pool bar ``h``, higher-rank pool bar
-  ``(h.priority, +inf)`` (a higher-rank entry would have been served at ``priority <= h.priority``) when
-  the ratio and ``dyn_max`` rules would have allowed the higher-rank heap, none otherwise.
-
-The hybrid dedups when it pops (the ``seen`` sets), so a drained entry counts only if its popped
-identity is not seen yet and was not drained before (``accept``). A dropped rank-two child that
-``offer`` would have sent through the finishing gates counts at once if the gates would have acted
-(solved it or charged units); gates that fail for free change nothing. When the search ends with both
-heaps empty (or only deferred higher-rank entries that are not served) the pending entries would have
-popped next. The counts are first order: a dropped state is judged against the run that happened, not
-against the run it would have changed. So a zero in all three counters guarantees that a larger
-``r2_cap``, ``dyn_cap`` or ``slack`` pops the same states in the same order (the same units and
-certificate), and a nonzero count says the run may change.
-
-**Cost.** Under the default ``"parent"`` cap nothing is rejected at rank two, and the other two limits
-drop few children (766 moves over MS640), so the default run is not measurably slower. An integer
-``r2_cap`` that rejects tens of thousands of moves pays about 150 microseconds per rejected move
-(listing it in Python, and canonicalising it if it drains).
+Each limit has a rank-two pool and a higher-rank pool of ``acx.core.capcount.CapCount``; the fields are ``FIELDS`` under the
+prefixes ``cap``, ``dyn_cap`` and ``slack``. ``Watch`` has the rules and the cost.
 """
+from functools import lru_cache, partial
+
+import numpy as np
+
 from ..core.capcount import CapCount, blank, fields
+from . import dynrank as D
+from .cascade import Run, gate_applicable, run_gates
+from .frontier import unpack
 
 INF = float("inf")
 NAMES = ("cap", "dyn_cap", "slack")
 R2POOL, DYNPOOL = 0, 1
+
+
+@lru_cache(maxsize=1 << 16)
+def gates_act(key):
+    """Would the finishing gates solve the canonical pair ``key`` or spend units on it? Whatever the budget: a
+    budget too small to finish makes them act as well."""
+    state = unpack(key)
+    if not gate_applicable(state):
+        return False
+    run = Run(state, 1 << 60)
+    return run_gates(run) or run.units > 0
 
 
 def blank_records(cfg):
@@ -63,45 +35,63 @@ def blank_records(cfg):
 
 
 class Watch:
-    """The three counters (a limit that is ``None`` has none) and their pools; see the module docstring."""
+    """The counters of the three limits (a limit that is ``None`` has none).
 
-    def __init__(self, limits, ident_r2, ident_dyn, seen_r2, seen_dyn):
-        self.limits = limits                      # {"cap": r2_cap, "dyn_cap": dyn_cap, "slack": slack}
-        self.pools = {}
+    ============  =========================================  ==================================================
+    prefix        limit                                      ``<prefix>_needed`` is the least value that admits
+    ============  =========================================  ==================================================
+    ``cap``       ``r2_cap`` (``"parent"`` never rejects)    the child's longest relator
+    ``dyn_cap``   higher-rank products and eliminations      the child's longest relator
+    ``slack``     total length above the search root         the child's total length minus the root's
+    ============  =========================================  ==================================================
+
+    ``<prefix>_dropped`` counts rejected moves, ``_would_pop`` distinct states, ``_first_bind`` is a work unit of the
+    search (the cascade's units are not counted), ``_dropped_min_total`` an absolute total length.
+
+    The search is not one queue, so a dropped child waits in a pool under the key ``(priority, depth, tick)`` it would
+    have been pushed with (``tick`` is the insertion order, only compared) and every pop that serves an entry gives
+    each pool a bar: when the higher-rank heap is served (top ``d``) the rank-two bar is ``(d.priority, -inf)`` and the
+    higher-rank bar ``d``; when the rank-two heap is served (top ``h``) the rank-two bar is ``h`` and the higher-rank bar
+    ``(h.priority, +inf)``, or none if the ratio rule would not have served the higher-rank heap. A pooled key that sorts
+    before a bar is drained: it counts if the search has not popped that state (``seen``, up to signed permutation at
+    rank two) and no earlier drain counted it. A dropped rank-two child on which the finishing gates would act (solve
+    it or spend units) counts at once. On a dry queue the pending states count too. The counts are first order: a
+    dropped state is judged against the run that happened, so zero in all three means a larger limit pops the same
+    states in the same order, and a nonzero count says only that the run may change.
+
+    Cost: the children one rank-two pop drops arrive as arrays (``frontier.over_cap``) and wait as one lazy block, so a
+    dropped child costs Python time only when a bar passes it.
+    """
+
+    def __init__(self, limits, seen_r2, seen_dyn):
+        self.armed = False                        # set by the first drop: until then no pop has anything to compare
+        self.seen_r2, self.seen_dyn, self.live = seen_r2, seen_dyn, []
+        self.moves, self.mintot, self.pools = {}, {}, {}
         for name in NAMES:
             if limits[name] is not None:
-                self.pools[name] = (CapCount(limits[name], accept=self._accept(seen_r2, ident_r2)),
-                                    CapCount(limits[name], accept=self._accept(seen_dyn, ident_dyn)))
-        self.moves = dict.fromkeys(self.pools, 0)       # rejected moves per limit (a pool keeps distinct states)
-        self.mintot = dict.fromkeys(self.pools)
-        self.armed = False                        # set by the first drop: until then no pop has anything to compare
-
-    @staticmethod
-    def _accept(seen, ident):
-        drained = set()
-
-        def accept(payload):
-            i = ident(payload)
-            if i in seen or i in drained:
-                return False
-            drained.add(i)
-            return True
-        return accept
+                r2, dyn = CapCount(limits[name]), CapCount(limits[name])
+                r2.accept = partial(self._accept_r2, r2, set())
+                dyn.accept = partial(self._accept_dyn, set())
+                self.pools[name] = (r2, dyn)
+                self.moves[name], self.mintot[name] = 0, None
 
     def has(self, name):
+        """Does the limit ``name`` have a counter?"""
         return name in self.pools
 
-    def moved(self, name, total):
-        """One move rejected by ``name`` leading to a child of ``total`` letters (every move, duplicates too)."""
-        self.moves[name] += 1
+    def moved(self, name, n, total):
+        """``n`` moves rejected by ``name``, the least leading to a child of ``total`` letters."""
+        self.moves[name] += n
         if self.mintot[name] is None or total < self.mintot[name]:
             self.mintot[name] = total
 
-    def drop(self, name, pool, key, total, needed, payload):
+    def drop(self, name, key, total, needed, words):
+        """A higher-rank child (``words``, its relators) that ``name`` rejected; ``key`` is its heap key."""
         self.armed = True
-        self.pools[name][pool].drop(key, total, needed, payload=payload)
+        self.pools[name][DYNPOOL].drop(key, total, needed, payload=words)
 
     def drop_now(self, name, total, needed, units):
+        """A rank-two child the finishing gates would have acted on at pop ``units``."""
         self.armed = True
         cc = self.pools[name][R2POOL]
         first = cc.first_bind
@@ -109,10 +99,59 @@ class Watch:
         if first is None:
             cc.first_bind = units
 
+    def drop_children(self, name, depth, base, d):
+        """The rank-two children ``d`` (``frontier.over_cap``) that ``name`` rejected at one pop; child ``i`` takes
+        the tick ``base + d.pos[i]``. The pool gets all but those the finishing gates would act on; those come back as
+        ``(kept children before it, total, longest)`` for the search to count (``drop_now``) at their place."""
+        self.armed = True
+        acting = [i for i in np.flatnonzero(d.flag).tolist() if gates_act(d.raw[d.start[i]:d.end[i]])]
+        idx = np.lexsort((d.pos, d.total))
+        idx = np.delete(idx, np.flatnonzero(np.isin(idx, acting)))
+        entries = (((float(t), depth, base + p), t, n, d.raw[a:b]) for t, p, n, a, b in zip(
+            d.total[idx].tolist(), d.pos[idx].tolist(), d.longest[idx].tolist(), d.start[idx].tolist(),
+            d.end[idx].tolist()))
+        cc = self.pools[name][R2POOL]
+        self.live.append((cc, entries))
+        self._push(cc, entries)
+        return [(int(d.before[i]), int(d.total[i]), int(d.longest[i])) for i in acting]
+
+    def drop_child(self, name, depth, tick, key, needed, units):
+        """One canonical rank-two child (``key``) that ``name`` rejected at pop ``units`` (a higher-rank elimination)."""
+        total = len(key) - 1
+        if gates_act(key):
+            self.drop_now(name, total, needed, units)
+            return
+        self.armed = True
+        cc = self.pools[name][R2POOL]
+        entries = iter([((float(total), depth, tick), total, needed, key)])
+        self.live.append((cc, entries))
+        self._push(cc, entries)
+
+    @staticmethod
+    def _push(cc, entries):
+        e = next(entries, None)
+        if e is not None:
+            cc.drop(e[0], e[1], e[2], payload=(e[3], entries))
+
+    def _accept_r2(self, cc, drained, payload):
+        key, entries = payload
+        self._push(cc, entries)                   # the next of the block takes this one's place in the pool
+        if key in self.seen_r2 or key in drained:
+            return False
+        drained.add(key)
+        return True
+
+    def _accept_dyn(self, drained, words):
+        ident = D.make_key(words)[0]
+        if ident in self.seen_dyn or ident in drained:
+            return False
+        drained.add(ident)
+        return True
+
     def step(self, h, d, ok, units):
         """One popped entry. ``h``/``d``: the tops of the rank-two / higher-rank heap as they were before the
-        pop, ``d`` is None when the rank-two heap is served; ``ok``: the ratio and ``dyn_max`` rules allow
-        the higher-rank heap; ``units``: the unit number of this pop."""
+        pop, ``d`` is None when the rank-two heap is served; ``ok``: the ratio rule allows the higher-rank heap;
+        ``units``: the unit number of this pop."""
         if d is not None:
             bars = ((d[0], -INF), d[:3])
         else:
@@ -126,8 +165,11 @@ class Watch:
                         cc.first_bind = units
 
     def end(self, dry, ok, left, units):
-        """The loop ended: ``dry`` it ran out of entries unsolved with ``left`` units of budget; ``ok``
-        whether the higher-rank heap would have been served."""
+        """The loop ended: ``dry`` it ran out of entries unsolved with ``left`` units of budget; ``ok`` whether the
+        higher-rank heap would have been served."""
+        for cc, entries in self.live if dry else ():
+            for e in entries:
+                cc.drop(e[0], e[1], e[2], payload=(e[3], iter(())))
         for pair in self.pools.values():
             for cc, ran_dry in zip(pair, (dry, dry and ok)):
                 first = cc.first_bind
@@ -150,7 +192,5 @@ class Watch:
         return out
 
     def records(self):
-        out = {}
-        for name in NAMES:
-            out.update(self.record(name))
-        return out
+        """All 18 fields."""
+        return {k: v for name in NAMES for k, v in self.record(name).items()}

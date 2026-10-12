@@ -1,4 +1,4 @@
-# SAC transform (relators of length <= 3), search the triangle root, lift to a stable AC path.
+# SAC triangulation, search of the triangle root, lift to a stable AC path, on bench60 (budget 10,000).
 method = "ngen"
 benchmark = "bench60"
 

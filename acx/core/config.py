@@ -1,13 +1,4 @@
-"""``SearchConfig``: one frozen dataclass for every search, loadable from TOML.
-
-    cfg = SearchConfig.load("configs/x.toml", ["budget=100000", "cap=none"])
-
-TOML keys are the field names, at the top level or under ``[search]``. An
-override is ``key=value`` with a TOML value (``48``, ``true``, ``"s20_mk2"``)
-or a bare word (``s20_mk2``). ``cap = "none"`` means uncapped (TOML has no null);
-every relator cap of every config goes through ``parse_cap``. Unknown keys are an
-error, never ignored.
-"""
+"""``SearchConfig``, the one frozen dataclass every search takes, and ``parse_cap`` / ``parse_override``."""
 import tomllib
 from dataclasses import asdict, dataclass, fields, replace
 
@@ -18,6 +9,9 @@ BACKENDS = ("spec", "fast")
 
 @dataclass(frozen=True)
 class SearchConfig:
+    """The settings of ``acx.search.search``. Build it directly, or ``SearchConfig.load("configs/x.toml",
+    ["budget=100000", "cap=none"])``: TOML keys are the field names (top level or under ``[search]``), an override
+    is ``key=value`` with a TOML value or a bare word, and ``cap = "none"`` means uncapped. Unknown keys raise."""
     priority: str = "length"     # "length" | "s20_mk2"
     cap: int | None = 24         # per-relator length cap on generated children; None = uncapped
     budget: int = 10_000         # maximum pops
@@ -36,13 +30,16 @@ class SearchConfig:
             raise ValueError(f"budget must be a positive int, got {self.budget!r}")
 
     def replace(self, **kw):
+        """A copy with fields changed."""
         return replace(self, **kw)
 
     def with_overrides(self, items=()):
+        """A copy with ``key=value`` strings applied (``parse_override``)."""
         return self.from_dict({**asdict(self), **dict(parse_override(s) for s in items)})
 
     @classmethod
     def from_dict(cls, d):
+        """From a dict of field values; unknown keys raise ``ValueError``."""
         names = {f.name for f in fields(cls)}
         bad = set(d) - names
         if bad:
@@ -51,6 +48,7 @@ class SearchConfig:
 
     @classmethod
     def load(cls, path=None, overrides=()):
+        """From a TOML file (or the defaults for ``None``) plus ``key=value`` overrides."""
         d = {}
         if path is not None:
             with open(path, "rb") as f:

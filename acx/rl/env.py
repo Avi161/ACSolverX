@@ -1,17 +1,10 @@
-"""Batched Two-Hump environment (``ACS`` plus its wrapper stack) in PyTorch.
+"""Batched Two-Hump environment (the PPO stack's ``ACS`` plus its reward wrappers) in PyTorch, reduced to training.
 
-Port of ``envs/ac_s.py`` with ``LogWrapper -> NormalizeVecReward -> LogPathsProbsS``
-(``origin/experiments/ppo:experiments/ppo/acs_env.py``, tip c73b11f2), reduced to what training needs.
-
-* State: ``(num_envs, 2L)`` presentations; an episode ends when both relators have length 1
-  (reward 1000) or after ``max_steps`` (96). Dense reward ``-min(#letters, 10)`` per step.
-* The first ``n_pinned`` envs keep their initial state forever (one per Miller-Schupp target of the
-  training set: 634 for ``AC19_extended``, which opens with the first 634 rows of ``1190MS``); the
-  others re-sample on reset with probability ``~ (1 - success)/sqrt(1 + attempts)``.
-* ``NormalizeVecReward`` runs inside the vmap upstream, so it is PER ENV with ``batch_count = 2L``
-  and zero batch variance: each env divides by the running std of its own discounted return.
-* Cycle and no-op penalties are off in the baseline and not ported; the cycle-hash RNG could not be
-  reproduced outside JAX anyway.
+* State: ``(num_envs, 2L)`` presentations; an episode ends when both relators have length 1 (reward 1000) or after
+  ``max_steps`` (96). Dense reward ``-min(#letters, 10)`` per step.
+* The first ``n_pinned`` envs keep their initial state forever (one per Miller-Schupp target of the training set);
+  the others re-sample on reset with probability ``~ (1 - success)/sqrt(1 + attempts)``.
+* The reward is normalised PER ENV by the running std of its own discounted return. Cycle and no-op penalties are off.
 """
 import torch
 
@@ -19,6 +12,8 @@ from .moves import decode_action, s_move
 
 
 class VecEnv:
+    """``num_envs`` environments over the initial states ``init_states``, stepped together."""
+
     def __init__(self, init_states, num_envs, *, L=24, max_steps=96, gamma=0.999, n_pinned=0, seed=0):
         self.L, self.max_steps, self.gamma, self.N = L, max_steps, gamma, num_envs
         self.init = torch.as_tensor(init_states, dtype=torch.int64)
@@ -44,6 +39,7 @@ class VecEnv:
         return self.x, reward, done, terminated
 
     def _normalise(self, reward, done):
+        """Divide each env's reward by the running std of its discounted return."""
         raw, bc = reward, float(2 * self.L)
         self.ret = self.ret * self.gamma * (~done) + raw
         delta, tot = self.ret - self.mean, self.count + bc
@@ -53,6 +49,7 @@ class VecEnv:
         return raw / torch.sqrt(self.var + 1e-8)
 
     def _reset(self, done, terminated):
+        """Re-sample the unpinned envs that finished (harder rows more often) and restart their clocks."""
         if not done.any():
             return
         self.solves.index_add_(0, self.idx, terminated.float())

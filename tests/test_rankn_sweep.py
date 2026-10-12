@@ -16,6 +16,7 @@ from acx.search import search
 from acx.verify.replay import abs_det
 
 ROW_IDS = ["0", "100", "330"]
+COUNTER_NAMES = ("cap_dropped", "cap_dropped_min_total", "cap_would_pop", "cap_first_bind", "cap_needed")
 
 
 def cfg(extra=1, min_len=1, max_len=2, rows="0:3", name="t", budget=300, backend="fast", **rankn):
@@ -93,6 +94,8 @@ def test_sweep_row_against_direct_searches(ms640):
                 assert int(out["nodes"][i]) == res.pops
                 assert int(out["path_len"][i]) == (res.path_length if res.solved else -1)
                 assert int(out["min_total"][i]) == res.stats["min_total"]
+                for k in COUNTER_NAMES:
+                    assert int(out[k][i]) == (-1 if res.stats[k] is None else res.stats[k]), k
             paths = json.loads(str(out["paths"]))
             assert [p["index"] for p in paths] == [i for i in range(len(ws)) if out["path_len"][i] >= 0]
 
@@ -108,7 +111,7 @@ def test_sample_is_deterministic():
     {"search": {"priority": "s20_mk2"}},                 # defined for two generators only
     {"search": {"cap": 2}},                              # below the start relator Z.w
     {"search": {"budget": 70_000}},                      # pops are stored as uint16
-    {"rankn": {"extra": 4}}, {"rankn": {"extra": 0}},
+    {"rankn": {"extra": 4}}, {"rankn": {"extra": 0}}, {"rankn": {"search": {"budget": 5}}},
     {"rankn": {"min_len": 3, "max_len": 2}}, {"rankn": {"bogus": 1}}, {"rankn": {"sample": 2}},
 ])
 def test_config_errors(bad):
@@ -122,6 +125,28 @@ def test_config_errors(bad):
 def test_uncapped_is_allowed():
     sc = SweepConfig.from_cfg({"search": {"cap": "none", "budget": 100}, "rankn": {"max_len": 6}})
     assert sc.search.cap is None
+
+
+def test_uncapped_rows_drop_nothing(ms640, tmp_path):
+    """Without a cap the counters report nothing: no drop, no bind, the same searches as capped rows solved."""
+    c = cfg(rows="0:4", budget=200, max_len=2)
+    c["search"]["cap"] = "none"
+    s = quiet(c, tmp_path)
+    assert s["cap_counters"]["dropped"] == 0 and s["cap_counters"]["could_bind"] == 0
+    for rid in range(4):
+        r = sweep.load_row(sweep.row_path(str(tmp_path / "t"), str(rid)))
+        assert (r["cap_dropped"] == 0).all() and (r["cap_first_bind"] == -1).all()
+        assert (r["cap_would_pop"] == 0).all() and (r["cap_needed"] == -1).all()
+        assert (r["cap_dropped_min_total"] == -1).all()
+
+
+def test_every_config_has_one_comment_line():
+    """Configs are short: one comment line saying what the config runs, then the TOML (usage is in docs)."""
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    for name in sorted(os.listdir(os.path.join(root, "configs"))):
+        with open(os.path.join(root, "configs", name)) as f:
+            lines = f.read().splitlines()
+        assert sum(1 for x in lines if x.lstrip().startswith("#")) == 1 and lines[0].startswith("#"), name
 
 
 def test_shipped_configs_load():
@@ -157,7 +182,7 @@ def test_summary_matches_the_arrays(tmp_path):
     s = quiet(cfg(max_len=2, rows="0:12", budget=400), tmp_path)
     d = str(tmp_path / "t")
     rows = [sweep.load_row(sweep.row_path(d, str(i))) for i in range(12)]
-    wl = sweep.lengths(SweepConfig.from_cfg(cfg(max_len=2)))
+    wl = np.array([len(w) for w in sweep.pool(1, 2, False)])
     assert s["control_solved"] == sum(bool(r["control"]["solved"]) for r in rows)
     for n in (1, 2):
         t = s["buckets"][f"L{n}"]
@@ -208,6 +233,12 @@ def test_verify_passes_and_rejects_tampering(tmp_path):
     paths[0]["path"] = paths[0]["path"][:-1]                    # a path that stops short of the trivial presentation
     put(paths=np.array(json.dumps(paths)))
     assert any("replay" in m for m in quiet_v())
+    dropped = good["cap_dropped"]
+    j = int(np.flatnonzero(dropped == 0)[0]) if (dropped == 0).any() else 0
+    would = good["cap_would_pop"].copy()
+    would[j] = int(dropped[j]) + 1                              # more would-pop states than dropped children
+    put(cap_would_pop=would)
+    assert any("cap_would_pop above" in m for m in quiet_v())
     put()
     assert quiet_v(recheck=30) == []
     with open(os.path.join(d, "config.json")) as f:
@@ -241,14 +272,13 @@ def test_counter_consistency_rules():
     assert check(cap_needed=[-1, -1, -1])                               # would-pop without a needed cap
     assert check(cap_needed=[-1, -1, 24])                               # the needed cap is above the cap
     # an unsolved search that stopped below the budget with drops must have a bind (when nothing else is reported)
-    r = {"cap_dropped": np.array([5]), "cap_dropped_min_total": np.array([30]), "cap_first_bind": np.array([-1])}
+    r = {"cap_dropped": np.array([5]), "cap_dropped_min_total": np.array([30]), "cap_first_bind": np.array([-1]),
+         "cap_would_pop": np.array([0]), "cap_needed": np.array([-1])}
     fails.clear()
     sweep._check_counters(r, np.array([False]), np.array([40]), 100, sc, fails.append)
     assert fails
 
 
-@pytest.mark.skipif("cap_first_bind" not in sweep.counter_fields(SearchConfig(cap=24, budget=10)),
-                    reason="the search reports no bind counter")
 def test_rank3_counters_prove_the_cap_irrelevant(tmp_path):
     """Cells whose cap never binds are the same search at any larger cap; cells that bind exist at a tight cap."""
     ids = ["635", "300", "450", "600"]        # at cap 12: drops without a bind (3 rows), binds (600)

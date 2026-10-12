@@ -1,47 +1,14 @@
-"""Certificate transport: a solve of an automorphic image becomes an AC path on the original row.
+"""Certificate transport: a solve of an automorphic image becomes an elementary AC path on the original row.
 
-``transport(pres, phi, path, start)``: ``path`` solves ``start`` (it replays
-from ``start`` under ``acx.verify.replay``), and ``start``'s relators are those
-of ``phi(pres)`` up to conjugating, inverting and reordering (for example
-``start = aut_canon(pres).rep``). The result is a list of elementary AC moves
-(``invert``, ``swap``, ``conjugate`` by a letter, ``multiply``: the dict schema
-of ``acx.core.moves``) that takes ``pres``'s own words to ``<x, y | x, y>``; it
-is replayed with ``replay(pres, moves, normalize=False)`` before it is returned.
-No new move type is needed.
-
-Why it works. Let ``psi = phi^-1``. We keep the invariant that the current
-words are exactly ``psi`` of the current state of ``path`` (freely reduced):
-
-* **Align**: words that are ``psi`` of the state up to conjugation, inversion
-  and order are brought to it exactly by ``swap``, ``invert`` and conjugation
-  (a word, letter by letter). This absorbs the search's reduce/canonicalise.
-* **S-move** ``r_i <- rot_k1(r_i) . rot_k2(r_j^s)``: since ``rot_k(w) =
-  u^-1 w u`` with ``u`` the length ``|w|-k`` prefix, the child is conjugate to
-  ``r_i . c^-1 r_j^s c`` with ``c = p u^-1`` (``p`` the prefix of ``r_j^s``).
-  AC moves are Aut-equivariant, so in the original frame it is
-  ``w_i <- w_i . psi(c)^-1 w_j^s psi(c)``: conjugate ``w_j``, multiply,
-  conjugate back. An elementary dict move maps to itself (``conjugate`` by
-  ``g`` becomes conjugation by the word ``psi(g)``).
-* **Tail**: the path ends at single letters, so the words end at the basis
-  ``(psi(x), psi(y))``. Precomposing a tuple with an elementary automorphism
-  ``a`` (``T -> T o a``) is a Nielsen move, i.e. AC moves; doing it for the
-  factors of ``phi`` last-first gives ``psi o phi = id``: the words ``x, y``.
-
-The path is long in letters (each conjugation is one move per letter), but
-deterministic: nothing here searches.
-
-Sources: ``origin/claude/ac19-leftover-solver-notebook-6yan6d:experiments/
-search/transport_ac19_orig.py`` (transport of an original's path onto its
-representative, equivariance argument) and ``origin/codex/ac-elementary-
-decoder:experiments/search/ac_decode.py`` (the elementary move schema and the
-conjugator form ``c = p u^-1`` of an S-move). The Nielsen tail there was a
-best-first search (``reduce_basis``); here it is read off ``phi``'s factors.
+``Emitter`` writes elementary moves (``invert``, ``swap``, ``conjugate``, ``multiply`` of ``acx.core.moves``) that
+carry S-moves, alignments and Nielsen moves over an automorphism; ``transport`` and ``solve_via_aut_min`` use it.
 """
 from ..core.config import SearchConfig
 from ..core.moves import Move, Trace
 from ..core.words import canonical_rels, canonical_word, conjugators, fmt, inverse, parse, reduce
+from ..verify.decode import decode
 from ..verify.replay import replay
-from .whitehead import AUTOS, apply_table, sub_table, aut_canon, images, invert
+from .whitehead import AUTOS, apply_table, aut_canon, images, invert, sub_table
 
 
 class Emitter(Trace):
@@ -80,11 +47,13 @@ class Emitter(Trace):
             self.invert(m.j)
 
     def dict_move(self, mv, tab):
+        """An elementary move of the path, carried by the substitution table ``tab``."""
         if mv["op"] in ("stabilize", "destabilize"):
             raise ValueError("transport through Aut(F2) cannot carry stable moves")
         if mv["op"] == "conjugate":
-            return self.conj(mv["target"] - 1, apply_table(parse(mv["by"]), tab))
-        self.do(mv)
+            self.conj(mv["target"] - 1, apply_table(parse(mv["by"]), tab))
+        else:
+            self.do(mv)
 
     def precompose(self, a):
         """``T -> T o a`` for a Whitehead automorphism ``a`` (tuple Nielsen moves)."""
@@ -107,13 +76,27 @@ class Emitter(Trace):
 
 
 def transport(pres, phi, path, start, cyclic=True):
-    """Elementary AC moves solving ``pres``, from ``path`` solving ``start`` ~ ``phi(pres)``."""
+    """Elementary AC moves solving ``pres``, from ``path`` solving ``start`` ~ ``phi(pres)``.
+
+    ``path`` replays from ``start`` exactly as given (``Result.start`` of the search that found it), and ``start`` is
+    ``phi(pres)`` up to conjugating, inverting and reordering the relators. The result is replayed on ``pres``
+    (``normalize=False``) before it is returned. With ``psi = phi^-1`` the current words stay exactly ``psi`` of the
+    current state of ``path`` (freely reduced):
+
+    * **align**: words equal to ``psi`` of the state up to conjugation, inversion and order are brought to it by
+      ``swap``, ``invert`` and conjugation.
+    * **S-move** ``r_i <- rot_k1(r_i) . rot_k2(r_j^s)``: the child is conjugate to ``r_i . c^-1 r_j^s c`` for
+      ``c = p u^-1``, so in the original frame it is ``w_i <- w_i . psi(c)^-1 w_j^s psi(c)`` (conjugate, multiply,
+      conjugate back). An elementary move maps to itself, a conjugation by ``g`` to one by the word ``psi(g)``.
+    * **tail**: the path ends at single letters, so the words end at the basis ``(psi(x), psi(y))``; precomposing
+      with the factors of ``phi``, last first, is a sequence of Nielsen moves and gives ``x, y``.
+    """
     if pres.n_gen != 2 or start.n_gen != 2:
         raise ValueError("transport through Aut(F2) needs two generators")
     psi = images(invert(phi))
     tab = sub_table(psi)
     em = Emitter(pres)
-    states = replay(start, path, cyclic=cyclic)
+    states = replay(start, path, cyclic=cyclic, normalize=False)
     for s, mv in zip(states, path):
         if isinstance(mv, dict):
             em.align(tuple(apply_table(r, tab) for r in s.rels))
@@ -132,11 +115,16 @@ def transport(pres, phi, path, start, cyclic=True):
 def solve_via_aut_min(pres, cfg=None, **overrides):
     """Search the Aut-minimal representative of ``pres``; return ``(result, elementary path or None)``.
 
-    The representative's path is transported to ``pres`` and replayed there;
-    only then does the solve count for ``pres``.
+    The representative's path is carried to ``pres`` and replayed there; only then does the solve count for
+    ``pres``. A row that is its own representative (freely reduced, ``cyclic`` search) needs no automorphism, so
+    the shorter decoded path is returned instead of a transport.
     """
     from ..search import search
     cfg = (cfg or SearchConfig()).replace(**overrides)
     ac = aut_canon(pres)
     res = search(ac.rep, cfg)
-    return res, None if res.path is None else transport(pres, ac.phi, res.path, res.start, cfg.cyclic)
+    if res.path is None:
+        return res, None
+    if cfg.cyclic and res.start == pres.reduced().canonical() and pres.reduced(False) == pres:
+        return res, decode(pres, res.path)
+    return res, transport(pres, ac.phi, res.path, res.start, cfg.cyclic)

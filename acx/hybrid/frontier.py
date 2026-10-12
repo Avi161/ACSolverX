@@ -1,23 +1,13 @@
-"""The hybrid's rank-two frontier on packed keys, on either backend (identical output).
+"""The hybrid's rank-two frontier on packed keys, on backend ``spec`` (pure Python) or ``fast`` (numba), same output.
 
-A rank-two state is a **key**: the canonical pair (``acx.core.words.canonical_rels``)
-as bytes of key codes (``X=1, Y=2, x=3, y=4``), the relators separated by ``0``.
-Byte order on keys is ``acx.core.words.state_key`` order. Two operations:
-
-* ``expand(key, cap)``: every child of the S-moves, in the search order
-  (``i -> j -> s -> k1 -> k2``) with the kernel's cut-shift skip (a child that
-  is a conjugate of the previous move's child in the same block is left out:
-  ``acx.search.fast.kernels``), as ``(children, rejected)``; ``children`` is a
-  list of ``(child key, Move)`` and ``rejected`` counts the legal moves whose
-  new relator is longer than ``cap``.
-* ``spec_dropped(key, cap)`` (both backends): the rejected moves themselves, for the cap counters
-  (``acx.core.capcount``), and ``pair_precheck`` (the free gate test on a pair of relator tuples).
-* ``transform(key, k)``: the key of ``AUTOS[k]`` applied to the state.
-
-``"spec"`` is pure Python on ``acx`` words (here); ``"fast"`` is
-``acx.hybrid.kernels`` (numba). ``tests/test_hybrid.py`` checks they agree
-child for child, and the whole hybrid run on both.
+A key is the canonical pair as bytes of key codes (``X=1 Y=2 x=3 y=4``), relators split by ``0``; byte order is
+``acx.core.words.state_key`` order. A backend is ``(expand, full, transform)``: the children of the S-moves, every child
+as arrays (for the cap counters), and one of the ``AUTOS`` applied to a key. ``over_cap`` picks the rejected ones.
 """
+from collections import namedtuple
+
+import numpy as np
+
 from ..core.moves import Move
 from ..core.words import canonical_rels, inverse, reduce, rotate
 from .cascade import aut_child
@@ -67,78 +57,52 @@ def spec_expand(key, cap):
     return out, rejected
 
 
-def spec_dropped(key, cap):
-    """The rank-two moves ``spec_expand`` rejects, one entry per rejected move in search order:
-    ``(order, (new relator, untouched relator), total, longest)``, ``order = (i, -s, k1, k2)`` the
-    move's position in the search order, the child as written (not yet canonical), its total length
-    and its longest relator. ``len(spec_dropped(key, cap))`` is ``rejected`` of either backend, which
-    reject the same moves. It only feeds the cap counters (``acx.core.capcount``) and runs when a move
-    was rejected, never under the default ``"parent"`` cap, which cannot reject."""
-    rels = unpack(key)
-    out = []
-    if cap is None:
-        return out
-    for i in (0, 1):
-        ri, rj = rels[i], rels[1 - i]
-        li, lj = len(ri), len(rj)
-        for s in (1, -1):
-            oj = rj if s == 1 else inverse(rj)
-            if not (li and lj):
-                continue
-            marked = set()
-            for k1 in range(li):
-                last = ri[li - 1 - k1]
-                for k2 in range(lj):
-                    if oj[(lj - k2) % lj] != -last:
-                        continue
-                    if lj <= cap and k1 and (k1 - 1, (k2 + 1) % lj) in marked:
-                        marked.add((k1, k2))
-                        continue
-                    new = reduce(rotate(ri, k1) + rotate(oj, k2))
-                    if lj > cap or len(new) > cap:
-                        out.append(((i, -s, k1, k2), (new, rj), len(new) + lj, max(len(new), lj)))
-                        continue
-                    marked.add((k1, k2))
-    return out
-
-
-def pair_precheck(pair):
-    """``gate_precheck_key(pack(pair))`` without packing: may a finishing gate apply to the pair (a one-letter
-    relator, a generator occurring once, or exactly four cyclic syllables)?"""
-    for w in pair:
-        m = len(w)
-        if m == 1:
-            return True
-        na = sum(1 for g in w if g == 1 or g == -1)
-        if na == 1 or m - na == 1:
-            return True
-        if sum(1 for k in range(m) if (w[k] in (1, -1)) != (w[k - 1] in (1, -1))) == 4:
-            return True
-    return False
-
-
 def spec_transform(key, k):
     return pack(aut_child(unpack(key), k))
+
+
+def spec_full(key):
+    """Every child of ``key`` with no cap, as arrays: ``(raw, offsets, first relator lengths)``."""
+    keys = [k for k, _ in spec_expand(key, None)[0]]
+    return b"".join(keys), np.cumsum([0] + [len(k) for k in keys]), np.array([k.index(0) for k in keys], dtype=np.int64)
 
 
 BACKENDS = ("spec", "fast")
 
 
 def backend(name):
-    """``(expand, transform)`` of a backend; ``fast`` (numba) is imported only when asked for."""
+    """``(expand, full, transform)`` of a backend; ``fast`` (numba) is imported only when asked for."""
     if name == "spec":
-        return spec_expand, spec_transform
+        return spec_expand, spec_full, spec_transform
     if name != "fast":
         raise ValueError(f"backend {name!r} not in {BACKENDS}")
-    from .kernels import fast_expand, fast_transform
-    return fast_expand, fast_transform
+    from .kernels import fast_expand, fast_full, fast_transform
+    return fast_expand, fast_full, fast_transform
 
 
-def perm_min(key, transform):
-    """The least key over the eight signed permutations (``AUTOS[0..7]``) and its index (0 = identity)."""
-    best, best_k = key, 0
-    for k in range(1, 8):
-        cand = transform(key, k)
-        if cand < best:
-            best, best_k = cand, k
-    return best, best_k
+def orbit(key, transform):
+    """The eight images of ``key`` under the signed permutations (``AUTOS[0..7]``, the identity first)."""
+    return [key] + [transform(key, k) for k in range(1, 8)]
+
+
+Drops = namedtuple("Drops", "raw pos before total longest start end flag")
+
+
+def over_cap(full, cap):
+    """The children in ``full`` (see ``backend``) that ``cap`` rejects, in search order, as ``Drops``: the key is
+    ``raw[start:end]``, ``pos`` its place among all children (``before`` of them kept), ``flag`` whether ``gate_precheck_key`` passes
+    (a one-letter relator, a generator occurring once, or four cyclic syllables in one relator)."""
+    raw, offs, l0 = full
+    start, end = offs[:-1], offs[1:]
+    l1 = end - start - 1 - l0
+    pos = np.flatnonzero(np.maximum(l0, l1) > cap)
+    start, end, l0, l1 = start[pos], end[pos], l0[pos], l1[pos]
+    codes = np.frombuffer(raw, np.uint8)
+    isb = (codes % 2 == 0) & (codes > 0)                      # a letter of the second generator
+    nb = np.concatenate(([0], np.cumsum(isb)))
+    syl = np.concatenate(([0], np.cumsum(isb[:-1] != isb[1:])))
+    flag = np.zeros(len(pos), dtype=bool)
+    for s, e in ((start, start + l0), (start + l0 + 1, end)):
+        n, b = e - s, nb[e] - nb[s]
+        flag |= (n == 1) | (b == 1) | (n == b + 1) | (syl[e - 1] - syl[s] + (isb[e - 1] != isb[s]) == 4)
+    return Drops(raw, pos, pos - np.arange(len(pos)), l0 + l1, np.maximum(l0, l1), start, end, flag)

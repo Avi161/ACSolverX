@@ -1,38 +1,8 @@
 """Whitehead's algorithm on F2: the Aut(F2)-canonical form of a presentation, with its witness.
 
-An automorphism ``phi`` of F2 maps an AC-trivial presentation to an AC-trivial
-one (AC moves are Aut-equivariant and ``phi(x), phi(y)`` is a basis), so a whole
-Aut(F2)-orbit is one problem. ``aut_canon(pres)`` returns ``AutCanon(total, rep,
-phi)`` with the certificate
-
-    reduce + canonicalise(phi(pres)) == rep          (``check``)
-
-``phi`` is a tuple of indices into ``AUTOS`` in application order (the first
-index acts first); ``images(phi)`` composes it, ``invert(phi)`` inverts it.
-Keeping the factors (not only the composed images) is what lets
-``acx.aut.transport`` realise ``phi`` by AC moves.
-
-The algorithm, two phases:
-
-1. **Peak reduction** to the orbit's minimal total cyclic length: repeatedly
-   apply the best of the 12 second-kind Whitehead automorphisms (``DESCENT``,
-   list order, strict ``<``, ties to the earlier one). Lengths only, never a
-   canonical form (that is the hot path).
-2. **Level set**: DFS over all 20 ``AUTOS`` keeping the total fixed; every node
-   is the reduced canonical form (``acx.core.words``: Booth order per relator,
-   relators sorted by ``(length, Booth)``). ``rep`` is the least node in KEY
-   order (``state_key``: ``X < Y < x < y``, the order of main's string pairs).
-   The minimal level set is connected (peak reduction), so ``rep`` is a
-   complete orbit invariant. A level set over ``level_cap`` raises: a partial
-   set would give a silently wrong ``rep``.
-
+``aut_canon(pres)`` gives ``AutCanon(total, rep, phi)``: the least canonical presentation of the Aut(F2)-orbit and
+the factors ``phi`` (indices into ``AUTOS``, the first acts first) with ``canonical(phi(pres)) == rep`` (``check``).
 Words are ``acx`` int tuples; two generators, any number of relators.
-
-Sources: ``origin/main:experiments/equivalence_classes/lib/autcanon.py`` (the
-witness-carrying ``aut_canon``; same autos, order and tie-breaks) and
-``origin/main:experiments/analysis/whitehead.py`` (the witness-free original).
-Both are identical on every later branch. On 3,000 AC19_extended rows this
-module returns main's ``rep`` and main's ``phi`` images exactly.
 """
 from collections import namedtuple
 
@@ -51,10 +21,12 @@ IDENTITY = ((1,), (2,))
 
 
 def sub_table(img):
+    """The letter-to-word table of the endomorphism ``x -> img[0], y -> img[1]``."""
     return {1: img[0], -1: inverse(img[0]), 2: img[1], -2: inverse(img[1])}
 
 
 def apply_table(w, tab):
+    """``w`` with every letter replaced by its word in ``tab``, freely reduced."""
     out = []
     for g in w:
         for h in tab[g]:
@@ -78,11 +50,7 @@ def images(phi):
     return img
 
 
-def _inverse_index(k):
-    return next(j for j in range(len(AUTOS)) if images((k, j)) == IDENTITY)
-
-
-INVERSE = tuple(_inverse_index(k) for k in range(len(AUTOS)))
+INVERSE = tuple(next(j for j in range(len(AUTOS)) if images((k, j)) == IDENTITY) for k in range(len(AUTOS)))
 TABLES = tuple(map(sub_table, AUTOS))
 
 
@@ -92,22 +60,22 @@ def invert(phi):
 
 
 def apply_pres(pres, phi):
+    """The presentation with every relator mapped by the automorphism ``phi`` (not reduced)."""
     tab = sub_table(images(phi))
     return Presentation(2, tuple(apply_table(r, tab) for r in pres.rels))
 
 
-def _two_gen(pres):
-    if pres.n_gen != 2:
-        raise ValueError(f"Whitehead's algorithm here is for F2, got {pres.n_gen} generators")
-    return pres
-
-
 def _image(rels, k):
+    """Every relator under ``AUTOS[k]``, cyclically reduced."""
     return tuple(reduce(apply_table(r, TABLES[k])) for r in rels)
 
 
 def peak_reduce(rels):
-    """Phase 1: ``(total, cyclically reduced rels, factors)`` at the orbit's minimal total."""
+    """Phase 1: ``(total, cyclically reduced rels, factors)`` at the orbit's minimal total cyclic length.
+
+    Repeatedly applies the best of the 12 second-kind automorphisms (``DESCENT`` order, strict ``<``, ties to the
+    earlier one), by lengths only: no canonical form is built on this hot path.
+    """
     cur = tuple(reduce(r) for r in rels)
     tot = sum(map(len, cur))
     phi = []
@@ -124,7 +92,12 @@ def peak_reduce(rels):
 
 
 def level_min(rels, level_cap=50_000):
-    """Phase 2: ``(rep rels, factors from rels to rep)`` over the minimal level set of ``rels``."""
+    """Phase 2: ``(rep rels, factors from rels to rep)`` over the minimal level set of ``rels``.
+
+    Depth-first over all 20 ``AUTOS`` at a fixed total; each node is canonical (``canonical_rels``) and ``rep`` is the
+    least in ``state_key`` order (``X < Y < x < y``). The level set of a peak-reduced presentation is connected, so
+    ``rep`` is a complete orbit invariant; a set over ``level_cap`` raises, since a partial one gives a wrong ``rep``.
+    """
     start = canonical_rels(rels)
     t = sum(map(len, start))
     seen = {start: None}                 # node -> (parent, auto index)
@@ -150,8 +123,12 @@ def level_min(rels, level_cap=50_000):
 
 
 def aut_canon(pres, level_cap=50_000):
-    """``AutCanon(total, rep, phi)``: the Aut-minimal canonical representative and its witness."""
-    pres = _two_gen(pres)
+    """``AutCanon(total, rep, phi)``: the Aut-minimal canonical representative and its witness.
+
+    The factors (not only their composed images) are kept so that ``acx.aut.transport`` can realise ``phi`` by AC moves.
+    """
+    if pres.n_gen != 2:
+        raise ValueError(f"Whitehead's algorithm here is for F2, got {pres.n_gen} generators")
     t, red, phi1 = peak_reduce(pres.rels)
     rep, phi2 = level_min(red, level_cap)
     return AutCanon(t, Presentation(2, rep), phi1 + phi2)
@@ -169,4 +146,5 @@ def automorphism(p, q, level_cap=50_000):
 
 
 def are_automorphic(p, q, level_cap=50_000):
+    """``p`` and ``q`` lie in one Aut(F2)-orbit."""
     return automorphism(p, q, level_cap) is not None

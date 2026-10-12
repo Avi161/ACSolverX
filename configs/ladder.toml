@@ -1,5 +1,4 @@
-# The headline benchmark: the ladder200 panel (188 rows: 20 per level 1-8, 19 at level 9, 9 at level 10) under S20_MK2.
-# Compare with `--set search.priority=length`, and with `configs/hybrid.toml --set benchmark=ladder200`.
+# Headline: greedy at S20_MK2 on the ladder200 panel (188 rows, budget 10,000); compare with length.
 method = "greedy"
 benchmark = "ladder200"
 workers = 4

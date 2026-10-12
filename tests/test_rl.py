@@ -25,16 +25,19 @@ def test_moves_match_jax():
     """123 transitions recorded from ``envs/ac_moves.py`` (random actions: no-ops, over-length, bad seams)."""
     x = torch.tensor([m[0] for m in REF["moves"]])
     a = torch.tensor([m[1] for m in REF["moves"]])
-    out, over = moves.s_move(x, *moves.decode_action(a, 24), 24)
+    out, over, _, _ = moves.s_move(x, *moves.decode_action(a, 24), 24)
     assert (out == torch.tensor([m[2] for m in REF["moves"]])).all()
     assert (out != x).any(-1).sum() > 20 and (out == x).all(-1).any()
     assert over.any() and (out[over] == x[over]).all()             # an over-length product is a no-op
 
 
 def test_action_codec_roundtrip():
-    a = torch.arange(0, 4 * 24 * 24, 7)
+    """``decode_action`` is a bijection of ``[0, 4 L^2)`` onto ``(i, r, k1, k2)`` (its inverse is written out here)."""
+    a = torch.arange(4 * 24 * 24)
     i, j, k1, k2 = moves.decode_action(a, 24)
-    assert (moves.encode_action(i, j, k1, k2, 24) == a).all()
+    signed = torch.where(j == 0, k2, -(k2 + 1))
+    assert (((k1 - 1) * 24 + signed) * 4 + (i * 2 + j) == a).all()
+    assert (i.amax(), j.amax(), k1.min(), k1.max()) == (1, 1, 1, 24)
 
 
 def test_policy_matches_jax(model):
@@ -126,14 +129,13 @@ def test_ppo_smoke():
 
 
 def test_s_move_sizes_describe_the_dropped_product():
-    """``sizes=True`` leaves the move alone and adds the seam-reduced product length and the child's total."""
+    """``s_move`` returns the seam-reduced product length and the child's total beside the new state and ``over``."""
     x = torch.tensor([m[0] for m in REF["moves"]])
     a = torch.tensor([m[1] for m in REF["moves"]])
     args = moves.decode_action(a, 24)
     for cap in (None, 10):
-        plain = moves.s_move(x, *args, 24, cap)
-        new, over, size, total = moves.s_move(x, *args, 24, cap, sizes=True)
-        assert (new == plain[0]).all() and (over == plain[1]).all()
+        new, over, size, total = moves.s_move(x, *args, 24, cap)
+        assert (new[over] == x[over]).all()
         limit = 24 if cap is None else cap
         assert (size[over] > limit).all() and (size[~over] <= limit).all()
         other = torch.where(args[0] == 0, (x[:, 24:] != 0).sum(-1), (x[:, :24] != 0).sum(-1))

@@ -5,7 +5,7 @@ import pytest
 
 from acx.core.config import SearchConfig
 from acx.core.moves import Move, enumerate_moves, stabilize, step
-from acx.core.words import Presentation, canonical_rels, inverse, is_cyclically_reduced
+from acx.core.words import Presentation, canonical_rels, inverse, reduce
 from acx.search import search
 from acx.verify import ReplayError, replay
 from acx.verify.decode import decode, decode_and_replay, pack, unpack
@@ -72,7 +72,7 @@ def test_mixed_path_with_elementary_and_stable_moves(solves):
 def test_s_move_after_a_dict_move_that_breaks_cyclic_reduction(solves):
     """The S-move then indexes ``canonical_rels`` of words that are not cyclically reduced (``_frame``)."""
     conj = {"op": "conjugate", "target": 1, "by": "x"}
-    pres = next(p for p, _ in solves if not all(map(is_cyclically_reduced, step(p.reduced().canonical(), conj).rels)))
+    pres = next(p for p, _ in solves if any(reduce(r) != r for r in step(p.reduced().canonical(), conj).rels))
     rels = step(pres.reduced().canonical(), conj).rels
     done = 0
     for m in list(enumerate_moves(canonical_rels(rels)))[:20]:

@@ -1,43 +1,14 @@
 """The benchmark runner behind ``run.py``: one config, one method, every row verified before it is written.
 
-A config is a TOML file::
-
-    name = "s20_mk2_fast"        # results/<name>/ (default: the file's stem)
-    method = "greedy"            # greedy | cov | aut | hybrid | ngen | rl
-    benchmark = "ms640"          # a name of acx.data.rows, or a path
-    rows = "0:40"                # optional: a slice "a:b[:c]" or ids "3,17,ms_335"
-    workers = 1                  # processes
-    decode = true                # elementary length of S-move paths (acx.verify.decode)
-    [search]                     # acx.core.config.SearchConfig (greedy, cov, aut, ngen)
-    [cov]                        # acx.cov.CoVConfig, without ``search``
-    [hybrid]                     # acx.hybrid.HybridConfig
-    [ngen]                       # acx.ngen.NGenConfig, without ``search``
-    [rl]                         # acx.rl.solve.solve keywords: width, steps, alpha, cap
-
-A method reads only its own sections (``SECTIONS``); any other section, any unknown key and any invalid value
-(a cap through ``acx.core.config.parse_cap``) is an error when the config is loaded, before anything is written.
-
-Each row gives one record in ``paths.jsonl``: ``kind`` (``ac_path``, ``stable_cert`` or None),
-``aut_assisted`` (an ``ac_path`` whose certificate changed basis and was carried back to the row),
-``cost`` (pops, hybrid units or network evaluations), ``sub_moves`` (substitution moves of the search)
-and ``elem_moves`` (elementary AC moves on the row; None for a CoV ``stable_cert``, whose transform has no
-AC path), and the certificate: ``path`` (S-moves, ``encode_path``), ``elementary`` (the elementary path on the
-row, ``acx.verify.decode.pack``) and ``steps`` (a CoV transform or a hybrid certificate). A record is written only after its certificate replays on the row
-(``acx.verify.replay``; a CoV ``stable_cert`` through ``acx.cov.verify``). Rows already in ``paths.jsonl``
-are skipped, so an interrupted run resumes; ``summary.json`` covers the selected rows.
-
-Every record, solved or not, also carries the cap counters of its search (``acx.core.capcount.FIELDS``:
-``cap``, ``cap_dropped``, ``cap_dropped_min_total``, ``cap_would_pop``, ``cap_first_bind``, ``cap_needed``),
-for each counter prefix the method's ``stats`` hold (``CAP_PREFIXES``: the hybrid adds ``dyn_cap_*`` and
-``slack_*``; CoV adds ``cap_legs_bound``). ``summary.json`` sums them in ``caps``, one entry per prefix
-(``acx.core.capcount.summarize``): rows where the cap dropped anything, the "raise the cap" rows
-(``cap_would_pop > 0``) with their ids, and the smallest and largest ``cap_needed``.
+``load_config`` reads and checks a config; ``run`` solves the rows and writes ``results/<name>/``
+``{config.json, paths.jsonl, summary.json}``. Methods: greedy, cov, aut, hybrid, ngen, rl.
 """
 import json
 import os
 import statistics
 import time
 import tomllib
+from contextlib import nullcontext
 from dataclasses import fields
 from functools import lru_cache
 from multiprocessing import Pool
@@ -48,7 +19,7 @@ from .core.capcount import summarize as cap_summary
 from .core.config import SearchConfig, parse_cap, parse_override
 from .core.moves import encode_path
 from .verify.decode import decode_and_replay, pack
-from .verify.replay import replay
+from .verify.replay import ReplayError, abs_det, replay
 
 SECTIONS = {"greedy": ("search",), "aut": ("search",), "cov": ("search", "cov"), "ngen": ("search", "ngen"),
             "hybrid": ("hybrid",), "rl": ("rl",)}
@@ -62,7 +33,16 @@ CAP_EXTRA = ("cap_legs_bound",)                  # CoV: legs whose counter bound
 
 
 def load_config(path, overrides=()):
-    """The TOML at ``path`` plus ``key=value`` overrides (dotted keys reach sections: ``search.budget=1000``)."""
+    """The config TOML at ``path`` plus ``key=value`` overrides (dotted keys reach sections: ``search.budget=1000``).
+
+    Top level: ``name`` (the results folder, default the file's stem), ``method``, ``benchmark`` (a name of
+    ``acx.data.rows`` or a path), ``rows`` (optional: a slice ``"a:b[:c]"`` or ids ``"3,17"``), ``workers``
+    (processes, default 1) and ``decode`` (default true: elementary length of S-move paths, ``acx.verify.decode``).
+    A method reads only its own sections (``SECTIONS``): ``[search]`` is ``acx.core.config.SearchConfig``,
+    ``[cov]`` ``CoVConfig`` and ``[ngen]`` ``NGenConfig`` without their ``search``, ``[hybrid]`` ``HybridConfig``,
+    ``[rl]`` the keywords of ``acx.rl.solve.solve`` (width, steps, alpha, cap). Any other section, unknown key or
+    invalid value (a cap goes through ``parse_cap``) raises ``ValueError`` here, before anything is written.
+    """
     with open(path, "rb") as f:
         cfg = tomllib.load(f)
     cfg.setdefault("name", os.path.splitext(os.path.basename(path))[0])
@@ -88,13 +68,13 @@ def load_config(path, overrides=()):
 
 
 def select(rows, spec):
-    """``rows`` sliced by ``"a:b[:c]"`` or picked by comma-separated ids."""
+    """``rows`` sliced by ``"a:b[:c]"`` or picked by comma-separated ids (a repeated id once, first place)."""
     if spec in (None, ""):
         return rows
     spec = str(spec)
     if ":" in spec:
         return rows[slice(*(int(t) if t else None for t in spec.split(":")))]
-    ids = spec.split(",")
+    ids = list(dict.fromkeys(spec.split(",")))
     by_id = {r.id: r for r in rows}
     missing = [i for i in ids if i not in by_id]
     if missing:
@@ -103,6 +83,7 @@ def select(rows, spec):
 
 
 def _sub(cls, d, **fixed):
+    """``cls(**fixed, **d)`` for a config dataclass, with unknown keys of ``d`` named in the error."""
     names = {f.name for f in fields(cls)} - set(fixed)
     bad = set(d) - names
     if bad:
@@ -111,10 +92,8 @@ def _sub(cls, d, **fixed):
 
 
 def method_config(cfg):
-    """The method's settings, built from its sections; raises on an unknown key or an invalid value.
-
-    ``[search]`` always captures paths, since every solve is replayed.
-    """
+    """The method's settings object (a dict of keywords for ``rl``) built from its sections; ``ValueError`` on
+    an unknown key or an invalid value. ``[search]`` always captures paths, since every solve is replayed."""
     m = cfg["method"]
     search = SearchConfig.from_dict({**({"budget": 1_000} if m == "cov" else {}), **cfg.get("search", {}),
                                      "capture_path": True})
@@ -125,7 +104,10 @@ def method_config(cfg):
         return _sub(CoVConfig, cfg.get("cov", {}), search=search)
     if m == "ngen":
         from .ngen import NGenConfig
-        return _sub(NGenConfig, {**cfg.get("ngen", {}), "lift": True}, search=search)
+        c = _sub(NGenConfig, {**cfg.get("ngen", {}), "lift": True}, search=search)
+        if c.sac and search.priority != "length":
+            raise ValueError("ngen with sac=true searches past two generators, where only priority 'length' is defined")
+        return c
     if m == "hybrid":
         from .hybrid import HybridConfig
         return _sub(HybridConfig, {**cfg.get("hybrid", {}), "certify": True})
@@ -148,6 +130,8 @@ def _elementary(pres, path, cfg):
 
 
 def _rec(solved, kind=None, aut=False, cost=0, sub=None, elem=None, path=None, elementary=None, **extra):
+    """One record: the common fields (``run``), the S-move ``path`` and the ``elementary`` moves JSON-encoded,
+    and ``extra`` fields."""
     return dict(solved=solved, kind=kind, aut_assisted=aut, cost=cost, sub_moves=sub, elem_moves=elem,
                 path=None if path is None else encode_path(path),
                 elementary=None if elementary is None else pack(elementary), **extra)
@@ -161,6 +145,8 @@ def _caps(stats):
 
 
 def greedy(pres, cfg):
+    """Record of the plain best-first search (``acx.search``) on ``pres``; every method function takes the row's
+    presentation and the config and returns a record (``run``)."""
     from .search import search
     s = method_config(cfg)
     res = search(pres, s)
@@ -172,6 +158,7 @@ def greedy(pres, cfg):
 
 
 def cov(pres, cfg):
+    """Record of the change-of-variables search (``acx.cov``)."""
     from .cov import run_cov, verify
     res = run_cov(pres, method_config(cfg))
     caps = _caps(res.stats)
@@ -191,6 +178,7 @@ def cov(pres, cfg):
 
 
 def aut(pres, cfg):
+    """Record of the search on the Aut-minimal representative, carried back to the row (``acx.aut``)."""
     from .aut import solve_via_aut_min
     s = method_config(cfg)
     res, moves = solve_via_aut_min(pres, s)
@@ -198,12 +186,15 @@ def aut(pres, cfg):
     if moves is None:
         return _rec(False, cost=res.pops, **caps)
     replay(pres, moves, normalize=False)
-    moved = res.start != pres.reduced(s.cyclic).canonical()   # False: the row is its own Aut-minimal form
+    moved = res.start != pres.normal(s.cyclic)      # False: the row is its own Aut-minimal form
+    if not moved and s.cyclic:                      # then the S-moves replay on the row, and may decode shorter
+        moves = min(moves, decode_and_replay(pres.reduced(False), res.path)[0], key=len)
     return _rec(True, "ac_path", moved, res.pops, len(res.path), len(moves), res.path, moves,
                 rep=list(res.start.strs), **caps)
 
 
 def hybrid(pres, cfg):
+    """Record of the hybrid solver (``acx.hybrid``)."""
     from .core.moves import Move
     from .hybrid import encode_steps, solve
     from .hybrid.cascade import Aut
@@ -218,6 +209,7 @@ def hybrid(pres, cfg):
 
 
 def ngen(pres, cfg):
+    """Record of the n-generator search, SAC then lift (``acx.ngen``)."""
     from .ngen import solve, verify
     c = method_config(cfg)
     res = solve(pres, c)
@@ -235,11 +227,13 @@ def ngen(pres, cfg):
 
 @lru_cache(maxsize=1)
 def _policy():
+    """The pretrained policy, loaded once per process."""
     from .rl.policy import pretrained
     return pretrained()
 
 
 def rl(pres, cfg):
+    """Record of the network-guided beam search (``acx.rl``, needs PyTorch)."""
     from .rl.solve import solve
     res = solve(pres, _policy(), **method_config(cfg))
     caps = _caps(res.stats)
@@ -250,10 +244,21 @@ def rl(pres, cfg):
     return _rec(True, "ac_path", False, res.pops, len(res.path), _elementary(pres, res.path, cfg), res.path, **caps)
 
 
+def _unsolvable(pres):
+    """Why no AC path starts from ``pres`` (``|det| != 1``, or not balanced), None when one may exist."""
+    try:
+        d = abs_det(pres)
+    except ReplayError as e:
+        return str(e)
+    return None if d == 1 else f"|det| = {d}, not AC-trivial"
+
+
 def _solve_row(args):
+    """``(cfg, row)`` -> the row's record; a row no AC path can start from is an unsolved record with an ``error``."""
     cfg, row = args
     t0 = time.perf_counter()
-    rec = globals()[cfg["method"]](row.pres, cfg)
+    why = _unsolvable(row.pres)
+    rec = _rec(False, error=why) if why else globals()[cfg["method"]](row.pres, cfg)
     return {"id": row.id, **rec, "seconds": round(time.perf_counter() - t0, 4)}
 
 
@@ -267,6 +272,7 @@ def check_method(cfg):
 
 
 def _stats(xs):
+    """``n``, ``sum``, ``mean``, ``median`` and ``max`` of the values that are not None (None if there are none)."""
     xs = [x for x in xs if x is not None]
     if not xs:
         return None
@@ -274,6 +280,7 @@ def _stats(xs):
 
 
 def summarize(cfg, recs, wall):
+    """The ``summary.json`` dict of ``recs`` (the run's records, one per row)."""
     solved = [r for r in recs if r["solved"]]
     groups = {"ac_path": [r for r in solved if r["kind"] == "ac_path" and not r["aut_assisted"]],
               "aut_assisted": [r for r in solved if r["aut_assisted"]],
@@ -281,6 +288,7 @@ def summarize(cfg, recs, wall):
     return dict(
         name=cfg["name"], method=cfg["method"], benchmark=cfg["benchmark"], rows=len(recs), solved=len(solved),
         **{k: len(v) for k, v in groups.items()}, skipped=sum(1 for r in recs if r.get("skipped")),
+        errors=sum(1 for r in recs if r.get("error")),
         cost=dict(unit=COST_UNIT.get(cfg["method"], "pops"), total=sum(r["cost"] for r in recs),
                   on_solved=sum(r["cost"] for r in solved)),
         path_length={k: dict(sub_moves=_stats(r["sub_moves"] for r in v), elem_moves=_stats(r["elem_moves"] for r in v))
@@ -304,8 +312,40 @@ def caps_block(recs):
     return out
 
 
+def _load_done(paths):
+    """The records in ``paths`` by id. A last line that is cut off (an interrupted write) is dropped from the file."""
+    done, good = {}, 0
+    with open(paths, "rb") as f:
+        for line in f:
+            try:
+                rec = json.loads(line)
+            except ValueError:
+                break
+            if not line.endswith(b"\n"):
+                break
+            done[rec["id"]] = rec
+            good += len(line)
+    with open(paths, "r+b") as f:
+        f.truncate(good)
+    return done
+
+
 def run(cfg, out="results", fresh=False, log=print):
-    """Run ``cfg`` over its rows; write ``results/<name>/{paths.jsonl, summary.json}``; return the summary."""
+    """Run ``cfg`` over its rows and return the summary.
+
+    Writes ``<out>/<name>/``: ``config.json``, ``paths.jsonl`` (one record per row, flushed as it is solved) and
+    ``summary.json``. Rows already in ``paths.jsonl`` are skipped, so an interrupted run resumes and a run under
+    another config needs ``fresh`` or another name; the summary covers every record in ``paths.jsonl``.
+
+    A record: ``solved``, ``kind`` (``ac_path``, ``stable_cert`` or None), ``aut_assisted`` (an ``ac_path`` carried
+    back to the row from another basis), ``cost`` (pops, hybrid units or network evaluations), ``sub_moves``
+    (substitution moves) and ``elem_moves`` (elementary AC moves on the row; None for a CoV ``stable_cert``), the
+    certificate (``path``: S-moves, ``acx.core.moves.encode_path``; ``elementary``: ``acx.verify.decode.pack``;
+    ``steps``: a CoV transform or hybrid certificate), the cap counters of its search (``CAP_PREFIXES``, fields
+    ``acx.core.capcount.FIELDS``; ``caps`` in the summary) and ``seconds``. A record is written only after its
+    certificate is verified on the row (``acx.verify.replay``; a CoV ``stable_cert`` by ``acx.cov.verify``); a
+    row with ``|det| != 1`` gets ``solved: false`` and an ``error``.
+    """
     check_method(cfg)
     rows = select(data.rows(cfg["benchmark"]), cfg.get("rows"))
     d = os.path.join(out, cfg["name"])
@@ -321,35 +361,19 @@ def run(cfg, out="results", fresh=False, log=print):
                 raise SystemExit(f"{d} holds a run with another config: pass --fresh or another name")
     with open(cfg_file, "w") as f:
         json.dump(key, f, indent=1)
-    done = {}
-    if os.path.exists(paths):
-        with open(paths) as f:
-            done = {r["id"]: r for r in map(json.loads, f)}
+    done = _load_done(paths) if os.path.exists(paths) else {}
     todo = [r for r in rows if r.id not in done]
     log(f"{cfg['name']}: {cfg['method']} on {cfg['benchmark']}, {len(rows)} rows ({len(rows) - len(todo)} done)")
     t0 = time.perf_counter()
     workers = cfg.get("workers", 1)
-    with open(paths, "a") as f, Pool(workers) if workers > 1 else _Serial() as pool:
-        for n, rec in enumerate(pool.imap(_solve_row, [(cfg, r) for r in todo]), 1):
+    with open(paths, "a") as f, (Pool(workers) if workers > 1 else nullcontext()) as pool:
+        for n, rec in enumerate((pool.imap if pool else map)(_solve_row, [(cfg, r) for r in todo]), 1):
             done[rec["id"]] = rec
             f.write(json.dumps(rec) + "\n")
             f.flush()
             if n % 50 == 0 or n == len(todo):
                 log(f"  {n}/{len(todo)} rows, {sum(done[r.id]['solved'] for r in todo[:n])} solved")
-    summary = summarize(cfg, [done[r.id] for r in rows], time.perf_counter() - t0)
+    summary = summarize(cfg, list(done.values()), time.perf_counter() - t0)
     with open(os.path.join(d, "summary.json"), "w") as f:
         json.dump(summary, f, indent=1)
     return summary
-
-
-class _Serial:
-    """``Pool``'s ``imap`` in this process (one worker)."""
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *exc):
-        return False
-
-    def imap(self, fn, items):
-        return map(fn, items)

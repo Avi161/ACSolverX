@@ -12,6 +12,7 @@ from acx.aut.whitehead import IDENTITY, apply_pres
 from acx.core.words import Presentation
 from acx.search import search
 from acx.verify import replay
+from acx.verify.decode import decode
 
 from conftest import ROOT, dataset
 
@@ -70,6 +71,12 @@ def test_witness_and_inverse():
         assert images(phi + invert(phi)) == IDENTITY == images(invert(phi) + phi)
 
 
+def test_auto_table_layout():
+    """The numba twin relies on it: ``AUTOS[0]`` is the identity and only ``AUTOS[8:]`` change a total length."""
+    assert AUTOS[0] == IDENTITY and len(AUTOS) == 20
+    assert all(sum(map(len, a)) == 2 for a in AUTOS[:8]) and all(sum(map(len, a)) > 2 for a in AUTOS[8:])
+
+
 def test_level_cap_raises():
     with pytest.raises(RuntimeError, match="level_cap"):
         aut_canon(_p("YYYYXyyyx", "YYXYxYx"), level_cap=1)
@@ -84,7 +91,7 @@ def test_ladder_pairs_are_automorphic():
         phi = automorphism(orig, rep)
         assert apply_pres(orig, phi).reduced().canonical() == rep.canonical()
         reps.append(rep.canonical())
-    distinct = {r: o for r, o in zip(reps, pairs)}
+    distinct = dict(zip(reps, pairs, strict=True))
     assert len(distinct) >= 5
     a, b = list(distinct.values())[:2]
     assert not are_automorphic(_p(*a[:2]), _p(*b[:2]))
@@ -202,3 +209,15 @@ def test_aut_min_search_carries_the_cap_counters():
         assert all(f in res.stats for f in fields) and res.stats["cap"] == 24 and res.stats["cap_would_pop"] == 0
     res, _ = solve_via_aut_min(dataset("data/ms640_solved.txt")[100], budget=100, cap=None)
     assert res.stats["cap"] is None and res.stats["cap_dropped"] == 0 and res.stats["cap_first_bind"] is None
+
+
+@pytest.mark.parametrize("row", [7, 177, 180])
+def test_row_that_is_its_own_representative_gets_the_decoded_path(row):
+    """No automorphism is applied (the row is its own Aut-minimal form), so the elementary path is the decoder's,
+    not a transport (58, 165 and 235 moves where the decoder needs 13, 28 and 83)."""
+    pres = dataset("data/ms640_solved.txt")[row]
+    res, path = solve_via_aut_min(pres, budget=10_000)
+    assert res.start == pres.reduced().canonical()
+    assert path == decode(pres.reduced(False), res.path)
+    assert replay(pres, path, normalize=False)[-1].is_trivial()
+    assert len(path) < len(transport(pres, (), res.path, res.start))

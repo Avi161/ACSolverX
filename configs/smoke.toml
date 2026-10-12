@@ -1,4 +1,4 @@
-# Seconds: the fast greedy on the first 20 MS640 rows, every path replayed and decoded.
+# Seconds: the S20_MK2 greedy on the first 20 MS640 rows, every path replayed and decoded.
 method = "greedy"
 benchmark = "ms640"
 rows = "0:20"

@@ -1,4 +1,4 @@
-# Search the Aut-minimal representative, then transport the path back to the row.
+# Aut-minimal representative of each row, searched at S20_MK2, then transported back to the row (fast).
 method = "aut"
 benchmark = "bench60"
 

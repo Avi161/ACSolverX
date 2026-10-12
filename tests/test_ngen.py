@@ -1,4 +1,5 @@
 """acx.ngen: the SAC transform, its replayable lift to elementary stable moves, n-generator search."""
+import os
 import random
 
 import pytest
@@ -11,6 +12,7 @@ from acx.search import PARITY_STATS, search
 from acx.verify import ReplayError, replay
 from acx.verify.replay import abs_det
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FAST = SearchConfig(backend="fast", budget=3000)
 EXPECTED_SAMPLE_SOLVES = 10    # of 40 (rank two solves 34 of the same 40 at budget 1,000)
 ROWS = [0, 32, 96, 128, 224, 256]      # MS640 rows whose triangle root solves within 3,000 pops
@@ -114,9 +116,20 @@ def test_fast_matches_spec_past_two_generators(ms640, pid, cap):
     root = triangulate(ms640[pid]).root
     cfg = SearchConfig(cap=cap, budget=300, trace=True)
     a, b = search(root, cfg), search(root, cfg.replace(backend="fast"))
-    assert root.n_gen > 2 and (a.solved or cap != 5 or a.stats["cap_rejected"] > 0)
+    assert root.n_gen > 2 and (a.solved or cap != 5 or a.stats["cap_dropped"] > 0)
     assert (a.solved, a.pops, a.path, a.end, a.trace) == (b.solved, b.pops, b.path, b.end, b.trace)
     assert {k: a.stats[k] for k in PARITY_STATS} == {k: b.stats[k] for k in PARITY_STATS}
+
+
+@pytest.mark.parametrize("backend", ["spec", "fast"])
+@pytest.mark.parametrize("rels", [("YYXXyxxyy", "XXXyxx"), ("XyX", "YYxy")])
+def test_solve_replays_without_cyclic_reduction(rels, backend):
+    """B1 (ngen side): with cyclic = false the canonical start is not a fixed point of reduce + canonical. Without a
+    definition the search must run on the input itself, so the ac_path it returns replays on the input."""
+    pres = Presentation.parse(*rels)
+    res = solve(pres, NGenConfig(SearchConfig(backend=backend, budget=800, cyclic=False)))
+    assert res.solved and res.kind == "ac_path"
+    assert verify(pres, res, cyclic=False)[-1].is_trivial()
 
 
 def test_solve_without_sac_is_an_ac_path(ms640):
@@ -134,8 +147,56 @@ def test_solve_short_relators_need_no_definition():
 def test_solve_unsolved_and_guard(ms640):
     res = solve(ms640[64], NGenConfig(FAST.replace(budget=5)))
     assert not res.solved and res.kind is None and res.moves is None
-    with pytest.raises(ValueError):
-        solve(ms640[64], NGenConfig(SearchConfig(priority="s20_mk2")))
+    rank3 = Presentation(3, ms640[64].rels + ((3,),))
+    with pytest.raises(ValueError, match="length"):          # rank above two without SAC: s20_mk2 is refused
+        solve(rank3, NGenConfig(SearchConfig(priority="s20_mk2"), sac=False))
+    rank2 = solve(ms640[64], NGenConfig(SearchConfig(priority="s20_mk2", budget=5), sac=False))   # rank two: allowed
+    assert rank2.search.pops <= 5
+
+
+def test_sac_needs_the_length_priority_when_the_config_is_built():
+    """B8: SAC past two generators needs LENGTH; the error comes from the config, before any search or file."""
+    with pytest.raises(ValueError, match="length"):
+        NGenConfig(SearchConfig(priority="s20_mk2"))
+    assert NGenConfig(SearchConfig(priority="s20_mk2"), sac=False).sac is False
+
+
+def test_ngen_config_refused_at_runner_load_before_anything_is_written():
+    """B8 through the runner: ``run.py`` loads (and refuses) the config before it creates results/<name>/."""
+    from acx.runner import load_config, method_config
+    with pytest.raises(ValueError, match="length"):
+        load_config(os.path.join(ROOT, "configs", "ngen_sac.toml"), ["search.priority=s20_mk2"])
+    with pytest.raises(ValueError, match="length"):
+        method_config({"method": "ngen", "benchmark": "bench60", "search": {"priority": "s20_mk2"}})
+    assert method_config({"method": "ngen", "benchmark": "bench60", "search": {"priority": "s20_mk2"},
+                          "ngen": {"sac": False}}).sac is False
+
+
+def rand_word(n, rng):
+    """A freely reduced word of length ``n`` (the B6 repro draws its relators this way, seed 3)."""
+    w = []
+    while len(w) < n:
+        g = rng.choice([1, 2, -1, -2])
+        if not w or w[-1] != -g:
+            w.append(g)
+    return tuple(w)
+
+
+def test_more_than_26_generators_is_refused_before_the_search():
+    """B6 (ngen side): past 26 generators the search raised IndexError in ``fmt`` after it had finished; now the
+    root is refused up front. The root cause is in ``acx.core.words`` / ``acx.search`` (not owned here)."""
+    rng = random.Random(3)
+    p = Presentation(2, (rand_word(70, rng), rand_word(70, rng)))          # SAC root has rank 57
+    for backend in ("spec", "fast"):
+        with pytest.raises(ValueError, match="26"):
+            solve(p, NGenConfig(SearchConfig(budget=20, backend=backend)))
+    with pytest.raises(ValueError, match="26"):
+        solve(Presentation(27, tuple((i,) for i in range(1, 28))), NGenConfig(sac=False))
+
+
+def test_26_generators_are_still_searched():
+    res = solve(Presentation(26, tuple((i,) for i in range(1, 27))), NGenConfig(FAST, sac=False))
+    assert res.solved and res.rank == 26 and res.moves == ()
 
 
 def test_ms640_sample_solves_in_n_generator_form(ms640):
@@ -147,3 +208,13 @@ def test_ms640_sample_solves_in_n_generator_form(ms640):
             n += 1
             assert verify(pres, res)[-1].is_trivial()
     assert n == EXPECTED_SAMPLE_SOLVES
+
+
+@pytest.mark.slow
+def test_ngen_sac_config_result_is_unchanged(tmp_path):
+    """configs/ngen_sac.toml on bench60 at budget 10,000: 8 solved, 531,923 pops, 147 sub-moves, 8,152 elementary moves."""
+    from acx.runner import load_config, run
+    s = run(load_config(os.path.join(ROOT, "configs", "ngen_sac.toml")), str(tmp_path), log=lambda *a: None)
+    assert (s["solved"], s["cost"]["total"], s["cost"]["on_solved"]) == (8, 531923, 11923)
+    sc = s["path_length"]["stable_cert"]
+    assert (sc["sub_moves"]["sum"], sc["elem_moves"]["sum"]) == (147, 8152)

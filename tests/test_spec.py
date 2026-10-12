@@ -8,6 +8,7 @@ from acx.core.config import SearchConfig
 from acx.core.moves import enumerate_moves, source_word
 from acx.core.words import Presentation, parse, reduce, rotate
 from acx.search import BackendUnavailable, search
+from acx.verify import replay
 
 # Every golden entry that costs well under a second, plus the deepest solve inside budget 1,000
 # (ms640 #551, 990 nodes) at both caps. The other slow rows exhaust their budget unsolved.
@@ -90,3 +91,23 @@ def test_missing_fast_backend_is_a_clear_error(monkeypatch):
     monkeypatch.setitem(sys.modules, "acx.search.fast", None)        # as if numba were not installed
     with pytest.raises(BackendUnavailable):
         search(("YYXyx", "Yx"), backend="fast")
+
+
+@pytest.mark.parametrize("backend", ["spec", "fast"])
+def test_a_start_with_det_not_one_is_never_solved(backend):
+    """``(X, X)`` is all length 1 but not trivial: the unsolvable start stays unsolved, with or without a path."""
+    for kw in ({}, {"capture_path": False}):
+        r = search(Presentation.parse("X", "x"), SearchConfig(backend=backend, budget=50, **kw))
+        assert not r.solved and r.path is None and r.end is None
+
+
+@pytest.mark.parametrize("backend", ["spec", "fast"])
+@pytest.mark.parametrize("rels", [("XYx", "YXy"), ("XYx", "yXYY"), ("XXY", "XYxyx"), ("Xyxx", "xYX")])
+def test_linear_start_is_a_fixed_point_that_replays(rels, backend):
+    """With ``cyclic=False`` ``reduced().canonical()`` of these starts is not stable; the search starts at the
+    stable form, so ``Result.start`` and the raw row both replay the path."""
+    p = Presentation.parse(*rels)
+    r = search(p, SearchConfig(cyclic=False, cap=None, budget=3000, backend=backend))
+    assert r.solved and r.start == r.start.reduced(False).canonical()
+    for start in (p, r.start):
+        assert replay(start, r.path, cyclic=False)[-1].is_trivial()

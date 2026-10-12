@@ -1,21 +1,6 @@
-"""Dataset and benchmark loaders. Every loader returns a list of ``Row(id, pres, meta)``.
-
-* ``load(name_or_path, ids=None)``: the flat-int ``.txt`` datasets in ``data/``
-  (one zero-padded ``[r1 | r2]`` list or tuple per line; ``.gz`` read
-  transparently). ``id`` is the 0-based line index as a string; ``ids``
-  selects lines (in the order given).
-* ``load_csv(path)``: benchmark CSVs with ``r1``/``r2`` string columns
-  (``benchmark/subsets/benchmark_subset_*.csv``: ``pres_id`` = MS640 line;
-  ``benchmark/ladder/ladder_*.csv``: ``name``, ``level`` 1..10, ...). ``id`` is
-  ``name`` if present, else ``pres_id``, else the row index; ``meta`` holds
-  every other column as the raw string.
-* ``load_split(path, part)``: a split JSON holding ``<part>_rows`` with ``idx``,
-  ``r1``, ``r2`` (``splits_ac1m_hard_aut.json``: ``part = "holdout"`` is the
-  60-row Aut-disjoint holdout).
-* ``rows(name)``: any of the above by name (``DATASETS``, ``BENCHMARKS``,
-  ``SPLITS``) or by path; what ``run.py`` uses.
-* ``MS(n, w)`` and ``AK(n)``: the Miller-Schupp and Akbulut-Kirby families
-  (``origin/main:greedy_search.ipynb``).
+"""Dataset and benchmark loaders: each returns a list of ``Row(id, pres, meta)``; ``rows(name)`` reads any of them
+by name (``DATASETS``, ``BENCHMARKS``, ``SPLITS``) or path, and is what ``run.py`` uses. ``MS`` and ``AK`` build
+the Miller-Schupp and Akbulut-Kirby presentations.
 """
 import csv
 import gzip
@@ -51,28 +36,34 @@ SPLITS = {"ac1m_hard_holdout60": ("benchmark/splits/splits_ac1m_hard_aut.json", 
 
 
 def path_of(name_or_path, table=DATASETS):
+    """The file of a dataset name in ``table``, or of a path (relative paths are relative to the repository root)."""
     p = table.get(name_or_path, name_or_path)
     return p if os.path.isabs(p) else os.path.join(ROOT, p)
 
 
-def parse_line(line, n_rel=2):
+def parse_line(line):
+    """One dataset line, a zero-padded flat list or tuple of ints ``[r1 | r2]``, as a ``Presentation``."""
     ints = [int(t) for t in line.strip().strip("[]()").split(",") if t.strip()]
-    return Presentation.from_flat(ints, n_rel=n_rel)
+    return Presentation.from_flat(ints)
 
 
-def load(name_or_path, ids=None, n_rel=2):
-    p = path_of(name_or_path)
-    with _open(p) as f:
+def load(name_or_path, ids=None):
+    """A flat-int ``.txt`` dataset (``.gz`` read transparently), one presentation per line. A row's ``id`` is its
+    0-based line index as a string; ``ids`` selects lines, in the order given."""
+    with _open(path_of(name_or_path)) as f:
         lines = [ln for ln in f if ln.strip()]
     pick = range(len(lines)) if ids is None else [int(i) for i in ids]
-    return [Row(str(i), parse_line(lines[i], n_rel), {}) for i in pick]
+    return [Row(str(i), parse_line(lines[i]), {}) for i in pick]
 
 
 def _open(p):
+    """Text file handle of ``p``, gunzipped if it ends in ``.gz``."""
     return gzip.open(p, "rt", newline="") if p.endswith(".gz") else open(p, newline="")
 
 
 def load_csv(name_or_path):
+    """A benchmark CSV with ``r1``/``r2`` string columns. A row's ``id`` is its ``name`` column if present, else
+    ``pres_id``, else the row index; ``meta`` holds every other column as a raw string."""
     with _open(path_of(name_or_path, BENCHMARKS)) as f:
         rows = list(csv.DictReader(f))
     out = []
@@ -84,6 +75,7 @@ def load_csv(name_or_path):
 
 
 def load_split(path, part="holdout"):
+    """The ``<part>_rows`` of a split JSON (entries with ``idx``, ``r1``, ``r2``, ...); ``id`` is ``idx``."""
     with open(path_of(path)) as f:
         rows = json.load(f)[f"{part}_rows"]
     return [Row(str(r["idx"]), Presentation.parse(r["r1"], r["r2"]),

@@ -1,48 +1,39 @@
-"""n-generator search: best-first substitution search on any number of generators, with optional SAC.
+"""n-generator search: ``acx.search.search`` on a presentation of any rank, with optional stable-AC triangulation.
 
-The search itself is ``acx.search.search``: its spec and fast backends already
-run any number of relators, step for step identical (``tests/test_ngen.py``
-pins this for the triangle roots). They replace ``solvern`` / ``solvern_fast``
-(``origin/worktree-hsearch-hyper:experiments/stable_ac/``: ``solvern.py`` blob
-5d1dd1ee, commit eff4b4c7, identical on ``origin/cov/all-subsets-sweep``;
-``solvern_fast.py`` blob e965386b, commit a4024828 (added in 848e673d): the numba twin, same pop
-order, 4.6-5.9x faster) and ``greedy_nrel`` (``origin/test/stable-ac-moves:
-experiments/stable_ac/one_generator/``, blob e12d2dd2, commit 658db0c0: 364 ->
-3,300 nodes/s with ``expand_fast``). ``solvern`` is the newer, and the one whose
-pop order equals the two-generator spec (its ``search_n`` is ``acx.search.spec``
-with more relators); ``greedy_nrel`` adds nothing to it. Only the LENGTH
-priority exists past two generators (``s20_mk2`` is two-generator).
-
-``solve(pres, cfg)`` has two modes:
-
-* ``cfg.sac = False``: search ``pres`` itself, whatever its rank. A solve is an
-  ``ac_path``: S-moves that replay on ``pres`` (``normalize=True``).
-* ``cfg.sac = True`` (default): triangulate first (``acx.ngen.sac``), search the
-  root, and on a solve return the elementary stable path from ``acx.ngen.lift``
-  (``cfg.lift``). That is a ``stable_cert``: it uses stabilisations, so it is
-  stable AC triviality of ``pres``, never an AC path; ``replay(pres, moves,
-  normalize=False)`` checks it. A presentation already of relator length <= 3
-  needs no definition and yields an ``ac_path``.
+``solve(pres, NGenConfig)``: with ``sac = True`` (default) the presentation is triangulated (``acx.ngen.sac``), the
+root is searched and a solve is lifted to elementary stable AC moves (``acx.ngen.lift``), a ``stable_cert``. With
+``sac = False`` the presentation itself is searched and a solve is an ``ac_path``. See ``docs/RANK3.md``.
 """
 from dataclasses import dataclass, field
 
 from ..core.config import SearchConfig
+from ..core.words import GEN_CHARS
 from ..search import search
 from ..search.engine import Result, as_presentation
 from ..verify.replay import replay
 from .lift import lift
 from .sac import Sac, triangulate
 
+MAX_GENERATORS = len(GEN_CHARS)     # the search names generators by letter (acx.core.words.fmt)
+
 
 @dataclass(frozen=True)
 class NGenConfig:
+    """``search``; ``sac``: triangulate before searching; ``lift``: expand a SAC solve into replayable moves."""
     search: SearchConfig = field(default_factory=SearchConfig)
-    sac: bool = True      # triangulate (relators of length <= 3) before searching
-    lift: bool = True     # expand a SAC solve into a replayable elementary path
+    sac: bool = True
+    lift: bool = True
+
+    def __post_init__(self):
+        """SAC always raises the rank past two, and only LENGTH is defined there: refused here, before any run."""
+        if self.sac and self.search.priority != "length":
+            raise ValueError("ngen with sac = true needs search.priority = 'length': the SAC root has more than two "
+                             "generators, and s20_mk2 is defined for two (use sac = false to search as it is)")
 
 
 @dataclass(frozen=True)
 class NGenResult:
+    """The outcome of ``solve``: ``kind`` is ``ac_path``, ``stable_cert`` or None; ``moves`` replays on the input."""
     solved: bool
     kind: str | None          # "ac_path" | "stable_cert" | None (unsolved)
     search: Result            # the search on ``root``
@@ -51,14 +42,18 @@ class NGenResult:
 
     @property
     def rank(self):
+        """Generators of the searched root."""
         return self.search.start.n_gen
 
 
 def solve(pres, cfg=None):
+    """Search ``pres`` (or its SAC root) under ``cfg`` (default ``NGenConfig()``); return an ``NGenResult``."""
     cfg = cfg or NGenConfig()
     pres = as_presentation(pres)
     sac = triangulate(pres) if cfg.sac else None
-    root = sac.root if sac else pres
+    root = sac.root if sac and sac.digrams else pres     # no definition: search the input itself (B1, cyclic = false)
+    if root.n_gen > MAX_GENERATORS:
+        raise ValueError(f"ngen searches at most {MAX_GENERATORS} generators; the root has {root.n_gen}")
     if root.n_gen > 2 and cfg.search.priority != "length":
         raise ValueError("only the length priority is defined past two generators")
     res = search(root, cfg.search)
@@ -72,5 +67,5 @@ def solve(pres, cfg=None):
 
 
 def verify(pres, res, cyclic=True):
-    """Replay ``res.moves`` on ``pres`` (raises ``ReplayError``); an ``ac_path`` is replayed with the search's normal form."""
+    """Replay ``res.moves`` on ``pres`` (raises ``ReplayError``); an ``ac_path`` uses the search's normal form."""
     return replay(as_presentation(pres), res.moves, cyclic=cyclic, normalize=res.kind == "ac_path")

@@ -1,60 +1,6 @@
-"""Numba kernels: reduce, canonicalise, expand and score one state, for any search.
-
-Ported from ``hexpand.expand_children_h`` / ``expand_and_score_h``
-(``origin/codex/ac-elementary-decoder:experiments/heuristic_search/core/hexpand.py``,
-commit a8a6b3a4) and ``hfast._feats_nj``, generalised from two relators on main's
-``(n, 2)`` bool arrays to any number of relators and generators.
-
-ENCODING. A state is ``(syms, lens)``: ``syms`` a ``(R, W)`` uint8 array, row
-``r`` holding relator ``r`` in its first ``lens[r]`` entries. A letter ``g`` of
-an ``n``-generator word is the **Booth symbol** ``b = 2*(n - |g|) + (g > 0)``,
-so integer order is ``acx.core.words``' Booth order (``Y=0 < y=1 < X=2 < x=3``
-at ``n = 2``) and the inverse letter is ``b ^ 1``. ``key_code(b, n)`` maps a
-symbol to the heap tie-break code (``X=1 < Y=2 < x=3 < y=4``).
-
-``expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv) -> (count, rejected)``
-writes every new-relator child of the state, exactly as ``acx.search.spec``
-builds them (``i -> j -> s -> k1 -> k2`` order; each relator reduced and
-canonical, relators sorted by ``(length, Booth order)``), into ``out[c]`` /
-``out_len[c]`` with its move ``(i, j, s, k1, k2)`` in ``out_mv[c]``. ``cap < 0``
-means uncapped. ``rejected`` counts the legal moves whose child has a relator
-over the cap (spec's ``cap_dropped``). The caller sizes ``out`` with
-``max_children(lens)`` rows and at least ``child_width(lens)`` columns.
-
-``expand_drops(..., dout, dout_len, dprio, pid, dmax, kept) -> (count, rejected,
-dcount, dmin, tmin)`` also serves the cap counters (``acx.core.capcount``): with
-``pid >= 0`` it scores every dropped child from its reduced relator (the same
-float as ``score`` of the built child), returns the least score and least
-total over the drops, and builds the drops scoring ``<= dmax`` (canonical and
-sorted, the same assembly as a kept child; one per cut-shift repeat class, so
-``dcount <= rejected``) into ``dout`` / ``dout_len`` / ``dprio``. ``dout`` needs
-``max_children(lens)`` rows and ``child_width(lens)`` columns (a dropped
-relator is longer than the cap); ``kept=False`` skips building kept children.
-``tie_bytes`` writes a state's heap tie-break key as bytes
-(``acx.core.words.state_bytes``).
-
-The one change to the child stream is hexpand's **cut-shift skip** (cyclic
-reduction only). In a ``(i, j, s)`` block the child of ``(k1, k2)`` is a
-conjugate of the child of ``(k1 - 1, k2 + 1)`` whenever that predecessor's seam
-cancels, so both reduce to the same canonical relator and the later one is a
-repeat the dedup table would drop anyway. A per-block bitmap marks a move when
-its child is written or skipped; ``(k1, k2)`` is skipped only when its
-predecessor is marked. Dropped (over-cap) moves get their own bitmap: the
-cyclically reduced length is a conjugacy invariant, so the successor of a
-dropped move is dropped too and is counted without being reduced or built.
-The per-move cap count stays exact. This removes about half of the children
-before any per-child work.
-
-Canonical form: the least rotation (two-pointer minimum-rotation scan) of the
-word and of its inverse, the smaller of the two (Booth order, so the same
-string as ``acx.core.words.canonical_word``). hexpand's 2-bit packed least
-rotation is not ported: it holds two generators only, and canonicalisation is a
-small share of a pop next to dedup and the heap.
-
-``score(row, rlen, n_gen, prio)``: ``prio = LENGTH`` (0) gives the total length,
-``S20_MK2`` (1) gives ``L + 20 S + 2 MK`` evaluated as
-``acc = 0.0; acc += 1.0 L; acc += 2.0 MK; acc += 20.0 S``, bit-identical to
-``acx.core.priority.s20_mk2`` (no fastmath anywhere, so no FMA contraction).
+"""Numba kernels for one state, shared by the fast backend and the hybrid: ``encode``/``decode``, ``expand``
+(the children), ``score`` (the priority) and the byte-level word primitives (``reduce_buf``, ``canon_buf``).
+No fastmath is used anywhere, so scores are bit-identical to ``acx.core.priority``.
 """
 import numpy as np
 from numba import njit
@@ -71,7 +17,12 @@ def priority_id(priority, rels):
 
 
 def encode(rels, n_gen, width=None):
-    """Int-tuple relators -> ``(syms (R, width) uint8, lens (R,) int32)``."""
+    """Int-tuple relators -> ``(syms (R, width) uint8, lens (R,) int32)``; row ``r`` holds relator ``r`` in its
+    first ``lens[r]`` entries. A letter ``g`` is the Booth symbol ``2 * (n_gen - |g|) + (g > 0)``, so integer order
+    is Booth order (``Y=0 < y=1 < X=2 < x=3`` at two generators) and the inverse letter is ``b ^ 1``. At most 127
+    generators fit a byte."""
+    if n_gen > 127:
+        raise ValueError(f"the fast backend holds at most 127 generators, got {n_gen}")
     lens = np.array([len(r) for r in rels], dtype=np.int32)
     syms = np.zeros((len(rels), max([width or 0, 1, *lens])), dtype=np.uint8)
     for r, w in enumerate(rels):
@@ -87,6 +38,7 @@ def decode(syms, lens, n_gen):
 
 @njit(inline="always")
 def key_code(b, n):
+    """The heap tie-break code of Booth symbol ``b`` (``X=1 < Y=2 < x=3 < y=4`` at two generators)."""
     g = n - (b >> 1)
     return n + g if b & 1 else g
 
@@ -106,7 +58,7 @@ def tie_bytes(row, rlen, n_gen, buf, o):
 
 @njit(cache=True)
 def max_children(lens):
-    """Upper bound on the legal moves of a state: ``sum_{i != j} 2 l_i l_j``."""
+    """Upper bound on the legal moves of a state with relator lengths ``lens``: ``sum_{i != j} 2 l_i l_j``."""
     s = q = 0
     for x in lens:
         s += x
@@ -128,7 +80,8 @@ def child_width(lens):
 
 @njit(inline="always")
 def reduce_buf(buf, m, cyclic):
-    """Free reduction of ``buf[:m]`` in place, then main's cyclic tail; the result is ``buf[lo:lo+n]``."""
+    """Free reduction of ``buf[:m]`` in place, then the cyclic tail (``acx.core.words.reduce``); returns ``(lo, n)``,
+    the result being ``buf[lo:lo+n]``."""
     n = 0
     for t in range(m):
         c = buf[t]
@@ -252,7 +205,14 @@ def _s20(L, mk, nx, ny, sx, sy):
 
 @njit(inline="always")
 def _expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv, dout, dout_len, dprio, pid, dmax, kept):
-    """The kernel behind ``expand`` / ``expand_drops`` / the engine's cap counter.
+    """The kernel behind ``expand`` and ``expand_drops``; see them for the arguments.
+
+    The one change to the child stream is the cut-shift skip (cyclic reduction only): in a ``(i, j, s)`` block the
+    child of ``(k1, k2)`` is a conjugate of the child of ``(k1 - 1, k2 + 1)`` whenever that predecessor's seam
+    cancels, so both reduce to the same canonical relator and the later one is a repeat the dedup table would drop
+    anyway. A per-block bitmap marks a move when its child is written or skipped; ``(k1, k2)`` is skipped only when
+    its predecessor is marked. Over-cap moves have their own bitmap (the cyclically reduced length is a conjugacy
+    invariant, so the successor of a dropped move is dropped too) and are counted without being built.
 
     ``pid >= 0``: score every dropped child (``LENGTH``/``S20_MK2``, from its reduced relator, before any
     canonicalisation; when nothing is built, an S20_MK2 child whose lower bound ``L + 2 MK_untouched + 20``
@@ -424,6 +384,11 @@ def _expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv, dout, dout_len
 
 @njit(cache=True)
 def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
+    """Write every new-relator child of the state ``(syms, lens)`` into ``out[c]`` / ``out_len[c]`` with its move
+    ``(i, j, s, k1, k2)`` in ``out_mv[c]``, exactly as ``acx.search.spec`` builds them (order ``i -> j -> s -> k1
+    -> k2``; relators reduced, canonical and sorted by ``(length, Booth order)``). ``cap < 0`` is uncapped.
+    Returns ``(count, rejected)``: ``rejected`` counts the legal moves whose child has a relator over the cap
+    (``cap_dropped``). ``out`` needs ``max_children(lens)`` rows and ``child_width(lens)`` columns."""
     dout = np.empty((0, 1, 1), dtype=np.uint8)
     dout_len = np.empty((0, 1), dtype=np.int32)
     dprio = np.empty(0, dtype=np.float64)
@@ -434,13 +399,20 @@ def expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv):
 
 @njit(cache=True)
 def expand_drops(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv, dout, dout_len, dprio, pid, dmax, kept):
-    """``_expand`` for callers that score or build dropped children (the engine's cap counter)."""
+    """``expand`` that also serves the cap counters. Returns ``(count, rejected, dcount, dmin, tmin)``.
+
+    With ``pid >= 0`` it scores every dropped child from its reduced relator (the float ``score`` gives the built
+    child), returns the least score ``dmin`` and least total ``tmin`` over the drops, and builds the drops scoring
+    ``<= dmax`` (canonical and sorted, one per cut-shift repeat class, so ``dcount <= rejected``) into ``dout`` /
+    ``dout_len`` / ``dprio``; ``dout`` needs ``max_children(lens)`` rows and ``child_width(lens)`` columns.
+    ``kept=False`` skips building the kept children."""
     return _expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv, dout, dout_len, dprio, pid, dmax, kept)
 
 
 @njit(cache=True)
 def score(row, rlen, n_gen, prio):
-    """Heap priority of one state (``LENGTH`` or ``S20_MK2``; the latter at two generators)."""
+    """Heap priority of one state: the total length for ``LENGTH`` (0), ``L + 20 S + 2 MK`` for ``S20_MK2`` (1,
+    two generators), evaluated in the reference operation order of ``acx.core.priority.s20_mk2``."""
     L = 0
     for r in range(len(rlen)):
         L += rlen[r]

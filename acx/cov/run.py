@@ -1,46 +1,7 @@
-"""CoV-then-search: try the CoV images of a row in a fixed order within a total budget.
+"""CoV-then-search: the row, then its CoV images in a fixed order, searched within one total budget.
 
-For one row the images of ``acx.cov.enumerate_images`` (module ``cov`` explains the
-transform and the family ``subnc2pxysb``) are searched one after another with
-``acx.search`` on either backend (``cfg.search.backend``), each with at most
-``cfg.search.budget`` pops, until ``cfg.total_budget`` pops are spent. There is
-no ranking: the order is the enumeration order, optionally after the row itself.
-Two images (or an image and the row) with the same reduced canonical start are
-searched once.
-
-Outcomes are typed, and kept apart:
-
-* ``ac_path``: moves that replay on the **original row** and end trivial. The
-  search of the row itself (``cfg.control``) gives one (S-moves). A solved image
-  that lies in the row's Aut(F2) orbit (a pure relabel, which most images are)
-  gives one too: the search leg is carried to the row by ``acx.aut.transport``
-  (elementary AC moves), and counts only because that replays on the row.
-* ``stable_cert``: a solved image outside the row's orbit. It certifies that the
-  row is **stably** AC-trivial (Lemma 11 steps, then an AC path on the image),
-  not that it has an AC path. ``Outcome.path`` is the search leg on the image
-  and ``image.steps`` the transform; ``acx.cov.check_cert`` replays both.
-
-**Cap counters.** Every leg is a plain ``acx.search`` with its own cap and its own counters
-(``acx.core.capcount``); the row's ``stats`` hold their aggregate under the usual names: ``cap`` is
-``search.cap`` (the row's leg; image legs follow from it and ``cap_headroom``), ``cap_dropped`` and
-``cap_would_pop`` are sums over the legs tried, ``cap_dropped_min_total`` and ``cap_needed`` minima over
-them (``cap_needed`` in absolute letters of the binding leg's own cap), ``cap_first_bind`` is a pop number
-of the row (the pops spent on earlier legs plus the first binding leg's) and ``cap_legs_bound`` the
-number of legs with ``cap_would_pop > 0``. When no leg binds every leg is the same at any larger cap, so
-the row spends the same pops. ``max_len`` is a filter on which images exist, not a heap cap, so it has no
-counter (``stats["images"]`` already reports it).
-
-The cap of an image's search is ``max(search.cap, longest image relator (as
-written) + cap_headroom)``: an image is usually longer than the row, and a relator
-sitting at the cap cannot grow over the hump.  With this policy the 6,722 images of
-bench60 + reach_tier_6 solve 890 (orbit) + 169 (moved) at 100 pops each, the
-source's published numbers. ``cap_headroom=None`` runs every image at
-``search.cap`` exactly (a cap-matched comparison with plain search); the row
-itself always runs at ``search.cap``.
-
-Source of the policy: ``origin/cov/all-subsets-sweep:experiments/stable_ac/cov/run/run_cov.py``
-(per-image cap ``max(24, longest + 16)``). The selection key, abel top-3,
-nonsymmetric beam and mu-ladder are not part of this module.
+Each image of ``acx.cov.enumerate_images`` is a plain ``acx.search`` (``cfg.search.backend``); there is no ranking.
+``run`` documents the typed outcomes, the per-image cap and the cap counters.
 """
 import time
 from dataclasses import dataclass, field, replace
@@ -58,10 +19,11 @@ CAP_FIELDS = tuple(blank())
 
 @dataclass(frozen=True)
 class CoVConfig:
+    """The settings of ``run``; ``search.budget`` is the pops per leg, ``total_budget`` the pops per row."""
     search: SearchConfig = SearchConfig(budget=1_000)   # per-search config; ``budget`` is the pops per image
     total_budget: int = 10_000          # pops over all searches of one row
     control: bool = True                # search the row itself first
-    cap_headroom: int | None = 16       # see the module docstring
+    cap_headroom: int | None = 16       # see ``run``
     max_len: int | None = MAX_LEN       # CoV outputs longer than this are not images (family rule)
     until: str = "solve"                # "solve": stop at the first solve; "ac_path": go on past stable certs
 
@@ -74,16 +36,19 @@ class CoVConfig:
         object.__setattr__(self, "max_len", parse_cap(self.max_len, "max_len"))
 
     def replace(self, **kw):
+        """A copy with the given fields changed."""
         return replace(self, **kw)
 
     @classmethod
     def from_dict(cls, d):
+        """From a config table; the ``search`` sub-table is a ``SearchConfig`` with ``budget`` 1,000 by default."""
         d = dict(d)
         return cls(search=SearchConfig.from_dict({"budget": 1_000, **d.pop("search", {})}), **d)
 
 
 @dataclass(frozen=True)
 class Outcome:
+    """One solved leg, typed (``run`` explains ``ac_path`` and ``stable_cert``)."""
     kind: str                # "ac_path" | "stable_cert"
     image: CoVImage | None   # None: the row itself
     result: Result           # the search leg
@@ -94,23 +59,28 @@ class Outcome:
 
 @dataclass(frozen=True)
 class CoVResult:
+    """The outcomes found, the pops spent and ``stats`` (images, legs tried, cap counters, seconds)."""
     outcomes: tuple          # Outcome, in the order found
     pops: int
     stats: dict = field(default_factory=dict)
 
     def first(self, kind):
+        """The first outcome of this ``kind``, or None."""
         return next((o for o in self.outcomes if o.kind == kind), None)
 
     @property
     def ac_path(self):
+        """The first ``ac_path`` outcome, or None."""
         return self.first("ac_path")
 
     @property
     def stable_cert(self):
+        """The first ``stable_cert`` outcome, or None."""
         return self.first("stable_cert")
 
     @property
     def solved(self):
+        """Some leg solved."""
         return bool(self.outcomes)
 
 
@@ -136,7 +106,28 @@ def _typed(pres, img, res, cap, cyclic):
 
 
 def run(pres, cfg=None, **overrides):
-    """Search ``pres`` (a 2-generator ``Presentation`` or relator strings) and its CoV images."""
+    """Search ``pres`` (a 2-generator ``Presentation`` or relator strings) and its CoV images.
+
+    Each leg (the row if ``cfg.control``, then every image) gets at most ``cfg.search.budget`` pops until
+    ``cfg.total_budget`` are spent; legs with the same reduced canonical start run once. With ``until = "solve"`` the
+    run stops at the first solve, with ``"ac_path"`` at the first ``ac_path``. Outcomes are typed:
+
+    * ``ac_path``: moves that replay on the **row**. The row's own search gives S-moves; a solved image in the row's
+      Aut(F2) orbit (a pure relabel, which most images are) gives elementary moves, its leg carried over by
+      ``acx.aut.transport`` and counted only because they replay on the row.
+    * ``stable_cert``: a solved image outside the orbit. It certifies that the row is **stably** AC-trivial, not
+      that it has an AC path: ``Outcome.path`` is the leg on ``image.pres`` and ``image.steps`` the transform
+      (``acx.cov.check_cert`` replays both).
+
+    The cap of an image's leg is ``max(search.cap, longest image relator as written + cap_headroom)``, since a relator
+    at the cap cannot grow over the hump; ``cap_headroom = None`` runs images at ``search.cap`` and the row always does.
+
+    ``stats`` carry the cap counters of ``acx.core.capcount`` aggregated over the legs: ``cap`` is ``search.cap``,
+    ``cap_dropped`` and ``cap_would_pop`` are sums, ``cap_dropped_min_total`` and ``cap_needed`` minima (``cap_needed``
+    in letters of the binding leg's own cap), ``cap_first_bind`` is a pop number of the row (pops of earlier legs plus
+    the first binding leg's) and ``cap_legs_bound`` counts the legs with ``cap_would_pop > 0``. When no leg binds,
+    every larger cap gives the same run. ``max_len`` only decides which images exist (``stats["images"]``): no counter.
+    """
     cfg = (cfg or CoVConfig()).replace(**overrides)
     pres = as_presentation(pres)
     s, t0 = cfg.search, time.perf_counter()
@@ -149,7 +140,8 @@ def run(pres, cfg=None, **overrides):
         left = cfg.total_budget - pops
         if left <= 0:
             break
-        start = (pres if img is None else img.pres).reduced(s.cyclic).canonical()
+        raw = pres if img is None else img.pres
+        start = raw.reduced(s.cyclic).canonical()
         if start in seen:
             dups += 1
             continue
@@ -157,7 +149,7 @@ def run(pres, cfg=None, **overrides):
         cap = s.cap
         if img is not None and cap is not None and cfg.cap_headroom is not None:
             cap = max(cap, max(map(len, img.pres.rels)) + cfg.cap_headroom)
-        res = search(start, s.replace(budget=min(s.budget, left), cap=cap, capture_path=True))
+        res = search(raw, s.replace(budget=min(s.budget, left), cap=cap, capture_path=True))
         legs.append(({f: res.stats[f] for f in CAP_FIELDS}, pops))
         tried, pops = tried + 1, pops + res.pops
         if res.solved:

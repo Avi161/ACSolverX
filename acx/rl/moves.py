@@ -1,29 +1,19 @@
-"""Batched substitution move of the Two-Hump environment, in PyTorch.
+"""Batched substitution move of the Two-Hump environment, in PyTorch (the same arithmetic as the JAX environment).
 
-Port of ``envs/ac_moves.py`` (JAX; ``origin/experiments/ppo:experiments/ppo/acs_moves.py``,
-tip c73b11f2), kept bug for bug because the shipped policy was trained against it:
-
-* ``concatenate``: when nothing cancels at the seam the cancellation count is 0 (``argmin`` of an
-  all-true mask); a product longer than ``L`` (or a smaller ``cap``) is dropped but the left factor is
-  still cyclically reduced. The beam kills such no-ops and counts them in its cap counters.
-* ``booth_rotation_index`` is NOT the least rotation (its ``set_f`` block compares ``s2[i] != s2[k]``
-  where Booth compares ``s2[i] != s2[k+j+1]``; ~6% of random words at ``L=24`` differ). It only fixes
-  the representative shown to the policy; ``acx`` canonicalises independently of it.
-* a product equal to the rotated left factor discards the whole move.
-
-Tensors are ``int64``: ``(B, L)`` per relator, ``(B, 2L)`` per presentation (``[r1 | r2]``, letters
-``+-1 = x^+-1``, ``+-2 = y^+-1``, 0 = padding).
-
-An action is one integer in ``[0, 4 L^2)`` decoded to ``(i, r, k1, k2)``: relator ``i`` is replaced by
-``rot_left(r_1, k1) . rot_left(r_2 ** (-1 if r else 1), k2)`` (the product is formed in that order whatever
-``i`` is) and the seam must cancel. Every such move is an ``acx`` S-move of the canonical state up to
-rotation and inversion (the cancelled run can always be cut at the other junction of the cyclic word),
-which is what ``acx.rl.solve`` relies on.
+Tensors are ``int64``: ``(B, L)`` per relator, ``(B, 2L)`` per presentation ``[r1 | r2]`` (letters ``+-1 = x^+-1``,
+``+-2 = y^+-1``, 0 = padding). An action is one integer in ``[0, 4 L^2)`` decoded to ``(i, r, k1, k2)``: relator ``i``
+becomes ``rot_left(r_1, k1) . rot_left(r_2 ** (-1 if r else 1), k2)`` (formed in that order whatever ``i`` is) and the
+seam must cancel; every such move is an ``acx`` S-move of the canonical state up to rotation and inversion, which
+``acx.rl.solve`` relies on. The quirks the shipped policy was trained against are kept: ``concatenate`` cyclically
+reduces the left factor of a dropped product, ``booth_rotation_index`` is not the least rotation (it only fixes the
+representative the policy sees; ``acx`` canonicalises independently), and a product equal to the rotated left factor
+discards the whole move.
 """
 import torch
 
 
 def _pos(n, dev):
+    """``0 .. n-1`` as an int64 tensor."""
     return torch.arange(n, device=dev, dtype=torch.int64)
 
 
@@ -36,6 +26,7 @@ def reverse_nonzero(r):
 
 
 def cyclic_reduce(r):
+    """Cancel the cyclic tail of every row (``x w X`` -> ``w``)."""
     B, L = r.shape
     pos = _pos(L, r.device)[None]
     mask = r == -reverse_nonzero(r)
@@ -71,7 +62,7 @@ def rotate_left(r, k):
 
 
 def booth_rotation_index(r):
-    """Port of ``booth_lex_min_rotation_masked`` (see the module note: not the least rotation)."""
+    """Booth-style rotation index of every row (see the module note: not the least rotation)."""
     B, L = r.shape
     n = (r != 0).sum(-1)
     s2 = torch.cat([r, r], 1)
@@ -96,13 +87,12 @@ def booth_rotation_index(r):
     return k
 
 
-def s_move(x, i, r, k1, k2, L, cap=None, sizes=False):
-    """Apply ``(i, r, k1, k2)`` to the ``(B, 2L)`` presentations ``x``; returns ``(new x, over)``.
+def s_move(x, i, r, k1, k2, L, cap=None):
+    """Apply ``(i, r, k1, k2)`` to the ``(B, 2L)`` presentations ``x``; returns ``(new x, over, size, total)``.
 
-    ``cap`` (default and at most ``L``) is the length limit on the seam-reduced product; a product over
-    it leaves the row unchanged (a no-op) and sets ``over``. At ``cap = L`` this is the environment.
-    ``sizes=True`` returns ``(new x, over, size, total)`` instead: the seam-reduced length of the product
-    and the total relator length the move would give (product plus the relator it leaves alone), which
+    ``cap`` (default and at most ``L``) limits the seam-reduced product; a product over it leaves the row unchanged
+    (a no-op) and sets ``over``. At ``cap = L`` this is the environment. ``size`` is the seam-reduced length of the
+    product and ``total`` the relator total the move would give (the product plus the relator it leaves alone): what
     the beam hands to its cap counter for a child that ``over`` dropped.
     """
     r1, r2 = x[:, :L], x[:, L:]
@@ -113,20 +103,13 @@ def s_move(x, i, r, k1, k2, L, cap=None, sizes=False):
     into0 = i.reshape(-1, 1) == 0
     out = torch.cat([torch.where(into0, rot, x[:, :L]), torch.where(into0, x[:, L:], rot)], 1)
     new = torch.where((prod == a).all(-1, keepdim=True), x, out)
-    if not sizes:
-        return new, over
     other = torch.where(i == 0, (r2 != 0).sum(-1), (r1 != 0).sum(-1))
     return new, over, size, size + other
 
 
 def decode_action(flat, L):
-    """Flat action -> ``(i, r, k1, k2)`` (``ppo_ac_s.py:113-123``)."""
+    """Flat action -> ``(i, r, k1, k2)``: the target relator, the inversion flag and the two rotations."""
     k1, rem = flat // (4 * L) + 1, flat % (4 * L)
     ij = rem % 4
     j, k2 = ij % 2, rem // 4
     return ij // 2, j, k1, torch.where(j == 0, k2, -k2 - 1)
-
-
-def encode_action(i, j, k1, k2, L):
-    signed = torch.where(j == 0, k2, -(k2 + j))
-    return ((k1 - 1) * L + signed) * 4 + (i * 2 + j)

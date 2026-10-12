@@ -1,6 +1,4 @@
-# Rank-5 brute force: three added generators with relators Z1.w1, Z2.w2, Z3.w3 for every multiset of three
-# words of length 1..2 (8 words, 120 multisets per row); control and null stabilisation as in rank3_bf.toml.
-# One full run is about 45 core-minutes (76,800 searches).
+# Rank-5 brute force on MS640: three added generators, every multiset of words of length 1-2, with control.
 method = "rankn"
 benchmark = "ms640"
 workers = 4

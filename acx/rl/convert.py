@@ -1,14 +1,9 @@
-"""One-time conversion of a flax/orbax ``params`` checkpoint to a torch ``state_dict``.
+"""One-time conversion of a flax/orbax ``params`` checkpoint to a torch ``state_dict`` (needs ``jax`` and ``orbax-checkpoint``).
 
-Port of ``origin/experiments/ppo:experiments/ppo/transplant.py`` (tip c73b11f2). Needs ``jax`` and
-``orbax-checkpoint`` (not part of the extra); the shipped ``checkpoint/610model_1000.pt`` was made with::
+    python -m acx.rl.convert <orbax step dir> acx/rl/checkpoint/610model_1000.pt
 
-    git archive origin/main ppo_checkpoints/610model/1000 | tar -x -C /tmp/ck
-    python -m acx.rl.convert /tmp/ck/ppo_checkpoints/610model/1000 acx/rl/checkpoint/610model_1000.pt
-
-The checkpoint was written on ROCm; arrays are therefore restored as plain numpy, which never
-consults the device sharding. flax kernels are ``(in, out)`` (torch ``(out, in)``, transposed),
-LayerNorm ``scale`` is torch's ``weight``; every one of the 95 arrays must map (no silent skips).
+flax kernels are ``(in, out)`` (torch ``(out, in)``, transposed), LayerNorm ``scale`` is torch's ``weight``; every one of
+the 95 arrays must map (no silent skips). Arrays are restored as plain numpy, which never consults the device sharding.
 """
 import argparse
 import os

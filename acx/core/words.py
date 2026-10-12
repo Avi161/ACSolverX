@@ -1,34 +1,17 @@
-"""Words, relators and presentations: the one encoding every acx module shares.
+"""Words (tuples of nonzero ints: ``abs(g)`` the generator, the sign its exponent), relators and presentations.
 
-A word is a tuple of nonzero ints: ``abs(g)`` names the generator (1 = x, 2 = y,
-3 = z, ...) and the sign is the exponent. A presentation carries ``n_gen``
-explicitly, because a substitution can remove the last occurrence of a
-generator and AC4 adds a generator that occurs in one relator only.
-
-Two symbol orders exist and must never be mixed up:
-
-* Booth order ``Y < y < X < x`` (generally ``... < Y < y < X < x``):
-  canonicalisation minimises over it. It only picks WHICH representative of a
-  rotation/inversion orbit is stored. Same as ``is_less_than`` in main's
-  ``greedy_baseline.py``.
-* ASCII (key) order ``X < Y < x < y`` (inverses first, then by generator): the
-  heap tie-break compares state keys in this order. ``state_key`` uses the
-  order-preserving codes ``X=1, Y=2, x=3, y=4`` that main's packed keys and the
-  fast engine (``hcompact``'s ``_code_of``) use.
-
-Sources: ``origin/test/greedy-test-suite:experiments/greedy_tests/spec/
-{words,presentation}.py`` (general-n spec), ``origin/main:experiments/search/
-greedy_baseline.py`` (reduction tail, canonical pair order, encodings).
+Booth order ``... < Y < y < X < x`` picks the canonical representative of a rotation/inversion orbit; the heap
+tie-break uses the key order ``X < Y < x < y`` (``state_key``). The two must not be mixed up.
 """
 from dataclasses import dataclass
-
-Word = tuple
 
 GEN_CHARS = "xyzabcdefghijklmnopqrstuvw"
 
 
 def to_char(g):
-    c = GEN_CHARS[abs(g) - 1]
+    """The letter of ``g`` (``x y z a b ...``, upper case for a negative exponent); ``g27`` / ``G27`` past the 26th."""
+    n = abs(g)
+    c = GEN_CHARS[n - 1] if n <= len(GEN_CHARS) else f"g{n}"
     return c if g > 0 else c.upper()
 
 
@@ -38,15 +21,17 @@ def parse(s):
 
 
 def fmt(w):
+    """``(1, -2)`` -> ``'xY'``."""
     return "".join(map(to_char, w))
 
 
 def inverse(w):
+    """The inverse word."""
     return tuple(-g for g in reversed(w))
 
 
 def rotate(w, k):
-    """``np.roll(arr, 2 * k)`` on main's ``(n, 2)`` encoding: element ``m`` is ``w[m - k]``."""
+    """``w`` rotated right by ``k`` (``np.roll`` convention): element ``m`` of the result is ``w[m - k]``."""
     n = len(w)
     if n == 0:
         return w
@@ -55,11 +40,8 @@ def rotate(w, k):
 
 
 def reduce(w, cyclic=True):
-    """Free reduction; with ``cyclic`` also cancel across the wrap-around.
-
-    The cyclic tail mirrors main's ``reduce_relator_nj`` exactly, including the
-    strict ``i < length / 2`` bound (so it never empties a free-reduced word).
-    """
+    """Free reduction; with ``cyclic`` also cancel across the wrap-around, fewer than half the length
+    (the baseline's rule), so a freely reduced word never empties."""
     st = []
     for g in w:
         if st and st[-1] == -g:
@@ -93,13 +75,9 @@ def conjugators(w, t):
                 yield sign, free(a + inverse(cs[k:]) + inverse(b))
 
 
-def is_cyclically_reduced(w):
-    return all(a != -b for a, b in zip(w, w[1:])) and (len(w) < 2 or w[0] != -w[-1])
-
-
-# Booth order as single characters, so that min() over str slices is Booth's least rotation:
-# chr(0x1000 - 2|g| + (g > 0)) gives ... < Y < y < X < x.
 class _Table(dict):
+    """A lookup table computing missing entries with ``f`` (the Booth characters of the generators in use)."""
+
     def __init__(self, f):
         super().__init__()
         self.f = f
@@ -114,16 +92,13 @@ def _sym(c):
     return (v + 1) // 2 if v % 2 else -(v // 2)
 
 
-_BCHAR = _Table(lambda g: chr(0x1000 - 2 * abs(g) + (g > 0)))
+_BCHAR = _Table(lambda g: chr(0x1000 - 2 * abs(g) + (g > 0)))     # ... < Y < y < X < x
 _BSYM = _Table(_sym)
 
 
 def booth_str(w):
+    """``w`` as a string whose character order is Booth order, so that ``min`` over rotations is the least one."""
     return "".join([_BCHAR[g] for g in w])
-
-
-def _from_bstr(s):
-    return tuple([_BSYM[c] for c in s])
 
 
 def canonical_word(w):
@@ -133,25 +108,23 @@ def canonical_word(w):
         return w
     s = booth_str(w) * 2
     t = booth_str(inverse(w)) * 2
-    return _from_bstr(min(min(s[i:i + n] for i in range(n)), min(t[i:i + n] for i in range(n))))
+    return tuple([_BSYM[c] for c in min(min(s[i:i + n] for i in range(n)), min(t[i:i + n] for i in range(n)))])
 
 
 def sort_rels(rels):
-    """Relators sorted by ``(length, Booth order)``: main's pair order."""
+    """Relators sorted by ``(length, Booth order)``."""
     return tuple(sorted(rels, key=lambda r: (len(r), booth_str(r))))
 
 
 def canonical_rels(rels):
-    """Each relator canonical, then sorted (``canonical_pair_nj``)."""
+    """Each relator canonical, then the relators sorted."""
     return sort_rels([canonical_word(r) for r in rels])
 
 
 def state_key(rels, n_gen=2):
     """The heap tie-break key: per relator the codes (inverses ``1..n_gen``, then generators
-    ``n_gen+1..2n_gen``), compared as tuples.
-
-    At ``n_gen = 2`` this sorts exactly like main's ``(r1_str, r2_str)``.
-    """
+    ``n_gen+1..2n_gen``), compared as tuples. At ``n_gen = 2`` it sorts like the string pair ``(r1, r2)``
+    in ASCII order (``X < Y < x < y``)."""
     return tuple(tuple(n_gen + g if g > 0 else -g for g in r) for r in rels)
 
 
@@ -159,12 +132,13 @@ def state_bytes(rels, n_gen=2):
     """``state_key`` packed as bytes: each relator's codes followed by a 0. Codes are ``>= 1``, so bytes
     order is ``state_key``'s tuple order (a relator that is a proper prefix sorts first); the fast
     engine's ``kernels.tie_bytes`` writes the same bytes. Used for compact keys (cap counters)."""
-    return bytes(c for r in rels for c in (*(n_gen + g if g > 0 else -g for g in r), 0))
+    return bytes(c for r in state_key(rels, n_gen) for c in (*r, 0))
 
 
 @dataclass(frozen=True)
 class Presentation:
-    """A balanced-or-not presentation ``<x_1..x_n_gen | rels>``; words as int tuples."""
+    """``<x_1..x_n_gen | rels>`` with relators as int tuples (balanced or not; ``n_gen`` is explicit because a
+    substitution can remove the last occurrence of a generator and AC4 adds one)."""
     n_gen: int
     rels: tuple
 
@@ -175,6 +149,7 @@ class Presentation:
 
     @classmethod
     def parse(cls, *strs, n_gen=None):
+        """``Presentation.parse("xxYXY", "xyyXY")``; ``n_gen`` defaults to the largest generator used (at least 2)."""
         rels = tuple(parse(s) for s in strs)
         if n_gen is None:
             n_gen = max([2] + [abs(g) for r in rels for g in r])
@@ -191,17 +166,25 @@ class Presentation:
 
     @property
     def strs(self):
+        """The relators as strings."""
         return tuple(fmt(r) for r in self.rels)
 
-    @property
-    def total(self):
-        return sum(map(len, self.rels))
-
     def reduced(self, cyclic=True):
+        """Every relator reduced (``reduce``)."""
         return Presentation(self.n_gen, tuple(reduce(r, cyclic) for r in self.rels))
 
     def canonical(self):
+        """Every relator canonical, then sorted (``canonical_rels``)."""
         return Presentation(self.n_gen, canonical_rels(self.rels))
+
+    def normal(self, cyclic=True):
+        """The state a search starts from and a replay normalises to: ``reduced(cyclic).canonical()`` repeated
+        until it stops changing. Cyclic reduction is stable after one pass; free reduction alone is not, since
+        a canonical rotation of a word need not be freely reduced."""
+        p = self.reduced(cyclic).canonical()
+        while (q := p.reduced(cyclic).canonical()) != p:
+            p = q
+        return p
 
     def is_trivial(self):
         """``<x_1..x_n | x_1..x_n>`` up to cyclic reduction, signs and order."""
@@ -210,4 +193,4 @@ class Presentation:
                 and {abs(r[0]) for r in rs} == set(range(1, self.n_gen + 1)))
 
     def __str__(self):
-        return "<" + ", ".join(GEN_CHARS[:self.n_gen]) + " | " + ", ".join(self.strs) + ">"
+        return "<" + ", ".join(map(to_char, range(1, self.n_gen + 1))) + " | " + ", ".join(self.strs) + ">"

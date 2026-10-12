@@ -1,13 +1,8 @@
-"""Policy beam search as an ``acx`` solver: row in, ``acx`` path out, replayed by ``acx.verify``.
+"""Policy beam search as an ``acx`` solver: row in, ``acx`` S-move path out, replayed by ``acx.verify``.
 
-``solve(pres)`` encodes the reduced presentation as the environment observation (relator order and
-rotation as given: the policy was trained on the dataset rows, not on canonical forms), runs
-``acx.rl.beam`` and translates every environment action into the ``acx`` S-move that gives the same
-state up to rotation and inversion (the environment keeps relator slots and Booth representatives,
-``acx`` keeps the canonical sorted form). A beam solution counts only after ``acx.verify.replay``
-accepts it on the original row; a step with no matching S-move raises. Every legal non-no-op action
-is one (all four ``(i, r)`` combinations; ``tests/test_rl.py`` walks random legal actions), and the
-beam never applies an illegal one.
+The reduced presentation is encoded as the environment observation (relator order and rotation as given: the policy was
+trained on dataset rows, not canonical forms) and every environment action is translated into the ``acx`` S-move that
+gives the same state up to rotation and inversion. A solution counts only after ``replay`` accepts it on the row.
 """
 import time
 
@@ -32,6 +27,7 @@ def encode(rels, L=L):
 
 
 def decode(x, L=L):
+    """Inverse of ``encode``: the two relators of an observation."""
     return tuple(tuple(int(g) for g in x[k * L:(k + 1) * L] if g) for k in (0, 1))
 
 

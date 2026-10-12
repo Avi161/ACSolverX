@@ -63,6 +63,7 @@ def test_blank_fields_combine_summarize():
                  "dropped": 15, "would_pop": 2, "dropped_min_total": 25, "first_bind_min": 7,
                  "needed_min": 21, "needed_max": 21}
     assert summarize([{"id": "1"}]) is None
+    assert combine([]) == blank() and blank("slack", cap=8)["slack"] == 8
 
 
 def _stream(rng, n_pops):
