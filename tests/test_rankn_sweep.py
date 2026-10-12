@@ -142,9 +142,10 @@ def test_uncapped_rows_drop_nothing(ms640, tmp_path):
 
 
 def test_every_config_has_one_comment_line():
-    """Configs are short: one comment line saying what the config runs, then the TOML (usage is in docs)."""
+    """Configs are short: one comment line saying what the config runs, then the TOML (usage is in docs). The
+    annotated template is the exception: it documents every key."""
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    for name in sorted(os.listdir(os.path.join(root, "configs"))):
+    for name in sorted(set(os.listdir(os.path.join(root, "configs"))) - {"template.toml"}):
         with open(os.path.join(root, "configs", name)) as f:
             lines = f.read().splitlines()
         assert sum(1 for x in lines if x.lstrip().startswith("#")) == 1 and lines[0].startswith("#"), name
