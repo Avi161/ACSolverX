@@ -76,6 +76,13 @@ def _relator_index(pres, t):
     return t - 1
 
 
+def _field(op, key):
+    """``op[key]``; a move missing a field it needs is a ``ValueError`` that names it."""
+    if key not in op:
+        raise ValueError(f"{op.get('op')} needs {key!r}: {op!r}")
+    return op[key]
+
+
 def elementary_step(pres, op):
     """Apply one elementary AC or stable move to ``pres`` (1-based relator numbers, free reduction only):
 
@@ -87,19 +94,20 @@ def elementary_step(pres, op):
     rels = list(pres.rels)
     kind = op.get("op")
     if kind == "invert":
-        i = _relator_index(pres, op["target"])
+        i = _relator_index(pres, _field(op, "target"))
         rels[i] = inverse(rels[i])
     elif kind == "swap":
         a, b = _relator_index(pres, op.get("a", 1)), _relator_index(pres, op.get("b", 2))
         rels[a], rels[b] = rels[b], rels[a]
     elif kind == "conjugate":
-        i = _relator_index(pres, op["target"])
-        c = parse(op["by"])
+        i = _relator_index(pres, _field(op, "target"))
+        c = parse(_field(op, "by"))
         if len(c) != 1 or abs(c[0]) > pres.n_gen:
             raise ValueError(f"conjugate by one generator letter, got {op['by']!r}")
         rels[i] = free(inverse(c) + rels[i] + c)
     elif kind == "multiply":
-        i, j = _relator_index(pres, op["target"]), _relator_index(pres, op["source"])
+        i = _relator_index(pres, _field(op, "target"))
+        j = _relator_index(pres, _field(op, "source"))
         if i == j:
             raise ValueError("multiply needs distinct target and source")
         rels[i] = free(rels[i] + rels[j])

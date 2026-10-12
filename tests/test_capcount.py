@@ -1,8 +1,11 @@
 """acx.core.capcount: the plain counter's semantics, and the numba twin pinned to it on random streams."""
+import ast
 import random
+from pathlib import Path
 
 import pytest
 
+import acx.core.capcount
 from acx.core.capcount import FIELDS, CapArrays, CapCount, blank, combine, fields, summarize
 
 
@@ -38,6 +41,23 @@ def test_dry_queue_counts_what_the_budget_would_pop():
     d.drop((10, 1, b"q"), total=20, longest=12, ident=b"q")
     d.end(ran_dry=False, left=3)                     # budget spent or solved: pending entries never pop
     assert d.record() == dict(zip(FIELDS, (8, 1, 20, 0, None, None)))
+
+
+@pytest.mark.parametrize("left", [0, 1, 3, 5, 9])
+def test_dry_queue_counts_only_the_pops_the_budget_has_left(left):
+    """Five states pending on a dry queue: ``min(left, 5)`` would pop, none at all once the budget is spent.
+    The numba twin agrees, ``left == 0`` included (a random stream rarely ends there with states pending)."""
+    plain, twin = CapCount(8), CapArrays(8)
+    plain.pop((1, 0, b"s"))
+    twin.pop(1, 0, b"s")
+    for k in range(5):
+        key = bytes([k + 1])
+        plain.drop((10 + k, 1, key), total=20, longest=12 - k, ident=key)
+        twin.drop(10 + k, 1, key, 20, 12 - k)
+    plain.end(ran_dry=True, left=left)
+    twin.end(True, left)
+    want = (8, 5, 20, min(left, 5), 2, 8) if left else (8, 5, 20, 0, None, None)
+    assert plain.record() == twin.record() == dict(zip(FIELDS, want))
 
 
 def test_accept_and_drop_now():
@@ -113,3 +133,25 @@ def test_field_names_address_a_record_by_short_name():
     assert field_names().would_pop == "cap_would_pop"
     assert field_names("dyn_cap").first_bind == "dyn_cap_first_bind"
     assert tuple(field_names("slack")) == fields("slack")
+
+
+def imports(source):
+    """The modules a source file imports, as written: ``numpy``, ``heapq``, ``.records`` (a sibling), ``..words``."""
+    names = []
+    for node in ast.walk(ast.parse(source)):
+        if isinstance(node, ast.Import):
+            names += [alias.name for alias in node.names]
+        elif isinstance(node, ast.ImportFrom):
+            names.append("." * node.level + (node.module or ""))
+    return names
+
+
+def test_capcount_knows_no_heuristic():
+    """The counter only compares the keys a search hands it: its modules import a few libraries and each other,
+    never a search, a priority or the word code."""
+    modules = list(Path(acx.core.capcount.__file__).parent.glob("*.py"))
+    assert len(modules) >= 5
+    for path in modules:
+        for name in imports(path.read_text()):
+            sibling = name.startswith(".") and not name.startswith("..")
+            assert sibling or name.split(".")[0] in {"numpy", "numba", "heapq", "typing"}, (path.name, name)

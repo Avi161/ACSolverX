@@ -1,13 +1,16 @@
 """acx.verify.replay: every solved path replays; broken paths are rejected."""
+import itertools
 import json
+import random
 
 import pytest
 
 from acx.core.config import SearchConfig
-from acx.core.moves import Move, decode_path, encode_path
+from acx.core.moves import Move, decode_path, elementary_step, encode_path
 from acx.core.words import Presentation
 from acx.search import search
-from acx.verify import ReplayError, abs_det, replay
+from acx.verify import ReplayError, abs_det, is_valid, replay
+from acx.verify.replay import det
 
 
 @pytest.mark.parametrize("priority", ["length", "s20_mk2"])
@@ -63,3 +66,55 @@ def test_elementary_and_stable_paths():
         replay(p, bad, normalize=False, require_trivial=False)
     with pytest.raises(ReplayError):
         abs_det(Presentation.parse("x", "y", "x"))
+
+
+def leibniz(m):
+    """The determinant as the signed sum over permutations."""
+    n = len(m)
+    total = 0
+    for perm in itertools.permutations(range(n)):
+        inversions = sum(perm[i] > perm[j] for i in range(n) for j in range(i + 1, n))
+        product = 1
+        for row, col in enumerate(perm):
+            product *= m[row][col]
+        total += (-1) ** inversions * product
+    return total
+
+
+def test_det_matches_leibniz():
+    """The fraction-free elimination equals the sum over permutations, zeros and row swaps included."""
+    rng = random.Random(0)
+    for _ in range(2000):
+        n = rng.randint(1, 5)
+        m = [[rng.randint(-4, 4) for _ in range(n)] for _ in range(n)]
+        assert det(m) == leibniz(m), m
+    assert det([]) == 1
+
+
+# Each way an elementary move can be malformed, on <x, y | xy, y>, with the words of the error it must raise.
+MALFORMED = [
+    pytest.param({"op": "teleport"}, "unknown move", id="unknown op"),
+    pytest.param({"op": "invert", "target": 0}, "out of range", id="invert target 0"),
+    pytest.param({"op": "invert", "target": True}, "out of range", id="invert target True"),
+    pytest.param({"op": "invert", "target": 3}, "out of range", id="invert target 3"),
+    pytest.param({"op": "conjugate", "target": 1, "by": "xy"}, "one generator", id="conjugate by two letters"),
+    pytest.param({"op": "conjugate", "target": 1, "by": "z"}, "one generator", id="conjugate by a third generator"),
+    pytest.param({"op": "swap", "a": 1, "b": 3}, "out of range", id="swap with a third relator"),
+    pytest.param({"op": "multiply", "target": 1, "source": 1}, "distinct", id="multiply by itself"),
+    pytest.param({"op": "destabilize"}, "still occurs", id="destabilize a generator in use"),
+    pytest.param({"op": "invert"}, "needs 'target'", id="invert without target"),
+    pytest.param({"op": "conjugate", "by": "x"}, "needs 'target'", id="conjugate without target"),
+    pytest.param({"op": "conjugate", "target": 1}, "needs 'by'", id="conjugate without letter"),
+    pytest.param({"op": "multiply", "source": 2}, "needs 'target'", id="multiply without target"),
+    pytest.param({"op": "multiply", "target": 1}, "needs 'source'", id="multiply without source"),
+]
+
+
+@pytest.mark.parametrize("op, message", MALFORMED)
+def test_elementary_step_refuses_every_malformed_op(op, message):
+    """A malformed move is a ``ValueError`` saying what is wrong (never a bare ``KeyError``), and a path holding it
+    is simply not valid."""
+    p = Presentation.parse("xy", "y")
+    with pytest.raises(ValueError, match=message):
+        elementary_step(p, op)
+    assert not is_valid(p, [op], normalize=False, require_trivial=False)

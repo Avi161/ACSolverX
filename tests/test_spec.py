@@ -6,7 +6,7 @@ from conftest import dataset, golden_entries
 
 from acx.core.config import SearchConfig
 from acx.core.moves import enumerate_moves, source_word
-from acx.core.words import Presentation, parse, reduce, rotate
+from acx.core.words import Presentation, canonical_rels, parse, reduce, rotate, state_bytes
 from acx.search import BackendUnavailable, search
 from acx.verify import replay
 
@@ -40,26 +40,44 @@ def test_budget_prefix_invariance(ms640, priority, pid):
         assert (long.pops, long.path) == (short.pops, short.path)
 
 
-def brute_cap_dropped(trace, cap):
-    """Over-cap children of every expanded (non-final) popped state, counted from scratch."""
-    n = 0
+def over_cap_children(trace, cap):
+    """The state bytes of the over-cap child of every move of every expanded (non-final) popped state, from scratch."""
+    children = []
     for strs in trace:
         rels = tuple(map(parse, strs))
         if all(len(r) == 1 for r in rels):
             break
         for m in enumerate_moves(rels):
             new = reduce(rotate(rels[m.i], m.k1) + rotate(source_word(rels, m), m.k2))
-            n += len(new) > cap or any(len(r) > cap for k, r in enumerate(rels) if k != m.i)
-    return n
+            if len(new) > cap or any(len(r) > cap for k, r in enumerate(rels) if k != m.i):
+                children.append(state_bytes(canonical_rels(rels[:m.i] + (new,) + rels[m.i + 1:])))
+    return children
 
 
 @pytest.mark.parametrize("cap", [12, 16])
 def test_cap_is_applied_at_generation_and_counted(ms640, cap):
     r = search(ms640[322], SearchConfig(cap=cap, budget=150, trace=True))
     assert all(len(w) <= cap for strs in r.trace[1:] for w in strs)
-    assert r.stats["cap_dropped"] == brute_cap_dropped(r.trace, cap) > 0
+    assert r.stats["cap_dropped"] == len(over_cap_children(r.trace, cap)) > 0
     free = search(ms640[322], SearchConfig(cap=None, budget=150))
     assert free.stats["cap_dropped"] == 0
+
+
+# At cap 12 and budget 150: the moves that drop a child, the distinct states among those children, and the states
+# that would have popped. A counter that took each move for a new state would count more than the distinct ones.
+DUPLICATES = [("length", 322, 5790, 4613, 82), ("length", 435, 4732, 3279, 134), ("s20_mk2", 322, 2664, 2225, 0),
+              ("s20_mk2", 435, 2808, 1898, 3), ("s20_mk2", 144, 2272, 1972, 2)]
+
+
+@pytest.mark.parametrize("backend", ["spec", "fast"])
+@pytest.mark.parametrize("priority, pid, moves, distinct, would_pop", DUPLICATES)
+def test_duplicate_dropped_children_are_one_state(ms640, backend, priority, pid, moves, distinct, would_pop):
+    """Several moves can give one over-cap child: ``cap_dropped`` counts the moves, ``cap_would_pop`` the states."""
+    cfg = SearchConfig(priority=priority, cap=12, budget=150, backend=backend, trace=True)
+    r = search(ms640[pid], cfg)
+    children = over_cap_children(r.trace, 12)
+    assert (r.stats["cap_dropped"], len(children), len(set(children))) == (moves, moves, distinct)
+    assert r.stats["cap_would_pop"] == would_pop <= distinct
 
 
 def test_start_over_the_cap_rejects_every_child():

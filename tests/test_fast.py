@@ -15,7 +15,7 @@ import pytest
 from acx.core.config import SearchConfig
 from acx.core.moves import Move, enumerate_moves, source_word, step
 from acx.core.priority import get as get_priority
-from acx.core.words import Presentation, canonical_word, reduce, rotate, sort_rels, state_bytes
+from acx.core.words import Presentation, canonical_word, reduce, rotate, sort_rels, state_bytes, state_key
 from acx.search import PARITY_STATS, search
 from acx.search.fast import children, decode, encode
 from acx.search.fast.arrays import Arrays
@@ -226,6 +226,18 @@ def test_tie_bytes_kernel_writes_state_bytes(n_gen):
         buf = np.zeros(sum(lens) + len(lens), dtype=np.uint8)
         assert tie_bytes(syms, lens, n_gen, buf, 0) == len(buf)
         assert bytes(buf) == state_bytes(rels, n_gen)
+
+
+@pytest.mark.parametrize("n_gen", [2, 3])
+def test_state_bytes_sort_like_state_key(n_gen):
+    """The cap counters compare ``state_bytes`` where the heap compares ``state_key``: one order, a prefix first."""
+    words = random_words(n_gen, count=200, seed=1)
+    states = {(a, b) for a, b in zip(words, words[1:])}
+    states |= {(w[:2], v) for w, v in zip(words, words[2:])}                # a relator that is a prefix of another
+    states |= {(w, v) for w, v in zip(words, words[2:])}
+    by_key = sorted(states, key=lambda rels: state_key(rels, n_gen))
+    assert by_key == sorted(states, key=lambda rels: state_bytes(rels, n_gen))
+    assert len(by_key) > 300
 
 
 # ---- the engine parts: heap order, dedup table, array growth ----

@@ -73,22 +73,90 @@ def test_invariant_three_generators_and_linear(backend, cyclic):
             invariant(pres, cap, 200 if backend == "fast" else 100, backend=backend, cyclic=cyclic)
 
 
-# Planted binds: MS640 at cap 16, budget 2,000, LENGTH (row 620: the start is over the cap, so its only pop
-# drops everything and the queue runs dry; the rest bind at a pop or never).
-PLANTED = {500: (True, 6, 8, 23, 0, None, None), 600: (False, 2000, 300694, 22, 17657, 195, 17),
-           620: (False, 1, 102, 23, 90, 2, 17), 635: (False, 2000, 194260, 25, 282, 1905, 17),
-           639: (False, 10, 2113, 25, 1252, 4, 17)}
+@pytest.mark.parametrize("backend, budget, kinds", [
+    ("spec", 60, {"binds at a pop", "dropped, never binds"}),
+    ("fast", 150, {"binds at a pop", "solved with drops"}),
+])
+def test_invariant_s20_mk2_linear(ms640, backend, budget, kinds):
+    """S20_MK2 without cyclic reduction, which the three-generator rows above cannot test (S20_MK2 needs two)."""
+    got = {invariant(ms640[pid], 12, budget, priority="s20_mk2", cyclic=False, backend=backend)
+           for pid in (144, 322, 435)}
+    assert got == kinds
 
 
-@pytest.mark.parametrize("pid", sorted(PLANTED))
-def test_planted_binds(ms640, pid):
-    backends = ("fast",) if PLANTED[pid][1] > 100 else ("spec", "fast")
+def counters(r):
+    """``(solved, pops, dropped, min_total, would_pop, first_bind, needed)`` of a result, as ``PLANTED`` lists them."""
+    s = r.stats
+    return (r.solved, r.pops, s["cap_dropped"], s["cap_dropped_min_total"], s["cap_would_pop"],
+            s["cap_first_bind"], s["cap_needed"])
+
+
+# Planted binds, keyed (priority, MS640 row, cap, budget). Row 620 starts over cap 16, so its only pop drops
+# everything and the queue runs dry; the other rows bind at a pop, or never (500 solves with drops, S20_MK2 551
+# drops without binding). The two priorities rank the children differently: S20_MK2's numbers are not LENGTH's.
+PLANTED = {
+    ("length", 500, 16, 2000): (True, 6, 8, 23, 0, None, None),
+    ("length", 600, 16, 2000): (False, 2000, 300694, 22, 17657, 195, 17),
+    ("length", 620, 16, 2000): (False, 1, 102, 23, 90, 2, 17),
+    ("length", 635, 16, 2000): (False, 2000, 194260, 25, 282, 1905, 17),
+    ("length", 639, 16, 2000): (False, 10, 2113, 25, 1252, 4, 17),
+    ("length", 435, 12, 150): (True, 113, 4732, 19, 134, 12, 13),
+    ("s20_mk2", 500, 16, 300): (True, 6, 8, 23, 0, None, None),
+    ("s20_mk2", 551, 16, 300): (False, 300, 6222, 23, 0, None, None),
+    ("s20_mk2", 466, 16, 300): (False, 300, 21522, 22, 62, 30, 17),
+    ("s20_mk2", 600, 16, 300): (False, 300, 34966, 23, 221, 9, 17),
+    ("s20_mk2", 620, 16, 2000): (False, 1, 102, 23, 90, 2, 17),
+    ("s20_mk2", 639, 16, 300): (False, 10, 2113, 25, 400, 3, 17),
+    ("s20_mk2", 144, 12, 150): (True, 105, 2272, 18, 2, 27, 13),
+    ("s20_mk2", 435, 12, 150): (True, 65, 2808, 20, 3, 27, 13),
+}
+
+
+@pytest.mark.parametrize("key", PLANTED, ids=lambda key: "-".join(map(str, key)))
+def test_planted_binds(ms640, key):
+    priority, pid, cap, budget = key
+    backends = ("fast",) if PLANTED[key][1] > 150 else ("spec", "fast")         # spec is too slow for long runs
     for backend in backends:
-        r = search(ms640[pid], SearchConfig(cap=16, budget=2000, backend=backend))
-        s = r.stats
-        got = (r.solved, r.pops, s["cap_dropped"], s["cap_dropped_min_total"], s["cap_would_pop"],
-               s["cap_first_bind"], s["cap_needed"])
-        assert got == PLANTED[pid]
+        r = search(ms640[pid], SearchConfig(priority=priority, cap=cap, budget=budget, backend=backend))
+        assert counters(r) == PLANTED[key]
+
+
+@pytest.mark.parametrize("backend", ["spec", "fast"])
+@pytest.mark.parametrize("priority", ["length", "s20_mk2"])
+@pytest.mark.parametrize("budget, counted", [(1, (0, None, None)), (2, (1, 2, 17)), (3, (2, 2, 17)),
+                                             (5, (4, 2, 17)), (91, (90, 2, 17))])
+def test_dry_queue_boundary_counts_only_what_the_budget_would_pop(ms640, backend, priority, budget, counted):
+    """Row 620 at cap 16 starts over the cap: its one pop drops all 102 children (90 distinct states) and the queue
+    runs dry. A budget of 1 is spent by that pop, so nothing more would pop; a budget of ``b`` would pop ``b - 1``
+    of the 90, the first at pop 2 and the least longest relator of them all (17) being the cap needed."""
+    r = search(ms640[620], SearchConfig(priority=priority, cap=16, budget=budget, backend=backend))
+    s = r.stats
+    assert (r.solved, r.pops, s["cap_dropped"], s["cap_dropped_min_total"]) == (False, 1, 102, 23)
+    assert (s["cap_would_pop"], s["cap_first_bind"], s["cap_needed"]) == counted
+
+
+@pytest.mark.parametrize("priority, pid, pops", [
+    ("s20_mk2", 144, {12: 105, 13: 107, None: 107}),
+    ("s20_mk2", 435, {12: 65, 13: 68, None: 68}),
+    ("length", 435, {12: 113, 13: 142, None: None}),              # None: unsolved within the budget
+])
+def test_cap_needed_is_the_cap_that_changes_a_solved_row(ms640, priority, pid, pops):
+    """At cap 12 the counter says 13 is the cap that changes the search: it solves the row in other pops, and so
+    does no cap at all (LENGTH row 435 then stops solving it within 150 pops)."""
+    runs = {cap: search(ms640[pid], SearchConfig(priority=priority, cap=cap, budget=150, backend="fast"))
+            for cap in pops}
+    assert runs[12].stats["cap_needed"] == 13
+    assert {cap: (r.pops if r.solved else None) for cap, r in runs.items()} == pops
+
+
+# A dropped child that ties a later pop on (priority, depth) sorts before it by the state bytes alone. A bar without
+# the bytes would count 351 would-pop states on the first run, bind at pop 9 on the second and count 38 on the third.
+@pytest.mark.parametrize("priority, pid, cap, counted", [("length", 635, 12, (385, 12)), ("s20_mk2", 144, 10, (70, 8)),
+                                                         ("s20_mk2", 466, 16, (62, 30))])
+def test_ties_on_priority_and_depth_are_ordered_by_the_state_bytes(ms640, priority, pid, cap, counted):
+    for backend in ("spec", "fast"):
+        s = search(ms640[pid], SearchConfig(priority=priority, cap=cap, budget=150, backend=backend)).stats
+        assert (s["cap_would_pop"], s["cap_first_bind"]) == counted
 
 
 @pytest.mark.slow

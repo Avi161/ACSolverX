@@ -13,7 +13,7 @@ from acx import data
 from acx.aut import orbit_key
 from acx.core.config import SearchConfig
 from acx.core.moves import decode_path, encode_path
-from acx.core.words import Presentation, fmt, parse
+from acx.core.words import Presentation, fmt, inverse, parse
 from acx.cov import CoVConfig, ReplayError, apply_steps, check_cert, enumerate_images, verify
 from acx.cov.cov import Z, relabel, subwords, substitute
 from acx.cov.substitution import isolate, substitute_generator
@@ -78,15 +78,54 @@ def test_relabel():
     assert relabel((2, 3, -3, -2), 1) == (1, 2, -2, -1) and relabel((1, 3, -1), 2) == (1, 2, -1)
 
 
+def test_enumerate_images_max_len_keeps_the_images_whose_relators_all_fit():
+    """AK(3) has 34 images, the longest relator 15 letters: no limit, the family's 239 and 15 keep them all."""
+    def longest(image):
+        return max(map(len, image.pres.rels))
+
+    images = enumerate_images(AK3, None)
+    assert len(images) == 34 and max(map(longest, images)) == 15 and enumerate_images(AK3) == images
+    counts = {}
+    for limit in (15, 14, 12, 10, 8):
+        kept = enumerate_images(AK3, limit)
+        assert kept == tuple(image for image in images if longest(image) <= limit)
+        counts[limit] = len(kept)
+    assert counts == {15: 34, 14: 31, 12: 30, 10: 21, 8: 4}
+
+
+def test_subwords_are_sorted_distinct_and_at_least_two():
+    """The family's words ``w``: ordered by (length, word), each once (``w`` and ``w^-1`` are one), never a rename."""
+    words = subwords(*AK3.rels)
+    assert words == sorted(set(words), key=lambda w: (len(w), w)) and min(map(len, words)) == 2
+    assert not any(inverse(w) in words for w in words)
+
+
 def test_every_image_replays_from_its_steps():
     for pres in (AK3, PLANTED):
         for img in enumerate_images(pres):
             assert apply_steps(pres, img.steps) == img.pres
 
 
-def test_planted_case_stable_cert():
+def planted_image():
+    """The CoV image of PLANTED that is PLANTED_IMAGE up to rotation, inversion and order."""
     want = PLANTED_IMAGE.reduced().canonical()
-    img = next(i for i in enumerate_images(PLANTED) if i.pres.reduced().canonical() == want)
+    return next(i for i in enumerate_images(PLANTED) if i.pres.reduced().canonical() == want)
+
+
+def test_check_cert_cap_bounds_what_the_moves_of_the_leg_produce():
+    """As in the search, the cap bounds the relators each S-move produces and not the image as written (5 letters):
+    the planted leg's two moves leave relators of at most 2 letters, so a cap of 2 passes and a cap of 1 does not."""
+    img = planted_image()
+    res = search(img.pres, SearchConfig(budget=100))
+    assert max(map(len, img.pres.rels)) == 5 and res.path_length == 2
+    for cap in (None, 24, 2):
+        assert check_cert(PLANTED, img.steps, res.path, cap=cap) == img.pres
+    with pytest.raises(ReplayError, match="exceeds cap 1"):
+        check_cert(PLANTED, img.steps, res.path, cap=1)
+
+
+def test_planted_case_stable_cert():
+    img = planted_image()
     res = search(img.pres, SearchConfig(budget=100))
     assert res.solved and res.pops <= 5
     assert check_cert(PLANTED, img.steps, res.path) == img.pres
@@ -156,7 +195,7 @@ def test_budget_is_total_and_deterministic():
 
 
 def test_checker_rejects_tampering():
-    img = next(i for i in enumerate_images(PLANTED) if i.pres.reduced().canonical() == PLANTED_IMAGE.reduced().canonical())
+    img = planted_image()
     res = search(img.pres, SearchConfig(budget=100))
     define, sub, elim = img.steps
     bad = [

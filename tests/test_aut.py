@@ -8,6 +8,7 @@ import pytest
 
 from acx.aut import (AUTOS, are_automorphic, aut_canon, automorphism, check, images, invert, orbit_key,
                      solve_via_aut_min, transport)
+from acx.aut.transport import Emitter
 from acx.aut.whitehead import IDENTITY, apply_pres
 from acx.core.words import Presentation
 from acx.search import search
@@ -75,6 +76,17 @@ def test_auto_table_layout():
     """The numba twin relies on it: ``AUTOS[0]`` is the identity and only ``AUTOS[8:]`` change a total length."""
     assert AUTOS[0] == IDENTITY and len(AUTOS) == 20
     assert all(sum(map(len, a)) == 2 for a in AUTOS[:8]) and all(sum(map(len, a)) > 2 for a in AUTOS[8:])
+
+
+@pytest.mark.parametrize("backend", ["spec", "fast"])
+def test_orbit_key_is_invariant_under_every_auto(backend):
+    """A presentation and its image under each of the 20 automorphisms have the same orbit key."""
+    if backend == "fast":
+        pytest.importorskip("numba")
+    for pres in dataset("data/ms640_solved.txt")[::64]:
+        key = orbit_key(pres, backend)
+        for k in range(len(AUTOS)):
+            assert orbit_key(apply_pres(pres, (k,)), backend) == key, (pres, k)
 
 
 def test_level_cap_raises():
@@ -200,6 +212,12 @@ def test_transport_rejects_a_wrong_frame():
         transport(pres, (), res.path, res.start)                           # identity is not the witness
 
 
+def test_aut_unsolved_row_returns_none_path():
+    """A budget too small to solve the representative gives the unsolved search result and no path."""
+    res, path = solve_via_aut_min(dataset("data/ms640_solved.txt")[639], budget=3)
+    assert not res.solved and path is None
+
+
 def test_aut_min_search_carries_the_cap_counters():
     """The Aut-minimal representative is searched by ``acx.search``, so its result reports the cap counters of that search
     (the runner copies them into the record); transport and replay add no search and no counters."""
@@ -247,3 +265,17 @@ def test_emitter_s_move_is_the_core_conjugated_multiply():
         em.s_move(rels, m, sub_table(IDENTITY))
         ref.conjugated_multiply(m.i, m.j, m.s, c)
         assert em.moves == ref.moves
+
+
+# The Nielsen moves ``Emitter.precompose`` writes for each of the 20 automorphisms (signed permutations first).
+PRECOMPOSE_MOVES = [0, 1, 1, 2, 1, 2, 2, 3, 1, 3, 4, 3, 5, 8, 1, 3, 4, 3, 5, 8]
+
+
+@pytest.mark.parametrize("k", range(len(AUTOS)))
+def test_precompose_each_auto_gives_its_images(k):
+    """From the basis ``(x, y)`` the moves of ``precompose(AUTOS[k])`` replay to the relators ``(phi(x), phi(y))``."""
+    basis = Presentation(2, IDENTITY)
+    em = Emitter(basis)
+    em.precompose(AUTOS[k])
+    assert em.pres.rels == AUTOS[k] and len(em.moves) == PRECOMPOSE_MOVES[k]
+    assert replay(basis, em.moves, normalize=False, require_trivial=False)[-1] == em.pres
