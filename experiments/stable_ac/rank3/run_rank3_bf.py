@@ -434,6 +434,9 @@ def run_bf(pool, rows, ctrl, n, side, a, out_dir, meta, say):
             say(f"L{n}{suffix} progress {done}/{len(tasks)} tasks, "
                 f"{searched} searches, solved={solved}, "
                 f"elapsed={time.time() - t0:.0f}s, core-seconds={core:.0f}")
+    if a.no_merge:
+        say(f"L{n}{suffix}: {len(tasks)} tasks done, not merging (--no-merge)")
+        return
     merge_length(n, side, rows, a, out_dir, shard_dir, meta, say)
 
 
@@ -490,6 +493,9 @@ def main(argv=None):
                     help="run the tasks of each length last one first: a second "
                          "machine that works towards the first one and takes "
                          "over its shards (block_task skips a shard that exists)")
+    ap.add_argument("--no-merge", action="store_true",
+                    help="write shards only: for a helper machine; the machine "
+                         "without this flag merges each length, once")
     ap.add_argument("--out-dir", default=OUT_DIR)
     ap.add_argument("--log-every", type=float, default=60.0)
     a = ap.parse_args(argv)

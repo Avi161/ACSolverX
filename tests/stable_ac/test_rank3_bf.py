@@ -104,12 +104,12 @@ class _SerialPool:
 
 
 def _run(tmp_path, max_len, inv_max_len, pres, budget=300, cap=R.CAP,
-         reverse=False, pool=None):
+         reverse=False, pool=None, no_merge=False):
     import argparse
     rows = [r for r in MS640 if r[0] in pres]
     a = argparse.Namespace(source="ms640", budget=budget, cap=cap,
                            path_sample_target=10 ** 9, log_every=1e9,
-                           reverse=reverse)
+                           reverse=reverse, no_merge=no_merge)
     out = str(tmp_path)
     log = []
     pool = pool or _SerialPool()
@@ -225,6 +225,39 @@ def test_reverse_runs_the_same_tasks_in_the_opposite_order(tmp_path):
         assert [t for t in order[True] if t[0] == n] == fwd[::-1]
     for k in arrays[False]:
         assert (arrays[False][k] == arrays[True][k]).all(), k
+
+
+def test_no_merge_leaves_every_shard_for_the_machine_that_merges(tmp_path):
+    """--no-merge is for a helper machine: it writes shards and never a merged
+    file, so each length is merged once, by the machine without the flag."""
+    pres = {0, 320}
+    os.makedirs(tmp_path / "two")
+    os.makedirs(tmp_path / "one")
+    _, out, log = _run(tmp_path / "two", 2, 0, pres, reverse=True, no_merge=True)
+    stem = R.stem("ms640", 300, R.CAP)
+    for n in (1, 2):
+        assert not os.path.exists(os.path.join(out, f"{stem}_L{n}.npz"))
+        shards = os.listdir(R.shard_dir_for(out, "ms640", 300, R.CAP, n, "fwd"))
+        assert sorted(shards) == sorted(f"p{p:04d}_b{b:03d}.npz" for p in pres
+                                        for b in range(W.n_blocks(n)))
+    assert sum("not merging" in m for m in log) == 2
+    # the merging machine finds every shard: it searches nothing and merges
+    ran = []
+
+    class Pool(_SerialPool):
+        def imap_unordered(self, fn, tasks, chunksize=1):
+            if fn is R.block_task:
+                ran.extend(tasks)
+            return map(fn, tasks)
+
+    _run(tmp_path / "two", 2, 0, pres, pool=Pool())
+    assert ran == []
+    _, ref, _ = _run(tmp_path / "one", 2, 0, pres)
+    for n in (1, 2):
+        with np.load(os.path.join(out, f"{stem}_L{n}.npz")) as x, \
+                np.load(os.path.join(ref, f"{stem}_L{n}.npz")) as y:
+            for k in ("nodes", "path_len", "min_total", "pres_ids", "words"):
+                assert (x[k] == y[k]).all(), (n, k)
 
 
 def _fake_shard(out, row, budget, ident_budget=None):
