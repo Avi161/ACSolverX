@@ -24,12 +24,21 @@ The one failure is the same test on both (`test_verify_results::test_main_verifi
 
 ARM spot is 1.8 times faster than the on-demand box and gives 4.6 times more nodes per dollar. Not benchmarked: `c8a` (Zen 5; `c8a.24xlarge` spot $1.13/h), `c7g`, `c8i`. The ARM image is the arm64 build of the same AL2023 release (`al2023-ami-2023.12.20260817.0-kernel-6.18-arm64`, `ami-0cded71ff6ab7f608` in us-east-1); the box scripts run on it unchanged (python 3.12.13, numpy 2.1.3, numba 0.63.1 from wheels).
 
+**The same evening, spot again.** The `c8g.48xlarge` spot box (us-east-1c) was reclaimed after 18 minutes, a `c8g.24xlarge` in the same zone after 10; us-east-1a and 1f had no spot capacity for either size. The tasks at the slow end of a length (control unsolved: every search runs to the budget) take 10 to 15 minutes each on one core, so a box that lives 10 to 18 minutes finishes almost none of them. What replaced it, from 20:37 UTC:
+
+| box | purchase | $/h | order | role |
+|---|---|---|---|---|
+| `c8g.24xlarge`, 96 cores (`aws_rank3_arm_main_box.sh`) | on demand | 3.83 | slow end first | copies the helper's shards from S3, merges each length, runs the final checks |
+| `c8g.16xlarge`, 64 cores (`aws_rank3_arm_helper_box.sh`) | spot | 0.70 | `--reverse`: fast end first | `--no-merge`: writes shards only |
+
+A task whose shard exists is skipped when it is picked, each box copies the other's shards every 45 s, and the two meet once per length. In its first 15 minutes the helper finished 2,410 of the 3,713 length-9 tasks (the fast ones, 22 core-seconds each on average) while the main box finished 86 slow ones (826 core-seconds each). A reclaim of the helper loses only its running tasks; the main box cannot be reclaimed. The smaller spot size had capacity in every zone at 27% of the on-demand price.
+
 **The process, for any sweep:**
 
 1. List spot prices across families and zones: `aws ec2 describe-spot-price-history --instance-types ... --product-descriptions Linux/UNIX --start-time now`. A deep discount off on demand suggests a less contended pool; that is an inference, the IAM user cannot call `GetSpotPlacementScores`.
 2. Benchmark each candidate family on a `.large` spot box with `aws_rank3_bench_box.sh`: same tasks, core-seconds, sha256 of the results.
 3. Require the identical digest and the same test outcomes. Then rank by cores x nodes/s per core / $ per hour.
-4. Match the purchase to the task length: a task that needs an hour or more uninterrupted goes on demand; short tasks that resume from shards go on spot. A whole-host size (`48xlarge`) is reclaimed first; after a reclaim try a smaller size or another family before paying on demand.
+4. Match the purchase to the task length: a task that needs an hour or more uninterrupted goes on demand; short tasks that resume from shards go on spot. A whole-host size (`48xlarge`) is reclaimed first; after a reclaim try a smaller size or another family before paying on demand. When one length mixes long and short tasks, split them: an on-demand box from the slow end, a spot box from the fast end (`--reverse --no-merge`).
 5. Whatever CPU computed a result, compare it search for search with a run on the reference CPU (`cap_compare --must-match`) before it enters a table.
 
 **Rule:** never inherit the instance type from the previous run. Before a sweep that costs more than a few dollars, spend a few cents on the benchmark, and take the machine with the most nodes per dollar whose digest matches. As of this entry that is Graviton4 spot.
