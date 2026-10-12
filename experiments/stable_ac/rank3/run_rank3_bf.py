@@ -420,6 +420,8 @@ def run_bf(pool, rows, ctrl, n, side, a, out_dir, meta, say):
         f"{W.n_words(n) * len(rows)} searches in {total} tasks, {len(tasks)} to run")
     # the slow presentations (control unsolved, then most control nodes) first
     tasks.sort(key=lambda t: (ctrl[t[0]]["solved"], -ctrl[t[0]]["nodes_explored"]))
+    if a.reverse:
+        tasks.reverse()
     t0, done, searched, solved, core = time.time(), 0, 0, 0, 0.0
     last = t0
     for _, _, _, k, s, secs in pool.imap_unordered(block_task, tasks, chunksize=1):
@@ -484,6 +486,10 @@ def main(argv=None):
                          "(the fraction is target / searches, at most 1)")
     ap.add_argument("--pres", default=None,
                     help="comma list of pres_ids (default: all)")
+    ap.add_argument("--reverse", action="store_true",
+                    help="run the tasks of each length last one first: a second "
+                         "machine that works towards the first one and takes "
+                         "over its shards (block_task skips a shard that exists)")
     ap.add_argument("--out-dir", default=OUT_DIR)
     ap.add_argument("--log-every", type=float, default=60.0)
     a = ap.parse_args(argv)

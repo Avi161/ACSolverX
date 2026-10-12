@@ -103,21 +103,24 @@ class _SerialPool:
         return map(fn, tasks)
 
 
-def _run(tmp_path, max_len, inv_max_len, pres, budget=300, cap=R.CAP):
+def _run(tmp_path, max_len, inv_max_len, pres, budget=300, cap=R.CAP,
+         reverse=False, pool=None):
     import argparse
     rows = [r for r in MS640 if r[0] in pres]
     a = argparse.Namespace(source="ms640", budget=budget, cap=cap,
-                           path_sample_target=10 ** 9, log_every=1e9)
+                           path_sample_target=10 ** 9, log_every=1e9,
+                           reverse=reverse)
     out = str(tmp_path)
     log = []
-    ctrl = R.run_control(_SerialPool(), rows, a, out, log.append)
-    R.run_sub(_SerialPool(), rows, a, out, log.append)
+    pool = pool or _SerialPool()
+    ctrl = R.run_control(pool, rows, a, out, log.append)
+    R.run_sub(pool, rows, a, out, log.append)
     meta = {"source": a.source, "node_budget": a.budget,
             "max_relator_length_cap": a.cap}
     for n in range(1, max_len + 1):
-        R.run_bf(_SerialPool(), rows, ctrl, n, "fwd", a, out, meta, log.append)
+        R.run_bf(pool, rows, ctrl, n, "fwd", a, out, meta, log.append)
         if n <= inv_max_len:
-            R.run_bf(_SerialPool(), rows, ctrl, n, "inv", a, out, meta, log.append)
+            R.run_bf(pool, rows, ctrl, n, "inv", a, out, meta, log.append)
     return rows, out, log
 
 
@@ -196,6 +199,34 @@ def test_runner_resumes_from_shards_and_skips_merged_lengths(tmp_path):
         assert (z["nodes"] == 7).all() and not (first == 7).all()
 
 
+def test_reverse_runs_the_same_tasks_in_the_opposite_order(tmp_path):
+    """--reverse is for a second machine that works towards the first one from
+    the fast end: the same tasks, last one first, and the same merged arrays."""
+    order, arrays = {}, {}
+    for rev in (False, True):
+        seen = []
+
+        class Pool(_SerialPool):
+            def imap_unordered(self, fn, tasks, chunksize=1):
+                if fn is R.block_task:
+                    seen.extend((t[3], t[0], t[4]) for t in tasks)
+                return map(fn, tasks)
+
+        os.makedirs(tmp_path / str(rev))
+        _, out, _ = _run(tmp_path / str(rev), 2, 0, {0, 320, 639}, reverse=rev,
+                         pool=Pool())
+        order[rev] = seen
+        with np.load(os.path.join(out, R.stem("ms640", 300, R.CAP) + "_L2.npz")) as z:
+            arrays[rev] = {k: z[k].copy() for k in
+                           ("nodes", "path_len", "min_total", "pres_ids", "words")}
+    for n in (1, 2):
+        fwd = [t for t in order[False] if t[0] == n]
+        assert len(fwd) == 3 and len({p for _, p, _ in fwd}) == 3
+        assert [t for t in order[True] if t[0] == n] == fwd[::-1]
+    for k in arrays[False]:
+        assert (arrays[False][k] == arrays[True][k]).all(), k
+
+
 def _fake_shard(out, row, budget, ident_budget=None):
     pres_id, r1, r2 = row
     shard_dir = R.shard_dir_for(out, "ms640", budget, R.CAP, 2, "fwd")
@@ -210,6 +241,23 @@ def _fake_shard(out, row, budget, ident_budget=None):
              seconds=np.float32(0), paths=np.array("[]"),
              ident=np.array(R.shard_ident("ms640", ident_budget or budget, R.CAP,
                                           2, "fwd", 0, pres_id, r1, r2)))
+
+
+def test_a_task_whose_shard_arrived_after_the_list_was_built_is_skipped(tmp_path):
+    """Two machines on one length: a shard the other one wrote, copied here
+    after this one built its task list, is checked and kept, not searched."""
+    row = MS640[0]
+    out = str(tmp_path)
+    _fake_shard(out, row, 300)
+    shard = os.path.join(R.shard_dir_for(out, "ms640", 300, R.CAP, 2, "fwd"),
+                         f"p{row[0]:04d}_b000.npz")
+    ident = R.shard_ident("ms640", 300, R.CAP, 2, "fwd", 0, *row)
+    task = (*row, 2, 0, "fwd", 300, R.CAP, 0.0, shard, ident)
+    assert R.block_task(task) == (row[0], 2, 0, 0, 0, 0.0)
+    with np.load(shard) as z:
+        assert (z["nodes"] == 7).all()
+    with pytest.raises(SystemExit):
+        R.block_task(task[:-1] + (ident.replace('"z_len":2', '"z_len":3'),))
 
 
 def test_a_shard_from_another_run_is_refused_not_merged(tmp_path):
