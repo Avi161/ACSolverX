@@ -361,10 +361,14 @@ Recorded 12 Oct 2026, 08:00 UTC, while writing the results README.
     split over all 640 (a solve where the control fails counts as fewer
     nodes), because that is the convention of the CoV graph this run was asked
     to match, and puts the §6.2 split beside it. The summaries keep §6.2.
-20. **Two numbers of this plan, corrected.** Item 6: the CoV cap has median 33
-    over the non-control rows of the sweep's file, not 32. Item 10: 58,806 is
-    the number of redundant starts (pairs of equal starts inside rows 7 and
-    9); the starts that have a duplicate number 117,612.
+20. **Three numbers of this plan, corrected.** Item 6: the CoV cap has median
+    33 over the non-control rows of the sweep's file, not 32. Item 10: 58,806
+    is the number of redundant starts (pairs of equal starts inside rows 7
+    and 9); the starts that have a duplicate number 117,612. Item 10's "13 to
+    17%" was measured on the mirror pairs before `class_view.py` existed;
+    `class_view` (all 324 pairs of copies) gives 1.1 to 16.5% at lengths 1 to
+    5 and 15.4% for the control. The 17% threshold was set from item 10 and
+    is kept.
 21. **Path samples are smaller than §5 says.** The sample target (about 2,000
     per length) counts rows whether solved or not, and a path exists only for
     a solved row: 769 to 1,694 paths per length. Every solved row of the

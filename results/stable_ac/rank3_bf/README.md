@@ -42,8 +42,9 @@ Plan, definitions and every deviation: [`PLAN.md`](../../../experiments/stable_a
 ## Result
 
 Adding a generator and a relator `Z·w` helps the greedy only if the right word is known for
-each presentation in advance. A word picked at random, one word fixed for all presentations,
-and words tried in shortlex order all do worse than the control.
+each presentation in advance. A word picked at random and one word fixed for all presentations
+solve fewer presentations than the control; words tried in shortlex order until one solves
+cost more nodes than the control.
 
 Budget 1,000, words of length 1 to 9 (19,682 words per presentation, 12,596,480 searches); the
 control solves 554 of 640.
@@ -57,16 +58,19 @@ control solves 554 of 640.
 
 In the first column a solve where the control fails counts as fewer nodes (the convention of
 the graphs); on the 86 presentations the control does not solve, a random word solves 0.2%.
-The 17% is the 90th percentile of the node gap between two relabeled copies of one search
-(section "Relabeling classes"); it is a yardstick, not a bound.
+The 17% is a fixed threshold, set from the 90th percentile of the node gap between two
+relabeled copies of one search on word lengths 1 to 5 (PLAN §11 item 10); in the final tables
+that percentile is 15.4% for the control and 1.1 to 20.0% by word length (section "Relabeling
+classes"). It is a yardstick, not a bound.
 
 How much worse:
 
 - The main cost is lost solves: on a presentation the control solves, a random word fails
   23.7% of the time.
 - When the word does solve, the extra nodes are few: the median over presentations of the
-  median extra nodes is 1 to 6, depending on the word length. "More nodes" is 100.0% on the
-  295 presentations the control solves in under 10 nodes; these are 46 of the 65.5 points.
+  median extra nodes is 1 to 6, depending on the word length. "More nodes" is 100.0% (to one
+  decimal) on the 295 presentations the control solves in under 10 nodes; these are 46 of the
+  65.5 points.
 
 What a choice of word can and cannot do (the control solves 554):
 
@@ -78,13 +82,13 @@ What a choice of word can and cannot do (the control solves 554):
 
 - 0 of the 19,682 words solve as many presentations as the control.
 - With the right word per presentation the start is cheaper than the control on 198 of 640
-  presentations, 187 of them by more than 17% (176 of the 554 the control solves). These are
-  minima over 19,682 draws each.
+  presentations (176 of the 554 the control solves, plus the 22 gained), 187 of them by more
+  than 17% (165 plus the 22). These are minima over 19,682 draws each.
 - The 22 gained presentations are within the control's reach at a larger budget: the control
-  solves all 22 with 1,160 to 26,838 nodes, 18 of them within 10,000 (control costs above
-  10,000 are read from the CoV sweep's 100,000-node control rows). The best word solves them
+  solves all 22 with 1,160 to 26,838 nodes, 18 of them within 10,000 (the control costs are
+  read from the CoV sweep's 100,000-node control rows). The best word solves them
   in 51 to 849 nodes.
-- Finding that word by trying words in shortlex order costs 41,711 nodes or more on each of
+- Trying words in shortlex order until one solves costs 41,711 nodes or more on each of
   the 22, more than the control needs, and beats the control on 0 of the 554 presentations it
   solves (a word that fails costs the full 1,000 nodes, and the two words of length 1 are
   never faster).
@@ -143,7 +147,7 @@ Each `.png` has a `.md` with the numbers behind it.
 
 Start `<x,y,z1..zk | r1, r2, Z1·w1, .., Zk·wk>`. Rank 4: every unordered pair of words up to
 length 3, repeats allowed (351 starts per presentation). Rank 5: every unordered triple of
-words up to length 2 (120 starts). Each is compared with rank 3 on the same word pool; rank 4
+words up to length 2, repeats allowed (120 starts). Each is compared with rank 3 on the same word pool; rank 4
 against rank 5 is not like for like, because the pools differ.
 
 | | rank 3, \|w\| <= 3 | rank 4, \|w\| <= 3 | rank 3, \|w\| <= 2 | rank 5, \|w\| <= 2 |
@@ -156,9 +160,10 @@ against rank 5 is not like for like, because the pools differ.
 | lost by every start | 38 | 48 | 82 | 138 |
 | best single start, picked with hindsight | 478 | 454 | 449 | 376 |
 
-On the same words, a second or third extra generator is worse than one on every row where
-they differ, although rank 4 and 5 have many more starts to choose from. The rank-3
-percentages are the per-length rows above weighted by their word counts.
+On the same words, a second or third extra generator is worse than one on every outcome row
+except gained, where all are 0, although rank 4 and 5 have many more starts to choose from.
+The rank-3 percentages are the per-length rows above weighted by their word counts, before
+rounding.
 
 ## Against CoV: why eliminate the generator
 
@@ -180,7 +185,8 @@ larger one.
 - A random start at budget 10,000. CoV: fewer nodes than the control 33.0%, the same 9.6%,
   more 48.3%, unsolved 9.2% (all 640). Rank 3 with a random proper relator subword: solves
   80.9%, and has fewer nodes than the control 1.3% of the time (on the control-solved
-  presentations).
+  presentations). The two "fewer" shares have different denominators, so only their sign and
+  size compare.
 - Word for word. 9,759 of the 59,486 (presentation, proper subword) pairs have a CoV row under
   the same word (CoV keeps one row per class of equal outputs). On those, rank 3 against the
   best of the CoV starts built from that word:
@@ -194,9 +200,10 @@ Not like for like in two ways, both in CoV's favour: several CoV starts can shar
 the best is taken, and CoV ran at cap max(24, longest relator + 16) (median 33 over its rows;
 PLAN §11 item 6 estimated 32) against 24 here.
 
-The plan expected any gain to concentrate in relator subwords. Per start it does, slightly:
-inside the brute-force family, words that are a subword of a relator of their presentation
-solve 70.7% and beat the control 1.1% of the time, the other words 66.0% and 0.6%. As a pool
+The plan expected any gain to concentrate in relator subwords. At budget 1,000, lengths 1 to
+9, per start it does, slightly: inside the brute-force family, words that are a cyclic subword
+of a relator of their presentation (whole rotations included) solve 70.7% and beat the control
+1.1% of the time (on the control-solved presentations), the other words 66.0% and 0.6%. As a pool
 it does not: the proper subwords solve 544, fewer than the control. A word that is a whole
 rotation of a relator is the control in disguise (one move turns `Z·w` into `Z`): 7,210 such
 (presentation, word) pairs, 6,536 solved, none faster than the control.
@@ -216,7 +223,7 @@ renamed word is itself in the family):
 | starts, word length 9 | 743,364 | 12,385 (1.7%) | 484,629 | 49.8% | 20.0% | 81.9% |
 
 Node gap = |a − b| / max(a, b), over the pairs where both solve. A renaming alone moves the
-node count by more than about 17% in one such pair out of ten and can flip the solved flag, so
+node count by more than 15 to 20% in one such pair out of ten and can flip the solved flag, so
 a single "fewer nodes" is weak evidence, and "cheaper by more than 17%" is not a significance
 test. The 17% was fixed from lengths 1 to 5; at lengths 6 to 9 the 90th percentile is 18 to
 20%.
@@ -237,7 +244,9 @@ a sampling choice (half of the 39,364 words up to length 9), not an exact symmet
 
 ## Checks
 
-All on AWS (commit `ff0d861`), against the files in this directory. Logs: `post_*.txt`.
+All on AWS, against the files in this directory: the reference re-check on the rank-4/5
+machine (commit `8b3a51d` plus `rankn_checks.py`, PLAN §11 item 9), the rest on the
+post-processing machine (commit `ff0d861`). Logs: `post_*.txt`.
 
 - **Repo tests**: 33 passed (`tests/stable_ac/test_rank3_bf.py`, `test_rankn_class_view.py`;
   the line is in the machine log, `post/run.log` in S3).
@@ -246,11 +255,12 @@ All on AWS (commit `ff0d861`), against the files in this directory. Logs: `post_
   `<x,y,z | r1,r2,Z>` agree node for node on all 640 at both budgets, and equal the control
   rows of the CoV sweep; every stored solution path (117,534, including every solved subword
   row) replayed move by move with a separate pure-Python implementation of the moves, 0
-  failures; 630 stored results (30 per file) re-run with the unoptimized reference solver
-  `solvern.search_n` (the verifier exits 0 only if every one is equal).
+  failures; 630 re-runs of stored results (30 draws per file) with the unoptimized reference
+  solver `solvern.search_n` (the verifier exits 0 only if every one is equal).
 - **Reference re-check** ([`checks_reference.json`](checks_reference.json)): 2,570 stored
-  results (rank 3 lengths 1 to 7, rank 4, rank 5) re-run with the reference solver, including
-  both sides of 75 relabeled pairs whose solved flags differ: 0 mismatches.
+  results re-run with the reference solver (1,660 rank 3 at lengths 1 to 7, 300 rank 4, 300
+  rank 5, 80 controls, 80 empty-word starts, and both sides of 75 relabeled pairs whose solved
+  flags differ): 0 mismatches.
 - **Independent checks** ([`indep/`](../../../experiments/stable_ac/rank3/indep/)): five scripts
   written from a prose brief by testers who were not shown the runner, the fast solver, the
   verifier, the summarizer or the plot script, each read by a second tester, run with
@@ -260,7 +270,7 @@ All on AWS (commit `ff0d861`), against the files in this directory. Logs: `post_
 |---|---|---|---|
 | `indep_search.py` | re-ran searches with its own best-first search and compared solved, nodes and path length: all 640 controls and 640 empty-word starts, 25,280 rank-3 results, 3,000 for inverse words, 3,000 + 3,000 for rank 4 and 5 and 100 + 100 of their empty-word starts, 1,800 at budget 10,000 | 37,560 searches | 0 |
 | `indep_replay.py` | replayed every stored path with its own move code (legal moves, cap 24 at every step, trivial endpoint, stored lengths) | 121,039 paths ([log](post_indep_replay.txt)) | 0 |
-| `indep_words_classes.py` | rebuilt each word family from the definition (21 files); value ranges of 9,187,103 results; a search at 1,000 is the first part of the same search at 10,000 (473,048 results) | 6 checks ([log](post_indep_words_classes.txt)) | 0 |
+| `indep_words_classes.py` | rebuilt each word family from the definition (21 files); value ranges of 9,187,103 results; a search at 1,000 is the first part of the same search at 10,000 (473,048 results) | 6 checks with an expected value, 2 report-only ([log](post_indep_words_classes.txt)) | 0 |
 | `indep_stats_rank3.py` | recomputed the numbers of the two summaries from the raw arrays | 58 checks, 4,241 values ([log](post_indep_stats_rank3.txt)) | 0 |
 | `indep_stats_rankn_fig.py` | recomputed the rank-4/5 summaries and every table behind a graph | 20 checks, 1,906 values ([log](post_indep_stats_rankn_fig.txt)) | 0 |
 
