@@ -3,14 +3,12 @@
 Fixed row lists for scoring a search technique, so two techniques are compared on the same
 presentations rather than on whichever ones each happened to run. Every row is a verbatim
 presentation from `data/` (or from a record that is shipped there), so a row can be checked
-against its source file. Load with `acx.data`, or run one with `python run.py --config ... --set benchmark=<name>`:
-
-- `rows(name)`: any benchmark by name: `ms640`, `1190ms`, `bench10`..`bench60`, `ladder20`..`ladder500`,
-  `ladder20_s20hard`..`ladder300_s20hard`, `ac1m_hard_holdout60`, `ac19_autmin`, `ac1m_autmin`, `u124`.
-  `u124` is `data/ms_unsolved_reps/aca_124_initial.csv`, the same rows as `ladder/unsolved_124.csv`.
-- `load_csv(path)`: any CSV with `r1`, `r2` columns (id = `name`, else `pres_id`, else the index; `.gz` read).
-- `load_split(path, part)`: a split JSON, `part` = `"holdout"` or `"train"`.
-- `load(name)`: the flat-int datasets in `data/` (`ms640`, `ac1m`, ...).
+against its source file. Run one by name with `python run.py --config configs/<method>.toml --set benchmark=<name>`
+([docs/USAGE.md](../docs/USAGE.md) lists the names and their row ids), or load it in Python with
+`acx.data.rows(name)`: `ms640`, `1190ms`, `bench10`..`bench60`, `ladder20`..`ladder500`,
+`ladder20_s20hard`..`ladder300_s20hard`, `ac1m_hard_holdout60`, `ac19_autmin`, `ac1m_autmin`, `u124`. `u124` is
+`data/ms_unsolved_reps/aca_124_initial.csv`, the same rows as `ladder/unsolved_124.csv`. `ladder_pairs.csv` and the
+other tables without relator columns are reference data, not benchmarks.
 
 ## The difficulty ladder (`ladder/`), the headline benchmark
 
@@ -55,8 +53,8 @@ columns and `aut_class`; see `ladder/LADDER.md`):
 - `LADDER.md`: the method, the grading caveats, the S20-hard tables and the checks.
 
 Not in this checkout: `ladder_all.csv` (the full 73,464-row pool, 8.6 MB), the build and run
-scripts, `runs/` and `sources/`. They are on `origin/claude/ac19-theorem-strength-8v1wp6`
-under `benchmark/ladder/`.
+scripts, `runs/` and `sources/`; they stay on the ladder's source branch
+([docs/PROVENANCE.md](../docs/PROVENANCE.md)).
 
 ## MS-640 (full)
 

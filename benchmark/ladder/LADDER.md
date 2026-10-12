@@ -2,7 +2,7 @@
 
 Ten levels of Andrews–Curtis presentations, from "solved in a few heap pops" to
 "only the cascades solve it", with nested subsets of 20 / 40 / 60 / 100 / 200 / 300 /
-500 rows and a tester that runs any arm or policy over them and reports per level.
+500 rows, so a method can be scored level by level.
 **Every row on the ladder is solved by something on record**; the 124 unsolved
 Miller–Schupp classes are kept apart in [`unsolved_124.csv`](unsolved_124.csv) (below).
 Panels are drawn from two strata — **aut-min AC19 orbits and MS-640 rows**; the 45
@@ -10,11 +10,11 @@ dataset originals stay in the pool and ship as [`originals_45.csv`](originals_45
 (below), off every panel. **Subsets 60, 100 and 200 are the main testers.**
 
 > **In this checkout.** The panel CSV/JSON files, `ladder_manifest.json` and this file are
-> shipped. Not shipped: the scripts (`build_ladder.py`, `grade_extra.py`, `run_ladder.py`,
-> `report_ladder.py`), the run records in `runs/` and `sources/`, and `ladder_all.csv` (the
-> full 73,464-row pool, 8.6 MB, over the 5 MB limit). They stay on
-> `origin/claude/ac19-theorem-strength-8v1wp6:benchmark/ladder/`. The tester commands below
-> are that branch's; the acx runner replaces them.
+> shipped; run a panel with `run.py` ([below](#running-a-panel)). The build and tester scripts
+> (`build_ladder.py`, `grade_extra.py`, `run_ladder.py`, `report_ladder.py`), the run records in
+> `runs/` and `sources/`, and `ladder_all.csv` (the full 73,464-row pool, 8.6 MB) stay on the
+> ladder's source branch ([docs/PROVENANCE.md](../../docs/PROVENANCE.md)); the sections that cite
+> them describe how the ladder was built.
 
 Built 2026-09-10 by `build_ladder.py` (levels 9/10 split and the
 unsolved rows moved off the ladder on 2026-09-11); nothing in it was searched for this
@@ -31,7 +31,7 @@ committed large-budget runs:
 |---|---|---:|---:|
 | all 72,779 AC19 aut-min orbits | `ac19_autmin_10k` (leftover branch) | 10k | 48 |
 | the 843 greedy left unsolved there | escalation rungs `hsearch_ac19_hard100k` → `leftovers_1m` → `leftovers_5m` → `ac19_10m` | 100k → 1M → 5M → 10M | 48, 48, 64, 64 |
-| 12 of those 843 the record never escalated + 1 for S20 | `sources/unescalated_*` (`grade_extra.py`, this box) | 100k, 1M | 48 |
+| 12 of those 843 the record never escalated + 1 for S20 | `sources/unescalated_*` (`grade_extra.py`, run for this ladder) | 100k, 1M | 48 |
 | the 40 originals of the hard orbits | `ac19_orig_10m` | 10M | 64 |
 | 8 more originals (`ac19_orig_cascade`) | `sources/open8_greedy_mrl64.jsonl` (`grade_extra.py`) | 100k | 64 |
 | all 640 MS-640 rows | `greedy_1000000_640_mrl24` (blob `525050dd`) | 1M | 24 |
@@ -39,11 +39,11 @@ committed large-budget runs:
 So `g` is exact for every row that solved, and censored at 10,000,000 for the 28 AC19
 orbits that did not. The caps differ across runs (24 for MS-640, 48 up to 1M, 64
 above) exactly as they did historically; each row carries its own `greedy_budget`,
-`greedy_cap` and `greedy_run`, and the cap caveat applies (docs/RESULTS.md, "Reading the numbers"): read
+`greedy_cap` and `greedy_run`, and the cap caveat applies ([RESULTS.md](../../docs/RESULTS.md), "Reading the numbers"): read
 solves as primary, node ratios across caps as indicative.
 
 Levels 7–9 are **graded by record**: a 10M-pop greedy run needs ~50 GB, so they are
-not re-derivable on a 15 GB box. Everything at or below 1M can be re-run
+not re-derivable on a 15 GB machine. Everything at or below 1M can be re-run
 (`run_ladder.py` refuses larger budgets unless `LADDER_ALLOW_BIG=1`).
 
 ## The levels
@@ -97,8 +97,8 @@ to the ladder, same columns, `level = unsolved`, `solved_by = none`:
 The evidence for "unsolved by everything": 0/261 reps at 1M greedy (cap 48), 0/124 at
 10M S20_MK2 (cap 64, `research/residual_20260909/u124/`), 0/124 by every cascade probe
 at 10,000 units, and 0/124 from any automorphic image within two Whitehead moves at 20k
-(`research/autchoice_20260910/applied/`). The tester runs on them like on any panel:
-`run_ladder --subset unsolved124 …` (or `--panel benchmark/ladder/unsolved_all_forms.csv`).
+(`research/autchoice_20260910/applied/`). Run them like any panel:
+`--input benchmark/ladder/unsolved_124.csv` (or `unsolved_all_forms.csv`).
 
 ## The originals: same orbit, different start (in the pool, off the panels)
 
@@ -107,9 +107,9 @@ at 10,000 units, and 0/124 from any automorphic image within two Whitehead moves
 greedy cost and land in levels 1–4 (509–52,143 pops, median 5,084), while their
 aut-min representatives sit in levels 9–10 (40 of them, greedy-unsolved at 10M) or
 level 8 (the 5 open-8 reps, 2.3M–5M pops). That split is the finding
-of `ORIGINALS_AT_10M.md` on the leftover branch — Aut-minimising a presentation can
-make it dramatically harder to search — and the reason the second campaign
-(`research/autchoice_20260910/`) exists. [`ladder_pairs.csv`](ladder_pairs.csv) lists
+of `ORIGINALS_AT_10M.md` on the record — Aut-minimising a presentation can
+make it dramatically harder to search — and the reason for a second study
+(`research/autchoice_20260910/`). [`ladder_pairs.csv`](ladder_pairs.csv) lists
 every pair side by side; `pair_id` links the rows in every CSV. Three of the
 `ac19_orig_cascade` originals are also among the 40 and are graded by the 10M run.
 
@@ -125,7 +125,7 @@ originals in `ladder_200` share a panel with their own aut-min partner — the s
 scored twice. They are now pool rows only:
 
 - [`originals_45.csv`](originals_45.csv) — the 45 rows, same columns, ordered by
-  `(orbit, name)`; run them with `run_ladder --subset originals`.
+  `(orbit, name)`; run them with `--input benchmark/ladder/originals_45.csv`.
 - they keep their `s20_run = ladder100k` grade and their `pair_id`, so the pair study
   is unchanged; only panel membership changed.
 
@@ -217,45 +217,32 @@ Levels 1–2 are still "greedy under 10k": the S20-hard rows there are the ones 
 the ordering is *worse* than plain length order (greedy a few hundred pops, S20_MK2
 7,500–15,000). Levels 6–8 run out of hard rows quickly (39 / 30 / 30 in the pool), so
 from 100 rows up their cheapest picks fall to a few thousand pops; at 300 those levels
-are the whole pool. Reference runs on `ladder_200_s20hard` are in `runs/README.md`.
+are the whole pool. Reference runs on `ladder_200_s20hard` are in the source's `runs/README.md`.
 
-## Running the tester
+## Running a panel
 
 ```bash
-PYTHONPATH=. python3 -m benchmark.ladder.run_ladder --subset 60  --engine greedy  --budget 10000
-PYTHONPATH=. python3 -m benchmark.ladder.run_ladder --subset originals --engine greedy --budget 100000
-PYTHONPATH=. python3 -m benchmark.ladder.run_ladder --subset 200 --engine s20_mk2 --budget 100000 --workers 4
-PYTHONPATH=. python3 -m benchmark.ladder.run_ladder --subset 200 --engine policy --policy K3p_notable --budget 1000 --workers 4
-PYTHONPATH=. python3 -m benchmark.ladder.report_ladder --runs greedy=runs/ladder_60_greedy_b10000_c48.jsonl \
-    s20=runs/ladder_60_s20_mk2_b10000_c48.jsonl --out runs/report_60
+python run.py --config configs/ladder.toml                              # S20_MK2 on ladder_200, 10,000 pops
+python run.py --config configs/greedy_fast.toml --set benchmark=ladder60 --set name=ladder60_length
+python run.py --config configs/hybrid.toml --set benchmark=ladder200 --set name=ladder200_hybrid_mine
+python run.py --config configs/ladder.toml --input benchmark/ladder/originals_45.csv
 ```
 
-- `greedy` / `s20_mk2` run the compact engine (`experiments/heuristic_search/core/hcompact`,
-  pop-identical to `heuristics.greedy_search_h`) and count **heap pops**; `--cap`
-  defaults to 48; `--cap 24` reproduces the MS-640 grading pop for pop.
-- `policy` runs any name registered in `research/residual_20260909/policies.py`
-  through `harness.run_row` and counts the policy's **charged units**. Under a table
-  policy a lookup is free, so those units are a budget, not a difficulty
-  (`AGENTS.md` §5): the report never puts pops and units on one curve.
-- Every pop-engine solve is replayed independently (`words.canon_pair`, then
-  `words.replay_move` over the recorded moves — never the engine's replay); a row is
-  `verified` only if that ends on two distinct single letters. Policy rows carry
-  `run_row`'s two-decoder verification. The tester exits non-zero if any solve fails
-  to verify.
-- Any `name,r1,r2` CSV works as `--panel`; `--levels 3-9`, `--names`, `--limit` filter.
-  Runs are resumable by row name; `--force` restarts one.
-- The report gives, per level, solved / verified and (pop engines) the median pops on
-  solved rows plus the anytime curve `solved@B` for B ≤ budget — one run at budget N
-  grades every smaller budget, since a search at B is the first B pops of any longer
-  search — and, for every pair of runs, gained / lost per level with the
-  continuity-corrected McNemar test from `research/residual_20260909/compare.py`.
+- Greedy and S20_MK2 count **heap pops**, the hybrid **work units**: never put the two on one
+  curve. `compare.py` keeps them apart ([docs/USAGE.md](../../docs/USAGE.md)).
+- A run uses one cap for every row (default 24). The grading used each row's `greedy_cap`, so a row
+  reproduces its `greedy_nodes` pop for pop only at that cap (`--set search.cap=48`).
+- Every solve is replayed on its row before it is written, as in every `run.py` run.
+- Per level: a record's `id` is the panel's `name`, and `acx.data.rows("ladder200")` gives each
+  row's `level` in its `meta`. A search at budget B is the first B pops of any longer search, so
+  one run grades every smaller budget.
 
 ## Reference runs
 
-`runs/` ships baselines on `ladder_200` (188 rows) and on `ladder_200_s20hard` so a new
-technique has something to stand next to (`runs/README.md` has the files, commands, the
-S20-hard tables and the reading guide). Solved of 20 per level, of 19 at level 9 and of 9
-at level 10:
+The source's `runs/` (not shipped) holds baselines on `ladder_200` (188 rows) and on
+`ladder_200_s20hard`, at cap 48, so a new technique has something to stand next to; the
+`run.py` runs at cap 24 are in [RESULTS.md](../../docs/RESULTS.md) section 10. Solved of 20 per
+level, of 19 at level 9 and of 9 at level 10:
 
 | level | greedy @10k | greedy @100k | S20_MK2 @10k | S20_MK2 @100k | K3p_notable @1k units | K3p_c14aut @1k units |
 |---|---:|---:|---:|---:|---:|---:|
@@ -273,11 +260,16 @@ at level 10:
 
 Greedy solving exactly levels 1–2 at 10k and 1–4 at 100k is the grading's sanity
 check, not a result. Pops (first four columns) and charged units (last two) are not
-comparable (see `runs/README.md`).
+comparable.
 
 ## Checks
 
-- `tests/test_ladder.py`: words over `xXyY`, levels follow the bands, 7/8 split at
+Here, `tests/test_data.py` pins the panel sizes and nesting, the levels against the recorded
+greedy nodes, the rows against their sources, the pairs table, the manifest's pool size, and the
+recorded pops of the easy rows at their `greedy_cap`. When the ladder was built, its source also
+checked:
+
+- its `tests/test_ladder.py`: words over `xXyY`, levels follow the bands, 7/8 split at
   `E`, every pool row is solvable, levels 9 (19, S20-solved) and 10 (the 9 named rows,
   cascade-only) are the greedy residue, the unsolved files hold exactly the 124 classes
   (four forms, 1,059 rows) and none of their names is in the pool, pairs link original ↔
@@ -300,13 +292,5 @@ comparable (see `runs/README.md`).
 
 ## Provenance
 
-Three inputs live on research branches, which are never merged
-(`docs/BRANCH_MAP.md`); `build_ladder.py` reads them with `git show <sha>:<path>` at
-`dab82a84` (`claude/ac19-leftover-solver-notebook-6yan6d`), `9033f13e`
-(`claude/summer-results-docs-scoring-u6klsb`) and `525050dd` (the MS-640 greedy blob),
-and records every blob's sha256 in `ladder_manifest.json`. Four inputs were produced
-here with the repo's own engines and live under `sources/` (the three escalation rungs
-the record lacked, `grade_extra.py`; and the S20_MK2 grading of the originals and
-MS-640, `run_ladder.py`); they are hashed the same way. Rebuilding needs those
-refs fetched: `git fetch origin claude/ac19-leftover-solver-notebook-6yan6d
-claude/summer-results-docs-scoring-u6klsb`.
+The build inputs and their sha256 are in `ladder_manifest.json`; the branches and commits they come from are in
+[docs/PROVENANCE.md](../../docs/PROVENANCE.md).

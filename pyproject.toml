@@ -1,14 +1,15 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "acx"
 version = "0.1.0"
-description = "Andrews-Curtis search: greedy (spec and numba), change of variables, automorphisms, hybrid, n-generator, RL; every path replay-verified"
+description = "Andrews-Curtis search: greedy (spec and numba), automorphisms, change of variables, hybrid, n-generator and RL methods behind one command; every path replay-verified"
 readme = "README.md"
 requires-python = ">=3.12"
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE", "LICENSE-DATA"]
 dependencies = ["numpy==2.1.3", "numba==0.63.1"]
 
 [project.optional-dependencies]

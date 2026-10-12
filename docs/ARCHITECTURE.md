@@ -1,20 +1,23 @@
 # Architecture
 
-`run.py` (CLI) -> `acx/runner.py` (configs, rows, verification, `results/`) -> one method module. The tests named in
-each section pin what is said here.
+`run.py` (CLI) -> the package `acx/runner/` (configs, rows, verification, `results/`) -> one method module;
+`compare.py` -> `acx/report.py`. How to use them is in [USAGE.md](USAGE.md); the tests named in each section pin what
+is said here.
 
 | module | what | entry point |
 |---|---|---|
 | `acx.core` | words, presentations, moves, priorities, `SearchConfig`, the cap counter | `Presentation`, `step`, `SearchConfig.load`, `CapCount` |
 | `acx.search` | best-first search; `spec` (pure Python) and `fast` (numba) backends | `search(pres, cfg) -> Result` |
-| `acx.search.fast.kernels` | reusable numba kernels: `encode`/`decode`, `expand`, `score`, `children` | used by `hybrid` and `aut` |
+| `acx.search.fast.kernels` | package of reusable numba kernels: `encode`/`decode`, `expand`, `score`, `children` | used by `hybrid` and `aut` |
 | `acx.verify` | `replay` (the only judge), `decode` (S-moves -> elementary moves), `pack` | `replay(pres, path)` |
 | `acx.aut` | Whitehead canonical form, numba twin, transport, equivalence-certificate checker | `aut_canon`, `solve_via_aut_min` |
 | `acx.cov` | one-shot change of variables (family `subnc2pxysb`) | `run_cov(pres, CoVConfig)` |
 | `acx.hybrid` | cascade + rank-two/higher-rank best-first search, certified | `solve(pres, HybridConfig)` |
 | `acx.ngen` | n-generator search, SAC transform to relators of length <= 3, lift, rank-n sweep | `solve(pres, NGenConfig)`, `acx.ngen.sweep` |
 | `acx.rl` | optional (torch): the paper's policy as a beam search | `acx.rl.solve.solve(pres)` |
-| `acx.data` | datasets, benchmarks, splits by name; `MS(n, w)`, `AK(n)` | `rows(name)` |
+| `acx.data` | datasets, benchmarks, splits by name, your own `.txt`/`.csv`/`.jsonl` files; `MS(n, w)`, `AK(n)` | `rows(name_or_path)`, `parse_presentation` |
+| `acx.runner` | `run.py`'s config check, row selection, method records, resume, `summary.json` | `load_config`, `run` |
+| `acx.report` | `compare.py`'s table and HTML page | `load_run`, `markdown`, `html_page` |
 
 Top level: `from acx import Presentation, Move, SearchConfig, search, Result, replay, ReplayError`.
 
@@ -71,8 +74,8 @@ fast engine uses so that both backends agree bit for bit. These are the only two
 
 `SearchConfig.load(toml_path, ["cap=none", "budget=1000"])`: keys at top level or under `[search]`; unknown keys raise.
 Other modules keep their own frozen config and nest a `SearchConfig`. Every cap of every config
-(`SearchConfig.cap`, `HybridConfig.r2_cap`/`dyn_cap`, `CoVConfig.max_len`/`cap_headroom`, the RL `cap`) is read by
-`parse_cap`: a positive int or `"none"` (`0` and bools raise).
+(`SearchConfig.cap`, `HybridConfig.r2_cap`/`dyn_cap`/`slack`, `CoVConfig.max_len`/`cap_headroom`, the RL `cap`) is read
+by `parse_cap`: a positive int or `"none"` (`0` and bools raise; `slack` and `cap_headroom` may be 0).
 
 ## Search (`acx.search.search(pres, cfg=None, **overrides) -> Result`)
 
@@ -107,11 +110,11 @@ states), `max_total_expanded` and `max_expanded` (the first popped state of stri
 
 ## Cap counters (`acx.core.capcount`)
 
-One small module every search calls: `CapCount(cap)` with `drop(key, total, longest, ident)`, `pop(bar)`,
-`end(ran_dry, left)` and `record(prefix)`; it compares the heap keys the search passes and knows no heuristic.
-`CapArrays` with `cc_drop`, `cc_pop` is the numba twin for the fast kernels (parity in `tests/test_capcount.py`);
-`blank()`, `combine()` (searches run one after another) and `summarize()` (the `caps` block of `summary.json`) are the
-helpers. The contract is in [CAP.md](CAP.md); `tests/test_cap_invariant.py` pins "count 0 means the same run at any
+One small package every search calls; it compares the heap keys the search passes and knows no heuristic.
+`counter.py`: `CapCount(cap)` with `drop(key, total, longest, ident)`, `pop(bar)`, `end(ran_dry, left)` and
+`record(prefix)`. `kernels.py` (`cc_drop`, `cc_pop`) and `arrays.py` (`CapArrays`): the numba twin for the fast
+engine (parity in `tests/test_capcount.py`). `records.py`: `FIELDS`, `blank()`, `combine()` (searches run one after
+another) and `summarize()` (the `caps` block of `summary.json`). The contract is in [CAP.md](CAP.md); `tests/test_cap_invariant.py` pins "count 0 means the same run at any
 larger cap" on both backends.
 
 ## Verification (`acx.verify`)
@@ -129,7 +132,8 @@ its transform in `acx.cov.check_cert`, and is reported separately from an `ac_pa
 
 ## Fast backend (`acx.search.fast`)
 
-States are rows of Booth symbols `b = 2 (n - |g|) + (g > 0)` (integer order is Booth order, the inverse is `b ^ 1`),
+The package: `best_first.py` (the pop loop), `arrays.py` (the state arena), `heap.py`, `dedup.py`, `cap_stats.py` (the
+cap counters) and `kernels/`. States are rows of Booth symbols `b = 2 (n - |g|) + (g > 0)` (integer order is Booth order, the inverse is `b ^ 1`),
 one byte each, in a flat arena with an int32 heap and an FNV-1a dedup table; paths are int32 `(parent, move)`, so caps
 of 128 and above work. Uncapped runs start at the longest start relator and re-lay rows wider on demand. The kernels
 (`expand`, `expand_drops`, `score`, `children`, `reduce_buf`, `canon_buf`) are general in generators and relators.
@@ -138,8 +142,8 @@ few pops whose drops could win afterwards); `tests/test_fast.py` pins trace equa
 
 ## Other methods
 
-Each module keeps a frozen config and returns typed results; `acx.runner` maps them to records (`kind`,
-`aut_assisted`, `cost`, `sub_moves`, `elem_moves`, the cap-counter fields):
+Each module keeps a frozen config and returns typed results; `acx.runner.methods` maps them to records (`kind`,
+`aut_assisted`, `cost`, `sub_moves`, `elem_moves`, the cap-counter fields; [USAGE.md](USAGE.md) lists every field):
 
 - `acx.aut.solve_via_aut_min(pres, cfg) -> (Result on the representative, elementary path on pres or None)`;
   `transport(pres, phi, path, start)` carries any path through Aut(F2) and replays it (F2 only).
@@ -154,19 +158,27 @@ Each module keeps a frozen config and returns typed results; `acx.runner` maps t
 - `acx.rl.solve.solve(pres, model, width, steps, alpha, cap) -> Result` (S-moves, `pops` = network evaluations; two
   generators, relators of length <= 24).
 
-`acx.runner.load_config` checks a config completely before anything is written: a method reads only its sections
-(`SECTIONS`: greedy and aut `[search]`, cov `[search]` + `[cov]`, ngen `[search]` + `[ngen]`, hybrid `[hybrid]`, rl
-`[rl]`, rankn `[search]` + `[rankn]`), and `method_config(cfg)` builds the method's settings, raising on any other section, unknown key or invalid
-value. The method `rankn` is handed to `acx.ngen.sweep.run` after the same check. `run` writes `results/<name>/{config.json, paths.jsonl, summary.json}`, resumes an interrupted run, skips
-repeated row ids and refuses a run folder written under another config. A row with `|det| != 1` is recorded as unsolved
-with an `error`. `summary.json` always covers every record in `paths.jsonl`, and holds the `caps` block.
+The runner is a package, one job per module, and nothing is re-exported but `load_config`, `method_config`, `run`,
+`select` and `summarize`:
+
+- `config`: `load_config` checks a config completely before anything is written. `SECTIONS` says which sections a
+  method reads (greedy and aut `[search]`, cov `[search]` + `[cov]`, ngen `[search]` + `[ngen]`, hybrid `[hybrid]`,
+  rl `[rl]`, rankn `[search]` + `[rankn]`); `method_config(cfg)` builds the method's settings and raises on any other
+  section, unknown key or invalid value.
+- `methods`: one function per method (`SOLVERS`), returning a record; `output`: the `path` and `fields` options;
+  `caps`: the counters of a record and the `caps` block; `summary`: `summary.json` (`COST_UNIT`).
+- `execute`: `run` writes `results/<name>/{config.json, paths.jsonl, summary.json}`, resumes an interrupted run, skips
+  repeated row ids and refuses a folder written under another config; `rankn` is handed to `acx.ngen.sweep.run`
+  after the same check. A row with `|det| != 1`, or whose method raises, is recorded unsolved with an `error`.
+  `summary.json` always covers every record in `paths.jsonl`.
 
 ## Data (`acx.data`)
 
-`rows(name)` resolves `DATASETS` (`ms640`, `ms_unsolved`, `1190ms`, `ac19`, `ac19_extended`, `ac1m`; flat-int
-`.txt[.gz]`, `id` = line index), `BENCHMARKS` (CSVs with `r1`, `r2`, `.gz` allowed: `bench10..60`, `ladder20..500`,
-`ladder20..300_s20hard`, `ac19_autmin`, `ac1m_autmin`, `u124`; `id` = `name`, else `pres_id`) and `SPLITS`
-(`ac1m_hard_holdout60`). Each row is `Row(id, pres, meta)`.
+`rows(spec)` resolves `DATASETS` (`ms640`, `ms_unsolved`, `1190ms`, `ac19`, `ac19_extended`, `ac1m`; flat-int
+`.txt[.gz]`, `id` = line index), `BENCHMARKS` (CSVs: `bench10..60`, `ladder20..500`, `ladder20..300_s20hard`,
+`ac19_autmin`, `ac1m_autmin`, `u124`) and `SPLITS` (`ac1m_hard_holdout60`), or a path to a `.txt`, `.csv` or `.jsonl`
+file (optionally `.gz`; formats in [USAGE.md](USAGE.md)). `parse_presentation("xxYYY, xyxYXY")` reads one line. Each
+row is `Row(id, pres, meta)`.
 
 ## Tests
 

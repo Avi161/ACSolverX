@@ -9,12 +9,13 @@ the size of the search graph, so a search at cap 24 and a search at cap 48 are d
 
 `SearchConfig.cap` (TOML `cap = 24` under `[search]`, or `--set search.cap=48`) is a positive integer or `"none"`
 (`none` = uncapped; the default is 24). Nothing in the code fixes it. Every other limit of the same kind is read the
-same way (`acx.core.config.parse_cap`): the hybrid's `r2_cap`, `dyn_cap` and `slack`, CoV's `max_len` and
-`cap_headroom`, the RL beam's `cap`. `run.py` rejects a section that the method does not read, so a cap cannot be set
-and then ignored.
+same way (`acx.core.config.parse_cap`): the hybrid's `r2_cap` (also `"parent"`), `dyn_cap` and `slack`, CoV's
+`max_len` and `cap_headroom`, the RL beam's `cap`. `run.py` rejects a section that the method does not read, so a cap
+cannot be set and then ignored.
 
 An uncapped run drops nothing and keeps no counter: its record has `cap: null`, `cap_dropped: 0` and the other fields
-`null`/`0`.
+`null`/`0`. It searches a larger graph, so each pop costs more; how much more is measured in
+[PERFORMANCE.md](PERFORMANCE.md).
 
 ## What is counted, and by whom
 
@@ -22,7 +23,7 @@ A cap drops a child and the search never sees it. The question for a reader is: 
 child, before it finished, had the cap been larger?** If yes, the cap changed the run; if never, it did not.
 
 The answer needs only the order in which the search pops states, and that order is whatever the active heuristic says
-(`LENGTH`, `S20_MK2`, or one added later). So the counting is one small module, `acx/core/capcount.py`, which
+(`LENGTH`, `S20_MK2`, or one added later). So the counting is one small package, `acx/core/capcount/`, which
 **knows no heuristic**. Every search (the `spec` and `fast` backends of `acx.search`, the hybrid, CoV, the RL beam,
 and the n-generator and rank-n searches through `acx.search`) calls it with scores only:
 
@@ -35,13 +36,14 @@ cc.record()                           # -> the six fields below
 ```
 
 `key` is the full heap key of the active priority, for example `(priority, depth, state_bytes)`; the module compares
-keys with `<` and nothing else. The fast backend (numba) uses a jitted twin of the same logic in the same file
-(`CapArrays`), pinned to `CapCount` by `tests/test_capcount.py`.
+keys with `<` and nothing else. The fast backend (numba) uses a jitted twin of the same logic
+(`acx/core/capcount/kernels.py`, driven by `CapArrays` in `acx/core/capcount/arrays.py`), pinned to `CapCount` by
+`tests/test_capcount.py`.
 
 ## The six fields
 
 Every search record carries these (`acx.core.capcount.FIELDS`; `cap_` is renamed `dyn_cap_` or `slack_` for the
-hybrid's other limits):
+hybrid's other limits, which count a little differently: see below):
 
 | field | meaning |
 |---|---|
@@ -77,7 +79,7 @@ Note that the guarantee does not say "the same row is solved": a different pop o
 fewer pops. On MS640 at cap 24, S20_MK2 row 527 solves in 7,458 pops (`cap_would_pop` 21, `cap_first_bind` 1,653,
 `cap_needed` 25) and in 7,479 pops at cap 25 or uncapped, with the same path length 120.
 
-Per-run counts: see docs/RESULTS.md.
+Per-run counts are in [RESULTS.md](RESULTS.md), section "Relator-length cap".
 
 ## The hybrid's three limits
 
@@ -90,15 +92,19 @@ The hybrid ([METHODS.md](METHODS.md) section 10) cuts its search in three places
 | `slack_*` | `slack`, how far above the search root's total length a higher-rank state may be | 8 | the child's total minus the root's total (in slack units) |
 
 - The default `r2_cap = "parent"` (a child relator may not exceed the parent's total length) can never reject, because
-  a child relator has at most `l_i + l_j - 2` letters, below the parent's total. Its counters are 0 on every MS640
-  row. An integer `r2_cap` does reject, and counting its drops is slower.
+  a child relator has at most `l_i + l_j - 2` letters, below the parent's total. An integer `r2_cap` does reject, and
+  counting its drops is slower. `slack = "none"` lifts the ceiling.
+- The counts are of what the hybrid tells apart: `*_dropped` counts classes of dropped children (plus the tail moves of
+  the solving pop), not moves, and `*_would_pop` counts distinct canonical pairs (at rank two, up to
+  a signed permutation of the generators, as the search dedups). `*_first_bind` is a work unit of the search; the
+  cascade's units before it are not counted.
 - The hybrid has two queues (rank two, higher rank), so a dropped child waits in a pool for its queue and is compared
-  with the key of whichever pop would have served that queue. Its counts are first order: a dropped state is judged
-  against the run that happened. **Zero in all three means the same run at any larger limit; a non-zero count says
-  only that the run may change.**
-- Example: `ac19_239` with the default limits has `dyn_cap_dropped` 5,306, `dyn_cap_would_pop` 2, `dyn_cap_first_bind`
-  110 and `dyn_cap_needed` 11, and it solves in 150 units. At `dyn_cap` 11 it solves in 153 units, and the counter
-  still reads `dyn_cap_needed` 13, so the next raise changes it again.
+  with the key of whichever pop would have served that queue; a dropped rank-two child that the finishing gates would
+  act on counts at once. Its counts are first order: a dropped state is judged against the run that happened. **Zero
+  in all three means the same run at any larger limit; a non-zero count says only that the run may change.**
+- Example: `ac19_239` with the default limits solves in 150 units with `dyn_cap_would_pop` > 0, first bind at unit 110
+  and `dyn_cap_needed` 11. At `dyn_cap` 11 it solves in 153 units and reads `dyn_cap_needed` 13, so the next raise
+  changes it again; at 13 the count is 0 (154 units).
 
 ## CoV and RL
 
@@ -113,15 +119,16 @@ The hybrid ([METHODS.md](METHODS.md) section 10) cuts its search in three places
   `cap_first_bind` is the first step that picked one, and the cap is at most 24, the policy's input width, so a zero
   means the same run at every cap up to 24.
 - **n-generator and rank-n searches** use `acx.search`, so they report the six fields unchanged. The rank-n sweep
-  stores the five counters per start (`-1` = none) and sums them in its summary ([RANK3.md](RANK3.md)).
+  stores the five counters per start (`-1` = none); its summary counts the searches in which the cap dropped a
+  child and those in which it could bind ([RANK3.md](RANK3.md)).
 
 ## What to do when the count is non-zero
 
 1. Read `cap_needed` (or `dyn_cap_needed`, `slack_needed`, per limit). It is the smallest value at which the run
    changes.
 2. Rerun the rows in `caps.cap.raise_ids` of `summary.json` with that limit raised to the needed value, for example
-   `python run.py --config configs/s20_mk2_fast.toml --rows 527 --set search.cap=25`, and read the new counters. When
-   `cap_would_pop` is 0 at the new value, the run no longer depends on the cap; if it is still non-zero, raise again.
+   `python run.py --config configs/s20_mk2_fast.toml --rows 527 --set search.cap=25 --set name=row527_cap25`, and
+   read the new counters. When `cap_would_pop` is 0 at the new value, the run no longer depends on the cap; if it is still non-zero, raise again.
 3. Quote a result at the cap it was run at (the result tables list it), and name the rows with `would_pop > 0` at
    that cap.
 

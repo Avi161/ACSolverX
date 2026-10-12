@@ -2,8 +2,8 @@
 
 Add a generator `z` and the relator `Z.w` to a two-generator presentation, for every freely reduced word `w`, and
 search each stabilised start with the ordinary best-first search. It answers one question: does knowing the right
-word for each presentation make greedy cheaper? Ported from `origin/rank3/brute-force-baseline` (commit `068ea77d`,
-`experiments/stable_ac/rank3/`). The sweep is the package `acx/ngen/sweep/` (below); the search is
+word for each presentation make greedy cheaper? Ported from the rank-3 brute-force baseline (its source is in
+[PROVENANCE.md](PROVENANCE.md)). The sweep is the package `acx/ngen/sweep/` (below); the search is
 `acx.search.search`, unchanged.
 
 ## What is searched
@@ -17,7 +17,7 @@ word for each presentation make greedy cheaper? Ported from `origin/rank3/brute-
   run too and must agree on (solved, pops, path length); otherwise the row is refused.
 - **Priority** is LENGTH. `S20_MK2` is defined for two generators only, so the sweep refuses it. The cap is the
   config's (`cap = 24`, an int, or `"none"`); it never decides a pop silently, because the cap counters
-  (`acx.core.capcount`, [METHODS](METHODS.md)) record every dropped child and whether it would have been popped.
+  (`acx.core.capcount`, [CAP.md](CAP.md)) record every dropped child and whether it would have been popped.
 - **What a solve means.** A solved stabilised start certifies *stable* AC triviality of the row only after a lift
   (see the next section). The sweep reports "solved from the stabilised start"; it never writes an `ac_path` or a
   `stable_cert`.
@@ -55,7 +55,7 @@ scores shifted by `extra`), shapes and ranges, cap-counter rules, every stored p
 ## Reproduction against the baseline's stored results
 
 Budget 1,000, cap 24, MS640, fast backend; every cell compared with the baseline's `rank3_bf_ms640_b1000_cap24_*.npz`
-and `rankn_bf_ms640_b1000_cap24_r{4,5}.npz` on the branch (`nodes`, `path_len`, `min_total`, `cap_dropped`, and the
+and `rankn_bf_ms640_b1000_cap24_r{4,5}.npz` (not shipped; `nodes`, `path_len`, `min_total`, `cap_dropped`, and the
 control's solved/pops/path length):
 
 | slice | cells | solved | mismatches |
@@ -106,10 +106,8 @@ reduction of an input can change its relators by conjugation, so the path would 
   definition and yields an `ac_path`.
 - `sac = false`: search the presentation itself; a solve is an `ac_path`, replayed with the search's normal form.
 - Refused up front: SAC with any priority but LENGTH (raised when the config is built, so `run.py` refuses
-  `configs/ngen_sac.toml --set search.priority=s20_mk2` before it writes a result); more than 26 generators (the
-  search names generators by the letters of `acx.core.words.GEN_CHARS`, so a larger root is refused before the
-  search rather than failing after it). The 26-generator limit is a stopgap: lifting it needs the letter names in
-  `acx.core.words` and `acx.search` changed, which this package does not own.
+  `configs/ngen_sac.toml --set search.priority=s20_mk2` before it writes a result); a root with more generators than the
+  search holds (`acx.ngen.solve.MAX_GENERATORS`), before the search rather than failing after it.
 
 ### The stable-AC transform (`acx.ngen.sac`)
 
@@ -136,7 +134,7 @@ with `beta(t_k) = h_k`, so `beta(T) = U`, and AC moves are equivariant under it.
 1. **undefine**, definition by definition: in every relator of the current state, invert and rotate as
    `sac.rewrite` chose, then turn each `d` into `h_k` by multiplying with `Q^-1 t_k Q` (`Q` the rest of the word), and
    each `d^-1` into `H_k` by multiplying with the conjugate of `t_k^-1`. This reaches `sac.root` from `T`.
-2. **solve** the root with the search's S-moves, each expanded as in `acx.aut.transport` (align to the canonical form,
+2. **solve** the root with the search's S-moves, each expanded as in `acx.aut.emitter.Emitter` (align to the canonical form,
    conjugate the source, multiply, conjugate back). The end is the basis `(x, y, h_1, .., h_m)` up to `beta`.
 3. **clean**: the relator of `h_j` is `beta(d_j) h_j`; its letters before `h_j` are deleted one at a time by
    multiplying with a conjugate of the unit relator of that letter.

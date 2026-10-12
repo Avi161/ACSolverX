@@ -5,7 +5,7 @@ Results are in [RESULTS.md](RESULTS.md), the module map and exact interfaces in 
 relator cap and its counters in [CAP.md](CAP.md), the rank-n brute force in [RANK3.md](RANK3.md), where each part came
 from in [PROVENANCE.md](PROVENANCE.md).
 
-Every method is run by `python run.py --config configs/<name>.toml` and has its own config sections (README, "Methods").
+Every method is run by `python run.py --config configs/<name>.toml` and has its own config sections ([USAGE.md](USAGE.md)).
 
 ## 1. Presentations and words
 
@@ -95,7 +95,7 @@ dropped child would have been popped had the cap been larger, in six fields of e
 ([CAP.md](CAP.md)).
 
 Every other cap reads the same way (`acx.core.config.parse_cap`: a positive int or `"none"`; `0` and booleans are
-errors): the hybrid's `r2_cap` (default `"parent"`), `dyn_cap` (default 8) and `slack` (default 8), CoV's `max_len` and
+errors): the hybrid's `r2_cap` (default `"parent"`), `dyn_cap` (default 8) and `slack` (default 8, `0` allowed), CoV's `max_len` and
 `cap_headroom`, and the RL beam's `cap` (at most 24, the policy's input width). `run.py` rejects a section the method
 does not read, so a cap can never be set and silently ignored.
 
@@ -220,7 +220,7 @@ implicit canonicalisation, and performs no search; it costs 6 to 10 elementary m
 | node / pop | heap pops of the search | every search budget |
 | S-move | one substitution move (a conjugated multiplication) | `path_length` of a search |
 | elementary move | invert / swap / conjugate-by-letter / multiply | decoder output (a single S-move costs about `2|c| + 1`) |
-| work unit | pops, accepted automorphisms, image evaluations and substitution moves, one each | hybrid solver |
+| work unit | pops of the search, and in the cascade and gates Nielsen images evaluated, automorphisms accepted and S-moves applied, one each | hybrid solver |
 | transformed-coordinate length | S-moves on the *CoV-transformed* pair | change-of-variables results |
 
 `run.py` reports every solve in both path units: `sub_moves` (S-moves of the search; for the hybrid, the S-move steps of
@@ -231,7 +231,8 @@ on the row (`elem_moves` is empty): its transform is a Lemma 11 chain, not AC mo
 
 A deterministic solver for balanced two-generator presentations that adds dynamic-rank moves to the fast engine: the
 number of generators can change during the search. Config: `[hybrid]` (`configs/hybrid.toml`): `budget` (work units),
-`penalty`, `dyn_ratio`, `dyn_cap`, `slack`, `min_uses`, `r2_cap`, `backend`.
+`penalty`, `dyn_ratio`, `dyn_cap`, `slack`, `min_uses`, `r2_cap`, `backend` (`fast` or `spec` for the rank-two
+expansion). It takes balanced two-generator presentations.
 
 1. **Rank-two states** are expanded by the fast kernel: seam-cancelling products and the four Nielsen maps
    (`x -> xy`, `x -> xY`, `y -> yx`, `y -> yX`), canonical under the eight signed permutations. A cascade (Nielsen
@@ -251,16 +252,20 @@ certificate without them is an `ac_path`, counted as aut-assisted when it has an
 a signed permutation (the permutation canonical form of a popped state is such a step, so a certificate whose only
 automorphisms are relabellings is aut-assisted too); one with them is a `stable_cert`.
 
-Frontier: one heap ordered by total length plus a penalty per generator above two (default 5); the higher-rank frontier
-is served only while its pops stay within `dyn_ratio` (default 0.5) of the rank-two pops plus 20. A defined digram must
-occur `min_uses` (default 2) times. Cost is counted in work units.
+Frontier: two heaps. The rank-two heap is ordered by total length, its states deduplicated up to a signed permutation of
+the generators; the higher-rank heap by total length plus `penalty` (default 5) per generator above two, and it also
+holds the deferred `define` children of rank-two states. A pop serves the higher-rank heap when its top is no worse and
+its pops stay within `dyn_ratio` (default 0.5, a number >= 0) times the rank-two pops plus 20, else the rank-two heap.
+A defined digram must occur `min_uses` (default 2) times. Cost is counted in work units: one per pop of either heap,
+plus the cascade's and the gates' units (section 9).
 
 **Three limits, three counters.** `r2_cap` (default `"parent"`: a child relator may not exceed the parent's total
 length, which can never reject; an int or `"none"` otherwise), `dyn_cap` (default 8: the longest relator a higher-rank
 product or elimination may create; `"none"` uncaps it) and `slack` (default 8: the total-length ceiling above the
-search root). Each reports the six fields of section 4 under the prefixes `cap_`, `dyn_cap_` and `slack_`. The hybrid
-has two queues, so its counts are first order: zero in all three means the same run at any larger limit, a non-zero
-count says only that the run may change ([CAP.md](CAP.md)).
+search root; `"none"` lifts it). Each reports the six fields of section 4 under the prefixes `cap_`, `dyn_cap_` and
+`slack_`, counting classes of dropped children and distinct canonical pairs rather than moves. The hybrid has two
+queues, so its counts are first order: zero in all three means the same run at any larger limit, a non-zero count
+says only that the run may change ([CAP.md](CAP.md)).
 
 ## 11. Change of variables and stable AC
 
@@ -314,7 +319,7 @@ the failed candidates (RESULTS.md section 5).
 ### The z-family name `subnc2pxysb`, letter by letter
 
 The tag names the *rule that decides which `w` and which branches are tried*; `acx` ships this one family only
-(`acx.cov.cov.FAMILY_TAG`). From `acx/cov/cov.py`:
+(`acx.cov.family.FAMILY_TAG`; the rules are in `acx/cov/family.py`, the word operations in `acx/cov/substitution.py`):
 
 | letters | meaning |
 |---|---|
