@@ -27,7 +27,9 @@ import json
 import os
 import random
 import re
+import shutil
 import sys
+import tempfile
 
 import numpy as np
 
@@ -41,6 +43,19 @@ def _rows(path):
     op = gzip.open if path.endswith(".gz") else open
     with op(path, "rt") as f:
         return [json.loads(ln) for ln in f if ln.strip()]
+
+
+def plain_copy(path, tmp):
+    """``verify_results`` reads a plain .jsonl with its _paths.jsonl sibling;
+    unpack a committed ``.jsonl.gz`` pair into ``tmp`` and return the copy."""
+    out = os.path.join(tmp, os.path.basename(path)[:-len(".gz")])
+    for src, dst in ((path, out),
+                     (path[:-len(".jsonl.gz")] + "_paths.jsonl.gz",
+                      out[:-len(".jsonl")] + "_paths.jsonl")):
+        if os.path.exists(src):
+            with gzip.open(src, "rb") as f, open(dst, "wb") as g:
+                shutil.copyfileobj(f, g)
+    return out
 
 
 def check_control(path, cov_control, dataset, fail):
@@ -186,12 +201,20 @@ def main(argv=None):
         meta, nodes, plen, pres_ids = check_npz(path, fail)
         n_cert += check_sample(path[:-len(".npz")], meta, nodes, plen,
                                pres_ids, fail)
-    for path in sorted(glob.glob(os.path.join(d, "*_relsub.jsonl"))):
-        n_rows, n_solved, fs = verify_results.verify_file(path)
-        for f in fs:
-            fail(f"{f[0]} {f[1]}: {f[2]}")
-        n_cert += n_solved
-        print(f"{path}: {n_rows} rows, {n_solved} solved, all replayed")
+    with tempfile.TemporaryDirectory(dir=d) as tmp:
+        for path in sorted(glob.glob(os.path.join(d, "*_relsub.jsonl*"))):
+            if path.endswith(".gz"):
+                if os.path.exists(path[:-len(".gz")]):
+                    continue
+                plain = plain_copy(path, tmp)
+            else:
+                plain = path
+            n_rows, n_solved, fs = verify_results.verify_file(plain)
+            for f in fs:
+                fail(f"{f[0]} {f[1]}: {f[2]}")
+            n_cert += n_solved
+            print(f"{path}: {n_rows} rows, {n_solved} solved, "
+                  f"{len(fs)} failed to replay")
     if a.recheck:
         recheck(npzs, a.dataset, a.recheck, a.seed, fail)
     if failures:

@@ -166,6 +166,29 @@ separately.
   block partition, relsub ⊇ CoV family, null stabilization, budget prefix
   property in rank 3, runner end to end against the reference search, resume,
   verifier rejects a tampered array.
+- Independent checks (`indep/`). Five scripts written from a prose brief
+  (`indep/BRIEF.md`) by testers who were not shown the runner, the fast solver,
+  the verifier, the summarizer, the plot script or their tests, and each read
+  line by line by a second tester. They import nothing from the repo (the box
+  runs them with `python -I`) and exit 3 on any mismatch:
+  `indep_words_classes.py` (word family rebuilt from the definition, file
+  shapes and value ranges, control rows, the rank-4/5 arrays, a search at
+  budget 1,000 is a prefix of the same search at 10,000, relabeling classes,
+  duplicate starts), `indep_replay.py` (its own AC-move replayer on every
+  stored path: legal moves, cap 24 at every step, trivial endpoint, stored
+  lengths), `indep_search.py` (its own best-first search: all 640 controls and
+  a time-boxed random sample of rank-3, inverse-word, rank-4/5 and
+  budget-10,000 cells, compared on solved, nodes and path length),
+  `indep_stats_rank3.py` and `indep_stats_rankn_fig.py` (every number in the
+  summaries and in the control-vs-start tables recomputed from the raw arrays).
+  Each script's notes (`indep/*.md`) list what it assumed and what it could not
+  check.
+- Relabeling classes (`class_view.py`, tests in
+  `tests/stable_ac/test_rankn_class_view.py`). MS640 holds each presentation
+  up to a signed relabeling of x, y more than once (319 classes: 318 pairs and
+  one class of four), and the greedy is not invariant under relabeling, so
+  every headline count is also given per class, together with the node gap
+  between relabeled copies of the same search (the noise floor of §6).
 
 ## 8. Problems in the existing rank-3 branch (`nocov`), and what this run does instead
 
@@ -294,6 +317,29 @@ Recorded 12 Oct 2026, 04:30 UTC, after lengths 1 to 6 of box A were read.
     `ec2:StopInstances`; a persistent request for a 192-vCPU box would have no
     off switch except its `ValidUntil`. All boxes are one-time spot requests.
     An interruption stops the run; shards are in S3 and a relaunch resumes it.
+    The test request expired at 06:00 UTC (state `cancelled`); its stopped
+    instance carried no `Project` tag, was tagged and terminated at 06:02 UTC.
+14. **Box B stops after length 7 (05:42 to 05:45 UTC).** Length 6 at budget
+    10,000 merged at 05:40:51 (311,040 searches, 80.96% solved, 277,310
+    core-seconds). At three times that per length, length 8 could not finish
+    inside the timer (item 11) and would have spent about 5 hours on a partial
+    length. Box B was terminated once the length-6 files were in S3 and
+    relaunched as `i-0c4e7978972ef4e53` (same type, zone and commit `8b3a51d`,
+    `MAX_LEN` 7, `DEADMAN` 300; four `MaxSpotInstanceCountExceeded` retries
+    while the old box still counted against the quota). It restored 1,445
+    files, skipped lengths 1 to 6 as merged and started length 7 at 05:47:27.
+    The first boot's log is `b10000/run_box1.log`. Length 8 at 10,000 is not
+    run. If the box's own verifier is cut off by the timer, the post box
+    (item 15) verifies the same files.
+15. **Post box (new).** `aws_rank3_post_box.sh`: a small on-demand box that
+    syncs the merged files of all three runs, runs the tests, the summaries,
+    the figures (`plot_rankn_vs_control.py`), the relabeling-class view
+    (`class_view.py`), the verifier with 30 reference re-runs per file and the
+    independent checks of §7, once at launch and once when box A logs DONE.
+16. **Committed layout.** The four relator-subword files (12 to 25 MB each)
+    are committed gzipped; `verify_rank3_bf` unpacks them to a temporary
+    directory. Everything else is committed as the boxes wrote it; shards and
+    logs stay in S3.
 
 ### Boxes
 
@@ -308,12 +354,12 @@ Box C: c7a.2xlarge spot, 8 vCPU, launched 12 Oct 04:29:03 UTC, commit
 | Launched (UTC) | 12 Oct 04:02:51 | 12 Oct 04:03:19 |
 | Commit | `8b3a51d` | `8b3a51d` |
 | `BUDGET` | 1000 | 10000 |
-| `MAX_LEN` | 10 | 8 |
+| `MAX_LEN` | 10 | 8 (7 after the relaunch, item 14) |
 | `INV_MAX_LEN` | 6 | 0 |
 | `WORKERS` | 192 | 96 |
 | `EXTRA` | empty | empty |
 | `PRE_IDS`, `PRE_MAX_LEN` | 0,320 and 4 | 0,320 and 4 |
-| `DEADMAN` (minutes) | 720 (780 after the relaunch, item 12) | 600 |
+| `DEADMAN` (minutes) | 720 (780 after the relaunch, item 12) | 600 (300 after the relaunch, item 14) |
 | `PREFIX` | `cov_all/rank3_bf/b1000` | `cov_all/rank3_bf/b10000` |
 
 ## 12. Literature: what exists, and what a rank-3 baseline has to state

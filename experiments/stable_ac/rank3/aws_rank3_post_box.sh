@@ -1,13 +1,15 @@
 #!/bin/bash
 # EC2 user-data: verify, summarize and plot the rank-3/4/5 sweeps from S3, then
-# shut down. No search of its own beyond the verifier's reference re-checks.
+# shut down. No search of its own beyond the verifier's reference re-checks and
+# the independent checks in indep/.
 #
 # Pass "preview" runs at once on whatever is merged in S3. Pass "final" runs
 # when the budget-1,000 box has logged DONE, or at WAIT_UNTIL (UTC epoch) on
 # whatever is merged by then. Outputs: s3://$BUCKET/$ROOT/post/<pass>/.
 ROOT=cov_all/rank3_bf
-DEADMAN=840
+DEADMAN=1020
 WAIT_UNTIL=0             # UTC epoch seconds; 0 = preview pass only
+INDEP_MIN=40             # wall-clock box of the independent search check
 BRANCH=rank3/brute-force-baseline
 SHA=SET_ME
 BUCKET=acsolver-u124-205558941715
@@ -18,6 +20,7 @@ shutdown -h +$DEADMAN
 B=s3://$BUCKET/$ROOT
 RD=results/stable_ac/rank3_bf
 MOD=experiments.stable_ac.rank3
+IND=experiments/stable_ac/rank3/indep
 T=$(curl -s -X PUT http://169.254.169.254/latest/api/token -H 'X-aws-ec2-metadata-token-ttl-seconds: 600')
 md(){ curl -s -H "X-aws-ec2-metadata-token: $T" http://169.254.169.254/latest/meta-data/$1; }
 putlog(){ aws s3 cp /opt/r3/run.log $B/post/run.log --only-show-errors; }
@@ -40,7 +43,7 @@ PY=/opt/r3/venv/bin/python3
 export PYTHONPATH=. NUMBA_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONUNBUFFERED=1 MPLBACKEND=Agg
 say "env $($PY -c 'import sys,numpy,numba,matplotlib;print(sys.version.split()[0],numpy.__version__,numba.__version__,matplotlib.__version__)') commit=$(git rev-parse --short HEAD)"
 
-$PY -m pytest tests/stable_ac/test_rank3_bf.py -q -p no:cacheprovider 2>&1 | tail -3
+$PY -m pytest tests/stable_ac/test_rank3_bf.py tests/stable_ac/test_rankn_class_view.py -q -p no:cacheprovider 2>&1 | tail -15
 say "tests exit=${PIPESTATUS[0]}"
 
 COV=results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz
@@ -69,16 +72,26 @@ pass(){
     step plot_b$bud $PY -m $MOD.plot_rankn_vs_control --rank3 $RD --budget $bud
     step plot_b${bud}_L1-4 $PY -m $MOD.plot_rankn_vs_control --rank3 $RD --budget $bud --lengths 1-4
     step summarize_b$bud $PY -m $MOD.summarize_rank3_bf --dir $RD --budget $bud --cov $COV
+    step classes_b$bud $PY -m $MOD.class_view --rank3 $RD --budget $bud
   done
   for r in 4 5; do
     [ -f $RD/rankn_bf_ms640_b1000_cap24_r$r.npz ] || continue
     step plot_r$r $PY -m $MOD.plot_rankn_vs_control --rankn $RD/rankn_bf_ms640_b1000_cap24_r$r.npz
+    step classes_r$r $PY -m $MOD.class_view --rankn $RD/rankn_bf_ms640_b1000_cap24_r$r.npz
   done
   up(){ aws s3 sync $RD/ $B/post/$tag/ --exclude '*' --include '*.md' --include '*.png' --include '*.csv' \
-    --include '*_summary.json' --include 'post_*.txt' --include 'checks_reference.json' --only-show-errors; }
+    --include '*_summary.json' --include '*_class_view.json' --include 'indep_*.json' --include 'post_*.txt' --include 'checks_reference.json' --only-show-errors; }
   up
   step verify $PY -m $MOD.verify_rank3_bf --dir $RD --recheck 30 --cov-control $CTRL
   up
+  # independent checks: written blind, no repo imports (-I drops PYTHONPATH)
+  say "indep: $(ls $IND/indep_*.py 2>/dev/null | tr '\n' ' ')"
+  for s in $(ls $IND/indep_*.py 2>/dev/null | grep -v _search) $IND/indep_search.py; do
+    [ -f "$s" ] || continue
+    n=$(basename $s .py)
+    step $n timeout -k 60 $((INDEP_MIN * 60 + 900)) $PY -I -u $s $RD data/ms640_solved.txt $RD/$n.json $(getconf _NPROCESSORS_ONLN) $INDEP_MIN
+    up
+  done
   aws s3 ls $B/post/$tag/
   say "pass $tag done"
 }

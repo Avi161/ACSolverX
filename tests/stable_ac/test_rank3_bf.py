@@ -250,3 +250,20 @@ def test_verifier_rejects_a_tampered_array(tmp_path):
     d["nodes"][i, k] += 1
     np.savez_compressed(path, **d)
     assert V.main(["--dir", out]) == 1
+
+
+def test_verifier_reads_the_gzipped_subword_arm(tmp_path, capsys):
+    import gzip
+    import shutil
+    _, out, _ = _run(tmp_path, 1, 0, {0, 320})
+    base = os.path.join(out, R.stem("ms640", 300, R.CAP) + "_relsub")
+    for f in (base + ".jsonl", base + "_paths.jsonl"):
+        with open(f, "rb") as src, gzip.open(f + ".gz", "wb") as dst:
+            shutil.copyfileobj(src, dst)
+        os.remove(f)
+    assert V.main(["--dir", out]) == 0
+    assert "_relsub.jsonl.gz:" in capsys.readouterr().out
+    # a solved row whose certificate is gone must fail, gzipped or not
+    os.remove(base + "_paths.jsonl.gz")
+    assert V.main(["--dir", out]) == 1
+
