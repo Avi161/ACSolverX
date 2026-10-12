@@ -1,0 +1,921 @@
+{
+ "script": "indep_relsub_cov.py",
+ "checks": [
+  {
+   "name": "dataset:lines_and_relators_well_formed",
+   "compared": 1281,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "presentations": 640,
+    "relators_not_cyclically_reduced": 0,
+    "relators_not_freely_reduced": 0,
+    "expected_relsub_words": 69816,
+    "expected_relsub_words_proper": 59486
+   }
+  },
+  {
+   "name": "cov:rows_fields",
+   "compared": 114682,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "file": "results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz",
+    "rows": 114682,
+    "control_rows": 640,
+    "non_control_rows": 114042,
+    "node_budget_values": {
+     "100000": 114682
+    },
+    "problems": {},
+    "non_control_z_words_not_their_own_fold": 0,
+    "distinct_presentation_word_pairs": 9759,
+    "presentations_with_non_control_rows": 640,
+    "readme_says": "114,682 rows = 640 controls + 114,042 CoV rows"
+   }
+  },
+  {
+   "name": "cov:orig_relators_match_dataset",
+   "compared": 114682,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {}
+  },
+  {
+   "name": "cov:one_control_row_per_presentation",
+   "compared": 640,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "presentations_with_a_control_row": 640,
+    "presentations_with_conflicting_control_rows": []
+   }
+  },
+  {
+   "name": "b1000:control_rows",
+   "compared": 1280,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "rows": 640,
+    "presentations_with_a_row": 640,
+    "presentations_without_a_row": 0,
+    "problems": {},
+    "solved": 554
+   }
+  },
+  {
+   "name": "b1000:relsub_rows_fields",
+   "compared": 69816,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "file": "rank3_bf_ms640_b1000_cap24_relsub.jsonl",
+    "rows": 69816,
+    "rows_is_proper": 59486,
+    "presentations_with_rows": 640,
+    "problems": {}
+   }
+  },
+  {
+   "name": "b1000:relsub_zword_is_own_fold",
+   "compared": 69816,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "z_words_not_their_own_fold": 0,
+    "expected": 0
+   }
+  },
+  {
+   "name": "b1000:relsub_one_row_per_word",
+   "compared": 69816,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {}
+  },
+  {
+   "name": "b1000:relsub_wordset_per_presentation",
+   "compared": 640,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "what": "set of row z_words == relator-subword word set, per presentation",
+    "words_missing_in_rows": 0,
+    "rows_with_unexpected_word": 0,
+    "expected_words_total": 69816
+   }
+  },
+  {
+   "name": "b1000:relsub_is_proper_flag",
+   "compared": 69816,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "rows_whose_word_is_a_whole_rotation": 10330
+   }
+  },
+  {
+   "name": "b1000:summary_relsub_counts_and_stats",
+   "compared": 12,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "recomputed": {
+     "rows": 69816,
+     "rows_proper": 59486,
+     "proper": {
+      "solved_by_some_subword": 544,
+      "gained_over_control": 10,
+      "mean_solve_rate": 0.6824076679675443,
+      "some_subword_faster_than_control": 102,
+      "mean_fraction_faster_than_control": 0.011802597030941582
+     },
+     "all": {
+      "solved_by_some_subword": 564,
+      "gained_over_control": 10,
+      "mean_solve_rate": 0.709194932469876,
+      "some_subword_faster_than_control": 102,
+      "mean_fraction_faster_than_control": 0.009866159819003434
+     }
+    },
+    "proper_denominators": {
+     "presentations_with_such_rows": 640,
+     "control_solved_presentations_with_such_rows": 554,
+     "presentations_without_control_row": 0
+    },
+    "all_denominators": {
+     "presentations_with_such_rows": 640,
+     "control_solved_presentations_with_such_rows": 554,
+     "presentations_without_control_row": 0
+    }
+   },
+   "report_only": {
+    "proper": {
+     "what": "other readings of the same statistics; written out, never compared",
+     "solve_rate_pooled_over_rows": 0.5304273274383888,
+     "mean_solve_rate_over_all_presentations": 0.6824076679675443,
+     "mean_fraction_faster_over_all_control_solved_presentations": 0.011802597030941582,
+     "mean_fraction_faster_over_presentations_with_such_rows_control_unsolved_as_0": 0.010216623054908808,
+     "mean_fraction_faster_or_gained_over_presentations_with_such_rows": 0.010455933446150732,
+     "mean_over_control_solved_of_faster_rows_over_solved_rows": 0.05282433160436077,
+     "some_subword_faster_or_gained": 112,
+     "control_solved_presentations": 554,
+     "all_presentations": 640
+    },
+    "all": {
+     "what": "other readings of the same statistics; written out, never compared",
+     "solve_rate_pooled_over_rows": 0.5724762232153088,
+     "mean_solve_rate_over_all_presentations": 0.709194932469876,
+     "mean_fraction_faster_over_all_control_solved_presentations": 0.009866159819003434,
+     "mean_fraction_faster_over_presentations_with_such_rows_control_unsolved_as_0": 0.008540394593324847,
+     "mean_fraction_faster_or_gained_over_presentations_with_such_rows": 0.008753156749580155,
+     "mean_over_control_solved_of_faster_rows_over_solved_rows": 0.023536533180846725,
+     "some_subword_faster_or_gained": 112,
+     "control_solved_presentations": 554,
+     "all_presentations": 640
+    }
+   }
+  },
+  {
+   "name": "b1000:summary_relsub_vs_cov",
+   "compared": 16,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "recomputed": {
+     "cov_file_budget": 100000,
+     "cov_median_cap": 33.0,
+     "same_word_pairs_joined": 9759,
+     "same_word_neither": 2260,
+     "control": 554,
+     "rank3_subword_oracle": 544,
+     "cov_oracle": 604,
+     "control_or_rank3": 564,
+     "control_or_cov": 604,
+     "rank3_not_cov": 0,
+     "cov_not_rank3": 60,
+     "same_word_rank3_fewer_nodes": 602,
+     "same_word_tie": 456,
+     "same_word_cov_fewer_nodes": 4832,
+     "same_word_only_rank3_solves": 33,
+     "same_word_only_cov_solves": 1576
+    },
+    "notes": {
+     "control_source": "<stem>_control.jsonl (rank-3 run's control at budget B)",
+     "rank3_not_cov_presentations": [],
+     "cov_not_rank3_presentations": [
+      356,
+      369,
+      404,
+      416,
+      417,
+      420,
+      422,
+      424,
+      431,
+      464,
+      466,
+      537,
+      539,
+      540,
+      541,
+      543,
+      544,
+      545,
+      547,
+      549,
+      550,
+      551,
+      552,
+      553,
+      554,
+      556,
+      558,
+      559,
+      560,
+      561,
+      562,
+      563,
+      564,
+      565,
+      566,
+      567,
+      569,
+      571,
+      572,
+      575,
+      576,
+      580,
+      581,
+      582,
+      585,
+      586,
+      588,
+      598,
+      599,
+      601,
+      602,
+      607,
+      615,
+      627,
+      628,
+      629,
+      630,
+      633,
+      634,
+      635
+     ]
+    },
+    "summary_six_buckets_sum": 9759,
+    "summary_same_word_pairs_joined": 9759
+   },
+   "report_only": {
+    "what": "other readings of relsub.vs_cov; written out, never compared",
+    "control_from_cov_file_cut_to_B": 554,
+    "control_or_rank3_with_that_control": 564,
+    "control_or_cov_with_that_control": 604,
+    "cov_oracle_including_control_rows": 604,
+    "rank3_not_cov_between_the_unions_with_control": 0,
+    "cov_not_rank3_between_the_unions_with_control": 40,
+    "same_word_pairs_joined_relsub_word_folded_before_lookup": 9759,
+    "same_word_pairs_joined_cov_word_as_written_not_folded": 9759,
+    "same_word_pairs_joined_whole_rows_included": 9759,
+    "cov_non_control_z_words_not_their_own_fold": 0,
+    "cov_median_cap_low": 33,
+    "cov_median_cap_high": 33
+   }
+  },
+  {
+   "name": "b1000:summary_control_at_larger_budgets",
+   "compared": 4,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "recomputed": {
+     "100": 455,
+     "1000": 554,
+     "10000": 606,
+     "100000": 634
+    }
+   }
+  },
+  {
+   "name": "b1000:crossrun_control_solved",
+   "compared": 640,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "what": "CoV control row (solved and nodes <= B) == control.jsonl solved"
+   }
+  },
+  {
+   "name": "b1000:crossrun_control_nodes",
+   "compared": 554,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "what": "nodes equal wherever both are solved at B"
+   }
+  },
+  {
+   "name": "b1000:bruteforce_npz_files",
+   "compared": 58,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "lengths_used": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "notes": [],
+    "present_but_not_used": [],
+    "inverse_files": "not used (<stem>_L<n>_inv.npz)"
+   }
+  },
+  {
+   "name": "b1000:summary_priced_gained_set_and_best_word_nodes",
+   "compared": 45,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "lengths_used": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "summary_max_len": 9,
+    "notes": [],
+    "gained_recomputed": [
+     538,
+     542,
+     547,
+     558,
+     567,
+     571,
+     598,
+     602,
+     606,
+     607,
+     608,
+     609,
+     611,
+     612,
+     614,
+     615,
+     626,
+     628,
+     629,
+     630,
+     632,
+     633
+    ],
+    "presentations_solved_by_some_word": 576,
+    "best_word_nodes_recomputed": {
+     "538": 51,
+     "542": 84,
+     "547": 86,
+     "558": 86,
+     "567": 483,
+     "571": 482,
+     "598": 849,
+     "602": 721,
+     "606": 80,
+     "607": 641,
+     "608": 689,
+     "609": 542,
+     "611": 712,
+     "612": 76,
+     "614": 446,
+     "615": 583,
+     "626": 536,
+     "628": 263,
+     "629": 271,
+     "630": 214,
+     "632": 630,
+     "633": 255
+    }
+   },
+   "report_only": {
+    "what": "other readings of the gained set; written out, never compared",
+    "gained_if_only_lengths_up_to": {
+     "1": 0,
+     "2": 0,
+     "3": 0,
+     "4": 4,
+     "5": 8,
+     "6": 16,
+     "7": 20,
+     "8": 22,
+     "9": 22
+    },
+    "gained_if_control_is_the_cov_file_row_cut_to_B": 22
+   }
+  },
+  {
+   "name": "b1000:summary_priced_control_columns",
+   "compared": 47,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "recomputed": {
+     "control_file_budget": 100000,
+     "control_solves_them_at_file_budget": 22,
+     "best_word_cheaper_than_control": 22
+    },
+    "control_rows_recomputed": {
+     "538": {
+      "control_solved": true,
+      "control_nodes": 2261
+     },
+     "542": {
+      "control_solved": true,
+      "control_nodes": 2271
+     },
+     "547": {
+      "control_solved": true,
+      "control_nodes": 3848
+     },
+     "558": {
+      "control_solved": true,
+      "control_nodes": 2611
+     },
+     "567": {
+      "control_solved": true,
+      "control_nodes": 3402
+     },
+     "571": {
+      "control_solved": true,
+      "control_nodes": 3536
+     },
+     "598": {
+      "control_solved": true,
+      "control_nodes": 7612
+     },
+     "602": {
+      "control_solved": true,
+      "control_nodes": 6285
+     },
+     "606": {
+      "control_solved": true,
+      "control_nodes": 2023
+     },
+     "607": {
+      "control_solved": true,
+      "control_nodes": 6641
+     },
+     "608": {
+      "control_solved": true,
+      "control_nodes": 1258
+     },
+     "609": {
+      "control_solved": true,
+      "control_nodes": 1217
+     },
+     "611": {
+      "control_solved": true,
+      "control_nodes": 1166
+     },
+     "612": {
+      "control_solved": true,
+      "control_nodes": 2048
+     },
+     "614": {
+      "control_solved": true,
+      "control_nodes": 1160
+     },
+     "615": {
+      "control_solved": true,
+      "control_nodes": 6648
+     },
+     "626": {
+      "control_solved": true,
+      "control_nodes": 6517
+     },
+     "628": {
+      "control_solved": true,
+      "control_nodes": 26774
+     },
+     "629": {
+      "control_solved": true,
+      "control_nodes": 12452
+     },
+     "630": {
+      "control_solved": true,
+      "control_nodes": 12429
+     },
+     "632": {
+      "control_solved": true,
+      "control_nodes": 6425
+     },
+     "633": {
+      "control_solved": true,
+      "control_nodes": 26838
+     }
+    }
+   },
+   "report_only": {
+    "what": "other readings of the control columns; written out, never compared",
+    "gained_rows_control_unsolved_at_file_budget": [],
+    "control_nodes_mismatches_if_null_when_control_unsolved": 0,
+    "best_word_cheaper_counting_only_solved_controls": 22
+   }
+  },
+  {
+   "name": "b1000:summary_priced_best_word_attains_best_nodes",
+   "compared": 22,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "what": "extra to the task: the summary's best_word is a word of the L<len> file that solves the presentation with exactly the recomputed fewest nodes (tie-break not checked)"
+   }
+  },
+  {
+   "name": "b10000:control_rows",
+   "compared": 1280,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "rows": 640,
+    "presentations_with_a_row": 640,
+    "presentations_without_a_row": 0,
+    "problems": {},
+    "solved": 606
+   }
+  },
+  {
+   "name": "b10000:relsub_rows_fields",
+   "compared": 69816,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "file": "rank3_bf_ms640_b10000_cap24_relsub.jsonl",
+    "rows": 69816,
+    "rows_is_proper": 59486,
+    "presentations_with_rows": 640,
+    "problems": {}
+   }
+  },
+  {
+   "name": "b10000:relsub_zword_is_own_fold",
+   "compared": 69816,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "z_words_not_their_own_fold": 0,
+    "expected": 0
+   }
+  },
+  {
+   "name": "b10000:relsub_one_row_per_word",
+   "compared": 69816,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {}
+  },
+  {
+   "name": "b10000:relsub_wordset_per_presentation",
+   "compared": 640,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "what": "set of row z_words == relator-subword word set, per presentation",
+    "words_missing_in_rows": 0,
+    "rows_with_unexpected_word": 0,
+    "expected_words_total": 69816
+   }
+  },
+  {
+   "name": "b10000:relsub_is_proper_flag",
+   "compared": 69816,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "rows_whose_word_is_a_whole_rotation": 10330
+   }
+  },
+  {
+   "name": "b10000:summary_relsub_counts_and_stats",
+   "compared": 12,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "recomputed": {
+     "rows": 69816,
+     "rows_proper": 59486,
+     "proper": {
+      "solved_by_some_subword": 592,
+      "gained_over_control": 4,
+      "mean_solve_rate": 0.808898851112842,
+      "some_subword_faster_than_control": 120,
+      "mean_fraction_faster_than_control": 0.012878184352952548
+     },
+     "all": {
+      "solved_by_some_subword": 610,
+      "gained_over_control": 4,
+      "mean_solve_rate": 0.8240914121722076,
+      "some_subword_faster_than_control": 120,
+      "mean_fraction_faster_than_control": 0.010861190439319237
+     }
+    },
+    "proper_denominators": {
+     "presentations_with_such_rows": 640,
+     "control_solved_presentations_with_such_rows": 606,
+     "presentations_without_control_row": 0
+    },
+    "all_denominators": {
+     "presentations_with_such_rows": 640,
+     "control_solved_presentations_with_such_rows": 606,
+     "presentations_without_control_row": 0
+    }
+   },
+   "report_only": {
+    "proper": {
+     "what": "other readings of the same statistics; written out, never compared",
+     "solve_rate_pooled_over_rows": 0.6723262616413946,
+     "mean_solve_rate_over_all_presentations": 0.808898851112842,
+     "mean_fraction_faster_over_all_control_solved_presentations": 0.012878184352952548,
+     "mean_fraction_faster_over_presentations_with_such_rows_control_unsolved_as_0": 0.012194030809201945,
+     "mean_fraction_faster_or_gained_over_presentations_with_such_rows": 0.012631273607555855,
+     "mean_over_control_solved_of_faster_rows_over_solved_rows": 0.02702705816702003,
+     "some_subword_faster_or_gained": 124,
+     "control_solved_presentations": 606,
+     "all_presentations": 640
+    },
+    "all": {
+     "what": "other readings of the same statistics; written out, never compared",
+     "solve_rate_pooled_over_rows": 0.7057408044001375,
+     "mean_solve_rate_over_all_presentations": 0.8240914121722076,
+     "mean_fraction_faster_over_all_control_solved_presentations": 0.010861190439319237,
+     "mean_fraction_faster_over_presentations_with_such_rows_control_unsolved_as_0": 0.010284189697230401,
+     "mean_fraction_faster_or_gained_over_presentations_with_such_rows": 0.010680644921111,
+     "mean_over_control_solved_of_faster_rows_over_solved_rows": 0.01927975619817876,
+     "some_subword_faster_or_gained": 124,
+     "control_solved_presentations": 606,
+     "all_presentations": 640
+    }
+   }
+  },
+  {
+   "name": "b10000:summary_relsub_vs_cov",
+   "compared": 16,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "recomputed": {
+     "cov_file_budget": 100000,
+     "cov_median_cap": 33.0,
+     "same_word_pairs_joined": 9759,
+     "same_word_neither": 1174,
+     "control": 606,
+     "rank3_subword_oracle": 592,
+     "cov_oracle": 626,
+     "control_or_rank3": 610,
+     "control_or_cov": 626,
+     "rank3_not_cov": 0,
+     "cov_not_rank3": 34,
+     "same_word_rank3_fewer_nodes": 725,
+     "same_word_tie": 456,
+     "same_word_cov_fewer_nodes": 6018,
+     "same_word_only_rank3_solves": 36,
+     "same_word_only_cov_solves": 1350
+    },
+    "notes": {
+     "control_source": "<stem>_control.jsonl (rank-3 run's control at budget B)",
+     "rank3_not_cov_presentations": [],
+     "cov_not_rank3_presentations": [
+      561,
+      563,
+      565,
+      566,
+      568,
+      569,
+      570,
+      572,
+      573,
+      575,
+      576,
+      578,
+      581,
+      582,
+      583,
+      584,
+      586,
+      588,
+      590,
+      591,
+      592,
+      593,
+      594,
+      595,
+      596,
+      597,
+      600,
+      603,
+      604,
+      605,
+      610,
+      613,
+      634,
+      635
+     ]
+    },
+    "summary_six_buckets_sum": 9759,
+    "summary_same_word_pairs_joined": 9759
+   },
+   "report_only": {
+    "what": "other readings of relsub.vs_cov; written out, never compared",
+    "control_from_cov_file_cut_to_B": 606,
+    "control_or_rank3_with_that_control": 610,
+    "control_or_cov_with_that_control": 626,
+    "cov_oracle_including_control_rows": 626,
+    "rank3_not_cov_between_the_unions_with_control": 0,
+    "cov_not_rank3_between_the_unions_with_control": 16,
+    "same_word_pairs_joined_relsub_word_folded_before_lookup": 9759,
+    "same_word_pairs_joined_cov_word_as_written_not_folded": 9759,
+    "same_word_pairs_joined_whole_rows_included": 9759,
+    "cov_non_control_z_words_not_their_own_fold": 0,
+    "cov_median_cap_low": 33,
+    "cov_median_cap_high": 33
+   }
+  },
+  {
+   "name": "b10000:summary_control_at_larger_budgets",
+   "compared": 4,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "recomputed": {
+     "100": 455,
+     "1000": 554,
+     "10000": 606,
+     "100000": 634
+    }
+   }
+  },
+  {
+   "name": "b10000:crossrun_control_solved",
+   "compared": 640,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "what": "CoV control row (solved and nodes <= B) == control.jsonl solved"
+   }
+  },
+  {
+   "name": "b10000:crossrun_control_nodes",
+   "compared": 606,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "what": "nodes equal wherever both are solved at B"
+   }
+  },
+  {
+   "name": "b10000:bruteforce_npz_files",
+   "compared": 38,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "lengths_used": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "notes": [],
+    "present_but_not_used": [],
+    "inverse_files": "not used (<stem>_L<n>_inv.npz)"
+   }
+  },
+  {
+   "name": "b10000:summary_priced_gained_set_and_best_word_nodes",
+   "compared": 9,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "lengths_used": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "summary_max_len": 6,
+    "notes": [],
+    "gained_recomputed": [
+     628,
+     629,
+     630,
+     633
+    ],
+    "presentations_solved_by_some_word": 600,
+    "best_word_nodes_recomputed": {
+     "628": 2156,
+     "629": 632,
+     "630": 599,
+     "633": 2097
+    }
+   },
+   "report_only": {
+    "what": "other readings of the gained set; written out, never compared",
+    "gained_if_only_lengths_up_to": {
+     "1": 0,
+     "2": 0,
+     "3": 0,
+     "4": 4,
+     "5": 4,
+     "6": 4
+    },
+    "gained_if_control_is_the_cov_file_row_cut_to_B": 4
+   }
+  },
+  {
+   "name": "b10000:summary_priced_control_columns",
+   "compared": 11,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "recomputed": {
+     "control_file_budget": 100000,
+     "control_solves_them_at_file_budget": 4,
+     "best_word_cheaper_than_control": 4
+    },
+    "control_rows_recomputed": {
+     "628": {
+      "control_solved": true,
+      "control_nodes": 26774
+     },
+     "629": {
+      "control_solved": true,
+      "control_nodes": 12452
+     },
+     "630": {
+      "control_solved": true,
+      "control_nodes": 12429
+     },
+     "633": {
+      "control_solved": true,
+      "control_nodes": 26838
+     }
+    }
+   },
+   "report_only": {
+    "what": "other readings of the control columns; written out, never compared",
+    "gained_rows_control_unsolved_at_file_budget": [],
+    "control_nodes_mismatches_if_null_when_control_unsolved": 0,
+    "best_word_cheaper_counting_only_solved_controls": 4
+   }
+  },
+  {
+   "name": "b10000:summary_priced_best_word_attains_best_nodes",
+   "compared": 4,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": {
+    "what": "extra to the task: the summary's best_word is a word of the L<len> file that solves the presentation with exactly the recomputed fewest nodes (tie-break not checked)"
+   }
+  }
+ ],
+ "mismatches": 0,
+ "skipped": [
+  "rank3_bf_ms640_b1000_cap24_L10.npz: file absent",
+  "b1000 summary key views[\"1000\"].gained_presentations_priced.shortlex_to_first_solve_cheaper_than_control: present in the summary, not defined in this task, not verified",
+  "b1000 summary key views[\"1000\"].gained_presentations_priced.rows[].shortlex_nodes: present in the summary, not defined in this task, not verified",
+  "rank3_bf_ms640_b10000_cap24_L7.npz: file absent",
+  "rank3_bf_ms640_b10000_cap24_L8.npz: file absent",
+  "rank3_bf_ms640_b10000_cap24_L9.npz: file absent",
+  "rank3_bf_ms640_b10000_cap24_L10.npz: file absent",
+  "b10000 summary key views[\"10000\"].gained_presentations_priced.shortlex_to_first_solve_cheaper_than_control: present in the summary, not defined in this task, not verified",
+  "b10000 summary key views[\"10000\"].gained_presentations_priced.rows[].shortlex_nodes: present in the summary, not defined in this task, not verified"
+ ],
+ "first_mismatches": [],
+ "info": {
+  "results_dir": "results/stable_ac/rank3_bf",
+  "dataset": "data/ms640_solved.txt",
+  "workers_ignored": 8,
+  "minutes": 40.0,
+  "numpy": "2.1.3",
+  "presentations": 640,
+  "cov_file": "results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz",
+  "cov_rows": 114682,
+  "cov_median_cap": 33.0,
+  "seconds": 3.1
+ }
+}

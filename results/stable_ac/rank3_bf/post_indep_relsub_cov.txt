@@ -1,0 +1,44 @@
+[ok] dataset:lines_and_relators_well_formed: compared=1281 mismatches=0
+[ok] cov:rows_fields: compared=114682 mismatches=0
+[ok] cov:orig_relators_match_dataset: compared=114682 mismatches=0
+[ok] cov:one_control_row_per_presentation: compared=640 mismatches=0
+[ok] b1000:control_rows: compared=1280 mismatches=0
+[ok] b1000:relsub_rows_fields: compared=69816 mismatches=0
+[ok] b1000:relsub_zword_is_own_fold: compared=69816 mismatches=0
+[ok] b1000:relsub_one_row_per_word: compared=69816 mismatches=0
+[ok] b1000:relsub_wordset_per_presentation: compared=640 mismatches=0
+[ok] b1000:relsub_is_proper_flag: compared=69816 mismatches=0
+[ok] b1000:summary_relsub_counts_and_stats: compared=12 mismatches=0
+[ok] b1000:summary_relsub_vs_cov: compared=16 mismatches=0
+[ok] b1000:summary_control_at_larger_budgets: compared=4 mismatches=0
+[ok] b1000:crossrun_control_solved: compared=640 mismatches=0
+[ok] b1000:crossrun_control_nodes: compared=554 mismatches=0
+[ok] b1000:bruteforce_npz_files: compared=58 mismatches=0
+[ok] b1000:summary_priced_gained_set_and_best_word_nodes: compared=45 mismatches=0
+[ok] b1000:summary_priced_control_columns: compared=47 mismatches=0
+[ok] b1000:summary_priced_best_word_attains_best_nodes: compared=22 mismatches=0
+[ok] b10000:control_rows: compared=1280 mismatches=0
+[ok] b10000:relsub_rows_fields: compared=69816 mismatches=0
+[ok] b10000:relsub_zword_is_own_fold: compared=69816 mismatches=0
+[ok] b10000:relsub_one_row_per_word: compared=69816 mismatches=0
+[ok] b10000:relsub_wordset_per_presentation: compared=640 mismatches=0
+[ok] b10000:relsub_is_proper_flag: compared=69816 mismatches=0
+[ok] b10000:summary_relsub_counts_and_stats: compared=12 mismatches=0
+[ok] b10000:summary_relsub_vs_cov: compared=16 mismatches=0
+[ok] b10000:summary_control_at_larger_budgets: compared=4 mismatches=0
+[ok] b10000:crossrun_control_solved: compared=640 mismatches=0
+[ok] b10000:crossrun_control_nodes: compared=606 mismatches=0
+[ok] b10000:bruteforce_npz_files: compared=38 mismatches=0
+[ok] b10000:summary_priced_gained_set_and_best_word_nodes: compared=9 mismatches=0
+[ok] b10000:summary_priced_control_columns: compared=11 mismatches=0
+[ok] b10000:summary_priced_best_word_attains_best_nodes: compared=4 mismatches=0
+[skipped] rank3_bf_ms640_b1000_cap24_L10.npz: file absent
+[skipped] b1000 summary key views["1000"].gained_presentations_priced.shortlex_to_first_solve_cheaper_than_control: present in the summary, not defined in this task, not verified
+[skipped] b1000 summary key views["1000"].gained_presentations_priced.rows[].shortlex_nodes: present in the summary, not defined in this task, not verified
+[skipped] rank3_bf_ms640_b10000_cap24_L7.npz: file absent
+[skipped] rank3_bf_ms640_b10000_cap24_L8.npz: file absent
+[skipped] rank3_bf_ms640_b10000_cap24_L9.npz: file absent
+[skipped] rank3_bf_ms640_b10000_cap24_L10.npz: file absent
+[skipped] b10000 summary key views["10000"].gained_presentations_priced.shortlex_to_first_solve_cheaper_than_control: present in the summary, not defined in this task, not verified
+[skipped] b10000 summary key views["10000"].gained_presentations_priced.rows[].shortlex_nodes: present in the summary, not defined in this task, not verified
+TOTAL indep_relsub_cov.py: checks=34 mismatches=0 skipped=9

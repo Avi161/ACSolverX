@@ -1,6 +1,6 @@
 # 3-, 4- and 5-generator brute-force baseline on MS640
 
-**Status, 12 Oct 2026 08:45 UTC: interim.** In this directory: word lengths 1 to 9 at budget
+**Status, 12 Oct 2026 09:15 UTC: interim.** In this directory: word lengths 1 to 9 at budget
 1,000, lengths 1 to 6 at budget 10,000, rank 4 and rank 5. Still running on AWS: length 10 at
 budget 1,000 and length 7 at budget 10,000. The numbers below change only by those two lengths.
 
@@ -28,7 +28,7 @@ budget 1,000 and length 7 at budget 10,000. The numbers below change only by tho
   is an existence statement, not a method: it needs the right word for each presentation.
   **Gained**: solved by some word and not by the control. **Lost**: solved by the control and
   by no word of the pool.
-- **Shortlex order**: words by length, then alphabetically. The price of the oracle is the
+- **Shortlex order**: words by length, then in the fixed order of the word list. The price of the oracle is the
   total nodes spent trying words in that order until one solves.
 - **CoV** (change of variables, [`cov_all`](../cov_all/README.md)): takes the same z = w with
   w a **proper subword** of a relator (a cyclic subword of length at least 2 that is not a
@@ -246,7 +246,7 @@ a sampling choice (half of the 39,364 words up to length 9), not an exact symmet
 
 All on AWS, against the files in this directory: the reference re-check on the rank-4/5
 machine (commit `8b3a51d` plus `rankn_checks.py`, PLAN §11 item 9), the rest on the
-post-processing machine (commit `ff0d861`). Logs: `post_*.txt`.
+post-processing machine (commit `a27bf4e`). Logs: `post_*.txt`.
 
 - **Repo tests**: 33 passed (`tests/stable_ac/test_rank3_bf.py`, `test_rankn_class_view.py`;
   the line is in the machine log, `post/run.log` in S3).
@@ -261,10 +261,10 @@ post-processing machine (commit `ff0d861`). Logs: `post_*.txt`.
   results re-run with the reference solver (1,660 rank 3 at lengths 1 to 7, 300 rank 4, 300
   rank 5, 80 controls, 80 empty-word starts, and both sides of 75 relabeled pairs whose solved
   flags differ): 0 mismatches.
-- **Independent checks** ([`indep/`](../../../experiments/stable_ac/rank3/indep/)): five scripts
-  written from a prose brief by testers who were not shown the runner, the fast solver, the
-  verifier, the summarizer or the plot script, each read by a second tester, run with
-  `python3 -I` (no repo imports). All five: 0 mismatches.
+- **Independent checks** ([`indep/`](../../../experiments/stable_ac/rank3/indep/)): seven scripts
+  written from a prose brief by testers who were not shown the code they check (the runner,
+  the fast solver, the verifier, the summarizer, the plot script, `class_view`), each read by a
+  second tester, run with `python3 -I` (no repo imports). All seven: 0 mismatches.
 
 | script | what it did | compared | mismatches |
 |---|---|---|---|
@@ -273,18 +273,18 @@ post-processing machine (commit `ff0d861`). Logs: `post_*.txt`.
 | `indep_words_classes.py` | rebuilt each word family from the definition (21 files); value ranges of 9,187,103 results; a search at 1,000 is the first part of the same search at 10,000 (473,048 results) | 6 checks with an expected value, 2 report-only ([log](post_indep_words_classes.txt)) | 0 |
 | `indep_stats_rank3.py` | recomputed the numbers of the two summaries from the raw arrays | 58 checks, 4,241 values ([log](post_indep_stats_rank3.txt)) | 0 |
 | `indep_stats_rankn_fig.py` | recomputed the rank-4/5 summaries and every table behind a graph | 20 checks, 1,906 values ([log](post_indep_stats_rankn_fig.txt)) | 0 |
+| `indep_class_view.py` | rebuilt the 319 classes and the pairs of copies from the dataset, and recomputed every number of the four relabeling-class views (node gaps, per-presentation and per-class counts) | 3,030 values ([log](post_indep_class_view.txt)) | 0 |
+| `indep_relsub_cov.py` | rebuilt the subword set of every relator from its definition (139,632 rows, proper flag included), read the CoV sweep's 114,682 rows, and recomputed the relator-subword block, the comparison with CoV and the control's cost on the gained presentations | 34 checks, 202 summary values ([log](post_indep_relsub_cov.txt)) | 0 |
 
 `indep_words_classes.py` also reports, without an expected value to compare against, the same
 319 classes (318 of two, one of four) as `class_view`, and 117,612 starts (58,806 pairs) that
 duplicate another start of their own presentation, out of the 37,790,720 of lengths 1 to 10.
 
-**Not independently recomputed yet.** These rest on the summarizer or `class_view`, their unit
-tests, and the replay of every solved subword path: the relator-subword numbers (544, 592 and
-the rest of that block), the whole comparison with CoV, the relabeling-class section (gaps and
-per-class counts), and the control's cost above 10,000 nodes on the gained presentations (read
-from the CoV sweep's file). Two more independent scripts for these blocks (`indep_class_view.py`,
-`indep_relsub_cov.py`) are written and read by a second tester; they have not been run yet.
-The `skipped` field of each `indep_*.json` and the notes in `indep/*.md` list the rest.
+**Not independently recomputed.** One derived count per budget (on how many gained
+presentations the shortlex cost is below the control's; the two columns it compares are both
+checked), and the CoV sweep's own searches, which are taken from its file as they are. The
+`skipped` field of each `indep_*.json` and the notes in `indep/*.md` list what each script
+left out and the readings its tester had to choose.
 
 ## Files
 
