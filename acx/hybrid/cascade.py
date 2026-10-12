@@ -36,7 +36,7 @@ pure-Python best-first engines (stage D) are not ported, the hybrid search
 replaces them.
 """
 from collections import namedtuple
-from itertools import groupby
+from functools import lru_cache
 
 from ..aut.whitehead import TABLES, apply_table
 from ..core.moves import Move, apply_raw
@@ -71,18 +71,24 @@ def is_terminal(state):
 
 def syllables(w):
     """Cyclic syllables ``[(generator, signed exponent)]``, the seam merged."""
-    out = [(abs(g), sum(1 for _ in run) * (1 if g > 0 else -1)) for g, run in groupby(w)]
+    out, run, n = [], 0, 0
+    for g in w:
+        if g == run:
+            n += 1
+            continue
+        if run:
+            out.append((abs(run), n if run > 0 else -n))
+        run, n = g, 1
+    if run:
+        out.append((abs(run), n if run > 0 else -n))
     if len(out) > 1 and out[0][0] == out[-1][0]:
         out[0] = (out[0][0], out[0][1] + out.pop()[1])
     return out
 
 
-def power(g, e):
-    return ((g if e > 0 else -g),) * abs(e)
-
-
 def from_syllables(syl):
-    return sum((power(g, e) for g, e in syl), ())
+    """The word with the syllables ``[(generator, signed exponent)]``."""
+    return sum((((g if e > 0 else -g),) * abs(e) for g, e in syl), ())
 
 
 def _find(hay, needle):
@@ -253,6 +259,7 @@ def stage_primitive(run, index):
 
 
 # ---------------------------------------------------------------- stage C
+@lru_cache(maxsize=1 << 16)
 def conjugation_forms(w):
     """Every reading of the cyclic word as ``g^a h^p g^-a h^q`` with ``a > 0`` and ``p, q != 0``."""
     syl = syllables(w)
@@ -304,30 +311,31 @@ def _merge(syl):
 
 
 def _pinch_once(syl, i, g, a, h, p, q):
-    """One rule use on the bracket at syllable ``i``: ``(new syllables, oriented word from syllable i,
-    position, lhs, rhs)`` of the replacement."""
+    """One rule use on the bracket at syllable ``i``: the new syllables and the replacement, as ``(position in the word read
+    from syllable i, lhs, rhs)`` with lhs and rhs given as syllables."""
     n = len(syl)
     e1, m, e2 = syl[i][1], syl[(i + 1) % n][1], syl[(i + 2) % n][1]
     if e1 > 0:
         left = (m > 0) == (p > 0)
         if left:
             mid = [(g, e1 - a), (h, -q), (g, a), (h, m - p)]
-            rw = e1 - a, power(g, a) + power(h, p), power(h, -q) + power(g, a)
+            rw = e1 - a, [(g, a), (h, p)], [(h, -q), (g, a)]
         else:
             mid = [(g, e1), (h, m + p), (g, -a), (h, q), (g, e2 + a)]
-            rw = e1 + abs(m) - abs(p), power(h, -p) + power(g, -a), power(g, -a) + power(h, q)
+            rw = e1 + abs(m) - abs(p), [(h, -p), (g, -a)], [(g, -a), (h, q)]
     else:
         left = (m > 0) == (q < 0)
         if left:
             mid = [(g, e1 + a), (h, p), (g, -a), (h, m + q)]
-            rw = -e1 - a, power(g, -a) + power(h, -q), power(h, p) + power(g, -a)
+            rw = -e1 - a, [(g, -a), (h, -q)], [(h, p), (g, -a)]
         else:
             mid = [(g, e1), (h, m - q), (g, a), (h, -p), (g, e2 - a)]
-            rw = -e1 + abs(m) - abs(q), power(h, q) + power(g, a), power(g, a) + power(h, -p)
+            rw = -e1 + abs(m) - abs(q), [(h, q), (g, a)], [(g, a), (h, -p)]
     rest = [syl[(i + k) % n] for k in range(2 if left else 3, n)]
-    return (_merge(mid + rest), from_syllables([syl[(i + k) % n] for k in range(n)])) + rw
+    return (_merge(mid + rest),) + rw
 
 
+@lru_cache(maxsize=1 << 16)
 def pinch_preflight(form, companion, max_rules=400):
     """Dry run of the cascade on syllables: the number of rule uses when the companion ends primitive."""
     g, a, h, p, q = form
@@ -362,7 +370,9 @@ def stage_pinch(run, donor_index, form):
         if b is None:
             run.rollback(mark)
             return False
-        run.rewrite_at(ci, *_pinch_once(syl, b[0], g, a, h, p, q)[1:])
+        _, position, lhs, rhs = _pinch_once(syl, b[0], g, a, h, p, q)
+        run.rewrite_at(ci, from_syllables([syl[(b[0] + k) % len(syl)] for k in range(len(syl))]), position,
+                       from_syllables(lhs), from_syllables(rhs))
     if stage_primitive(run, 1 - run.state.index(donor)):
         return True
     run.rollback(mark)

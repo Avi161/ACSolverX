@@ -22,7 +22,7 @@ def pack(rels):
 
 def unpack(key):
     i = key.index(0)
-    return tuple(_LETTER[c] for c in key[:i]), tuple(_LETTER[c] for c in key[i + 1:])
+    return tuple(map(_LETTER.__getitem__, key[:i])), tuple(map(_LETTER.__getitem__, key[i + 1:]))
 
 
 def spec_expand(key, cap):
