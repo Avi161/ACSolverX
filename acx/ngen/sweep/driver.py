@@ -48,4 +48,4 @@ def run(cfg, out="results", fresh=False, log=print):
         for n, _ in enumerate(run_tasks(sweep_row_file, tasks), 1):
             if n % 50 == 0 or n == len(tasks):
                 log(f"  {n}/{len(tasks)} rows")
-    return summarize(result_dir, wall=time.perf_counter() - began, rows=[r.id for r in rows])
+    return summarize(result_dir, wall=time.perf_counter() - began)

@@ -3,9 +3,12 @@
 Booth order ``... < Y < y < X < x`` picks the canonical representative of a rotation/inversion orbit; the heap
 tie-break uses the key order ``X < Y < x < y`` (``state_key``). The two must not be mixed up.
 """
+import re
 from dataclasses import dataclass
+from functools import lru_cache
 
 GEN_CHARS = "xyzabcdefghijklmnopqrstuvw"
+_NAME = re.compile(r"[gG][1-9]\d*|.", re.DOTALL)        # a long name such as g27, else a single letter
 
 
 def to_char(g):
@@ -15,9 +18,18 @@ def to_char(g):
     return c if g > 0 else c.upper()
 
 
+@lru_cache(maxsize=None)
+def _signed_generator(name):
+    """The signed generator of one name from ``to_char``: a letter, or ``g27`` from the 27th on; a capital inverts."""
+    n = int(name[1:]) if len(name) > 1 else GEN_CHARS.index(name.lower()) + 1
+    if len(name) > 1 and n <= len(GEN_CHARS):
+        raise ValueError(f"{name!r} is not a name: generator {n} is written {to_char(n)!r}")
+    return n if name.islower() else -n
+
+
 def parse(s):
-    """``'xYy'`` -> ``(1, -2, 2)``. Not reduced."""
-    return tuple((GEN_CHARS.index(c.lower()) + 1) * (1 if c.islower() else -1) for c in s)
+    """``'xYy'`` -> ``(1, -2, 2)``; ``'g27'`` is generator 27, the name ``fmt`` gives past the 26th. Not reduced."""
+    return tuple(map(_signed_generator, _NAME.findall(s)))
 
 
 def fmt(w):

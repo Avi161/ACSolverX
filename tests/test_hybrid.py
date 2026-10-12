@@ -7,6 +7,7 @@ census 72,779/72,779 with 2,489,726 units, 188 certificates using higher rank. T
 (about 190 s on 4 workers, certification included) is not run here; its first 2,000 rows are.
 """
 import heapq
+import json
 import random
 import sys
 import time
@@ -16,7 +17,7 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
-from acx import data
+from acx import data, runner
 from acx.aut.whitehead import AUTOS
 from acx.core.capcount import blank, fields
 from acx.core.words import Presentation, parse
@@ -108,6 +109,15 @@ def test_tampered_certificate_fails(ms640):
 def test_budget_is_respected(ms640):
     res = solve(ms640[636], FAST, budget=30)
     assert not res.solved and res.units <= 30 and res.path is None
+
+
+@pytest.mark.parametrize("name", ["spec", "fast"])
+@pytest.mark.parametrize("rels", [("Y", "XyYx"), ("X", "x"), ("xx", "y")])
+def test_a_start_with_det_not_one_is_unsolved_not_an_assertion(rels, name):
+    """F6: ``|det| != 1`` (a relator that reduces to the empty word, two equal relators, ``|det| = 2``) has no AC path;
+    ``solve`` reports it unsolved at once instead of letting the cascade assert."""
+    res = solve(rels, FAST, backend=name)
+    assert not res.solved and res.units == 0 and res.steps == () and res.path is None
 
 
 # ------------------------------------------------------------------ cap counters (acx.hybrid.capwatch)
@@ -370,30 +380,32 @@ def test_ceiling_counter_counts_a_dropped_state_that_would_pop():
 
 # ------------------------------------------------------------------ cost of the rank-two counter
 def calls_and_seconds(pres, watch_cap, **kw):
-    """Python-level calls and CPU seconds of one solve, with the ``r2_cap`` counter on or off."""
+    """Python-level calls of one solve and its best CPU seconds of three, with the ``r2_cap`` counter on or off."""
     old = capwatch.Watch.has
     capwatch.Watch.has = lambda self, name: (name != "cap" or watch_cap) and old(self, name)
-    n = 0
+    n, seconds = 0, []
 
     def prof(frame, event, arg):
         nonlocal n
         n += event in ("call", "c_call")
     try:
-        t = time.process_time()
-        solve(pres, FAST, **kw)
-        seconds = time.process_time() - t
+        for _ in range(3):
+            t = time.process_time()
+            solve(pres, FAST, **kw)
+            seconds.append(time.process_time() - t)
         sys.setprofile(prof)
         solve(pres, FAST, **kw)
     finally:
         sys.setprofile(None)
         capwatch.Watch.has = old
-    return n, seconds
+    return n, min(seconds)
 
 
 def test_integer_r2_cap_counters_cost_under_ten_percent(ms640):
     """A tight integer ``r2_cap`` drops hundreds of moves per pop; counting them must stay cheap (the first
     version was 5x slower). Python calls are the deterministic measure (within 10%), CPU time the sanity check
-    (within 60%, loose because the machine is shared; about 20% is measured at ``r2_cap`` 8)."""
+    (best of three within 60%, loose because the machine is shared; about 25% is measured at ``r2_cap`` 8, most of
+    it the orbit of each counted state)."""
     solve(ms640[380], FAST)
     kw = dict(r2_cap=8, budget=150)
     for i in (380, 602):
@@ -402,3 +414,136 @@ def test_integer_r2_cap_counters_cost_under_ten_percent(ms640):
         assert solve(ms640[i], FAST, **kw).stats["cap_dropped"] > 10_000
         assert on <= 1.10 * off, (i, on, off)
         assert t_on <= 1.60 * t_off, (i, t_on, t_off)
+
+
+# ------------------------------------------------------------------ the limits: slack, orbits, r2_cap
+def test_slack_is_read_like_the_other_limits(ms640):
+    """F2: ``slack`` is read by ``parse_cap`` like the other limits: an int >= 0, or ``"none"`` (no ceiling)."""
+    assert HybridConfig(slack="none").slack is None and HybridConfig(slack=None).slack is None
+    assert HybridConfig(slack=0).slack == 0
+    for bad in (-1, True, 1.5, "8"):
+        with pytest.raises(ValueError, match="slack"):
+            HybridConfig(slack=bad)
+    free, wide = (solve(ms640[380], FAST, slack=s) for s in ("none", 10_000))
+    assert free.solved and (free.units, free.steps) == (wide.units, wide.steps)
+    assert free.stats["slack"] is None and free.stats["slack_dropped"] == free.stats["slack_would_pop"] == 0
+
+
+def test_slack_none_runs_every_row_of_a_benchmark(tmp_path):
+    """F2 through the runner (``--set hybrid.slack=none``): it used to die on the first row that needed a search."""
+    cfg = {"name": "t", "method": "hybrid", "benchmark": "bench60", "hybrid": {"slack": "none", "budget": 100}}
+    assert runner.run(cfg, str(tmp_path), log=lambda *a: None)["rows"] == 60
+
+
+def test_orbit_equal_dropped_rank_two_states_count_once(ms640):
+    """F3: the search visits a rank-two state's whole orbit under the signed generator permutations at once, so two
+    dropped children of one orbit are one would-pop state, not two."""
+    run = Run(ms640[380].rels, 1)
+    search = hybrid_search.BestFirst(run, HybridConfig(certify=False, r2_cap=4), 10)
+    key = pack(run.state)
+    twin = next(image for image in orbit(key, search.transform) if image != key)
+    total = len(key) - 1
+    entries = [((float(total), 0, tick), total, 9, state) for tick, state in enumerate((key, twin))]
+    search.watch.block("cap", capwatch.R2POOL, iter(entries))
+    search.watch.step((total + 1.0, 0, 0), None, False, 1)        # a pop that sorts after both
+    assert search.watch.record("cap")["cap_would_pop"] == 1
+
+
+def test_orbit_counting_on_the_reviewers_row():
+    """F3 on ``ac19_40171`` (ladder200) at ``r2_cap`` 9, budget 300: the ``dyn_cap`` pool drained 63 rank-two states of
+    only 51 orbits, so its count is 51 plus the 28 of its higher-rank pool (91 when the orbits were not merged)."""
+    pres = next(r.pres for r in data.rows("ladder200") if r.id == "ac19_40171")
+    stats = solve(pres, FAST, r2_cap=9, budget=300).stats
+    assert (stats["cap_would_pop"], stats["dyn_cap_would_pop"]) == (3570, 79)
+
+
+R2_CAP_ROWS = [  # MS640 row, dropped, smallest dropped total, would_pop, needed, units at r2_cap 10 / needed / None
+    (340, 64, 17, 1, 14, (22, 22, 22)), (452, 96, 18, 1, 11, (22, 23, 23)), (475, 788, 17, 11, 11, (32, 30, 31))]
+
+
+@pytest.mark.parametrize("name", ["fast", "spec"])
+@pytest.mark.parametrize("row, dropped, smallest, would_pop, needed, units", R2_CAP_ROWS)
+def test_r2_cap_needed_is_the_smallest_cap_that_changes_the_run(
+        ms640, row, dropped, smallest, would_pop, needed, units, name):
+    """T05, the mirror of the ``dyn_cap`` test: below ``cap_needed`` the run is the same, at it the run changes."""
+    run_at = lambda cap: solve(ms640[row], FAST, r2_cap=cap, dyn_cap=None, slack=40, budget=150, backend=name)
+    base, below, at, free = run_at(10), run_at(needed - 1), run_at(needed), run_at(None)
+    s = base.stats
+    assert (s["cap_dropped"], s["cap_dropped_min_total"], s["cap_would_pop"], s["cap_first_bind"], s["cap_needed"]) == (
+        dropped, smallest, would_pop, 2, needed)
+    assert s["dyn_cap_would_pop"] == s["slack_would_pop"] == 0
+    assert (below.units, below.steps) == (base.units, base.steps) and at.steps != base.steps
+    assert (base.units, at.units, free.units) == units
+
+
+# ------------------------------------------------------------------ certificates: tampering and the JSON form
+def test_every_dynamic_step_kind_rejects_tampering():
+    """T14: corrupt each field of each higher-rank step of ``ac19_239`` (define, nielsen, product, eliminate).
+    ``certify`` must raise ``ValueError`` or ``AssertionError``; a ``TypeError`` or ``IndexError`` must not leak out of
+    a malformed field."""
+    pres = ac19_row("ac19_239")
+    steps = solve(pres, FAST).steps
+    rejected = set()
+    for i, step in [(i, s) for i, s in enumerate(steps) if isinstance(s, dict)]:
+        for key, value in step["event"].items():
+            if key == "kind":
+                continue
+            corrupt = value + (1,) if isinstance(value, tuple) else value + 1       # one more letter, word or unit
+            tampered = {**step, "event": {**step["event"], key: corrupt}}
+            try:
+                certify(pres, steps[:i] + (tampered,) + steps[i + 1:])
+            except (ValueError, AssertionError):
+                rejected.add((step["event"]["kind"], key))
+    assert rejected >= {("define", "templates"), ("define", "digram"), ("nielsen", "i"), ("product", "result"),
+                        ("eliminate", "image")}
+
+
+def test_a_malformed_dynamic_step_is_a_value_error():
+    """T14: a missing or mistyped ``event``, ``relabel`` or ``after`` is a clear ``ValueError``, not a ``KeyError``,
+    ``TypeError`` or ``AttributeError``."""
+    pres = ac19_row("ac19_239")
+    steps = solve(pres, FAST).steps
+    i, step = next((i, s) for i, s in enumerate(steps) if isinstance(s, dict))
+    broken = [{k: v for k, v in step.items() if k != key} for key in ("event", "relabel", "after")]
+    broken += [{**step, "after": 5}, {**step, "after": None}, {**step, "relabel": 7},
+               {**step, "relabel": {"perm": 1, "signs": 2}}]
+    for bad in broken:
+        with pytest.raises(ValueError):
+            certify(pres, steps[:i] + (bad,) + steps[i + 1:])
+
+
+def test_encode_decode_steps_roundtrip_through_json(ms640):
+    """T14: a certificate written as JSON and read back equals the original and certifies to the same path."""
+    for pres in (ms640[380], ac19_row("ac19_239"), ac19_row("ac19_714")):
+        res = solve(pres)
+        again = decode_steps(json.loads(json.dumps(encode_steps(res.steps))))
+        assert again == res.steps and certify(pres, again) == list(res.path)
+
+
+# ------------------------------------------------------------------ inputs that are not freely reduced, a bad dyn_ratio
+UNREDUCED = [("x", "yYy"), ("XyxYY", "XyY")]
+
+
+@pytest.mark.parametrize("name", ["spec", "fast"])
+@pytest.mark.parametrize("rels", UNREDUCED)
+def test_a_relator_that_is_not_freely_reduced_is_solved_and_certified(rels, name):
+    """R1: ``yYy`` is the relator ``y``; the certificate frame used to keep the raw word and assert in ``set_word``."""
+    pres = Presentation.parse(*rels)
+    res = solve(pres, backend=name)
+    assert res.solved and is_valid(pres, res.path, normalize=False)
+
+
+def test_the_runner_solves_rows_that_are_not_freely_reduced(tmp_path):
+    rows = tmp_path / "rows.csv"
+    rows.write_text("name,r1,r2\n" + "".join(f"u{i},{a},{b}\n" for i, (a, b) in enumerate(UNREDUCED)))
+    cfg = {"name": "t", "method": "hybrid", "benchmark": str(rows), "hybrid": {"budget": 1000}}
+    summary = runner.run(cfg, str(tmp_path), log=lambda *a: None)
+    assert (summary["rows"], summary["solved"]) == (2, 2) and not summary.get("errors")
+
+
+@pytest.mark.parametrize("bad", [None, "none", "0.5", True, -1, float("nan")])
+def test_dyn_ratio_must_be_a_number_at_least_zero(bad):
+    """R7: ``dyn_ratio=None`` used to be accepted and then failed with a TypeError on every row."""
+    with pytest.raises(ValueError, match="dyn_ratio"):
+        HybridConfig(dyn_ratio=bad)
+    assert HybridConfig(dyn_ratio=0).dyn_ratio == 0 and HybridConfig(dyn_ratio=2).dyn_ratio == 2

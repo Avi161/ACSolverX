@@ -9,6 +9,7 @@ from dataclasses import dataclass, field, replace
 from ..core.config import parse_cap
 from ..core.moves import Move
 from ..core.words import Presentation
+from ..verify.replay import abs_det
 from .capwatch import blank_records
 from .cascade import Aut, Budget, Run, cascade
 from .certify import certify
@@ -24,7 +25,7 @@ class HybridConfig:
     penalty: int = 5                  # priority letters per generator above two
     dyn_ratio: float = 0.5            # higher-rank pops <= dyn_ratio * rank-two pops + 20
     dyn_cap: int | None = 8           # longest relator a higher-rank product or elimination may create; None = uncapped
-    slack: int = 8                    # higher-rank total-length ceiling above the search root
+    slack: int | None = 8             # higher-rank total-length ceiling above the search root; None = no ceiling
     min_uses: int = 2                 # a defined digram must occur this often
     r2_cap: int | str | None = "parent"   # rank-two relator cap: "parent" (the parent's total length), an int, or None (uncapped)
     backend: str = "fast"             # rank-two expansion: "spec" (pure Python) | "fast" (numba)
@@ -33,8 +34,11 @@ class HybridConfig:
     def __post_init__(self):
         if self.backend not in BACKENDS:
             raise ValueError(f"backend {self.backend!r} not in {BACKENDS}")
+        if isinstance(self.dyn_ratio, bool) or not isinstance(self.dyn_ratio, (int, float)) or not self.dyn_ratio >= 0:
+            raise ValueError(f"dyn_ratio must be a number >= 0, got {self.dyn_ratio!r}")
         object.__setattr__(self, "r2_cap", parse_cap(self.r2_cap, "r2_cap", keep=("parent",)))
         object.__setattr__(self, "dyn_cap", parse_cap(self.dyn_cap, "dyn_cap"))
+        object.__setattr__(self, "slack", parse_cap(self.slack, "slack", low=0))
 
     def replace(self, **kw):
         """A copy with the given fields changed."""
@@ -63,8 +67,11 @@ def solve(pres, cfg=None, **overrides):
     if pres.n_gen != 2 or len(pres.rels) != 2:
         raise ValueError("the hybrid solves balanced two-generator presentations")
     start = time.perf_counter()
-    run = Run(pres.rels, cfg.budget)
     stats = blank_records(cfg)                  # the cascade has no caps; a search replaces these
+    if abs_det(pres) != 1:                      # |det| is an AC invariant: no path starts here, the cascade needs 1
+        stats["seconds"] = time.perf_counter() - start
+        return HybridResult(False, None, 0, (), None, stats=stats)
+    run = Run(pres.rels, cfg.budget)
     try:
         stage = cascade(run)
     except Budget:                              # the cascade spent the whole budget
