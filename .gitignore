@@ -11,3 +11,7 @@ results/*/paths.jsonl
 # AC1M is shipped compressed (data/AC1M.txt.gz); don't track the decompressed copy.
 data/AC1M.txt
 .env
+# Per-row arrays of the rank-n sweeps are regenerated like paths.jsonl.
+results/*/rows/
+# Local agent worktrees.
+.claude/
