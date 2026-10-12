@@ -3,11 +3,11 @@
 # counters (run_rank3_bf.CAP_DOC). Same searches as the stored cap-24 results,
 # so every array is also compared with the committed one.
 #
-# A. pool (control, relator subwords, short words): budget 1,000 at cap 20 and
-#    cap 24 (lengths 1..6), budget 10,000 at cap 24 (lengths 1..4). Then, before
-#    anything long: verifier, "same as the stored run" at the same cap, and the
-#    test of the counters themselves: a search with no bind at the smaller cap
-#    must be identical at every larger cap that was run (cap_compare).
+# A. pool (control, relator subwords, short words): budget 1,000 (lengths 1..6)
+#    and budget 10,000 (lengths 1..4). Then, before anything long: verifier,
+#    "same as the stored run", and the counters against the earlier runs at
+#    caps 32 and 48, which are only read: a search with no bind at cap 24 must
+#    be identical there (cap_compare). No search is run at another cap.
 # B. the rest: budget 1,000 lengths 7, 8 and inverse words 1..6; budget 10,000
 #    lengths 5..7; ranks 4 and 5; budget 1,000 lengths 9, 10.
 # C. verifier, comparison with the stored results, counter tables, reference
@@ -29,7 +29,7 @@ shutdown -h +$DEADMAN
 B=s3://$BUCKET/$ROOT
 MOD=experiments.stable_ac.rank3
 OUT=/opt/r3/out
-RUNS="b1000_cap20 b1000_cap24 b10000_cap24 rankn"
+RUNS="b1000_cap24 b10000_cap24 rankn"
 T=$(curl -s -X PUT http://169.254.169.254/latest/api/token -H 'X-aws-ec2-metadata-token-ttl-seconds: 600')
 md(){ curl -s -H "X-aws-ec2-metadata-token: $T" http://169.254.169.254/latest/meta-data/$1; }
 putlog(){ aws s3 cp /opt/r3/run.log $B/$P/run.log --only-show-errors; }
@@ -66,7 +66,6 @@ say "tests passed"
 
 OLD=results/stable_ac/rank3_bf       # the committed cap-24 results, no counters
 CTRL=results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b10000.jsonl.gz
-D20=/opt/r3/b1000_cap20
 D1=/opt/r3/b1000_cap24
 D10=/opt/r3/b10000_cap24
 DN=/opt/r3/rankn
@@ -144,42 +143,31 @@ $PY -m $MOD.verify_rank3_bf --dir /opt/r3/pre --recheck 10 --cov-control $CTRL |
 $PY -m $MOD.rankn_bf /opt/r3/pre_rankn $N 0,320 || fail preflight-rankn
 say "preflight verified"
 
-run3 1000 20 $D20 6 0
 run3 1000 24 $D1 6 0
 run3 10000 24 $D10 4 0
-step verify_pool_b1000_cap20 $PY -m $MOD.verify_rank3_bf --dir $D20 --recheck 5 || fail "verify pool cap 20"
 step verify_pool_b1000_cap24 $PY -m $MOD.verify_rank3_bf --dir $D1 --recheck 5 --cov-control $CTRL || fail "verify pool b1000"
 step verify_pool_b10000_cap24 $PY -m $MOD.verify_rank3_bf --dir $D10 --recheck 5 --cov-control $CTRL || fail "verify pool b10000"
-ls -l $D20/*_capcount.npz $D1/*_capcount.npz $D10/*_capcount.npz $D1/*_L[0-9].npz
-for d in $D20 $D1 $D10; do grep -h merged $d/*.log; done
+ls -l $D1/*_capcount.npz $D10/*_capcount.npz $D1/*_L[0-9].npz
+for d in $D1 $D10; do grep -h merged $d/*.log; done
 
 # the same searches as the stored runs
 step same_pool_b1000 $PY -m $MOD.cap_compare --must-match --base $D1 --other $OLD --budget 1000 \
   --out $OUT/same_pool_b1000.json || fail "pool b1000 differs from the stored run"
 step same_pool_b10000 $PY -m $MOD.cap_compare --must-match --base $D10 --other $OLD --budget 10000 \
   --out $OUT/same_pool_b10000.json || fail "pool b10000 differs from the stored run"
-O20=$(old_cap b1000_cap20 b1000_cap20)
 O32=$(old_cap cap32 b1000_cap32)
 O48=$(old_cap cap48 b1000_cap48)
 T32=$(old_cap b10000_cap32 b10000_cap32)
-T48=$(old_cap b10000_cap48 b10000_cap48)
-say "earlier runs found: $O20 $O32 $O48 $T32 $T48"
-if [ -n "$O20" ]; then
-  step same_pool_b1000_cap20 $PY -m $MOD.cap_compare --must-match --base $D20 $O20 --budget 1000 \
-    --out $OUT/same_pool_b1000_cap20.json || fail "pool cap 20 differs from the earlier run"
-fi
-# no bind at the smaller cap => identical at the larger cap
-step bind_b1000_cap20 $PY -m $MOD.cap_compare --base $D20 --other $D1 $O32 $O48 --budget 1000 \
-  --out $OUT/cap_bind_b1000_cap20.json || fail "cap 20: a search with no bind differs at a larger cap"
+say "earlier runs found: $O32 $O48 $T32"
+# no bind at cap 24 => identical at the larger cap
 if [ -n "$O32$O48" ]; then
   step bind_b1000_cap24 $PY -m $MOD.cap_compare --base $D1 $O32 $O48 --budget 1000 \
     --out $OUT/cap_bind_b1000_cap24.json || fail "cap 24: a search with no bind differs at a larger cap"
 fi
-if [ -n "$T32$T48" ]; then
-  step bind_b10000_cap24 $PY -m $MOD.cap_compare --base $D10 $T32 $T48 --budget 10000 \
+if [ -n "$T32" ]; then
+  step bind_b10000_cap24 $PY -m $MOD.cap_compare --base $D10 $T32 --budget 10000 \
     --out $OUT/cap_bind_b10000_cap24.json || fail "cap 24, b10000: a search with no bind differs at a larger cap"
 fi
-tables pool_b1000_cap20 $D20
 tables pool_b1000_cap24 $D1
 tables pool_b10000_cap24 $D10
 push
@@ -214,8 +202,8 @@ AN=$?
 if [ -n "$O32$O48" ]; then
   step bind_b1000_cap24 $PY -m $MOD.cap_compare --base $D1 $O32 $O48 --budget 1000 --out $OUT/cap_bind_b1000_cap24.json
 fi
-if [ -n "$T32$T48" ]; then
-  step bind_b10000_cap24 $PY -m $MOD.cap_compare --base $D10 $T32 $T48 --budget 10000 --out $OUT/cap_bind_b10000_cap24.json
+if [ -n "$T32" ]; then
+  step bind_b10000_cap24 $PY -m $MOD.cap_compare --base $D10 $T32 --budget 10000 --out $OUT/cap_bind_b10000_cap24.json
 fi
 tables b1000_cap24 $D1
 tables b10000_cap24 $D10
