@@ -1,6 +1,6 @@
 """acx.search.fast: step-for-step parity with the spec backend, the cap, the kernels, the speed.
 
-Parity means the same ``solved``, ``pops``, ``path``, ``end``, popped-state
+Parity means the same ``solved``, ``pops``, ``path``, ``end``, ``depth``, popped-state
 ``trace`` and ``PARITY_STATS``. ``PARITY_ROWS`` are 40 MS640 rows at budget
 10,000 under both presets (about 70 s, nearly all of it spec; the four heavy
 rows are marked ``slow``); the ``slow`` set adds every 16th MS640 row (40 rows,
@@ -34,7 +34,7 @@ FULL_ROWS = list(range(0, 640, 16))
 def parity(pres, **kw):
     cfg = SearchConfig(trace=True, **kw)
     a, b = search(pres, cfg), search(pres, cfg.replace(backend="fast"))
-    assert (a.solved, a.pops, a.path, a.end) == (b.solved, b.pops, b.path, b.end)
+    assert (a.solved, a.pops, a.path, a.end, a.depth) == (b.solved, b.pops, b.path, b.end, b.depth)
     assert a.trace == b.trace
     assert {k: a.stats[k] for k in PARITY_STATS} == {k: b.stats[k] for k in PARITY_STATS}
     return b

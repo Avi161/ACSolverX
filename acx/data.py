@@ -12,7 +12,8 @@ number of relators and generators is read (what a method can solve is up to the 
     mine.jsonl   {"id": "AK2", "relators": ["xxYYY", "xyxYXY"], "note": "easy"}     other keys are the meta
 
 A row's id is the one given, else its 0-based position among the file's presentations. A bad line raises
-``ValueError("<file>:<line>: <what is wrong>")``. ``MS`` and ``AK`` build the Miller-Schupp and Akbulut-Kirby families.
+``ValueError("<file>:<line>: <what is wrong>")``, and a file that is not UTF-8 text ``ValueError("<file>: ...")``.
+``MS`` and ``AK`` build the Miller-Schupp and Akbulut-Kirby families.
 """
 import csv
 import gzip
@@ -59,10 +60,16 @@ def path_of(name_or_path, table=DATASETS):
     return name_or_path if os.path.exists(name_or_path) else os.path.join(ROOT, name_or_path)
 
 
+@contextmanager
 def _open(p):
-    """Text file handle of ``p``, gunzipped if it ends in ``.gz``; a leading byte-order mark is dropped."""
+    """Text file handle of ``p``, gunzipped if it ends in ``.gz``; a leading byte-order mark is dropped. A file that
+    is not UTF-8 text raises ``ValueError`` naming it, wherever in the file the bad byte is."""
     opener = gzip.open if p.lower().endswith(".gz") else open
-    return opener(p, "rt", encoding="utf-8-sig", newline="")
+    try:
+        with opener(p, "rt", encoding="utf-8-sig", newline="") as f:
+            yield f
+    except UnicodeDecodeError:
+        raise ValueError(f"{p}: not UTF-8 text (save the file as UTF-8)") from None
 
 
 def _presentation(relators):

@@ -100,6 +100,31 @@ def test_engine_api(ms640):
     assert search(ms640[0], capture_path=False).path is None
 
 
+@pytest.mark.parametrize("cap", [10, None])
+@pytest.mark.parametrize("priority", ["length", "s20_mk2"])
+@pytest.mark.parametrize("pid", [105, 144, 435])
+def test_path_length_is_the_solved_depth_with_or_without_the_path(ms640, pid, priority, cap):
+    """Both backends know the depth of the solved state, which is the number of moves: the same length whether or not
+    the path is kept, None when unsolved. Row 144 at S20_MK2 needs 16 moves at cap 10 and 30 uncapped; row 435 is
+    unsolved at cap 10 and, at LENGTH, uncapped within the budget."""
+    cfg = SearchConfig(priority=priority, cap=cap, budget=120)
+    want = search(ms640[pid], cfg)
+    assert want.path_length == (len(want.path) if want.solved else None)
+    for backend in ("spec", "fast"):
+        for capture_path in (True, False):
+            got = search(ms640[pid], cfg.replace(backend=backend, capture_path=capture_path))
+            assert (got.solved, got.pops, got.path_length) == (want.solved, want.pops, want.path_length)
+            assert got.depth == want.path_length
+            assert (got.path is None) == (not got.solved or not capture_path)
+
+
+@pytest.mark.parametrize("backend", ["spec", "fast"])
+@pytest.mark.parametrize("capture_path", [True, False])
+def test_a_trivial_start_has_path_length_zero_not_none(backend, capture_path):
+    r = search(Presentation.parse("x", "y"), SearchConfig(backend=backend, capture_path=capture_path))
+    assert (r.solved, r.pops, r.path_length) == (True, 1, 0)
+
+
 def test_three_generators():
     r = search(Presentation.parse("xY", "yZ", "zyX"), SearchConfig(budget=200))
     assert r.solved and r.end.n_gen == 3 and r.end.is_trivial()
@@ -116,7 +141,7 @@ def test_a_start_with_det_not_one_is_never_solved(backend):
     """``(X, X)`` is all length 1 but not trivial: the unsolvable start stays unsolved, with or without a path."""
     for kw in ({}, {"capture_path": False}):
         r = search(Presentation.parse("X", "x"), SearchConfig(backend=backend, budget=50, **kw))
-        assert not r.solved and r.path is None and r.end is None
+        assert not r.solved and r.path is None and r.end is None and r.path_length is None
 
 
 @pytest.mark.parametrize("backend", ["spec", "fast"])
