@@ -69,6 +69,13 @@ Every run except the MS640 configs as shipped also sets `workers=4`; `ladder` al
 | CoV (one-shot, length) | 20 | 16 | 5 | 4 | 11 | 12 | 8 | 11 | 4 | 1 | 92 |
 | hybrid | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 19 | 9 | 188 |
 
+- **Regenerated with the cap counters.** All 32 folders of the table and the three rank-n runs were rerun with `--fresh`
+  on the current code. Every record of the 32 (150,492 rows in all: solved, pops or units, S-move and elementary paths,
+  certificates, stage) is identical to the earlier run, except the 11 plain `ac_path` rows of `ms640_aut` (below). The CPU
+  s column keeps the timings of the earlier runs on an idle machine: the reruns shared the 4 cores with other jobs (1.1x
+  to 4x the time) and used 2 workers where the table says 4, so their `row_seconds` are not comparable. Runs split into
+  row slices of the same config to stay under 15 minutes (`ms640_length_spec`, `u124_hybrid`, `ac19_hybrid`,
+  `ac1m_hybrid`, `rank3_bf`) have a `wall_seconds` that is the sum of the slices.
 - **Parity with the original code.** `spec` and `fast` give identical records (solved, pops, S-move path, elementary
   path, and the six cap-counter fields) on all 640 MS640 rows, and the per-row pops and path lengths equal the original `greedy_baseline` / `heuristics`
   reruns (`work/reference/`, 0 mismatches over 1,280 rows); the hybrid's per-row stage and units equal the original
