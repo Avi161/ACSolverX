@@ -1,6 +1,8 @@
 """Rank-4/5 arms (rankn_bf) and the relabeling-class view (class_view)."""
 
+import json
 import math
+import os
 
 import numpy as np
 
@@ -43,6 +45,32 @@ def test_rankn_null_start_is_the_control_and_a_combo_matches_the_reference():
             fast = search_n_fast(s, 300, cap=N.CAP, cyclic=True)
             ref = search_n(s, 300, cap=N.CAP, cyclic=True)
             assert N.triple(fast) == N.triple(ref)
+
+
+def test_rankn_task_and_merge_store_the_cap_counters(tmp_path, monkeypatch):
+    monkeypatch.setattr(N, "OUT", str(tmp_path))
+    monkeypatch.setattr(N, "BUDGET", 150)
+    os.makedirs(tmp_path / "shards")
+    rows = [MS640[0], MS640[320]]
+    for row in rows:
+        N.task((5,) + tuple(row))
+    assert N.merge(5, rows) == []
+    stem = os.path.join(str(tmp_path), f"rankn_bf_ms640_b150_cap{N.CAP}_r5")
+    with np.load(stem + ".npz") as z:
+        caps = np.stack([z[k].astype(np.int64) for k in R.CAP_FIELDS], axis=-1)
+        base_cap, null_cap, cs = z["base_cap"], z["null_cap"], z["combos"]
+    ws, _ = N.combos(5)
+    for i, (p, r1, r2) in enumerate(rows):
+        ref = search_n(Pres(2, (r1, r2)), 150, cap=N.CAP, cyclic=True)
+        assert tuple(base_cap[i]) == N.counters(ref)
+        ref = search_n(N.start(r1, r2, [()] * 3), 150, cap=N.CAP, cyclic=True)
+        assert tuple(null_cap[i]) == N.counters(ref)
+        for c in range(0, len(cs), 29):
+            ref = search_n(N.start(r1, r2, [ws[j] for j in cs[c]]), 150,
+                           cap=N.CAP, cyclic=True)
+            assert tuple(caps[i, c]) == N.counters(ref)
+    with open(stem + "_summary.json") as f:
+        assert json.load(f)["null_cap_counter_mismatch_pres_ids"] == []
 
 
 def test_classes_partition_ms640_and_every_twin_is_that_relabeling():

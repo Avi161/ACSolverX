@@ -9,6 +9,10 @@ Start ``<x, y, z1..zk | r1, r2, Z1.w1, .., Zk.wk>`` for EVERY multiset
 Same search (``search_n_fast``), cap 24 and budget 1,000 as the rank-3 sweep.
 Per presentation the 2-generator control and the null stabilization
 ``Z1, .., Zk`` are searched too; they must agree node for node.
+The cap counters of every search (``run_rank3_bf.CAP_DOC``) are stored beside
+the node counts: ``cap_dropped``, ``cap_dropped_min_total``, ``cap_first_bind``
+indexed ``[presentation, multiset]``, and ``base_cap`` / ``null_cap`` for the
+control and the null stabilization (-1 = none).
 
     python3 rankn_bf.py <out_dir> <workers>
 """
@@ -23,7 +27,7 @@ from multiprocessing import get_context
 import numpy as np
 
 from experiments.stable_ac.rank3 import words as W
-from experiments.stable_ac.rank3.run_rank3_bf import load_ms640
+from experiments.stable_ac.rank3.run_rank3_bf import CAP_DOC, CAP_FIELDS, load_ms640
 from experiments.stable_ac.solvern import Pres, word_to_str
 from experiments.stable_ac.solvern_fast import search_n_fast
 
@@ -53,6 +57,10 @@ def triple(res):
             int(res["path_length"]) if res["solved"] else -1)
 
 
+def counters(res):
+    return tuple(-1 if res[k] is None else int(res[k]) for k in CAP_FIELDS)
+
+
 def sampled(key):
     h = hashlib.md5(key.encode()).digest()
     return int.from_bytes(h[:8], "big") / 2 ** 64 < SAMPLE
@@ -70,14 +78,17 @@ def task(args):
     t0 = time.time()
     ws, cs = combos(rank)
     k = ARMS[rank][0]
-    base = triple(search_n_fast(Pres(2, (tuple(r1), tuple(r2))), BUDGET, cap=CAP, cyclic=True))
-    null = triple(search_n_fast(start(r1, r2, [()] * k), BUDGET, cap=CAP, cyclic=True))
+    res2 = search_n_fast(Pres(2, (tuple(r1), tuple(r2))), BUDGET, cap=CAP, cyclic=True)
+    res0 = search_n_fast(start(r1, r2, [()] * k), BUDGET, cap=CAP, cyclic=True)
+    base, null = triple(res2), triple(res0)
     nodes = np.zeros(len(cs), dtype=np.uint16)
     plen = np.full(len(cs), -1, dtype=np.int16)
+    caps = np.full((len(cs), 3), -1, dtype=np.int64)
     paths = []
     for i, c in enumerate(cs):
         res = search_n_fast(start(r1, r2, [ws[j] for j in c]), BUDGET, cap=CAP, cyclic=True)
         nodes[i] = res["nodes_explored"]
+        caps[i] = counters(res)
         if res["solved"]:
             plen[i] = res["path_length"]
             if sampled(f"{rank}|{p}|{i}"):
@@ -88,6 +99,8 @@ def task(args):
     secs = time.time() - t0
     tmp = path + f".tmp{os.getpid()}.npz"
     np.savez(tmp, nodes=nodes, path_len=plen, base=np.array(base), null=np.array(null),
+             cap_counts=caps, base_cap=np.array(counters(res2)),
+             null_cap=np.array(counters(res0)),
              seconds=np.float32(secs), paths=np.array(json.dumps(paths)))
     os.replace(tmp, path)
     return rank, p, secs
@@ -100,19 +113,28 @@ def merge(rank, rows):
     plen = np.full((len(ids), len(cs)), -1, dtype=np.int16)
     base = np.zeros((len(ids), 3), dtype=np.int32)
     null = np.zeros((len(ids), 3), dtype=np.int32)
+    caps = np.full((len(ids), len(cs), 3), -1, dtype=np.int64)
+    base_cap = np.zeros((len(ids), 3), dtype=np.int64)
+    null_cap = np.zeros((len(ids), 3), dtype=np.int64)
     secs, paths = 0.0, []
     for i, p in enumerate(ids):
         with np.load(shard_path(rank, p)) as z:
             nodes[i], plen[i], base[i], null[i] = z["nodes"], z["path_len"], z["base"], z["null"]
+            caps[i], base_cap[i], null_cap[i] = z["cap_counts"], z["base_cap"], z["null_cap"]
             secs += float(z["seconds"])
             paths += json.loads(str(z["paths"]))
     meta = {"rank": rank, "node_budget": BUDGET, "max_relator_length_cap": CAP,
             "solver": "solvern_fast.search_n_fast", "source": "ms640",
             "extra_generators": ARMS[rank][0], "max_word_len": ARMS[rank][1],
-            "words": [word_to_str(w) for w in ws], "core_seconds": secs}
+            "words": [word_to_str(w) for w in ws], "core_seconds": secs,
+            "cap_fields": CAP_DOC, "base_cap_null_cap_order": list(CAP_FIELDS)}
     stem = os.path.join(OUT, f"rankn_bf_ms640_b{BUDGET}_cap{CAP}_r{rank}")
     np.savez_compressed(stem + ".tmp.npz", pres_ids=np.array(ids), nodes=nodes, path_len=plen,
                         base=base, null=null, combos=np.array(cs, dtype=np.int16),
+                        cap_dropped=np.minimum(caps[:, :, 0], 2 ** 32 - 1).astype(np.uint32),
+                        cap_dropped_min_total=caps[:, :, 1].astype(np.int16),
+                        cap_first_bind=caps[:, :, 2].astype(np.int32),
+                        base_cap=base_cap, null_cap=null_cap,
                         meta=np.array(json.dumps(meta)))
     os.replace(stem + ".tmp.npz", stem + ".npz")
     with open(stem + "_sample_paths.jsonl", "w") as f:
@@ -120,6 +142,11 @@ def merge(rank, rows):
             f.write(json.dumps(row) + "\n")
 
     bad = [ids[i] for i in range(len(ids)) if tuple(base[i]) != tuple(null[i])]
+    # no Z_i shares a letter with r1, r2 or another Z_j: the null stabilization
+    # drops the children the control drops, each k letters longer in total
+    k = ARMS[rank][0]
+    cap_bad = [ids[i] for i in range(len(ids)) if tuple(null_cap[i]) != (
+        base_cap[i, 0], base_cap[i, 1] + (k if base_cap[i, 1] >= 0 else 0), base_cap[i, 2])]
     cs_ok = base[:, 0] == 1
     S = plen >= 0
     faster = S & (nodes < base[:, 1][:, None]) & cs_ok[:, None]
@@ -127,6 +154,10 @@ def merge(rank, rows):
         "rank": rank, "combos_per_presentation": len(cs), "searches": int(S.size),
         "core_seconds": round(secs), "ms_per_search": round(1000 * secs / S.size, 1),
         "null_mismatch_pres_ids": bad,
+        "null_cap_counter_mismatch_pres_ids": cap_bad,
+        "searches_where_the_cap_dropped_a_child": int((caps[:, :, 0] > 0).sum()),
+        "searches_where_the_cap_could_bind": int((caps[:, :, 2] >= 0).sum()),
+        "solved_searches_where_the_cap_could_bind": int(((caps[:, :, 2] >= 0) & (plen >= 0)).sum()),
         "control_solved": int(cs_ok.sum()),
         "mean_solve_rate_per_presentation": round(float(S.mean(axis=1).mean()), 4),
         "mean_solve_rate_on_control_solved": round(float(S[cs_ok].mean()), 4),

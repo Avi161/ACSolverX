@@ -250,7 +250,7 @@ def _children_via_search_n_logic(key, cap, cyclic):
                 continue
             for s in (1, -1):
                 oj = arrs[j] if s == 1 else solvern.inverse_nj(arrs[j])
-                words, lens, k1s, k2s, count = solvern.expand_pair_nj(
+                words, lens, k1s, k2s, count, _, _ = solvern.expand_pair_nj(
                     arrs[i], oj, cap, cyclic)
                 for c in range(count):
                     canon_i = solvern.canonical_word_nj(
@@ -288,7 +288,7 @@ def test_kernel_children_match_search_n_logic_exactly(key, cap):
     """Same children, same packed bytes, same totals, same moves, SAME ORDER —
     the emission order drives the visited-set evolution and min/max crossings."""
     words, lens, n_rel = _to_arrays(key)
-    rows, row_lens, totals, moves, count = expand_node_packed_nj(
+    rows, row_lens, totals, moves, count, _, _ = expand_node_packed_nj(
         words, lens, n_rel, cap, True)
     kernel = [(rows[c, :row_lens[c]].tobytes(), int(totals[c]),
                tuple(int(v) for v in moves[c])) for c in range(count)]
@@ -315,12 +315,96 @@ def test_the_kernel_expander_preserves_abs_det():
         parent = Presentation(n_gen, key)
         d = abs_det(parent)
         words, lens, n_rel = _to_arrays(key)
-        rows, row_lens, totals, moves, count = expand_node_packed_nj(
+        rows, row_lens, totals, moves, count, _, _ = expand_node_packed_nj(
             words, lens, n_rel, 64, True)
         assert count > 0
         for c in range(count):
             child_key = _unpack_key(rows[c, :row_lens[c]].tobytes())
             assert abs_det(Presentation(n_gen, child_key)) == d, key
+
+
+# -- the cap counters ----------------------------------------------------------
+
+
+def test_the_kernel_counts_exactly_the_children_the_cap_leaves_out():
+    """Oracle: the same expansion with no cap. Its children that carry a
+    relator over the cap are the dropped ones; the rest are the emitted ones."""
+    partial = inherited = 0
+    for key in KERNEL_CORPUS:
+        words, lens, n_rel = _to_arrays(key)
+        big = 2 * max(len(r) for r in key) + 1
+        rows, row_lens, totals, _, n_all, none, _ = expand_node_packed_nj(
+            words, lens, n_rel, big, True)
+        assert none == 0
+        children = [(_unpack_key(rows[c, :row_lens[c]].tobytes()), int(totals[c]))
+                    for c in range(n_all)]
+        for cap in range(1, big):
+            over = [t for k, t in children if any(len(r) > cap for r in k)]
+            _, _, _, _, count, n_dropped, min_total = expand_node_packed_nj(
+                words, lens, n_rel, cap, True)
+            assert (count, n_dropped) == (n_all - len(over), len(over)), (key, cap)
+            assert min_total == (min(over) if over else 0), (key, cap)
+            partial += bool(over) and count > 0
+            inherited += sum(len(r) > cap for r in key) >= 2
+    assert partial > 0 and inherited > 0        # both regimes were exercised
+
+
+#: (presentation, the caps to try): the start is under every cap, and the
+#: smallest cap is its longest relator, so children are dropped at once.
+def _cap_cases():
+    cases = []
+    for idx in range(0, 640, 40):
+        for w in ("x", "xy", "yXY", "xyyX", "YYxyx"):
+            p = _nocov(idx, w)
+            longest = max(len(r) for r in p.relators)
+            cases.append((p, [longest, longest + 1, longest + 2, longest + 4]))
+    return cases
+
+
+def test_no_bind_proves_the_search_is_the_same_at_every_larger_cap():
+    """``cap_first_bind is None`` is a proof, so it must hold on every case;
+    the counts at the end say the cases cover all three outcomes."""
+    same = ("solved", "nodes_explored", "path_length", "path_moves")
+    dropped_no_bind = bind_same = bind_differs = 0
+    for pres, caps in _cap_cases():
+        wide = [search_n_fast(pres, 300, cap=c) for c in (caps[-1] + 8, 64)]
+        for cap in caps:
+            r = search_n_fast(pres, 300, cap=cap)
+            assert (r["cap_dropped"] == 0) == (r["cap_dropped_min_total"] is None)
+            if r["cap_dropped"] == 0:
+                assert r["cap_first_bind"] is None
+            differs = any(r[f] != w[f] for w in wide for f in same)
+            if r["cap_first_bind"] is None:
+                assert not differs, (pres, cap)
+                dropped_no_bind += r["cap_dropped"] > 0
+            else:
+                assert 1 < r["cap_first_bind"] <= r["nodes_explored"] + 1
+                bind_differs += differs
+                bind_same += not differs
+    assert dropped_no_bind > 0 and bind_differs > 0, (
+        dropped_no_bind, bind_same, bind_differs)
+
+
+def test_the_cap_counters_agree_with_the_reference_search():
+    seen = set()
+    for pres, caps in _cap_cases()[::7]:
+        for cap in caps[:2]:
+            a = solvern.search_n(pres, 200, cap=cap)
+            b = search_n_fast(pres, 200, cap=cap)
+            assert a == b, (pres, cap)
+            seen.add((a["cap_dropped"] > 0, a["cap_first_bind"] is None))
+    assert (True, False) in seen and len(seen) > 1, seen
+
+
+def test_a_frontier_emptied_by_the_cap_is_reported_as_a_bind():
+    """Both start relators are over the cap, so every child is dropped: the
+    search stops after one pop, and the bind is the pop that never came."""
+    p = Presentation(2, ((1, 2), (2, 1, 1)))
+    for search in (solvern.search_n, search_n_fast):
+        r = search(p, 50, cap=1)
+        assert (r["solved"], r["nodes_explored"]) == (False, 1)
+        assert r["cap_dropped"] > 0 and r["cap_first_bind"] == 2
+        assert r["cap_dropped_min_total"] is not None
 
 
 # -- misc contract properties --------------------------------------------------

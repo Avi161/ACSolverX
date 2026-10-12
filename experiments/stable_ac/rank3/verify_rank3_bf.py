@@ -13,8 +13,14 @@ Checks, on a results directory:
    replayed by ``verify_results`` through the pure-Python spec (legal moves,
    cancelling seams, cap respected, trivial endpoint), and its nodes / path
    length equal the stored arrays.
-4. ``--recheck N``: N stored entries re-run with the reference ``solvern.search_n``
-   (not the fast twin the sweep used) and compared on every stored field.
+4. ``--recheck N``: N stored entries per file re-run with the reference
+   ``solvern.search_n`` (not the fast twin the sweep used) and compared on
+   every stored field, the cap counters included.
+5. cap counters, where a run stored them (``run_rank3_bf.CAP_DOC``): the
+   ``_capcount.npz`` of a length indexes the same searches as its npz, the
+   counters are consistent with each other and with the node counts, the
+   sampled rows repeat them, and the null stabilization drops exactly the
+   children the 2-generator control drops.
 
 CLI (repo root, ``PYTHONPATH=.``):
     python3 -m experiments.stable_ac.rank3.verify_rank3_bf --dir results/stable_ac/rank3_bf
@@ -35,7 +41,8 @@ import numpy as np
 
 from experiments.stable_ac import verify_results
 from experiments.stable_ac.rank3 import words as W
-from experiments.stable_ac.rank3.run_rank3_bf import find_repo_root, load_ms640, rank3
+from experiments.stable_ac.rank3.run_rank3_bf import (
+    CAP_FIELDS, find_repo_root, load_ms640, rank3)
 from experiments.stable_ac.solvern import search_n, str_to_word, word_to_str
 
 
@@ -58,6 +65,42 @@ def plain_copy(path, tmp):
     return out
 
 
+def capcount_path(path):
+    return path[:-len(".npz")] + "_capcount.npz"
+
+
+def _cap_tuple(res):
+    return tuple(-1 if res[k] is None else int(res[k]) for k in CAP_FIELDS)
+
+
+def cap_violations(dropped, dmin, bind, nodes, solved, budget, cap):
+    """Boolean array: searches whose cap counters (-1 = none) cannot be right."""
+    return (((dmin < 0) != (dropped == 0))       # a smallest total iff a drop
+            | ((dropped > 0) & (dmin <= cap))    # a dropped child holds a relator > cap
+            | ((bind >= 0) & ((dropped == 0) | (bind < 2) | (bind > nodes + 1)))
+            # "the pop that never came" only when the frontier ran out
+            | ((bind == nodes + 1) & (solved | (nodes >= budget)))
+            | (~solved & (nodes < budget) & (dropped > 0) & (bind < 0)))
+
+
+def check_cap_rows(label, rows, prefix, fail):
+    """The cap counters stored as json fields ``<prefix>cap_*``, if any."""
+    if not rows or prefix + "cap_dropped" not in rows[0]:
+        return
+    dropped, dmin, bind = (
+        np.array([-1 if r[prefix + k] is None else r[prefix + k] for r in rows],
+                 dtype=np.int64) for k in CAP_FIELDS)
+    nodes = np.array([r[prefix + "nodes" if prefix else "nodes_explored"]
+                      for r in rows], dtype=np.int64)
+    solved = np.array([bool(r[prefix + "solved"]) for r in rows])
+    bad = cap_violations(dropped, dmin, bind, nodes, solved,
+                         rows[0]["node_budget"], rows[0]["max_relator_length_cap"])
+    if bad.any():
+        fail(f"{label}: {int(bad.sum())} rows with inconsistent cap counters")
+    print(f"  {label}: the cap dropped a child in {int((dropped > 0).sum())} of "
+          f"{len(rows)} searches, could bind in {int((bind >= 0).sum())}")
+
+
 def check_control(path, cov_control, dataset, fail):
     rows = _rows(path)
     ms = {p: (word_to_str(r1), word_to_str(r2)) for p, r1, r2 in load_ms640(dataset)}
@@ -74,6 +117,17 @@ def check_control(path, cov_control, dataset, fail):
             fail(f"control pres {r['pres_id']}: 2-gen/port/null disagree")
     print(f"{path}: {len(rows)} presentations, "
           f"{sum(r['solved'] for r in rows)} solved; 3-way agreement checked")
+    if rows and "n2_cap_dropped" in rows[0]:
+        for r in rows:
+            # Z shares no letter with r1, r2: the same children are dropped,
+            # each one letter longer in total
+            two = _cap_tuple({k: r["n2_" + k] for k in CAP_FIELDS})
+            nul = _cap_tuple({k: r["null_" + k] for k in CAP_FIELDS})
+            if nul != (two[0], two[1] + (two[1] >= 0), two[2]):
+                fail(f"control pres {r['pres_id']}: cap counters of the null "
+                     f"stabilization {nul} do not follow the control's {two}")
+        check_cap_rows("rank-n code on 2 generators", rows, "n2_", fail)
+        check_cap_rows("third relator Z", rows, "null_", fail)
     if cov_control:
         mine = {r["pres_id"]: r for r in rows}
         n = 0
@@ -149,6 +203,63 @@ def check_sample(base, meta, nodes, plen, pres_ids, fail):
     return len(rows)
 
 
+def check_capcount(path, meta, nodes, plen, pres_ids, fail):
+    """The cap counters of one length: same searches as the npz, consistent."""
+    cpath = capcount_path(path)
+    if not os.path.exists(cpath):
+        return
+    with np.load(path) as z, np.load(cpath) as c:
+        same = all(z[k].shape == c[k].shape and bool((z[k] == c[k]).all())
+                   for k in ("pres_ids", "words"))
+        dropped, dmin, bind = (c[k].astype(np.int64) for k in CAP_FIELDS)
+        cmeta = json.loads(str(c["meta"]))
+    if (not same or dropped.shape != nodes.shape or dmin.shape != nodes.shape
+            or bind.shape != nodes.shape
+            or any(cmeta.get(k) != meta.get(k) for k in (
+                "source", "node_budget", "max_relator_length_cap", "z_len",
+                "side", "commit"))):
+        fail(f"{cpath}: not the counters of {path}")
+        return
+    bad = cap_violations(dropped, dmin, bind, nodes.astype(np.int64), plen >= 0,
+                         meta["node_budget"], meta["max_relator_length_cap"])
+    if bad.any():
+        fail(f"{cpath}: {int(bad.sum())} searches with inconsistent cap counters")
+    spath = path[:-len(".npz")] + "_sample.jsonl"
+    at = {int(p): i for i, p in enumerate(pres_ids)}
+    for r in _rows(spath) if os.path.exists(spath) else []:
+        i, k = at[r["pres_id"]], r["word_index"]
+        if "cap_dropped" not in r or _cap_tuple(r) != (
+                int(dropped[i, k]), int(dmin[i, k]), int(bind[i, k])):
+            fail(f"{spath}: pres {r['pres_id']} word {r['z_word']}: cap "
+                 f"counters disagree with {cpath}")
+    print(f"  cap counters: a child dropped in {int((dropped > 0).sum())} of "
+          f"{dropped.size} searches, could bind in {int((bind >= 0).sum())}")
+
+
+def recheck_rows(paths, k, seed, fail):
+    """k rows of each relator-subword file against the reference search."""
+    rng = random.Random(seed)
+    n = 0
+    for path in paths:
+        rows = _rows(path)
+        for r in rng.sample(rows, min(k, len(rows))):
+            res = search_n(rank3(str_to_word(r["r1"]), str_to_word(r["r2"]),
+                                 str_to_word(r["z_word"])), r["node_budget"],
+                           cap=r["max_relator_length_cap"], cyclic=True)
+            got = (bool(res["solved"]), res["nodes_explored"],
+                   res["path_length"] if res["solved"] else None)
+            want = (r["solved"], r["nodes_explored"], r["path_length"])
+            if "cap_dropped" in r:
+                got += _cap_tuple(res)
+                want += _cap_tuple(r)
+            if got != want:
+                fail(f"{path}: pres {r['pres_id']} word {r['z_word']}: "
+                     f"reference search gives {got}, stored {want}")
+            n += 1
+    print(f"recheck: {n} relator-subword rows re-run with the reference "
+          f"solvern.search_n")
+
+
 def recheck(npz_paths, dataset, k, seed, fail):
     pres = {p: (r1, r2) for p, r1, r2 in load_ms640(dataset)}
     rng = random.Random(seed)
@@ -158,6 +269,10 @@ def recheck(npz_paths, dataset, k, seed, fail):
             meta = json.loads(str(z["meta"]))
             nodes, plen, mint = z["nodes"], z["path_len"], z["min_total"]
             words, pres_ids = z["words"], z["pres_ids"]
+        caps = None
+        if os.path.exists(capcount_path(path)):
+            with np.load(capcount_path(path)) as c:
+                caps = [c[f] for f in CAP_FIELDS]
         for _ in range(k):
             i, j = rng.randrange(nodes.shape[0]), rng.randrange(nodes.shape[1])
             r1, r2 = pres[int(pres_ids[i])]
@@ -167,9 +282,13 @@ def recheck(npz_paths, dataset, k, seed, fail):
             got = (res["nodes_explored"],
                    res["path_length"] if res["solved"] else -1,
                    min(res["min_relator_length"], 255))
-            if got != (int(nodes[i, j]), int(plen[i, j]), int(mint[i, j])):
+            want = (int(nodes[i, j]), int(plen[i, j]), int(mint[i, j]))
+            if caps is not None:
+                got += _cap_tuple(res)
+                want += tuple(int(a[i, j]) for a in caps)
+            if got != want:
                 fail(f"{path}: pres {int(pres_ids[i])} word {words[j]}: "
-                     f"reference search gives {got}")
+                     f"reference search gives {got}, stored {want}")
             n += 1
     print(f"recheck: {n} entries re-run with the reference solvern.search_n")
 
@@ -195,12 +314,15 @@ def main(argv=None):
 
     for path in sorted(glob.glob(os.path.join(d, "*_control.jsonl"))):
         check_control(path, cov_control, a.dataset, fail)
-    npzs = sorted(glob.glob(os.path.join(d, "*_L*.npz")))
+    npzs = sorted(p for p in glob.glob(os.path.join(d, "*_L*.npz"))
+                  if not p.endswith("_capcount.npz"))
     n_cert = 0
+    subs = []
     for path in npzs:
         meta, nodes, plen, pres_ids = check_npz(path, fail)
         n_cert += check_sample(path[:-len(".npz")], meta, nodes, plen,
                                pres_ids, fail)
+        check_capcount(path, meta, nodes, plen, pres_ids, fail)
     with tempfile.TemporaryDirectory(dir=d) as tmp:
         for path in sorted(glob.glob(os.path.join(d, "*_relsub.jsonl*"))):
             if path.endswith(".gz"):
@@ -215,8 +337,11 @@ def main(argv=None):
             n_cert += n_solved
             print(f"{path}: {n_rows} rows, {n_solved} solved, "
                   f"{len(fs)} failed to replay")
+            check_cap_rows("relator subwords", _rows(path), "", fail)
+            subs.append(path)
     if a.recheck:
         recheck(npzs, a.dataset, a.recheck, a.seed, fail)
+        recheck_rows(subs, a.recheck, a.seed, fail)
     if failures:
         print(f"\n{len(failures)} FAILURES")
         return 1

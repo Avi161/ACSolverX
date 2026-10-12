@@ -23,6 +23,11 @@ Paths are kept for a deterministic sample of the solved rows (md5 of the row
 key), written in the nocov row format so ``verify_results`` replays them
 through the pure-Python spec.
 
+Every search also stores the three cap counters of ``search_n`` (``CAP_DOC``):
+as fields of the json rows (control ``n2_*`` / ``null_*``, relator subwords,
+path samples) and, for the word arrays, in ``<stem>_L<n>_capcount.npz`` beside
+each ``<stem>_L<n>.npz`` (same ``[presentation, word]`` index).
+
 CLI (from the repo root, ``PYTHONPATH=.``):
     python3 -m experiments.stable_ac.rank3.run_rank3_bf --budget 1000 --max-len 8
 """
@@ -47,6 +52,21 @@ OUT_DIR = "results/stable_ac/rank3_bf"
 CAP = 24                    # the 2-generator control's per-relator cap
 FAMILY_TAG = "allred_foldinv"
 SOLVER = "solvern_fast.search_n_fast"
+CAP_FIELDS = ("cap_dropped", "cap_dropped_min_total", "cap_first_bind")
+CAP_DOC = (
+    "cap_dropped: children not pushed because one of their relators is longer "
+    "than the cap (one per move). cap_dropped_min_total: smallest total length "
+    "among them (none: null in json, -1 in arrays). cap_first_bind: number of "
+    "the first pop (1 = the start) at which a child dropped earlier had a heap "
+    "key (total length, depth) no larger than the popped state's (never: null "
+    "in json, -1 in arrays); never means the search is the same at every "
+    "larger cap.")
+
+
+def cap_counters(res, prefix=""):
+    """The cap counters of a search result as json fields (None stays None)."""
+    return {prefix + k: None if res[k] is None else int(res[k])
+            for k in CAP_FIELDS}
 
 
 def find_repo_root(start):
@@ -147,6 +167,7 @@ def control_task(args):
         "n2_path_length": pl(n2),
         "null_solved": bool(n3["solved"]), "null_nodes": int(n3["nodes_explored"]),
         "null_path_length": pl(n3),
+        **cap_counters(n2, "n2_"), **cap_counters(n3, "null_"),
     }
 
 
@@ -165,6 +186,9 @@ def block_task(args):
     nodes = np.zeros(len(ws), dtype=np.uint16)
     plen = np.full(len(ws), -1, dtype=np.int16)
     mint = np.zeros(len(ws), dtype=np.uint8)
+    dropped = np.zeros(len(ws), dtype=np.uint32)
+    dmin = np.full(len(ws), -1, dtype=np.int16)
+    bind = np.full(len(ws), -1, dtype=np.int32)
     paths = []
     t0 = time.time()
     for k, w in enumerate(ws):
@@ -173,16 +197,24 @@ def block_task(args):
         res = search_n_fast(rank3(r1, r2, w), budget, cap=cap, cyclic=True)
         nodes[k] = res["nodes_explored"]
         mint[k] = min(res["min_relator_length"], 255)
+        dropped[k] = min(res["cap_dropped"], 2 ** 32 - 1)
+        if res["cap_dropped_min_total"] is not None:
+            dmin[k] = min(res["cap_dropped_min_total"], 32767)
+        if res["cap_first_bind"] is not None:
+            bind[k] = res["cap_first_bind"]
         if res["solved"]:
             plen[k] = res["path_length"]
             ws_ = word_to_str(w)
             if sampled(pres_id, ws_, frac):
                 paths.append({"pres_id": pres_id, "z_word": ws_, "index": lo + k,
                               "nodes_explored": int(nodes[k]),
-                              "path_moves": list(res["path_moves"])})
+                              "path_moves": list(res["path_moves"]),
+                              **cap_counters(res)})
     secs = time.time() - t0
     tmp = shard + f".tmp{os.getpid()}.npz"
     np.savez(tmp, nodes=nodes, path_len=plen, min_total=mint,
+             cap_dropped=dropped, cap_dropped_min_total=dmin,
+             cap_first_bind=bind,
              seconds=np.float32(secs), paths=_paths_json(paths),
              ident=np.array(ident))
     os.replace(tmp, shard)
@@ -209,6 +241,7 @@ def sub_task(args):
             nodes_explored=int(res["nodes_explored"]),
             path_length=res["path_length"] if res["solved"] else None,
             min_total_length=int(res["min_relator_length"]),
+            **cap_counters(res),
             time_seconds=round(time.time() - t0, 4)))
         if res["solved"]:
             paths.append(dict(ident, path_moves=list(res["path_moves"])))
@@ -278,6 +311,9 @@ def merge_length(n, side, rows, a, out_dir, shard_dir, meta, say):
     nodes = np.zeros((len(rows), nw), dtype=np.uint16)
     plen = np.full((len(rows), nw), -1, dtype=np.int16)
     mint = np.zeros((len(rows), nw), dtype=np.uint8)
+    dropped = np.zeros((len(rows), nw), dtype=np.uint32)
+    dmin = np.full((len(rows), nw), -1, dtype=np.int16)
+    bind = np.full((len(rows), nw), -1, dtype=np.int32)
     secs = np.zeros((len(rows), nb), dtype=np.float32)
     sample, used = [], []
     ws = W.words_of_length(n)
@@ -292,6 +328,9 @@ def merge_length(n, side, rows, a, out_dir, shard_dir, meta, say):
                 nodes[i, lo:hi] = z["nodes"]
                 plen[i, lo:hi] = z["path_len"]
                 mint[i, lo:hi] = z["min_total"]
+                dropped[i, lo:hi] = z["cap_dropped"]
+                dmin[i, lo:hi] = z["cap_dropped_min_total"]
+                bind[i, lo:hi] = z["cap_first_bind"]
                 secs[i, b] = float(z["seconds"])
                 paths = json.loads(str(z["paths"]))
             used.append(shard)
@@ -310,15 +349,25 @@ def merge_length(n, side, rows, a, out_dir, shard_dir, meta, say):
                 node_budget=a.budget, max_relator_length_cap=a.cap,
                 cyclic_reduce=True, solved=True,
                 nodes_explored=p["nodes_explored"],
-                path_length=len(p["path_moves"])), separators=(",", ":")) + "\n")
+                path_length=len(p["path_moves"]),
+                **{k: p[k] for k in CAP_FIELDS}), separators=(",", ":")) + "\n")
             g.write(json.dumps(dict(ident, path_moves=p["path_moves"]),
                                separators=(",", ":")) + "\n")
+    pres_ids = np.array([p for p, _, _ in rows], dtype=np.int32)
+    words = np.array([word_to_str(W.inverse(w) if side == "inv" else w)
+                      for w in ws])
+    # the counters first: a merged length always has both files
+    tmp = base + "_capcount.tmp.npz"
+    np.savez_compressed(
+        tmp, cap_dropped=dropped, cap_dropped_min_total=dmin,
+        cap_first_bind=bind, pres_ids=pres_ids, words=words,
+        meta=np.array(json.dumps(dict(meta, z_len=n, side=side, n_words=nw,
+                                      fields=CAP_DOC))))
+    os.replace(tmp, base + "_capcount.npz")
     tmp = base + ".tmp.npz"
     np.savez_compressed(
         tmp, nodes=nodes, path_len=plen, min_total=mint, block_seconds=secs,
-        pres_ids=np.array([p for p, _, _ in rows], dtype=np.int32),
-        words=np.array([word_to_str(W.inverse(w) if side == "inv" else w)
-                        for w in ws]),
+        pres_ids=pres_ids, words=words,
         meta=np.array(json.dumps(dict(meta, z_len=n, side=side,
                                       n_words=nw, n_sample=len(sample)))))
     os.replace(tmp, base + ".npz")
@@ -332,6 +381,8 @@ def merge_length(n, side, rows, a, out_dir, shard_dir, meta, say):
     n_solved = int((plen >= 0).sum())
     say(f"merged L{n}{suffix}: {nodes.size} searches, {n_solved} solved "
         f"({100 * n_solved / nodes.size:.2f}%), {len(sample)} sampled paths, "
+        f"cap dropped a child in {int((dropped > 0).sum())}, "
+        f"could bind in {int((bind >= 0).sum())}, "
         f"core-seconds {float(secs.sum()):.0f} -> {base}.npz")
 
 

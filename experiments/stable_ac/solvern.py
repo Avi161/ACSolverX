@@ -141,8 +141,10 @@ def canonical_word_nj(w):
 def expand_pair_nj(ri, oj, cap, cyclic):
     """Every seam-cancelling ``rot_k1(ri) . rot_k2(oj)``, reduced, cap-filtered.
 
-    Returns ``(words, lens, k1s, k2s, count)``; child ``c`` is the reduced new
-    target relator ``words[c, :lens[c]]`` produced by rotations ``k1s[c], k2s[c]``.
+    Returns ``(words, lens, k1s, k2s, count, n_dropped, min_dropped)``; child
+    ``c`` is the reduced new target relator ``words[c, :lens[c]]`` produced by
+    rotations ``k1s[c], k2s[c]``. ``n_dropped`` candidates were longer than
+    ``cap`` and left out; ``min_dropped`` is the shortest of them (0 if none).
     Only per-relator cap applies (no total-length cap). Follows the baseline
     ``expand_node_nj`` efficiency pattern: rotations of ``oj`` are hoisted out of
     the ``k1`` loop, and only matching (k1, k2) seams are concatenated.
@@ -155,8 +157,10 @@ def expand_pair_nj(ri, oj, cap, cyclic):
     k1s = np.empty(ub, dtype=np.int64)
     k2s = np.empty(ub, dtype=np.int64)
     count = 0
+    n_dropped = 0
+    min_dropped = 0
     if len_i == 0 or len_o == 0:
-        return words, lens, k1s, k2s, count
+        return words, lens, k1s, k2s, count, n_dropped, min_dropped
 
     rots_o = [np.roll(oj, k2) for k2 in range(len_o)]
     for k1 in range(len_i):
@@ -170,6 +174,9 @@ def expand_pair_nj(ri, oj, cap, cyclic):
             red = reduce_word_nj(piece, cyclic)
             lr = len(red)
             if lr > cap:
+                if n_dropped == 0 or lr < min_dropped:
+                    min_dropped = lr
+                n_dropped += 1
                 continue
             for t in range(lr):
                 words[count, t] = red[t]
@@ -177,7 +184,7 @@ def expand_pair_nj(ri, oj, cap, cyclic):
             k1s[count] = k1
             k2s[count] = k2
             count += 1
-    return words, lens, k1s, k2s, count
+    return words, lens, k1s, k2s, count, n_dropped, min_dropped
 
 
 # ---------------------------------------------------------------------------
@@ -332,6 +339,21 @@ def search_n(pres, budget, cap=64, cyclic=True, progress=None):
     1024 pops, terminate when every relator has length 1, expand i->j->s->k1->k2
     (j != i, empty relators skipped), first-time-seen children pushed at
     depth+1, and min/max stats updated by FIRST-CROSSING during iteration.
+
+    Three fields say whether the cap could have changed the search:
+    ``cap_dropped`` counts the children that were not pushed because one of
+    their relators is longer than ``cap`` (one per move, so a state reached by
+    two moves counts twice); ``cap_dropped_min_total`` is the smallest total
+    length among them (None if none); ``cap_first_bind`` is the number of the
+    first pop (1 = the start) at which a child dropped earlier had a heap key
+    ``(total, depth)`` no larger than the popped state's, None if that never
+    happened. The heap only ever holds pushed states, so while no dropped child
+    could have been the minimum the search is pop for pop the search without
+    a cap: ``cap_first_bind is None`` proves the same solved flag, node count
+    and path at every larger cap. The comparison ignores the last tiebreak
+    (the state bytes), so a bind means "possibly different", not "different".
+    If the frontier runs out before the budget with children dropped, the
+    bind is the pop that would have come next.
     """
     n_gen = pres.n_gen
     n_rel = len(tuple(pres.relators))
@@ -346,11 +368,18 @@ def search_n(pres, budget, cap=64, cyclic=True, progress=None):
     min_key = max_key = max_expanded_key = init_key
     min_total = max_total = max_expanded_total = init_total
 
+    cap_dropped = 0
+    drop_key = None         # smallest (total, depth) of a child the cap dropped
+    cap_first_bind = None
+
     nodes = 0
     solved_key = None
     while pq and nodes < budget:
         total, depth, _tb, key = heappop(pq)
         nodes += 1
+        if (cap_first_bind is None and drop_key is not None
+                and drop_key <= (total, depth)):
+            cap_first_bind = nodes
         if progress is not None and nodes % _HB_CHECK_EVERY == 0:
             progress(nodes)
         if total > max_expanded_total:
@@ -365,23 +394,33 @@ def search_n(pres, budget, cap=64, cyclic=True, progress=None):
         # inherited ones included. An inherited relator is over-cap iff the
         # parent carries an over-cap relator other than the target (only the
         # start state can — every pushed child is fully cap-filtered), so the
-        # check hoists to one guard per target instead of one per child.
+        # check hoists to one guard per target instead of one per child. Such
+        # a target pushes nothing; its children are still enumerated (without
+        # a cap) so that the cap counters see them.
         over = [len(r) > cap for r in key]
         n_over = sum(over)
         depth1 = depth + 1
         for i in range(n_rel):
             if len(key[i]) == 0:
                 continue
-            if n_over - over[i] > 0:
-                continue
+            inherits = n_over - over[i] > 0
             ri = arrs[i]
             for j in range(n_rel):
                 if j == i or len(key[j]) == 0:
                     continue
                 for s in (1, -1):
                     oj = arrs[j] if s == 1 else inverse_nj(arrs[j])
-                    words, lens, k1s, k2s, count = expand_pair_nj(
-                        ri, oj, cap, cyclic)
+                    words, lens, k1s, k2s, count, n_drop, min_drop = expand_pair_nj(
+                        ri, oj, len(ri) + len(oj) if inherits else cap, cyclic)
+                    if inherits:
+                        n_drop = count
+                        min_drop = int(lens[:count].min()) if count else 0
+                        count = 0
+                    if n_drop:
+                        cap_dropped += int(n_drop)
+                        dk = (total - len(ri) + int(min_drop), depth1)
+                        if drop_key is None or dk < drop_key:
+                            drop_key = dk
                     for c in range(count):
                         lc = lens[c]
                         canon_i = canonical_word_nj(words[c, :lc].copy())
@@ -399,6 +438,10 @@ def search_n(pres, budget, cap=64, cyclic=True, progress=None):
                         elif ctotal > max_total:
                             max_key, max_total = ckey, ctotal
                         heappush(pq, (ctotal, depth1, _tiebreak(ckey), ckey))
+
+    if (cap_first_bind is None and solved_key is None and nodes < budget
+            and cap_dropped):
+        cap_first_bind = nodes + 1
 
     path_words, path_moves = [], []
     if solved_key is not None:
@@ -424,4 +467,7 @@ def search_n(pres, budget, cap=64, cyclic=True, progress=None):
         "path": [tuple(word_to_str(r) for r in st) for st in path_words],
         "path_words": path_words,
         "path_moves": [move_to_str(m) for m in path_moves],
+        "cap_dropped": cap_dropped,
+        "cap_dropped_min_total": None if drop_key is None else drop_key[0],
+        "cap_first_bind": cap_first_bind,
     }

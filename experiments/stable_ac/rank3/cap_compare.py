@@ -12,6 +12,13 @@ Searches are matched by presentation id and word, never by position alone.
 Equal node counts and path lengths mean the two caps gave the same result.
 They do not mean the smaller cap dropped nothing: a dropped child that the
 larger cap never popped leaves no trace in either result.
+
+Where the run at the smaller cap stored the cap counters
+(``run_rank3_bf.CAP_DOC``), the comparison also tests them: a search with no
+bind at the smaller cap (``cap_first_bind`` empty) must be identical at the
+larger one. ``differ_without_bind`` counts the searches that break this; any
+makes the exit code 1. ``--must-match`` also fails on any difference at all
+(two runs of the same cap).
 """
 import argparse
 import glob
@@ -19,6 +26,7 @@ import gzip
 import json
 import os
 import re
+import sys
 
 import numpy as np
 
@@ -33,9 +41,13 @@ def _rows(path):
         return [json.loads(line) for line in f if line.strip()]
 
 
-def _count(sb, so, nb, no, pb, po):
-    """Counts from aligned arrays: solved (bool), nodes, path length (-1 unsolved)."""
+def _count(sb, so, nb, no, pb, po, bind=None):
+    """Counts from aligned arrays: solved (bool), nodes, path length (-1 unsolved).
+
+    ``bind``: True where the search at the smaller cap has a ``cap_first_bind``
+    (None: that run stored no counters, or the caps are equal)."""
     both = sb & so
+    differ = (sb != so) | (nb != no) | (pb != po)
     return {"searches": int(sb.size), "solved_base": int(sb.sum()),
             "solved_other": int(so.sum()),
             "solved_only_base": int((sb & ~so).sum()),
@@ -44,7 +56,11 @@ def _count(sb, so, nb, no, pb, po):
             "path_length_differs": int((pb != po).sum()),
             "both_solved_fewer_nodes_other": int((both & (no < nb)).sum()),
             "both_solved_more_nodes_other": int((both & (no > nb)).sum()),
-            "largest_node_difference": int(np.abs(nb - no).max()) if sb.size else 0}
+            "largest_node_difference": int(np.abs(nb - no).max()) if sb.size else 0,
+            "differ": int(differ.sum()),
+            "bind_at_smaller_cap": None if bind is None else int(bind.sum()),
+            "differ_without_bind": None if bind is None
+            else int((differ & ~bind).sum())}
 
 
 def _jsonl_arrays(path, key, prefix=""):
@@ -60,21 +76,38 @@ def _jsonl_arrays(path, key, prefix=""):
                   else rows[k][prefix + "path_length"] for k in ks], dtype=np.int64))
 
 
-def compare_jsonl(pb, po, key, prefix=""):
+def compare_jsonl(pb, po, key, prefix="", small=None, cap_prefix=""):
+    """``small``: "base" or "other", the side run at the smaller cap (None:
+    equal caps); its rows keep their cap counters under ``cap_prefix``."""
     rb, fb = _jsonl_arrays(pb, key, prefix)
     ro, fo = _jsonl_arrays(po, key, prefix)
     if set(rb) != set(ro):
         raise SystemExit(f"{pb} and {po}: different searches "
                          f"({len(set(rb) ^ set(ro))} keys on one side only)")
     ks = sorted(rb)
-    return _from_triples(fb(ks), fo(ks))
+    bind = None
+    rows = {"base": rb, "other": ro}.get(small)
+    if rows and cap_prefix + "cap_first_bind" in rows[ks[0]]:
+        bind = np.array([rows[k][cap_prefix + "cap_first_bind"] is not None
+                         for k in ks])
+    return _from_triples(fb(ks), fo(ks), bind)
 
 
-def _from_triples(b, o):
-    return _count(b[0], o[0], b[1], o[1], b[2], o[2])
+def _from_triples(b, o, bind=None):
+    return _count(b[0], o[0], b[1], o[1], b[2], o[2], bind)
 
 
-def compare_npz(pb, po):
+def _total(counts):
+    """Sum of the counts of several files (None where a file has none)."""
+    out = {}
+    for k in counts[0]:
+        vals = [c[k] for c in counts]
+        out[k] = None if None in vals else (
+            max if k == "largest_node_difference" else sum)(vals)
+    return out
+
+
+def compare_npz(pb, po, small=None):
     with np.load(pb) as zb, np.load(po) as zo:
         for k in ("pres_ids", "words"):
             if zb[k].shape != zo[k].shape or (zb[k] != zo[k]).any():
@@ -84,7 +117,12 @@ def compare_npz(pb, po):
     if nb.shape != no.shape:
         raise SystemExit(f"{pb} and {po}: shapes differ")
     lb, lo = np.where(lb < 0, -1, lb), np.where(lo < 0, -1, lo)
-    return _from_triples((lb >= 0, nb, lb), (lo >= 0, no, lo))
+    bind = None
+    side = {"base": pb, "other": po}.get(small, "")[:-len(".npz")] + "_capcount.npz"
+    if small and os.path.exists(side):
+        with np.load(side) as z:
+            bind = z["cap_first_bind"] >= 0
+    return _from_triples((lb >= 0, nb, lb), (lo >= 0, no, lo), bind)
 
 
 def _find(directory, budget, tail):
@@ -107,6 +145,8 @@ def main(argv=None):
     ap.add_argument("--other", action="append", required=True)
     ap.add_argument("--budget", type=int, required=True)
     ap.add_argument("--out", required=True, help="json path; a .md table is written beside it")
+    ap.add_argument("--must-match", action="store_true",
+                    help="exit 1 if any search differs")
     a = ap.parse_args(argv)
 
     control = _find(a.base, a.budget, "_control.jsonl")
@@ -119,14 +159,18 @@ def main(argv=None):
     for other in a.other:
         oc = _find(other, a.budget, "_control.jsonl")
         cap = _cap_of(oc)
+        small = "base" if base_cap < cap else "other" if cap < base_cap else None
         by_pres = lambda r: r["pres_id"]
-        rows = [("control, 2 generators", compare_jsonl(control, oc, by_pres)),
+        # the 2-generator greedy stores no counters: the rank-n code's are its own
+        rows = [("control, 2 generators",
+                 compare_jsonl(control, oc, by_pres, "", small, "n2_")),
                 ("control, rank-n code on 2 generators",
-                 compare_jsonl(control, oc, by_pres, "n2_")),
-                ("control, third relator Z", compare_jsonl(control, oc, by_pres, "null_")),
+                 compare_jsonl(control, oc, by_pres, "n2_", small, "n2_")),
+                ("control, third relator Z",
+                 compare_jsonl(control, oc, by_pres, "null_", small, "null_")),
                 ("relator subwords", compare_jsonl(
                     relsub, _find(other, a.budget, "_relsub.jsonl"),
-                    lambda r: (r["pres_id"], r["z_word"])))]
+                    lambda r: (r["pres_id"], r["z_word"]), "", small))]
         missing = []
         for n in lengths:
             try:
@@ -135,12 +179,10 @@ def main(argv=None):
                 missing.append(n)
                 continue
             rows.append((f"words of length {n}",
-                         compare_npz(_find(a.base, a.budget, f"_L{n}.npz"), po)))
+                         compare_npz(_find(a.base, a.budget, f"_L{n}.npz"), po, small)))
         words = [c for k, c in rows if k.startswith("words of length")]
         if words:
-            rows.append(("all word lengths compared",
-                         {k: (max if k == "largest_node_difference" else sum)(c[k] for c in words)
-                          for k in words[0]}))
+            rows.append(("all word lengths compared", _total(words)))
         out["comparisons"].append({
             "cap": cap, "dir": other, "word_lengths_not_in_other": missing,
             "rows": [dict(c, kind=k) for k, c in rows]})
@@ -155,17 +197,24 @@ def main(argv=None):
                f"| searches | number | solved at {base_cap} | solved at {c['cap']} | "
                f"only at {base_cap} | only at {c['cap']} | node count differs | "
                f"path length differs | both solved, fewer nodes at {c['cap']} | "
-               f"both solved, more nodes at {c['cap']} | largest node difference |",
-               "|---|---|---|---|---|---|---|---|---|---|---|"]
+               f"both solved, more nodes at {c['cap']} | largest node difference | "
+               f"differ at all | bind at cap {min(base_cap, c['cap'])} | "
+               f"differ with no bind |",
+               "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for r in c["rows"]:
             md.append(f"| {r['kind']} | " + " | ".join(f"{r[k]:,}" for k in KEYS)
-                      + f" | {r['largest_node_difference']:,} |")
+                      + f" | {r['largest_node_difference']:,} | {r['differ']:,} | "
+                      + " | ".join("" if r[k] is None else f"{r[k]:,}" for k in (
+                          "bind_at_smaller_cap", "differ_without_bind")) + " |")
             if r["kind"] in ("relator subwords", "all word lengths compared", "control, 2 generators"):
                 print(f"b{a.budget} cap {base_cap} vs {c['cap']}: {r['kind']}: "
                       f"{r['searches']:,} searches, solved {r['solved_base']:,} vs "
                       f"{r['solved_other']:,}, only-base {r['solved_only_base']:,}, "
                       f"only-other {r['solved_only_other']:,}, nodes differ "
-                      f"{r['nodes_differ']:,}, path differs {r['path_length_differs']:,}")
+                      f"{r['nodes_differ']:,}, path differs {r['path_length_differs']:,}, "
+                      f"differ {r['differ']:,}, bind at the smaller cap "
+                      f"{r['bind_at_smaller_cap']}, differ with no bind "
+                      f"{r['differ_without_bind']}")
         if c["word_lengths_not_in_other"]:
             md.append("")
             md.append(f"Word lengths not run at cap {c['cap']}: "
@@ -174,7 +223,18 @@ def main(argv=None):
     with open(os.path.splitext(a.out)[0] + ".md", "w") as f:
         f.write("\n".join(md))
     print(a.out)
+    single = [r for c in out["comparisons"] for r in c["rows"]
+              if r["kind"] != "all word lengths compared"]
+    unsound = sum(r["differ_without_bind"] or 0 for r in single)
+    differ = sum(r["differ"] for r in single)
+    if unsound:
+        print(f"FAIL: {unsound:,} searches differ with no bind at the smaller cap")
+        return 1
+    if a.must_match and differ:
+        print(f"FAIL: {differ:,} searches differ")
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

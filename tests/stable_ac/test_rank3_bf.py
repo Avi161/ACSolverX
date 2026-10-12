@@ -12,7 +12,7 @@ from experiments.stable_ac.cov import cov_all
 from experiments.stable_ac.rank3 import run_rank3_bf as R
 from experiments.stable_ac.rank3 import verify_rank3_bf as V
 from experiments.stable_ac.rank3 import words as W
-from experiments.stable_ac.solvern import Pres, search_n, word_to_str
+from experiments.stable_ac.solvern import Pres, search_n, str_to_word, word_to_str
 from experiments.stable_ac.solvern_fast import search_n_fast
 
 MS640 = R.load_ms640("data/ms640_solved.txt")
@@ -103,10 +103,10 @@ class _SerialPool:
         return map(fn, tasks)
 
 
-def _run(tmp_path, max_len, inv_max_len, pres, budget=300):
+def _run(tmp_path, max_len, inv_max_len, pres, budget=300, cap=R.CAP):
     import argparse
     rows = [r for r in MS640 if r[0] in pres]
-    a = argparse.Namespace(source="ms640", budget=budget, cap=R.CAP,
+    a = argparse.Namespace(source="ms640", budget=budget, cap=cap,
                            path_sample_target=10 ** 9, log_every=1e9)
     out = str(tmp_path)
     log = []
@@ -130,6 +130,10 @@ def test_runner_end_to_end_matches_the_reference_search_and_verifies(tmp_path):
             assert list(z["pres_ids"]) == [0, 320]
             assert list(z["words"]) == [word_to_str(w)
                                         for w in W.words_of_length(n)]
+        with np.load(f"{stem}_L{n}_capcount.npz") as c:
+            caps = [c[f] for f in R.CAP_FIELDS]
+            assert list(c["pres_ids"]) == [0, 320]
+            assert all(a.shape == nodes.shape for a in caps)
         assert nodes.shape == (2, W.n_words(n))
         for i, (_, r1, r2) in enumerate(rows):
             for k, w in enumerate(W.words_of_length(n)):
@@ -138,10 +142,27 @@ def test_runner_end_to_end_matches_the_reference_search_and_verifies(tmp_path):
                 assert int(plen[i, k]) == (ref["path_length"] if ref["solved"]
                                            else -1)
                 assert int(mint[i, k]) == ref["min_relator_length"]
+                assert tuple(int(a[i, k]) for a in caps) == V._cap_tuple(ref)
     with np.load(f"{stem}_L2_inv.npz") as z:
         assert list(z["words"]) == [word_to_str(W.inverse(w))
                                     for w in W.words_of_length(2)]
     assert not os.listdir(os.path.join(out, "shards"))
+    # the json rows carry the reference search's cap counters
+    with open(f"{stem}_control.jsonl") as f:
+        ctrl = {r["pres_id"]: r for r in map(json.loads, f)}
+    for p, r1, r2 in rows:
+        ref = search_n(Pres(2, (r1, r2)), 300, cap=R.CAP)
+        assert R.cap_counters(ref, "n2_").items() <= ctrl[p].items()
+        ref = search_n(Pres(3, (r1, r2, (-3,))), 300, cap=R.CAP)
+        assert R.cap_counters(ref, "null_").items() <= ctrl[p].items()
+    with open(f"{stem}_relsub.jsonl") as f:
+        sub = [json.loads(line) for line in f]
+    for r in sub[::5]:
+        ref = search_n(R.rank3(str_to_word(r["r1"]), str_to_word(r["r2"]),
+                               str_to_word(r["z_word"])), 300, cap=R.CAP)
+        assert R.cap_counters(ref).items() <= r.items()
+    with open(f"{stem}_L3_sample.jsonl") as f:
+        assert all(set(R.CAP_FIELDS) <= set(json.loads(line)) for line in f)
     # every solved row of the sample and of the subword arm is a certificate
     # the independent verifier accepts
     n_rows, n_solved, failures = verify_results.verify_file(f"{stem}_L3_sample.jsonl")
@@ -181,6 +202,9 @@ def _fake_shard(out, row, budget, ident_budget=None):
              nodes=np.full(W.n_words(2), 7, dtype=np.uint16),
              path_len=np.full(W.n_words(2), -1, dtype=np.int16),
              min_total=np.full(W.n_words(2), 9, dtype=np.uint8),
+             cap_dropped=np.zeros(W.n_words(2), dtype=np.uint32),
+             cap_dropped_min_total=np.full(W.n_words(2), -1, dtype=np.int16),
+             cap_first_bind=np.full(W.n_words(2), -1, dtype=np.int32),
              seconds=np.float32(0), paths=np.array("[]"),
              ident=np.array(R.shard_ident("ms640", ident_budget or budget, R.CAP,
                                           2, "fwd", 0, pres_id, r1, r2)))
@@ -282,7 +306,7 @@ def test_cap_compare_counts_exactly_the_searches_that_differ(tmp_path):
             "path_length_differs", "both_solved_fewer_nodes_other",
             "both_solved_more_nodes_other", "largest_node_difference")
 
-    C.main(args)
+    assert C.main(args + ["--must-match"]) == 0
     with open(out) as f:
         rows = json.load(f)["comparisons"][0]["rows"]
     assert [r["kind"] for r in rows] == [
@@ -310,7 +334,7 @@ def test_cap_compare_counts_exactly_the_searches_that_differ(tmp_path):
     with open(stem + "_relsub.jsonl", "w") as f:
         f.write("".join(json.dumps(r) + "\n" for r in sub))
 
-    C.main(args)
+    assert C.main(args) == 0 and C.main(args + ["--must-match"]) == 1
     with open(out) as f:
         rows = {r["kind"]: r for r in json.load(f)["comparisons"][0]["rows"]}
     for kind in ("words of length 2", "all word lengths compared"):
@@ -325,3 +349,69 @@ def test_cap_compare_counts_exactly_the_searches_that_differ(tmp_path):
         f.write("".join(json.dumps(r) + "\n" for r in sub[1:]))
     with pytest.raises(SystemExit):
         C.main(args)
+
+
+def _resave(path, **change):
+    """Rewrite one npz with ``array[index] = value`` for each ``array=(index, value)``."""
+    with np.load(path) as z:
+        d = {k: z[k] for k in z.files}
+    for name, (index, value) in change.items():
+        d[name] = d[name].copy()
+        d[name][index] = value
+    np.savez_compressed(path, **d)
+
+
+def test_verifier_rejects_cap_counters_that_cannot_be_right(tmp_path):
+    _, out, _ = _run(tmp_path, 2, 0, {0})
+    assert V.main(["--dir", out]) == 0
+    path = os.path.join(out, R.stem("ms640", 300, R.CAP) + "_L2_capcount.npz")
+    # the start is popped before anything is dropped: pop 1 is never a bind
+    _resave(path, cap_first_bind=((0, 0), 1))
+    assert V.main(["--dir", out]) == 1
+
+
+def test_a_search_with_no_bind_is_the_same_search_at_a_larger_cap(tmp_path):
+    from experiments.stable_ac.rank3 import cap_compare as C
+    from experiments.stable_ac.rank3 import cap_exhaustion as E
+    pres = {0, 320}
+    small = 1 + max(len(r) for p, r1, r2 in MS640 if p in pres for r in (r1, r2))
+    dirs = {}
+    for cap in (small, 64):
+        (tmp_path / f"cap{cap}").mkdir()
+        dirs[cap] = _run(tmp_path / f"cap{cap}", 3, 0, pres, cap=cap)[1]
+        assert V.main(["--dir", dirs[cap]]) == 0
+    out = str(tmp_path / "cmp.json")
+
+    def compare(base, other):
+        code = C.main(["--base", dirs[base], "--other", dirs[other],
+                       "--budget", "300", "--out", out])
+        with open(out) as f:
+            return code, json.load(f)["comparisons"][0]["rows"]
+
+    for base, other in ((small, 64), (64, small)):
+        code, rows = compare(base, other)
+        assert code == 0
+        for r in rows:
+            assert r["differ_without_bind"] == 0
+            assert r["differ"] <= r["bind_at_smaller_cap"] <= r["searches"]
+
+    E.main(["--dir", dirs[small], "--out", str(tmp_path / "exh.json")])
+    with open(tmp_path / "exh.json") as f:
+        exh = json.load(f)
+    assert len(exh["files"]) == 5
+    for f in exh["files"]:
+        assert (f["cap_could_bind"] == f["cap_could_bind_solved"]
+                + f["cap_could_bind_unsolved"] <= f["cap_dropped_a_child"]
+                <= f["searches"])
+    assert exh["total"]["searches_with_cap_counters"] == exh["total"]["searches"]
+
+    # a search that claims "no bind" and differs breaks the certificate
+    _resave(os.path.join(dirs[small], R.stem("ms640", 300, small) + "_L2_capcount.npz"),
+            cap_first_bind=((0, 0), -1))
+    path = os.path.join(dirs[64], R.stem("ms640", 300, 64) + "_L2.npz")
+    with np.load(path) as z:
+        n = int(z["nodes"][0, 0])
+    _resave(path, nodes=((0, 0), n + 1))
+    code, rows = compare(small, 64)
+    assert code == 1
+    assert {r["kind"]: r["differ_without_bind"] for r in rows}["words of length 2"] == 1

@@ -121,8 +121,11 @@ def expand_node_packed_nj(words, lens, n_rel, cap, cyclic):
     Emits children in exactly ``search_n``'s order (i asc / j asc / s in
     (1,-1) / k1 asc / k2 asc), duplicates included — the caller's visited set
     dedups in emission order, like ``search_n``'s per-child visited check.
-    Returns ``(packed_rows, row_lens, totals, moves, count)``; child ``c`` is
-    ``packed_rows[c, :row_lens[c]]`` with move ``moves[c] = (i, j, s, k1, k2)``.
+    Returns ``(packed_rows, row_lens, totals, moves, count, n_dropped,
+    min_dropped_total)``; child ``c`` is ``packed_rows[c, :row_lens[c]]`` with
+    move ``moves[c] = (i, j, s, k1, k2)``. ``n_dropped`` children were left out
+    because one of their relators is longer than ``cap``; ``min_dropped_total``
+    is the smallest total length among them (0 if none).
     """
     # upper bound on children: for each ordered pair (i, j) both signs of
     # every rotation pair; sized from the ACTUAL lens (an over-cap start
@@ -144,11 +147,17 @@ def expand_node_packed_nj(words, lens, n_rel, cap, cyclic):
     count = 0
 
     # spec/search.py:72 drops a child when ANY relator exceeds cap, inherited
-    # ones included — hoisted to one guard per target, as in search_n.
+    # ones included — hoisted to one guard per target, as in search_n. Such a
+    # target emits nothing; its children are still enumerated (without a cap)
+    # so that the cap counters see them.
     n_over = 0
+    total = 0
     for r in range(n_rel):
+        total += lens[r]
         if lens[r] > cap:
             n_over += 1
+    n_dropped = 0
+    min_dropped_total = 0
 
     child = np.empty((n_rel, child_cap), dtype=np.int8)
     child_lens = np.empty(n_rel, dtype=np.int64)
@@ -158,18 +167,30 @@ def expand_node_packed_nj(words, lens, n_rel, cap, cyclic):
         if lens[i] == 0:
             continue
         over_i = 1 if lens[i] > cap else 0
-        if n_over - over_i > 0:
-            continue
+        inherits = n_over - over_i > 0
         ri = words[i, :lens[i]]
         for j in range(n_rel):
             if j == i or lens[j] == 0:
                 continue
             rj = words[j, :lens[j]]
+            pair_cap = lens[i] + lens[j] if inherits else cap
             for s_idx in range(2):
                 s = 1 if s_idx == 0 else -1
                 oj = rj if s == 1 else inverse_nj(rj)
-                cand, cand_lens, k1s, k2s, n_cand = expand_pair_nj(
-                    ri, oj, cap, cyclic)
+                cand, cand_lens, k1s, k2s, n_cand, n_drop, min_drop = expand_pair_nj(
+                    ri, oj, pair_cap, cyclic)
+                if inherits:
+                    n_drop = n_cand
+                    min_drop = 0
+                    for c in range(n_cand):
+                        if c == 0 or cand_lens[c] < min_drop:
+                            min_drop = cand_lens[c]
+                    n_cand = 0
+                if n_drop > 0:
+                    dropped_total = total - lens[i] + min_drop
+                    if n_dropped == 0 or dropped_total < min_dropped_total:
+                        min_dropped_total = dropped_total
+                    n_dropped += n_drop
                 for c in range(n_cand):
                     lc = cand_lens[c]
                     canon_i = canonical_word_nj(cand[c, :lc].copy())
@@ -219,7 +240,7 @@ def expand_node_packed_nj(words, lens, n_rel, cap, cyclic):
                     moves[count, 3] = k1s[c]
                     moves[count, 4] = k2s[c]
                     count += 1
-    return packed_rows, row_lens, totals, moves, count
+    return packed_rows, row_lens, totals, moves, count, n_dropped, min_dropped_total
 
 
 # ---------------------------------------------------------------------------
@@ -270,12 +291,19 @@ def search_n_fast(pres, budget, cap=64, cyclic=True, progress=None):
     min_packed = max_packed = max_expanded_packed = init_packed
     min_total = max_total = max_expanded_total = init_total
 
+    cap_dropped = 0
+    drop_key = None         # smallest (total, depth) of a child the cap dropped
+    cap_first_bind = None
+
     nodes = 0
     solved_packed = None
     solved_depth = 0
     while pq and nodes < budget:
         total, depth, packed = heappop(pq)
         nodes += 1
+        if (cap_first_bind is None and drop_key is not None
+                and drop_key <= (total, depth)):
+            cap_first_bind = nodes
         if progress is not None and nodes % _HB_CHECK_EVERY == 0:
             progress(nodes)
         if total > max_expanded_total:
@@ -288,9 +316,14 @@ def search_n_fast(pres, budget, cap=64, cyclic=True, progress=None):
 
         words, lens = _unpack_state_nj(
             np.frombuffer(packed, dtype=np.uint8), n_rel)
-        rows, row_lens, totals, moves, count = expand_node_packed_nj(
+        rows, row_lens, totals, moves, count, n_drop, drop_total = expand_node_packed_nj(
             words, lens, n_rel, cap, cyclic)
         depth1 = depth + 1
+        if n_drop:
+            cap_dropped += int(n_drop)
+            dk = (int(drop_total), depth1)
+            if drop_key is None or dk < drop_key:
+                drop_key = dk
         for c in range(count):
             cpacked = rows[c, :row_lens[c]].tobytes()
             if cpacked in visited:
@@ -304,6 +337,10 @@ def search_n_fast(pres, budget, cap=64, cyclic=True, progress=None):
             elif ctotal > max_total:
                 max_packed, max_total = cpacked, ctotal
             heappush(pq, (ctotal, depth1, cpacked))
+
+    if (cap_first_bind is None and solved_packed is None and nodes < budget
+            and cap_dropped):
+        cap_first_bind = nodes + 1
 
     path_words, path_moves = [], []
     if solved_packed is not None:
@@ -335,4 +372,7 @@ def search_n_fast(pres, budget, cap=64, cyclic=True, progress=None):
         "path": [tuple(word_to_str(r) for r in st) for st in path_words],
         "path_words": path_words,
         "path_moves": [move_to_str(m) for m in path_moves],
+        "cap_dropped": cap_dropped,
+        "cap_dropped_min_total": None if drop_key is None else drop_key[0],
+        "cap_first_bind": cap_first_bind,
     }

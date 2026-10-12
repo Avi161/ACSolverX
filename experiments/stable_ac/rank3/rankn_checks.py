@@ -7,8 +7,8 @@ Three job kinds, all at budget 1,000, cap 24:
 * ``r4``/``r5`` random cells of the rank-4/5 npz files
 
 Each job compares (solved, nodes, path_len) from the fast solver's file with a
-fresh reference search. Time-boxed: stops after <minutes> and reports how many
-jobs were compared.
+fresh reference search, and the three cap counters too where the file has
+them. Time-boxed: stops after <minutes> and reports how many jobs were compared.
 
     python3 rankn_checks.py <rank3_dir> <rankn_dir> <out_json> <workers> <minutes>
 """
@@ -24,7 +24,7 @@ from multiprocessing import get_context
 import numpy as np
 
 from experiments.stable_ac.rank3 import words as W
-from experiments.stable_ac.rank3.run_rank3_bf import load_ms640
+from experiments.stable_ac.rank3.run_rank3_bf import CAP_FIELDS, load_ms640
 from experiments.stable_ac.solvern import Pres, search_n
 
 BUDGET, CAP = 1000, 24
@@ -48,6 +48,8 @@ def job(args):
     res = search_n(Pres(len(rels), rels), BUDGET, cap=CAP, cyclic=True)
     got = (int(bool(res["solved"])), int(res["nodes_explored"]),
            int(res["path_length"]) if res["solved"] else -1)
+    if len(exp) == 6:               # the file stores the cap counters
+        got += tuple(-1 if res[k] is None else int(res[k]) for k in CAP_FIELDS)
     return kind, label, list(exp), list(got)
 
 
@@ -73,14 +75,19 @@ def main():
         n = int(m.group(1))
         with np.load(f) as z:
             N, pl, ids = z["nodes"].astype(np.int64), z["path_len"].astype(np.int64), [int(p) for p in z["pres_ids"]]
+        cc = []
+        if os.path.exists(f[:-len(".npz")] + "_capcount.npz"):
+            with np.load(f[:-len(".npz")] + "_capcount.npz") as z:
+                cc = [z[k] for k in CAP_FIELDS]
         ws = W.words_of_length(n)
         row = {p: i for i, p in enumerate(ids)}
 
-        def cell(p, k):
+        def cell(p, k, N=N, pl=pl, cc=cc, ws=ws, row=row):
             r1, r2 = ms[p]
             i = row[p]
             return ((tuple(r1), tuple(r2), (-3,) + tuple(ws[k])),
-                    (int(pl[i, k] >= 0), int(N[i, k]), int(pl[i, k])))
+                    (int(pl[i, k] >= 0), int(N[i, k]), int(pl[i, k]))
+                    + tuple(int(a[i, k]) for a in cc))
 
         for _ in range(min(400, 60 * n)):
             p, k = rng.choice(ids), rng.randrange(len(ws))
@@ -100,6 +107,10 @@ def main():
             N, pl, ids, cs = z["nodes"].astype(np.int64), z["path_len"].astype(np.int64), [int(p) for p in z["pres_ids"]], z["combos"]
             meta = json.loads(str(z["meta"]))
             base, null = z["base"], z["null"]
+            cc = [z[k] for k in CAP_FIELDS] if "cap_dropped" in z.files else []
+            if cc:
+                base = np.concatenate([base, z["base_cap"]], axis=1)
+                null = np.concatenate([null, z["null_cap"]], axis=1)
         from experiments.stable_ac.solvern import str_to_word
         ws = [tuple(str_to_word(s)) for s in meta["words"]]
         rank = meta["rank"]
@@ -108,7 +119,8 @@ def main():
             r1, r2 = ms[ids[i]]
             rels = (tuple(r1), tuple(r2)) + tuple((-(3 + j),) + ws[int(a)] for j, a in enumerate(cs[c]))
             rn_jobs.append((f"r{rank}", f"p{ids[i]}|c{c}", rels,
-                            (int(pl[i, c] >= 0), int(N[i, c]), int(pl[i, c]))))
+                            (int(pl[i, c] >= 0), int(N[i, c]), int(pl[i, c]))
+                            + tuple(int(a[i, c]) for a in cc)))
         for i in rng.sample(range(len(ids)), min(40, len(ids))):
             r1, r2 = ms[ids[i]]
             rels = (tuple(r1), tuple(r2)) + tuple((-(3 + j),) for j in range(rank - 2))
