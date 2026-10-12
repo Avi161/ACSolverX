@@ -1153,7 +1153,10 @@ def run_budget(rep, rdir, B, controls, dataset_rel, deadline, results):
         bad_s = sum(1 for r in faster_rows if not num_equal(r[3], r[4]))
         bad_i = sum(1 for r in faster_rows if not num_equal(r[3], r[5]))
         telling = sum(1 for r in faster_rows if r[4] != r[5])
-        use_incl = (bad_s > 0 and bad_i < bad_s)
+        # Review: the reading is no longer picked after the fact (that could only lower the mismatch
+        # count). Strict is fixed: the example CSV has 171 rows with the control solved and
+        # words_faster >= 1, the published value at 1,000 nodes and length 8; inclusive would be 193.
+        # Both counts and the verdict still go to the detail.
         for (vk, n, j, pubv, strict, incl) in faster_rows:
             mine = incl if use_incl else strict
             rep.record(FR, num_equal(pubv, mine),

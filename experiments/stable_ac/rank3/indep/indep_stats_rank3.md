@@ -96,3 +96,7 @@ Names are `b<B>:...`; `inferred` in the name means the task gave no definition a
 - **`ms_per_search` on real bytes.** The example L2 file comes from the fast solver (about 1 ms per presentation block) and the example summary from an older run (67 ms per search), so the formula is confirmed by arithmetic only.
 - **Exit code when one budget crashes and another has mismatches.** The script returns 3 and lists the crash under `errors`; a crash with no mismatch returns 1. The contract does not say which wins.
 - **`control_equals_null_start`.** If the null rank-3 start does not pop the same number of nodes as the 2-generator control this check fails on every such row; the example head shows equal triples for the first four presentations only.
+
+### Change 5 (added after the list above)
+
+5. **`oracle_some_word_faster_than_control`: the reading is fixed to strict, no longer chosen after the fact.** The script used to count mismatches against whichever of the two readings reproduced more rows, which can only lower the count. With the example evidence above (171 strict, 193 inclusive) strict is the reading; the inclusive count and the verdict line ("which reading reproduces every row") are still written to the check's detail, and `some_non_rotation_word_faster` follows the same reading. This supersedes "mismatches are counted against the better one" under "Readings I chose".

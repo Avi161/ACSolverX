@@ -266,3 +266,14 @@ No change to either search, the sampling, the job order or the exit codes.
 - **Control solver.** The control's main triple is from the 2-generator
   baseline, which neither the author nor I read. `control_b1000_n2_copy`
   compares the same runs with the rank-n solver's columns.
+
+## Sample sizes after the first run (changed by the experiment's author, not a tester)
+
+First run on AWS, 12 Oct 2026 06:55 UTC, 8 workers, lengths 1 to 8 at budget
+1,000 and 1 to 6 at 10,000: 2,660 searches compared, 2,660 equal, about 300
+CPU-seconds of a 40-minute box. Only the six sample-size constants at the top
+of the script were then raised to use the box (per file: 150 to 3,000 rank-3
+cells, 40 to 500 inverse-word cells, 200 to 3,000 rank-4/5 cells, 30 to 100
+null starts, 15 to 300 budget-10,000 cells; 30 to 640 rank-3 null starts).
+The seed, both searches, the checks and the job order are unchanged; a sample
+larger than a file takes the whole file.

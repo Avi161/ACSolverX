@@ -37,12 +37,12 @@ RANKN_STEM = "rankn_bf_ms640_b1000_cap24_r%d"
 LENGTHS = tuple(range(1, 11))
 INV_EXPECTED = tuple(range(1, 7))
 
-N_R3 = 150          # cells per rank-3 budget-1,000 length file
-N_R3_INV = 40       # cells per rank-3 budget-1,000 _inv file
-N_RN = 200          # cells per rank-4 / rank-5 file
-N_RN_NULL = 30      # null starts per rank-4 / rank-5 file
-N_B10K = 15         # cells per rank-3 budget-10,000 length file
-N_R3_NULL = 30      # extra: rank-3 null starts against the control file
+N_R3 = 3000         # cells per rank-3 budget-1,000 length file
+N_R3_INV = 500      # cells per rank-3 budget-1,000 _inv file
+N_RN = 3000         # cells per rank-4 / rank-5 file
+N_RN_NULL = 100     # null starts per rank-4 / rank-5 file
+N_B10K = 300        # cells per rank-3 budget-10,000 length file
+N_R3_NULL = 640     # extra: rank-3 null starts against the control file
 
 MAX_EXAMPLES = 50
 MAX_EX_PER_CHECK = 6
