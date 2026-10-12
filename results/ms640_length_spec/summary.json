@@ -47,7 +47,7 @@
    "needed_max": null
   }
  },
- "wall_seconds": 0.08,
+ "wall_seconds": 1835.28,
  "row_seconds": 3507.34,
  "config": {
   "method": "greedy",
