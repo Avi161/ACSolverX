@@ -169,6 +169,8 @@ def test_runner_end_to_end_matches_the_reference_search_and_verifies(tmp_path):
     assert n_rows == n_solved > 0 and not failures
     n_rows, n_solved, failures = verify_results.verify_file(f"{stem}_relsub.jsonl")
     assert n_solved > 0 and not failures
+    n_rows, n_solved, failures = verify_results.verify_file(f"{stem}_control.jsonl")
+    assert n_solved > 0 and not failures
     assert V.main(["--dir", out, "--recheck", "3"]) == 0
 
 
@@ -415,3 +417,16 @@ def test_a_search_with_no_bind_is_the_same_search_at_a_larger_cap(tmp_path):
     code, rows = compare(small, 64)
     assert code == 1
     assert {r["kind"]: r["differ_without_bind"] for r in rows}["words of length 2"] == 1
+
+
+def test_verifier_replays_the_path_of_every_solved_control_row(tmp_path):
+    _, out, _ = _run(tmp_path, 1, 0, {0})
+    assert V.main(["--dir", out]) == 0
+    path = os.path.join(out, R.stem("ms640", 300, R.CAP) + "_control.jsonl")
+    with open(path) as f:
+        rows = [json.loads(line) for line in f]
+    assert rows[0]["solved"] and len(rows[0]["path_moves"]) == rows[0]["path_length"]
+    rows[0]["path_moves"] = rows[0]["path_moves"][:-1]
+    with open(path, "w") as f:
+        f.writelines(json.dumps(r) + "\n" for r in rows)
+    assert V.main(["--dir", out]) == 1

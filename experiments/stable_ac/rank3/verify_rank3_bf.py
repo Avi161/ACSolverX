@@ -312,11 +312,19 @@ def main(argv=None):
         failures.append(msg)
         print("FAIL:", msg)
 
+    n_cert = 0
     for path in sorted(glob.glob(os.path.join(d, "*_control.jsonl"))):
         check_control(path, cov_control, a.dataset, fail)
+        if any("path_moves" in r for r in _rows(path)):
+            _, n_solved, fs = verify_results.verify_file(path)
+            for f in fs:
+                fail(f"{f[0]} {f[1]}: {f[2]}")
+            n_cert += n_solved
+            print(f"{path}: {n_solved} solved, {len(fs)} failed to replay")
+        else:
+            print(f"{path}: rows carry no path_moves, nothing replayed")
     npzs = sorted(p for p in glob.glob(os.path.join(d, "*_L*.npz"))
                   if not p.endswith("_capcount.npz"))
-    n_cert = 0
     subs = []
     for path in npzs:
         meta, nodes, plen, pres_ids = check_npz(path, fail)

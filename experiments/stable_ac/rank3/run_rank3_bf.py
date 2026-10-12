@@ -21,7 +21,8 @@ its shards are merged into one compressed npz and removed.
 
 Paths are kept for a deterministic sample of the solved rows (md5 of the row
 key), written in the nocov row format so ``verify_results`` replays them
-through the pure-Python spec.
+through the pure-Python spec. Every solved control row carries its own path
+(``path_moves``, the moves of the rank-n code on the 2-generator search).
 
 Every search also stores the three cap counters of ``search_n`` (``CAP_DOC``):
 as fields of the json rows (control ``n2_*`` / ``null_*``, relator subwords,
@@ -158,7 +159,7 @@ def control_task(args):
     def pl(res):
         return res["path_length"] if res["solved"] else None
 
-    return {
+    row = {
         "pres_id": pres_id, "r1": r1s, "r2": r2s, "node_budget": budget,
         "max_relator_length_cap": cap, "cyclic_reduce": True,
         "solved": bool(two["solved"]), "nodes_explored": int(two["nodes_explored"]),
@@ -169,6 +170,11 @@ def control_task(args):
         "null_path_length": pl(n3),
         **cap_counters(n2, "n2_"), **cap_counters(n3, "null_"),
     }
+    if n2["solved"]:
+        # the 2-generator greedy keeps no path at high speed; the rank-n code
+        # ran the same search, and verify_results replays its moves
+        row["path_moves"] = list(n2["path_moves"])
+    return row
 
 
 def _paths_json(paths):
