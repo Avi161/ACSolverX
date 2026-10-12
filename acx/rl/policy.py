@@ -39,6 +39,11 @@ def _norm(d):
     return nn.LayerNorm(d, eps=1e-6)
 
 
+def masked_mean(x, mask):
+    """Mean of the real (``mask``) positions of ``x`` (B, L, d) -> (B, d)."""
+    return (x * mask[..., None]).sum(1) / (mask.sum(1, keepdim=True) + 1e-6)
+
+
 class SelfAttention(nn.Module):
     """Self-attention over one ring with learned relative-position embeddings."""
 
@@ -132,10 +137,9 @@ class ActorCritic(nn.Module):
         x1, x2 = self.embed(r1 + 2), self.embed(r2 + 2)
         for blk in self.blocks:
             x1, x2 = blk(x1, x2, m1, m2)
-        pool = lambda x, m: (x * m[..., None]).sum(1) / (m.sum(1, keepdim=True) + 1e-6)
-        joint = torch.cat([pool(x1, m1), pool(x2, m2)], -1)
+        joint = torch.cat([masked_mean(x1, m1), masked_mean(x2, m2)], -1)
         value = self.critic2(gelu(self.critic1(gelu(self.critic0(joint))))).squeeze(-1)
-        w = self.actor0.weight
+        w = self.actor0.weight                                  # Dense(128) over the two rings, applied separably
         h = gelu((x1 @ w[:, :d].t())[:, :, None] + (x2 @ w[:, d:].t())[:, None] + self.actor0.bias)
         return self.actor1(h).reshape(B, -1).masked_fill(~self.action_mask(obs), -1e9), value
 

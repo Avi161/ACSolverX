@@ -13,9 +13,10 @@ from acx import data
 from acx.aut import orbit_key
 from acx.core.config import SearchConfig
 from acx.core.moves import decode_path, encode_path
-from acx.core.words import Presentation, parse
+from acx.core.words import Presentation, fmt, parse
 from acx.cov import CoVConfig, ReplayError, apply_steps, check_cert, enumerate_images, verify
 from acx.cov.cov import Z, relabel, subwords, substitute
+from acx.cov.substitution import isolate, substitute_generator
 from acx.cov.run import run
 from acx.search import BackendUnavailable, search
 from acx.search.engine import backend as load_backend
@@ -55,6 +56,22 @@ def test_ak3_family_and_worked_example():
     keys = [orbit_key(i.pres) for i in images]
     assert keys.count(orbit_key(AK3)) == 30 and len(set(keys)) == 2
     assert all(k == orbit_key(AK3) for i, k in zip(images, keys) if i.n_subs == 1)
+
+
+def test_family_rules_sub_nc2_p():
+    """The tag's word rules: ``sub`` (cyclic subwords, length >= 2), ``nc2`` (no relator shrinks below 3), ``p`` (powers)."""
+    short = {fmt(w) for w in subwords(parse("xyxY"), parse("yy"))}
+    assert short == {"xy", "yx", "yX", "Xy"}                  # nc2 drops xyx (leaves Zy) and yy (leaves z)
+    powers = {fmt(w) for w in subwords(parse("xxxYY"), parse("yxY"))}
+    assert {"xx", "xxx", "yy"} <= powers                      # p: pure powers are members
+
+
+def test_isolate_and_eliminate_words():
+    """``isolate`` needs exactly one g and a z; ``substitute_generator`` puts the expression for g and g^-1."""
+    assert isolate((1, Z), 1) == (-Z,) and isolate((-1, Z), 1) == (Z,)       # x z = 1 gives x = Z (z inverse); X z = 1 gives x = z
+    assert isolate((1, 2, -1, Z), 1) is None                                 # two x
+    assert isolate((1, 2), 1) is None                                        # no z
+    assert substitute_generator((1, 2, -1), 1, (Z,)) == (Z, 2, -Z)
 
 
 def test_relabel():

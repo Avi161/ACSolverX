@@ -2,57 +2,19 @@
 
 The reduced presentation is encoded as the environment observation (relator order and rotation as given: the policy was
 trained on dataset rows, not canonical forms) and every environment action is translated into the ``acx`` S-move that
-gives the same state up to rotation and inversion. A solution counts only after ``replay`` accepts it on the row.
+gives the same state up to rotation and inversion (``acx.rl.codec``). A solution counts only after ``replay`` accepts it
+on the row.
 """
 import time
 
-import torch
-
 from ..core.capcount import blank
-from ..core.moves import apply_raw, enumerate_moves
-from ..core.words import Presentation, canonical_rels, canonical_word, reduce
+from ..core.words import reduce
 from ..search.engine import Result, as_presentation
 from ..verify.replay import replay
 from . import L
 from .beam import beam_search
-from .moves import decode_action, s_move
+from .codec import decode, encode, to_acx_path          # noqa: F401  (decode: kept importable from here)
 from .policy import pretrained
-
-
-def encode(rels, L=L):
-    """Two relator words of length at most ``L`` -> ``(2L,)`` observation."""
-    if len(rels) != 2 or max(map(len, rels)) > L:
-        raise ValueError(f"the environment takes two relators of length <= {L}: {rels}")
-    return torch.tensor([g for r in rels for g in r + (0,) * (L - len(r))], dtype=torch.int64)
-
-
-def decode(x, L=L):
-    """Inverse of ``encode``: the two relators of an observation."""
-    return tuple(tuple(int(g) for g in x[k * L:(k + 1) * L] if g) for k in (0, 1))
-
-
-def to_acx_path(pres, actions, L=L, cyclic=True):
-    """The ``acx`` S-move path equivalent to the environment ``actions`` on ``pres``.
-
-    Each environment child is matched to the ``acx`` move of the current canonical state whose reduced
-    canonical child is the same pair of relators (``ValueError`` if none: a no-op or a bad seam).
-    """
-    x = encode(tuple(reduce(r, cyclic) for r in pres.rels), L)
-    cur, path = pres.reduced(cyclic).canonical(), []
-    for t, a in enumerate(actions):
-        x = s_move(x[None], *decode_action(torch.tensor([a]), L), L)[0][0]
-        want = canonical_rels(tuple(reduce(r, cyclic) for r in decode(x, L)))
-        for m in enumerate_moves(cur.rels):
-            raw = apply_raw(cur.rels, m)
-            if canonical_word(reduce(raw[m.i], cyclic)) in want:         # cheap test before the full child
-                child = canonical_rels(tuple(reduce(r, cyclic) for r in raw))
-                if child == want:
-                    path.append(m)
-                    cur = Presentation(cur.n_gen, child)
-                    break
-        else:
-            raise ValueError(f"action {t} ({a}) is not an S-move of {cur}")
-    return path
 
 
 def solve(pres, model=None, width=1024, steps=150, alpha=0.0, cap=L):

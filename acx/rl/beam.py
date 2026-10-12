@@ -11,7 +11,8 @@ import torch
 from ..core.capcount import CapCount
 from .moves import decode_action, s_move
 
-NEVER = torch.iinfo(torch.int64).max
+NEVER = torch.iinfo(torch.int64).max       # sorts after every real hash: an empty slot of the visited table
+MINUS_INF = float("-inf")
 
 
 def hash_vector(n, seed=0xACABDED):
@@ -24,6 +25,49 @@ def forward(model, states, chunk):
     """``model(states)`` in chunks of ``chunk`` rows: ``(logits, value)``."""
     out = [model(states[lo:lo + chunk]) for lo in range(0, len(states), chunk)]
     return torch.cat([o[0] for o in out]), torch.cat([o[1] for o in out])
+
+
+class Visited:
+    """The hashes of every state a beam has held, as a sorted table of fixed size (empty slots hold ``NEVER``)."""
+
+    def __init__(self, first_hash, size):
+        self.table = torch.full((size,), NEVER, dtype=torch.int64)
+        self.table[0] = first_hash
+        self.table = self.table.sort().values
+
+    def contains(self, hashes):
+        """Boolean mask: which of ``hashes`` are in the table."""
+        pos = torch.searchsorted(self.table, hashes).clamp(max=self.table.numel() - 1)
+        return self.table[pos] == hashes
+
+    def add(self, hashes, alive):
+        """Add the hashes of the ``alive`` beams (the others go in as ``NEVER``)."""
+        added = torch.where(alive, hashes, torch.full_like(hashes, NEVER))
+        self.table = torch.cat([self.table, added]).sort().values[:self.table.numel()]
+
+
+def best_of_each_hash(hashes, score):
+    """Mask that keeps, for every distinct hash, the entry with the highest ``score`` (the first on ties)."""
+    by_score = torch.argsort(-score, stable=True)
+    order = by_score[torch.argsort(hashes[by_score], stable=True)]      # equal hashes: best beam first
+    first = torch.ones_like(hashes, dtype=torch.bool)
+    first[1:] = hashes[order][1:] != hashes[order][:-1]
+    keep = torch.zeros_like(first)
+    keep[order] = first
+    return keep
+
+
+def top_children(model, states, live, cum, alpha, chunk):
+    """Score every action of the ``live`` beams: the global top-``width`` ``(total score, flat index)``.
+
+    Children of dead beams and illegal actions score ``-inf``; the flat index is ``parent * (4 L^2) + action``.
+    """
+    width, n_actions = len(states), 4 * (states.shape[1] // 2) ** 2
+    logits, value = forward(model, states[live], chunk)
+    log_prob = torch.log_softmax(logits, -1) + alpha * value[:, None]
+    scores = torch.full((width, n_actions), MINUS_INF)
+    scores[live] = log_prob.masked_fill(logits < -1e8, MINUS_INF)
+    return torch.topk((cum[:, None] + scores).reshape(-1), width)
 
 
 @torch.no_grad()
@@ -41,53 +85,43 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
     above ``L`` is a state the policy cannot see. ``cap_dropped_min_total`` is the least total among them. Zero dropped
     means the run is the same at every cap up to ``L``.
     """
-    B, n_act, minf = width, 4 * L * L, float("-inf")
-    hv = hash_vector(x0.numel())
-    states = x0[None].expand(B, -1).clone()
-    alive = torch.zeros(B, dtype=torch.bool)
+    n_actions = 4 * L * L
+    hash_vec = hash_vector(x0.numel())
+    states = x0[None].expand(width, -1).clone()
+    alive = torch.zeros(width, dtype=torch.bool)
     alive[0] = True
-    cum = torch.where(alive, 0.0, minf)
-    seqs = torch.full((B, steps), -1, dtype=torch.int64)
-    visited = torch.full((B * steps,), NEVER, dtype=torch.int64)
-    visited[0] = (x0 * hv).sum()
-    visited = visited.sort().values
-    stats = dict(evaluated=0)
-    cc = CapCount(L if cap is None else cap)
+    cum = torch.where(alive, 0.0, MINUS_INF)                         # cumulative log-prob of each beam
+    action_seqs = torch.full((width, steps), -1, dtype=torch.int64)
+    visited = Visited((x0 * hash_vec).sum(), width * steps)
+    evaluated, solution = 0, None
+    counter = CapCount(L if cap is None else cap)
     for t in range(steps):
         live = alive.nonzero().squeeze(1)
-        if not len(live):
+        if len(live) == 0:
             break
-        logits, value = forward(model, states[live], chunk)
-        stats["evaluated"] += len(live)
-        scores = torch.full((B, n_act), minf)
-        scores[live] = (torch.log_softmax(logits, -1) + alpha * value[:, None]).masked_fill(logits < -1e8, minf)
-        top, idx = torch.topk((cum[:, None] + scores).reshape(-1), B)
-        parent, action = idx // n_act, idx % n_act
+        top, idx = top_children(model, states, live, cum, alpha, chunk)
+        evaluated += len(live)
+        parent, action = idx // n_actions, idx % n_actions
         old = states[parent]
         new, over, size, total = s_move(old, *decode_action(action, L), L, cap)
-        seqs = seqs[parent]
-        seqs[:, t] = action
-        real = top > minf                                            # a live parent and a legal action
-        cc.pop(None)                                                 # step t + 1 selected
-        hit = real & over
-        if hit.any():
-            for tot, longest in zip(total[hit].tolist(), size[hit].tolist()):
-                cc.drop_now(tot, longest)
-        done = (new != 0).sum(-1) == 2
-        solved = done & real
-        alive = real & ~done & (t + 1 < steps) & ~(old == new).all(-1)
-        h = (new * hv).sum(-1)
-        by_score = torch.argsort(-torch.where(alive, top, torch.full_like(top, minf)), stable=True)
-        order = by_score[torch.argsort(h[by_score], stable=True)]    # equal hashes: best beam first
-        first = torch.ones(B, dtype=torch.bool)
-        first[1:] = h[order][1:] != h[order][:-1]
-        keep = torch.zeros(B, dtype=torch.bool)
-        keep[order] = first
-        pos = torch.searchsorted(visited, h).clamp(max=visited.numel() - 1)
-        alive &= keep & (visited[pos] != h)
-        cum = torch.where(alive, top, torch.full_like(top, minf))
-        visited = torch.cat([visited, torch.where(alive, h, torch.full_like(h, NEVER))]).sort().values[:B * steps]
+        action_seqs = action_seqs[parent]
+        action_seqs[:, t] = action
+
+        real = top > MINUS_INF                                       # a live parent and a legal action
+        counter.pop(None)                                            # step t + 1 selected
+        for total_i, longest_i in zip(total[real & over].tolist(), size[real & over].tolist()):
+            counter.drop_now(total_i, longest_i)
+
+        finished = (new != 0).sum(-1) == 2                           # both relators of length 1
+        solved = finished & real
+        alive = real & ~finished & (t + 1 < steps) & ~(old == new).all(-1)     # a no-op child is dead
+        hashes = (new * hash_vec).sum(-1)
+        score = torch.where(alive, top, torch.full_like(top, MINUS_INF))
+        alive &= best_of_each_hash(hashes, score) & ~visited.contains(hashes)
+        cum = torch.where(alive, top, torch.full_like(top, MINUS_INF))
+        visited.add(hashes, alive)
         states = new
         if solved.any():
-            return seqs[int(solved.nonzero()[0]), :t + 1].tolist(), {**stats, **cc.record()}
-    return None, {**stats, **cc.record()}
+            solution = action_seqs[int(solved.nonzero()[0]), :t + 1].tolist()
+            break
+    return solution, {"evaluated": evaluated, **counter.record()}

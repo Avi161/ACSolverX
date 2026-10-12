@@ -12,7 +12,9 @@ from ..core.config import SearchConfig, parse_cap
 from ..search import Result, search
 from ..search.engine import as_presentation
 from ..verify.replay import replay
-from .cov import MAX_LEN, CoVImage, check_cert, enumerate_images
+from .certificate import check_cert
+from .cov import CoVImage, enumerate_images
+from .family import MAX_LEN
 
 CAP_FIELDS = tuple(blank())
 
@@ -105,6 +107,22 @@ def _typed(pres, img, res, cap, cyclic):
     return Outcome("ac_path", img, res, tuple(transport(pres, phi, res.path, res.start, cyclic)), cap, cyclic)
 
 
+def _leg_cap(cfg, img):
+    """The cap of one leg: the row's own, or an image's written length plus ``cap_headroom`` if that is larger."""
+    cap = cfg.search.cap
+    if img is not None and cap is not None and cfg.cap_headroom is not None:
+        cap = max(cap, max(map(len, img.pres.rels)) + cfg.cap_headroom)
+    return cap
+
+
+def _row_caps(legs, cap):
+    """The cap counters of the whole row from the per-leg records (``run`` explains the fields)."""
+    caps = combine(legs) if legs else blank()
+    caps["cap"] = cap
+    caps["cap_legs_bound"] = sum(1 for record, _ in legs if record["cap_would_pop"])
+    return caps
+
+
 def run(pres, cfg=None, **overrides):
     """Search ``pres`` (a 2-generator ``Presentation`` or relator strings) and its CoV images.
 
@@ -130,35 +148,31 @@ def run(pres, cfg=None, **overrides):
     """
     cfg = (cfg or CoVConfig()).replace(**overrides)
     pres = as_presentation(pres)
-    s, t0 = cfg.search, time.perf_counter()
+    search_cfg, started = cfg.search, time.perf_counter()
     images = enumerate_images(pres, cfg.max_len)
-    cands = ([None] if cfg.control else []) + list(images)
-    seen, outcomes = set(), []
-    pops = dups = tried = 0
+    legs_to_try = ([None] if cfg.control else []) + list(images)        # None: the row itself
+    seen_starts, outcomes = set(), []
+    pops = duplicates = tried = 0
     legs = []                           # (cap counter record, pops spent before the leg)
-    for img in cands:
-        left = cfg.total_budget - pops
-        if left <= 0:
+    for img in legs_to_try:
+        pops_left = cfg.total_budget - pops
+        if pops_left <= 0:
             break
         raw = pres if img is None else img.pres
-        start = raw.reduced(s.cyclic).canonical()
-        if start in seen:
-            dups += 1
+        start = raw.reduced(search_cfg.cyclic).canonical()
+        if start in seen_starts:
+            duplicates += 1
             continue
-        seen.add(start)
-        cap = s.cap
-        if img is not None and cap is not None and cfg.cap_headroom is not None:
-            cap = max(cap, max(map(len, img.pres.rels)) + cfg.cap_headroom)
-        res = search(raw, s.replace(budget=min(s.budget, left), cap=cap, capture_path=True))
+        seen_starts.add(start)
+        cap = _leg_cap(cfg, img)
+        res = search(raw, search_cfg.replace(budget=min(search_cfg.budget, pops_left), cap=cap, capture_path=True))
         legs.append(({f: res.stats[f] for f in CAP_FIELDS}, pops))
         tried, pops = tried + 1, pops + res.pops
         if res.solved:
-            outcomes.append(_typed(pres, img, res, cap, s.cyclic))
+            outcomes.append(_typed(pres, img, res, cap, search_cfg.cyclic))
             verify(pres, outcomes[-1])
             if cfg.until == "solve" or outcomes[-1].kind == "ac_path":
                 break
-    caps = combine(legs) if legs else blank()
-    caps["cap"] = s.cap
-    stats = {"images": len(images), "tried": tried, "duplicates": dups, **caps,
-             "cap_legs_bound": sum(1 for rec, _ in legs if rec["cap_would_pop"]), "seconds": time.perf_counter() - t0}
+    stats = {"images": len(images), "tried": tried, "duplicates": duplicates, **_row_caps(legs, search_cfg.cap),
+             "seconds": time.perf_counter() - started}
     return CoVResult(tuple(outcomes), pops, stats)
