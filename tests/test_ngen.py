@@ -223,7 +223,8 @@ def test_ms640_sample_solves_in_n_generator_form(ms640):
 
 @pytest.mark.slow
 def test_ngen_sac_config_result_is_unchanged(tmp_path):
-    """configs/ngen_sac.toml on bench60 at budget 10,000: 8 solved, 531,923 pops, 147 sub-moves, 8,152 elementary moves."""
+    """configs/ngen_sac.toml on bench60 at budget 10,000: 8 solved, 531,923 pops, 147 sub-moves, 8,152 elementary
+    moves."""
     from acx.runner import load_config, run
     s = run(load_config(os.path.join(ROOT, "configs", "ngen_sac.toml")), str(tmp_path), log=lambda *a: None)
     assert (s["solved"], s["cost"]["total"], s["cost"]["on_solved"]) == (8, 531923, 11923)

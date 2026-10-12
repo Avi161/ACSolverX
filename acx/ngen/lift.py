@@ -12,30 +12,49 @@ from .sac import rewrite
 
 
 def beta_table(n, digrams):
-    """The substitution table of ``beta`` (fixes the source generators, sends each new ``h_k`` to ``beta(d_k) h_k``)."""
-    tab = {s * g: (s * g,) for g in range(1, n + 1) for s in (1, -1)}
-    for k, d in enumerate(digrams, 1):
+    """The substitution table of ``beta``: it fixes the ``n`` source generators and sends each new ``h_k`` to
+    ``beta(d_k) h_k``."""
+    table = {sign * g: (sign * g,) for g in range(1, n + 1) for sign in (1, -1)}
+    for k, digram in enumerate(digrams, 1):
         h = n + k
-        tab[h] = apply_table(d, tab) + (h,)
-        tab[-h] = inverse(tab[h])
-    return tab
+        table[h] = apply_table(digram, table) + (h,)
+        table[-h] = inverse(table[h])
+    return table
 
 
-def _undefine(em, virt, src, d, h, tab):
-    """Undo one definition: rewrite ``virt[:src]`` in place with the emitter, using the defining relator ``virt[src]``."""
-    for i in range(src):
-        flip, c, new = rewrite(virt[i], d, h)
+def _undefine(emitter, relators, defining, digram, h, table):
+    """Undo one definition: rewrite ``relators[:defining]`` in place, using the defining relator ``relators[defining]``.
+
+    Each relator is inverted and rotated as ``sac.rewrite`` chose; then every ``digram`` that became ``h`` (or its
+    inverse that became ``H``) is produced by multiplying with a conjugate of the defining relator.
+    """
+    for i in range(defining):
+        flip, rotation, rewritten = rewrite(relators[i], digram, h)
         if flip:
-            em.invert(i)
-        w = inverse(virt[i]) if flip else virt[i]
-        em.conj(i, apply_table(w[:c], tab))                    # rotate: conjugate by the prefix
-        for j in reversed(range(len(new))):
-            if abs(new[j]) == h:
-                q = apply_table(new[j + 1:] if new[j] > 0 else inverse(d) + new[j + 1:], tab)
-                em.conj(src, q)
-                em.multiply(i, src, 1 if new[j] > 0 else -1)
-                em.conj(src, inverse(q))
-        virt[i] = new
+            emitter.invert(i)
+        oriented = inverse(relators[i]) if flip else relators[i]
+        emitter.conj(i, apply_table(oriented[:rotation], table))
+        for j in reversed(range(len(rewritten))):
+            if abs(rewritten[j]) == h:
+                rest = rewritten[j + 1:] if rewritten[j] > 0 else inverse(digram) + rewritten[j + 1:]
+                conjugator = apply_table(rest, table)
+                emitter.conj(defining, conjugator)
+                emitter.multiply(i, defining, 1 if rewritten[j] > 0 else -1)
+                emitter.conj(defining, inverse(conjugator))
+        relators[i] = rewritten
+
+
+def _clean(emitter, n, n_defined):
+    """Delete the letters before ``h_j`` from the relator ``beta(d_j) h_j`` of each defined generator.
+
+    Each letter goes by multiplying with a conjugate of the unit relator of that letter.
+    """
+    for j in range(n + 1, n + n_defined + 1):
+        while len(emitter.pres.rels[j - 1]) > 1:
+            letter = emitter.pres.rels[j - 1][-2]
+            emitter.conj(abs(letter) - 1, (j,))
+            emitter.multiply(j - 1, abs(letter) - 1, -1 if letter > 0 else 1)
+            emitter.conj(abs(letter) - 1, (-j,))
 
 
 def lift(pres, sac, path, start, cyclic=True):
@@ -43,28 +62,24 @@ def lift(pres, sac, path, start, cyclic=True):
 
     ``path`` solves ``start`` (the canonical form of ``sac.root``); ``cyclic`` must be the search's setting.
     """
-    n, m = pres.n_gen, len(sac.digrams)
-    tab = beta_table(n, sac.digrams)
-    em = Emitter(pres)
-    for _ in range(m):
-        em.do({"op": "stabilize"})
-    defs = [inverse(d) + (n + k,) for k, d in enumerate(sac.digrams, 1)]
-    virt = list(sac.source.rels) + defs                   # T, mapped to U by beta
-    em.align(tuple(apply_table(w, tab) for w in virt))
-    for k, d in enumerate(sac.digrams, 1):
-        _undefine(em, virt, len(sac.source.rels) + k - 1, d, n + k, tab)
-    for s, mv in zip(replay(start, path, cyclic=cyclic), path):
-        rels = canonical_rels(s.rels)
-        em.align(tuple(apply_table(r, tab) for r in rels))
-        em.s_move(rels, Move(*mv), tab)
-    em.align(tuple(tab[g] for g in range(1, n + m + 1)))
-    for j in range(n + 1, n + m + 1):
-        while len(em.pres.rels[j - 1]) > 1:
-            a = em.pres.rels[j - 1][-2]
-            em.conj(abs(a) - 1, (j,))
-            em.multiply(j - 1, abs(a) - 1, -1 if a > 0 else 1)
-            em.conj(abs(a) - 1, (-j,))
-    for _ in range(m):
-        em.do({"op": "destabilize"})
-    replay(pres, em.moves, cyclic=cyclic, normalize=False)
-    return em.moves
+    n, n_defined = pres.n_gen, len(sac.digrams)
+    table = beta_table(n, sac.digrams)
+    emitter = Emitter(pres)
+    for _ in range(n_defined):
+        emitter.do({"op": "stabilize"})
+    # T = the source plus the defining relators; beta maps T to the stabilised source.
+    defining = [inverse(d) + (n + k,) for k, d in enumerate(sac.digrams, 1)]
+    relators = list(sac.source.rels) + defining
+    emitter.align(tuple(apply_table(w, table) for w in relators))
+    for k, digram in enumerate(sac.digrams, 1):
+        _undefine(emitter, relators, len(sac.source.rels) + k - 1, digram, n + k, table)
+    for state, move in zip(replay(start, path, cyclic=cyclic), path):
+        rels = canonical_rels(state.rels)
+        emitter.align(tuple(apply_table(r, table) for r in rels))
+        emitter.s_move(rels, Move(*move), table)
+    emitter.align(tuple(table[g] for g in range(1, n + n_defined + 1)))
+    _clean(emitter, n, n_defined)
+    for _ in range(n_defined):
+        emitter.do({"op": "destabilize"})
+    replay(pres, emitter.moves, cyclic=cyclic, normalize=False)
+    return emitter.moves
