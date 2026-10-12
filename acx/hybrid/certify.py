@@ -100,12 +100,16 @@ def certify(pres, steps):
         if isinstance(st, dict):
             words = D.normalize(cur) if dyn is None else dyn
             fr.align(words)
-            child = EVENTS[st["event"]["kind"]](fr, words, st["event"])
-            rl = st["relabel"]
-            if rl is not None:
-                fr.permute(rl["perm"], rl["signs"])
-                child = D.apply_relabel(child, rl["perm"], rl["signs"])
-            if child != tuple(map(tuple, st["after"])):
+            try:
+                child = EVENTS[st["event"]["kind"]](fr, words, st["event"])
+                rl = st["relabel"]
+                if rl is not None:
+                    fr.permute(rl["perm"], rl["signs"])
+                    child = D.apply_relabel(child, rl["perm"], rl["signs"])
+                stored = tuple(map(tuple, st["after"]))
+            except (KeyError, IndexError, TypeError, AttributeError) as e:    # a field is missing or of the wrong kind
+                raise ValueError(f"malformed higher-rank step: {e!r}") from e
+            if child != stored:
                 raise ValueError("replayed state differs from the stored state")
             cur, dyn = (canonical_rels(child), None) if len(child) == 2 else (cur, child)
         elif dyn is not None:

@@ -71,6 +71,12 @@ def row_path(result_dir, row_id):
     return os.path.join(result_dir, "rows", f"{row_id}.npz")
 
 
+def finished_rows(result_dir):
+    """The ids of the row files in ``result_dir``, sorted; a leftover ``<id>.npz.tmp<pid>.npz`` is not a row."""
+    names = os.listdir(os.path.join(result_dir, "rows"))
+    return sorted(name[:-4] for name in names if name.endswith(".npz") and ".npz.tmp" not in name)
+
+
 def load_row(path):
     """A row file as a dict of arrays, with the JSON records parsed and ``ident`` as a string."""
     with np.load(path) as z:

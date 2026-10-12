@@ -13,7 +13,7 @@ import numpy as np
 from ..core.capcount import CapCount, blank, fields
 from . import dynrank as D
 from .cascade import Run, gate_applicable, run_gates
-from .frontier import unpack
+from .frontier import orbit, unpack
 
 INF = float("inf")
 NAMES = ("cap", "dyn_cap", "slack")
@@ -82,20 +82,21 @@ class Watch:
     each pool a bar: when the higher-rank heap is served (top ``d``) the rank-two bar is ``(d.priority, -inf)`` and the
     higher-rank bar ``d``; when the rank-two heap is served (top ``h``) the rank-two bar is ``h`` and the higher-rank bar
     ``(h.priority, +inf)``, or none if the ratio rule would not have served the higher-rank heap. A pooled key that sorts
-    before a bar is drained: it counts if the search has not popped that state (``seen``, up to signed permutation at
-    rank two) and no earlier drain counted it. A dropped rank-two child on which the finishing gates would act (solve
-    it or spend units) counts at once. On a dry queue the pending states count too. The counts are first order: a
-    dropped state is judged against the run that happened, so zero in all three means a larger limit pops the same
-    states in the same order, and a nonzero count says only that the run may change.
+    before a bar is drained: it counts if the search has not popped that state (``seen``) and no earlier drain counted
+    it, both up to signed permutation at rank two (the search visits a state's whole orbit at once). A dropped rank-two
+    child on which the finishing gates would act (solve it or spend units) counts at once. On a dry queue the pending
+    states count too. The counts are first order: a dropped state is judged against the run that happened, so zero in
+    all three means a larger limit pops the same states in the same order, and a nonzero count says only that the run
+    may change.
 
     Cost: the children one rank-two pop drops arrive as arrays (``frontier.over_cap``) and wait as one lazy block, so a
     dropped child costs Python time only when a bar passes it; the exception is the exact gate test (``gates_act``) of
     the children that pass the free precheck, which is the larger part of what a tight ``r2_cap`` adds.
     """
 
-    def __init__(self, limits, seen_r2, seen_dyn):
+    def __init__(self, limits, seen_r2, seen_dyn, transform):
         self.armed = False                        # set by the first drop: until then no pop has anything to compare
-        self.seen_r2, self.seen_dyn, self.live = seen_r2, seen_dyn, []
+        self.seen_r2, self.seen_dyn, self.transform, self.live = seen_r2, seen_dyn, transform, []
         self.moves, self.mintot, self.pools = {}, {}, {}
         for name in NAMES:
             if limits[name] is not None:
@@ -164,7 +165,7 @@ class Watch:
         self._push(cc, entries)                   # the next of the block takes this one's place in the pool
         if key in self.seen_r2 or key in drained:
             return False
-        drained.add(key)
+        drained.update(orbit(key, self.transform))   # its signed permutations are the same state
         return True
 
     def _accept_dyn(self, cc, drained, payload):

@@ -38,7 +38,7 @@ class BestFirst:
         self.cfg, self.budget, self.clock, self.result = cfg, budget, 0, []
         self.expand, self.full, self.transform = backend(cfg.backend)
         self.base = sum(map(len, run.state))              # the root's total length
-        self.ceiling = self.base + cfg.slack
+        self.ceiling = float("inf") if cfg.slack is None else self.base + cfg.slack
         root = pack(run.state)
         images = orbit(root, self.transform)
         root = min(images)
@@ -46,7 +46,8 @@ class BestFirst:
         self.heap = [(float(len(root) - 1), 0, 0, (root, None, (), R2))]
         self.dheap, self.seen_r2, self.seen_dyn = [], set(), set()
         self.st = dict(pops=0, dyn_pops=0, max_rank=2, dyn_rejected=0)
-        self.watch = Watch({"cap": cfg.r2_cap, "dyn_cap": cfg.dyn_cap, "slack": cfg.slack}, self.seen_r2, self.seen_dyn)
+        limits = {"cap": cfg.r2_cap, "dyn_cap": cfg.dyn_cap, "slack": cfg.slack}
+        self.watch = Watch(limits, self.seen_r2, self.seen_dyn, self.transform)
 
     def tick(self, n=1):
         """The first of ``n`` new insertion numbers, the last tie-break of the heaps (only compared, so a dropped child

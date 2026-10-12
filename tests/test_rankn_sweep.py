@@ -1,4 +1,5 @@
 """acx.ngen.sweep: the rank-3 / rank-n brute-force sweep (word pool, starts, rows, resume, summary, verifier)."""
+import hashlib
 import json
 import os
 import shutil
@@ -20,9 +21,10 @@ ROW_IDS = ["0", "100", "330"]
 COUNTER_NAMES = ("cap_dropped", "cap_dropped_min_total", "cap_would_pop", "cap_first_bind", "cap_needed")
 
 
-def cfg(extra=1, min_len=1, max_len=2, rows="0:3", name="t", budget=300, backend="fast", **rankn):
-    return {"name": name, "method": "rankn", "benchmark": "ms640", "rows": rows, "workers": 1,
-            "search": {"budget": budget, "cap": 24, "backend": backend},
+def cfg(extra=1, min_len=1, max_len=2, rows="0:3", name="t", budget=300, backend="fast", benchmark="ms640", cap=24,
+        **rankn):
+    return {"name": name, "method": "rankn", "benchmark": benchmark, "rows": rows, "workers": 1,
+            "search": {"budget": budget, "cap": cap, "backend": backend},
             "rankn": {"extra": extra, "min_len": min_len, "max_len": max_len, **rankn}}
 
 
@@ -51,6 +53,14 @@ def test_pools_and_multisets():
     assert len(pool(1, 2, False)) == 8 and len(combos(8, 3)) == 120       # rank 5
     assert combos(8, 1) == tuple((i,) for i in range(8))
     assert pool(1, 2, True)[0] == (-1,) and pool(1, 2, True)[4] == tuple(-g for g in reversed(pool(1, 2, False)[4]))
+
+
+@pytest.mark.parametrize("lengths, inverted, md5", [
+    ((1, 4), False, "726644f813d80b8f503f953b0569113b"), ((1, 3), False, "5316b757386dd443642462e185252375"),
+    ((1, 2), False, "23690e3328000be86d384ce8381f5e72"), ((1, 3), True, "d64ee88ee2e8b6a494dd3bed3853449e")])
+def test_pool_order_is_pinned(lengths, inverted, md5):
+    """T16: the stored baseline lists its cells in this order. A reorder keeps every count and breaks the comparison."""
+    assert hashlib.md5(",".join(map(fmt, pool(*lengths, inverted))).encode()).hexdigest() == md5
 
 
 def test_start_shape(ms640):
@@ -179,6 +189,40 @@ def test_run_resume_and_refusals(tmp_path):
     assert s["rows"] == 2 and sorted(os.listdir(d / "rows")) == ["0.npz", "1.npz"]
 
 
+def test_run_rejects_a_changed_word_range(tmp_path):
+    """T16: another word range in a used directory is another run, refused like another budget."""
+    quiet(cfg(rows="0:2"), tmp_path)
+    with pytest.raises(SystemExit):
+        quiet(cfg(rows="0:2", max_len=3), tmp_path)
+
+
+def test_sweep_summary_covers_every_row_file(tmp_path):
+    """T06 (B5 again): a re-run on fewer rows must not shrink ``summary.json`` to those rows."""
+    quiet(cfg(rows="0:3"), tmp_path)
+    assert quiet(cfg(rows="0:1"), tmp_path)["rows"] == 3
+    with open(tmp_path / "t" / "summary.json") as f:
+        assert json.load(f)["rows"] == 3
+
+
+def test_verify_and_summary_ignore_stray_temp_files(tmp_path):
+    """T06: an interrupted atomic write leaves ``rows/<id>.npz.tmp<pid>.npz``; it is not a row file."""
+    quiet(cfg(rows="0:3"), tmp_path)
+    d = tmp_path / "t"
+    shutil.copy(d / "rows" / "0.npz", d / "rows" / "0.npz.tmp999.npz")
+    assert sweep.verify(str(d), log=lambda *a: None) == []
+    assert sweep.summarize(str(d))["rows"] == 3
+
+
+@pytest.mark.parametrize("rels, cap", [(("yxY", "xxyXY"), 4), (("Y", "XXyxxy"), 5), (("XX", "YXYxyXy"), 4)])
+def test_a_start_over_the_cap_passes_the_verifier(tmp_path, rels, cap):
+    """F4: a start with a relator over the cap can be the only child the cap drops, and the counters rightly leave it
+    out (it is no new state). Such a search runs dry with drops and no bind, which ``verify`` must accept."""
+    rows = tmp_path / "rows.csv"
+    rows.write_text("name,r1,r2\nrow," + ",".join(rels) + "\n")
+    quiet(cfg(rows=None, budget=200, backend="spec", max_len=cap - 1, benchmark=str(rows), cap=cap), tmp_path)
+    assert sweep.verify(str(tmp_path / "t"), recheck=20, log=lambda *a: None) == []
+
+
 def test_summary_matches_the_arrays(tmp_path):
     s = quiet(cfg(max_len=2, rows="0:12", budget=400), tmp_path)
     d = str(tmp_path / "t")
@@ -278,6 +322,9 @@ def test_counter_consistency_rules():
     fails.clear()
     sweep.check_counters(r, np.array([False]), np.array([40]), 100, sc, fails.append)
     assert fails
+    fails.clear()          # ... unless the start is over the cap: then the only drops may be the start itself (F4)
+    sweep.check_counters(r, np.array([False]), np.array([40]), 100, sc, fails.append, start_over_cap=True)
+    assert not fails
 
 
 def test_rank3_counters_prove_the_cap_irrelevant(tmp_path):

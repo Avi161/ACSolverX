@@ -155,6 +155,31 @@ def test_solve_short_relators_need_no_definition():
     assert res.kind == "ac_path" and res.sac.digrams == () and verify(Presentation.parse("xy", "Yxy"), res)
 
 
+def test_sac_relators_are_at_most_length_3(ms640):
+    """T15: each definition adds a relator ``d^-1 h`` of length 3, and the root has none longer than 3."""
+    for pres in ms640[::40]:
+        sac = triangulate(pres)
+        cur = sac.source
+        for d in sac.digrams:
+            cur = define(cur, d)
+            assert len(cur.rels[-1]) == 3
+        assert cur == sac.root and max(map(len, cur.rels)) <= 3
+
+
+def test_lift_flag_off_returns_the_stable_certificate(ms640):
+    """T15: ``lift = false`` still reports the solve as a ``stable_cert``, with no elementary moves."""
+    res = solve(ms640[32], NGenConfig(FAST, lift=False))
+    assert res.solved and res.kind == "stable_cert" and res.moves is None
+
+
+@pytest.mark.parametrize("pid, digrams", [(32, 4), (96, 3), (0, 2)])
+def test_cyclic_false_ngen_replays(ms640, pid, digrams):
+    """T15: with cyclic reduction off the SAC path still solves, lifts and replays on the source."""
+    res = solve(ms640[pid], NGenConfig(FAST.replace(cyclic=False)))
+    assert res.solved and res.kind == "stable_cert" and len(res.sac.digrams) == digrams
+    assert verify(ms640[pid], res, cyclic=False)[-1].is_trivial()
+
+
 def test_solve_unsolved_and_guard(ms640):
     res = solve(ms640[64], NGenConfig(FAST.replace(budget=5)))
     assert not res.solved and res.kind is None and res.moves is None
@@ -193,21 +218,27 @@ def rand_word(n, rng):
     return tuple(w)
 
 
-def test_more_than_26_generators_is_refused_before_the_search():
-    """B6 (ngen side): past 26 generators the search raised IndexError in ``fmt`` after it had finished; now the
-    root is refused up front. The root cause is in ``acx.core.words`` / ``acx.search`` (not owned here)."""
+@pytest.mark.parametrize("backend", ["spec", "fast"])
+def test_a_root_past_26_generators_is_searched(backend):
+    """B6, F5: ``fmt`` names the generators past z ``g27`` and ``parse`` reads them back, so a row whose SAC root has
+    57 generators is searched (it was refused up front, and the row that raised ended the whole run)."""
     rng = random.Random(3)
     p = Presentation(2, (rand_word(70, rng), rand_word(70, rng)))          # SAC root has rank 57
-    for backend in ("spec", "fast"):
-        with pytest.raises(ValueError, match="26"):
-            solve(p, NGenConfig(SearchConfig(budget=20, backend=backend)))
-    with pytest.raises(ValueError, match="26"):
-        solve(Presentation(27, tuple((i,) for i in range(1, 28))), NGenConfig(sac=False))
+    res = solve(p, NGenConfig(SearchConfig(budget=3, backend=backend)))
+    assert not res.solved and res.rank == 57 and res.search.pops == 3
 
 
-def test_26_generators_are_still_searched():
-    res = solve(Presentation(26, tuple((i,) for i in range(1, 27))), NGenConfig(FAST, sac=False))
-    assert res.solved and res.rank == 26 and res.moves == ()
+@pytest.mark.parametrize("n", [26, 27, 127])
+def test_up_to_127_generators_are_searched(n):
+    """The old limit was 26 letters; the one-byte letter code of the fast backend allows 127."""
+    res = solve(Presentation(n, tuple((i,) for i in range(1, n + 1))), NGenConfig(FAST, sac=False))
+    assert res.solved and res.rank == n and res.moves == ()
+
+
+def test_more_than_127_generators_are_refused_before_the_search():
+    """A letter code is one byte in the fast backend and the cap counters' keys: 128 generators are refused up front."""
+    with pytest.raises(ValueError, match="127"):
+        solve(Presentation(128, tuple((i,) for i in range(1, 129))), NGenConfig(sac=False))
 
 
 def test_ms640_sample_solves_in_n_generator_form(ms640):

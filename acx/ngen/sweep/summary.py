@@ -11,7 +11,7 @@ from typing import NamedTuple
 import numpy as np
 
 from .config import COUNTERS, SweepConfig, words_of
-from .rows import load_row, row_path
+from .rows import finished_rows, load_row, row_path
 from .words import combos, word_str
 
 
@@ -105,25 +105,23 @@ def _fraction(x):
     return round(float(x), 4)
 
 
-def summarize(result_dir, wall=None, rows=None):
-    """Stream the row files of ``result_dir`` into ``summary.json`` and ``summary.md``; return the summary.
+def summarize(result_dir, wall=None):
+    """Stream every row file of ``result_dir`` into ``summary.json`` and ``summary.md``; return the summary.
 
-    ``rows`` are the row ids to read (default: every row file); ``wall`` is the run's wall-clock seconds.
+    The summary covers the whole directory, whichever rows the latest run selected; ``wall`` is that run's seconds.
     """
     with open(os.path.join(result_dir, "config.json")) as f:
         sc = SweepConfig.from_key(json.load(f)["sweep"])
     words = words_of(sc)
     starts = combos(len(words), sc.extra)
     buckets = buckets_of(sc, words, starts)
-    if rows is None:
-        rows = sorted(f[:-4] for f in os.listdir(os.path.join(result_dir, "rows")) if f.endswith(".npz"))
 
     tallies = {b.name: BucketTally() for b in buckets}
     cap = CapTally()
     solved_per_start = np.zeros(len(starts), dtype=np.int64)
     n_rows = n_control_solved = 0
     core_seconds = 0.0
-    for row_id in rows:
+    for row_id in finished_rows(result_dir):
         row = load_row(row_path(result_dir, row_id))
         control_solved, control_pops = bool(row["control"]["solved"]), row["control"]["pops"]
         solved, pops = row["path_len"] >= 0, row["nodes"].astype(np.int64)

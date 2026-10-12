@@ -7,14 +7,13 @@ root is searched and a solve is lifted to elementary stable AC moves (``acx.ngen
 from dataclasses import dataclass, field
 
 from ..core.config import SearchConfig
-from ..core.words import GEN_CHARS
 from ..search import search
 from ..search.engine import Result, as_presentation
 from ..verify.replay import replay
 from .lift import lift
 from .sac import Sac, triangulate
 
-MAX_GENERATORS = len(GEN_CHARS)     # the search names generators by letter (acx.core.words.fmt)
+MAX_GENERATORS = 127     # a letter code is one byte in the fast backend and in the cap counters' state keys
 
 
 @dataclass(frozen=True)

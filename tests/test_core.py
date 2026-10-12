@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 
 from acx.core.config import SearchConfig, parse_override
-from acx.core.moves import (Move, apply_raw, destabilize, elementary_step, enumerate_moves,
+from acx.core.moves import (Move, Trace, apply_raw, destabilize, elementary_step, enumerate_moves,
                             from_legacy, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
 from acx.core.words import (Presentation, canonical_rels, canonical_word, fmt, inverse,
@@ -162,10 +162,30 @@ def test_generator_names_past_z_do_not_crash():
     assert fmt((27, -27, 1)) == "g27G27x" and fmt(tuple(range(1, 27))) == "xyzabcdefghijklmnopqrstuvw"
 
 
+def test_generator_names_roundtrip_past_z():
+    """F5: ``fmt`` names the 27th generator ``g27`` and ``parse`` reads it back, so a word survives the round trip."""
+    for n in range(26, 31):
+        w = (n, -n, 1, -(n + 1), 2, n + 1)
+        assert parse(fmt(w)) == w
+    assert parse("g27G28x") == (27, -28, 1) and parse("gG") == (10, -10)     # a bare g is the tenth generator
+    assert Presentation.parse("g27", "xy").n_gen == 27
+    for bad in ("x1", "g0", "g1", "G26", "xy ", "?"):                        # g1..g26 are the letters x..w, not names
+        with pytest.raises(ValueError):
+            parse(bad)
+
+
+def test_moves_conjugate_by_a_generator_past_z():
+    """``Trace.conj`` writes the letter with ``to_char`` and ``elementary_step`` must read ``g27`` back."""
+    p = Presentation(28, tuple((i,) for i in range(1, 29)))
+    assert elementary_step(p, {"op": "conjugate", "target": 1, "by": "g27"}).rels[0] == (-27, 1, 27)
+    trace = Trace(p)
+    trace.conj(0, (27, -28))
+    assert trace.pres.rels[0] == (28, -27, 1, 27, -28) and [m["by"] for m in trace.moves] == ["g27", "G28"]
+
+
 @pytest.mark.parametrize("s", [1, -1])
 def test_trace_conjugated_multiply(s):
     """``r_i <- r_i . (c^-1 r_j^s c)`` (free reduction), ``r_j`` back as it was, every step an elementary move."""
-    from acx.core.moves import Trace
     p = Presentation.parse("xyXy", "yxxY")
     c = parse("xy")
     tr = Trace(p)
