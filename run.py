@@ -1,6 +1,6 @@
 """One command for every method: ``python run.py --config configs/<name>.toml [--set key=value ...]``.
 
-Writes ``results/<run name>/{paths.jsonl, summary.json}``; the config format is in ``acx/runner.py``.
+Writes ``results/<run name>/{paths.jsonl, summary.json}``; the config format is in ``acx/runner/config.py``.
 """
 import argparse
 import json

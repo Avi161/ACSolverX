@@ -1,4 +1,4 @@
-"""run.py / acx.runner: every method end to end on a few rows, resume, config errors."""
+"""run.py / acx.runner: every method end to end on a few rows, resume, config errors, record and cap helpers."""
 import json
 import os
 
@@ -172,3 +172,25 @@ def test_cov_with_free_reduction_replays_its_images(tmp_path):
     """Images whose normal form is unstable under free reduction (bench60 ids 579, 380) used to hit ReplayError."""
     s = quiet(cfg("cov", 'rows="579,380"', "search.cyclic=false", "search.budget=300", "name=covlin"), tmp_path)
     assert s["rows"] == 2 and s["errors"] == 0
+
+
+def test_every_method_but_rankn_has_a_solver():
+    from acx.runner.config import METHODS
+    from acx.runner.methods import SOLVERS
+    assert set(SOLVERS) == set(METHODS) - {"rankn"}
+
+
+def test_record_has_the_common_fields_first_then_the_extras():
+    from acx.runner.methods import record
+    rec = record(False, cost=3, rank=2)
+    assert list(rec) == ["solved", "kind", "aut_assisted", "cost", "sub_moves", "elem_moves", "path", "elementary",
+                         "rank"]
+    assert rec["path"] is None and rec["elementary"] is None and rec["cost"] == 3
+
+
+def test_record_caps_copies_only_the_counters_a_search_kept():
+    from acx.core.capcount import blank
+    from acx.runner.caps import record_caps
+    assert record_caps(None) == {} and record_caps({"pops": 5}) == {}
+    stats = {**blank("dyn_cap"), "cap_legs_bound": 2, "pops": 5}
+    assert set(record_caps(stats)) == set(blank("dyn_cap")) | {"cap_legs_bound"}
