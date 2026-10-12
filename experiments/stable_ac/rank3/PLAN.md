@@ -166,7 +166,7 @@ separately.
   block partition, relsub ⊇ CoV family, null stabilization, budget prefix
   property in rank 3, runner end to end against the reference search, resume,
   verifier rejects a tampered array.
-- Independent checks (`indep/`). Five scripts written from a prose brief
+- *(added after launch)* Independent checks (`indep/`). Five scripts written from a prose brief
   (`indep/BRIEF.md`) by testers who were not shown the runner, the fast solver,
   the verifier, the summarizer, the plot script or their tests, and each read
   line by line by a second tester. They import nothing from the repo (the box
@@ -183,7 +183,7 @@ separately.
   summaries and in the control-vs-start tables recomputed from the raw arrays).
   Each script's notes (`indep/*.md`) list what it assumed and what it could not
   check.
-- Relabeling classes (`class_view.py`, tests in
+- *(added after launch)* Relabeling classes (`class_view.py`, tests in
   `tests/stable_ac/test_rankn_class_view.py`). MS640 holds each presentation
   up to a signed relabeling of x, y more than once (319 classes: 318 pairs and
   one class of four), and the greedy is not invariant under relabeling, so
@@ -340,6 +340,19 @@ Recorded 12 Oct 2026, 04:30 UTC, after lengths 1 to 6 of box A were read.
     are committed gzipped; `verify_rank3_bf` unpacks them to a temporary
     directory. Everything else is committed as the boxes wrote it; shards and
     logs stay in S3.
+17. **Independent checks added after launch (06:40 UTC, commit `7323c3a`).**
+    The `indep/` bullet of §7 was written while lengths 9 and 10 were still
+    running and after the summaries of lengths 1 to 8 had been read. The
+    scripts change no result; they only compare. First run at `c88d301`: all
+    five exit 0. `indep_search` used 300 CPU-seconds of its 40 minutes, so
+    its sample constants were raised (`9847741`, noted in
+    `indep/indep_search.md`); second run at `ff0d861`: 37,560 searches re-run,
+    0 mismatches.
+18. **Relabeling-class view added after launch (06:40 UTC, `7323c3a`).**
+    `class_view.py` and the second §7 bullet marked *(added after launch)*
+    follow from item 10. The 17% noise threshold was fixed from lengths
+    1 to 5; at lengths 6 to 9 the 90th percentile of the node gap between
+    relabeled copies is 18 to 20%, and the threshold is left where it was.
 
 ### Boxes
 

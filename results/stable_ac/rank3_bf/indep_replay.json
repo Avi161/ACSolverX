@@ -1,0 +1,2379 @@
+{
+ "script": "indep_replay.py",
+ "checks": [
+  {
+   "name": "replay_ends_trivial",
+   "compared": 121039,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "path row: the moves, applied to the start built from the dataset relators and the row's z word(s), end with every relator one letter and the letters the n generators up to inverse",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+      "compared": 39968,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+      "compared": 2693,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+      "compared": 812,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "no_relator_over_24_on_path",
+   "compared": 121039,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "path row: no relator longer than 24 at any state of the replay, start included",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+      "compared": 39968,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+      "compared": 2693,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+      "compared": 812,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "row_r1_r2_equal_dataset",
+   "compared": 285460,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "row of a rank-3 / relsub jsonl (path rows and sample / relsub rows): r1 and r2 equal the dataset relators of its pres_id",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
+      "compared": 69816,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub.jsonl": {
+      "compared": 69816,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+      "compared": 39968,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "n_moves_eq_jsonl_path_length",
+   "compared": 117534,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "path row: len(path_moves) == path_length of the sample / relsub row with the same pres_id + z_word, and that row is solved",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+      "compared": 39968,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "n_moves_eq_npz_path_len",
+   "compared": 31799,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "path row: len(path_moves) == npz path_len[row of pres_id, word_index] (rank n: [row of pres_id, index])",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+      "compared": 2693,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+      "compared": 812,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "jsonl_nodes_eq_npz_nodes",
+   "compared": 31799,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "nodes_explored of the jsonl row == npz nodes cell (rank 3: every sample row; rank n: every path row)",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+      "compared": 2693,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+      "compared": 812,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "solved_rows_have_path_row",
+   "compared": 117534,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "every sample / relsub row with solved true has a path row",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
+      "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub.jsonl": {
+      "compared": 39968,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "moves_wellformed_for_search",
+   "compared": 121039,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "extra. path row: every move is one the search can emit: 0 <= k1 < len(r_i), 0 <= k2 < len(r_j), both relators non-empty, the seam cancels",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+      "compared": 39968,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+      "compared": 2693,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+      "compared": 812,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "sample_path_length_eq_npz_path_len",
+   "compared": 28294,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "extra. rank-3 sample row: path_length (null -> -1) == npz path_len cell, and solved <=> cell >= 0",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "sample_word_index_eq_npz_word",
+   "compared": 28294,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "extra. rank-3 sample row: npz words[word_index] == z_word",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "rankn_row_matches_npz_combo",
+   "compared": 3505,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "extra. rank-n path row: rank == 2 + len(z_words) == r<R> of the file name == npz meta rank, and z_words == [words[c] for c in combos[index]]",
+    "per_file": {
+     "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+      "compared": 2693,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+      "compared": 812,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "row_name_zword_zrelator_consistent",
+   "compared": 285460,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "extra. rank-3 / relsub row: name is ms640_<pres_id>, z_word is a word in x,y (of length L and freely reduced in an L file), z_relator == 'Z' + z_word",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
+      "compared": 69816,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub.jsonl": {
+      "compared": 69816,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+      "compared": 39968,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "jsonl_rows_parse_unique",
+   "compared": 288965,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "every jsonl line is a JSON object; no two sample / relsub rows share pres_id + z_word with different solved / nodes / path_length",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 915,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1569,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1600,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1694,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1653,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
+      "compared": 69816,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 769,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1360,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1366,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1394,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1397,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1396,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1289,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1380,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1342,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1370,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1335,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1388,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1296,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub.jsonl": {
+      "compared": 69816,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+      "compared": 39968,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+      "compared": 2693,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+      "compared": 812,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "path_file_has_rows",
+   "compared": 25,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "a path file that is present has at least one row",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     }
+    }
+   }
+  },
+  {
+   "name": "companion_files_present",
+   "compared": 71,
+   "mismatches": 0,
+   "status": "pass",
+   "detail": {
+    "what": "when one file of a (paths, rows, npz) group is present, the others are too",
+    "per_file": {
+     "rank3_bf_ms640_b10000_cap24_L1.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L1_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r4.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     }
+    }
+   }
+  }
+ ],
+ "mismatches": 0,
+ "skipped": [
+  "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl: absent",
+  "rank3_bf_ms640_b1000_cap24_L10.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L1_inv_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L1_inv_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L1_inv.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L2_inv_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L2_inv_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L2_inv.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L3_inv_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L3_inv_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L3_inv.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L4_inv_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L4_inv_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L4_inv.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L5_inv_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L5_inv_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L5_inv.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L6_inv_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L6_inv_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L6_inv.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L7.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L8_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L8_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L8.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L9_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L9_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L9.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L10_sample_paths.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L10_sample.jsonl: absent",
+  "rank3_bf_ms640_b10000_cap24_L10.npz: absent"
+ ],
+ "first_mismatches": [],
+ "checks_with_no_data": [],
+ "per_file": {
+  "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 915,
+   "rows_replayed": 915,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 915,
+   "jsonl_rows_solved": 915,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1569,
+   "rows_replayed": 1569,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1569,
+   "jsonl_rows_solved": 1569,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1600,
+   "rows_replayed": 1600,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1600,
+   "jsonl_rows_solved": 1600,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1694,
+   "rows_replayed": 1694,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1694,
+   "jsonl_rows_solved": 1694,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1653,
+   "rows_replayed": 1653,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1653,
+   "jsonl_rows_solved": 1653,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1670,
+   "rows_replayed": 1670,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1670,
+   "jsonl_rows_solved": 1670,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+   "kind": "relsub",
+   "path_rows": 49272,
+   "rows_replayed": 49272,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 69816,
+   "jsonl_rows_solved": 49272,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 769,
+   "rows_replayed": 769,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 769,
+   "jsonl_rows_solved": 769,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 769,
+   "rows_replayed": 769,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 769,
+   "jsonl_rows_solved": 769,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1360,
+   "rows_replayed": 1360,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1360,
+   "jsonl_rows_solved": 1360,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1342,
+   "rows_replayed": 1342,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1342,
+   "jsonl_rows_solved": 1342,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1366,
+   "rows_replayed": 1366,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1366,
+   "jsonl_rows_solved": 1366,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1394,
+   "rows_replayed": 1394,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1394,
+   "jsonl_rows_solved": 1394,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1397,
+   "rows_replayed": 1397,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1397,
+   "jsonl_rows_solved": 1397,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1396,
+   "rows_replayed": 1396,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1396,
+   "jsonl_rows_solved": 1396,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1289,
+   "rows_replayed": 1289,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1289,
+   "jsonl_rows_solved": 1289,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1380,
+   "rows_replayed": 1380,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1380,
+   "jsonl_rows_solved": 1380,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1342,
+   "rows_replayed": 1342,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1342,
+   "jsonl_rows_solved": 1342,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1370,
+   "rows_replayed": 1370,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1370,
+   "jsonl_rows_solved": 1370,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1335,
+   "rows_replayed": 1335,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1335,
+   "jsonl_rows_solved": 1335,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1388,
+   "rows_replayed": 1388,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1388,
+   "jsonl_rows_solved": 1388,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1296,
+   "rows_replayed": 1296,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1296,
+   "jsonl_rows_solved": 1296,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl": {
+   "kind": "relsub",
+   "path_rows": 39968,
+   "rows_replayed": 39968,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 69816,
+   "jsonl_rows_solved": 39968,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl": {
+   "kind": "rankn",
+   "path_rows": 2693,
+   "rows_replayed": 2693,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 0,
+   "jsonl_rows_solved": 0,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl": {
+   "kind": "rankn",
+   "path_rows": 812,
+   "rows_replayed": 812,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 0,
+   "jsonl_rows_solved": 0,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  }
+ },
+ "internal_errors": [],
+ "timed_out": false,
+ "workers": 8,
+ "pool_note": null,
+ "minutes": 40.0,
+ "seconds": 7.1
+}

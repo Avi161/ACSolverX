@@ -1,0 +1,1121 @@
+{
+ "source": "ms640",
+ "node_budget": 10000,
+ "max_relator_length_cap": 24,
+ "n_presentations": 640,
+ "max_len": 6,
+ "n_words_per_presentation": 728,
+ "n_searches": 465920,
+ "core_seconds": 401291.0866699219,
+ "views": {
+  "100": {
+   "control_solved": 455,
+   "by_length": [
+    {
+     "len": 1,
+     "n_words": 2,
+     "solve_rate": 0.5359375,
+     "solve_rate_control_solved": 0.7538461538461538,
+     "solve_rate_control_unsolved": 0.0,
+     "faster": 0.0,
+     "equal": 0.0,
+     "slower": 0.7538461538461538,
+     "lost": 0.24615384615384617,
+     "median_extra_nodes": 1.0,
+     "mean_presentations_per_word": 343.0,
+     "best_single_word": "x",
+     "best_single_word_solves": 350,
+     "words_beating_control": 0,
+     "ms_per_search": 756.8603515625
+    },
+    {
+     "len": 2,
+     "n_words": 6,
+     "solve_rate": 0.5768229166666667,
+     "solve_rate_control_solved": 0.8098901098901099,
+     "solve_rate_control_unsolved": 0.0036036036036036032,
+     "faster": 0.013553113553113552,
+     "equal": 0.0,
+     "slower": 0.7963369963369963,
+     "lost": 0.1901098901098901,
+     "median_extra_nodes": 2.0,
+     "mean_presentations_per_word": 369.1666666666667,
+     "best_single_word": "Xy",
+     "best_single_word_solves": 379,
+     "words_beating_control": 0,
+     "ms_per_search": 585.7208887736002
+    },
+    {
+     "len": 3,
+     "n_words": 18,
+     "solve_rate": 0.568576388888889,
+     "solve_rate_control_solved": 0.7993894993894993,
+     "solve_rate_control_unsolved": 0.0009009009009009008,
+     "faster": 0.006471306471306471,
+     "equal": 0.0002442002442002442,
+     "slower": 0.7926739926739926,
+     "lost": 0.2006105006105006,
+     "median_extra_nodes": 3.0,
+     "mean_presentations_per_word": 363.8888888888889,
+     "best_single_word": "xyX",
+     "best_single_word_solves": 400,
+     "words_beating_control": 0,
+     "ms_per_search": 682.7715131971571
+    },
+    {
+     "len": 4,
+     "n_words": 54,
+     "solve_rate": 0.5564814814814815,
+     "solve_rate_control_solved": 0.7806267806267807,
+     "solve_rate_control_unsolved": 0.005205205205205205,
+     "faster": 0.00814000814000814,
+     "equal": 0.0002035002035002035,
+     "slower": 0.7722832722832723,
+     "lost": 0.21937321937321935,
+     "median_extra_nodes": 3.0,
+     "mean_presentations_per_word": 356.14814814814815,
+     "best_single_word": "yXYx",
+     "best_single_word_solves": 421,
+     "words_beating_control": 0,
+     "ms_per_search": 747.021484375
+    },
+    {
+     "len": 5,
+     "n_words": 162,
+     "solve_rate": 0.5565007716049383,
+     "solve_rate_control_solved": 0.7813593813593814,
+     "solve_rate_control_unsolved": 0.0034701368034701367,
+     "faster": 0.007122507122507122,
+     "equal": 0.0002306335639668973,
+     "slower": 0.7740062406729074,
+     "lost": 0.21864061864061865,
+     "median_extra_nodes": 3.0,
+     "mean_presentations_per_word": 356.1604938271605,
+     "best_single_word": "yyXYx",
+     "best_single_word_solves": 447,
+     "words_beating_control": 0,
+     "ms_per_search": 839.8963457272376
+    },
+    {
+     "len": 6,
+     "n_words": 486,
+     "solve_rate": 0.5555394804526749,
+     "solve_rate_control_solved": 0.7802604802604801,
+     "solve_rate_control_unsolved": 0.002847291736180625,
+     "faster": 0.005521638854972187,
+     "equal": 0.0003889115000226112,
+     "slower": 0.7743499299054855,
+     "lost": 0.21973951973951977,
+     "median_extra_nodes": 4.0,
+     "mean_presentations_per_word": 355.54526748971193,
+     "best_single_word": "yXXYxx",
+     "best_single_word_solves": 424,
+     "words_beating_control": 0,
+     "ms_per_search": 891.5576573752572
+    }
+   ],
+   "oracle": [
+    {
+     "max_len": 1,
+     "words": 2,
+     "solved_by_some_word": 350,
+     "gained_over_control": 0,
+     "control_solved_lost_by_every_word": 105,
+     "some_word_faster_than_control": 0,
+     "some_non_rotation_word_faster": 0
+    },
+    {
+     "max_len": 2,
+     "words": 8,
+     "solved_by_some_word": 408,
+     "gained_over_control": 2,
+     "control_solved_lost_by_every_word": 49,
+     "some_word_faster_than_control": 31,
+     "some_non_rotation_word_faster": 31
+    },
+    {
+     "max_len": 3,
+     "words": 26,
+     "solved_by_some_word": 442,
+     "gained_over_control": 4,
+     "control_solved_lost_by_every_word": 17,
+     "some_word_faster_than_control": 49,
+     "some_non_rotation_word_faster": 49
+    },
+    {
+     "max_len": 4,
+     "words": 80,
+     "solved_by_some_word": 480,
+     "gained_over_control": 28,
+     "control_solved_lost_by_every_word": 3,
+     "some_word_faster_than_control": 71,
+     "some_non_rotation_word_faster": 71
+    },
+    {
+     "max_len": 5,
+     "words": 242,
+     "solved_by_some_word": 487,
+     "gained_over_control": 35,
+     "control_solved_lost_by_every_word": 3,
+     "some_word_faster_than_control": 77,
+     "some_non_rotation_word_faster": 77
+    },
+    {
+     "max_len": 6,
+     "words": 728,
+     "solved_by_some_word": 501,
+     "gained_over_control": 49,
+     "control_solved_lost_by_every_word": 3,
+     "some_word_faster_than_control": 84,
+     "some_non_rotation_word_faster": 84
+    }
+   ],
+   "overall": {
+    "faster": 0.006146600652095157,
+    "equal": 0.0003320854969206618,
+    "slower": 0.7746981040937085,
+    "lost": 0.21882320975727568,
+    "solve_rate": 0.5562671703296703,
+    "solve_rate_control_unsolved": 0.003111078111078111
+   },
+   "overall_without_relator_rotations": {
+    "faster": 0.006158305345718374,
+    "equal": 0.0003326079674703178,
+    "slower": 0.7741066969117331,
+    "lost": 0.21940238977507834
+   },
+   "relator_rotations": {
+    "rows": 1604,
+    "solved": 1408,
+    "faster": 0,
+    "equal": 0,
+    "slower": 1408,
+    "mean_extra_nodes_when_both_solve": 1.1377840909090908
+   },
+   "subword_vs_other_within_bf": {
+    "presentations_with_a_subword": 640,
+    "subword_solve_rate": 0.572517676871916,
+    "other_solve_rate": 0.5549847223233597,
+    "subword_faster_than_control": 0.009718966777723045,
+    "other_faster_than_control": 0.005828830480642137
+   },
+   "price": {
+    "solved_in_shortlex_order": 501,
+    "median_nodes_to_first_solve": 10.0,
+    "control_nodes_median_same_presentations": 8.0,
+    "presentations_where_shortlex_beats_control": 49
+   },
+   "fixed_word_cross_validated": [
+    {
+     "fold": "even->odd",
+     "word": "XYxyy",
+     "train_solved": 220,
+     "train_control": 224,
+     "test_solved": 227,
+     "test_control": 231,
+     "test_presentations": 320
+    },
+    {
+     "fold": "odd->even",
+     "word": "yyXYx",
+     "train_solved": 228,
+     "train_control": 231,
+     "test_solved": 219,
+     "test_control": 224,
+     "test_presentations": 320
+    }
+   ],
+   "top_words": [
+    {
+     "word": "yyXYx",
+     "len": 5,
+     "solved": 447,
+     "gained": 10,
+     "lost": 18,
+     "faster": 33
+    },
+    {
+     "word": "XYxyy",
+     "len": 5,
+     "solved": 447,
+     "gained": 9,
+     "lost": 17,
+     "faster": 31
+    },
+    {
+     "word": "yXYxy",
+     "len": 5,
+     "solved": 424,
+     "gained": 6,
+     "lost": 37,
+     "faster": 19
+    },
+    {
+     "word": "yXXYxx",
+     "len": 6,
+     "solved": 424,
+     "gained": 2,
+     "lost": 33,
+     "faster": 23
+    },
+    {
+     "word": "XXYxxy",
+     "len": 6,
+     "solved": 422,
+     "gained": 0,
+     "lost": 33,
+     "faster": 31
+    },
+    {
+     "word": "yXYx",
+     "len": 4,
+     "solved": 421,
+     "gained": 9,
+     "lost": 43,
+     "faster": 34
+    },
+    {
+     "word": "xyXXYx",
+     "len": 6,
+     "solved": 420,
+     "gained": 3,
+     "lost": 38,
+     "faster": 22
+    },
+    {
+     "word": "YxYXyy",
+     "len": 6,
+     "solved": 419,
+     "gained": 2,
+     "lost": 38,
+     "faster": 13
+    },
+    {
+     "word": "XYxy",
+     "len": 4,
+     "solved": 418,
+     "gained": 11,
+     "lost": 48,
+     "faster": 32
+    },
+    {
+     "word": "xYYXy",
+     "len": 5,
+     "solved": 418,
+     "gained": 2,
+     "lost": 39,
+     "faster": 20
+    },
+    {
+     "word": "XXYxyx",
+     "len": 6,
+     "solved": 417,
+     "gained": 5,
+     "lost": 43,
+     "faster": 18
+    },
+    {
+     "word": "XyXYxx",
+     "len": 6,
+     "solved": 416,
+     "gained": 4,
+     "lost": 43,
+     "faster": 21
+    },
+    {
+     "word": "yxYYX",
+     "len": 5,
+     "solved": 414,
+     "gained": 0,
+     "lost": 41,
+     "faster": 17
+    },
+    {
+     "word": "yyxYXY",
+     "len": 6,
+     "solved": 413,
+     "gained": 2,
+     "lost": 44,
+     "faster": 19
+    },
+    {
+     "word": "yyXYxY",
+     "len": 6,
+     "solved": 413,
+     "gained": 9,
+     "lost": 51,
+     "faster": 22
+    }
+   ],
+   "words_beating_control": 0,
+   "words_matching_control": 0
+  },
+  "1000": {
+   "control_solved": 554,
+   "by_length": [
+    {
+     "len": 1,
+     "n_words": 2,
+     "solve_rate": 0.60078125,
+     "solve_rate_control_solved": 0.694043321299639,
+     "solve_rate_control_unsolved": 0.0,
+     "faster": 0.0,
+     "equal": 0.0,
+     "slower": 0.694043321299639,
+     "lost": 0.30595667870036103,
+     "median_extra_nodes": 1.0,
+     "mean_presentations_per_word": 384.5,
+     "best_single_word": "x",
+     "best_single_word_solves": 403,
+     "words_beating_control": 0,
+     "ms_per_search": 756.8603515625
+    },
+    {
+     "len": 2,
+     "n_words": 6,
+     "solve_rate": 0.6841145833333333,
+     "solve_rate_control_solved": 0.7903128760529482,
+     "solve_rate_control_unsolved": 0.0,
+     "faster": 0.012936221419975932,
+     "equal": 0.0006016847172081828,
+     "slower": 0.7767749699157642,
+     "lost": 0.20968712394705172,
+     "median_extra_nodes": 2.0,
+     "mean_presentations_per_word": 437.8333333333333,
+     "best_single_word": "yX",
+     "best_single_word_solves": 449,
+     "words_beating_control": 0,
+     "ms_per_search": 585.7208887736002
+    },
+    {
+     "len": 3,
+     "n_words": 18,
+     "solve_rate": 0.6980902777777777,
+     "solve_rate_control_solved": 0.8064580826313679,
+     "solve_rate_control_unsolved": 0.0,
+     "faster": 0.006518251103088649,
+     "equal": 0.00020056157240272763,
+     "slower": 0.7997392699558764,
+     "lost": 0.19354191736863216,
+     "median_extra_nodes": 5.5,
+     "mean_presentations_per_word": 446.77777777777777,
+     "best_single_word": "Yxy",
+     "best_single_word_solves": 478,
+     "words_beating_control": 0,
+     "ms_per_search": 682.7715131971571
+    },
+    {
+     "len": 4,
+     "n_words": 54,
+     "solve_rate": 0.6856481481481482,
+     "solve_rate_control_solved": 0.7918170878459687,
+     "solve_rate_control_unsolved": 0.0017226528854435831,
+     "faster": 0.012434817488969114,
+     "equal": 0.00020056157240272763,
+     "slower": 0.7791817087845968,
+     "lost": 0.2081829121540313,
+     "median_extra_nodes": 4.0,
+     "mean_presentations_per_word": 438.81481481481484,
+     "best_single_word": "yXYx",
+     "best_single_word_solves": 506,
+     "words_beating_control": 0,
+     "ms_per_search": 747.021484375
+    },
+    {
+     "len": 5,
+     "n_words": 162,
+     "solve_rate": 0.6733314043209877,
+     "solve_rate_control_solved": 0.7775549315862191,
+     "solve_rate_control_unsolved": 0.001937984496124031,
+     "faster": 0.009682667023220574,
+     "equal": 0.00020056157240272763,
+     "slower": 0.7676717029905958,
+     "lost": 0.22244506841378078,
+     "median_extra_nodes": 4.0,
+     "mean_presentations_per_word": 430.9320987654321,
+     "best_single_word": "yxYYX",
+     "best_single_word_solves": 490,
+     "words_beating_control": 0,
+     "ms_per_search": 839.8963457272376
+    },
+    {
+     "len": 6,
+     "n_words": 486,
+     "solve_rate": 0.6683641975308642,
+     "solve_rate_control_solved": 0.7718092139472004,
+     "solve_rate_control_unsolved": 0.0019858359651641305,
+     "faster": 0.00750248844913907,
+     "equal": 0.00034169749372316567,
+     "slower": 0.7639650280043381,
+     "lost": 0.2281907860527997,
+     "median_extra_nodes": 5.0,
+     "mean_presentations_per_word": 427.75308641975306,
+     "best_single_word": "yyXYxY",
+     "best_single_word_solves": 508,
+     "words_beating_control": 0,
+     "ms_per_search": 891.5576573752572
+    }
+   ],
+   "oracle": [
+    {
+     "max_len": 1,
+     "words": 2,
+     "solved_by_some_word": 403,
+     "gained_over_control": 0,
+     "control_solved_lost_by_every_word": 151,
+     "some_word_faster_than_control": 0,
+     "some_non_rotation_word_faster": 0
+    },
+    {
+     "max_len": 2,
+     "words": 8,
+     "solved_by_some_word": 472,
+     "gained_over_control": 0,
+     "control_solved_lost_by_every_word": 82,
+     "some_word_faster_than_control": 35,
+     "some_non_rotation_word_faster": 35
+    },
+    {
+     "max_len": 3,
+     "words": 26,
+     "solved_by_some_word": 516,
+     "gained_over_control": 0,
+     "control_solved_lost_by_every_word": 38,
+     "some_word_faster_than_control": 60,
+     "some_non_rotation_word_faster": 60
+    },
+    {
+     "max_len": 4,
+     "words": 80,
+     "solved_by_some_word": 540,
+     "gained_over_control": 4,
+     "control_solved_lost_by_every_word": 18,
+     "some_word_faster_than_control": 130,
+     "some_non_rotation_word_faster": 130
+    },
+    {
+     "max_len": 5,
+     "words": 242,
+     "solved_by_some_word": 546,
+     "gained_over_control": 8,
+     "control_solved_lost_by_every_word": 16,
+     "some_word_faster_than_control": 148,
+     "some_non_rotation_word_faster": 148
+    },
+    {
+     "max_len": 6,
+     "words": 728,
+     "solved_by_some_word": 562,
+     "gained_over_control": 16,
+     "control_solved_lost_by_every_word": 8,
+     "some_word_faster_than_control": 164,
+     "some_non_rotation_word_faster": 164
+    }
+   ],
+   "overall": {
+    "faster": 0.008353334391240528,
+    "equal": 0.00029753639861943113,
+    "slower": 0.766716586662435,
+    "lost": 0.22463254254770498,
+    "solve_rate": 0.6714307177197802,
+    "solve_rate_control_unsolved": 0.001884743163812931
+   },
+   "overall_without_relator_rotations": {
+    "faster": 0.008366199586142615,
+    "equal": 0.00029802731853451053,
+    "slower": 0.7664033153386345,
+    "lost": 0.22493245775668833
+   },
+   "relator_rotations": {
+    "rows": 1604,
+    "solved": 1490,
+    "faster": 0,
+    "equal": 0,
+    "slower": 1490,
+    "mean_extra_nodes_when_both_solve": 5.169127516778524
+   },
+   "subword_vs_other_within_bf": {
+    "presentations_with_a_subword": 640,
+    "subword_solve_rate": 0.6994594337033501,
+    "other_solve_rate": 0.6689019377593846,
+    "subword_faster_than_control": 0.014337251362686388,
+    "other_faster_than_control": 0.0077831841348509
+   },
+   "price": {
+    "solved_in_shortlex_order": 562,
+    "median_nodes_to_first_solve": 10.0,
+    "control_nodes_median_same_presentations": 9.0,
+    "presentations_where_shortlex_beats_control": 16
+   },
+   "fixed_word_cross_validated": [
+    {
+     "fold": "even->odd",
+     "word": "YXYxyy",
+     "train_solved": 256,
+     "train_control": 273,
+     "test_solved": 252,
+     "test_control": 281,
+     "test_presentations": 320
+    },
+    {
+     "fold": "odd->even",
+     "word": "yXYx",
+     "train_solved": 257,
+     "train_control": 281,
+     "test_solved": 249,
+     "test_control": 273,
+     "test_presentations": 320
+    }
+   ],
+   "top_words": [
+    {
+     "word": "yyXYxY",
+     "len": 6,
+     "solved": 508,
+     "gained": 3,
+     "lost": 49,
+     "faster": 41
+    },
+    {
+     "word": "YXYxyy",
+     "len": 6,
+     "solved": 508,
+     "gained": 2,
+     "lost": 48,
+     "faster": 42
+    },
+    {
+     "word": "yXYx",
+     "len": 4,
+     "solved": 506,
+     "gained": 3,
+     "lost": 51,
+     "faster": 53
+    },
+    {
+     "word": "XYxy",
+     "len": 4,
+     "solved": 505,
+     "gained": 3,
+     "lost": 52,
+     "faster": 50
+    },
+    {
+     "word": "yyXY",
+     "len": 4,
+     "solved": 503,
+     "gained": 0,
+     "lost": 51,
+     "faster": 15
+    },
+    {
+     "word": "Yxyy",
+     "len": 4,
+     "solved": 500,
+     "gained": 0,
+     "lost": 54,
+     "faster": 16
+    },
+    {
+     "word": "YxYXyy",
+     "len": 6,
+     "solved": 500,
+     "gained": 1,
+     "lost": 55,
+     "faster": 21
+    },
+    {
+     "word": "yyxYXY",
+     "len": 6,
+     "solved": 499,
+     "gained": 1,
+     "lost": 56,
+     "faster": 26
+    },
+    {
+     "word": "xYXy",
+     "len": 4,
+     "solved": 496,
+     "gained": 1,
+     "lost": 59,
+     "faster": 31
+    },
+    {
+     "word": "yxYX",
+     "len": 4,
+     "solved": 496,
+     "gained": 1,
+     "lost": 59,
+     "faster": 26
+    },
+    {
+     "word": "yyxY",
+     "len": 4,
+     "solved": 495,
+     "gained": 0,
+     "lost": 59,
+     "faster": 9
+    },
+    {
+     "word": "YXyy",
+     "len": 4,
+     "solved": 493,
+     "gained": 0,
+     "lost": 61,
+     "faster": 14
+    },
+    {
+     "word": "xxYXXy",
+     "len": 6,
+     "solved": 493,
+     "gained": 2,
+     "lost": 63,
+     "faster": 26
+    },
+    {
+     "word": "yxYYX",
+     "len": 5,
+     "solved": 490,
+     "gained": 0,
+     "lost": 64,
+     "faster": 24
+    },
+    {
+     "word": "YYxyy",
+     "len": 5,
+     "solved": 489,
+     "gained": 0,
+     "lost": 65,
+     "faster": 17
+    }
+   ],
+   "words_beating_control": 0,
+   "words_matching_control": 0
+  },
+  "10000": {
+   "control_solved": 606,
+   "by_length": [
+    {
+     "len": 1,
+     "n_words": 2,
+     "solve_rate": 0.71484375,
+     "solve_rate_control_solved": 0.754950495049505,
+     "solve_rate_control_unsolved": 0.0,
+     "faster": 0.0,
+     "equal": 0.0,
+     "slower": 0.754950495049505,
+     "lost": 0.24504950495049505,
+     "median_extra_nodes": 1.0,
+     "mean_presentations_per_word": 457.5,
+     "best_single_word": "x",
+     "best_single_word_solves": 471,
+     "words_beating_control": 0,
+     "ms_per_search": 756.8603515625
+    },
+    {
+     "len": 2,
+     "n_words": 6,
+     "solve_rate": 0.8020833333333334,
+     "solve_rate_control_solved": 0.8470847084708469,
+     "solve_rate_control_unsolved": 0.0,
+     "faster": 0.011826182618261825,
+     "equal": 0.00055005500550055,
+     "slower": 0.8347084708470847,
+     "lost": 0.15291529152915295,
+     "median_extra_nodes": 3.5,
+     "mean_presentations_per_word": 513.3333333333334,
+     "best_single_word": "yy",
+     "best_single_word_solves": 526,
+     "words_beating_control": 0,
+     "ms_per_search": 585.7208887736002
+    },
+    {
+     "len": 3,
+     "n_words": 18,
+     "solve_rate": 0.80703125,
+     "solve_rate_control_solved": 0.8523102310231023,
+     "solve_rate_control_unsolved": 0.0,
+     "faster": 0.00605060506050605,
+     "equal": 0.00018335166850018335,
+     "slower": 0.846076274294096,
+     "lost": 0.1476897689768977,
+     "median_extra_nodes": 8.5,
+     "mean_presentations_per_word": 516.5,
+     "best_single_word": "xyX",
+     "best_single_word_solves": 551,
+     "words_beating_control": 0,
+     "ms_per_search": 682.7715131971571
+    },
+    {
+     "len": 4,
+     "n_words": 54,
+     "solve_rate": 0.8179108796296297,
+     "solve_rate_control_solved": 0.86325021391028,
+     "solve_rate_control_unsolved": 0.00980392156862745,
+     "faster": 0.013292995966263293,
+     "equal": 0.00018335166850018335,
+     "slower": 0.8497738662755165,
+     "lost": 0.1367497860897201,
+     "median_extra_nodes": 4.0,
+     "mean_presentations_per_word": 523.4629629629629,
+     "best_single_word": "xYXy",
+     "best_single_word_solves": 563,
+     "words_beating_control": 0,
+     "ms_per_search": 747.021484375
+    },
+    {
+     "len": 5,
+     "n_words": 162,
+     "solve_rate": 0.8139853395061728,
+     "solve_rate_control_solved": 0.8593285254451372,
+     "solve_rate_control_unsolved": 0.005809731299927378,
+     "faster": 0.010929796683372042,
+     "equal": 0.00018335166850018335,
+     "slower": 0.8482153770932648,
+     "lost": 0.14067147455486292,
+     "median_extra_nodes": 5.0,
+     "mean_presentations_per_word": 520.9506172839506,
+     "best_single_word": "yyxYY",
+     "best_single_word_solves": 570,
+     "words_beating_control": 0,
+     "ms_per_search": 839.8963457272376
+    },
+    {
+     "len": 6,
+     "n_words": 486,
+     "solve_rate": 0.8096225565843621,
+     "solve_rate_control_solved": 0.8543338901791414,
+     "solve_rate_control_unsolved": 0.012708787218591141,
+     "faster": 0.008624319222045661,
+     "equal": 0.00031237691670401614,
+     "slower": 0.8453971940403916,
+     "lost": 0.14566610982085862,
+     "median_extra_nodes": 6.0,
+     "mean_presentations_per_word": 518.1584362139918,
+     "best_single_word": "yyxYXY",
+     "best_single_word_solves": 572,
+     "words_beating_control": 0,
+     "ms_per_search": 891.5576573752572
+    }
+   ],
+   "oracle": [
+    {
+     "max_len": 1,
+     "words": 2,
+     "solved_by_some_word": 471,
+     "gained_over_control": 0,
+     "control_solved_lost_by_every_word": 135,
+     "some_word_faster_than_control": 0,
+     "some_non_rotation_word_faster": 0
+    },
+    {
+     "max_len": 2,
+     "words": 8,
+     "solved_by_some_word": 552,
+     "gained_over_control": 0,
+     "control_solved_lost_by_every_word": 54,
+     "some_word_faster_than_control": 35,
+     "some_non_rotation_word_faster": 35
+    },
+    {
+     "max_len": 3,
+     "words": 26,
+     "solved_by_some_word": 572,
+     "gained_over_control": 0,
+     "control_solved_lost_by_every_word": 34,
+     "some_word_faster_than_control": 61,
+     "some_non_rotation_word_faster": 61
+    },
+    {
+     "max_len": 4,
+     "words": 80,
+     "solved_by_some_word": 592,
+     "gained_over_control": 4,
+     "control_solved_lost_by_every_word": 18,
+     "some_word_faster_than_control": 144,
+     "some_non_rotation_word_faster": 144
+    },
+    {
+     "max_len": 5,
+     "words": 242,
+     "solved_by_some_word": 596,
+     "gained_over_control": 4,
+     "control_solved_lost_by_every_word": 14,
+     "some_word_faster_than_control": 164,
+     "some_non_rotation_word_faster": 164
+    },
+    {
+     "max_len": 6,
+     "words": 728,
+     "solved_by_some_word": 600,
+     "gained_over_control": 4,
+     "control_solved_lost_by_every_word": 10,
+     "some_word_faster_than_control": 182,
+     "some_non_rotation_word_faster": 182
+    }
+   ],
+   "overall": {
+    "faster": 0.00942271424944692,
+    "equal": 0.000272005222500272,
+    "slower": 0.8460291770935334,
+    "lost": 0.14427610343451927,
+    "solve_rate": 0.8108216002747252,
+    "solve_rate_control_unsolved": 0.01050420168067227
+   },
+   "overall_without_relator_rotations": {
+    "faster": 0.009434588521792594,
+    "equal": 0.0002724540172741235,
+    "slower": 0.8458021444301063,
+    "lost": 0.14449081303082698
+   },
+   "relator_rotations": {
+    "rows": 1604,
+    "solved": 1558,
+    "faster": 0,
+    "equal": 0,
+    "slower": 1558,
+    "mean_extra_nodes_when_both_solve": 23.833119383825416
+   },
+   "subword_vs_other_within_bf": {
+    "presentations_with_a_subword": 640,
+    "subword_solve_rate": 0.8258134703920159,
+    "other_solve_rate": 0.8093329764643158,
+    "subword_faster_than_control": 0.01528648798535073,
+    "other_faster_than_control": 0.008859797455277941
+   },
+   "price": {
+    "solved_in_shortlex_order": 600,
+    "median_nodes_to_first_solve": 11.0,
+    "control_nodes_median_same_presentations": 10.0,
+    "presentations_where_shortlex_beats_control": 4
+   },
+   "fixed_word_cross_validated": [
+    {
+     "fold": "even->odd",
+     "word": "YXYxyy",
+     "train_solved": 286,
+     "train_control": 302,
+     "test_solved": 280,
+     "test_control": 304,
+     "test_presentations": 320
+    },
+    {
+     "fold": "odd->even",
+     "word": "yyxYXY",
+     "train_solved": 290,
+     "train_control": 304,
+     "test_solved": 282,
+     "test_control": 302,
+     "test_presentations": 320
+    }
+   ],
+   "top_words": [
+    {
+     "word": "yyxYXY",
+     "len": 6,
+     "solved": 572,
+     "gained": 0,
+     "lost": 34,
+     "faster": 35
+    },
+    {
+     "word": "yyxYY",
+     "len": 5,
+     "solved": 570,
+     "gained": 0,
+     "lost": 36,
+     "faster": 18
+    },
+    {
+     "word": "YYxyy",
+     "len": 5,
+     "solved": 570,
+     "gained": 0,
+     "lost": 36,
+     "faster": 22
+    },
+    {
+     "word": "YxYXyy",
+     "len": 6,
+     "solved": 570,
+     "gained": 0,
+     "lost": 36,
+     "faster": 30
+    },
+    {
+     "word": "yyXYxY",
+     "len": 6,
+     "solved": 567,
+     "gained": 1,
+     "lost": 40,
+     "faster": 45
+    },
+    {
+     "word": "YXYxyy",
+     "len": 6,
+     "solved": 566,
+     "gained": 1,
+     "lost": 41,
+     "faster": 46
+    },
+    {
+     "word": "YYxyyy",
+     "len": 6,
+     "solved": 566,
+     "gained": 2,
+     "lost": 42,
+     "faster": 8
+    },
+    {
+     "word": "yyyXYY",
+     "len": 6,
+     "solved": 564,
+     "gained": 2,
+     "lost": 44,
+     "faster": 8
+    },
+    {
+     "word": "xYXy",
+     "len": 4,
+     "solved": 563,
+     "gained": 0,
+     "lost": 43,
+     "faster": 37
+    },
+    {
+     "word": "yxYX",
+     "len": 4,
+     "solved": 563,
+     "gained": 0,
+     "lost": 43,
+     "faster": 31
+    },
+    {
+     "word": "yyxYYX",
+     "len": 6,
+     "solved": 562,
+     "gained": 1,
+     "lost": 45,
+     "faster": 26
+    },
+    {
+     "word": "yXYx",
+     "len": 4,
+     "solved": 561,
+     "gained": 0,
+     "lost": 45,
+     "faster": 61
+    },
+    {
+     "word": "XYxy",
+     "len": 4,
+     "solved": 561,
+     "gained": 0,
+     "lost": 45,
+     "faster": 58
+    },
+    {
+     "word": "xYYXyy",
+     "len": 6,
+     "solved": 561,
+     "gained": 1,
+     "lost": 46,
+     "faster": 29
+    },
+    {
+     "word": "yxyXY",
+     "len": 5,
+     "solved": 560,
+     "gained": 0,
+     "lost": 46,
+     "faster": 26
+    }
+   ],
+   "words_beating_control": 0,
+   "words_matching_control": 0,
+   "gained_presentations_priced": {
+    "gained_at_this_budget": 4,
+    "control_file_budget": 100000,
+    "control_solves_them_at_file_budget": 4,
+    "best_word_cheaper_than_control": 4,
+    "shortlex_to_first_solve_cheaper_than_control": 0,
+    "rows": [
+     {
+      "pres_id": 628,
+      "best_word": "yXyX",
+      "best_word_nodes": 2156,
+      "shortlex_nodes": 383479,
+      "control_solved": true,
+      "control_nodes": 26774
+     },
+     {
+      "pres_id": 629,
+      "best_word": "yXXYYx",
+      "best_word_nodes": 632,
+      "shortlex_nodes": 336431,
+      "control_solved": true,
+      "control_nodes": 12452
+     },
+     {
+      "pres_id": 630,
+      "best_word": "XYYxxy",
+      "best_word_nodes": 599,
+      "shortlex_nodes": 627578,
+      "control_solved": true,
+      "control_nodes": 12429
+     },
+     {
+      "pres_id": 633,
+      "best_word": "xyxy",
+      "best_word_nodes": 2097,
+      "shortlex_nodes": 303442,
+      "control_solved": true,
+      "control_nodes": 26838
+     }
+    ]
+   }
+  }
+ },
+ "control_at_larger_budgets": {
+  "100": 455,
+  "1000": 554,
+  "10000": 606,
+  "100000": 634
+ },
+ "relsub": {
+  "rows": 69816,
+  "rows_proper": 59486,
+  "proper": {
+   "solved_by_some_subword": 592,
+   "gained_over_control": 4,
+   "mean_solve_rate": 0.808898851112842,
+   "some_subword_faster_than_control": 120,
+   "mean_fraction_faster_than_control": 0.012878184352952548
+  },
+  "all": {
+   "solved_by_some_subword": 610,
+   "gained_over_control": 4,
+   "mean_solve_rate": 0.8240914121722076,
+   "some_subword_faster_than_control": 120,
+   "mean_fraction_faster_than_control": 0.010861190439319235
+  },
+  "vs_cov": {
+   "cov_file_budget": 100000,
+   "cov_median_cap": 33.0,
+   "same_word_pairs_joined": 9759,
+   "same_word_neither": 1174,
+   "control": 606,
+   "rank3_subword_oracle": 592,
+   "cov_oracle": 626,
+   "control_or_rank3": 610,
+   "control_or_cov": 626,
+   "rank3_not_cov": 0,
+   "cov_not_rank3": 34,
+   "same_word_rank3_fewer_nodes": 725,
+   "same_word_tie": 456,
+   "same_word_cov_fewer_nodes": 6018,
+   "same_word_only_rank3_solves": 36,
+   "same_word_only_cov_solves": 1350
+  }
+ }
+}

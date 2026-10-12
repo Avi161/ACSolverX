@@ -1,0 +1,70 @@
+[indep_search.py] 37560 jobs in 27 groups, 8 workers, 40.0 minutes, planning took 0.8 s
+[indep_search.py] 1988 / 37560 jobs after 31 s
+[indep_search.py] 4267 / 37560 jobs after 61 s
+[indep_search.py] 6353 / 37560 jobs after 91 s
+[indep_search.py] 8473 / 37560 jobs after 121 s
+[indep_search.py] 10541 / 37560 jobs after 151 s
+[indep_search.py] 12607 / 37560 jobs after 181 s
+[indep_search.py] 14797 / 37560 jobs after 211 s
+[indep_search.py] 16922 / 37560 jobs after 241 s
+[indep_search.py] 19065 / 37560 jobs after 271 s
+[indep_search.py] 21196 / 37560 jobs after 301 s
+[indep_search.py] 23225 / 37560 jobs after 331 s
+[indep_search.py] 25309 / 37560 jobs after 361 s
+[indep_search.py] 27399 / 37560 jobs after 391 s
+[indep_search.py] 29510 / 37560 jobs after 421 s
+[indep_search.py] 31609 / 37560 jobs after 451 s
+[indep_search.py] 33601 / 37560 jobs after 481 s
+[indep_search.py] 35769 / 37560 jobs after 511 s
+selftest_fast_vs_naive: compared 22, equal 22, mismatches 0 | my byte-coded search against my literal tuple search on 22 small starts (ranks 2-5, budgets 40-60); 0 not run (self-test time limit); 0.4 s
+control_b1000: compared 640, equal 640, mismatches 0 | rank3_bf_ms640_b1000_cap24_control.jsonl: planned 640, compared 640, equal 640, not run 0; 44 cpu-s
+extra_rank3_null_b1000: compared 640, equal 640, mismatches 0 | rank3_bf_ms640_b1000_cap24_control.jsonl: planned 640, compared 640, equal 640, not run 0; 45 cpu-s
+rank3_b1000_L1: compared 1280, equal 1280, mismatches 0 | rank3_bf_ms640_b1000_cap24_L1.npz: planned 1280, compared 1280, equal 1280, not run 0; 122 cpu-s
+rank3_b1000_L2: compared 3000, equal 3000, mismatches 0 | rank3_bf_ms640_b1000_cap24_L2.npz: planned 3000, compared 3000, equal 3000, not run 0; 226 cpu-s
+rank3_b1000_L3: compared 3000, equal 3000, mismatches 0 | rank3_bf_ms640_b1000_cap24_L3.npz: planned 3000, compared 3000, equal 3000, not run 0; 241 cpu-s
+rank3_b1000_L4: compared 3000, equal 3000, mismatches 0 | rank3_bf_ms640_b1000_cap24_L4.npz: planned 3000, compared 3000, equal 3000, not run 0; 256 cpu-s
+rank3_b1000_L5: compared 3000, equal 3000, mismatches 0 | rank3_bf_ms640_b1000_cap24_L5.npz: planned 3000, compared 3000, equal 3000, not run 0; 275 cpu-s
+rank3_b1000_L6: compared 3000, equal 3000, mismatches 0 | rank3_bf_ms640_b1000_cap24_L6.npz: planned 3000, compared 3000, equal 3000, not run 0; 279 cpu-s
+rank3_b1000_L7: compared 3000, equal 3000, mismatches 0 | rank3_bf_ms640_b1000_cap24_L7.npz: planned 3000, compared 3000, equal 3000, not run 0; 296 cpu-s
+rank3_b1000_L8: compared 3000, equal 3000, mismatches 0 | rank3_bf_ms640_b1000_cap24_L8.npz: planned 3000, compared 3000, equal 3000, not run 0; 321 cpu-s
+rank3_b1000_L9: compared 3000, equal 3000, mismatches 0 | rank3_bf_ms640_b1000_cap24_L9.npz: planned 3000, compared 3000, equal 3000, not run 0; 329 cpu-s
+rank3_b1000_L1_inv: compared 500, equal 500, mismatches 0 | rank3_bf_ms640_b1000_cap24_L1_inv.npz: planned 500, compared 500, equal 500, not run 0; 47 cpu-s
+rank3_b1000_L2_inv: compared 500, equal 500, mismatches 0 | rank3_bf_ms640_b1000_cap24_L2_inv.npz: planned 500, compared 500, equal 500, not run 0; 40 cpu-s
+rank3_b1000_L3_inv: compared 500, equal 500, mismatches 0 | rank3_bf_ms640_b1000_cap24_L3_inv.npz: planned 500, compared 500, equal 500, not run 0; 41 cpu-s
+rank3_b1000_L4_inv: compared 500, equal 500, mismatches 0 | rank3_bf_ms640_b1000_cap24_L4_inv.npz: planned 500, compared 500, equal 500, not run 0; 45 cpu-s
+rank3_b1000_L5_inv: compared 500, equal 500, mismatches 0 | rank3_bf_ms640_b1000_cap24_L5_inv.npz: planned 500, compared 500, equal 500, not run 0; 47 cpu-s
+rank3_b1000_L6_inv: compared 500, equal 500, mismatches 0 | rank3_bf_ms640_b1000_cap24_L6_inv.npz: planned 500, compared 500, equal 500, not run 0; 51 cpu-s
+rank4_b1000: compared 3000, equal 3000, mismatches 0 | rankn_bf_ms640_b1000_cap24_r4.npz: planned 3000, compared 3000, equal 3000, not run 0; 202 cpu-s
+rank4_b1000_null: compared 100, equal 100, mismatches 0 | rankn_bf_ms640_b1000_cap24_r4.npz: planned 100, compared 100, equal 100, not run 0; 8 cpu-s
+rank5_b1000: compared 3000, equal 3000, mismatches 0 | rankn_bf_ms640_b1000_cap24_r5.npz: planned 3000, compared 3000, equal 3000, not run 0; 183 cpu-s
+rank5_b1000_null: compared 100, equal 100, mismatches 0 | rankn_bf_ms640_b1000_cap24_r5.npz: planned 100, compared 100, equal 100, not run 0; 9 cpu-s
+rank3_b10000_L1: compared 300, equal 300, mismatches 0 | rank3_bf_ms640_b10000_cap24_L1.npz: planned 300, compared 300, equal 300, not run 0; 222 cpu-s
+rank3_b10000_L2: compared 300, equal 300, mismatches 0 | rank3_bf_ms640_b10000_cap24_L2.npz: planned 300, compared 300, equal 300, not run 0; 177 cpu-s
+rank3_b10000_L3: compared 300, equal 300, mismatches 0 | rank3_bf_ms640_b10000_cap24_L3.npz: planned 300, compared 300, equal 300, not run 0; 203 cpu-s
+rank3_b10000_L4: compared 300, equal 300, mismatches 0 | rank3_bf_ms640_b10000_cap24_L4.npz: planned 300, compared 300, equal 300, not run 0; 149 cpu-s
+rank3_b10000_L5: compared 300, equal 300, mismatches 0 | rank3_bf_ms640_b10000_cap24_L5.npz: planned 300, compared 300, equal 300, not run 0; 197 cpu-s
+rank3_b10000_L6: compared 300, equal 300, mismatches 0 | rank3_bf_ms640_b10000_cap24_L6.npz: planned 300, compared 300, equal 300, not run 0; 213 cpu-s
+control_b1000_n2_copy: compared 640, equal 640, mismatches 0 | extra: my rank-2 search against the n2_* columns of the control file; equal 640 of 640
+control_b1000_relators_vs_dataset: compared 640, equal 640, mismatches 0 | r1, r2 strings of each control row equal dataset line pres_id (the search always uses the dataset line); 640 rows, 640 distinct pres_id
+rank3_b1000_L1_inv_words: compared 2, equal 2, mismatches 0 | words[k] of rank3_bf_ms640_b1000_cap24_L1_inv.npz is the inverse of words[k] of the forward file (2 forward, 2 inverse words); the search uses the word as stored in the _inv file
+rank3_b1000_L2_inv_words: compared 6, equal 6, mismatches 0 | words[k] of rank3_bf_ms640_b1000_cap24_L2_inv.npz is the inverse of words[k] of the forward file (6 forward, 6 inverse words); the search uses the word as stored in the _inv file
+rank3_b1000_L3_inv_words: compared 18, equal 18, mismatches 0 | words[k] of rank3_bf_ms640_b1000_cap24_L3_inv.npz is the inverse of words[k] of the forward file (18 forward, 18 inverse words); the search uses the word as stored in the _inv file
+rank3_b1000_L4_inv_words: compared 54, equal 54, mismatches 0 | words[k] of rank3_bf_ms640_b1000_cap24_L4_inv.npz is the inverse of words[k] of the forward file (54 forward, 54 inverse words); the search uses the word as stored in the _inv file
+rank3_b1000_L5_inv_words: compared 162, equal 162, mismatches 0 | words[k] of rank3_bf_ms640_b1000_cap24_L5_inv.npz is the inverse of words[k] of the forward file (162 forward, 162 inverse words); the search uses the word as stored in the _inv file
+rank3_b1000_L6_inv_words: compared 486, equal 486, mismatches 0 | words[k] of rank3_bf_ms640_b1000_cap24_L6_inv.npz is the inverse of words[k] of the forward file (486 forward, 486 inverse words); the search uses the word as stored in the _inv file
+meta_params: compared 25, equal 25, mismatches 0 | budget / cap / rank recorded in each file equal the file name's (the search uses the recorded values), and the control file has one row per dataset line
+KIND control: compared 640 / planned 640, equal 640
+KIND extra_rank3_null: compared 640 / planned 640, equal 640
+KIND rank3_b1000: compared 25280 / planned 25280, equal 25280
+KIND rank3_b10000: compared 1800 / planned 1800, equal 1800
+KIND rank3_b1000_inv: compared 3000 / planned 3000, equal 3000
+KIND rank4: compared 3000 / planned 3000, equal 3000
+KIND rank4_null: compared 100 / planned 100, equal 100
+KIND rank5: compared 3000 / planned 3000, equal 3000
+KIND rank5_null: compared 100 / planned 100, equal 100
+SKIPPED (file absent): rank3_bf_ms640_b1000_cap24_L10.npz
+SKIPPED (file absent): rank3_bf_ms640_b10000_cap24_L7.npz
+SKIPPED (file absent): rank3_bf_ms640_b10000_cap24_L8.npz
+SKIPPED (file absent): rank3_bf_ms640_b10000_cap24_L9.npz
+SKIPPED (file absent): rank3_bf_ms640_b10000_cap24_L10.npz
+TOTAL: 37560 searches compared of 37560 planned, 0 mismatches over all checks, 0 job errors
