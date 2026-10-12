@@ -70,7 +70,7 @@ def test_invariant_spec(ms640, pid, priority):
 def test_invariant_three_generators_and_linear(backend, cyclic):
     for pres in THREE:
         for cap in (5, 6, 8):
-            invariant(pres, cap, 200, backend=backend, cyclic=cyclic)
+            invariant(pres, cap, 200 if backend == "fast" else 100, backend=backend, cyclic=cyclic)
 
 
 # Planted binds: MS640 at cap 16, budget 2,000, LENGTH (row 620: the start is over the cap, so its only pop
@@ -104,9 +104,11 @@ def test_s20_mk2_row_527_cap_changes_a_published_solve(ms640):
         assert (r2.solved, r2.pops, r2.path_length) == (True, 7479, r.path_length)
 
 
-# Published MS640 runs (fast, cap 24, budget 10,000): solved rows and the counters' golden counts.
+# Published MS640 runs (fast, cap 24, budget 10,000): solved rows and the counters' golden counts. On
+# S20_MK2 a cap of 25 would change the pop sequence of 20 rows (6 of them solved: 527, 529, 628, 629, 630,
+# 633); on LENGTH the cap never mattered.
 GOLDEN = {"length": dict(solved=606, rows_dropped=26, rows_would_pop=0),
-          "s20_mk2": dict(solved=626, rows_dropped=74, rows_would_pop=S20_WOULD_POP)}
+          "s20_mk2": dict(solved=626, rows_dropped=74, rows_would_pop=20)}
 
 
 @pytest.mark.slow

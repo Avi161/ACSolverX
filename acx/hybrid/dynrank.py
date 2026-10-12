@@ -124,9 +124,10 @@ def make_key(words):
 
 
 # ---------------------------------------------------------------- moves
-def products(words, cap):
+def products(words, cap, dropped=None):
     """``(children, rejected)``: every rotation product with a result of at most ``cap`` letters (first
-    move per child), and the number of products longer than ``cap``."""
+    move per child), and the number of products longer than ``cap``. ``dropped`` (a list) receives
+    ``("cap", child, len(product))`` for each rejected product (the cap counters, ``acx.hybrid.capwatch``)."""
     n = len(words)
     seen, rejected = {}, 0
     for i in range(n):
@@ -146,6 +147,8 @@ def products(words, cap):
                             continue
                         if cap is not None and len(product) > cap:
                             rejected += 1
+                            if dropped is not None:      # the words are normalized and so is the product
+                                dropped.append(("cap", tuple(sorted(words[:i] + (product,) + words[i + 1:])), len(product)))
                             continue
                         key = normalize(words[:i] + (product,) + words[i + 1:])
                         if key not in seen:
@@ -231,16 +234,30 @@ def nielsen_children(words):
             for i in range(1, n + 1) for j in range(1, n + 1) if i != j for s in (1, -1)]
 
 
-def children(words, cap, ceiling, min_uses=2, nielsen=True):
+def children(words, cap, ceiling, min_uses=2, nielsen=True, dropped=None):
     """``(children, rejected)``: every admissible child ``(normalized child, event)`` within the
     total-length ``ceiling``, and the number of moves the cap or the ceiling rejected.
 
     ``cap`` bounds the relators a product or an elimination creates (``None``: no bound); a definition
-    never lengthens a relator. Relators inherited unchanged may exceed ``cap``.
+    never lengthens a relator. Relators inherited unchanged may exceed ``cap``. ``dropped`` (a list)
+    receives one ``(reason, normalized child, needed)`` per rejected move for the cap counters:
+    ``"cap"`` with the cap that would admit it (the product, or the longest relator of an elimination),
+    ``"slack"`` with the child's total length (the ceiling that would admit it).
     """
-    prods, rejected = products(words, cap)
+    prods, rejected = products(words, cap, dropped)
     elims = eliminations(words)
-    kept = [(k, e) for k, e in elims if cap is None or max(map(len, k), default=0) <= cap]
+    kept = []
+    for k, e in elims:
+        if cap is None or max(map(len, k), default=0) <= cap:
+            kept.append((k, e))
+        elif dropped is not None:
+            dropped.append(("cap", k, max(map(len, k), default=0)))
     cands = prods + defines(words, min_uses) + kept + (nielsen_children(words) if nielsen else [])
-    out = [(k, e) for k, e in cands if length(k) <= ceiling]
+    out = []
+    for k, e in cands:
+        total = length(k)
+        if total <= ceiling:
+            out.append((k, e))
+        elif dropped is not None:
+            dropped.append(("slack", k, total))
     return out, rejected + len(elims) - len(kept) + len(cands) - len(out)

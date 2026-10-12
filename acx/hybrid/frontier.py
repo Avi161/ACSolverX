@@ -10,6 +10,8 @@ Byte order on keys is ``acx.core.words.state_key`` order. Two operations:
   ``acx.search.fast.kernels``), as ``(children, rejected)``; ``children`` is a
   list of ``(child key, Move)`` and ``rejected`` counts the legal moves whose
   new relator is longer than ``cap``.
+* ``spec_dropped(key, cap)`` (both backends): the rejected moves themselves, for the cap counters
+  (``acx.core.capcount``).
 * ``transform(key, k)``: the key of ``AUTOS[k]`` applied to the state.
 
 ``"spec"`` is pure Python on ``acx`` words (here); ``"fast"`` is
@@ -63,6 +65,42 @@ def spec_expand(key, cap):
                     marked.add((k1, k2))
                     out.append((pack(canonical_rels((new, rj))), Move(i, 1 - i, s, k1, k2)))
     return out, rejected
+
+
+def spec_dropped(key, cap):
+    """The rank-two moves ``spec_expand`` rejects, one entry per rejected move in search order:
+    ``(child key, Move, total, longest)`` (its length is ``rejected`` of either backend, which reject
+    the same moves). It only feeds the cap counters (``acx.core.capcount``) and runs when a move was
+    rejected, never under the default ``"parent"`` cap, which cannot reject."""
+    rels = unpack(key)
+    out = []
+    if cap is None:
+        return out
+    for i in (0, 1):
+        ri, rj = rels[i], rels[1 - i]
+        li = len(ri)
+        for s in (1, -1):
+            oj = rj if s == 1 else inverse(rj)
+            lo = len(oj)
+            if not (li and lo):
+                continue
+            marked = set()
+            for k1 in range(li):
+                last = ri[li - 1 - k1]
+                for k2 in range(lo):
+                    if oj[(lo - k2) % lo] != -last:
+                        continue
+                    if lo <= cap and k1 and (k1 - 1, (k2 + 1) % lo) in marked:
+                        marked.add((k1, k2))
+                        continue
+                    new = reduce(rotate(ri, k1) + rotate(oj, k2))
+                    if lo > cap or len(new) > cap:
+                        can = canonical_rels((new, rj))
+                        out.append((pack(can), Move(i, 1 - i, s, k1, k2), len(can[0]) + len(can[1]),
+                                    max(len(can[0]), len(can[1]))))
+                        continue
+                    marked.add((k1, k2))
+    return out
 
 
 def spec_transform(key, k):

@@ -21,12 +21,15 @@ means uncapped. ``rejected`` counts the legal moves whose child has a relator
 over the cap (spec's ``cap_dropped``). The caller sizes ``out`` with
 ``max_children(lens)`` rows and at least ``child_width(lens)`` columns.
 
-``expand_drops(..., dout, dout_len) -> (count, rejected, dcount)`` does the same
-and also builds the dropped children (canonical and sorted, the same assembly
-as a kept child) into ``dout[:dcount]`` / ``dout_len``, for the cap counters
-(``acx.core.capcount``): one per distinct conjugacy repeat class, so
-``dcount <= rejected``. ``dout`` needs ``max_children(lens)`` rows and
-``child_width(lens)`` columns (a dropped relator is longer than the cap).
+``expand_drops(..., dout, dout_len, dprio, pid, dmax, kept) -> (count, rejected,
+dcount, dmin, tmin)`` also serves the cap counters (``acx.core.capcount``): with
+``pid >= 0`` it scores every dropped child from its reduced relator (the same
+float as ``score`` of the built child), returns the least score and least
+total over the drops, and builds the drops scoring ``<= dmax`` (canonical and
+sorted, the same assembly as a kept child; one per cut-shift repeat class, so
+``dcount <= rejected``) into ``dout`` / ``dout_len`` / ``dprio``. ``dout`` needs
+``max_children(lens)`` rows and ``child_width(lens)`` columns (a dropped
+relator is longer than the cap); ``kept=False`` skips building kept children.
 ``tie_bytes`` writes a state's heap tie-break key as bytes
 (``acx.core.words.state_bytes``).
 

@@ -24,9 +24,11 @@ rank-two pops plus 20 (and fewer than ``dyn_max``, if set). Ties: depth, then
 insertion order. Each frontier has a visited set checked at pop time. One work
 unit per popped state of either rank, plus the cascade's charges and the gates'.
 A placeholder's lower bound is ``total - (most uses of one digram) + 3 + penalty``.
-``stats`` of a search: ``pops``, ``dyn_pops``, ``max_rank``, ``cap_rejected``
-(rank-two moves over ``r2_cap``) and ``dyn_rejected`` (higher-rank moves over
-``dyn_cap`` or the ceiling); the cap is never applied silently.
+``stats`` of a search: ``pops``, ``dyn_pops``, ``max_rank``, ``dyn_rejected`` (higher-rank moves over
+``dyn_cap`` or the ceiling) and the cap counters of the three limits (``acx.hybrid.capwatch``):
+``cap_*`` (rank-two moves over ``r2_cap``; zero by construction under ``"parent"``), ``dyn_cap_*``
+and ``slack_*``, each with the children dropped and whether a dropped state would have been popped,
+so a cap never decides the run silently.
 
 Outputs are typed: a certificate with no higher-rank step is an ``ac_path``
 (AC moves and automorphisms of F2); one with higher-rank steps is a
@@ -43,7 +45,6 @@ Defaults are the source's final setting (budget 1,000 units, penalty 5,
 dyn_ratio 0.5, cap 8, slack 8): MS640 640/640, AC19 aut-min 72,779/72,779.
 """
 import heapq
-import itertools
 import time
 from dataclasses import dataclass, field, replace
 
@@ -53,8 +54,9 @@ from ..core.priority import length
 from ..core.words import Presentation, canonical_rels
 from . import dynrank as D
 from .cascade import NIELSEN, Aut, Budget, Run, cascade, gate_applicable, gate_precheck_key, is_terminal, run_gates
+from .capwatch import DYNPOOL, R2POOL, Watch, blank_records
 from .certify import certify
-from .frontier import BACKENDS, backend, pack, perm_min, unpack
+from .frontier import BACKENDS, backend, pack, perm_min, spec_dropped, unpack
 
 R2, DYN, DEFS = 0, 1, 2
 
@@ -108,6 +110,11 @@ class _Done(Exception):
     pass
 
 
+def _order(move):
+    """The position of a rank-two move in the search order (``i -> j -> s -> k1 -> k2``, ``s = 1`` first)."""
+    return (move.i, -move.s, move.k1, move.k2)
+
+
 def search(run, cfg, budget):
     """The best-first hybrid search from ``run.state``; ``(solved, steps, stats)``."""
     expand, transform = backend(cfg.backend)
@@ -119,10 +126,47 @@ def search(run, cfg, budget):
             root_key, prefix = best, (Aut(k),)
     heap = [(float(len(root_key) - 1), 0, 0, (root_key, None, (), R2))]
     dheap, seen_r2, seen_dyn = [], set(), set()
-    st = dict(pops=0, dyn_pops=0, max_rank=2, cap_rejected=0, dyn_rejected=0)
-    tick = itertools.count(1).__next__                  # insertion order, the last tie-break
+    st = dict(pops=0, dyn_pops=0, max_rank=2, dyn_rejected=0)
+    ticks = [0]                                         # insertion order, the last tie-break
+
+    def tick():
+        ticks[0] += 1
+        return ticks[0]
+
     push, pop = heapq.heappush, heapq.heappop
     result = []
+    base = ceiling - cfg.slack                          # the root's total length
+    watch = Watch({"cap": cfg.r2_cap, "dyn_cap": cfg.dyn_cap, "slack": cfg.slack},
+                  (lambda key: perm_min(key, transform)[0]) if cfg.perms else (lambda key: key),
+                  lambda words: D.make_key(words)[0], seen_r2, seen_dyn)
+    units_left = lambda: budget - st["pops"]            # noqa: E731
+
+    def can_dyn():
+        dyn_pops = st["dyn_pops"]
+        return (cfg.dyn_max is None or dyn_pops < cfg.dyn_max) and (
+            cfg.dyn_ratio is None or dyn_pops <= cfg.dyn_ratio * (st["pops"] - dyn_pops) + 20)
+
+    def drop_r2(ckey, total, needed, depth):
+        """A rank-two child the cap rejected: pending in the rank-two pool, or counted now if it would have
+        gone straight to the finishing gates."""
+        if gate_precheck_key(ckey):
+            watch.drop_now("cap", total, needed, st["pops"] + 1)
+        else:
+            watch.drop("cap", R2POOL, (float(total), depth, ticks[0] + 0.5), total, needed, ckey)
+
+    def drop_dyn(reason, state, needed, depth):
+        """A higher-rank move the dyn_cap (reason "cap") or the ceiling (reason "slack") rejected."""
+        name, total, n = ("dyn_cap" if reason == "cap" else "slack"), length(state), len(state)
+        if name == "slack":
+            needed -= base
+        if n == 2:                                      # an elimination back to rank two: offer() would run the gates
+            ckey = pack(canonical_rels(D.make_key(state)[0]))
+            if gate_precheck_key(ckey):
+                watch.drop_now(name, total, needed, st["pops"] + 1)
+            else:
+                watch.drop(name, R2POOL, (float(total), depth, ticks[0] + 0.5), total, needed, ckey)
+        else:
+            watch.drop(name, DYNPOOL, (float(total + cfg.penalty * (n - 2)), depth, ticks[0] + 0.5), total, needed, state)
 
     def chain(node):
         out = []
@@ -164,12 +208,15 @@ def search(run, cfg, budget):
 
     try:
         while (heap or dheap) and st["pops"] < budget:
-            pops, dyn_pops = st["pops"], st["dyn_pops"]
-            allowed = bool(dheap) and (cfg.dyn_max is None or dyn_pops < cfg.dyn_max) and (
-                cfg.dyn_ratio is None or dyn_pops <= cfg.dyn_ratio * (pops - dyn_pops) + 20)
+            ok = can_dyn()
+            allowed = bool(dheap) and ok
             if allowed and (not heap or dheap[0][0] <= heap[0][0]):
+                if watch.armed:
+                    watch.step(None, dheap[0], ok, st["pops"] + 1)
                 _, depth, _, node = pop(dheap)
             elif heap:
+                if watch.armed:
+                    watch.step(heap[0], None, ok, st["pops"] + 1)
                 _, depth, _, node = pop(heap)
             else:
                 break                                   # only deferred higher-rank states remain
@@ -183,6 +230,7 @@ def search(run, cfg, budget):
                 for cw, event in _dedup_sorted(D.defines(D.normalize(state), cfg.min_uses)):
                     if length(cw) > ceiling:
                         st["dyn_rejected"] += 1
+                        drop_dyn("slack", cw, length(cw), depth)
                     else:
                         offer_dyn(*D.make_key(cw), parent, event, depth)
                 continue
@@ -197,23 +245,39 @@ def search(run, cfg, budget):
                 if is_terminal(state):
                     result.append(chain(node))
                     raise _Done()
-                children, rejected = expand(rep, len(rep) - 1 if cfg.r2_cap == "parent" else cfg.r2_cap)
-                st["cap_rejected"] += rejected
-                for child, move in children:
-                    offer((child, node, (move,), R2), depth)
+                rcap = len(rep) - 1 if cfg.r2_cap == "parent" else cfg.r2_cap
+                children, rejected = expand(rep, rcap)
+                if rejected and watch.has("cap"):       # never under "parent": its children are shorter than the parent
+                    lost = spec_dropped(rep, rcap)
+                    assert len(lost) == rejected
+                    for entry in sorted([(_order(mv), 0, child, mv) for child, mv in children]
+                                        + [(_order(mv), 1, ckey, total, needed) for ckey, mv, total, needed in lost]):
+                        if entry[1]:
+                            drop_r2(entry[2], entry[3], entry[4], depth)
+                        else:
+                            offer((entry[2], node, (entry[3],), R2), depth)
+                else:
+                    for child, move in children:
+                        offer((child, node, (move,), R2), depth)
                 for k in NIELSEN if cfg.nielsen else ():
                     offer((transform(rep, k), node, (Aut(k),), R2), depth)
                 lower = float(len(rep) - 1 - max(D.digram_counts(state).values(), default=0) + 3 + cfg.penalty)
                 push(dheap, (lower, depth, tick(), (None, node, state, DEFS)))
             else:
                 st["dyn_pops"] += 1
-                edges, rejected = D.children(rep, cfg.dyn_cap, ceiling, cfg.min_uses, cfg.nielsen)
+                lost = []
+                edges, rejected = D.children(rep, cfg.dyn_cap, ceiling, cfg.min_uses, cfg.nielsen, lost)
                 st["dyn_rejected"] += rejected
-                for cw, event in _dedup_sorted(edges):
-                    offer_dyn(*D.make_key(cw), node, event, depth)
+                for cw, event in _dedup_sorted(edges + [(state, (reason, needed)) for reason, state, needed in lost]):
+                    if event.__class__ is tuple:
+                        drop_dyn(event[0], cw, event[1], depth)
+                    else:
+                        offer_dyn(*D.make_key(cw), node, event, depth)
     except _Done:
         pass
     st["pops"] = min(st["pops"], budget)
+    watch.end(not result and st["pops"] < budget, can_dyn(), units_left(), st["pops"])
+    st.update(watch.records())
     return bool(result), (result[0] if result else ()), st
 
 
@@ -226,11 +290,11 @@ def solve(pres, cfg=None, **overrides):
         raise ValueError("the hybrid solves balanced two-generator presentations")
     t0 = time.perf_counter()
     run = Run(pres.rels, cfg.budget)
-    stats = {}
+    stats = blank_records(cfg)                           # the cascade has no caps; a search replaces these
     try:
         stage = cascade(run)
     except Budget:
-        return HybridResult(False, None, cfg.budget, (), None, stats=dict(seconds=time.perf_counter() - t0))
+        return HybridResult(False, None, cfg.budget, (), None, stats=dict(seconds=time.perf_counter() - t0, **blank_records(cfg)))
     if stage is not None:
         solved, steps, units = True, tuple(run.steps), 1 if stage == "terminal" else run.units
     else:
