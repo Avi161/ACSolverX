@@ -10,6 +10,8 @@ presentation (control, cap 24) and from every distinct change-of-variables class
 | `cov_all_suballpxyb8_ms640_b100.jsonl.gz` | budget 100 smoke: 114,682 rows (640 controls + 114,042 CoV), every solved path stored as `path_moves` |
 | `cov_all_suballpxyb8_ms640_b10000.jsonl.gz` | budget 10,000: the same 114,682 rows; `path_moves` kept on a 2% hash sample of solved rows (`--path-sample 0.02`), every other row keeps `path_length` and `nodes_explored` only |
 | `cov_all_suballpxyb8_ms640_b10000_subset60_summary.*` | the budget 10,000 statistics restricted to subset 60's 60 `pres_id`s (their rows are in the b10000 file) |
+| `cov_all_suballpxyb8_ms640_b100000.jsonl.gz` | budget 100,000: the same 114,682 rows, same 2% path sample |
+| `*_control_vs_cov.png` / `.md` | nodes from a random CoV start against nodes from the control, with y = x (`plot_cov_all_control_vs_cov`; budgets 10,000 and 100,000) |
 | `*_summary.md` / `*_summary.json` | per-presentation statistics aggregated across presentations (`summarize_cov_all`) |
 | `*.log` | runner log: start, enumeration, progress, wall time |
 
@@ -24,6 +26,7 @@ Reproduce / check (repo root, `PYTHONPATH=.`, gunzip first):
     python3 -m experiments.stable_ac.cov.run.run_cov_all --budget 100 --workers N --path-sample 1
     python3 -m experiments.stable_ac.cov.verify.verify_cov_all FILE.jsonl --counts --dataset data/ms640_solved.txt --path-sample 1
     python3 -m experiments.stable_ac.cov.run.summarize_cov_all FILE.jsonl
+    python3 -m experiments.stable_ac.cov.run.plot_cov_all_control_vs_cov FILE.jsonl
 
 Budget 100 check: 114,682 rows, 14,051 one-pattern, 90,234 solved, 90,234 paths replayed through
 `greedy_tests/spec` to the trivial presentation, 0 failures.
@@ -35,6 +38,18 @@ on the box and again on the downloaded file (`--counts --dataset data/ms640_solv
 `path_length` as in the budget 100 file. Search wall time 47.5 min (19.0 for subset 60 first,
 28.5 for the other 580 presentations), 49.8 CPU-hours.
 
+Budget 100,000 check (code at `f2ffd98`): 114,682 rows, 14,051 one-pattern, 111,878 solved, 2,263
+sampled paths replayed to the trivial presentation, 0 failures, on the box and again on the
+downloaded file. Every row solved within 10,000 nodes has the same `nodes_explored` and
+`path_length` as in the budget 10,000 file, and no other row solves within 10,000. 335.2
+CPU-hours. Two boxes wrote the file: 192 workers on a c7a.48xlarge (384 GB) returned 113,040 rows
+and then stalled with 1,642 rows never returned (more chunks of 4 than workers, so chunks were
+lost, not slow). The cause is inferred, not observed (no
+console access): the other 1,642 rows, resumed from the same file with 96 workers on an
+r7i.24xlarge (768 GB), peaked at about 560 GB, so 5.8 GB per worker with the path-recording
+greedy, which 192 workers cannot have in 384 GB; a `multiprocessing.Pool` never returns the chunk
+of a worker the kernel kills. Size the worker count by memory at this budget.
+
 Presentations solved (of 640; subset 60 in brackets), oracle = best start of the family:
 
 | budget | control | oracle, all starts | oracle, one-pattern starts |
@@ -42,12 +57,23 @@ Presentations solved (of 640; subset 60 in brackets), oracle = best start of the
 | 100 | 455 (17) | 555 (34) | 555 (34) |
 | 1,000 | 554 (29) | 604 (45) | 604 (45) |
 | 10,000 | 606 (40) | 626 (52) | 626 (52) |
+| 100,000 | 634 (54) | 640 (60) | 640 (60) |
 
 No presentation changes outcome because of a start outside the one-pattern set, at any budget; on
 19 presentations the best such start is 1 or 2 nodes cheaper than the best one-pattern start. At
 10,000 the 20 presentations solved only from a CoV start are `pres_id` 568, 570, 573, 575, 578,
 583, 584, 588, 596, 603, 604, 605, 610, 613, 628, 629, 630, 633, 634, 635, and the 14 no start
-solves are 616-625 and 636-639. Subset 60 is `pres_id` 0, 43, 48, 77, 141, 155, 201, 203, 217,
+solves are 616-625 and 636-639. At 100,000 every presentation is solved from some start, the
+control fails on 6 (`pres_id` 634-639, each solved by 16 or 17 of its starts), and the best start
+of the full family beats the best one-pattern start on 21 presentations, by at most 59 nodes.
+2,804 rows in 140 presentations are still unsolved.
+
+A random start against the control (`*_control_vs_cov`, each presentation weighted equally, a
+start counts as cheaper when it solves and the control does not): at 100,000 it needs fewer nodes
+33.7% of the time, the same 9.6%, more 52.4%, and is unsolved 4.2%; at 10,000 the split is 33.0 /
+9.6 / 48.3 / 9.2. The share that is cheaper stays near a third whatever the control costs.
+
+Subset 60 is `pres_id` 0, 43, 48, 77, 141, 155, 201, 203, 217,
 228, 247, 265, 288, 323, 327, 331, 333, 367, 380, 455, 496, 505, 521, 533, 538, 543, 544, 546,
 548, 549, 565, 568, 573, 575, 578-581, 583, 586, 589, 596, 602, 605, 606, 609, 610, 622-625, 628,
 632-639.
