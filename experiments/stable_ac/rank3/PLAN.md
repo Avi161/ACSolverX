@@ -354,6 +354,27 @@ Recorded 12 Oct 2026, 04:30 UTC, after lengths 1 to 6 of box A were read.
     1 to 5; at lengths 6 to 9 the 90th percentile of the node gap between
     relabeled copies is 18 to 20%, and the threshold is left where it was.
 
+Recorded 12 Oct 2026, 08:00 UTC, while writing the results README.
+
+19. **Headline split over all 640.** §6.2 defines faster / slower / lost on
+    the presentations the control solves. The README's first table gives the
+    split over all 640 (a solve where the control fails counts as fewer
+    nodes), because that is the convention of the CoV graph this run was asked
+    to match, and puts the §6.2 split beside it. The summaries keep §6.2.
+20. **Two numbers of this plan, corrected.** Item 6: the CoV cap has median 33
+    over the non-control rows of the sweep's file, not 32. Item 10: 58,806 is
+    the number of redundant starts (pairs of equal starts inside rows 7 and
+    9); the starts that have a duplicate number 117,612.
+21. **Path samples are smaller than §5 says.** The sample target (about 2,000
+    per length) counts rows whether solved or not, and a path exists only for
+    a solved row: 769 to 1,694 paths per length. Every solved row of the
+    relator-subword arm has its path.
+22. **Not measured.** The control's wall time was not recorded, so the cost
+    per pop of the third generator (item 5) is not reported; only core-seconds
+    per rank-3 search are. The control's cost above 10,000 nodes on the gained
+    presentations is not from this run: it is read from the 100,000-node
+    control rows of the CoV sweep's file.
+
 ### Boxes
 
 Box C: c7a.2xlarge spot, 8 vCPU, launched 12 Oct 04:29:03 UTC, commit
