@@ -1,0 +1,11 @@
+# One presentation per line: relators separated by commas or spaces; generators x y z ..., upper case is the inverse.
+# "#" starts a comment and blank lines are skipped. A line has no id: its rows are numbered 0, 1, ... in file order.
+# presentations.csv and presentations.jsonl hold the same eight presentations with the ids ak2, ak3, ms0, ...
+xxYYY, xyxYXY                   # ak2: Akbulut-Kirby AK(2)
+xxxYYYY, xyxYXY                 # ak3: Akbulut-Kirby AK(3), unsolved at small budgets
+YYXyx, Yx                       # ms0: Miller-Schupp, MS640 row 0
+YYXyx, YX                       # ms1: MS640 row 1
+YYXyx, YYx                      # ms2: MS640 row 2
+YYX, YYXyx                      # ms3: MS640 row 3
+xy, yz, z                       # gen3: three generators (greedy at LENGTH takes them; S20_MK2 and the hybrid do not)
+YYYYYYYYXyyyyyyyx, YYXyxYX      # ms623: MS640 row 623, solved by the hybrid (greedy at 10,000 pops is not)
