@@ -1,14 +1,20 @@
 """One command for every method: ``python run.py --config configs/<name>.toml [--set key=value ...]``.
 
 Writes ``results/<run name>/{paths.jsonl, summary.json}``; the config format is in ``acx/runner/config.py``.
-Your own presentations: ``--input FILE`` (formats in ``acx/data.py``) or ``--pres "xxYYY, xyxYXY"``, repeated.
+Your own presentations: ``--input FILE`` (formats in ``acx/data.py``) or ``--pres "xxYYY, xyxYXY"``, repeated. They run
+as ``<config name>_<file stem>`` (``<config name>_pres`` for ``--pres``), never as the config's own shipped results,
+unless ``--set name=...`` says otherwise. A bad config, row id or input file ends the command with its message.
 """
 import argparse
 import json
+import re
 from pathlib import Path
 
+from acx.core.config import parse_override
 from acx.data import parse_presentation
 from acx.runner import load_config, run
+
+OWN_FILE_SUFFIX = re.compile(r"(\.txt|\.csv|\.jsonl)?(\.gz)?$", re.IGNORECASE)      # the formats of acx/data.py
 
 
 def presentation(text):
@@ -50,23 +56,39 @@ def report(run_dir, lines, unit):
             print(k, line, "solved" if rec["solved"] else "unsolved", *shown, sep="  ")
 
 
-def main(argv=None):
+def own_name(config_name, input_path):
+    """The run name of your own presentations: ``<config name>_<file stem>`` for ``--input`` (the file's name without
+    .txt, .csv, .jsonl and .gz), ``<config name>_pres`` for ``--pres``."""
+    stem = "pres" if input_path is None else OWN_FILE_SUFFIX.sub("", Path(input_path).name)
+    return f"{config_name}_{stem}"
+
+
+def parse_args(argv):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--config", required=True, help="a TOML file in configs/")
     ap.add_argument("--set", action="append", default=[], metavar="KEY=VALUE",
-                    help="override a config value; dotted keys reach sections (search.budget=1000)")
+                    help="override a config value; dotted keys reach sections (search.budget=1000); "
+                    "name=... names the run")
     mine = ap.add_mutually_exclusive_group()
     mine.add_argument("--input", metavar="PATH", help="run all rows of your own file of presentations (.txt, .csv or "
-                      ".jsonl, optionally .gz; see acx/data.py) instead of the config's benchmark")
+                      ".jsonl, optionally .gz; see acx/data.py) instead of the config's benchmark; the run is named "
+                      "<config name>_<file stem>")
     mine.add_argument("--pres", action="append", default=[], type=presentation, metavar='"R1,R2"',
-                      help='run a presentation of your own, e.g. "xxYYY, xyxYXY"; repeat for more')
+                      help='run a presentation of your own, e.g. "xxYYY, xyxYXY"; repeat for more; the run is named '
+                      '<config name>_pres')
     ap.add_argument("--rows", help='a slice "a:b" or ids "3,17" of the benchmark')
     ap.add_argument("--out", default="results", help="results root (default: results)")
     ap.add_argument("--fresh", action="store_true", help="discard earlier results of this run name")
-    args = ap.parse_args(argv)
+    return ap.parse_args(argv)
+
+
+def execute(args):
+    """Run the config with the arguments' overrides, rows and own presentations; print the summary."""
     # your own presentations replace the config's benchmark, and with it the config's slice of rows
     own = ['benchmark="own"', 'rows=""'] if args.input is not None or args.pres else []
     cfg = load_config(args.config, own + args.set + ([f'rows="{args.rows}"'] if args.rows else []))
+    if own and not any(parse_override(item)[0] == "name" for item in args.set):
+        cfg["name"] = own_name(cfg["name"], args.input)
     run_dir = Path(args.out) / cfg["name"]
     lines = [", ".join(p.strs) for p in args.pres]
     if args.input is not None:
@@ -77,6 +99,14 @@ def main(argv=None):
     print(json.dumps({k: v for k, v in summary.items() if k != "config"}, indent=1))
     if lines:
         report(run_dir, lines, summary.get("cost_unit", ""))
+
+
+def main(argv=None):
+    """The command line. A bad config, row id or input file ends it with that message on one line, not a traceback."""
+    try:
+        execute(parse_args(argv))
+    except (ValueError, KeyError) as e:              # the library raises these; a KeyError would show its repr
+        raise SystemExit(e.args[0] if isinstance(e, KeyError) else str(e)) from e
 
 
 if __name__ == "__main__":

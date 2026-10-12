@@ -22,8 +22,9 @@ def load_config(path, overrides=()):
     ``acx.data.rows`` or a path), ``rows`` (optional: a slice ``"a:b[:c]"`` or ids ``"3,17"``), ``workers``
     (processes, default 1) and ``decode`` (default true: elementary length of S-move paths). Two options shape the
     records (``acx.runner.output``): ``path`` (default true: store each solve's path and replay it on the row; false:
-    search without the path, which is faster, with ``path`` and ``elementary`` null and ``verified`` false) and
-    ``fields`` (optional list: write only these record keys, besides ``id``, ``solved`` and ``error``).
+    search without the path, which is faster, with ``path`` and ``elementary`` null, ``verified`` false and
+    ``elem_moves`` null where it needs the path; ``sub_moves`` is kept) and ``fields`` (optional list: write only
+    these record keys, besides ``id``, ``solved`` and ``error``).
     A method reads only its own sections (``SECTIONS``): ``[search]`` is ``SearchConfig``, ``[cov]`` ``CoVConfig``
     and ``[ngen]`` ``NGenConfig`` without their ``search``, ``[hybrid]`` ``HybridConfig``, ``[rl]`` the keywords of
     ``acx.rl.solve.solve``. Any other section, unknown key or invalid value raises ``ValueError`` here, before

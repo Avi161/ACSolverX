@@ -362,6 +362,28 @@ def test_a_byte_order_mark_is_ignored(tmp_path, name, text, row_id):
     assert [(r.id, r.pres) for r in data.rows(str(tmp_path / name))] == [(row_id, AK2)]
 
 
+NOT_UTF8 = {
+    "latin1.txt": b"xxYYY, xyxYXY  # caf\xe9\n",
+    "latin1.csv": b"id,r1,r2\ncaf\xe9,xxYYY,xyxYXY\n",
+    "latin1.jsonl": b'{"id": "caf\xe9", "relators": ["xxYYY", "xyxYXY"]}\n',
+    "utf16.txt": "xxYYY, xyxYXY\n".encode("utf-16"),                          # what a PowerShell redirect writes
+    "latin1.txt.gz": gzip.compress(b"xxYYY, xyxYXY  # caf\xe9\n"),
+    "cut.txt": "xxYYY, xyxYXY  # é\n".encode()[:-2],                            # a UTF-8 letter cut in two
+    "late.txt": b"xxYYY, xyxYXY\n" * 5000 + b"# caf\xe9\n"}                   # far past the first chunk that is read
+
+
+@pytest.mark.parametrize("name", NOT_UTF8)
+def test_a_file_that_is_not_utf8_is_a_valueerror_naming_it(tmp_path, name):
+    (tmp_path / name).write_bytes(NOT_UTF8[name])
+    message = error_of(str(tmp_path / name))
+    assert message.startswith(f"{tmp_path / name}: ") and "UTF-8" in message
+
+
+def test_utf8_beyond_ascii_still_loads(tmp_path):
+    (tmp_path / "mine.txt").write_bytes("xxYYY, xyxYXY  # Akbulut–Kirby é\n".encode())
+    assert [r.pres for r in data.rows(str(tmp_path / "mine.txt"))] == [AK2]
+
+
 def test_csv_without_relator_columns_is_a_clear_error(tmp_path):
     for p in (write(tmp_path, "mine.csv", "id,a,b\n1,xx,yy\n"), write(tmp_path, "empty.csv", ""),
               path("benchmark/ladder/ladder_pairs.csv")):                               # a shipped table, not a benchmark

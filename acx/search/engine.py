@@ -34,11 +34,12 @@ class Result:
     end: Presentation | None        # the popped all-length-1 state, when solved
     stats: dict = field(default_factory=dict)
     trace: tuple | None = None      # popped states as tuples of relator strings (cfg.trace)
+    depth: int | None = None        # depth of the solved state: the moves of its path, kept without the path
 
     @property
     def path_length(self):
-        """Number of moves of the path, None without one."""
-        return None if self.path is None else len(self.path)
+        """Number of moves of a solve, None when unsolved; the same whether or not the path was captured."""
+        return self.depth if self.path is None else len(self.path)
 
 
 def as_presentation(pres):
@@ -73,7 +74,7 @@ def search(pres, cfg=None, **overrides):
     res = backend(cfg.backend).run(pres.normal(cfg.cyclic), cfg)
     res.stats.update(backend=cfg.backend, seconds=time.perf_counter() - t0)
     if res.solved and not res.end.is_trivial():
-        return replace(res, solved=False, path=None, end=None)
+        return replace(res, solved=False, path=None, end=None, depth=None)
     if res.path is not None:
         from ..verify.replay import replay
         replay(pres, res.path, cyclic=cfg.cyclic, cap=cfg.cap)

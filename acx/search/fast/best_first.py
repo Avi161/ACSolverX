@@ -143,10 +143,11 @@ def _result(arrays, st, status, start, cfg, pid, trace, popped, dmin, width):
     caps = blank()
     if cfg.cap is not None:
         caps = cap_counts(arrays, st, start, cfg, pid, popped, dmin, solved)
-    path = end = None
+    path = end = depth = None
     if solved:
         sid = int(st[SOLVED_ID])
         end = Presentation(n_gen, rels(sid))
+        depth = int(arrays.depth[sid])
         if cfg.capture_path:
             moves = []
             while arrays.parent[sid] >= 0:
@@ -159,7 +160,7 @@ def _result(arrays, st, status, start, cfg, pid, trace, popped, dmin, width):
     popped_states = None
     if cfg.trace:
         popped_states = tuple(tuple(map(fmt, rels(int(sid)))) for sid in trace[:st[NODES]])
-    return Result(solved, int(st[NODES]), path, start, end, stats, popped_states)
+    return Result(solved, int(st[NODES]), path, start, end, stats, popped_states, depth)
 
 
 def run(start, cfg):

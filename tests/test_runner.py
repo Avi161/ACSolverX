@@ -234,14 +234,11 @@ def test_record_caps_copies_only_the_counters_a_search_kept():
 
 # ---- the path option: no certificate, no replay ------------------------------------------------------------------
 
-LENGTH_WITHOUT_PATH = {"cov", "hybrid", "rl"}          # these methods count the S-moves whether or not a path is kept
-
-
 @pytest.mark.parametrize("name,overrides,kinds", METHOD_CASES)
 def test_path_false_is_the_same_search_without_the_certificate(tmp_path, name, overrides, kinds):
-    """``path = false`` skips the certificate and its replay, not the search: solves, costs and counters are those of
-    ``path = true``. ``path`` and ``elementary`` are null, ``verified`` false and ``steps`` gone; a length survives
-    only where the method has it without the path, and is then the true one."""
+    """``path = false`` skips the certificate and its replay, not the search: solves, costs, counters and the S-move
+    length are those of ``path = true``. ``path`` and ``elementary`` are null, ``verified`` false and ``steps`` gone;
+    the elementary length survives only where the method has it without the path, and is then the true one."""
     quiet(cfg(name, *overrides, "name=full"), tmp_path)
     quiet(cfg(name, *overrides, "name=lite", "path=false"), tmp_path)
     full, lite = by_id(tmp_path, "full"), by_id(tmp_path, "lite")
@@ -250,12 +247,26 @@ def test_path_false_is_the_same_search_without_the_certificate(tmp_path, name, o
         assert rec["path"] is None and rec["elementary"] is None and rec["verified"] is False
         assert set(full[id_]) - set(rec) <= {"steps"}
         for key, value in rec.items():
-            if key in ("sub_moves", "elem_moves"):
+            if key == "elem_moves":
                 assert value in (None, full[id_][key])
             elif key not in ("path", "elementary", "verified", "seconds", "cpu_seconds"):
                 assert value == full[id_][key]
-        if rec["solved"] and name in LENGTH_WITHOUT_PATH:
-            assert rec["sub_moves"] is not None and rec["sub_moves"] == full[id_]["sub_moves"]
+        assert rec["solved"] == (rec["sub_moves"] is not None)
+
+
+GREEDY_AUT_NGEN = [case[:2] for case in METHOD_CASES if case[0] in ("smoke", "aut", "ngen_sac")]
+
+
+@pytest.mark.parametrize("name,overrides", GREEDY_AUT_NGEN)
+def test_path_false_keeps_sub_moves_and_nulls_elem_moves(tmp_path, name, overrides):
+    """Greedy, aut and ngen know the length of a solve without its path (the solved state's depth); the elementary
+    length needs the path, so it is null, in the records and in the summary's ``path_length``."""
+    s = quiet(cfg(name, *overrides, "path=false"), tmp_path)
+    solved = [r for r in records(tmp_path, s["name"]) if r["solved"]]
+    assert len(solved) == s["solved"] > 0
+    assert all(r["sub_moves"] > 0 and r["elem_moves"] is None for r in solved)
+    for kind, lengths in s["path_length"].items():
+        assert lengths["sub_moves"]["n"] == s[kind] and lengths["elem_moves"] is None
 
 
 def test_path_option_sets_each_methods_own_switch():
@@ -466,7 +477,7 @@ def test_run_py_goes_on_after_a_presentation_its_search_cannot_take(tmp_path, ca
 def test_a_three_generator_row_is_an_error_for_every_two_generator_method(tmp_path, name):
     """smoke (S20_MK2), aut (Whitehead on F2), cov and the hybrid raise ``ValueError`` on it: an error record each."""
     run_py(tmp_path, name, "--pres", AK2, "--pres", THREE_GENERATORS)
-    first, second = records(tmp_path, name)
+    first, second = records(tmp_path, f"{name}_pres")
     assert first["solved"] and not first.get("error")
     assert not second["solved"] and second["error"].startswith("ValueError: ") and "generator" in second["error"]
 
@@ -475,7 +486,7 @@ def test_the_hybrid_on_an_unreduced_relator_does_not_stop_the_run(tmp_path):
     """``xXx`` made the hybrid's cascade raise ``AssertionError`` (as the whole run). Whatever the hybrid decides
     about the row, the row after it is still run."""
     run_py(tmp_path, "hybrid", "--pres", "xXx, y", "--pres", AK2)
-    unreduced, after = records(tmp_path, "hybrid")
+    unreduced, after = records(tmp_path, "hybrid_pres")
     assert after["solved"] and after["verified"]
     assert not unreduced.get("error") or unreduced["error"].startswith("AssertionError: ")
 
@@ -532,3 +543,13 @@ def test_rows_selection_forms_and_unknown_ids():
         with pytest.raises(KeyError) as error:
             runner.select(rows, spec)
         assert error.value.args[0] == f"rows not in the benchmark: {missing}"
+
+
+def test_the_library_raises_where_run_py_exits(tmp_path):
+    """``runner.run`` raises on a row id or a file that is wrong, before it writes anything; only run.py exits."""
+    bad = tmp_path / "bad.txt"
+    bad.write_text("xxYYY, xyxYXY\nxy1\n")
+    for override, error in (('rows="nope"', KeyError), (f'benchmark="{bad}"', ValueError)):
+        with pytest.raises(error):
+            quiet(cfg("smoke", override), tmp_path / "out")
+    assert not (tmp_path / "out").exists()

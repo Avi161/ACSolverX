@@ -78,7 +78,7 @@ def run(start, cfg):
     max_expanded = start.rels
     pops = 0
     trace = [] if cfg.trace else None
-    solved_key = None
+    solved_key = solved_depth = None
 
     while heap and pops < cfg.budget:
         prio, depth, key = heappop(heap)
@@ -90,7 +90,7 @@ def run(start, cfg):
         if trace is not None:
             trace.append(_strs(rels))
         if _is_trivial(rels):
-            solved_key = key
+            solved_key, solved_depth = key, depth
             break
 
         for move, child, over_cap in _children(rels, cfg):
@@ -119,4 +119,4 @@ def run(start, cfg):
     stats = {"discovered": len(parent), **cap_count.record(), "min_total": min_total, "max_total": max_total,
              "max_total_expanded": max_expanded_total, "max_expanded": _strs(max_expanded)}
     return Result(solved_key is not None, pops, path, start, end, stats,
-                  tuple(trace) if trace is not None else None)
+                  tuple(trace) if trace is not None else None, solved_depth)
