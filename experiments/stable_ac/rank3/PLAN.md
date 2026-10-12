@@ -273,6 +273,27 @@ Recorded 12 Oct 2026, 04:30 UTC, after lengths 1 to 6 of box A were read.
     at budget 10,000 will probably not finish inside the 600-minute timer.
     Shards are in S3; the remainder is finished by a relaunch with the same
     user-data and commit `8b3a51d`.
+12. **Box A relaunched once (04:43 to 04:48 UTC).** Truett asked for a lower
+    hourly rate if the finish time did not move. Box A was terminated to move
+    it to the same hardware in a cheaper zone (c7a.metal-48xl, us-east-1f,
+    $2.09 against $3.06 per hour); that zone had no spot capacity, so it was
+    relaunched as the same c7a.48xlarge in us-east-1d (instance
+    `i-0154e51769e25b45e`, `DEADMAN` 780, otherwise the same user-data and
+    commit `8b3a51d`). It restored 2,466 files from S3, skipped lengths 1 to 7
+    as merged and resumed length 8 with 1,275 of 1,280 tasks to run. Cost:
+    about 16 minutes of the run, nothing else. The first boot's log is
+    `b1000/run_box1.log`. No setup under $2 per hour finishes at the same
+    time (the sweep needs about 290 cores).
+13. **No automatic restart after a spot interruption.** A persistent spot
+    request with stop behavior was tested on a c7a.medium
+    (`restart_test/run.log`): an OS shutdown leaves the instance stopped and
+    the request disabled, so a finished box does not relaunch itself. Not
+    tested: the restart after a real interruption (AWS-documented only). It is
+    not used, because the IAM user that launches the boxes may not call
+    `ec2:CancelSpotInstanceRequests`, `ec2:StartInstances` or
+    `ec2:StopInstances`; a persistent request for a 192-vCPU box would have no
+    off switch except its `ValidUntil`. All boxes are one-time spot requests.
+    An interruption stops the run; shards are in S3 and a relaunch resumes it.
 
 ### Boxes
 
@@ -292,7 +313,7 @@ Box C: c7a.2xlarge spot, 8 vCPU, launched 12 Oct 04:29:03 UTC, commit
 | `WORKERS` | 192 | 96 |
 | `EXTRA` | empty | empty |
 | `PRE_IDS`, `PRE_MAX_LEN` | 0,320 and 4 | 0,320 and 4 |
-| `DEADMAN` (minutes) | 720 | 600 |
+| `DEADMAN` (minutes) | 720 (780 after the relaunch, item 12) | 600 |
 | `PREFIX` | `cov_all/rank3_bf/b1000` | `cov_all/rank3_bf/b10000` |
 
 ## 12. Literature: what exists, and what a rank-3 baseline has to state
