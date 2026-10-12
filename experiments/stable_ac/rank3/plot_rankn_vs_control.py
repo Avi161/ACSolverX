@@ -270,7 +270,7 @@ def main(argv=None):
         span = f"length {lo}" if lo == hi else f"lengths {lo} to {hi}"
         run(c_solved, c_nodes, blocks, a.budget, a.noise,
             os.path.join(a.rank3, stem(a.source, a.budget, a.cap)) + f"_control_vs_start_L{lo}-{hi}",
-            "A random 3-generator start against the original presentation",
+            "A random 3-generator start against the 2-generator control",
             f"<x,y,z | r1, r2, Z·w> for every word w of {span}",
             "nodes explored from a 3-generator start", "3-generator start", "word length")
     else:
@@ -278,7 +278,7 @@ def main(argv=None):
         r, k, m = meta["rank"], meta["extra_generators"], meta["max_word_len"]
         run(c_solved, c_nodes, blocks, meta["node_budget"], a.noise,
             os.path.splitext(a.rankn)[0] + "_control_vs_start",
-            f"A random {r}-generator start against the original presentation",
+            f"A random {r}-generator start against the 2-generator control",
             f"{k} new generators z_i, relators Z_i·w_i, every {k} words of length at most {m}",
             f"nodes explored from a {r}-generator start", f"{r}-generator start", "block")
 
