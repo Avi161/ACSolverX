@@ -518,3 +518,32 @@ def test_encode_decode_steps_roundtrip_through_json(ms640):
         res = solve(pres)
         again = decode_steps(json.loads(json.dumps(encode_steps(res.steps))))
         assert again == res.steps and certify(pres, again) == list(res.path)
+
+
+# ------------------------------------------------------------------ inputs that are not freely reduced, a bad dyn_ratio
+UNREDUCED = [("x", "yYy"), ("XyxYY", "XyY")]
+
+
+@pytest.mark.parametrize("name", ["spec", "fast"])
+@pytest.mark.parametrize("rels", UNREDUCED)
+def test_a_relator_that_is_not_freely_reduced_is_solved_and_certified(rels, name):
+    """R1: ``yYy`` is the relator ``y``; the certificate frame used to keep the raw word and assert in ``set_word``."""
+    pres = Presentation.parse(*rels)
+    res = solve(pres, backend=name)
+    assert res.solved and is_valid(pres, res.path, normalize=False)
+
+
+def test_the_runner_solves_rows_that_are_not_freely_reduced(tmp_path):
+    rows = tmp_path / "rows.csv"
+    rows.write_text("name,r1,r2\n" + "".join(f"u{i},{a},{b}\n" for i, (a, b) in enumerate(UNREDUCED)))
+    cfg = {"name": "t", "method": "hybrid", "benchmark": str(rows), "hybrid": {"budget": 1000}}
+    summary = runner.run(cfg, str(tmp_path), log=lambda *a: None)
+    assert (summary["rows"], summary["solved"]) == (2, 2) and not summary.get("errors")
+
+
+@pytest.mark.parametrize("bad", [None, "none", "0.5", True, -1, float("nan")])
+def test_dyn_ratio_must_be_a_number_at_least_zero(bad):
+    """R7: ``dyn_ratio=None`` used to be accepted and then failed with a TypeError on every row."""
+    with pytest.raises(ValueError, match="dyn_ratio"):
+        HybridConfig(dyn_ratio=bad)
+    assert HybridConfig(dyn_ratio=0).dyn_ratio == 0 and HybridConfig(dyn_ratio=2).dyn_ratio == 2

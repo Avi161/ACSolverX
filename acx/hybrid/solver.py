@@ -34,6 +34,8 @@ class HybridConfig:
     def __post_init__(self):
         if self.backend not in BACKENDS:
             raise ValueError(f"backend {self.backend!r} not in {BACKENDS}")
+        if isinstance(self.dyn_ratio, bool) or not isinstance(self.dyn_ratio, (int, float)) or not self.dyn_ratio >= 0:
+            raise ValueError(f"dyn_ratio must be a number >= 0, got {self.dyn_ratio!r}")
         object.__setattr__(self, "r2_cap", parse_cap(self.r2_cap, "r2_cap", keep=("parent",)))
         object.__setattr__(self, "dyn_cap", parse_cap(self.dyn_cap, "dyn_cap"))
         object.__setattr__(self, "slack", parse_cap(self.slack, "slack", low=0))

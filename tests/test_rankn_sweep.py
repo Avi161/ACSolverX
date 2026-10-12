@@ -395,3 +395,10 @@ def test_ms640_lengths_1_and_2_reproduce_the_baseline(tmp_path):
     assert (round(s["buckets"]["L1"]["solved"], 3), round(s["buckets"]["L2"]["solved"], 3)) == (0.601, 0.684)
     assert sweep.verify(str(tmp_path / "t"), recheck=40, log=lambda *a: None) == []
     shutil.rmtree(tmp_path)
+
+
+def test_help_names_the_module(capsys):
+    """R8: ``python -m acx.ngen.sweep --help`` printed ``usage: __main__.py``."""
+    with pytest.raises(SystemExit):
+        sweep.main(["--help"])
+    assert "usage: python -m acx.ngen.sweep" in capsys.readouterr().out

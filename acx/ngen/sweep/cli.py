@@ -10,7 +10,7 @@ from .driver import run
 def main(argv=None):
     """Run a rank-n config (the runner's TOML), print the summary, optionally verify the result."""
     parser = argparse.ArgumentParser(
-        description="rank-n brute-force sweep (the config is the runner's TOML, method 'rankn')")
+        prog="python -m acx.ngen.sweep", description="rank-n brute-force sweep (the config is the runner's TOML, method 'rankn')")
     parser.add_argument("--config", required=True)
     parser.add_argument("--set", action="append", default=[], metavar="KEY=VALUE")
     parser.add_argument("--rows")

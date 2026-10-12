@@ -80,7 +80,7 @@ class Frame:
     outside it (parked); ``psi`` is kept as a table, ``factors`` records the automorphisms applied to ``E``."""
 
     def __init__(self, pres):
-        self.w, self.E = RealPresentation(pres), list(pres.rels)
+        self.w, self.E = RealPresentation(pres), [free(r) for r in pres.rels]
         self.tab = {s * g: (s * g,) for g in range(1, pres.n_gen + 1) for s in (1, -1)}     # psi
         self.factors = []
 
