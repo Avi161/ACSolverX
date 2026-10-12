@@ -380,30 +380,32 @@ def test_ceiling_counter_counts_a_dropped_state_that_would_pop():
 
 # ------------------------------------------------------------------ cost of the rank-two counter
 def calls_and_seconds(pres, watch_cap, **kw):
-    """Python-level calls and CPU seconds of one solve, with the ``r2_cap`` counter on or off."""
+    """Python-level calls of one solve and its best CPU seconds of three, with the ``r2_cap`` counter on or off."""
     old = capwatch.Watch.has
     capwatch.Watch.has = lambda self, name: (name != "cap" or watch_cap) and old(self, name)
-    n = 0
+    n, seconds = 0, []
 
     def prof(frame, event, arg):
         nonlocal n
         n += event in ("call", "c_call")
     try:
-        t = time.process_time()
-        solve(pres, FAST, **kw)
-        seconds = time.process_time() - t
+        for _ in range(3):
+            t = time.process_time()
+            solve(pres, FAST, **kw)
+            seconds.append(time.process_time() - t)
         sys.setprofile(prof)
         solve(pres, FAST, **kw)
     finally:
         sys.setprofile(None)
         capwatch.Watch.has = old
-    return n, seconds
+    return n, min(seconds)
 
 
 def test_integer_r2_cap_counters_cost_under_ten_percent(ms640):
     """A tight integer ``r2_cap`` drops hundreds of moves per pop; counting them must stay cheap (the first
     version was 5x slower). Python calls are the deterministic measure (within 10%), CPU time the sanity check
-    (within 60%, loose because the machine is shared; about 20% is measured at ``r2_cap`` 8)."""
+    (best of three within 60%, loose because the machine is shared; about 25% is measured at ``r2_cap`` 8, most of
+    it the orbit of each counted state)."""
     solve(ms640[380], FAST)
     kw = dict(r2_cap=8, budget=150)
     for i in (380, 602):
