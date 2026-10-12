@@ -39,7 +39,8 @@ python run.py --config configs/hybrid.toml --pres "xxYYY, xyxYXY" --pres "YYXyx,
 for an unknown name.
 
 **Your own file** (`--input PATH` or `benchmark = "PATH"`), UTF-8 text, optionally gzipped (`.txt.gz`, ...). Generators
-are the 26 letters in the order `x y z a b c ... w`; upper case is the inverse. The samples
+are the 26 letters in the order `x y z a b c ... w`; upper case is the inverse; past the 26th they are
+`g27`, `g28`, ... (`G27` the inverse). The samples
 `examples/presentations.{txt,csv,jsonl}` hold the same eight presentations in each format.
 
 | format | one presentation | row id |

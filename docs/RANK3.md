@@ -106,8 +106,9 @@ reduction of an input can change its relators by conjugation, so the path would 
   definition and yields an `ac_path`.
 - `sac = false`: search the presentation itself; a solve is an `ac_path`, replayed with the search's normal form.
 - Refused up front: SAC with any priority but LENGTH (raised when the config is built, so `run.py` refuses
-  `configs/ngen_sac.toml --set search.priority=s20_mk2` before it writes a result); a root with more generators than the
-  search holds (`acx.ngen.solve.MAX_GENERATORS`), before the search rather than failing after it.
+  `configs/ngen_sac.toml --set search.priority=s20_mk2` before it writes a result); a root with more than 127 generators
+  (`acx.ngen.solve.MAX_GENERATORS`), a `ValueError` before the search. Generators past `z` are written `g27`, `G27`
+  (its inverse), `g28`, ...
 
 ### The stable-AC transform (`acx.ngen.sac`)
 

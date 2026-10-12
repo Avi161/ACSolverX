@@ -94,8 +94,8 @@ The hybrid ([METHODS.md](METHODS.md) section 10) cuts its search in three places
 - The default `r2_cap = "parent"` (a child relator may not exceed the parent's total length) can never reject, because
   a child relator has at most `l_i + l_j - 2` letters, below the parent's total. An integer `r2_cap` does reject, and
   counting its drops is slower. `slack = "none"` lifts the ceiling.
-- The counts are of what the hybrid tells apart: `*_dropped` counts classes of dropped children (plus the tail moves of
-  the solving pop), not moves, and `*_would_pop` counts distinct canonical pairs (at rank two, up to
+- The counts are of what the hybrid tells apart: `*_dropped` counts classes of dropped children (a rank-two child once per
+  signed-permutation orbit, plus the tail moves of the solving pop), not moves, and `*_would_pop` counts distinct canonical pairs (at rank two, up to
   a signed permutation of the generators, as the search dedups). `*_first_bind` is a work unit of the search; the
   cascade's units before it are not counted.
 - The hybrid has two queues (rank two, higher rank), so a dropped child waits in a pool for its queue and is compared

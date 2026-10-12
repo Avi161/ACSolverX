@@ -232,7 +232,8 @@ on the row (`elem_moves` is empty): its transform is a Lemma 11 chain, not AC mo
 A deterministic solver for balanced two-generator presentations that adds dynamic-rank moves to the fast engine: the
 number of generators can change during the search. Config: `[hybrid]` (`configs/hybrid.toml`): `budget` (work units),
 `penalty`, `dyn_ratio`, `dyn_cap`, `slack`, `min_uses`, `r2_cap`, `backend` (`fast` or `spec` for the rank-two
-expansion). It takes balanced two-generator presentations.
+expansion). It takes balanced two-generator presentations; a start with `|det| != 1` (section 2) has no AC path and
+returns unsolved at 0 units.
 
 1. **Rank-two states** are expanded by the fast kernel: seam-cancelling products and the four Nielsen maps
    (`x -> xy`, `x -> xY`, `y -> yx`, `y -> yX`), canonical under the eight signed permutations. A cascade (Nielsen
