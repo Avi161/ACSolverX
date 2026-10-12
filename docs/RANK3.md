@@ -3,7 +3,8 @@
 Add a generator `z` and the relator `Z.w` to a two-generator presentation, for every freely reduced word `w`, and
 search each stabilised start with the ordinary best-first search. It answers one question: does knowing the right
 word for each presentation make greedy cheaper? Ported from `origin/rank3/brute-force-baseline` (commit `068ea77d`,
-`experiments/stable_ac/rank3/`). The sweep is `acx/ngen/sweep.py`; the search is `acx.search.search`, unchanged.
+`experiments/stable_ac/rank3/`). The sweep is the package `acx/ngen/sweep/` (below); the search is
+`acx.search.search`, unchanged.
 
 ## What is searched
 
@@ -41,6 +42,10 @@ a file from another config is an error, never merged), `summary.json`, `summary.
 `nodes` (pops), `path_len` (-1 unsolved), `min_total`, the five cap counters `cap_dropped`, `cap_dropped_min_total`,
 `cap_would_pop`, `cap_first_bind`, `cap_needed` (-1 = none), plus the control and null records and a deterministic
 sample of solved paths (`sample`). **The row files are large; keep them out of git** (`results/*/rows/`).
+
+The package `acx.ngen.sweep` has one module per job: `words` (the word pool and the starts), `config`, `rows` (one row's
+searches and its file), `driver` (`run`), `summary`, `check` (`verify`) and `cli`. `acx.ngen.sweep` re-exports the
+public names.
 
 `sweep.verify(dir, recheck=N)` (also `--verify N`) checks: control equals null stabilisation (and their cap counters,
 scores shifted by `extra`), shapes and ranges, cap-counter rules, every stored path through `acx.verify.replay`, and

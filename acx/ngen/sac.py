@@ -24,42 +24,46 @@ def digram(w, k):
 
 def tokenize(w, d, h):
     """The shortest rewriting of the linear word ``w`` with ``d -> h`` and ``d^-1 -> -h`` (ties: the smaller word)."""
-    di, n = inverse(d), len(w)
-    best = [()] * (n + 1)
-    for i in range(n - 1, -1, -1):
-        cands = [(w[i],) + best[i + 1]]
+    d_inverse = inverse(d)
+    shortest = [()] * (len(w) + 1)              # shortest[i]: the best rewriting of the suffix w[i:]
+    for i in range(len(w) - 1, -1, -1):
+        options = [(w[i],) + shortest[i + 1]]
         if w[i:i + 2] == d:
-            cands.append((h,) + best[i + 2])
-        if w[i:i + 2] == di:
-            cands.append((-h,) + best[i + 2])
-        best[i] = min(cands, key=lambda t: (len(t), t))
-    return best[0]
+            options.append((h,) + shortest[i + 2])
+        if w[i:i + 2] == d_inverse:
+            options.append((-h,) + shortest[i + 2])
+        shortest[i] = min(options, key=lambda option: (len(option), option))
+    return shortest[0]
 
 
 def _least_rotation(w):
+    """The smallest rotation of ``w`` in int order."""
     return min(w[k:] + w[:k] for k in range(len(w)))
 
 
 def rewrite(w, d, h):
-    """``(flip, k, new)``: ``new`` is the shortest rewriting of a rotation (over ``k``) of ``w``, or of ``w^-1`` when
-    ``flip``, oriented as the source's canonical form (the least rotation in int order), so ties break alike."""
+    """``(flip, k, new)``: the shortest rewriting ``new`` of a rotation of ``w`` (by ``k``), or of ``w^-1`` if ``flip``.
+
+    The word is oriented as the source's canonical form (the least rotation in int order), so ties break alike.
+    """
     if len(w) < 2:
         return False, 0, w
     flip = _least_rotation(inverse(w)) < _least_rotation(w)
-    o = inverse(w) if flip else w
-    k, new = min(((k, tokenize(o[k:] + o[:k], d, h)) for k in range(len(o))),
-                 key=lambda c: (len(c[1]), c[1], c[0]))
+    oriented = inverse(w) if flip else w
+    rotations = ((k, tokenize(oriented[k:] + oriented[:k], d, h)) for k in range(len(oriented)))
+    k, new = min(rotations, key=lambda rotation: (len(rotation[1]), rotation[1], rotation[0]))
     return flip, k, new
 
 
 def define(pres, d):
-    """Define the digram ``d``: ``<x.. | r..>`` becomes ``<x.., h | r..[d -> h], d^-1 h>``; the new relator comes last."""
+    """Define the digram ``d``: ``<x.. | r..>`` becomes ``<x.., h | r..[d -> h], d^-1 h>`` (new relator last)."""
     h = pres.n_gen + 1
     return Presentation(h, tuple(rewrite(r, d, h)[2] for r in pres.rels) + (inverse(d) + (h,),))
 
 
 def next_digram(rels):
-    """The digram to define next: most cyclic occurrences, then most inside relators longer than ``LIMIT``, then smallest."""
+    """The digram to define next: most cyclic occurrences, then most inside relators longer than ``LIMIT``, then
+    the smallest."""
     total, longs = Counter(), Counter()
     for w in rels:
         for k in range(len(w)) if len(w) > 1 else ():

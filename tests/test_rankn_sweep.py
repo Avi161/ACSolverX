@@ -174,7 +174,7 @@ def test_run_resume_and_refusals(tmp_path):
         quiet(cfg(rows="0:4", budget=200), tmp_path)
     sc = SweepConfig.from_cfg(cfg(rows="0:4", budget=200))
     with pytest.raises(SweepError):                       # a row file from another budget is never merged
-        sweep._task((str(d), "0", data.rows("ms640")[0].pres, sc))
+        sweep.sweep_row_file((str(d), "0", data.rows("ms640")[0].pres, sc))
     s = quiet(cfg(rows="0:2", budget=200), tmp_path, fresh=True)
     assert s["rows"] == 2 and sorted(os.listdir(d / "rows")) == ["0.npz", "1.npz"]
 
@@ -259,7 +259,7 @@ def test_counter_consistency_rules():
     def check(**kw):
         r = {k: np.array(v) for k, v in {**base, **kw}.items()}
         fails.clear()
-        sweep._check_counters(r, np.array([True, True, False]), np.array([5, 40, 100]), 100, sc, fails.append)
+        sweep.check_counters(r, np.array([True, True, False]), np.array([5, 40, 100]), 100, sc, fails.append)
         return list(fails)
 
     assert check() == []
@@ -276,14 +276,15 @@ def test_counter_consistency_rules():
     r = {"cap_dropped": np.array([5]), "cap_dropped_min_total": np.array([30]), "cap_first_bind": np.array([-1]),
          "cap_would_pop": np.array([0]), "cap_needed": np.array([-1])}
     fails.clear()
-    sweep._check_counters(r, np.array([False]), np.array([40]), 100, sc, fails.append)
+    sweep.check_counters(r, np.array([False]), np.array([40]), 100, sc, fails.append)
     assert fails
 
 
 def test_rank3_counters_prove_the_cap_irrelevant(tmp_path):
     """Cells whose cap never binds are the same search at any larger cap; cells that bind exist at a tight cap."""
     ids = ["635", "300", "450", "600"]        # at cap 12: drops without a bind (3 rows), binds (600)
-    quiet({**cfg(max_len=2, rows=",".join(ids), budget=300), "search": {"budget": 300, "cap": 12, "backend": "fast"}}, tmp_path)
+    tight = {"budget": 300, "cap": 12, "backend": "fast"}
+    quiet({**cfg(max_len=2, rows=",".join(ids), budget=300), "search": tight}, tmp_path)
     d = str(tmp_path / "t")
     sc = SweepConfig.from_cfg({"search": {"budget": 300, "cap": 12, "backend": "fast"}, "rankn": {"max_len": 2}})
     ws = sweep.words_of(sc)
