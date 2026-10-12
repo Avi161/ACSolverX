@@ -1,6 +1,8 @@
 """Tests for the optional PyTorch RL extra (``acx.rl``); skipped when torch is missing."""
 import json
 import os
+import subprocess
+import sys
 
 import pytest
 
@@ -8,7 +10,7 @@ torch = pytest.importorskip("torch")
 
 from acx import data  # noqa: E402
 from acx.core.words import Presentation  # noqa: E402
-from acx.rl import convert, moves, policy, solve as rl_solve  # noqa: E402
+from acx.rl import beam, codec, convert, moves, policy, solve as rl_solve  # noqa: E402
 from acx.rl.ppo import encode_rows, pinned_prefix, train  # noqa: E402
 from acx.verify import replay  # noqa: E402
 
@@ -59,6 +61,28 @@ def test_checkpoint_conversion_is_exhaustive(model):
     assert len(names) == 95
     with pytest.raises(KeyError):
         convert.to_state_dict({"Dense_9.kernel": torch.zeros(2, 2).numpy()})
+
+
+def test_package_import_is_torch_free():
+    """``acx.rl`` itself (the width ``L`` the config checks need) never imports torch; its modules do."""
+    code = "import sys, acx.rl; assert 'torch' not in sys.modules and acx.rl.L == 24"
+    subprocess.run([sys.executable, "-c", code], check=True)
+    assert rl_solve.encode is codec.encode and rl_solve.decode is codec.decode and rl_solve.to_acx_path is codec.to_acx_path
+
+
+def test_visited_table_is_sorted_fixed_size_and_ignores_dead_beams():
+    visited = beam.Visited(torch.tensor(5), 4)
+    hashes = torch.tensor([5, 7, 9])
+    assert visited.contains(hashes).tolist() == [True, False, False]
+    visited.add(hashes, torch.tensor([False, True, True]))              # 5 is dead this step: not added twice
+    assert visited.contains(hashes).tolist() == [True, True, True]
+    assert visited.table.tolist() == [5, 7, 9, beam.NEVER]
+
+
+def test_best_of_each_hash_keeps_the_best_and_the_first_on_ties():
+    hashes = torch.tensor([3, 1, 3, 1, 2])
+    score = torch.tensor([0.5, 0.1, 0.9, 0.1, float("-inf")])
+    assert beam.best_of_each_hash(hashes, score).tolist() == [False, True, True, False, True]
 
 
 def test_beam_solves_easy_ms640_rows_and_replays(model):

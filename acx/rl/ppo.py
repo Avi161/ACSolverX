@@ -13,7 +13,7 @@ import torch
 from .beam import forward
 from .env import VecEnv
 from .policy import ActorCritic, log_prob_entropy
-from .solve import encode
+from .codec import encode
 
 DEFAULTS = dict(lr=2.5e-3, envs=2380, steps=96, epochs=3, minibatches=8, gamma=0.999, lam=0.95,
                 clip=0.2, ent=0.01, vf=0.5, max_grad_norm=0.5, micro=2048, chunk=4096, seed=142)
@@ -35,9 +35,9 @@ def pinned_prefix(states, ms_states):
 def rollout(model, env, cfg, gen):
     """``steps`` environment steps under the sampled policy: the batch tensors, the last value and the solve count."""
     T, N = cfg["steps"], env.N
-    obs, act, logp, val, rew, done = (torch.empty((T, N, *s), dtype=d) for s, d in
-                                      [((2 * env.L,), torch.int64), ((), torch.int64), ((), torch.float32),
-                                       ((), torch.float32), ((), torch.float32), ((), torch.float32)])
+    obs = torch.empty((T, N, 2 * env.L), dtype=torch.int64)
+    act = torch.empty((T, N), dtype=torch.int64)
+    logp, val, rew, done = (torch.empty((T, N), dtype=torch.float32) for _ in range(4))
     terminated = 0
     with torch.no_grad():
         for t in range(T):
@@ -101,8 +101,8 @@ def train(states, updates, n_pinned=0, model=None, log=print, **overrides):
     for u in range(1, updates + 1):
         obs, act, logp, val, rew, done, last, terminated = rollout(model, env, cfg, gen)
         adv, target = gae(val, rew, done, last, cfg["gamma"], cfg["lam"])
-        flat = lambda t: t.reshape(-1, *t.shape[2:])
-        stats = update(model, opt, tuple(map(flat, (obs, act, logp, val, adv, target))), cfg, gen)
+        batch = tuple(t.reshape(-1, *t.shape[2:]) for t in (obs, act, logp, val, adv, target))   # merge steps and envs
+        stats = update(model, opt, batch, cfg, gen)
         if not all(map(math.isfinite, stats.values())):
             raise FloatingPointError(f"update {u}: non-finite loss {stats}")
         log(f"update {u}: solved {int(env.solved.sum())}/{env.S}, terminations {terminated}, {stats}")
