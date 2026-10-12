@@ -92,6 +92,19 @@ All 640 MS-640 rows with the bin each falls in (`pres_id` = MS-640 line), the di
 the baseline's nodes and path length at 1M, the `Aut(F2)` class and minimal total, and progress at
 50k nodes. It is the table the subsets were picked from.
 
+## `rank3_bf/`: stored rank-n brute-force tables
+
+Small reference tables (40 KB) from the baseline's rank-3/4/5 sweep on MS640 at budget 1,000 (and 10,000 for the
+rank-3 summary), cap 24, for comparison with `python -m acx.ngen.sweep` ([docs/RANK3.md](../docs/RANK3.md)); the row
+files they were made from are large and not carried.
+
+| file | what |
+|---|---|
+| `rank3_bf_ms640_b1000_cap24_summary.md`, `rank3_bf_ms640_b10000_cap24_summary.md` | rank 3, every word to length 10 (budget 1,000) or 7 (budget 10,000): solved by length, best single word, lost presentations |
+| `rankn_bf_ms640_b1000_cap24_r{4,5}_summary.json` | rank 4 and 5 summaries |
+| `cap_counters_cap24.md` | the cap counters (dropped, could bind) per file of searches ([docs/CAP.md](../docs/CAP.md)) |
+| `cap_exhaustion_all_cap24.md` | unsolved searches that ended below the budget because every child was over the cap |
+
 ## Related data (in `data/`, not benchmarks)
 
 - `AC19_extended_aut_min.csv` (72,779 aut-min orbits of `AC19_extended`) and

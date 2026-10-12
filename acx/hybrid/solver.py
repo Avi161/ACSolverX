@@ -46,6 +46,7 @@ dyn_ratio 0.5, cap 8, slack 8): MS640 640/640, AC19 aut-min 72,779/72,779.
 """
 import heapq
 import time
+from operator import itemgetter
 from dataclasses import dataclass, field, replace
 
 import numpy as np
@@ -55,7 +56,7 @@ from ..core.moves import Move
 from ..core.priority import length
 from ..core.words import Presentation, canonical_rels
 from . import dynrank as D
-from .capwatch import Watch, blank_records
+from .capwatch import DYNPOOL, Watch, blank_records, lazy_entries
 from .cascade import NIELSEN, Aut, Budget, Run, cascade, gate_applicable, gate_precheck_key, is_terminal, run_gates
 from .certify import certify
 from .frontier import BACKENDS, backend, orbit, over_cap, pack, unpack
@@ -167,27 +168,15 @@ class _Search:
             self.try_finish(cnode, unpack(cnode[0]))
         heapq.heappush(self.heap, (float(len(cnode[0]) - 1), depth, tick, cnode))
 
-    def offer_dyn(self, ckey, rl, parent, event, depth):
+    def offer_dyn(self, ckey, rl, parent, event, depth, tick):
         """A higher-rank child ``ckey`` (relabelled by ``rl``); a rank-two one goes to the rank-two heap."""
         cstep = ({"op": "dyn", "event": event, "relabel": rl, "after": ckey},)
         if len(ckey) == 2:
-            self.offer((pack(canonical_rels(ckey)), parent, cstep, R2), depth, self.tick())
+            self.offer((pack(canonical_rels(ckey)), parent, cstep, R2), depth, tick)
             return
         self.st["max_rank"] = max(self.st["max_rank"], len(ckey))
         prio = float(length(ckey) + self.cfg.penalty * (len(ckey) - 2))
-        heapq.heappush(self.dheap, (prio, depth, self.tick(), (ckey, parent, cstep, DYN)))
-
-    def drop_dyn(self, reason, state, needed, depth):
-        """A higher-rank move the dyn_cap (reason "cap") or the ceiling (reason "slack") rejected."""
-        name, total, n = ("dyn_cap" if reason == "cap" else "slack"), length(state), len(state)
-        if name == "slack":
-            needed -= self.base
-        if n == 2:                                      # an elimination back to rank two: offer() would run the gates
-            key = pack(canonical_rels(D.make_key(state)[0]))
-            self.watch.drop_child(name, depth, self.tick(), key, needed, self.st["pops"] + 1)
-        else:
-            key = (float(total + self.cfg.penalty * (n - 2)), depth, self.tick())
-            self.watch.drop(name, key, total, needed, state)
+        heapq.heappush(self.dheap, (prio, depth, tick, (ckey, parent, cstep, DYN)))
 
     def expand_r2(self, rep, state, node, depth):
         """Offer every child of the rank-two state ``rep`` (S-moves, then the four Nielsen maps), and park its defines."""
@@ -210,30 +199,48 @@ class _Search:
         lower = float(len(rep) - 1 - max(D.digram_counts(state).values(), default=0) + 3 + cfg.penalty)
         heapq.heappush(self.dheap, (lower, depth, self.tick(), (None, node, state, DEFS)))
 
+    def offer_children(self, words, kept, drops, parent, depth):
+        """Offer the higher-rank children ``kept`` of ``words`` (``(state, event)``, sorted and deduplicated here) and hand
+        ``drops`` (``(name, offset, items)``: what the limit ``name`` rejected, see ``dynrank.children``) to the counters.
+        A dropped child that is an elimination back to rank two goes through the gates, in its place among the offers."""
+        watch, pen = self.watch, self.cfg.penalty
+        lazy, short = [], []
+        for name, offset, items in drops:
+            if items:
+                watch.moved(name, len(items), min(map(itemgetter(0), items)))
+                lazy.append((name, offset, [t for t in items if t[2] > 2]))
+                short += [(t[3], (name, t[1] - offset)) for t in items if t[2] == 2]
+        offered = _dedup_sorted(kept + short)
+        base = self.tick(len(offered) + 1)
+        states = [state for state, _ in offered]
+        for name, offset, items in lazy:
+            if items:
+                watch.block(name, DYNPOOL, lazy_entries(depth, base, pen, offset, words, states, items))
+        for j, (state, event) in enumerate(offered, base + 1):
+            if event.__class__ is tuple:                # an elimination to rank two that a limit rejected
+                key = pack(canonical_rels(D.make_key(state)[0]))
+                watch.drop_child(event[0], depth, j, key, event[1], self.st["pops"] + 1)
+            else:
+                self.offer_dyn(*D.make_key(state), parent, event, depth, j)
+
     def expand_dyn(self, rep, node, depth):
         """Offer every child of the higher-rank state ``rep``."""
         cfg, st = self.cfg, self.st
         st["dyn_pops"] += 1
-        lost = []
-        edges, rejected = D.children(rep, cfg.dyn_cap, self.ceiling, cfg.min_uses, lost)
-        st["dyn_rejected"] += rejected
-        for reason, dstate, _ in lost:
-            self.watch.moved("dyn_cap" if reason == "cap" else "slack", 1, length(dstate))
-        for cw, event in _dedup_sorted(edges + [(state, (reason, needed)) for reason, state, needed in lost]):
-            if event.__class__ is tuple:
-                self.drop_dyn(event[0], cw, event[1], depth)
-            else:
-                self.offer_dyn(*D.make_key(cw), node, event, depth)
+        kept, cut, over = D.children(rep, cfg.dyn_cap, self.ceiling, cfg.min_uses)
+        st["dyn_rejected"] += len(cut) + len(over)
+        self.offer_children(rep, kept, (("dyn_cap", 0, cut), ("slack", self.base, over)), node, depth)
 
     def expand_defs(self, state, parent, depth):
         """The deferred define children of a rank-two state (no charge)."""
+        kept, over = [], []
         for cw, event in _dedup_sorted(D.defines(D.normalize(state), self.cfg.min_uses)):
-            if length(cw) > self.ceiling:
-                self.st["dyn_rejected"] += 1
-                self.watch.moved("slack", 1, length(cw))
-                self.drop_dyn("slack", cw, length(cw), depth)
+            if length(cw) <= self.ceiling:
+                kept.append((cw, event))
             else:
-                self.offer_dyn(*D.make_key(cw), parent, event, depth)
+                over.append((length(cw), length(cw), len(cw), cw))
+        self.st["dyn_rejected"] += len(over)
+        self.offer_children(state, kept, (("slack", self.base, over),), parent, depth)
 
     def go(self):
         """Run the search; ``(solved, steps, stats)``."""

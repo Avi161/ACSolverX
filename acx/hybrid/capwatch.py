@@ -3,7 +3,10 @@
 Each limit has a rank-two pool and a higher-rank pool of ``acx.core.capcount.CapCount``; the fields are ``FIELDS`` under the
 prefixes ``cap``, ``dyn_cap`` and ``slack``. ``Watch`` has the rules and the cost.
 """
+from bisect import bisect_left
 from functools import lru_cache, partial
+from itertools import groupby
+from operator import itemgetter
 
 import numpy as np
 
@@ -26,6 +29,32 @@ def gates_act(key):
         return False
     run = Run(state, 1 << 60)
     return run_gates(run) or run.units > 0
+
+
+def lazy_entries(depth, base, penalty, offset, words, offered, items):
+    """The pool entries ``(key, total, needed, state)`` of the higher-rank children one pop's limit rejected (``items``, as
+    ``dynrank.children`` returns them), in key order, built only as far as a bar reaches. Ahead of each priority group stands
+    a marker (state None) whose key bounds the group's from below, so a group of hundreds costs nothing until a bar passes
+    it. ``offered``: the sorted states the pop did offer, the ``j``-th with the tick ``base + 1 + j``; a dropped state
+    takes a tick between its neighbours, and one equal to an offered state is not new. ``needed - offset`` is the value
+    the counter reports."""
+    prio = lambda t: t[0] + penalty * (t[2] - 2)
+    last = min(map(itemgetter(0), items)) + penalty            # no rank-two child is here, so no priority is lower
+    yield (float(last), depth, base), 0, 0, None
+    items.sort(key=prio)
+    for p, group in groupby(items, prio):
+        if p != last:
+            yield (float(p), depth, base), 0, 0, None
+            last = p
+        found = {}
+        for total, needed, _, payload in group:
+            if payload[0].__class__ is int:                    # (i, product): relator i replaced
+                payload = tuple(sorted(words[:payload[0]] + (payload[1],) + words[payload[0] + 1:]))
+            at = bisect_left(offered, payload)
+            if payload not in found and not (at < len(offered) and offered[at] == payload):
+                found[payload] = (total, needed - offset)
+        for r, state in enumerate(sorted(found)):
+            yield (float(p), depth, base + bisect_left(offered, state) + (r + 1) / (len(found) + 1)), *found[state], state
 
 
 def blank_records(cfg):
@@ -71,7 +100,7 @@ class Watch:
             if limits[name] is not None:
                 r2, dyn = CapCount(limits[name]), CapCount(limits[name])
                 r2.accept = partial(self._accept_r2, r2, set())
-                dyn.accept = partial(self._accept_dyn, set())
+                dyn.accept = partial(self._accept_dyn, dyn, set())
                 self.pools[name] = (r2, dyn)
                 self.moves[name], self.mintot[name] = 0, None
 
@@ -85,10 +114,12 @@ class Watch:
         if self.mintot[name] is None or total < self.mintot[name]:
             self.mintot[name] = total
 
-    def drop(self, name, key, total, needed, words):
-        """A higher-rank child (``words``, its relators) that ``name`` rejected; ``key`` is its heap key."""
+    def block(self, name, pool, entries):
+        """Pool ``pool`` of ``name`` takes the dropped children that ``entries`` yields in key order, as they are needed."""
         self.armed = True
-        self.pools[name][DYNPOOL].drop(key, total, needed, payload=words)
+        cc = self.pools[name][pool]
+        self.live.append((cc, entries))
+        self._push(cc, entries)
 
     def drop_now(self, name, total, needed, units):
         """A rank-two child the finishing gates would have acted on at pop ``units``."""
@@ -110,9 +141,7 @@ class Watch:
         entries = (((float(t), depth, base + p), t, n, d.raw[a:b]) for t, p, n, a, b in zip(
             d.total[idx].tolist(), d.pos[idx].tolist(), d.longest[idx].tolist(), d.start[idx].tolist(),
             d.end[idx].tolist()))
-        cc = self.pools[name][R2POOL]
-        self.live.append((cc, entries))
-        self._push(cc, entries)
+        self.block(name, R2POOL, entries)
         return [(int(d.before[i]), int(d.total[i]), int(d.longest[i])) for i in acting]
 
     def drop_child(self, name, depth, tick, key, needed, units):
@@ -121,11 +150,7 @@ class Watch:
         if gates_act(key):
             self.drop_now(name, total, needed, units)
             return
-        self.armed = True
-        cc = self.pools[name][R2POOL]
-        entries = iter([((float(total), depth, tick), total, needed, key)])
-        self.live.append((cc, entries))
-        self._push(cc, entries)
+        self.block(name, R2POOL, iter([((float(total), depth, tick), total, needed, key)]))
 
     @staticmethod
     def _push(cc, entries):
@@ -141,7 +166,11 @@ class Watch:
         drained.add(key)
         return True
 
-    def _accept_dyn(self, drained, words):
+    def _accept_dyn(self, cc, drained, payload):
+        words, entries = payload
+        self._push(cc, entries)
+        if words is None:                         # a marker: the group behind it is built now
+            return False
         ident = D.make_key(words)[0]
         if ident in self.seen_dyn or ident in drained:
             return False

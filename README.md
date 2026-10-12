@@ -11,118 +11,125 @@ The Andrews-Curtis (AC) conjecture says that every balanced presentation of the 
 multiply one relator by another, conjugate a relator). *Stable* AC also allows adding and removing a
 generator with a matching relator (AC4/AC5). This repository is `acx`, one small package that searches
 for such paths and **verifies every path it reports by replaying it on the presentation it claims to
-solve**:
+solve**. A solve is typed: an **`ac_path`** (AC moves on the row), an **aut-assisted** `ac_path` (the search
+changed basis; the path is carried back and replayed on the row), or a **`stable_cert`** (proves stable
+AC-triviality; reported separately, never merged into `ac_path`).
 
-- **greedy**: best-first search over substitution moves (one S-move = multiply a relator by a conjugate of
-  the other, at least one letter cancelling), ordered by total length (the baseline) or by **S20_MK2**
-  (`L + 20 S + 2 MK`). Two backends: `spec` (pure Python, the reference) and `fast` (numba, the same search
-  step for step, about 40x faster). The fast kernels are a library the other methods run on.
-- **aut**: search the Whitehead (Aut(F2)-minimal) representative, then transport the path back to the row.
-- **cov**: one-shot change of variables (family `subnc2pxysb`); a solve is a stable-AC certificate.
-- **hybrid**: the solve-everything mode: Nielsen/pinch cascade, then one best-first search over rank two
-  and higher rank; every certificate is written out as elementary (and stable) moves on the row.
-- **ngen**: n-generator search and the transform to relators of length <= 3 (SAC), lifted to a stable path.
-- **rl** (optional, PyTorch): the paper's 610model PPO policy (step 1000) as a beam search.
-
-Every solve is typed: an **`ac_path`** (AC moves on the row), an **aut-assisted** `ac_path` (the search
-changed basis; the path is carried back to the row and replayed there), or a **`stable_cert`** (proves
-stable AC-triviality; reported separately, never merged into `ac_path`).
-
-## Install and run
+## Install and quickstart
 
 ```bash
 python3.12 -m venv .venv && . .venv/bin/activate
 pip install -e .[dev]            # numpy 2.1.3, numba 0.63.1, pytest;  add [rl] for torch
-                                 # (install editable: acx reads data/ and benchmark/ from the checkout)
-pytest                           # default selection, a few minutes;  pytest -m "" runs the slow tests too
-python run.py --config configs/smoke.toml      # seconds
+                                 # (editable: acx reads data/ and benchmark/ from the checkout)
+export NUMBA_NUM_THREADS=1       # one core per search; use run.py's workers for parallel rows
+python run.py --config configs/smoke.toml      # about a second: 20 MS640 rows, every path replayed
 ```
 
-One command per method (`--set key=value` overrides any config value, dotted keys reach sections;
-`--rows a:b` slices the benchmark; results go to `results/<name>/{paths.jsonl, summary.json}`):
+```python
+from acx import Presentation, SearchConfig, search, replay
 
-| method | command |
-|---|---|
-| slow baseline (pure-Python length greedy) | `python run.py --config configs/baseline_spec.toml` |
-| fast greedy, length / S20_MK2 | `python run.py --config configs/greedy_fast.toml` / `configs/s20_mk2_fast.toml` |
-| Aut-min + transport | `python run.py --config configs/aut.toml` |
-| change of variables | `python run.py --config configs/cov.toml` |
-| hybrid | `python run.py --config configs/hybrid.toml` |
-| n-generator SAC | `python run.py --config configs/ngen_sac.toml` |
-| RL beam (needs `pip install -e .[rl]`) | `python run.py --config configs/rl.toml` |
-| the difficulty ladder | `python run.py --config configs/ladder.toml` |
+p = Presentation.parse("xxYXY", "xyyXY")
+res = search(p, SearchConfig(backend="fast", budget=1000))
+res.solved, res.pops, res.path_length          # (True, 7, 5)
+replay(p, res.path)                            # raises ReplayError unless the path reaches <x, y | x, y>
+res.stats["cap_would_pop"]                     # 0: the relator cap (24) did not change this search
+```
 
-Benchmarks by name (`--set benchmark=...`): `ms640`, `1190ms`, `bench10`..`bench60`, `ladder20`..`ladder500`,
+`python run.py --config configs/<name>.toml [--set key=value ...] [--rows a:b] [--out dir] [--fresh]`:
+`--set` overrides any config value (dotted keys reach sections, `--set search.cap=none`), `--rows` slices the benchmark,
+results go to `results/<name>/{config.json, paths.jsonl, summary.json}`, and an interrupted run resumes.
+`--set benchmark=<name>` picks the rows: `ms640`, `1190ms`, `bench10`..`bench60`, `ladder20`..`ladder500`,
 `ladder20_s20hard`..`ladder300_s20hard`, `ac1m_hard_holdout60`, `ac19_autmin`, `ac1m_autmin`, `u124`
-([benchmark/README.md](benchmark/README.md)). In Python: `from acx import search, replay, Presentation`
-([docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)).
+([benchmark/README.md](benchmark/README.md)).
+
+## Methods
+
+Each is one config in `configs/` and one `method` of `run.py`. A method reads only its own sections; any other
+section, unknown key or invalid value is an error at load.
+
+| method | what it does | config | sections |
+|---|---|---|---|
+| **greedy**, `spec` | best-first search over substitution moves (S-moves), ordered by total length (the baseline); pure Python, the reference | `baseline_spec.toml` | `[search]` |
+| **greedy**, `fast` | the same search step for step on numba, about 30x faster; length or **S20_MK2** (`L + 20 S + 2 MK`) | `greedy_fast.toml`, `s20_mk2_fast.toml`, `ladder.toml` | `[search]` |
+| **aut** | search the Whitehead (Aut(F2)-minimal) representative, carry the path back to the row | `aut.toml` | `[search]` |
+| **cov** | one-shot change of variables (family `subnc2pxysb`) before the search; a solve of an image outside the row's orbit is a `stable_cert` | `cov.toml` | `[search]`, `[cov]` |
+| **hybrid** | the solve-everything mode: Nielsen/pinch cascade, then one best-first search over rank two and higher rank; certificate written as elementary (and AC4/AC5) moves | `hybrid.toml` | `[hybrid]` |
+| **ngen** | n-generator search, with the transform to relators of length <= 3 (SAC) and its lift to a stable path | `ngen_sac.toml` | `[search]`, `[ngen]` |
+| **rl** (optional) | the paper's PPO policy, step 1000, as a beam search; needs `pip install -e .[rl]` | `rl.toml` | `[rl]` |
+| **rankn** | rank-3/4/5 brute force: stabilise each row with every short word and search each start; writes per-row `rows/<id>.npz` and a summary, not `paths.jsonl` ([docs/RANK3.md](docs/RANK3.md)) | `rank3_bf.toml`, `rank4_bf.toml`, `rank5_bf.toml` | `[search]`, `[rankn]` |
+
+`[search]` keys: `priority` (`length` or `s20_mk2`), `cap` (default 24, `"none"` = uncapped), `budget` (pops, default
+10,000), `backend` (`spec` or `fast`), `cyclic`. `[hybrid]` keys: `budget` (work units), `r2_cap`, `dyn_cap`, `slack`,
+`penalty`, `dyn_ratio`, `min_uses`, `backend`. [docs/METHODS.md](docs/METHODS.md) defines each method.
+
+```bash
+python run.py --config configs/greedy_fast.toml                       # LENGTH greedy, MS640, 10k pops
+python run.py --config configs/s20_mk2_fast.toml --rows 0:100         # S20_MK2, first 100 rows
+python run.py --config configs/hybrid.toml --set benchmark=ac19_autmin --set workers=4
+python run.py --config configs/rank3_bf.toml --rows 0:40              # rank-3 brute force, seconds
+```
+
+## The relator cap
+
+Children with a relator longer than `cap` are not searched. The cap is a config value, and every search counts what
+it dropped and whether a dropped child would have been popped with a larger cap: six fields in every record
+(`cap`, `cap_dropped`, `cap_dropped_min_total`, `cap_would_pop`, `cap_first_bind`, `cap_needed`) and a `caps` block in
+`summary.json`. `cap_would_pop == 0` means the same run at any larger cap; otherwise `cap_needed` is the cap to raise
+to. The counting is one module, `acx/core/capcount.py`, that knows no heuristic. See [docs/CAP.md](docs/CAP.md).
+
+## Verify
+
+```bash
+pytest                    # the default selection, a few minutes
+pytest -m ""              # adds the slow parity and census sets
+```
+
+Every record is written only after its certificate replays on its row (`acx.verify.replay`: legal moves, `|det| = 1`
+throughout, the cap, a trivial end). The `spec` and `fast` backends are tested to pop the same states in the same order
+and report the same statistics, cap counters included.
 
 ## Headline numbers
 
-Reproduced on this branch: every number below is a `results/<run>/summary.json` written by `run.py` with the current
-code, each record replayed on its row before it was written, and checked against an independent replay and against the
-original code's per-row reference (0 mismatches in solved flag, pops or units, and path length). Shared 4-core VM, one
-core per worker, cap 24 unless stated. Path lengths are totals over the solved rows (median per row) in two units:
-**S-moves** (substitution moves of the search; for the hybrid its S-move steps, automorphism steps not counted) and
-**elementary** moves (invert / swap / conjugate by a letter / multiply: the path replayed on the row). The length
-columns count AC paths only (`ac_path`, aut-assisted included); `stable_cert` lengths are in the footnotes, never in
-these columns. Cost is heap pops for searches and work units for the hybrid.
+Reproduced on this branch with `python run.py`; each is a `results/<run>/summary.json`. Cap 24 and the fast backend
+unless stated; cost is heap pops for searches and work units for the hybrid. The full table, path lengths and the
+command of every run are in [docs/RESULTS.md](docs/RESULTS.md) section 0.
 
-| benchmark | method (run) | solved | ac_path / aut-assisted / stable_cert | cost | S-moves | elementary |
-|---|---|---:|---|---:|---:|---:|
-| MS640 (640) | length greedy, 10k pops, `spec` (`ms640_length_spec`) | 606 | 606 / 0 / 0 | 576,053 pops | 12,103 (8) | 114,828 (54) |
-| MS640 | length greedy, 10k pops, `fast` (`ms640_length_fast`) | 606 | 606 / 0 / 0 | 576,053 pops | 12,103 (8) | 114,828 (54) |
-| MS640 | S20_MK2, 10k pops (`ms640_s20_mk2_fast`) | 626 | 626 / 0 / 0 | 382,718 pops | 16,872 (9) | 168,702 (56.5) |
-| MS640 | hybrid, 1,000 units (`ms640_hybrid`) | **640** | 128 / 512 / 0 | 25,064 units | 12,346 (10) | 89,055 (54) |
-| AC19 Aut-min (72,779) | hybrid (`ac19_hybrid`) | **72,779** | 36,811 / 35,780 / 188 [a] | 2,489,726 units | 1,232,877 (11) | 7,341,111 (71) |
-| AC1M Aut-min (71,283) | hybrid (`ac1m_hybrid`) | **71,281** | 34,649 / 36,508 / 124 [b] | 2,384,509 units | 1,136,288 (11) | 7,239,114 (71) |
-| bench60 (60) | length greedy, 10k pops (`bench60_length`) | 40 | 40 / 0 / 0 | 248,227 pops | 1,475 (24) | 15,028 (217) |
-| bench60 | S20_MK2, 10k pops (`bench60_s20_mk2`) | 52 | 52 / 0 / 0 | 141,740 pops | 3,237 (31.5) | 34,173 (281) |
-| bench60 | hybrid (`bench60_hybrid`) | **60** | 7 / 53 / 0 | 4,783 units | 3,382 (16.5) | 27,641 (170) |
-| ac1m_hard holdout 60 | length / S20_MK2, 10k pops (`holdout60_length`, `holdout60_s20_mk2`) | 44 / 50 | all ac_path | 329,601 / 165,049 pops | 2,447 / 3,069 | 26,589 / 33,345 |
-| ac1m_hard holdout 60 | length / S20_MK2, 1k pops, cap 48, the published protocol (`holdout60_*_1k_cap48`) | 0 / 33 | all ac_path | 60,000 / 41,953 pops | - / 1,465 (36) | - / 15,128 (342) |
-| ac1m_hard holdout 60 | hybrid (`holdout60_hybrid`) | **60** | 0 / 60 / 0 | 3,770 units | 1,697 (16) | 17,593 (223.5) |
-| U124 (124) | S20_MK2 10k pops; hybrid 1,000 units (`u124_s20_mk2`, `u124_hybrid`) | **0 / 0** | | 1,149,399 pops; 124,000 units | | |
-| ladder200 (188) | length / S20_MK2, 10k pops (`ladder200_length`, `ladder200_s20_mk2`) | 40 / 116 | all ac_path | 1,551,196 / 1,063,702 pops | 1,991 / 7,697 | 21,108 / 86,172 |
-| ladder200 | hybrid (`ladder200_hybrid`) | **188** | 8 / 173 / 7 [c] | 22,319 units | 7,612 (20) | 80,878 (301) |
+| benchmark (rows) | length greedy, 10k pops | S20_MK2, 10k pops | hybrid, 1,000 units |
+|---|---:|---:|---:|
+| MS640 (640) | 606 (`spec` and `fast`, row for row) | 626 | **640** (25,064 units) |
+| bench60 (60) | 40 | 52 | **60** |
+| ladder200 (188) | 40 | 116 | **188** |
+| AC19 Aut-min (72,779) | | | **72,779** (188 of them `stable_cert`) |
 
-[a] the 188 stable certificates: 2,722 S-moves and 93,692 elementary and AC4/AC5 moves. [b] 124: 1,662 and 62,312;
-misses `ac1m_54083`, `ac1m_68740`. [c] 7: 117 and 6,051. The hybrid's MS640 finishing stages are relator descent 98,
-pinch cascade 328, search 214, each row's units and stage equal to the original code's run.
+The ladder ([benchmark/README.md](benchmark/README.md)) has ten levels of increasing difficulty; level 9 is defined by
+"length greedy fails at 10M pops, S20_MK2 solves", level 10 by "both fail, only the cascades solve". Those 10M grades
+are by record and were not rerun here. U124, the 124 Miller-Schupp classes nobody has solved, stays at 0/124.
 
-Commands, as run (`python run.py --config configs/<file>.toml --set name=<run> ...`; the full list is in
-[docs/RESULTS.md](docs/RESULTS.md) section 0): MS640 rows use the configs as shipped (`baseline_spec`, `greedy_fast`,
-`s20_mk2_fast`, `hybrid`); the others add `--set benchmark=<name> --set workers=4`, e.g.
-`python run.py --config configs/hybrid.toml --set name=ac19_hybrid --set benchmark=ac19_autmin --set workers=4`
-(about 4.5 minutes on 4 cores); the published holdout protocol adds `--set search.budget=1000 --set search.cap=48`.
+## Layout
 
-The ladder (the headline benchmark; [benchmark/README.md](benchmark/README.md)) by level, `ladder200`, 10k pops at
-cap 24 (`configs/ladder.toml`, `--set search.priority=length`, and `configs/hybrid.toml --set benchmark=ladder200`):
-
-| level | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| rows | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 19 | 9 |
-| length greedy | 20 | 20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| S20_MK2 | 20 | 20 | 13 | 14 | 12 | 18 | 7 | 6 | 6 | 0 |
-| hybrid (1,000 units) | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 19 | 9 |
-
-Level 9 is defined by "length greedy fails at 10M pops, S20_MK2 solves"; level 10 by "both fail at 10M, only the
-cascades solve". Those 10M grades are by record (a 10M-pop run needs about 50 GB) and were not rerun; at 10,000 pops no
-greedy arm solves level 10 and the hybrid solves every row. Published lines (not rerun here;
-[docs/RESULTS.md](docs/RESULTS.md)): the paper's PPO agent solves 610 Miller-Schupp presentations against 457 for the
-prior RL baseline (`main`'s README says "610 of the 1,190" in one place and "610 of the first 634" in another; confirm
-the denominator against the paper before quoting it); S20_MK2 solves 72,519 of the 72,779 AC19 Aut-min orbits at 10k
-pops (cap 48) against 71,936 for length greedy; U124 stays at 0/124 under S20_MK2 at 10,000,000 pops (cap 64) and every
-other probe on record.
+```
+run.py                  the one CLI
+configs/                one TOML per method / run
+acx/core/               words, moves, priorities, SearchConfig, capcount (the cap counter)
+acx/search/             best-first search: spec (Python) and fast (numba) backends
+acx/verify/             replay (the only judge), elementary decoder
+acx/aut/  cov/  hybrid/  ngen/  rl/     the methods
+acx/runner.py  acx/data.py              config + rows + results folder; datasets and benchmarks by name
+data/  benchmark/       datasets, frozen evaluation sets and the ladder
+tests/                  pytest (default selection; -m "" for the slow sets)
+results/                committed summary.json / config.json of the quoted runs (paths.jsonl is regenerated)
+docs/                   METHODS, CAP, ARCHITECTURE, RANK3, RESULTS, PROVENANCE
+```
 
 ## Docs
 
-- [docs/METHODS.md](docs/METHODS.md): moves, the cap, the search, priorities, backends and their parity
-  contract, automorphisms and transport, units, hybrid, change of variables (what `subnc2pxysb` means),
-  n-generator search, verification.
+- [docs/METHODS.md](docs/METHODS.md): moves, the cap, the search, priorities, backends and their parity contract,
+  automorphisms and transport, units, hybrid, change of variables, n-generator search, RL, verification.
+- [docs/CAP.md](docs/CAP.md): the relator cap and its counters.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): the module map and the exact interfaces.
+- [docs/RANK3.md](docs/RANK3.md): the rank-n brute force and the n-generator package.
 - [docs/RESULTS.md](docs/RESULTS.md): every number with its source; what was tried and dropped; open experiments.
 - [docs/PROVENANCE.md](docs/PROVENANCE.md): component -> branch -> commit for everything here.
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): the module map and the exact interfaces.
 - [benchmark/README.md](benchmark/README.md): the frozen evaluation sets, the ladder, the AC1M hard split.
 - Theory (no code here): the AK(3) and U124 notes live on `codex/proofs`, `fable/proofs` and
   `cursor/u124-stable-ac-1b54`; the equivalence certificates of the 124 unsolved classes ship as
@@ -140,15 +147,14 @@ Each `.txt` line is a flat list of two zero-padded relators (`x -> 1`, `y -> 2`,
 - **`ms_unsolved_reps/`**: the unsolved Miller-Schupp representatives and the 124 classes (U124).
 - **`equivalence_classes/certificates.json`**: certificates joining the 261 U124 presentations into 124 classes.
 
-Large certificate and path files are not committed: `run.py` regenerates them (`results/<name>/paths.jsonl`); the
-`summary.json` and `config.json` behind every number above are committed under `results/`.
+Large certificate and path files are not committed: `run.py` regenerates them (`results/<name>/paths.jsonl`).
 
 ## License
 
 - **Code** is released under the [MIT License](LICENSE).
 - **Datasets** (`data/`, including AC-19 and AC-1M) are released under [CC BY 4.0](LICENSE-DATA).
 - Two binary files are kept on purpose: the RL checkpoint `acx/rl/checkpoint/610model_1000.pt` (0.6 MB, the paper's
-  step-1000 weights) and `benchmark/subsets/subset_coverage.png` (from `main`). No other binaries or PDFs are tracked.
+  step-1000 weights) and `benchmark/subsets/subset_coverage.png`. No other binaries or PDFs are tracked.
 
 ## Citation
 

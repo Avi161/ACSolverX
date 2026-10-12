@@ -24,14 +24,14 @@ word for each presentation make greedy cheaper? Ported from `origin/rank3/brute-
 ## Run
 
 ```
-python -m acx.ngen.sweep --config configs/rank3_bf.toml                 # MS640, words of length 1-4, budget 1,000, cap 24
-python -m acx.ngen.sweep --config configs/rank3_bf.toml --rows 0:40     # a smoke, seconds
-python -m acx.ngen.sweep --config configs/rank4_bf.toml --rows 7:640:40 # a rank-4 slice (a full run is ~2 core-hours)
-python -m acx.ngen.sweep --config configs/rank5_bf.toml --verify 100    # a full run, then 100 cells re-run on the other backend
+python run.py --config configs/rank3_bf.toml                  # MS640, words of length 1-4, budget 1,000, cap 24
+python run.py --config configs/rank3_bf.toml --rows 0:40      # a smoke, seconds
+python run.py --config configs/rank4_bf.toml --rows 7:640:40  # a rank-4 slice (a full run is ~2 core-hours)
+python -m acx.ngen.sweep --config configs/rank5_bf.toml --verify 100   # the same config, then 100 cells re-run on the other backend
 ```
 
-`run.py --config configs/rank3_bf.toml` works once the runner accepts method `rankn` and delegates to
-`acx.ngen.sweep.run` (not wired yet; `acx/runner.py` still rejects the method). Until then use the module form above.
+`run.py` loads the config with the runner (method `rankn`, `acx.runner.method_config`), which refuses bad keys and
+S20_MK2 before anything is written; the runner then hands the run to `acx.ngen.sweep.run`.
 
 `[search]` is a `SearchConfig` (priority `length`, `budget <= 65535`, `1 + max_len <= cap`); `[rankn]` holds `extra`,
 `min_len`, `max_len`, `inverse`, `sample`. Unknown keys and invalid values are errors at load.
@@ -44,9 +44,8 @@ sample of solved paths (`sample`). **The row files are large; keep them out of g
 
 `sweep.verify(dir, recheck=N)` (also `--verify N`) checks: control equals null stabilisation (and their cap counters,
 scores shifted by `extra`), shapes and ranges, cap-counter rules, every stored path through `acx.verify.replay`, and
-`N` random cells re-run on the other backend. Cost: about 35 ms per search (rank 3, budget 1,000, one core); lengths
-1-3 over MS640 (16,640 searches) take about 3 minutes on 3 workers, lengths 1-4 about 10. Length 10 (37.8 M searches)
-is a cluster job.
+`N` random cells re-run on the other backend. Measured here (3 workers): lengths 1-3 over all of MS640 (16,640 searches) take 4.6 minutes, length 4 alone
+(34,560 searches) about 9 minutes. Length 10 (37.8 M searches) is a cluster job.
 
 ## Reproduction against the baseline's stored results
 
@@ -62,6 +61,11 @@ control's solved/pops/path length):
 | rank 3, lengths 1-2, `inverse = true` | 5,120 | - | 0 |
 | rank 4, 16 rows (`--rows 7:640:40`) | 5,616 | 2,899 | 0 |
 | rank 5, 16 rows (`--rows 0:640:40`) | 1,920 | 1,150 | 0 |
+
+Checked on the current code (`nodes`, `path_len`, `min_total`, `cap_dropped`, `cap_dropped_min_total`; the rank 4 and 5
+slices compare `nodes`, `path_len` and the control and null records, since the baseline stores no cap counters for
+them): lengths 1-3 over all MS640, length 4 over all MS640, `inverse = true` lengths 1-2 over all MS640, and the two
+rank-4 and rank-5 slices: 0 mismatches in every cell.
 
 The summary tables agree too (solved by some word up to length 1/2/3/4: 403 / 472 / 516 / 540; a random word solves
 60.1% / 68.4% / 69.8% / 68.6% of its starts; lost 151 / 82 / 38 / 18). The cap dropped a child in 4 of the 16,640
@@ -85,6 +89,10 @@ none.
   a byte).
 
 ## The n-generator package (`acx.ngen`)
+
+Cyclic reduction (`cyclic = false`): the search starts from `Presentation.normal(cyclic)`, and a presentation with no
+definition is searched as it is (`solve` does not search its cyclic reduction); with `cyclic = false` the cyclic
+reduction of an input can change its relators by conjugation, so the path would not replay on the input otherwise.
 
 `solve(pres, NGenConfig)` searches a presentation of any rank with `acx.search.search` (spec and fast backends).
 

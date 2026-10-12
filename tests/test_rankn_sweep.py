@@ -8,6 +8,7 @@ import numpy as np
 import pytest
 
 from acx import data
+from acx.runner import load_config
 from acx.core.config import SearchConfig
 from acx.core.words import fmt
 from acx.ngen import sweep
@@ -152,7 +153,7 @@ def test_every_config_has_one_comment_line():
 def test_shipped_configs_load():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     for name, extra, max_len in (("rank3_bf", 1, 4), ("rank4_bf", 2, 3), ("rank5_bf", 3, 2)):
-        c = sweep.load_config(os.path.join(root, "configs", f"{name}.toml"))
+        c = load_config(os.path.join(root, "configs", f"{name}.toml"))
         sc = SweepConfig.from_cfg(c)
         assert (sc.extra, sc.max_len, sc.search.budget, sc.search.cap) == (extra, max_len, 1000, 24)
 
@@ -314,14 +315,26 @@ def test_cli_entry_point(tmp_path, monkeypatch):
     assert os.path.exists(tmp_path / "rank3_bf" / "summary.json")
 
 
-@pytest.mark.skipif("rankn" not in __import__("acx.runner", fromlist=["x"]).METHODS, reason="runner method not wired yet")
 def test_run_py_entry_point(tmp_path):
+    """``run.py`` runs the shipped rank-3 config (the runner delegates method ``rankn`` to the sweep)."""
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     sys.path.insert(0, root)
     import run as run_py
-    run_py.main(["--config", os.path.join(root, "configs", "rank3_bf.toml"), "--rows", "0:3",
-                 "--set", "rankn.max_len=2", "--set", "workers=1", "--set", "search.budget=300", "--out", str(tmp_path)])
-    assert os.path.exists(tmp_path / "rank3_bf" / "summary.json")
+    run_py.main(["--config", os.path.join(root, "configs", "rank3_bf.toml"), "--rows", "0:2", "--out", str(tmp_path)])
+    s = json.load(open(tmp_path / "rank3_bf" / "summary.json"))
+    assert s["rows"] == 2 and s["extra"] == 1 and s["cap_counters"]["fields"] == list(sweep.COUNTERS)
+
+
+def test_runner_refuses_rankn_s20_mk2_at_load(tmp_path):
+    """The runner's config load (run.py, before anything is written) refuses rank-n with S20_MK2 and bad rankn keys."""
+    from acx.runner import load_config
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    path = os.path.join(root, "configs", "rank3_bf.toml")
+    with pytest.raises(ValueError, match="length"):
+        load_config(path, ["search.priority=s20_mk2"])
+    with pytest.raises(ValueError, match="rankn"):
+        load_config(path, ["rankn.bogus=1"])
+    assert not (tmp_path / "rank3_bf").exists()
 
 
 @pytest.mark.slow

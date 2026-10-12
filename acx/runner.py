@@ -1,7 +1,8 @@
 """The benchmark runner behind ``run.py``: one config, one method, every row verified before it is written.
 
 ``load_config`` reads and checks a config; ``run`` solves the rows and writes ``results/<name>/``
-``{config.json, paths.jsonl, summary.json}``. Methods: greedy, cov, aut, hybrid, ngen, rl.
+``{config.json, paths.jsonl, summary.json}``. Methods: greedy, cov, aut, hybrid, ngen, rl; rankn writes its own
+per-row files (``acx.ngen.sweep``, see docs/RANK3.md).
 """
 import json
 import os
@@ -22,7 +23,7 @@ from .verify.decode import decode_and_replay, pack
 from .verify.replay import ReplayError, abs_det, replay
 
 SECTIONS = {"greedy": ("search",), "aut": ("search",), "cov": ("search", "cov"), "ngen": ("search", "ngen"),
-            "hybrid": ("hybrid",), "rl": ("rl",)}
+            "hybrid": ("hybrid",), "rl": ("rl",), "rankn": ("search", "rankn")}
 METHODS = tuple(SECTIONS)
 KEYS = {"name", "method", "benchmark", "rows", "workers", "decode"}
 TOP = KEYS | {s for v in SECTIONS.values() for s in v}
@@ -95,6 +96,9 @@ def method_config(cfg):
     """The method's settings object (a dict of keywords for ``rl``) built from its sections; ``ValueError`` on
     an unknown key or an invalid value. ``[search]`` always captures paths, since every solve is replayed."""
     m = cfg["method"]
+    if m == "rankn":
+        from .ngen.sweep import SweepConfig
+        return SweepConfig.from_cfg(cfg)
     search = SearchConfig.from_dict({**({"budget": 1_000} if m == "cov" else {}), **cfg.get("search", {}),
                                      "capture_path": True})
     if m in ("greedy", "aut"):
@@ -347,6 +351,9 @@ def run(cfg, out="results", fresh=False, log=print):
     row with ``|det| != 1`` gets ``solved: false`` and an ``error``.
     """
     check_method(cfg)
+    if cfg["method"] == "rankn":
+        from .ngen.sweep import run as run_rankn
+        return run_rankn(cfg, out, fresh, log)
     rows = select(data.rows(cfg["benchmark"]), cfg.get("rows"))
     d = os.path.join(out, cfg["name"])
     os.makedirs(d, exist_ok=True)

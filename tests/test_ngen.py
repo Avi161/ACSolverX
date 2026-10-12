@@ -8,6 +8,7 @@ from acx.aut.whitehead import apply_table
 from acx.core.config import SearchConfig
 from acx.core.words import Presentation, canonical_word, inverse, parse, reduce
 from acx.ngen import NGenConfig, check, define, lift, solve, triangulate, verify
+from acx.ngen.sac import Sac
 from acx.search import PARITY_STATS, search
 from acx.verify import ReplayError, replay
 from acx.verify.replay import abs_det
@@ -130,6 +131,16 @@ def test_solve_replays_without_cyclic_reduction(rels, backend):
     res = solve(pres, NGenConfig(SearchConfig(backend=backend, budget=800, cyclic=False)))
     assert res.solved and res.kind == "ac_path"
     assert verify(pres, res, cyclic=False)[-1].is_trivial()
+
+
+def test_lift_from_the_normal_start_at_cyclic_false():
+    """At cyclic = false the input is not its own normal form; lift takes the search's start (``Result.start``, the
+    normal form) and returns moves that replay on the input. Pins ``Presentation.normal`` as the replayed state."""
+    pres = Presentation.parse("xyX", "yXyy")
+    res = search(pres, SearchConfig(backend="spec", budget=400, cyclic=False))
+    assert res.solved and res.start == res.start.normal(False) and pres.normal(False) == res.start
+    moves = lift(pres, Sac(pres.reduced(), (), pres), res.path, res.start, cyclic=False)
+    assert replay(pres, moves, cyclic=False, normalize=False)[-1].is_trivial()
 
 
 def test_solve_without_sac_is_an_ac_path(ms640):

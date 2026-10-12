@@ -1,8 +1,11 @@
 # Methods
 
-Plain-language definitions of what the code does and what its numbers mean. Worked examples were run against the source
-files named in [PROVENANCE.md](PROVENANCE.md) and against `acx`. Results are in [RESULTS.md](RESULTS.md); the module map
-and exact interfaces in [ARCHITECTURE.md](ARCHITECTURE.md).
+Plain-language definitions of what the code does and what its numbers mean; the worked examples were run against `acx`.
+Results are in [RESULTS.md](RESULTS.md), the module map and exact interfaces in [ARCHITECTURE.md](ARCHITECTURE.md), the
+relator cap and its counters in [CAP.md](CAP.md), the rank-n brute force in [RANK3.md](RANK3.md), where each part came
+from in [PROVENANCE.md](PROVENANCE.md).
+
+Every method is run by `python run.py --config configs/<name>.toml` and has its own config sections (README, "Methods").
 
 ## 1. Presentations and words
 
@@ -65,8 +68,8 @@ after reduction = xxxYYYxYXYx       (11 letters)
 ```
 
 The new state is `(xxxYYYxYXYx, xyxYXY)`, total length 17. AK(3) has 42 such legal moves from its start (38 distinct
-child states after reduction and canonicalisation); both counts and the product above were checked against `main`'s
-`get_neighbors_with_moves_nj` and `replay_move_nj`.
+child states after reduction and canonicalisation); `tests/test_core.py` and `tests/test_spec.py` pin the move
+enumeration and the child states.
 
 **Why it is an AC move.** A rotation of a cyclic word is a conjugate, `rot_k(r) = u^-1 r u`. So the S-move is
 `(u^-1 r_i u)(p^-1 r_j^j p)`, which equals `u^-1 [ r_i . (c^-1 r_j^j c) ] u` with `c = p u^-1`; the outer conjugation is
@@ -79,17 +82,22 @@ use moves the search never emitted.
 ## 4. The relator cap
 
 A child state is kept only if **both** relators, after reduction, have length at most the cap. The cap is a config
-value (`SearchConfig.cap`, default 24; `cap = "none"` is uncapped at a speed cost), never hard-coded, and every rejected
-move is counted in `stats["cap_rejected"]`, so it is never silent. The cap is a limit on the
-*search graph*, not on a path: the same row at cap 24 and cap 48 is a different search. Conventions in the results:
-24 for the MS640 baseline, 48 for AC19 and AC1M rungs, 64 for the largest budgets, and `max(24, longest + 16)` for
-change-of-variables starts (a relator pinned exactly at the cap can never lengthen over the hump, so a transformed run
-needs slack). The numbers 24 and 48 in a results table are caps, not move counts.
+value (`SearchConfig.cap`, default 24; `cap = "none"` is uncapped, at a speed cost), never hard-coded. The cap is a
+limit on the *search graph*, not on a path: the same row at cap 24 and cap 48 is a different search. Conventions in the
+results: 24 for the MS640 baseline, 48 for AC19 and AC1M rungs, 64 for the largest budgets, and
+`max(24, longest + 16)` for change-of-variables starts (a relator pinned exactly at the cap can never lengthen over the
+hump, so a transformed run needs slack). The numbers 24 and 48 in a results table are caps, not move counts.
+
+The cap never decides silently what the search pops. Every search counts the children the cap dropped and whether a
+dropped child would have been popped had the cap been larger, in six fields of every record (`cap`, `cap_dropped`,
+`cap_dropped_min_total`, `cap_would_pop`, `cap_first_bind`, `cap_needed`) and a `caps` block of `summary.json`.
+`cap_would_pop == 0` means the same run at any larger cap. The counting is one module that knows no heuristic
+([CAP.md](CAP.md)).
 
 Every other cap reads the same way (`acx.core.config.parse_cap`: a positive int or `"none"`; `0` and booleans are
-errors): the hybrid's `r2_cap` (default `"parent"`, the source's rule, which reproduces its published counts) and
-`dyn_cap` (default 8), CoV's `max_len` and `cap_headroom`, and the RL beam's `cap` (at most 24, the policy's input
-width). `run.py` rejects a section the method does not read, so a cap can never be set and silently ignored.
+errors): the hybrid's `r2_cap` (default `"parent"`), `dyn_cap` (default 8) and `slack` (default 8), CoV's `max_len` and
+`cap_headroom`, and the RL beam's `cap` (at most 24, the policy's input width). `run.py` rejects a section the method
+does not read, so a cap can never be set and silently ignored.
 
 ## 5. Greedy best-first search
 
@@ -110,6 +118,9 @@ while heap is not empty and pops < budget:
 - **Budget** counts pops, and the solving pop counts. A search at budget B is the first B pops of a longer one.
 - The **path** is the chain of parents from the solved state back to the start, so path length is the discovery depth
   of the solution. It is not a shortest path.
+
+Config: `[search]` (`priority`, `cap`, `budget`, `backend`, `cyclic`), as in `configs/greedy_fast.toml`,
+`s20_mk2_fast.toml` and `baseline_spec.toml`.
 
 ## 6. Priorities
 
@@ -133,12 +144,11 @@ Worked example, AK(3): `xxxYYYY` has one `x`-block (3) and one `y`-block (4); `x
 3, so `MK = 3`. `L = 13`. Priority = 13 + 20 x 1.5 + 2 x 3 = **49**.
 
 Because a lower score pops first, the `+20 S` term prefers states in which the thinner generator occurs in *short* runs
-(finely interleaved) and `+2 MK` prefers states whose worse relator is less tangled. (One source document states the
-sign of `S` the other way; the formula and the code are as written here.)
+(finely interleaved) and `+2 MK` prefers states whose worse relator is less tangled.
 
 **Two invariants** are tested: with LENGTH the engine reproduces the baseline pop for pop (a control that merely scores
-the same is not the same search), and the priority is a pure function of the state. A vector `RECOMMENDED` (five
-features) was withdrawn as overfit and is not shipped.
+the same is not the same search), and the priority is a pure function of the state. No other priority ships; the
+counters of section 4 work with any future one, because they only compare the scores a search passes in.
 
 ## 7. Backends: spec and fast, and the parity contract
 
@@ -148,22 +158,21 @@ Both backends run the search of section 5 (`acx.search.search(pres, cfg)`); the 
   reference and the slow baseline.
 - **fast** (`acx.search.fast`) is numba: states are rows of Booth symbols (one byte each; integer order is the Booth
   order and `b ^ 1` is the inverse) in a flat arena with an int32 heap and an FNV-1a dedup table; a path is stored as
-  `(parent, move)`. The expansion kernel (from `hexpand`) skips a child that is a cyclic *cut shift* of the previous
-  child of the same block (the raw words are conjugate, so they reduce to the same cyclic word) and counts every
-  rejected move, including a whole block whose untouched relator is over the cap. Canonicalisation is a general
-  two-pointer least-rotation scan (the source's 2-bit packing is not ported; it worked at two generators only), so the
-  kernels run at any number of generators and relators.
+  `(parent, move)`. The expansion kernel skips a child that is a cyclic *cut shift* of the previous child of the same
+  block (the raw words are conjugate, so they reduce to the same cyclic word) and still counts every dropped move,
+  including a whole block whose untouched relator is over the cap. Canonicalisation is a general two-pointer
+  least-rotation scan, so the kernels run at any number of generators and relators.
 
 **The contract** is step for step, not "same answer": for the same start, priority, cap and budget, `fast` pops the same
 states in the same order. `tests/test_fast.py` compares `solved`, `pops`, the path, the end state, the full popped-state
-trace and the statistics `discovered`, `cap_rejected`, `min_total`, `max_total`, `max_total_expanded`, `max_expanded` on
-36 MS640 rows at budget 10,000 under both priorities (4 costlier rows and a 40-row sweep of MS640 in the `slow` set), at caps 12, 16, 24 and `None`,
-with `cyclic=False`, at three generators, and from a start over the cap. `tests/test_spec.py` pins `spec` to main's
-golden file and to budget-prefix invariance. On all 640 MS640 rows `fast` reproduces the original code's per-row pops and
-path lengths (RESULTS.md section 0).
+trace and the statistics `discovered`, the six cap-counter fields, `min_total`, `max_total`, `max_total_expanded`,
+`max_expanded` on MS640 rows at budget 10,000 under both priorities (a larger sweep is in the `slow` set), at several
+caps and `None`, with `cyclic=False`, at three generators, and from a start over the cap. `tests/test_spec.py` pins
+`spec` to the baseline's golden file and to budget-prefix invariance. On all 640 MS640 rows `fast` reproduces the
+baseline's per-row pops and path lengths (RESULTS.md section 0).
 
-The kernels are a library (`acx.search.fast.kernels`: `encode`, `expand`, `score`, `children`): the hybrid, CoV and
-n-generator searches run on them.
+The kernels are a library (`acx.search.fast.kernels`: `encode`, `expand`, `score`, `children`): the hybrid and the
+Aut-minimal form run on them.
 
 ## 8. Automorphisms: Whitehead, canonical forms and transport
 
@@ -175,9 +184,9 @@ the same problem in different coordinates, and AC-triviality is constant on an o
   strictly lowers the total cyclic length, reaching the orbit's minimal total length `mu`. A breadth-first walk of the
   minimal level set then takes its lexicographic minimum, a *complete* invariant of the orbit. `aut_canon(P)` returns
   `(total, rep, phi)` with `canon(phi(P)) == rep`, so the witnessing automorphism ships its own proof. A numba twin
-  (`acx.aut.fast`, from `autcanon_fast`, reached through `orbit_key(P, "fast")`) reproduces the same representatives
-  (parity-tested on 267 presentations in the default tests and 2,307 in the `slow` set; about 6x faster here, 15x reported at the
-  source). It returns no witness, so only the pure form drives transport.
+  (`acx.aut.fast`, reached through `orbit_key(P, "fast")`) reproduces the same representatives (parity-tested against
+  the pure form in `tests/test_aut.py`, a larger sample in the `slow` set). It returns no witness, so only the pure
+  form drives transport.
 - **Relabeling.** The 8 signed permutations of `{x, y}` are renamings, a coarser (still exact) key than the Aut orbit.
 - **Equivariance.** If `phi` is an automorphism, applying it to every word of an AC move gives the same move on the
   images: `phi(r_i . c^-1 r_j^s c) = phi(r_i) . phi(c)^-1 phi(r_j)^s phi(c)`. The move type, target and sign are
@@ -191,13 +200,16 @@ the same problem in different coordinates, and AC-triviality is constant on an o
   row's orbit become **aut-assisted** `ac_path`s. A solve whose searched start is the row's own canonical form (a row
   that is already its Aut-minimal form, or a CoV image equal to the row) is a plain `ac_path`, not aut-assisted.
 
+The `aut` method (`configs/aut.toml`, `[search]`): search the Aut-minimal representative of the row with the greedy
+search, then transport the path back; the record keeps both the search's S-move count and the elementary length on the
+row. If the row is its own representative, the shorter of the transport and the decoded S-move path is kept.
+
 ## 9. Decoder and path-length units
 
 **Elementary decoder** (`acx.verify.decode`). An S-move path becomes the generator-level stream (invert `I`, swap `S`,
 conjugate by a letter `C`, multiply `M`; stabilise `Z` and destabilise `D` pass through): rotate the relators by
 conjugations, multiply, then restore the exact canonical form (strip the cyclic tail, invert, rotate, swap). Both
-conjugator choices of each side are tried and the shortest expansion kept (6,302 moves on 60 test paths for the source's
-single conjugated-multiply plan, 1,727 here). The output replays from the raw row with `normalize=False`, with no
+conjugator choices of each side are tried and the shortest expansion kept. The output replays from the raw row with `normalize=False`, with no
 implicit canonicalisation, and performs no search; it costs 6 to 10 elementary moves per S-move on MS640.
 **Aut-assisted paths** are an `ac_path` only after transport (section 8) writes them out on the row.
 
@@ -209,7 +221,6 @@ implicit canonicalisation, and performs no search; it costs 6 to 10 elementary m
 | S-move | one substitution move (a conjugated multiplication) | `path_length` of a search |
 | elementary move | invert / swap / conjugate-by-letter / multiply | decoder output (a single S-move costs about `2|c| + 1`) |
 | work unit | pops, accepted automorphisms, image evaluations and substitution moves, one each | hybrid solver |
-| `acmoves` | multiplication operations only (conjugation and inversion free) | the source's hybrid cost tables |
 | transformed-coordinate length | S-moves on the *CoV-transformed* pair | change-of-variables results |
 
 `run.py` reports every solve in both path units: `sub_moves` (S-moves of the search; for the hybrid, the S-move steps of
@@ -218,14 +229,16 @@ on the row (`elem_moves` is empty): its transform is a Lemma 11 chain, not AC mo
 
 ## 10. Hybrid solver
 
-A deterministic solver for balanced two-generator presentations that adds dynamic-rank moves to the fast engine. It
-keeps the repository's rank-two machinery and lets the number of generators change during the search.
+A deterministic solver for balanced two-generator presentations that adds dynamic-rank moves to the fast engine: the
+number of generators can change during the search. Config: `[hybrid]` (`configs/hybrid.toml`): `budget` (work units),
+`penalty`, `dyn_ratio`, `dyn_cap`, `slack`, `min_uses`, `r2_cap`, `backend`.
 
-1. **Rank-two states** are packed keys expanded by the `hexpand` kernel: seam-cancelling products and the four Nielsen
-   maps (`x -> xy`, `x -> xY`, `y -> yx`, `y -> yX`), canonical under the eight signed permutations. Finishing gates run
-   at pop time: *relator descent* (shorten one relator by Nielsen maps while carrying the other; a relator that reaches
-   length 1 is a primitive donor whose letter is deleted from the companion), and a *pinch cascade* (a relator of the
-   shape `g^a h^p g^-a h^q` pinches the companion's `g` syllables when the enclosed exponent divides).
+1. **Rank-two states** are expanded by the fast kernel: seam-cancelling products and the four Nielsen maps
+   (`x -> xy`, `x -> xY`, `y -> yx`, `y -> yX`), canonical under the eight signed permutations. A cascade (Nielsen
+   descent, primitive deletion, pinch cascade) runs first, and its finishing gates run at pop time: *relator descent*
+   (shorten one relator by Nielsen maps while carrying the other; a relator that reaches length 1 is a primitive donor
+   whose letter is deleted from the companion), and a *pinch cascade* (a relator of the shape `g^a h^p g^-a h^q` pinches
+   the companion's `g` syllables when the enclosed exponent divides).
 2. **`define`**: pick a cyclic digram `ab` that occurs at least twice across the relators, add a generator `h` with
    defining relator `h^-1 a b`, and replace occurrences of `ab` by `h` (and `BA` by `H`). The rank goes from n to n+1.
 3. **`eliminate`**: a generator `g` that occurs exactly once in a relator `R = g^e u` is solved for (`g = u^-1` or `u`),
@@ -236,14 +249,18 @@ keeps the repository's rank-two machinery and lets the number of generators chan
 certificate out as elementary moves on the row itself, with AC4/AC5 for `define`/`eliminate`, and replays it. A
 certificate without them is an `ac_path`, counted as aut-assisted when it has any automorphism step, a Nielsen map or
 a signed permutation (the permutation canonical form of a popped state is such a step, so a certificate whose only
-automorphisms are relabellings is aut-assisted too); one with them is a `stable_cert`. Frontier: one heap ordered by total
-length plus a penalty per generator above two (default 5); the higher-rank frontier is served only while its pops stay
-within `dyn_ratio` (default 0.5) of the rank-two pops plus 20. The higher-rank moves have three more settings, all at
-the source's values: `dyn_cap` 8 (longest relator a product or elimination may create; `"none"` uncaps it), `slack` 8
-(total-length ceiling above the search root) and `min_uses` 2 (a defined digram must occur this often).
-Cost is counted in work units. The rank-two cap is `r2_cap` (default `"parent"`: a child relator may not exceed the
-parent's total length, the source's rule; an int or `None` for uncapped), and rejections are counted. The source called
-the solver "hash-free"; it keeps a visited set per frontier, so the name is dropped.
+automorphisms are relabellings is aut-assisted too); one with them is a `stable_cert`.
+
+Frontier: one heap ordered by total length plus a penalty per generator above two (default 5); the higher-rank frontier
+is served only while its pops stay within `dyn_ratio` (default 0.5) of the rank-two pops plus 20. A defined digram must
+occur `min_uses` (default 2) times. Cost is counted in work units.
+
+**Three limits, three counters.** `r2_cap` (default `"parent"`: a child relator may not exceed the parent's total
+length, which can never reject; an int or `"none"` otherwise), `dyn_cap` (default 8: the longest relator a higher-rank
+product or elimination may create; `"none"` uncaps it) and `slack` (default 8: the total-length ceiling above the
+search root). Each reports the six fields of section 4 under the prefixes `cap_`, `dyn_cap_` and `slack_`. The hybrid
+has two queues, so its counts are first order: zero in all three means the same run at any larger limit, a non-zero
+count says only that the run may change ([CAP.md](CAP.md)).
 
 ## 11. Change of variables and stable AC
 
@@ -287,7 +304,8 @@ An image in the row's own Aut(F2) orbit (every image with one substitution, and 
 A comparison between a CoV arm and an untransformed arm is a cost comparison, not a comparison of two paths of the same
 object, and it must hold the cap fixed (CoV rows run at a larger cap).
 
-**The default policy** (`acx.cov.run_cov`) is one-shot: the row itself first (`control`), then the images in enumeration
+**The default policy** (`acx.cov.run_cov`; `[search]` and `[cov]` in `configs/cov.toml`, with `total_budget`, `control`,
+`cap_headroom`, `max_len`, `until`) is one-shot: the row itself first (`control`), then the images in enumeration
 order, each searched with at most `search.budget` pops and the images at cap `max(cap, longest written relator + 16)`,
 until `total_budget` pops are spent or one solves. There is no ranking, no abel top-3, no selection key and no beam or
 ladder (RESULTS.md, Tried). An oracle (the best candidate) is a lower bound, not a procedure; the deployable cost includes
@@ -295,9 +313,8 @@ the failed candidates (RESULTS.md section 5).
 
 ### The z-family name `subnc2pxysb`, letter by letter
 
-The tag names the *rule that decides which `w` and which branches are tried*. In the source it was part of a run's
-identity (it is in the result file name), so a different rule could never resume into another's file; `acx` ships this
-one family only (`acx.cov.FAMILY_TAG`). From `cov.py`:
+The tag names the *rule that decides which `w` and which branches are tried*; `acx` ships this one family only
+(`acx.cov.cov.FAMILY_TAG`). From `acx/cov/cov.py`:
 
 | letters | meaning |
 |---|---|
@@ -308,48 +325,61 @@ one family only (`acx.cov.FAMILY_TAG`). From `cov.py`:
 | `s` | cyclic-**s**eam matches count in the substitution; the earlier family missed an occurrence that straddles the wrap-around |
 | `b` | every isolating **b**ranch is its own row: when both `r1'` and `r2'` isolate the generator they are two different coordinate changes, kept apart by `iso_index` (the earlier files kept only the first) |
 
-Outputs that land on the same pair are searched once. Two other families exist. `zf3` (`NAIVE_Z_FAMILY`) is every
-reduced word of length 2 to 4, tried in order with the first valid transform winning; it does not depend on the
-presentation. `suballpxyb8` (the exhaustive sweep) restricts `w` to proper cyclic subwords (`2 <= |w| <= |r| - 1`),
+Outputs that land on the same pair are searched once. Two other families were tried on research branches and are not
+shipped. `zf3` is every reduced word of length 2 to 4, tried in order with the first valid transform winning; it does
+not depend on the presentation. `suballpxyb8` (the exhaustive sweep) restricts `w` to proper cyclic subwords (`2 <= |w| <= |r| - 1`),
 substitutes every set of non-overlapping occurrences (partial substitution included), drops the no-collapse gate, and
 quotients the outputs by relator order, rotation, inversion and the 8 signed permutations; on MS640 at budget 100 it
 solves nothing the default family does not (RESULTS.md section 5).
 
 ## 12. n-generator search and short-relator forms
 
-**n-generator search** (`acx.ngen`; the search is `acx.search` itself, on either backend). The S-move generalises to `n` relators with a source index: `r_i <- rot_k1(r_i) . rot_k2(r_j ^ s)`
-for `j` different from `i`, enumerated in the order `i, j, s, k1, k2` (at two relators this collapses to the baseline's
-order, which the depth tie-break depends on). The solver runs on `n` generators and `n` or more relators, with goal
-"every relator a single letter and every generator present". `spec` and `fast` are trace-equal on triangle roots of
-rank 4 to 6 (`tests/test_ngen.py`; the MS640 roots run from rank 4 to 11). Only the LENGTH priority exists past two generators.
+**n-generator search** (`acx.ngen`; the search is `acx.search` itself, on either backend). The S-move generalises to
+`n` relators with a source index: `r_i <- rot_k1(r_i) . rot_k2(r_j ^ s)` for `j` different from `i`, enumerated in the
+order `i, j, s, k1, k2` (at two relators this collapses to the baseline's order, which the depth tie-break depends on).
+The solver runs on `n` generators and `n` or more relators, with goal "every relator a single letter and every
+generator present". `spec` and `fast` are trace-equal on triangle roots of rank 4 to 6 (`tests/test_ngen.py`; the
+MS640 roots run from rank 4 to 11). Only the LENGTH priority exists past two generators. Config (`configs/ngen_sac.toml`):
+`[search]` and `[ngen]` (`sac`, default true; the runner always lifts a solve).
 
 **Stable moves in a path.** `acx` paths use only AC4 (`{"op": "stabilize"}`: add generator `n+1` and relator `n+1`)
 and AC5 (`{"op": "destabilize"}`); a definition `z = w` is AC4 followed by AC moves, so every stable certificate replays
 under the same `acx.verify.replay`.
 
-**Length-3 transforms.** Two mechanisms put relators of length at most 3 into an n-generator state:
-
-- `define` (section 10) adds `h` with the length-3 relator `h^-1 a b` for a repeated digram.
-- `SPLIT` (not shipped) introduces a fresh generator with a length-3 definition `t u v` and reuses it in further positions. With a
-  length-2 definition the move is provably inert (the old link graph is a minor of the new one, so no invariant can
-  fall); with a length-3 definition the new edge carries three or more germs and the space genuinely changes. The target
-  state, a *cubic triangular form* (every relator of length 3, every generator occurring 3 times), exists from rank 4
-  but is impossible at rank 2 or 3 when all relators are cyclically reduced.
-
-**The transform to relators of length at most 3** (`acx.ngen.sac.triangulate`, then `acx.ngen.lift`) is `triangulate` in
-`claude/vigilant-babbage-nnbuj0:research/ac_dynamic_rank_20260913/dynrank.py` (a separate implementation is
-`research/u124_rank_3h_20260912/high_rank_triangles.py` on the same branch). While some relator is longer than 3 it
-applies `define` to a cyclic digram of a long relator, the one with the most occurrences over all relators (ties: more
-occurrences in the long relators, then the smallest), so the *triangle
+**The transform to relators of length at most 3** (`acx.ngen.sac.triangulate`, then `acx.ngen.lift`). While some
+relator is longer than 3 it applies `define` (section 10) to a cyclic digram of a long relator, the one with the most
+occurrences over all relators (ties: more occurrences in the long relators, then the smallest), so the *triangle
 excess* `sum(max(0, |r| - 3))` strictly decreases and the loop ends; it returns the all-triangle root and the `define`
-steps as certificate steps. `acx.ngen` searches the root at fixed rank and lifts a solve to an elementary stable AC path on
-the input (AC4 per definition, the automorphism `h -> d^-1 h`, the transported S-moves, AC5 at the end), a `stable_cert`
-replayed on the row. The port equals `dynrank.triangulate` digram for digram on all 142,365 rows of MS640, AC19 and 1190MS. It is a stable-AC transform
-(every step is a Tietze extension followed by AC moves). Measured use is in RESULTS.md section 7: as a one-shot
-preprocessing step it hurts, and the gain comes from `define`/`eliminate` interleaved with the search. At an
-all-triangle root a product of two length-3 words has even length, so a unit cannot appear in one move.
+steps as certificate steps. `acx.ngen` searches the root at fixed rank and lifts a solve to an elementary stable AC
+path on the input (AC4 per definition, the automorphism `h -> d^-1 h`, the transported S-moves, AC5 at the end), a
+`stable_cert` replayed on the row. The transform matches the original `triangulate` digram for digram on all 142,365
+rows of MS640, AC19 and 1190MS (`tests/test_ngen.py` pins a sample). It is a stable-AC transform (every step is a
+Tietze extension followed by AC moves). Measured use is in RESULTS.md section 7: as a one-shot preprocessing step it
+hurts, and the gain comes from `define`/`eliminate` interleaved with the search.
 
-## 13. Verification
+**Rank-n brute force** (`acx.ngen.sweep`, [RANK3.md](RANK3.md)). Add `extra` generators `z_i` with relators
+`Z_i.w_i` for every freely reduced word `w_i` up to a length, search each stabilised start with `acx.search` under the
+same cap and budget, and compare with the two-generator control. It measures how much a good stabilising word helps
+greedy; its solves are reported as "solved from the stabilised start", not as certificates. Config: `[search]` and
+`[rankn]` (`configs/rank{3,4,5}_bf.toml`, run with `run.py`).
+
+## 13. Learned policy (RL, optional)
+
+`acx.rl` is the paper's PPO policy (the step-1000 weights, `acx/rl/checkpoint/610model_1000.pt`, ported to PyTorch) used
+as a beam search: each step scores every legal substitution move of every live state with the network, keeps the global
+top `width` by cumulative log-probability, drops duplicate and already visited states, and stops when a state of two
+length-1 relators appears or after `steps` steps. It needs `pip install -e .[rl]`. Config: `[rl]` in `configs/rl.toml`
+(`width`, `steps`, `alpha`, `cap`); two generators only, relators of length at most 24 (the policy's input width), so a
+longer row comes back unsolved with `skipped` set. `cost` is the number of states the network scored. The path is a
+list of S-moves, replayed like any other. Training code is included (`acx.rl.env`, `acx.rl.ppo`).
+
+## 14. Verification
+
+Run `pytest` (the default selection, a few minutes) and `pytest -m ""` (adds the slow parity and census sets). Every
+solved record of every run is replayed before it is written. To check a finished run again, replay each record on its
+row: `replay(pres, decode_path(rec["path"]))` for a plain greedy `ac_path` (`acx.core.moves.decode_path`), and
+`replay(pres, unpack(rec["elementary"]), normalize=False)` for any record that has `elementary` moves (aut-assisted,
+hybrid, n-generator and CoV paths; `acx.verify.decode.unpack`), with `pres` from `acx.data.rows(benchmark)`.
 
 A result counts only after it replays on the presentation it claims to solve, through code that shares nothing with the
 solver: every move legal, `|det M| = 1` at the start and after every move, no S-move child over the cap, and a trivial

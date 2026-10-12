@@ -13,7 +13,6 @@ import os
 import random
 import shutil
 import time
-import tomllib
 from contextlib import nullcontext
 from dataclasses import asdict, dataclass, fields
 from functools import lru_cache
@@ -23,7 +22,7 @@ import numpy as np
 
 from .. import data
 from ..core.capcount import FIELDS
-from ..core.config import SearchConfig, parse_override
+from ..core.config import SearchConfig
 from ..core.moves import decode_path, encode_path
 from ..core.words import Presentation, fmt, inverse as invert
 from ..search import search
@@ -31,7 +30,6 @@ from ..verify.replay import replay
 
 LETTERS = (1, 2, -1, -2)                    # x, y, X, Y
 COUNTERS = FIELDS[1:]                       # the cap counters of acx.core.capcount (FIELDS[0] is the cap itself)
-KEYS = {"name", "method", "benchmark", "rows", "workers", "search", "rankn"}
 
 
 class SweepError(RuntimeError):
@@ -215,28 +213,6 @@ def _task(args):
 
 
 # ------------------------------------------------------------------------------------------------- the run
-def load_config(path, overrides=()):
-    """The TOML at ``path`` (method ``rankn``) plus ``key=value`` overrides; the name defaults to the file name."""
-    with open(path, "rb") as f:
-        cfg = tomllib.load(f)
-    cfg.setdefault("name", os.path.splitext(os.path.basename(path))[0])
-    for item in overrides:
-        key, value = parse_override(item)
-        *sections, leaf = key.split(".")
-        node = cfg
-        for s in sections:
-            node = node.setdefault(s, {})
-        node[leaf] = value
-    if cfg.get("method") != "rankn":
-        raise ValueError(f"method {cfg.get('method')!r} is not 'rankn'")
-    if set(cfg) - KEYS:
-        raise ValueError(f"unknown config keys {sorted(set(cfg) - KEYS)}")
-    if "benchmark" not in cfg:
-        raise ValueError("config needs a benchmark")
-    SweepConfig.from_cfg(cfg)
-    return cfg
-
-
 def run(cfg, out="results", fresh=False, log=print):
     """Sweep the selected rows of ``cfg`` into ``<out>/<name>/``; write and return the summary."""
     from ..runner import select
@@ -484,6 +460,7 @@ def main(argv=None):
     ap.add_argument("--fresh", action="store_true")
     ap.add_argument("--verify", type=int, metavar="N", help="after the run, re-run N random cells on the other backend")
     args = ap.parse_args(argv)
+    from ..runner import load_config
     cfg = load_config(args.config, args.set + ([f'rows="{args.rows}"'] if args.rows else []))
     summary = run(cfg, args.out, args.fresh)
     print(json.dumps({k: v for k, v in summary.items() if k != "buckets"}, indent=1))
