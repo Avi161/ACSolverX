@@ -301,6 +301,6 @@ def test_ms640_lengths_1_and_2_reproduce_the_baseline(tmp_path):
     assert s["control_solved"] == 554
     assert s["buckets"]["L1"]["oracle"]["solved_by_some"] == 403
     assert s["buckets"]["L2"]["oracle"]["solved_by_some"] == 472
-    assert (s["buckets"]["L1"]["solved"], s["buckets"]["L2"]["solved"]) == (0.601, 0.684)
+    assert (round(s["buckets"]["L1"]["solved"], 3), round(s["buckets"]["L2"]["solved"], 3)) == (0.601, 0.684)
     assert sweep.verify(str(tmp_path / "t"), recheck=40, log=lambda *a: None) == []
     shutil.rmtree(tmp_path)
