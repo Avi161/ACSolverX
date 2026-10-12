@@ -37,7 +37,7 @@ def test_nielsen_indices():
 
 @pytest.mark.slow
 def test_frontier_backends_agree(ms640):
-    (sx, st), (fx, ft) = backend("spec"), backend("fast")
+    (sx, _, st), (fx, _, ft) = backend("spec"), backend("fast")
     for pres in ms640[::16]:
         key = pack(pres.reduced().canonical().rels)
         for cap in (None, len(key) - 1, 6, 3):
@@ -370,7 +370,7 @@ def test_ceiling_counter_counts_a_dropped_state_that_would_pop():
 
 # ------------------------------------------------------------------ cost of the rank-two counter
 def calls_and_seconds(pres, watch_cap, **kw):
-    """Python-level calls and wall seconds of one solve, with the ``r2_cap`` counter on or off."""
+    """Python-level calls and CPU seconds of one solve, with the ``r2_cap`` counter on or off."""
     old = capwatch.Watch.has
     capwatch.Watch.has = lambda self, name: (name != "cap" or watch_cap) and old(self, name)
     n = 0
@@ -379,9 +379,9 @@ def calls_and_seconds(pres, watch_cap, **kw):
         nonlocal n
         n += event in ("call", "c_call")
     try:
-        t = time.perf_counter()
+        t = time.process_time()
         solve(pres, FAST, **kw)
-        seconds = time.perf_counter() - t
+        seconds = time.process_time() - t
         sys.setprofile(prof)
         solve(pres, FAST, **kw)
     finally:
@@ -392,7 +392,8 @@ def calls_and_seconds(pres, watch_cap, **kw):
 
 def test_integer_r2_cap_counters_cost_under_ten_percent(ms640):
     """A tight integer ``r2_cap`` drops hundreds of moves per pop; counting them must stay cheap (the first
-    version was 5x slower). Python calls are the deterministic measure, wall time the sanity check."""
+    version was 5x slower). Python calls are the deterministic measure (within 10%), CPU time the sanity check
+    (within 60%, loose because the machine is shared; about 20% is measured at ``r2_cap`` 8)."""
     solve(ms640[380], FAST)
     kw = dict(r2_cap=8, budget=150)
     for i in (380, 602):
@@ -400,4 +401,4 @@ def test_integer_r2_cap_counters_cost_under_ten_percent(ms640):
         off, t_off = calls_and_seconds(ms640[i], False, **kw)
         assert solve(ms640[i], FAST, **kw).stats["cap_dropped"] > 10_000
         assert on <= 1.10 * off, (i, on, off)
-        assert t_on <= 1.30 * t_off, (i, t_on, t_off)
+        assert t_on <= 1.60 * t_off, (i, t_on, t_off)

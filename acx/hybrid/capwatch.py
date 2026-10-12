@@ -89,7 +89,8 @@ class Watch:
     states in the same order, and a nonzero count says only that the run may change.
 
     Cost: the children one rank-two pop drops arrive as arrays (``frontier.over_cap``) and wait as one lazy block, so a
-    dropped child costs Python time only when a bar passes it.
+    dropped child costs Python time only when a bar passes it; the exception is the exact gate test (``gates_act``) of
+    the children that pass the free precheck, which is the larger part of what a tight ``r2_cap`` adds.
     """
 
     def __init__(self, limits, seen_r2, seen_dyn):

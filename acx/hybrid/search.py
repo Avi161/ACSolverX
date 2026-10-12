@@ -164,13 +164,35 @@ class BestFirst:
         self.st["dyn_rejected"] += len(over)
         self.offer_children(state, kept, (("slack", self.base, over),), parent, depth)
 
+    def served_heap(self, dyn_ok):
+        """The heap to pop: the higher-rank one when it is allowed and its top is no worse, else the rank-two one."""
+        heap, dheap = self.heap, self.dheap
+        return dheap if dyn_ok and dheap and (not heap or dheap[0][0] <= heap[0][0]) else heap
+
+    def visit(self, rep, node, kind):
+        """Mark ``rep`` visited. ``(rep, node)``, or None if it was visited before. At rank two the visited set is
+        closed under the signed permutations and the entry becomes the least image (the permutation joins its steps)."""
+        seen = self.seen_r2 if kind == R2 else self.seen_dyn
+        if rep in seen:
+            return None
+        if kind != R2:
+            seen.add(rep)
+            return rep, node
+        images = orbit(rep, self.transform)
+        seen.update(images)
+        best = min(images)
+        if best != rep:
+            _, parent, steps, _ = node
+            rep, node = best, (best, parent, steps + (Aut(images.index(best)),), R2)
+        return rep, node
+
     def go(self):
         """Run the search; ``(solved, steps, stats)``."""
         st, watch, heap, dheap = self.st, self.watch, self.heap, self.dheap
         try:
             while (heap or dheap) and st["pops"] < self.budget:
                 dyn_ok = self.can_dyn()
-                served = dheap if dyn_ok and dheap and (not heap or dheap[0][0] <= heap[0][0]) else heap
+                served = self.served_heap(dyn_ok)
                 if not served:
                     break                               # only deferred higher-rank states remain
                 if watch.armed:
@@ -181,17 +203,10 @@ class BestFirst:
                 if kind == DEFS:                        # a placeholder carries its parent's pair in ``steps``
                     self.expand_defs(steps, parent, depth)
                     continue
-                seen = self.seen_r2 if kind == R2 else self.seen_dyn
-                if rep in seen:
+                visited = self.visit(rep, node, kind)
+                if visited is None:
                     continue
-                if kind == R2:                          # seen is closed under the signed permutations
-                    images = orbit(rep, self.transform)
-                    seen.update(images)
-                    best = min(images)
-                    if best != rep:
-                        rep, node = best, (best, parent, steps + (Aut(images.index(best)),), R2)
-                else:
-                    seen.add(rep)
+                rep, node = visited
                 st["pops"] += 1
                 if kind == DYN:
                     self.expand_dyn(rep, node, depth + 1)
