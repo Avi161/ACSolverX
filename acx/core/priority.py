@@ -6,15 +6,15 @@ computes the same values, bit for bit.
 
 
 def _blocks(w):
-    """Cyclic generator runs of ``w`` as ``(generator, length)`` pairs."""
+    """Cyclic generator runs of ``w`` as ``[generator, length]`` pairs."""
     runs = []
-    for g in w:
-        a = abs(g)
-        if runs and runs[-1][0] == a:
+    for symbol in w:
+        generator = abs(symbol)
+        if runs and runs[-1][0] == generator:
             runs[-1][1] += 1
         else:
-            runs.append([a, 1])
-    if len(runs) > 1 and runs[0][0] == runs[-1][0]:
+            runs.append([generator, 1])
+    if len(runs) > 1 and runs[0][0] == runs[-1][0]:         # a run across the seam is one block
         runs[0][1] += runs.pop()[1]
     return runs
 
@@ -32,34 +32,39 @@ def features(rels):
     knots. ``S`` is the smaller of the mean x-block and mean y-block lengths pooled over all relators (the one
     nonzero mean when a generator is absent). ``ValueError`` past two generators.
     """
-    mk = nx = ny = sx = sy = 0
-    for r in rels:
-        b = _blocks(r)
-        bx = [n for g, n in b if g == 1]
-        by = [n for g, n in b if g == 2]
-        if len(bx) + len(by) != len(b):
+    max_knots = 0
+    x_blocks = y_blocks = 0              # block counts over all relators
+    x_letters = y_letters = 0            # letters in those blocks
+    for relator in rels:
+        blocks = _blocks(relator)
+        x_lengths = [length for generator, length in blocks if generator == 1]
+        y_lengths = [length for generator, length in blocks if generator == 2]
+        if len(x_lengths) + len(y_lengths) != len(blocks):
             raise ValueError("s20_mk2 is defined for two generators only")
-        k = max(len(bx), len(by)) if bx and by else 0
-        mk = max(mk, k)
-        nx, ny, sx, sy = nx + len(bx), ny + len(by), sx + sum(bx), sy + sum(by)
-    mx = sx / nx if nx else 0.0
-    my = sy / ny if ny else 0.0
-    if nx == 0 or ny == 0:
-        s = my if mx == 0.0 else mx
+        if x_lengths and y_lengths:
+            max_knots = max(max_knots, len(x_lengths), len(y_lengths))
+        x_blocks += len(x_lengths)
+        y_blocks += len(y_lengths)
+        x_letters += sum(x_lengths)
+        y_letters += sum(y_lengths)
+    mean_x = x_letters / x_blocks if x_blocks else 0.0
+    mean_y = y_letters / y_blocks if y_blocks else 0.0
+    if x_blocks == 0 or y_blocks == 0:
+        smaller_mean = mean_y if mean_x == 0.0 else mean_x
     else:
-        s = mx if mx < my else my
-    return sx + sy, mk, s
+        smaller_mean = mean_x if mean_x < mean_y else mean_y
+    return x_letters + y_letters, max_knots, smaller_mean
 
 
 def s20_mk2(rels):
     """The ``s20_mk2`` priority ``L + 20 S + 2 MK`` (``features``), summed in the order L, MK, S: the fast
     engine's order, so both backends give identical floats."""
-    L, mk, s = features(rels)
-    acc = 0.0
-    acc += 1.0 * L
-    acc += 2.0 * mk
-    acc += 20.0 * s
-    return acc
+    total_length, max_knots, smaller_mean = features(rels)
+    score = 0.0
+    score += 1.0 * total_length
+    score += 2.0 * max_knots
+    score += 20.0 * smaller_mean
+    return score
 
 
 PRIORITIES = {"length": length, "s20_mk2": s20_mk2}

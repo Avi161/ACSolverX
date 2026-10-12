@@ -76,29 +76,35 @@ def conjugators(w, t):
 
 
 class _Table(dict):
-    """A lookup table computing missing entries with ``f`` (the Booth characters of the generators in use)."""
+    """A lookup table computing missing entries with ``compute`` (the Booth characters of the generators in use)."""
 
-    def __init__(self, f):
+    def __init__(self, compute):
         super().__init__()
-        self.f = f
+        self.compute = compute
 
-    def __missing__(self, k):
-        v = self[k] = self.f(k)
-        return v
-
-
-def _sym(c):
-    v = 0x1000 - ord(c)                   # 2|g| - (g > 0)
-    return (v + 1) // 2 if v % 2 else -(v // 2)
+    def __missing__(self, key):
+        value = self[key] = self.compute(key)
+        return value
 
 
-_BCHAR = _Table(lambda g: chr(0x1000 - 2 * abs(g) + (g > 0)))     # ... < Y < y < X < x
-_BSYM = _Table(_sym)
+def _booth_char(g):
+    """The character of generator symbol ``g`` in Booth order ``... < Y < y < X < x``."""
+    return chr(0x1000 - 2 * abs(g) + (g > 0))
+
+
+def _booth_symbol(char):
+    """Inverse of ``_booth_char``."""
+    code = 0x1000 - ord(char)             # 2|g| - (g > 0)
+    return (code + 1) // 2 if code % 2 else -(code // 2)
+
+
+_BCHAR = _Table(_booth_char)
+_BSYM = _Table(_booth_symbol)
 
 
 def booth_str(w):
     """``w`` as a string whose character order is Booth order, so that ``min`` over rotations is the least one."""
-    return "".join([_BCHAR[g] for g in w])
+    return "".join(_BCHAR[g] for g in w)
 
 
 def canonical_word(w):
@@ -106,9 +112,11 @@ def canonical_word(w):
     n = len(w)
     if n == 0:
         return w
-    s = booth_str(w) * 2
-    t = booth_str(inverse(w)) * 2
-    return tuple([_BSYM[c] for c in min(min(s[i:i + n] for i in range(n)), min(t[i:i + n] for i in range(n)))])
+    doubled = booth_str(w) * 2                  # every rotation of w is a length-n window of it
+    doubled_inverse = booth_str(inverse(w)) * 2
+    least_rotation = min(doubled[i:i + n] for i in range(n))
+    least_inverse_rotation = min(doubled_inverse[i:i + n] for i in range(n))
+    return tuple(_BSYM[c] for c in min(least_rotation, least_inverse_rotation))
 
 
 def sort_rels(rels):

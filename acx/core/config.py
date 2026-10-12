@@ -29,33 +29,33 @@ class SearchConfig:
         if not (type(self.budget) is int and self.budget > 0):
             raise ValueError(f"budget must be a positive int, got {self.budget!r}")
 
-    def replace(self, **kw):
+    def replace(self, **changes):
         """A copy with fields changed."""
-        return replace(self, **kw)
+        return replace(self, **changes)
 
     def with_overrides(self, items=()):
         """A copy with ``key=value`` strings applied (``parse_override``)."""
-        return self.from_dict({**asdict(self), **dict(parse_override(s) for s in items)})
+        overrides = dict(parse_override(item) for item in items)
+        return self.from_dict({**asdict(self), **overrides})
 
     @classmethod
-    def from_dict(cls, d):
+    def from_dict(cls, values):
         """From a dict of field values; unknown keys raise ``ValueError``."""
-        names = {f.name for f in fields(cls)}
-        bad = set(d) - names
-        if bad:
-            raise ValueError(f"unknown SearchConfig keys {sorted(bad)}")
-        return cls(**d)
+        known = {field.name for field in fields(cls)}
+        unknown = set(values) - known
+        if unknown:
+            raise ValueError(f"unknown SearchConfig keys {sorted(unknown)}")
+        return cls(**values)
 
     @classmethod
     def load(cls, path=None, overrides=()):
         """From a TOML file (or the defaults for ``None``) plus ``key=value`` overrides."""
-        d = {}
+        values = {}
         if path is not None:
-            with open(path, "rb") as f:
-                d = tomllib.load(f)
-            d = d.get("search", d)
-        cfg = cls.from_dict(d)
-        return cfg.with_overrides(overrides)
+            with open(path, "rb") as file:
+                values = tomllib.load(file)
+            values = values.get("search", values)
+        return cls.from_dict(values).with_overrides(overrides)
 
 
 def parse_cap(value, name="cap", low=1, keep=()):

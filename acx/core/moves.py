@@ -69,7 +69,7 @@ def s_step(pres, m, cyclic=True):
     return Presentation(pres.n_gen, canonical_rels(tuple(reduce(r, cyclic) for r in raw)))
 
 
-def _idx(pres, t):
+def _relator_index(pres, t):
     """Relator number ``t`` (1-based) as a list index."""
     if isinstance(t, bool) or not isinstance(t, int) or not 1 <= t <= len(pres.rels):
         raise ValueError(f"relator index {t!r} out of range")
@@ -87,19 +87,19 @@ def elementary_step(pres, op):
     rels = list(pres.rels)
     kind = op.get("op")
     if kind == "invert":
-        i = _idx(pres, op["target"])
+        i = _relator_index(pres, op["target"])
         rels[i] = inverse(rels[i])
     elif kind == "swap":
-        a, b = _idx(pres, op.get("a", 1)), _idx(pres, op.get("b", 2))
+        a, b = _relator_index(pres, op.get("a", 1)), _relator_index(pres, op.get("b", 2))
         rels[a], rels[b] = rels[b], rels[a]
     elif kind == "conjugate":
-        i = _idx(pres, op["target"])
+        i = _relator_index(pres, op["target"])
         c = parse(op["by"])
         if len(c) != 1 or abs(c[0]) > pres.n_gen:
             raise ValueError(f"conjugate by one generator letter, got {op['by']!r}")
         rels[i] = free(inverse(c) + rels[i] + c)
     elif kind == "multiply":
-        i, j = _idx(pres, op["target"]), _idx(pres, op["source"])
+        i, j = _relator_index(pres, op["target"]), _relator_index(pres, op["source"])
         if i == j:
             raise ValueError("multiply needs distinct target and source")
         rels[i] = free(rels[i] + rels[j])
