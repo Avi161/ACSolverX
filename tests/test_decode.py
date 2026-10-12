@@ -8,7 +8,8 @@ from acx.core.moves import Move, enumerate_moves, stabilize, step
 from acx.core.words import Presentation, canonical_rels, inverse, reduce
 from acx.search import search
 from acx.verify import ReplayError, replay
-from acx.verify.decode import decode, decode_and_replay, pack, unpack
+from acx.verify.decode import decode, decode_and_replay
+from acx.verify.pack import pack, unpack
 
 
 @pytest.fixture(scope="module")
@@ -101,9 +102,7 @@ def test_illegal_and_incomplete_paths_are_refused(solves):
         decode_and_replay(pres, path[:-1])
 
 
-def test_pack_lives_in_its_own_module_and_is_still_importable_from_decode():
-    from acx.verify import decode as decode_module, pack as pack_module
-    assert decode_module.pack is pack_module.pack and decode_module.unpack is pack_module.unpack
+def test_pack_roundtrips_every_op():
     moves = [{"op": "swap"}, {"op": "invert", "target": 2}, {"op": "conjugate", "target": 1, "by": "x"},
              {"op": "multiply", "target": 1, "source": 2}, {"op": "stabilize"}, {"op": "destabilize"}]
-    assert pack_module.unpack(pack_module.pack(moves)) == moves
+    assert unpack(pack(moves)) == moves

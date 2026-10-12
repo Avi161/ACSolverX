@@ -73,12 +73,3 @@ def replay(pres, path, cyclic=True, cap=None, normalize=True, require_trivial=Tr
     if require_trivial and not cur.is_trivial():
         raise ReplayError(f"path ends at a non-trivial presentation {cur}")
     return states
-
-
-def is_valid(pres, path, **kw):
-    """``replay`` as a boolean."""
-    try:
-        replay(pres, path, **kw)
-        return True
-    except ReplayError:
-        return False

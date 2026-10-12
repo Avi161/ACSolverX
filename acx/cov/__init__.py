@@ -1,6 +1,6 @@
 """One-shot change of variables (z-family ``subnc2pxysb``): images, certificates, CoV-then-search.
 
-    substitution.py   the word operations (put z for w, isolate, eliminate, relabel)
+    substitution.py   the word operations (put z for w, isolate a generator)
     family.py         which words w define z, and the tag's rules
     cov.py            ``CoVImage`` and ``enumerate_images``
     certificate.py    ``apply_steps`` / ``check_cert``, the independent checker

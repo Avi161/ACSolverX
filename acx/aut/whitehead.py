@@ -2,18 +2,12 @@
 
 ``aut_canon(pres)`` gives ``AutCanon(total, rep, phi)``: the least canonical presentation of the Aut(F2)-orbit and
 the factors ``phi`` (indices into ``AUTOS``, the first acts first) with ``canonical(phi(pres)) == rep`` (``check``).
-Words are ``acx`` int tuples; two generators, any number of relators. The automorphisms themselves are in ``autos``;
-they are re-exported here, where callers import them from.
+Words are ``acx`` int tuples; two generators, any number of relators. The automorphisms are in ``autos``.
 """
 from collections import namedtuple
 
 from ..core.words import Presentation, canonical_rels, reduce, state_key
-from .autos import (AUTOS, DESCENT, IDENTITY, INVERSE, TABLES, apply, apply_pres, apply_table, images, invert,
-                    sub_table)
-
-__all__ = ["AUTOS", "DESCENT", "IDENTITY", "INVERSE", "TABLES", "AutCanon", "apply", "apply_pres", "apply_table",
-           "are_automorphic", "aut_canon", "automorphism", "check", "images", "invert", "level_min", "peak_reduce",
-           "sub_table"]
+from .autos import AUTOS, DESCENT, TABLES, apply_pres, apply_table, invert
 
 AutCanon = namedtuple("AutCanon", "total rep phi")
 

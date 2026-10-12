@@ -7,7 +7,8 @@ certificate is made where the method can skip it, and none is verified.
 from functools import lru_cache
 
 from ..core.moves import encode_path
-from ..verify.decode import decode_and_replay, pack
+from ..verify.decode import decode_and_replay
+from ..verify.pack import pack
 from ..verify.replay import replay
 from .caps import record_caps
 from .config import method_config

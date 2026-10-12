@@ -9,10 +9,8 @@ from ..core.words import canonical_rels
 from ..verify.decode import decode
 from ..verify.replay import replay
 from .autos import AUTOS, apply_table, images, invert, sub_table
-from .emitter import Emitter                       # also importable from here: acx.ngen.lift does
+from .emitter import Emitter
 from .whitehead import aut_canon
-
-__all__ = ["Emitter", "solve_via_aut_min", "transport"]
 
 
 def transport(pres, phi, path, start, cyclic=True):

@@ -6,10 +6,9 @@ The word operations are in ``substitution``, the choice of ``w`` in ``family``, 
 """
 from dataclasses import dataclass
 
-from ..core.words import Presentation, fmt
-from .certificate import ReplayError, apply_steps, check_cert                # noqa: F401  (kept importable from here)
-from .family import FAMILY_TAG, MAX_LEN, MIN_TRANSFORMED, MIN_W_LEN, subwords   # noqa: F401
-from .substitution import X, Y, Z, isolate, relabel, substitute, substitute_generator
+from ..core.words import Presentation, fmt, renumber, substitute_generator
+from .family import MAX_LEN, subwords
+from .substitution import X, Y, Z, isolate, substitute
 
 
 @dataclass(frozen=True)
@@ -47,7 +46,7 @@ def branches(r1, r2, w, gen, max_len=MAX_LEN):
         expr = isolate(isolating, gen)
         if expr is None:
             continue
-        image_rels = tuple(relabel(substitute_generator(r, gen, expr), gen) for r in (other, definition))
+        image_rels = tuple(renumber(substitute_generator(r, gen, expr), gen) for r in (other, definition))
         if all(image_rels) and (max_len is None or max(map(len, image_rels)) <= max_len):
             yield CoVImage(Presentation(2, image_rels), w, gen, iso_index, expr, (r1_sub, r2_sub), n1 + n2)
 

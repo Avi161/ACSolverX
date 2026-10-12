@@ -6,7 +6,6 @@ of the conjugator choices wins. Only ``cyclic=True`` S-moves are decoded. The JS
 """
 from ..core.moves import Move, Trace, step
 from ..core.words import canonical_rels, canonical_word, inverse, reduce, rotate
-from .pack import pack, unpack  # noqa: F401  (importable from here: acx.runner and the tests do)
 from .replay import replay
 
 

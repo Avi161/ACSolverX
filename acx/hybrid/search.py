@@ -222,8 +222,3 @@ class BestFirst:
         watch.end(not self.result and st["pops"] < self.budget, self.can_dyn(), self.budget - st["pops"], st["pops"])
         st.update(watch.records())
         return bool(self.result), (self.result[0] if self.result else ()), st
-
-
-def search(run, cfg, budget):
-    """The best-first hybrid search from ``run.state``; ``(solved, steps, stats)``."""
-    return BestFirst(run, cfg, budget).go()

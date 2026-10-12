@@ -8,8 +8,8 @@ import pytest
 
 from acx.aut import (AUTOS, are_automorphic, aut_canon, automorphism, check, images, invert, orbit_key,
                      solve_via_aut_min, transport)
-from acx.aut.transport import Emitter
-from acx.aut.whitehead import IDENTITY, apply_pres
+from acx.aut.autos import IDENTITY, apply_pres
+from acx.aut.emitter import Emitter
 from acx.core.words import Presentation
 from acx.search import search
 from acx.verify import replay
@@ -239,15 +239,6 @@ def test_row_that_is_its_own_representative_gets_the_decoded_path(row):
     assert path == decode(pres.reduced(False), res.path)
     assert replay(pres, path, normalize=False)[-1].is_trivial()
     assert len(path) < len(transport(pres, (), res.path, res.start))
-
-
-def test_module_split_keeps_the_old_import_paths():
-    """The automorphism table, the emitter and the move packer stay importable from where callers took them."""
-    from acx.aut import autos, emitter, whitehead
-    from acx.aut.transport import Emitter
-    assert whitehead.AUTOS is autos.AUTOS and whitehead.TABLES is autos.TABLES
-    assert whitehead.apply_table is autos.apply_table and whitehead.DESCENT is autos.DESCENT
-    assert Emitter is emitter.Emitter
 
 
 def test_emitter_s_move_is_the_core_conjugated_multiply():

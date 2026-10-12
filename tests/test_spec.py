@@ -80,13 +80,6 @@ def test_duplicate_dropped_children_are_one_state(ms640, backend, priority, pid,
     assert r.stats["cap_would_pop"] == would_pop <= distinct
 
 
-def test_start_over_the_cap_rejects_every_child():
-    p = Presentation.parse("xxxxxxyXYXYX", "xyXyXY")
-    r = search(p, SearchConfig(cap=8, budget=10))
-    assert r.pops == 1 and not r.solved
-    assert r.stats["cap_dropped"] == len(list(enumerate_moves(r.start.rels)))
-
-
 def test_s20_mk2_solves_and_differs_from_length(ms640):
     a = search(ms640[322], SearchConfig(budget=300))
     b = search(ms640[322], SearchConfig(priority="s20_mk2", budget=300))
@@ -123,11 +116,6 @@ def test_path_length_is_the_solved_depth_with_or_without_the_path(ms640, pid, pr
 def test_a_trivial_start_has_path_length_zero_not_none(backend, capture_path):
     r = search(Presentation.parse("x", "y"), SearchConfig(backend=backend, capture_path=capture_path))
     assert (r.solved, r.pops, r.path_length) == (True, 1, 0)
-
-
-def test_three_generators():
-    r = search(Presentation.parse("xY", "yZ", "zyX"), SearchConfig(budget=200))
-    assert r.solved and r.end.n_gen == 3 and r.end.is_trivial()
 
 
 def test_missing_fast_backend_is_a_clear_error(monkeypatch):

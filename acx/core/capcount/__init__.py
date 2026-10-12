@@ -8,10 +8,8 @@ Heuristic-agnostic: a search passes the heap keys its own priority gives, and th
 """
 from .arrays import CapArrays
 from .counter import CapCount
-from .kernels import C_DROPPED, C_FIRST, C_MINTOT, C_NEED, C_NENT, C_NHEAP, C_POOL, C_POPS, C_WOULD
-from .kernels import cc_drop, cc_free, cc_known, cc_pop
+from .kernels import C_POOL, cc_drop, cc_free, cc_pop
 from .records import FIELDS, blank, combine, fields, summarize
 
-__all__ = ["FIELDS", "fields", "blank", "combine", "summarize", "CapCount", "CapArrays",
-           "cc_drop", "cc_free", "cc_known", "cc_pop",
-           "C_DROPPED", "C_FIRST", "C_MINTOT", "C_NEED", "C_NENT", "C_NHEAP", "C_POOL", "C_POPS", "C_WOULD"]
+__all__ = ["FIELDS", "fields", "blank", "combine", "summarize", "CapCount", "CapArrays", "cc_drop", "cc_free",
+           "cc_pop", "C_POOL"]

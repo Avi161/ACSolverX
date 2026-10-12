@@ -6,7 +6,7 @@ on ``E`` only, a product, definition, elimination or transvection is spelled out
 to ``<x, y | x, y>``. The path is long but deterministic, and ``acx.verify.replay`` checks it before it is returned.
 """
 from ..core.moves import seam_cancels
-from ..core.words import canonical_rels, free, inverse, reduce, rotate
+from ..core.words import canonical_rels, free, inverse, reduce, rotate, substitute_generator
 from ..verify.replay import replay
 from . import dynrank as D
 from .cascade import Aut, aut_child, is_terminal, move_child
@@ -67,9 +67,9 @@ def _eliminate(fr, words, ev):
         for p in reversed(range(len(w))):
             if abs(w[p]) == g:
                 f = 1 if w[p] > 0 else -1
-                s = D.substitute(w[p + 1:], g, image)
+                s = substitute_generator(w[p + 1:], g, image)
                 fr.cmul(k, i, free(inverse(s) + (-f * g,) + (image if f > 0 else inverse(image)) + s))
-        if fr.E[k] != D.substitute(w, g, image):
+        if fr.E[k] != substitute_generator(w, g, image):
             raise AssertionError("substitution differs")
     fr.set_word(i, (g,) + inverse(image))
     for x in reversed(image):                                # g -> g . image

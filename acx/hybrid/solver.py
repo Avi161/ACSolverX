@@ -14,7 +14,7 @@ from .capwatch import blank_records
 from .cascade import Aut, Budget, Run, cascade
 from .certify import certify
 from .frontier import BACKENDS
-from .search import search
+from .search import BestFirst
 
 
 @dataclass(frozen=True)
@@ -80,7 +80,7 @@ def solve(pres, cfg=None, **overrides):
     if stage is not None:
         solved, steps, units = True, tuple(run.steps), 1 if stage == "terminal" else run.units
     else:
-        solved, steps, stats = search(run, cfg, cfg.budget - run.units)
+        solved, steps, stats = BestFirst(run, cfg, cfg.budget - run.units).go()
         steps, units, stage = tuple(run.steps) + steps, min(run.units + stats["pops"], cfg.budget), "H"
     stats["seconds"] = time.perf_counter() - start
     if not solved:

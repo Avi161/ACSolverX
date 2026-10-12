@@ -9,10 +9,10 @@ import sys
 from pathlib import Path
 
 import pytest
+from conftest import ROOT
 
 import run
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SMOKE = os.path.join(ROOT, "configs", "smoke.toml")        # S20_MK2 greedy, fast backend, budget 1000, rows "0:20"
 HYBRID = os.path.join(ROOT, "configs", "hybrid.toml")
 RANK3 = os.path.join(ROOT, "configs", "rank3_bf.toml")     # the rank-n sweep, which has its own rows driver

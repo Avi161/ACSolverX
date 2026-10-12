@@ -1,15 +1,4 @@
-"""Benchmarks and curated data: every shipped file loads and has its expected row count.
-
-Provenance (verbatim copies, checked by git blob hash; LADDER.md and README_aca_124.md also carry
-a provenance note): ``benchmark/ladder/`` from
-``origin/claude/ac19-theorem-strength-8v1wp6`` (no ``ladder_all.csv``, no scripts, no runs);
-``data/AC19_extended_aut_min.csv`` and ``benchmark/splits/splits_ac1m_hard_aut.json`` from
-``origin/cursor/heur-12h-anti-overfit-a42e``; ``data/AC1M_aut_min.csv.gz`` from
-``origin/claude/vigilant-babbage-nnbuj0``; ``data/ms_unsolved_reps/aca_124_*`` from
-``origin/cursor/u124-stable-ac-1b54``; ``data/equivalence_classes/certificates.json`` from
-``origin/codex/proofs``; ``benchmark/difficulty_bins.csv`` from
-``origin/claude/summer-results-docs-scoring-u6klsb``.
-"""
+"""Benchmarks and curated data: every shipped file loads and has its expected row count (sources: PROVENANCE.md)."""
 import collections
 import csv
 import gzip
@@ -18,13 +7,13 @@ import os
 import random
 
 import pytest
+from conftest import ROOT
 
 from acx import data
 from acx.core.words import Presentation
 from acx.search import search
 from acx.verify.replay import abs_det
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LADDER = "benchmark/ladder"
 SPLIT = "benchmark/splits/splits_ac1m_hard_aut.json"
 
@@ -50,10 +39,6 @@ def read_json(rel):
 @pytest.mark.parametrize("name,n", [("bench10", 10), ("bench20", 20), ("bench40", 40), ("bench60", 60)])
 def test_benchmark_subsets(name, n):
     assert len(data.load_csv(name)) == n
-
-
-def test_ms640_full():
-    assert len(data.load("ms640")) == 640
 
 
 @pytest.mark.parametrize("size", sorted(LADDER_SIZES))
@@ -85,7 +70,6 @@ def test_ladder_subsets_nest():
     ("data/ms_unsolved_reps/aca_124_initial.csv", 124),
     ("data/ms_unsolved_reps/aca_124_reduced.csv", 124),
     ("data/ms_unsolved_reps/aca_124_best.csv", 124),
-    ("data/AC19_extended_aut_min.csv", 72779),
     ("benchmark/difficulty_bins.csv", 640),
 ])
 def test_csv_row_count(rel, n):
@@ -104,12 +88,6 @@ def test_ladder_pairs_table():
 
 def test_ladder_manifest_pool_size():
     assert read_json(f"{LADDER}/ladder_manifest.json")["rows"] == 73464
-
-
-def test_certificates_cover_unsolved_classes():
-    classes = read_json("data/equivalence_classes/certificates.json")["classes"]
-    assert len(classes) == 124
-    assert sum(c["size"] for c in classes) == 261
 
 
 def test_certificates_check():

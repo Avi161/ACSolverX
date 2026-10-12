@@ -60,14 +60,6 @@ class CapArrays:
         rehash(new, used_entries)
         self.cc = new
 
-    def free(self, entries, nbytes):
-        """``cc_free`` on the current arrays."""
-        return cc_free(self.cc, entries, nbytes)
-
-    def tail(self):
-        """The pool from the free offset: where the next key bytes are written."""
-        return self.cc[SLOT_POOL][self.cc[SLOT_STATE][C_POOL]:]
-
     def drop(self, prio, depth, key, total, longest):
         """Python entry (tests, small searches): copy ``key`` bytes in, then ``cc_drop``."""
         self._write_key(key)
@@ -110,6 +102,7 @@ class CapArrays:
 
     def _write_key(self, key):
         """Write the key bytes at the free offset, growing the arrays first if they are full."""
-        if not self.free(1, len(key)):
+        if not cc_free(self.cc, 1, len(key)):
             self.grow(1, len(key))
-        self.tail()[:len(key)] = np.frombuffer(bytes(key), np.uint8)
+        offset = int(self.cc[SLOT_STATE][C_POOL])
+        self.cc[SLOT_POOL][offset:offset + len(key)] = np.frombuffer(bytes(key), np.uint8)

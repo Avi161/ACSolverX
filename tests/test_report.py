@@ -8,11 +8,10 @@ from typing import NamedTuple
 from xml.etree import ElementTree
 
 import pytest
+from conftest import ROOT
 
 import compare
 from acx import report, runner
-
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def rec(id, solved, cost, seconds, **extra):

@@ -15,13 +15,9 @@ class FieldNames(NamedTuple):
 
 
 def fields(prefix="cap"):
-    """``FIELDS`` under another counter prefix (``"dyn_cap"`` -> ``dyn_cap``, ``dyn_cap_dropped``, ...)."""
-    return tuple(name.replace("cap", prefix, 1) for name in FIELDS)
-
-
-def field_names(prefix="cap"):
-    """The record keys of the counter ``prefix``, addressed by short name."""
-    return FieldNames(*fields(prefix))
+    """``FIELDS`` under another counter prefix (``"dyn_cap"`` -> ``dyn_cap``, ``dyn_cap_dropped``, ...), also by short
+    name (``fields("dyn_cap").first_bind``)."""
+    return FieldNames(*(name.replace("cap", prefix, 1) for name in FIELDS))
 
 
 def blank(prefix="cap", cap=None):
@@ -37,7 +33,7 @@ def combine(parts, prefix="cap"):
     binding search's ``first_bind``; ``min_total`` and ``needed`` are minima; ``cap`` is the first
     record's.
     """
-    key = field_names(prefix)
+    key = fields(prefix)
     total = blank(prefix)
     for index, (record, pops_before) in enumerate(parts):
         if index == 0:
@@ -59,7 +55,7 @@ def summarize(records, prefix="cap", ids=None, keep=100):
     to ``keep``), the sums, and the least ``dropped_min_total``, ``first_bind`` and least/greatest ``needed``.
     Returns None when no row has the counter.
     """
-    key = field_names(prefix)
+    key = fields(prefix)
     row_ids = ids or [record.get("id") for record in records]
     rows = [(row_id, record) for row_id, record in zip(row_ids, records) if key.dropped in record]
     if not rows:

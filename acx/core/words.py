@@ -74,6 +74,19 @@ def free(w):
     return reduce(w, cyclic=False)
 
 
+def substitute_generator(w, g, image):
+    """``w`` with every ``g`` replaced by ``image`` (``g^-1`` by its inverse), freely reduced."""
+    back, out = inverse(image), []
+    for x in w:
+        out.extend(image if x == g else back if x == -g else (x,))
+    return free(out)
+
+
+def renumber(w, g):
+    """``w``, which has no ``g``, with the generators above ``g`` shifted down by one."""
+    return tuple((abs(x) - 1 if abs(x) > g else abs(x)) * (1 if x > 0 else -1) for x in w)
+
+
 def conjugators(w, t):
     """Every ``(sign, c)`` with ``free(c^-1 w^sign c) == free(t)``: two per rotation of the cyclic core of
     ``w^sign`` that is ``t``'s, the first ``a . C[:k] . b^-1`` (``w = a C a^-1``, ``t = b D b^-1``)."""

@@ -3,8 +3,9 @@ import os
 import random
 
 import pytest
+from conftest import ROOT
 
-from acx.aut.whitehead import apply_table
+from acx.aut.autos import apply_table
 from acx.core.config import SearchConfig
 from acx.core.words import Presentation, canonical_word, inverse, parse, reduce
 from acx.ngen import NGenConfig, check, define, lift, solve, triangulate, verify
@@ -13,7 +14,6 @@ from acx.search import PARITY_STATS, search
 from acx.verify import ReplayError, replay
 from acx.verify.replay import abs_det
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FAST = SearchConfig(backend="fast", budget=3000)
 EXPECTED_SAMPLE_SOLVES = 10    # of 40 (rank two solves 34 of the same 40 at budget 1,000)
 ROWS = [0, 32, 96, 128, 224, 256]      # MS640 rows whose triangle root solves within 3,000 pops

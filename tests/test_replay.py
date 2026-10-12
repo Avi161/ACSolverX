@@ -9,7 +9,7 @@ from acx.core.config import SearchConfig
 from acx.core.moves import Move, decode_path, elementary_step, encode_path
 from acx.core.words import Presentation
 from acx.search import search
-from acx.verify import ReplayError, abs_det, is_valid, replay
+from acx.verify import ReplayError, abs_det, replay
 from acx.verify.replay import det
 
 
@@ -117,4 +117,5 @@ def test_elementary_step_refuses_every_malformed_op(op, message):
     p = Presentation.parse("xy", "y")
     with pytest.raises(ValueError, match=message):
         elementary_step(p, op)
-    assert not is_valid(p, [op], normalize=False, require_trivial=False)
+    with pytest.raises(ReplayError):
+        replay(p, [op], normalize=False, require_trivial=False)

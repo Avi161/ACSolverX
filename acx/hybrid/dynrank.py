@@ -15,7 +15,7 @@ the least of its rotations and those of its inverse in int order (``-2 < -1 < 1 
 from collections import Counter
 
 from ..core.priority import length
-from ..core.words import inverse, reduce
+from ..core.words import inverse, reduce, renumber, substitute_generator
 from ..ngen.sac import tokenize
 
 
@@ -170,26 +170,13 @@ def defines(words, min_uses=2):
     return out
 
 
-def substitute(word, g, image):
-    """``word`` with generator ``g`` replaced by ``image``, freely reduced."""
-    out = []
-    for x in word:
-        out.extend(image if x == g else inverse(image) if x == -g else (x,))
-    return reduce(tuple(out), cyclic=False)
-
-
-def renumber(word, g):
-    """``word`` with the generators above ``g`` shifted down by one."""
-    return tuple((abs(x) - 1 if abs(x) > g else abs(x)) * (1 if x > 0 else -1) for x in word)
-
-
 def eliminate(words, i, g):
     """Eliminate generator ``g`` with relator ``i``, in which it occurs exactly once."""
     r = words[i]
     k = next(k for k, x in enumerate(r) if abs(x) == g)
     rot = r[k:] + r[:k]                          # g^e u
     image = inverse(rot[1:]) if rot[0] > 0 else rot[1:]
-    raw = tuple(renumber(substitute(w, g, image), g) for idx, w in enumerate(words) if idx != i)
+    raw = tuple(renumber(substitute_generator(w, g, image), g) for idx, w in enumerate(words) if idx != i)
     return raw, {"kind": "eliminate", "i": i, "g": g, "image": image}
 
 
@@ -206,10 +193,7 @@ def eliminations(words):
 
 def transvection(word, i, j, sign):
     """``x_i -> x_i x_j^sign`` on one word, then ``dcanon``."""
-    out = []
-    for x in word:
-        out.extend((i, sign * j) if x == i else (-sign * j, -i) if x == -i else (x,))
-    return dcanon(tuple(out))
+    return dcanon(substitute_generator(word, i, (i, sign * j)))
 
 
 def nielsen_children(words):

@@ -2,10 +2,10 @@
 
 Each step checks the hypotheses of its part of Lemma 11, and ``|det| = 1`` must hold after every step.
 """
-from ..core.words import Presentation, canonical_word, fmt, reduce
+from ..core.words import Presentation, canonical_word, fmt, reduce, renumber, substitute_generator
 from ..verify.replay import ReplayError, abs_det, replay
 from .family import MIN_W_LEN
-from .substitution import X, Y, Z, relabel, substitute_generator
+from .substitution import X, Y, Z
 
 
 def _require_det_one(pres):
@@ -45,7 +45,7 @@ def _eliminate(pres, step):
     occurrences = sum(abs(a) == g for a in reduce(isolating))
     if occurrences != 1 or reduce(substitute_generator(isolating, g, expr)):
         raise ReplayError(f"{fmt(isolating)} is not of the form {'xy'[g - 1]}^-1 expr")
-    survivors = tuple(relabel(substitute_generator(r, g, expr), g) for i, r in enumerate(pres.rels) if i != target)
+    survivors = tuple(renumber(substitute_generator(r, g, expr), g) for i, r in enumerate(pres.rels) if i != target)
     if not all(survivors):
         raise ReplayError("an empty relator remains")
     return Presentation(2, survivors)

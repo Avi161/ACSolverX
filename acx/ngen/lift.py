@@ -3,8 +3,8 @@
 ``lift(pres, sac, path, start)`` takes the S-moves of a solve of ``sac.root`` to moves on ``pres`` that reach the
 trivial presentation, so ``acx.verify.replay`` checks the claim. The construction is in ``docs/RANK3.md``.
 """
-from ..aut.transport import Emitter
-from ..aut.whitehead import apply_table
+from ..aut.autos import apply_table
+from ..aut.emitter import Emitter
 from ..core.moves import Move
 from ..core.words import canonical_rels, inverse
 from ..verify.replay import replay

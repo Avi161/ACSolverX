@@ -3,8 +3,8 @@
 Invariant ``W = psi(E)`` letter for letter, ``psi`` an automorphism of the free group; every move on ``E`` is
 written on ``W`` with its conjugating words replaced by their ``psi`` images. ``certify`` drives it.
 """
-from ..aut.whitehead import AUTOS, apply_table
-from ..core.words import canonical_word, conjugators, free, inverse, reduce, to_char
+from ..aut.autos import AUTOS, apply_table
+from ..core.words import canonical_word, conjugators, free, inverse, reduce, substitute_generator, to_char
 
 
 class RealPresentation:
@@ -155,8 +155,7 @@ class Frame:
     # automorphisms of E: psi <- psi o a^-1
     def transvect(self, i, j, e):
         """``x_i -> x_i x_j^e``."""
-        f = {i: (i, e * j), -i: (-e * j, -i)}
-        self.E = [free(y for x in w for y in f.get(x, (x,))) for w in self.E]
+        self.E = [substitute_generator(w, i, (i, e * j)) for w in self.E]
         self.tab[i] = free(self.tab[i] + self.tab[-e * j])
         self.tab[-i] = inverse(self.tab[i])
         self.factors.append(("tv", i, j, e))

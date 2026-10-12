@@ -1,10 +1,8 @@
 """The hybrid solver (``acx.hybrid``): the source's numbers, backend parity, replayable certificates.
 
-Reference numbers are the source's own runs (``origin/claude/vigilant-babbage-nnbuj0:
-research/ac_hashfree_cascade_20260914/records/``, budget 1,000, penalty 5, dyn_ratio 0.5):
-MS640 640/640 with 25,064 units (stage B 98, C 328, H 214 rows), and the AC19 Aut-minimal
-census 72,779/72,779 with 2,489,726 units, 188 certificates using higher rank. The full census
-(about 190 s on 4 workers, certification included) is not run here; its first 2,000 rows are.
+Reference numbers (budget 1,000, penalty 5, dyn_ratio 0.5): MS640 640/640 with 25,064 units (stage B 98, C 328, H 214
+rows); the AC19 Aut-minimal census 72,779/72,779 with 2,489,726 units and 188 higher-rank certificates. The full
+census (about 190 s on 4 workers) is not run here; its first 2,000 rows are.
 """
 import heapq
 import json
@@ -18,7 +16,7 @@ import numpy as np
 import pytest
 
 from acx import data, runner
-from acx.aut.whitehead import AUTOS
+from acx.aut.autos import AUTOS
 from acx.core.capcount import blank, fields
 from acx.core.words import Presentation, parse
 from acx.hybrid import HybridConfig, capwatch, certify, decode_steps, dynrank, encode_steps, solve
@@ -26,7 +24,7 @@ from acx.hybrid import search as hybrid_search
 from acx.hybrid.cascade import NIELSEN, Budget, Run, cascade, gate_applicable, gate_precheck_key, run_gates
 from acx.hybrid.frontier import backend, orbit, over_cap, pack, unpack
 from acx.hybrid.pinch import conjugation_forms, from_syllables, syllables
-from acx.verify import is_valid, replay
+from acx.verify import replay
 
 FAST = HybridConfig(certify=False)
 
@@ -56,8 +54,8 @@ def test_ms640(ms640):
     assert all(r.solved and r.kind == "ac_path" for r in res)
     assert sum(r.units for r in res) == 25_064 and max(r.units for r in res) == 283
     assert [sum(r.stage == s for r in res) for s in "BCH"] == [98, 328, 214]
-    paths = [certify(p, r.steps) for p, r in zip(ms640, res)]  # each replayed by acx.verify inside
-    assert all(is_valid(p, path, normalize=False) for p, path in list(zip(ms640, paths))[::10])
+    for p, r in zip(ms640, res):
+        certify(p, r.steps)                                   # replayed by acx.verify inside
 
 
 def test_spec_backend_matches_fast(ms640):
@@ -530,7 +528,8 @@ def test_a_relator_that_is_not_freely_reduced_is_solved_and_certified(rels, name
     """R1: ``yYy`` is the relator ``y``; the certificate frame used to keep the raw word and assert in ``set_word``."""
     pres = Presentation.parse(*rels)
     res = solve(pres, backend=name)
-    assert res.solved and is_valid(pres, res.path, normalize=False)
+    assert res.solved
+    replay(pres, res.path, normalize=False)                   # raises ReplayError on a bad certificate
 
 
 def test_the_runner_solves_rows_that_are_not_freely_reduced(tmp_path):

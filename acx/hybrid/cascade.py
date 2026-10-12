@@ -1,11 +1,11 @@
 """Stages A-C of the hybrid solver on a canonical pair, and the gates that also finish states during the search.
 
-A step is a ``Move`` (an S-move) or ``Aut(k)`` (the canonical form of ``acx.aut.whitehead.AUTOS[k]`` applied). Work units:
+A step is a ``Move`` (an S-move) or ``Aut(k)`` (the canonical form of ``acx.aut.autos.AUTOS[k]`` applied). Work units:
 one per Nielsen image evaluated, per automorphism accepted and per S-move applied; the gates' inspections are free.
 """
 from collections import namedtuple
 
-from ..aut.whitehead import TABLES, apply_table
+from ..aut.autos import TABLES, apply_table
 from ..core.moves import Move, apply_raw
 from ..core.priority import length
 from ..core.words import booth_str, canonical_rels, canonical_word, inverse, reduce, rotate

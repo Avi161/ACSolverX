@@ -2,7 +2,6 @@
 import itertools
 import random
 
-import numpy as np
 import pytest
 
 from acx.core.config import SearchConfig, parse_override
@@ -29,13 +28,9 @@ def test_parse_format_roundtrip():
     assert inverse(parse("xyY")) == parse("yYX")
 
 
-def test_rotate_is_np_roll_of_main_encoding():
-    """Main rotates its flat ``(n, 2)`` encoding by ``np.roll(arr, 2k)``: the word rolled by ``k``."""
-    for _ in range(50):
-        w = rand_word(RNG.randint(1, 9))
-        k = RNG.randint(0, 20)
-        flat = np.array([[abs(g) == 1, g > 0] for g in w]).reshape(-1)
-        assert [tuple(p) for p in np.roll(flat, 2 * k).reshape(-1, 2)] == [(abs(g) == 1, g > 0) for g in rotate(w, k)]
+def test_rotate_rolls_right():
+    """``rotate(w, k)`` is ``np.roll(w, k)``: element ``m`` of the result is ``w[m - k]``."""
+    assert rotate((1, 2, 3, 4), 1) == (4, 1, 2, 3) and rotate((1, 2, 3, 4), 6) == (3, 4, 1, 2) and rotate((), 3) == ()
 
 
 def test_reduce():

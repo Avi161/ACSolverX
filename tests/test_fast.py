@@ -213,11 +213,6 @@ def test_score_kernel_matches_core_priority(priority):
         assert score(syms, lens, 2, PRIORITY_IDS[priority]) == prio(rels)
 
 
-def test_old_kernel_import_path_exports_what_other_searches_use():
-    from acx.search.fast.kernels import (canon_buf, child_width, expand, max_children,  # noqa: F401
-                                         reduce_buf, rel_less)
-
-
 @pytest.mark.parametrize("n_gen", [2, 3])
 def test_tie_bytes_kernel_writes_state_bytes(n_gen):
     for w in random_words(n_gen, count=40):

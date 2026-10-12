@@ -23,20 +23,8 @@ class CapCount:
       of budget left, so the pending dropped states would have popped next (up to ``left``). A search that solved or
       spent its budget passes ``ran_dry=False``.
 
-    Keys are any totally ordered values. ``record(prefix)`` returns the ``FIELDS`` (``cap`` renamed ``prefix``):
-
-    ==========================  ======================================================================
-    ``cap``                     the cap watched (None = uncapped)
-    ``cap_dropped``             children not pushed because a relator is over the cap, one per move
-    ``cap_dropped_min_total``   least total relator length of a dropped child; None iff nothing dropped
-    ``cap_would_pop``           distinct dropped states whose first-drop key sorts before a later bar, plus,
-                                on a dry queue, the pending ones the budget would pop
-    ``cap_first_bind``          pop number (1 = the start) of the first such pop; ``pops + 1`` when the queue
-                                ran dry with dropped states pending; None iff ``cap_would_pop == 0``
-    ``cap_needed``              least longest relator over the would-pop states (on a dry queue, over every
-                                pending state): the smallest cap at which the search changes; None iff
-                                ``cap_would_pop == 0``
-    ==========================  ======================================================================
+    Keys are any totally ordered values. ``record(prefix)`` returns the six ``FIELDS`` (``cap`` renamed ``prefix``),
+    which ``docs/CAP.md`` defines.
 
     For a best-first search with a strict total order on keys, ``cap_would_pop == 0`` holds exactly when every
     larger cap pops the same states in the same order with the same path, and a cap below ``cap_needed`` gives

@@ -1,4 +1,4 @@
-"""The word operations of a change of variables: put ``z`` for ``w``, isolate a generator, eliminate it, relabel."""
+"""The word operations of a change of variables: put ``z`` for ``w``, isolate a generator."""
 from ..core.words import inverse, reduce
 
 X, Y, Z = 1, 2, 3       # letters (negative = inverse); Z is the new generator z = w(x, y)
@@ -77,23 +77,3 @@ def isolate(rel, g):
     rotated = cyc[at[0]:] + cyc[:at[0]]
     rest = rotated[1:]
     return inverse(rest) if rotated[0] == g else rest
-
-
-def substitute_generator(word, g, expr):
-    """``word`` with every ``g`` replaced by ``expr`` (``g^-1`` by its inverse), freely reduced."""
-    expr_inv = inverse(expr)
-    out = []
-    for a in word:
-        if a == g:
-            out.extend(expr)
-        elif a == -g:
-            out.extend(expr_inv)
-        else:
-            out.append(a)
-    return reduce(tuple(out), False)
-
-
-def relabel(word, g):
-    """Rename the generators that remain after ``g`` is gone to ``1, 2``: ``(y, z) -> (x, y)`` or ``(x, z) -> (x, y)``."""
-    new_name = {h: i + 1 for i, h in enumerate(sorted({X, Y, Z} - {g}))}
-    return tuple(new_name[abs(a)] * (1 if a > 0 else -1) for a in word)

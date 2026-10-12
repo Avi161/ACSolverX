@@ -15,12 +15,12 @@ from .autos import AUTOS, DESCENT
 
 N_AUTOS = len(AUTOS)
 FIRST_SECOND_KIND = DESCENT.start                       # a plain int, which numba can freeze
-_IMG = np.stack([encode(a, 2, 3)[0] for a in AUTOS])  # (auto, generator, letter) symbols
-_LEN = np.array([[len(w) for w in a] for a in AUTOS], dtype=np.int64)
+IMAGES = np.stack([encode(a, 2, 3)[0] for a in AUTOS])  # (auto, generator, letter) symbols
+LENGTHS = np.array([[len(w) for w in a] for a in AUTOS], dtype=np.int64)
 
 
 @njit(cache=True)
-def _image(w, k, img, lens):
+def image(w, k, img, lens):
     """``w`` under ``AUTOS[k]``, freely then cyclically reduced (``AUTOS[0]`` is the identity: a plain reduction)."""
     out = np.empty(3 * w.shape[0], dtype=np.uint8)
     n = 0
@@ -35,7 +35,7 @@ def _image(w, k, img, lens):
 
 
 @njit(cache=True)
-def _canon_pair(a, b):
+def canon_pair(a, b):
     """Each word canonical, the pair ordered by ``(length, Booth)``."""
     ca, cb = np.empty_like(a), np.empty_like(b)
     canon_buf(a, 0, a.shape[0], ca)
@@ -46,17 +46,17 @@ def _canon_pair(a, b):
 @njit(cache=True)
 def _peak_reduce(r1, r2, img, lens):
     """``(total, r1, r2)`` after descending by the second-kind autos (``DESCENT``) as long as the total drops."""
-    c1, c2 = _image(r1, 0, img, lens), _image(r2, 0, img, lens)
+    c1, c2 = image(r1, 0, img, lens), image(r2, 0, img, lens)
     tot = c1.shape[0] + c2.shape[0]
     while True:
         best_t, best_k = tot, -1
         for k in range(FIRST_SECOND_KIND, N_AUTOS):
-            t = _image(c1, k, img, lens).shape[0] + _image(c2, k, img, lens).shape[0]
+            t = image(c1, k, img, lens).shape[0] + image(c2, k, img, lens).shape[0]
             if t < best_t:
                 best_t, best_k = t, k
         if best_k == -1:
             return tot, c1, c2
-        c1, c2 = _image(c1, best_k, img, lens), _image(c2, best_k, img, lens)
+        c1, c2 = image(c1, best_k, img, lens), image(c2, best_k, img, lens)
         tot = best_t
 
 
@@ -67,10 +67,10 @@ def _expand_level(r1, r2, t, img, lens):
     ln = np.zeros((N_AUTOS, 2), dtype=np.int64)
     ok = np.zeros(N_AUTOS, dtype=np.uint8)
     for k in range(N_AUTOS):
-        t1, t2 = _image(r1, k, img, lens), _image(r2, k, img, lens)
+        t1, t2 = image(r1, k, img, lens), image(r2, k, img, lens)
         if t1.shape[0] + t2.shape[0] != t:
             continue
-        a, b = _canon_pair(t1, t2)
+        a, b = canon_pair(t1, t2)
         ok[k] = 1
         ln[k, 0], ln[k, 1] = a.shape[0], b.shape[0]
         buf[k, 0, :a.shape[0]] = a
@@ -88,14 +88,14 @@ def aut_min(pres, level_cap=50_000):
     if pres.n_gen != 2 or len(pres.rels) != 2:
         raise ValueError(f"the fast Whitehead canon takes a pair on F2, got {pres}")
     syms, lens = encode(pres.rels, 2)
-    t, m1, m2 = _peak_reduce(syms[0, :lens[0]].copy(), syms[1, :lens[1]].copy(), _IMG, _LEN)
-    a, b = _canon_pair(m1, m2)
+    t, m1, m2 = _peak_reduce(syms[0, :lens[0]].copy(), syms[1, :lens[1]].copy(), IMAGES, LENGTHS)
+    a, b = canon_pair(m1, m2)
     seen = {a.tobytes() + b"\0" + b.tobytes(): (a, b)}
     stack = [(a, b)]
     while stack:
         if len(seen) > level_cap:
             raise RuntimeError(f"minimal level set exceeds level_cap={level_cap}; rep unreliable")
-        buf, ln, ok = _expand_level(*stack.pop(), t, _IMG, _LEN)
+        buf, ln, ok = _expand_level(*stack.pop(), t, IMAGES, LENGTHS)
         for k in np.flatnonzero(ok):
             c1, c2 = buf[k, 0, :ln[k, 0]].copy(), buf[k, 1, :ln[k, 1]].copy()
             key = c1.tobytes() + b"\0" + c2.tobytes()

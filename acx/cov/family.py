@@ -12,7 +12,6 @@ The tag names the rules, and changing one is a different experiment:
 from ..core.words import inverse, reduce
 from .substitution import substitute
 
-FAMILY_TAG = "subnc2pxysb"
 MIN_W_LEN = 2          # |w| < 2 would be a rename
 MIN_TRANSFORMED = 3    # nc2: a relator shorter than this after substituting is a collapse
 MAX_LEN = 239          # an image with a longer relator is not in the family; None = no limit

@@ -1,9 +1,7 @@
 """acx.cov: the family, the certificate checker, CoV-then-search and its typed outcomes.
 
-The reference numbers of the family (AK(3): 34 images; the worked example) are those
-of ``origin/cov/all-subsets-sweep:experiments/stable_ac/cov``. The bench60 numbers
-are a golden regression (fast backend, so the test is skipped without it); the same
-numbers on spec follow from the spec/fast parity of ``tests/test_fast.py``.
+The bench60 numbers are a golden regression (fast backend, so the test is skipped without it); the same numbers on
+spec follow from the spec/fast parity of ``tests/test_fast.py``.
 """
 import json
 
@@ -13,11 +11,11 @@ from acx import data
 from acx.aut import orbit_key
 from acx.core.config import SearchConfig
 from acx.core.moves import decode_path, encode_path
-from acx.core.words import Presentation, fmt, inverse, parse
+from acx.core.words import Presentation, fmt, inverse, parse, renumber, substitute_generator
 from acx.cov import CoVConfig, ReplayError, apply_steps, check_cert, enumerate_images, verify
-from acx.cov.cov import Z, relabel, subwords, substitute
-from acx.cov.substitution import isolate, substitute_generator
+from acx.cov.family import subwords
 from acx.cov.run import run
+from acx.cov.substitution import Z, isolate, substitute
 from acx.search import BackendUnavailable, search
 from acx.search.engine import backend as load_backend
 from acx.verify import replay
@@ -74,8 +72,8 @@ def test_isolate_and_eliminate_words():
     assert substitute_generator((1, 2, -1), 1, (Z,)) == (Z, 2, -Z)
 
 
-def test_relabel():
-    assert relabel((2, 3, -3, -2), 1) == (1, 2, -2, -1) and relabel((1, 3, -1), 2) == (1, 2, -1)
+def test_renumber():
+    assert renumber((2, 3, -3, -2), 1) == (1, 2, -2, -1) and renumber((1, 3, -1), 2) == (1, 2, -1)
 
 
 def test_enumerate_images_max_len_keeps_the_images_whose_relators_all_fit():

@@ -7,11 +7,11 @@ import statistics
 import time
 
 import pytest
+from conftest import ROOT
 
 import run
 from acx import runner
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HAS_TORCH = importlib.util.find_spec("torch") is not None
 needs_torch = pytest.mark.skipif(not HAS_TORCH, reason="the rl method needs PyTorch")
 

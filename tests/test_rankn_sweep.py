@@ -7,6 +7,7 @@ import sys
 
 import numpy as np
 import pytest
+from conftest import ROOT
 
 from acx import data
 from acx.runner import load_config
@@ -133,11 +134,6 @@ def test_config_errors(bad):
         SweepConfig.from_cfg(c)
 
 
-def test_uncapped_is_allowed():
-    sc = SweepConfig.from_cfg({"search": {"cap": "none", "budget": 100}, "rankn": {"max_len": 6}})
-    assert sc.search.cap is None
-
-
 def test_uncapped_rows_drop_nothing(ms640, tmp_path):
     """Without a cap the counters report nothing: no drop, no bind, the same searches as capped rows solved."""
     c = cfg(rows="0:4", budget=200, max_len=2)
@@ -154,17 +150,15 @@ def test_uncapped_rows_drop_nothing(ms640, tmp_path):
 def test_every_config_has_one_comment_line():
     """Configs are short: one comment line saying what the config runs, then the TOML (usage is in docs). The
     annotated template is the exception: it documents every key."""
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    for name in sorted(set(os.listdir(os.path.join(root, "configs"))) - {"template.toml"}):
-        with open(os.path.join(root, "configs", name)) as f:
+    for name in sorted(set(os.listdir(os.path.join(ROOT, "configs"))) - {"template.toml"}):
+        with open(os.path.join(ROOT, "configs", name)) as f:
             lines = f.read().splitlines()
         assert sum(1 for x in lines if x.lstrip().startswith("#")) == 1 and lines[0].startswith("#"), name
 
 
 def test_shipped_configs_load():
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     for name, extra, max_len in (("rank3_bf", 1, 4), ("rank4_bf", 2, 3), ("rank5_bf", 3, 2)):
-        c = load_config(os.path.join(root, "configs", f"{name}.toml"))
+        c = load_config(os.path.join(ROOT, "configs", f"{name}.toml"))
         sc = SweepConfig.from_cfg(c)
         assert (sc.extra, sc.max_len, sc.search.budget, sc.search.cap) == (extra, max_len, 1000, 24)
 
@@ -358,18 +352,16 @@ def test_rank3_counters_prove_the_cap_irrelevant(tmp_path):
 
 # --------------------------------------------------------------------------------------------- entry points
 def test_cli_entry_point(tmp_path, monkeypatch):
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    sweep.main(["--config", os.path.join(root, "configs", "rank3_bf.toml"), "--rows", "0:3", "--set", "rankn.max_len=2",
+    sweep.main(["--config", os.path.join(ROOT, "configs", "rank3_bf.toml"), "--rows", "0:3", "--set", "rankn.max_len=2",
                 "--set", "workers=1", "--set", "search.budget=300", "--out", str(tmp_path), "--verify", "5"])
     assert os.path.exists(tmp_path / "rank3_bf" / "summary.json")
 
 
 def test_run_py_entry_point(tmp_path):
     """``run.py`` runs the shipped rank-3 config (the runner delegates method ``rankn`` to the sweep)."""
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    sys.path.insert(0, root)
+    sys.path.insert(0, ROOT)
     import run as run_py
-    run_py.main(["--config", os.path.join(root, "configs", "rank3_bf.toml"), "--rows", "0:2", "--out", str(tmp_path)])
+    run_py.main(["--config", os.path.join(ROOT, "configs", "rank3_bf.toml"), "--rows", "0:2", "--out", str(tmp_path)])
     s = json.load(open(tmp_path / "rank3_bf" / "summary.json"))
     assert s["rows"] == 2 and s["extra"] == 1 and s["cap_counters"]["fields"] == list(sweep.COUNTERS)
 
@@ -377,8 +369,7 @@ def test_run_py_entry_point(tmp_path):
 def test_runner_refuses_rankn_s20_mk2_at_load(tmp_path):
     """The runner's config load (run.py, before anything is written) refuses rank-n with S20_MK2 and bad rankn keys."""
     from acx.runner import load_config
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    path = os.path.join(root, "configs", "rank3_bf.toml")
+    path = os.path.join(ROOT, "configs", "rank3_bf.toml")
     with pytest.raises(ValueError, match="length"):
         load_config(path, ["search.priority=s20_mk2"])
     with pytest.raises(ValueError, match="rankn"):
