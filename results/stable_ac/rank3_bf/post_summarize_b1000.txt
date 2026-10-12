@@ -1,6 +1,6 @@
-# Rank-3 brute force on ms640: budget 1,000, cap 24, every z-word to length 9
+# Rank-3 brute force on ms640: budget 1,000, cap 24, every z-word to length 10
 
-12,596,480 searches: 19,682 words on each of 640 presentations, 426 core-hours. Start `<x,y,z | r1, r2, Z·w>`; control `<x,y | r1, r2>` (identical to the null stabilization). Percentages are means over presentations of the per-presentation fraction of words.
+37,790,720 searches: 59,048 words on each of 640 presentations, 1329 core-hours. Start `<x,y,z | r1, r2, Z·w>`; control `<x,y | r1, r2>` (identical to the null stabilization). Percentages are means over presentations of the per-presentation fraction of words.
 
 ## At 100 nodes (control solves 455/640)
 
@@ -15,10 +15,11 @@
 | 7 | 1,458 | 55.7% | 78.3% | 0.2% | 0.5% | 0.0% | 77.7% | 21.7% | `yyyXYxY` (437) |
 | 8 | 4,374 | 55.7% | 78.2% | 0.2% | 0.5% | 0.0% | 77.7% | 21.8% | `XyxYXYxy` (448) |
 | 9 | 13,122 | 55.8% | 78.4% | 0.2% | 0.5% | 0.0% | 77.9% | 21.6% | `yXYYYxyyy` (453) |
+| 10 | 39,366 | 55.8% | 78.4% | 0.2% | 0.4% | 0.0% | 78.0% | 21.6% | `yyXyxYXYxY` (436) |
 
-All lengths together, on control-solved presentations: faster 0.5%, same 0.0%, slower 77.8%, lost 21.7%.
+All lengths together, on control-solved presentations: faster 0.4%, same 0.0%, slower 77.9%, lost 21.6%.
 
-Without the 7,210 (presentation, word) pairs where w is a whole rotation of a relator (the control in disguise: 0 faster, 0 same, 5473 slower): faster 0.5%, same 0.0%, slower 77.8%, lost 21.7%.
+Without the 7,210 (presentation, word) pairs where w is a whole rotation of a relator (the control in disguise: 0 faster, 0 same, 5473 slower): faster 0.4%, same 0.0%, slower 77.9%, lost 21.6%.
 
 | words up to | words | solved by some word (oracle) | gained over control | some word faster than control | some word that is not a relator rotation faster |
 |---|---|---|---|---|---|
@@ -31,6 +32,7 @@ Without the 7,210 (presentation, word) pairs where w is a whole rotation of a re
 | 7 | 2,186 | 511 | 56 | 86 | 86 |
 | 8 | 6,560 | 514 | 59 | 87 | 87 |
 | 9 | 19,682 | 519 | 64 | 89 | 89 |
+| 10 | 59,048 | 519 | 64 | 90 | 90 |
 
 Price of the oracle: running the words in shortlex order until the first solve reaches 519 presentations, median 10 nodes; it is cheaper than the control (or solves where the control does not) on 64.
 
@@ -39,7 +41,7 @@ One fixed word for all presentations: 0 words solve more presentations than the 
 - even->odd: `XyxYXYxy` solves 225/320, control 231.
 - odd->even: `yXYYYxyyy` solves 221/320, control 224.
 
-Words that are a subword of a relator of their presentation solve 58.6% and are faster than the control 0.7% of the time; the other words 55.7% and 0.5%.
+Words that are a subword of a relator of their presentation solve 58.5% and are faster than the control 0.7% of the time; the other words 55.8% and 0.4%.
 
 ## At 1,000 nodes (control solves 554/640)
 
@@ -54,10 +56,11 @@ Words that are a subword of a relator of their presentation solve 58.6% and are 
 | 7 | 1,458 | 66.5% | 76.8% | 0.1% | 0.7% | 0.0% | 76.1% | 23.2% | `yxYYYXy` (512) |
 | 8 | 4,374 | 66.2% | 76.5% | 0.2% | 0.6% | 0.0% | 75.8% | 23.5% | `yxYXYxyX` (509) |
 | 9 | 13,122 | 65.9% | 76.1% | 0.1% | 0.6% | 0.0% | 75.5% | 23.9% | `yXYYYxyyy` (528) |
+| 10 | 39,366 | 65.7% | 75.9% | 0.1% | 0.6% | 0.0% | 75.3% | 24.1% | `yyxYXYxyXY` (508) |
 
-All lengths together, on control-solved presentations: faster 0.6%, same 0.0%, slower 75.6%, lost 23.7%.
+All lengths together, on control-solved presentations: faster 0.6%, same 0.0%, slower 75.4%, lost 24.0%.
 
-Without the 7,210 (presentation, word) pairs where w is a whole rotation of a relator (the control in disguise: 0 faster, 0 same, 6536 slower): faster 0.6%, same 0.0%, slower 75.6%, lost 23.7%.
+Without the 7,210 (presentation, word) pairs where w is a whole rotation of a relator (the control in disguise: 0 faster, 0 same, 6536 slower): faster 0.6%, same 0.0%, slower 75.4%, lost 24.0%.
 
 | words up to | words | solved by some word (oracle) | gained over control | some word faster than control | some word that is not a relator rotation faster |
 |---|---|---|---|---|---|
@@ -70,17 +73,18 @@ Without the 7,210 (presentation, word) pairs where w is a whole rotation of a re
 | 7 | 2,186 | 572 | 20 | 168 | 168 |
 | 8 | 6,560 | 576 | 22 | 171 | 171 |
 | 9 | 19,682 | 576 | 22 | 176 | 176 |
+| 10 | 59,048 | 578 | 24 | 177 | 177 |
 
-Price of the oracle: running the words in shortlex order until the first solve reaches 576 presentations, median 10 nodes; it is cheaper than the control (or solves where the control does not) on 22.
+Price of the oracle: running the words in shortlex order until the first solve reaches 578 presentations, median 10 nodes; it is cheaper than the control (or solves where the control does not) on 24.
 
 One fixed word for all presentations: 0 words solve more presentations than the control, 0 the same. Chosen on one half, scored on the other:
 
 - even->odd: `XYYYxyyyy` solves 258/320, control 281.
 - odd->even: `yXYYYxyyy` solves 264/320, control 273.
 
-Words that are a subword of a relator of their presentation solve 70.7% and are faster than the control 1.1% of the time; the other words 66.0% and 0.6%.
+Words that are a subword of a relator of their presentation solve 70.5% and are faster than the control 1.0% of the time; the other words 65.8% and 0.6%.
 
-The 22 presentations some word solves and the control does not, against the control at 100,000 nodes: the control solves 22 of them; the best word (hindsight) uses fewer nodes than the control on 22, and the words run in shortlex order until the first solve on 0.
+The 24 presentations some word solves and the control does not, against the control at 100,000 nodes: the control solves 24 of them; the best word (hindsight) uses fewer nodes than the control on 24, and the words run in shortlex order until the first solve on 0.
 
 ## w against w⁻¹ (to length 6)
 

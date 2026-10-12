@@ -19,7 +19,7 @@
   },
   {
    "name": "1_word_family",
-   "compared": 77855,
+   "compared": 201633,
    "mismatches": 0,
    "detail": {
     "files": {
@@ -644,6 +644,39 @@
       "meta_commit": "8b3a51d",
       "meta_dataset_sha256_equals_given_dataset": true
      },
+     "rank3_bf_ms640_b10000_cap24_L7.npz": {
+      "members": [
+       "block_seconds",
+       "meta",
+       "min_total",
+       "nodes",
+       "path_len",
+       "pres_ids",
+       "words"
+      ],
+      "K": 1458,
+      "K_expected": 1458,
+      "invalid_words": 0,
+      "duplicate_entries": 0,
+      "mutually_inverse_pairs": 0,
+      "pairs_missing": 0,
+      "pairs_extra": 0,
+      "first_words": [
+       "xxxxxxx",
+       "xxxxxxy",
+       "xxxxxyx",
+       "xxxxxyy",
+       "xxxxxyX",
+       "xxxxxYx"
+      ],
+      "pres_ids_dtype": "int32",
+      "nodes_dtype": "uint16",
+      "path_len_dtype": "int16",
+      "min_total_dtype": "uint8",
+      "meta_side": "fwd",
+      "meta_commit": "8b3a51d",
+      "meta_dataset_sha256_equals_given_dataset": true
+     },
      "rank3_bf_ms640_b1000_cap24_L8.npz": {
       "members": [
        "block_seconds",
@@ -709,6 +742,39 @@
       "meta_side": "fwd",
       "meta_commit": "8b3a51d",
       "meta_dataset_sha256_equals_given_dataset": true
+     },
+     "rank3_bf_ms640_b1000_cap24_L10.npz": {
+      "members": [
+       "block_seconds",
+       "meta",
+       "min_total",
+       "nodes",
+       "path_len",
+       "pres_ids",
+       "words"
+      ],
+      "K": 39366,
+      "K_expected": 39366,
+      "invalid_words": 0,
+      "duplicate_entries": 0,
+      "mutually_inverse_pairs": 0,
+      "pairs_missing": 0,
+      "pairs_extra": 0,
+      "first_words": [
+       "xxxxxxxxxx",
+       "xxxxxxxxxy",
+       "xxxxxxxxyx",
+       "xxxxxxxxyy",
+       "xxxxxxxxyX",
+       "xxxxxxxxYx"
+      ],
+      "pres_ids_dtype": "int32",
+      "nodes_dtype": "uint16",
+      "path_len_dtype": "int16",
+      "min_total_dtype": "uint8",
+      "meta_side": "fwd",
+      "meta_commit": "8b3a51d",
+      "meta_dataset_sha256_equals_given_dataset": true
      }
     },
     "examples": [],
@@ -717,7 +783,7 @@
   },
   {
    "name": "2_value_sanity",
-   "compared": 9187103,
+   "compared": 26491203,
    "mismatches": 0,
    "detail": {
     "files": {
@@ -1044,6 +1110,23 @@
       "unsolved_nodes_min": 1000,
       "unsolved_nodes_max": 1000
      },
+     "rank3_bf_ms640_b10000_cap24_L7.npz": {
+      "budget": 10000,
+      "cells": 933120,
+      "solved_cells": 753403,
+      "unsolved_cells": 179717,
+      "violations": 0,
+      "max_nodes_minus_path_len_solved": 9946,
+      "min_nodes_minus_path_len_solved": 1,
+      "max_path_len_solved": 295,
+      "unsolved_with_nodes_lt_budget": 0,
+      "unsolved_with_nodes_gt_budget": 0,
+      "solved_with_nodes_eq_budget": 3,
+      "solved_with_path_len_0": 0,
+      "path_len_below_minus_1": 0,
+      "unsolved_nodes_min": 10000,
+      "unsolved_nodes_max": 10000
+     },
      "rank3_bf_ms640_b1000_cap24_L8.npz": {
       "budget": 1000,
       "cells": 2799360,
@@ -1073,6 +1156,23 @@
       "unsolved_with_nodes_lt_budget": 0,
       "unsolved_with_nodes_gt_budget": 0,
       "solved_with_nodes_eq_budget": 579,
+      "solved_with_path_len_0": 0,
+      "path_len_below_minus_1": 0,
+      "unsolved_nodes_min": 1000,
+      "unsolved_nodes_max": 1000
+     },
+     "rank3_bf_ms640_b1000_cap24_L10.npz": {
+      "budget": 1000,
+      "cells": 25194240,
+      "solved_cells": 16550697,
+      "unsolved_cells": 8643543,
+      "violations": 0,
+      "max_nodes_minus_path_len_solved": 981,
+      "min_nodes_minus_path_len_solved": 1,
+      "max_path_len_solved": 105,
+      "unsolved_with_nodes_lt_budget": 0,
+      "unsolved_with_nodes_gt_budget": 0,
+      "solved_with_nodes_eq_budget": 1564,
       "solved_with_path_len_0": 0,
       "path_len_below_minus_1": 0,
       "unsolved_nodes_min": 1000,
@@ -1114,15 +1214,15 @@
      }
     },
     "overall": {
-     "files": 23,
-     "cells": 13829760,
-     "solved_cells": 9187103,
+     "files": 25,
+     "cells": 39957120,
+     "solved_cells": 26491203,
      "violations": 0,
      "max_nodes_minus_path_len_solved": 9953,
      "min_nodes_minus_path_len_solved": 1,
      "unsolved_with_nodes_lt_budget": 0,
      "unsolved_with_nodes_gt_budget": 0,
-     "solved_with_nodes_eq_budget": 959,
+     "solved_with_nodes_eq_budget": 2526,
      "path_len_below_minus_1": 0
     },
     "examples": [],
@@ -1316,7 +1416,7 @@
   },
   {
    "name": "5_cross_budget_prefix",
-   "compared": 473048,
+   "compared": 1408266,
    "mismatches": 0,
    "detail": {
     "control": {
@@ -1432,6 +1532,24 @@
       "predicted_by_high_but_unsolved_low": 0,
       "values_differ_when_solved_low": 0,
       "cells_solved_high_with_nodes_exactly_1000": 42,
+      "solved_flag_mismatch_on_that_boundary": 0
+     },
+     "L7": {
+      "rows_compared": 640,
+      "words_compared": 1458,
+      "rows_only_in_one_budget": 0,
+      "words_only_in_one_budget": 0,
+      "same_word_order_in_both_files": true,
+      "cells": 933120,
+      "solved_at_1000": 620640,
+      "solved_at_10000": 753403,
+      "solved_at_10000_within_1000_nodes": 620640,
+      "mismatch_cells": 0,
+      "solved_flag_mismatch": 0,
+      "solved_low_but_not_predicted_by_high": 0,
+      "predicted_by_high_but_unsolved_low": 0,
+      "values_differ_when_solved_low": 0,
+      "cells_solved_high_with_nodes_exactly_1000": 66,
       "solved_flag_mismatch_on_that_boundary": 0
      }
     },
@@ -7182,16 +7300,14 @@
   "rank3_bf_ms640_b10000_cap24_L4_inv.npz (absent)",
   "rank3_bf_ms640_b10000_cap24_L5_inv.npz (absent)",
   "rank3_bf_ms640_b10000_cap24_L6_inv.npz (absent)",
-  "rank3_bf_ms640_b10000_cap24_L7.npz (absent)",
   "rank3_bf_ms640_b10000_cap24_L8.npz (absent)",
   "rank3_bf_ms640_b10000_cap24_L9.npz (absent)",
-  "rank3_bf_ms640_b1000_cap24_L10.npz (absent)",
   "rank3_bf_ms640_b10000_cap24_L10.npz (absent)"
  ],
  "first_mismatches": [],
  "crash": null,
  "timed_out": false,
- "seconds": 0.59,
+ "seconds": 1.27,
  "args": {
   "results_dir": "results/stable_ac/rank3_bf",
   "dataset": "data/ms640_solved.txt",

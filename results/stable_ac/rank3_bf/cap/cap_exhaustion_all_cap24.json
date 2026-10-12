@@ -1,0 +1,329 @@
+{
+ "dir": "/opt/r3/c24",
+ "files": [
+  {
+   "file": "rank3_bf_ms640_b10000_cap24_L1.npz",
+   "kind": "rank 3, length 1",
+   "node_budget": 10000,
+   "max_relator_length_cap": 24,
+   "searches": 1280,
+   "unsolved": 365,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b10000_cap24_L2.npz",
+   "kind": "rank 3, length 2",
+   "node_budget": 10000,
+   "max_relator_length_cap": 24,
+   "searches": 3840,
+   "unsolved": 760,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b10000_cap24_L3.npz",
+   "kind": "rank 3, length 3",
+   "node_budget": 10000,
+   "max_relator_length_cap": 24,
+   "searches": 11520,
+   "unsolved": 2223,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b10000_cap24_L4.npz",
+   "kind": "rank 3, length 4",
+   "node_budget": 10000,
+   "max_relator_length_cap": 24,
+   "searches": 34560,
+   "unsolved": 6293,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b10000_cap24_L5.npz",
+   "kind": "rank 3, length 5",
+   "node_budget": 10000,
+   "max_relator_length_cap": 24,
+   "searches": 103680,
+   "unsolved": 19286,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b10000_cap24_L6.npz",
+   "kind": "rank 3, length 6",
+   "node_budget": 10000,
+   "max_relator_length_cap": 24,
+   "searches": 311040,
+   "unsolved": 59215,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b10000_cap24_L7.npz",
+   "kind": "rank 3, length 7",
+   "node_budget": 10000,
+   "max_relator_length_cap": 24,
+   "searches": 933120,
+   "unsolved": 179717,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b10000_cap24_control.jsonl",
+   "kind": "control",
+   "node_budget": 10000,
+   "max_relator_length_cap": 24,
+   "searches": 640,
+   "unsolved": 34,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b10000_cap24_relsub.jsonl",
+   "kind": "relator subwords",
+   "node_budget": 10000,
+   "max_relator_length_cap": 24,
+   "searches": 69816,
+   "unsolved": 20544,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L1.npz",
+   "kind": "rank 3, length 1",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 1280,
+   "unsolved": 511,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L10.npz",
+   "kind": "rank 3, length 10",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 25194240,
+   "unsolved": 8643543,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L1_inv.npz",
+   "kind": "rank 3, length 1, inverse words",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 1280,
+   "unsolved": 511,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L2.npz",
+   "kind": "rank 3, length 2",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 3840,
+   "unsolved": 1213,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L2_inv.npz",
+   "kind": "rank 3, length 2, inverse words",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 3840,
+   "unsolved": 1207,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L3.npz",
+   "kind": "rank 3, length 3",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 11520,
+   "unsolved": 3478,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L3_inv.npz",
+   "kind": "rank 3, length 3, inverse words",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 11520,
+   "unsolved": 3473,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L4.npz",
+   "kind": "rank 3, length 4",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 34560,
+   "unsolved": 10864,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L4_inv.npz",
+   "kind": "rank 3, length 4, inverse words",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 34560,
+   "unsolved": 10859,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L5.npz",
+   "kind": "rank 3, length 5",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 103680,
+   "unsolved": 33869,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L5_inv.npz",
+   "kind": "rank 3, length 5, inverse words",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 103680,
+   "unsolved": 33845,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L6.npz",
+   "kind": "rank 3, length 6",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 311040,
+   "unsolved": 103152,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L6_inv.npz",
+   "kind": "rank 3, length 6, inverse words",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 311040,
+   "unsolved": 103000,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L7.npz",
+   "kind": "rank 3, length 7",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 933120,
+   "unsolved": 312480,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L8.npz",
+   "kind": "rank 3, length 8",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 2799360,
+   "unsolved": 946046,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_L9.npz",
+   "kind": "rank 3, length 9",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 8398080,
+   "unsolved": 2862579,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_control.jsonl",
+   "kind": "control",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 640,
+   "unsolved": 86,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rank3_bf_ms640_b1000_cap24_relsub.jsonl",
+   "kind": "relator subwords",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 69816,
+   "unsolved": 29848,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rankn_bf_ms640_b1000_cap24_r4.npz",
+   "kind": "rank 4",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 224640,
+   "unsolved": 91779,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  },
+  {
+   "file": "rankn_bf_ms640_b1000_cap24_r5.npz",
+   "kind": "rank 5",
+   "node_budget": 1000,
+   "max_relator_length_cap": 24,
+   "searches": 76800,
+   "unsolved": 35649,
+   "unsolved_before_budget": 0,
+   "presentations_with_one": 0,
+   "fewest_nodes_of_those": null
+  }
+ ],
+ "total": {
+  "searches": 40098032,
+  "unsolved": 13516429,
+  "unsolved_before_budget": 0
+ }
+}

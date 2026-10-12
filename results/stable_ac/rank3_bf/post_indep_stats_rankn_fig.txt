@@ -8,14 +8,14 @@
 [ok] rankn_bf_ms640_b1000_cap24_r5_summary.json: every field: compared=17 mismatches=0
 [ok] rankn_bf_ms640_b1000_cap24_r5_control_vs_start.md: table rows: compared=36 mismatches=0
 [ok] rankn_bf_ms640_b1000_cap24_r5_control_vs_start.md: numbers in the title and the prose: compared=11 mismatches=0
-[ok] rank3_bf_ms640_b1000_cap24: raw inputs of the tables (control.jsonl, L<n>.npz): compared=67 mismatches=0
+[ok] rank3_bf_ms640_b1000_cap24: raw inputs of the tables (control.jsonl, L<n>.npz): compared=74 mismatches=0
 [ok] rank3_bf_ms640_b1000_cap24_control_vs_start_L1-4.md: table rows: compared=63 mismatches=0
 [ok] rank3_bf_ms640_b1000_cap24_control_vs_start_L1-4.md: numbers in the title and the prose: compared=9 mismatches=0
-[ok] rank3_bf_ms640_b1000_cap24_control_vs_start_L1-9.md: table rows: compared=98 mismatches=0
-[ok] rank3_bf_ms640_b1000_cap24_control_vs_start_L1-9.md: numbers in the title and the prose: compared=9 mismatches=0
-[ok] rank3_bf_ms640_b10000_cap24: raw inputs of the tables (control.jsonl, L<n>.npz): compared=46 mismatches=0
+[ok] rank3_bf_ms640_b1000_cap24_control_vs_start_L1-10.md: table rows: compared=105 mismatches=0
+[ok] rank3_bf_ms640_b1000_cap24_control_vs_start_L1-10.md: numbers in the title and the prose: compared=9 mismatches=0
+[ok] rank3_bf_ms640_b10000_cap24: raw inputs of the tables (control.jsonl, L<n>.npz): compared=53 mismatches=0
 [ok] rank3_bf_ms640_b10000_cap24_control_vs_start_L1-4.md: table rows: compared=70 mismatches=0
 [ok] rank3_bf_ms640_b10000_cap24_control_vs_start_L1-4.md: numbers in the title and the prose: compared=9 mismatches=0
-[ok] rank3_bf_ms640_b10000_cap24_control_vs_start_L1-6.md: table rows: compared=84 mismatches=0
-[ok] rank3_bf_ms640_b10000_cap24_control_vs_start_L1-6.md: numbers in the title and the prose: compared=9 mismatches=0
-TOTAL indep_stats_rankn_fig.py: checks=20 compared=1906 mismatches=0 skipped=0
+[ok] rank3_bf_ms640_b10000_cap24_control_vs_start_L1-7.md: table rows: compared=91 mismatches=0
+[ok] rank3_bf_ms640_b10000_cap24_control_vs_start_L1-7.md: numbers in the title and the prose: compared=9 mismatches=0
+TOTAL indep_stats_rankn_fig.py: checks=20 compared=1934 mismatches=0 skipped=0

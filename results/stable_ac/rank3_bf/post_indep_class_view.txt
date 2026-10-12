@@ -1,20 +1,20 @@
 dataset: 640 presentations, 319 classes, sizes {"2": 318, "4": 1}, 324 twin pairs {"x->x,y->Y": 320, "x->Y,y->X": 1, "x->y,y->X": 1, "x->Y,y->x": 1, "x->y,y->x": 1}
-rank3_bf_ms640_b1000_cap24:inputs                                  compared=1947 mismatches=0 ok
+rank3_bf_ms640_b1000_cap24:inputs                                  compared=1950 mismatches=0 ok
 rank3_bf_ms640_b1000_cap24:classes                                 compared=10 mismatches=0 ok
 rank3_bf_ms640_b1000_cap24:classes.class_of                        compared=640 mismatches=0 ok
 rank3_bf_ms640_b1000_cap24:noise_threshold                         compared=1 mismatches=0 ok
 rank3_bf_ms640_b1000_cap24:noise.control                           compared=7 mismatches=0 ok
-rank3_bf_ms640_b1000_cap24:noise.starts                            compared=63 mismatches=0 ok
-rank3_bf_ms640_b1000_cap24:rows                                    compared=153 mismatches=0 ok
-rank3_bf_ms640_b1000_cap24:boundary_17pct(report only)             compared=4671 mismatches=0 REPORT ONLY on_boundary(last row)=0
-rank3_bf_ms640_b10000_cap24:inputs                                 compared=1938 mismatches=0 ok
+rank3_bf_ms640_b1000_cap24:noise.starts                            compared=70 mismatches=0 ok
+rank3_bf_ms640_b1000_cap24:rows                                    compared=170 mismatches=0 ok
+rank3_bf_ms640_b1000_cap24:boundary_17pct(report only)             compared=5225 mismatches=0 REPORT ONLY on_boundary(last row)=0
+rank3_bf_ms640_b10000_cap24:inputs                                 compared=1941 mismatches=0 ok
 rank3_bf_ms640_b10000_cap24:classes                                compared=10 mismatches=0 ok
 rank3_bf_ms640_b10000_cap24:classes.class_of                       compared=640 mismatches=0 ok
 rank3_bf_ms640_b10000_cap24:noise_threshold                        compared=1 mismatches=0 ok
 rank3_bf_ms640_b10000_cap24:noise.control                          compared=7 mismatches=0 ok
-rank3_bf_ms640_b10000_cap24:noise.starts                           compared=42 mismatches=0 ok
-rank3_bf_ms640_b10000_cap24:rows                                   compared=102 mismatches=0 ok
-rank3_bf_ms640_b10000_cap24:boundary_17pct(report only)            compared=3371 mismatches=0 REPORT ONLY on_boundary(last row)=0
+rank3_bf_ms640_b10000_cap24:noise.starts                           compared=49 mismatches=0 ok
+rank3_bf_ms640_b10000_cap24:rows                                   compared=119 mismatches=0 ok
+rank3_bf_ms640_b10000_cap24:boundary_17pct(report only)            compared=3973 mismatches=0 REPORT ONLY on_boundary(last row)=0
 rankn_bf_ms640_b1000_cap24_r4:inputs                               compared=6 mismatches=0 ok
 rankn_bf_ms640_b1000_cap24_r4:classes                              compared=10 mismatches=0 ok
 rankn_bf_ms640_b1000_cap24_r4:classes.class_of                     compared=640 mismatches=0 ok
@@ -31,11 +31,9 @@ rankn_bf_ms640_b1000_cap24_r5:noise.control                        compared=7 mi
 rankn_bf_ms640_b1000_cap24_r5:noise.starts                         compared=1 mismatches=0 ok
 rankn_bf_ms640_b1000_cap24_r5:rows                                 compared=18 mismatches=0 ok
 rankn_bf_ms640_b1000_cap24_r5:boundary_17pct(report only)          compared=416 mismatches=0 REPORT ONLY on_boundary(last row)=0
-skipped: 5 item(s)
-  skipped rank3_bf_ms640_b1000_cap24_L10.npz: absent
-  skipped rank3_bf_ms640_b10000_cap24_L7.npz: absent
+skipped: 3 item(s)
   skipped rank3_bf_ms640_b10000_cap24_L8.npz: absent
   skipped rank3_bf_ms640_b10000_cap24_L9.npz: absent
   skipped rank3_bf_ms640_b10000_cap24_L10.npz: absent
-TOTAL compared=3030 mismatches=0 checks_that_compared_0=0 errors=0
-RESULT no mismatch in 3030 items compared with the committed class views (exit 0)
+TOTAL compared=3078 mismatches=0 checks_that_compared_0=0 errors=0
+RESULT no mismatch in 3078 items compared with the committed class views (exit 0)

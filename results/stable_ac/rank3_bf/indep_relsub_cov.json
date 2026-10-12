@@ -320,7 +320,7 @@
   },
   {
    "name": "b1000:bruteforce_npz_files",
-   "compared": 58,
+   "compared": 65,
    "mismatches": 0,
    "status": "ok",
    "detail": {
@@ -333,7 +333,8 @@
      6,
      7,
      8,
-     9
+     9,
+     10
     ],
     "notes": [],
     "present_but_not_used": [],
@@ -342,7 +343,7 @@
   },
   {
    "name": "b1000:summary_priced_gained_set_and_best_word_nodes",
-   "compared": 45,
+   "compared": 49,
    "mismatches": 0,
    "status": "ok",
    "detail": {
@@ -355,17 +356,20 @@
      6,
      7,
      8,
-     9
+     9,
+     10
     ],
-    "summary_max_len": 9,
+    "summary_max_len": 10,
     "notes": [],
     "gained_recomputed": [
      538,
      542,
      547,
      558,
+     565,
      567,
      571,
+     572,
      598,
      602,
      606,
@@ -383,30 +387,32 @@
      632,
      633
     ],
-    "presentations_solved_by_some_word": 576,
+    "presentations_solved_by_some_word": 578,
     "best_word_nodes_recomputed": {
      "538": 51,
      "542": 84,
      "547": 86,
-     "558": 86,
+     "558": 85,
+     "565": 217,
      "567": 483,
      "571": 482,
+     "572": 220,
      "598": 849,
      "602": 721,
      "606": 80,
-     "607": 641,
+     "607": 259,
      "608": 689,
      "609": 542,
      "611": 712,
      "612": 76,
      "614": 446,
-     "615": 583,
+     "615": 305,
      "626": 536,
-     "628": 263,
-     "629": 271,
+     "628": 227,
+     "629": 230,
      "630": 214,
      "632": 630,
-     "633": 255
+     "633": 171
     }
    },
    "report_only": {
@@ -420,21 +426,22 @@
      "6": 16,
      "7": 20,
      "8": 22,
-     "9": 22
+     "9": 22,
+     "10": 24
     },
-    "gained_if_control_is_the_cov_file_row_cut_to_B": 22
+    "gained_if_control_is_the_cov_file_row_cut_to_B": 24
    }
   },
   {
    "name": "b1000:summary_priced_control_columns",
-   "compared": 47,
+   "compared": 51,
    "mismatches": 0,
    "status": "ok",
    "detail": {
     "recomputed": {
      "control_file_budget": 100000,
-     "control_solves_them_at_file_budget": 22,
-     "best_word_cheaper_than_control": 22
+     "control_solves_them_at_file_budget": 24,
+     "best_word_cheaper_than_control": 24
     },
     "control_rows_recomputed": {
      "538": {
@@ -453,6 +460,10 @@
       "control_solved": true,
       "control_nodes": 2611
      },
+     "565": {
+      "control_solved": true,
+      "control_nodes": 1404
+     },
      "567": {
       "control_solved": true,
       "control_nodes": 3402
@@ -460,6 +471,10 @@
      "571": {
       "control_solved": true,
       "control_nodes": 3536
+     },
+     "572": {
+      "control_solved": true,
+      "control_nodes": 1319
      },
      "598": {
       "control_solved": true,
@@ -531,12 +546,12 @@
     "what": "other readings of the control columns; written out, never compared",
     "gained_rows_control_unsolved_at_file_budget": [],
     "control_nodes_mismatches_if_null_when_control_unsolved": 0,
-    "best_word_cheaper_counting_only_solved_controls": 22
+    "best_word_cheaper_counting_only_solved_controls": 24
    }
   },
   {
    "name": "b1000:summary_priced_best_word_attains_best_nodes",
-   "compared": 22,
+   "compared": 24,
    "mismatches": 0,
    "status": "ok",
    "detail": {
@@ -786,7 +801,7 @@
   },
   {
    "name": "b10000:bruteforce_npz_files",
-   "compared": 38,
+   "compared": 44,
    "mismatches": 0,
    "status": "ok",
    "detail": {
@@ -796,7 +811,8 @@
      3,
      4,
      5,
-     6
+     6,
+     7
     ],
     "notes": [],
     "present_but_not_used": [],
@@ -805,7 +821,7 @@
   },
   {
    "name": "b10000:summary_priced_gained_set_and_best_word_nodes",
-   "compared": 9,
+   "compared": 13,
    "mismatches": 0,
    "status": "ok",
    "detail": {
@@ -815,22 +831,27 @@
      3,
      4,
      5,
-     6
+     6,
+     7
     ],
-    "summary_max_len": 6,
+    "summary_max_len": 7,
     "notes": [],
     "gained_recomputed": [
+     578,
+     583,
      628,
      629,
      630,
      633
     ],
-    "presentations_solved_by_some_word": 600,
+    "presentations_solved_by_some_word": 608,
     "best_word_nodes_recomputed": {
-     "628": 2156,
+     "578": 8409,
+     "583": 8476,
+     "628": 1335,
      "629": 632,
      "630": 599,
-     "633": 2097
+     "633": 1419
     }
    },
    "report_only": {
@@ -841,23 +862,32 @@
      "3": 0,
      "4": 4,
      "5": 4,
-     "6": 4
+     "6": 4,
+     "7": 6
     },
-    "gained_if_control_is_the_cov_file_row_cut_to_B": 4
+    "gained_if_control_is_the_cov_file_row_cut_to_B": 6
    }
   },
   {
    "name": "b10000:summary_priced_control_columns",
-   "compared": 11,
+   "compared": 15,
    "mismatches": 0,
    "status": "ok",
    "detail": {
     "recomputed": {
      "control_file_budget": 100000,
-     "control_solves_them_at_file_budget": 4,
-     "best_word_cheaper_than_control": 4
+     "control_solves_them_at_file_budget": 6,
+     "best_word_cheaper_than_control": 6
     },
     "control_rows_recomputed": {
+     "578": {
+      "control_solved": true,
+      "control_nodes": 15873
+     },
+     "583": {
+      "control_solved": true,
+      "control_nodes": 16111
+     },
      "628": {
       "control_solved": true,
       "control_nodes": 26774
@@ -880,12 +910,12 @@
     "what": "other readings of the control columns; written out, never compared",
     "gained_rows_control_unsolved_at_file_budget": [],
     "control_nodes_mismatches_if_null_when_control_unsolved": 0,
-    "best_word_cheaper_counting_only_solved_controls": 4
+    "best_word_cheaper_counting_only_solved_controls": 6
    }
   },
   {
    "name": "b10000:summary_priced_best_word_attains_best_nodes",
-   "compared": 4,
+   "compared": 6,
    "mismatches": 0,
    "status": "ok",
    "detail": {
@@ -895,10 +925,8 @@
  ],
  "mismatches": 0,
  "skipped": [
-  "rank3_bf_ms640_b1000_cap24_L10.npz: file absent",
   "b1000 summary key views[\"1000\"].gained_presentations_priced.shortlex_to_first_solve_cheaper_than_control: present in the summary, not defined in this task, not verified",
   "b1000 summary key views[\"1000\"].gained_presentations_priced.rows[].shortlex_nodes: present in the summary, not defined in this task, not verified",
-  "rank3_bf_ms640_b10000_cap24_L7.npz: file absent",
   "rank3_bf_ms640_b10000_cap24_L8.npz: file absent",
   "rank3_bf_ms640_b10000_cap24_L9.npz: file absent",
   "rank3_bf_ms640_b10000_cap24_L10.npz: file absent",
@@ -916,6 +944,6 @@
   "cov_file": "results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz",
   "cov_rows": 114682,
   "cov_median_cap": 33.0,
-  "seconds": 3.1
+  "seconds": 3.5
  }
 }

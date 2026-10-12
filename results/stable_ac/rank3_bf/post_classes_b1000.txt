@@ -18,6 +18,7 @@ Pairs of searches that differ only by the relabeling. Node gap = |a - b| / max(a
 | starts, word length 7 | 86,436 | 1,103 (1.3%) | 56,678 | 53.4% | 0.0% | 18.2% | 75.5% |
 | starts, word length 8 | 242,028 | 3,522 (1.5%) | 157,618 | 51.3% | 0.0% | 18.8% | 79.5% |
 | starts, word length 9 | 743,364 | 12,385 (1.7%) | 484,629 | 49.8% | 0.3% | 20.0% | 81.9% |
+| starts, word length 10 | 2,178,252 | 38,722 (1.8%) | 1,416,277 | 48.1% | 1.0% | 20.5% | 81.3% |
 
 ## Headline counts, one vote per presentation and one per class
 
@@ -34,5 +35,6 @@ Gained = some start solves and the control does not. Cheaper = the best start us
 | words up to length 7 | 2,186 | 572 | 20 | 0 | 2 | 188 | 174 | 185 | 276 | 285 | 10 | 1 | 94 |
 | words up to length 8 | 6,560 | 576 | 22 | 0 | 0 | 193 | 177 | 190 | 276 | 287 | 11 | 0 | 97 |
 | words up to length 9 | 19,682 | 576 | 22 | 0 | 0 | 198 | 187 | 198 | 276 | 287 | 11 | 0 | 102 |
+| words up to length 10 | 59,048 | 578 | 24 | 0 | 0 | 201 | 191 | 201 | 276 | 288 | 12 | 0 | 103 |
 
 Control: 554 of 640 presentations.

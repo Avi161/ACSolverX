@@ -402,6 +402,30 @@ Recorded 12 Oct 2026, 08:45 UTC.
     files and logged "640 tasks, 4 to run". The interrupted boot's log is
     `b10000/run_box2.log`. `aws_rank3_post_box.sh` now waits for both sweep
     boxes before its final pass.
+25. **Both sweeps finished; final pass.** Budget 10,000: length 7 merged at
+    11:00:20 UTC, `DONE verify=0` at 11:08:21. Budget 1,000: length 10 merged
+    at 11:31:52, `DONE verify=0` at 11:34:46. The post box
+    (`i-0ec6e7118a0d0ab44`, m7a.2xlarge on demand, commit `a27bf4e`) ran its
+    final pass on the complete files from 11:38:29 to 12:04:32: 33 tests
+    passed, all 20 steps exit 0, verifier OK (23 npz files, 120,389
+    certificates replayed, 690 re-runs with the reference solver), seven
+    independent scripts 0 mismatches (`indep_search` 40,860 searches).
+    Item 18's "18 to 20%" for the 90th-percentile gap at lengths 6 to 9
+    becomes 18 to 21% with length 10 (20.5%). The interim figures
+    `..._L1-9` and `..._L1-6` are replaced by `..._L1-10` and `..._L1-7`.
+26. **Cap check, added after the sweeps.** No arm of section 3 varies the cap:
+    the control and every start run at 24 per relator. Two measurements were
+    added on 12 Oct after the sweeps, commit `c1b2148`:
+    (a) `cap_exhaustion.py` counts unsolved searches that stopped below their
+    node budget, which happens only when the cap has emptied the frontier.
+    (b) Box D (`i-0aba1492bd366b190`, c7a.48xlarge spot, us-east-1d, launched
+    11:55 UTC, user-data `aws_rank3_cap_box.sh`, `DEADMAN` 240) reruns the
+    control, every word of length 1 to 6 and the relator subwords at caps 32
+    and 48, budget 1,000. Its verifier runs without `--cov-control` (the CoV
+    control rows are at cap 24) and its summaries without `--cov`, so no
+    cap-24 number enters a cap-32 or cap-48 table. Outputs:
+    `results/stable_ac/rank3_bf/cap/`, raw files in
+    `cov_all/rank3_bf/cap/` in S3.
 
 ### Boxes
 

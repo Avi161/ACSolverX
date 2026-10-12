@@ -3,7 +3,7 @@
  "checks": [
   {
    "name": "replay_ends_trivial",
-   "compared": 121039,
+   "compared": 123894,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -33,8 +33,16 @@
       "compared": 1670,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
       "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
@@ -114,7 +122,7 @@
   },
   {
    "name": "no_relator_over_24_on_path",
-   "compared": 121039,
+   "compared": 123894,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -144,8 +152,16 @@
       "compared": 1670,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
       "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
@@ -225,7 +241,7 @@
   },
   {
    "name": "row_r1_r2_equal_dataset",
-   "compared": 285460,
+   "compared": 291170,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -279,12 +295,28 @@
       "compared": 1670,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
       "compared": 69816,
       "mismatches": 0
      },
      "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
       "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl": {
+      "compared": 1256,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
@@ -420,7 +452,7 @@
   },
   {
    "name": "n_moves_eq_jsonl_path_length",
-   "compared": 117534,
+   "compared": 120389,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -450,8 +482,16 @@
       "compared": 1670,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
       "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
@@ -523,7 +563,7 @@
   },
   {
    "name": "n_moves_eq_npz_path_len",
-   "compared": 31799,
+   "compared": 34654,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -551,6 +591,14 @@
      },
      "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl": {
       "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
@@ -626,7 +674,7 @@
   },
   {
    "name": "jsonl_nodes_eq_npz_nodes",
-   "compared": 31799,
+   "compared": 34654,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -654,6 +702,14 @@
      },
      "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
       "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
@@ -729,7 +785,7 @@
   },
   {
    "name": "solved_rows_have_path_row",
-   "compared": 117534,
+   "compared": 120389,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -759,8 +815,16 @@
       "compared": 1670,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
       "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
@@ -832,7 +896,7 @@
   },
   {
    "name": "moves_wellformed_for_search",
-   "compared": 121039,
+   "compared": 123894,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -862,8 +926,16 @@
       "compared": 1670,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
       "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl": {
@@ -943,7 +1015,7 @@
   },
   {
    "name": "sample_path_length_eq_npz_path_len",
-   "compared": 28294,
+   "compared": 31149,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -971,6 +1043,14 @@
      },
      "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
       "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
@@ -1038,7 +1118,7 @@
   },
   {
    "name": "sample_word_index_eq_npz_word",
-   "compared": 28294,
+   "compared": 31149,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -1066,6 +1146,14 @@
      },
      "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl": {
       "compared": 1670,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
@@ -1152,7 +1240,7 @@
   },
   {
    "name": "row_name_zword_zrelator_consistent",
-   "compared": 285460,
+   "compared": 291170,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -1206,12 +1294,28 @@
       "compared": 1670,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
       "compared": 69816,
       "mismatches": 0
      },
      "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
       "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl": {
+      "compared": 1256,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
@@ -1347,7 +1451,7 @@
   },
   {
    "name": "jsonl_rows_parse_unique",
-   "compared": 288965,
+   "compared": 294675,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -1401,12 +1505,28 @@
       "compared": 1670,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1599,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
       "compared": 69816,
       "mismatches": 0
      },
      "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
       "compared": 49272,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl": {
+      "compared": 1256,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
+      "compared": 1256,
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl": {
@@ -1550,7 +1670,7 @@
   },
   {
    "name": "path_file_has_rows",
-   "compared": 25,
+   "compared": 27,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -1580,7 +1700,15 @@
       "compared": 1,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
       "compared": 1,
       "mismatches": 0
      },
@@ -1661,7 +1789,7 @@
   },
   {
    "name": "companion_files_present",
-   "compared": 71,
+   "compared": 77,
    "mismatches": 0,
    "status": "pass",
    "detail": {
@@ -1739,6 +1867,18 @@
       "compared": 1,
       "mismatches": 0
      },
+     "rank3_bf_ms640_b10000_cap24_L7.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
      "rank3_bf_ms640_b10000_cap24_relsub.jsonl": {
       "compared": 1,
       "mismatches": 0
@@ -1748,6 +1888,18 @@
       "mismatches": 0
      },
      "rank3_bf_ms640_b1000_cap24_L1.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10.npz": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl": {
+      "compared": 1,
+      "mismatches": 0
+     },
+     "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
       "compared": 1,
       "mismatches": 0
      },
@@ -1957,9 +2109,6 @@
  ],
  "mismatches": 0,
  "skipped": [
-  "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl: absent",
-  "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl: absent",
-  "rank3_bf_ms640_b1000_cap24_L10.npz: absent",
   "rank3_bf_ms640_b10000_cap24_L1_inv_sample_paths.jsonl: absent",
   "rank3_bf_ms640_b10000_cap24_L1_inv_sample.jsonl: absent",
   "rank3_bf_ms640_b10000_cap24_L1_inv.npz: absent",
@@ -1978,9 +2127,6 @@
   "rank3_bf_ms640_b10000_cap24_L6_inv_sample_paths.jsonl: absent",
   "rank3_bf_ms640_b10000_cap24_L6_inv_sample.jsonl: absent",
   "rank3_bf_ms640_b10000_cap24_L6_inv.npz: absent",
-  "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl: absent",
-  "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl: absent",
-  "rank3_bf_ms640_b10000_cap24_L7.npz: absent",
   "rank3_bf_ms640_b10000_cap24_L8_sample_paths.jsonl: absent",
   "rank3_bf_ms640_b10000_cap24_L8_sample.jsonl: absent",
   "rank3_bf_ms640_b10000_cap24_L8.npz: absent",
@@ -2084,6 +2230,21 @@
    "identical_duplicate_jsonl_rows": 0,
    "paths_file_present": true
   },
+  "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1599,
+   "rows_replayed": 1599,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1599,
+   "jsonl_rows_solved": 1599,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
   "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl": {
    "kind": "relsub",
    "path_rows": 49272,
@@ -2095,6 +2256,21 @@
    "duplicate_path_rows": 0,
    "jsonl_rows": 69816,
    "jsonl_rows_solved": 49272,
+   "jsonl_row_failures": 0,
+   "identical_duplicate_jsonl_rows": 0,
+   "paths_file_present": true
+  },
+  "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl": {
+   "kind": "rank3",
+   "path_rows": 1256,
+   "rows_replayed": 1256,
+   "rows_start_not_built": 0,
+   "rows_not_replayed_time_budget": 0,
+   "failures": 0,
+   "replay_failures": 0,
+   "duplicate_path_rows": 0,
+   "jsonl_rows": 1256,
+   "jsonl_rows_solved": 1256,
    "jsonl_row_failures": 0,
    "identical_duplicate_jsonl_rows": 0,
    "paths_file_present": true
@@ -2375,5 +2551,5 @@
  "workers": 8,
  "pool_note": null,
  "minutes": 40.0,
- "seconds": 7.1
+ "seconds": 7.6
 }

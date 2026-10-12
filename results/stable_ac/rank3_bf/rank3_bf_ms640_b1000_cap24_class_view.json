@@ -748,6 +748,15 @@
     "gap_median": 0.002652519893899204,
     "gap_p90": 0.2,
     "gap_p99": 0.8189655172413793
+   },
+   "10": {
+    "pairs": 2178252,
+    "solved_flag_differs": 38722,
+    "both_solved": 1416277,
+    "same_nodes": 0.48107820715862787,
+    "gap_median": 0.01020408163265306,
+    "gap_p90": 0.20454545454545456,
+    "gap_p99": 0.8127712102410024
    }
   }
  },
@@ -958,6 +967,29 @@
     "gained": 11,
     "lost": 0,
     "cheaper": 102
+   }
+  },
+  {
+   "name": "words up to length 10",
+   "starts": 59048,
+   "presentations": {
+    "n": 640,
+    "control": 554,
+    "some_start": 578,
+    "gained": 24,
+    "gained_but_control_solves_a_copy": 0,
+    "lost": 0,
+    "cheaper": 201,
+    "cheaper_beyond_noise": 191,
+    "cheaper_than_every_copy_of_control": 201
+   },
+   "classes": {
+    "n": 319,
+    "control": 276,
+    "some_start": 288,
+    "gained": 12,
+    "lost": 0,
+    "cheaper": 103
    }
   }
  ]

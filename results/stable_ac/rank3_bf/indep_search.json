@@ -11,73 +11,79 @@
    "name": "control_b1000",
    "compared": 640,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_control.jsonl: planned 640, compared 640, equal 640, not run 0; 44 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_control.jsonl: planned 640, compared 640, equal 640, not run 0; 43 cpu-s"
   },
   {
    "name": "extra_rank3_null_b1000",
    "compared": 640,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_control.jsonl: planned 640, compared 640, equal 640, not run 0; 46 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_control.jsonl: planned 640, compared 640, equal 640, not run 0; 45 cpu-s"
   },
   {
    "name": "rank3_b1000_L1",
    "compared": 1280,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L1.npz: planned 1280, compared 1280, equal 1280, not run 0; 125 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L1.npz: planned 1280, compared 1280, equal 1280, not run 0; 123 cpu-s"
   },
   {
    "name": "rank3_b1000_L2",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L2.npz: planned 3000, compared 3000, equal 3000, not run 0; 230 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L2.npz: planned 3000, compared 3000, equal 3000, not run 0; 226 cpu-s"
   },
   {
    "name": "rank3_b1000_L3",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L3.npz: planned 3000, compared 3000, equal 3000, not run 0; 246 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L3.npz: planned 3000, compared 3000, equal 3000, not run 0; 242 cpu-s"
   },
   {
    "name": "rank3_b1000_L4",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L4.npz: planned 3000, compared 3000, equal 3000, not run 0; 262 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L4.npz: planned 3000, compared 3000, equal 3000, not run 0; 257 cpu-s"
   },
   {
    "name": "rank3_b1000_L5",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L5.npz: planned 3000, compared 3000, equal 3000, not run 0; 281 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L5.npz: planned 3000, compared 3000, equal 3000, not run 0; 276 cpu-s"
   },
   {
    "name": "rank3_b1000_L6",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L6.npz: planned 3000, compared 3000, equal 3000, not run 0; 285 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L6.npz: planned 3000, compared 3000, equal 3000, not run 0; 280 cpu-s"
   },
   {
    "name": "rank3_b1000_L7",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L7.npz: planned 3000, compared 3000, equal 3000, not run 0; 304 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L7.npz: planned 3000, compared 3000, equal 3000, not run 0; 298 cpu-s"
   },
   {
    "name": "rank3_b1000_L8",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L8.npz: planned 3000, compared 3000, equal 3000, not run 0; 328 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L8.npz: planned 3000, compared 3000, equal 3000, not run 0; 322 cpu-s"
   },
   {
    "name": "rank3_b1000_L9",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L9.npz: planned 3000, compared 3000, equal 3000, not run 0; 336 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L9.npz: planned 3000, compared 3000, equal 3000, not run 0; 330 cpu-s"
+  },
+  {
+   "name": "rank3_b1000_L10",
+   "compared": 3000,
+   "mismatches": 0,
+   "detail": "rank3_bf_ms640_b1000_cap24_L10.npz: planned 3000, compared 3000, equal 3000, not run 0; 323 cpu-s"
   },
   {
    "name": "rank3_b1000_L1_inv",
    "compared": 500,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L1_inv.npz: planned 500, compared 500, equal 500, not run 0; 48 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L1_inv.npz: planned 500, compared 500, equal 500, not run 0; 47 cpu-s"
   },
   {
    "name": "rank3_b1000_L2_inv",
@@ -89,7 +95,7 @@
    "name": "rank3_b1000_L3_inv",
    "compared": 500,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L3_inv.npz: planned 500, compared 500, equal 500, not run 0; 42 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L3_inv.npz: planned 500, compared 500, equal 500, not run 0; 41 cpu-s"
   },
   {
    "name": "rank3_b1000_L4_inv",
@@ -101,19 +107,19 @@
    "name": "rank3_b1000_L5_inv",
    "compared": 500,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L5_inv.npz: planned 500, compared 500, equal 500, not run 0; 48 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L5_inv.npz: planned 500, compared 500, equal 500, not run 0; 47 cpu-s"
   },
   {
    "name": "rank3_b1000_L6_inv",
    "compared": 500,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b1000_cap24_L6_inv.npz: planned 500, compared 500, equal 500, not run 0; 52 cpu-s"
+   "detail": "rank3_bf_ms640_b1000_cap24_L6_inv.npz: planned 500, compared 500, equal 500, not run 0; 51 cpu-s"
   },
   {
    "name": "rank4_b1000",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rankn_bf_ms640_b1000_cap24_r4.npz: planned 3000, compared 3000, equal 3000, not run 0; 209 cpu-s"
+   "detail": "rankn_bf_ms640_b1000_cap24_r4.npz: planned 3000, compared 3000, equal 3000, not run 0; 204 cpu-s"
   },
   {
    "name": "rank4_b1000_null",
@@ -125,7 +131,7 @@
    "name": "rank5_b1000",
    "compared": 3000,
    "mismatches": 0,
-   "detail": "rankn_bf_ms640_b1000_cap24_r5.npz: planned 3000, compared 3000, equal 3000, not run 0; 189 cpu-s"
+   "detail": "rankn_bf_ms640_b1000_cap24_r5.npz: planned 3000, compared 3000, equal 3000, not run 0; 185 cpu-s"
   },
   {
    "name": "rank5_b1000_null",
@@ -137,37 +143,43 @@
    "name": "rank3_b10000_L1",
    "compared": 300,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b10000_cap24_L1.npz: planned 300, compared 300, equal 300, not run 0; 227 cpu-s"
+   "detail": "rank3_bf_ms640_b10000_cap24_L1.npz: planned 300, compared 300, equal 300, not run 0; 223 cpu-s"
   },
   {
    "name": "rank3_b10000_L2",
    "compared": 300,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b10000_cap24_L2.npz: planned 300, compared 300, equal 300, not run 0; 181 cpu-s"
+   "detail": "rank3_bf_ms640_b10000_cap24_L2.npz: planned 300, compared 300, equal 300, not run 0; 177 cpu-s"
   },
   {
    "name": "rank3_b10000_L3",
    "compared": 300,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b10000_cap24_L3.npz: planned 300, compared 300, equal 300, not run 0; 207 cpu-s"
+   "detail": "rank3_bf_ms640_b10000_cap24_L3.npz: planned 300, compared 300, equal 300, not run 0; 203 cpu-s"
   },
   {
    "name": "rank3_b10000_L4",
    "compared": 300,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b10000_cap24_L4.npz: planned 300, compared 300, equal 300, not run 0; 152 cpu-s"
+   "detail": "rank3_bf_ms640_b10000_cap24_L4.npz: planned 300, compared 300, equal 300, not run 0; 150 cpu-s"
   },
   {
    "name": "rank3_b10000_L5",
    "compared": 300,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b10000_cap24_L5.npz: planned 300, compared 300, equal 300, not run 0; 200 cpu-s"
+   "detail": "rank3_bf_ms640_b10000_cap24_L5.npz: planned 300, compared 300, equal 300, not run 0; 197 cpu-s"
   },
   {
    "name": "rank3_b10000_L6",
    "compared": 300,
    "mismatches": 0,
-   "detail": "rank3_bf_ms640_b10000_cap24_L6.npz: planned 300, compared 300, equal 300, not run 0; 217 cpu-s"
+   "detail": "rank3_bf_ms640_b10000_cap24_L6.npz: planned 300, compared 300, equal 300, not run 0; 213 cpu-s"
+  },
+  {
+   "name": "rank3_b10000_L7",
+   "compared": 300,
+   "mismatches": 0,
+   "detail": "rank3_bf_ms640_b10000_cap24_L7.npz: planned 300, compared 300, equal 300, not run 0; 191 cpu-s"
   },
   {
    "name": "control_b1000_n2_copy",
@@ -219,15 +231,13 @@
   },
   {
    "name": "meta_params",
-   "compared": 25,
+   "compared": 27,
    "mismatches": 0,
    "detail": "budget / cap / rank recorded in each file equal the file name's (the search uses the recorded values), and the control file has one row per dataset line"
   }
  ],
  "mismatches": 0,
  "skipped": [
-  "rank3_bf_ms640_b1000_cap24_L10.npz",
-  "rank3_bf_ms640_b10000_cap24_L7.npz",
   "rank3_bf_ms640_b10000_cap24_L8.npz",
   "rank3_bf_ms640_b10000_cap24_L9.npz",
   "rank3_bf_ms640_b10000_cap24_L10.npz"
@@ -245,9 +255,9 @@
    "equal": 640
   },
   "rank3_b1000": {
-   "planned": 25280,
-   "compared": 25280,
-   "equal": 25280
+   "planned": 28280,
+   "compared": 28280,
+   "equal": 28280
   },
   "rank3_b1000_inv": {
    "planned": 3000,
@@ -275,17 +285,17 @@
    "equal": 100
   },
   "rank3_b10000": {
-   "planned": 1800,
-   "compared": 1800,
-   "equal": 1800
+   "planned": 2100,
+   "compared": 2100,
+   "equal": 2100
   }
  },
- "searches_planned": 37560,
- "searches_compared": 37560,
+ "searches_planned": 40860,
+ "searches_compared": 40860,
  "job_errors": 0,
  "stopped_early": "",
  "workers": 8,
  "minutes": 40.0,
- "seconds": 548.7,
+ "seconds": 603.3,
  "seed": 12345
 }
