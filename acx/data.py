@@ -1,6 +1,7 @@
-"""Dataset and benchmark loaders: each returns a list of ``Row(id, pres, meta)``; ``rows(name)`` reads any of them
-by name (``DATASETS``, ``BENCHMARKS``, ``SPLITS``) or path, and is what ``run.py`` uses. ``MS`` and ``AK`` build
-the Miller-Schupp and Akbulut-Kirby presentations.
+"""Dataset and benchmark loaders; each returns a list of ``Row(id, pres, meta)``.
+
+``rows(name)`` reads any dataset, benchmark or split by name (``DATASETS``, ``BENCHMARKS``, ``SPLITS``) or path.
+``MS`` and ``AK`` build the Miller-Schupp and Akbulut-Kirby presentations.
 """
 import csv
 import gzip
@@ -41,6 +42,11 @@ def path_of(name_or_path, table=DATASETS):
     return p if os.path.isabs(p) else os.path.join(ROOT, p)
 
 
+def _open(p):
+    """Text file handle of ``p``, gunzipped if it ends in ``.gz``."""
+    return gzip.open(p, "rt", newline="") if p.endswith(".gz") else open(p, newline="")
+
+
 def parse_line(line):
     """One dataset line, a zero-padded flat list or tuple of ints ``[r1 | r2]``, as a ``Presentation``."""
     ints = [int(t) for t in line.strip().strip("[]()").split(",") if t.strip()]
@@ -54,11 +60,6 @@ def load(name_or_path, ids=None):
         lines = [ln for ln in f if ln.strip()]
     pick = range(len(lines)) if ids is None else [int(i) for i in ids]
     return [Row(str(i), parse_line(lines[i]), {}) for i in pick]
-
-
-def _open(p):
-    """Text file handle of ``p``, gunzipped if it ends in ``.gz``."""
-    return gzip.open(p, "rt", newline="") if p.endswith(".gz") else open(p, newline="")
 
 
 def load_csv(name_or_path):
@@ -92,7 +93,8 @@ def rows(name_or_path):
         return load_csv(name_or_path)
     if name_or_path.endswith((".txt", ".txt.gz")):
         return load(name_or_path)
-    raise KeyError(f"unknown benchmark {name_or_path!r}; names: {sorted(DATASETS) + sorted(BENCHMARKS) + sorted(SPLITS)}")
+    names = sorted(DATASETS) + sorted(BENCHMARKS) + sorted(SPLITS)
+    raise KeyError(f"unknown benchmark {name_or_path!r}; names: {names}")
 
 
 def MS(n, w):

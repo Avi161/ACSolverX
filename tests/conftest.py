@@ -1,5 +1,4 @@
-"""Shared fixtures. ``tests/data/greedy_golden.json`` is main's baseline golden file
-(``origin/test/greedy-test-suite:experiments/greedy_tests/golden/``, commit 1623ed42)."""
+"""Shared fixtures; ``tests/data/greedy_golden.json`` is the baseline golden file."""
 import json
 import os
 import sys
@@ -22,6 +21,7 @@ def dataset(path):
 
 
 def golden_entries():
+    """The entries of the golden file."""
     with open(GOLDEN) as f:
         return json.load(f)["entries"]
 
