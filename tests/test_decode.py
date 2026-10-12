@@ -99,3 +99,11 @@ def test_illegal_and_incomplete_paths_are_refused(solves):
         decode(pres, [Move(0, 0, 1, 0, 0)])
     with pytest.raises(ReplayError, match="non-trivial"):
         decode_and_replay(pres, path[:-1])
+
+
+def test_pack_lives_in_its_own_module_and_is_still_importable_from_decode():
+    from acx.verify import decode as decode_module, pack as pack_module
+    assert decode_module.pack is pack_module.pack and decode_module.unpack is pack_module.unpack
+    moves = [{"op": "swap"}, {"op": "invert", "target": 2}, {"op": "conjugate", "target": 1, "by": "x"},
+             {"op": "multiply", "target": 1, "source": 2}, {"op": "stabilize"}, {"op": "destabilize"}]
+    assert pack_module.unpack(pack_module.pack(moves)) == moves

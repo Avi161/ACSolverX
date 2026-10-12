@@ -221,3 +221,29 @@ def test_row_that_is_its_own_representative_gets_the_decoded_path(row):
     assert path == decode(pres.reduced(False), res.path)
     assert replay(pres, path, normalize=False)[-1].is_trivial()
     assert len(path) < len(transport(pres, (), res.path, res.start))
+
+
+def test_module_split_keeps_the_old_import_paths():
+    """The automorphism table, the emitter and the move packer stay importable from where callers took them."""
+    from acx.aut import autos, emitter, whitehead
+    from acx.aut.transport import Emitter
+    assert whitehead.AUTOS is autos.AUTOS and whitehead.TABLES is autos.TABLES
+    assert whitehead.apply_table is autos.apply_table and whitehead.DESCENT is autos.DESCENT
+    assert Emitter is emitter.Emitter
+
+
+def test_emitter_s_move_is_the_core_conjugated_multiply():
+    """An S-move carried by the identity table is ``Trace.conjugated_multiply`` of the core, move for move."""
+    from acx.aut.autos import IDENTITY, sub_table
+    from acx.aut.emitter import Emitter
+    from acx.core.moves import Trace, enumerate_moves, source_word
+    from acx.core.words import canonical_rels, inverse, reduce
+    pres = dataset("data/ms640_solved.txt")[100].reduced().canonical()
+    rels = canonical_rels(pres.rels)
+    for m in itertools.islice(enumerate_moves(rels), 25):
+        ri, source = rels[m.i], source_word(rels, m)
+        c = reduce(source[:len(source) - m.k2] + inverse(ri[:len(ri) - m.k1]), cyclic=False)
+        em, ref = Emitter(pres), Trace(pres)
+        em.s_move(rels, m, sub_table(IDENTITY))
+        ref.conjugated_multiply(m.i, m.j, m.s, c)
+        assert em.moves == ref.moves

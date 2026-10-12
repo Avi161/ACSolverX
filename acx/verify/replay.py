@@ -20,21 +20,21 @@ def exponent_matrix(pres):
 
 
 def det(m):
-    """Exact integer determinant (fraction-free Bareiss)."""
+    """Exact integer determinant of the square integer matrix ``m`` (fraction-free Bareiss elimination)."""
     n = len(m)
     a = [row[:] for row in m]
-    sign, prev = 1, 1
+    sign, prev_pivot = 1, 1
     for k in range(n - 1):
-        if a[k][k] == 0:
-            sw = next((r for r in range(k + 1, n) if a[r][k]), None)
-            if sw is None:
+        if a[k][k] == 0:                                  # swap in a row with a nonzero pivot, or det is 0
+            swap = next((r for r in range(k + 1, n) if a[r][k]), None)
+            if swap is None:
                 return 0
-            a[k], a[sw] = a[sw], a[k]
+            a[k], a[swap] = a[swap], a[k]
             sign = -sign
         for i in range(k + 1, n):
             for j in range(k + 1, n):
-                a[i][j] = (a[i][j] * a[k][k] - a[i][k] * a[k][j]) // prev
-        prev = a[k][k]
+                a[i][j] = (a[i][j] * a[k][k] - a[i][k] * a[k][j]) // prev_pivot   # exact division
+        prev_pivot = a[k][k]
     return sign * a[n - 1][n - 1] if n else 1
 
 
@@ -48,11 +48,13 @@ def abs_det(pres):
 def replay(pres, path, cyclic=True, cap=None, normalize=True, require_trivial=True):
     """Replay ``path`` from ``pres`` and return the states (start first); raise ``ReplayError`` on any failure.
 
-    An S-move (``acx.core.moves.Move``) must be in range with a cancelling seam; an elementary or stable dict move
-    must be well formed (AC5 only drops a generator that occurs nowhere else). ``|det| = 1`` is checked at the
-    start and after every move. ``cap`` bounds the relators an S-move produces. ``normalize`` (search paths) starts
-    from ``pres.normal(cyclic)``, the search's start; elementary paths on the raw words pass ``normalize=False``.
-    ``require_trivial``: the end has as many relators as generators, each cyclically reducing to one letter.
+    Each move must be legal: an S-move (``acx.core.moves.Move``) in range with a cancelling seam, or a well-formed
+    elementary or stable dict move (AC5 only drops a generator that occurs nowhere else). ``|det| = 1`` is checked
+    at the start and after every move, and ``cap`` bounds the relators an S-move produces.
+
+    ``normalize`` (search paths) starts from ``pres.normal(cyclic)``, the search's start; elementary paths on the
+    raw words pass ``normalize=False``. ``require_trivial``: the end has as many relators as generators, each
+    cyclically reducing to one letter.
     """
     cur = pres.normal(cyclic) if normalize else pres
     if abs_det(cur) != 1:
