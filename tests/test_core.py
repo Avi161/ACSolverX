@@ -5,7 +5,7 @@ import re
 
 import pytest
 
-from acx.core.config import SearchConfig, parse_override, require_bool, require_int
+from acx.core.config import SearchConfig, parse_override, reject_unknown, require_bool, require_int
 from acx.core.moves import (Move, Trace, apply_raw, destabilize, elementary_step, enumerate_moves,
                             from_legacy, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
@@ -162,6 +162,14 @@ def test_require_int_takes_an_int_at_or_above_its_bound():
         with pytest.raises(ValueError) as error:
             require_int(value, "n", low=low)
         assert str(error.value) == f"n must be an int >= {low}, got {value!r}"
+
+
+def test_reject_unknown_names_the_unknown_keys_sorted():
+    reject_unknown({"a": 1}, {"a", "b"}, "x")
+    reject_unknown({}, (), "x")
+    with pytest.raises(ValueError) as error:
+        reject_unknown({"zz": 1, "a": 2, "yy": 3}, ("a",), "SearchConfig")
+    assert str(error.value) == "unknown SearchConfig keys ['yy', 'zz']"
 
 
 def test_normal_form_is_a_fixed_point():

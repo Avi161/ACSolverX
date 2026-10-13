@@ -3,7 +3,7 @@ import os
 import tomllib
 from dataclasses import fields
 
-from ..core.config import SearchConfig, parse_cap, parse_override, require_int
+from ..core.config import SearchConfig, parse_cap, parse_override, reject_unknown, require_int
 from .output import check_output, keeps_path
 
 # The config sections each method reads; any other section is an error.
@@ -60,9 +60,7 @@ def _apply_override(cfg, item):
 def _check_keys(cfg):
     """Raise ``ValueError`` for an unknown top-level key, a ``name`` or ``benchmark`` that is not a string, a section
     that is not a table, an unknown method, or a section the method ignores."""
-    unknown = set(cfg) - ALL_KEYS
-    if unknown:
-        raise ValueError(f"unknown config keys {sorted(unknown)}")
+    reject_unknown(cfg, ALL_KEYS, "config")
     for key in ("name", "benchmark"):
         if key in cfg and not isinstance(cfg[key], str):
             raise ValueError(f'{key} must be a string, got {cfg[key]!r} (quote it: {key}="...")')
@@ -108,10 +106,7 @@ def method_config(cfg):
 
 def _build(cls, values, **fixed):
     """``cls(**fixed, **values)`` for a config dataclass, with unknown keys of ``values`` named in the error."""
-    allowed = {f.name for f in fields(cls)} - set(fixed)
-    unknown = set(values) - allowed
-    if unknown:
-        raise ValueError(f"unknown {cls.__name__} keys {sorted(unknown)}")
+    reject_unknown(values, {f.name for f in fields(cls)} - set(fixed), cls.__name__)
     return cls(**fixed, **values)
 
 
@@ -127,9 +122,7 @@ def _ngen_config(cfg, search):
 def _rl_keywords(values):
     """The keywords for ``acx.rl.solve.solve``; ``cap`` defaults to, and may not exceed, the policy's width ``L``."""
     from ..rl import L
-    unknown = set(values) - RL_KEYS
-    if unknown:
-        raise ValueError(f"unknown rl keys {sorted(unknown)}")
+    reject_unknown(values, RL_KEYS, "rl")
     keywords = dict(values)
     for name in ("width", "steps"):
         if name in keywords:

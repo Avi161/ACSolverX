@@ -1,5 +1,5 @@
-"""``SearchConfig``, the one frozen dataclass every search takes, and the shared value checks ``parse_cap``,
-``require_bool`` and ``parse_override``."""
+"""``SearchConfig``, the one frozen dataclass every search takes, ``parse_override``, and the value checks every
+config shares: ``parse_cap``, ``reject_unknown``, ``require_bool`` and ``require_int``."""
 import tomllib
 from dataclasses import asdict, dataclass, fields, replace
 
@@ -44,10 +44,7 @@ class SearchConfig:
     @classmethod
     def from_dict(cls, values):
         """From a dict of field values; unknown keys raise ``ValueError``."""
-        known = {field.name for field in fields(cls)}
-        unknown = set(values) - known
-        if unknown:
-            raise ValueError(f"unknown SearchConfig keys {sorted(unknown)}")
+        reject_unknown(values, {field.name for field in fields(cls)}, cls.__name__)
         return cls(**values)
 
     @classmethod
@@ -75,6 +72,13 @@ def parse_cap(value, name="cap", low=1, keep=()):
         return value
     allowed = " or ".join([f"an int >= {low}", "'none'", *map(repr, keep)])
     raise ValueError(f"{name} must be {allowed}, got {value!r}")
+
+
+def reject_unknown(values, allowed, what):
+    """``ValueError`` naming the keys of ``values`` that are not in ``allowed``; ``what`` names the table."""
+    unknown = set(values) - set(allowed)
+    if unknown:
+        raise ValueError(f"unknown {what} keys {sorted(unknown)}")
 
 
 def require_bool(value, name):

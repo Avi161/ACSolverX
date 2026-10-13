@@ -897,3 +897,20 @@ def test_read_records_cuts_the_cut_off_line_only_when_asked(tmp_path):
     assert path.read_text() == text[:text.rindex("\n") + 1]
     path.write_text("")
     assert read_records(path, repair=True) == [] and path.read_text() == ""
+
+
+# ---- every unknown key is named, by its table ----------------------------------------------------------------------
+
+@pytest.mark.parametrize("name, override, message", [
+    ("smoke", "bogus=1", "unknown config keys ['bogus']"),
+    ("smoke", "search.bogus=1", "unknown SearchConfig keys ['bogus']"),
+    ("cov", "cov.bogus=1", "unknown CoVConfig keys ['bogus']"),
+    ("ngen_sac", "ngen.bogus=1", "unknown NGenConfig keys ['bogus']"),
+    ("hybrid", "hybrid.bogus=1", "unknown HybridConfig keys ['bogus']"),
+    ("rl", "rl.beam=4", "unknown rl keys ['beam']"),
+    ("smoke", "workers=0", "workers must be an int >= 1, got 0"),
+    ("smoke", "workers=true", "workers must be an int >= 1, got True")])
+def test_config_errors_name_the_key_and_its_table(name, override, message):
+    with pytest.raises(ValueError) as error:
+        cfg(name, override)
+    assert str(error.value) == message
