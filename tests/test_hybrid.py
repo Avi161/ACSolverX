@@ -563,6 +563,27 @@ def test_dyn_ratio_must_be_a_number_at_least_zero(bad):
     assert HybridConfig(dyn_ratio=0).dyn_ratio == 0 and HybridConfig(dyn_ratio=2).dyn_ratio == 2
 
 
+@pytest.mark.parametrize("name, low", [("budget", 1), ("penalty", 0), ("min_uses", 1)])
+def test_budget_penalty_and_min_uses_must_be_ints_in_range(name, low):
+    """D7-4: ``budget=0`` or ``1.5`` gave silent unsolved rows and a string gave one TypeError per row."""
+    for bad in (low - 1, float(low), str(low), True, None):
+        with pytest.raises(ValueError, match=rf"^{name} must be an int >= {low}, got "):
+            HybridConfig(**{name: bad})
+    assert getattr(HybridConfig(**{name: low}), name) == low
+    assert getattr(FAST.replace(**{name: low + 3}), name) == low + 3
+
+
+@pytest.mark.parametrize("override", ['hybrid.budget="100"', "hybrid.budget=0", "hybrid.budget=1.5",
+                                      'hybrid.penalty="a"', "hybrid.penalty=-1", 'hybrid.min_uses="2"'])
+def test_numeric_knobs_are_checked_when_the_config_loads(tmp_path, override):
+    """D7-4 through the runner: the bad value is refused when the config loads, before any row runs."""
+    path = tmp_path / "hybrid.toml"
+    path.write_text('method = "hybrid"\nbenchmark = "bench60"\n')
+    name = override.split("=")[0].removeprefix("hybrid.")
+    with pytest.raises(ValueError, match=f"^{name} must be an int >= "):
+        runner.load_config(str(path), [override])
+
+
 def test_each_module_of_the_package_is_its_attribute():
     """``acx.hybrid.<name>`` is the module ``<name>.py``: the exported function ``certify`` lives in
     ``elementary.py``, so it does not hide its module."""

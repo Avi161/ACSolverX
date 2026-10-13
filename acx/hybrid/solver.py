@@ -32,6 +32,10 @@ class HybridConfig:
     certify: bool = True              # write out and replay the elementary path
 
     def __post_init__(self):
+        for name, low in (("budget", 1), ("penalty", 0), ("min_uses", 1)):
+            value = getattr(self, name)
+            if type(value) is not int or value < low:
+                raise ValueError(f"{name} must be an int >= {low}, got {value!r}")
         if self.backend not in BACKENDS:
             raise ValueError(f"backend {self.backend!r} not in {BACKENDS}")
         if isinstance(self.dyn_ratio, bool) or not isinstance(self.dyn_ratio, (int, float)) or not self.dyn_ratio >= 0:
