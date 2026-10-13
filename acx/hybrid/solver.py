@@ -7,14 +7,14 @@ import time
 from dataclasses import dataclass, field, replace
 
 from ..core.config import parse_cap
-from ..core.moves import Move
 from ..core.words import Presentation
 from ..verify.replay import abs_det
 from .capwatch import blank_records
-from .cascade import Aut, Budget, Run, cascade
+from .cascade import cascade
 from .elementary import certify
 from .frontier import BACKENDS
 from .search import BestFirst
+from .steps import Budget, Run
 
 
 @dataclass(frozen=True)
@@ -88,24 +88,3 @@ def solve(pres, cfg=None, **overrides):
     kind = "stable_cert" if any(isinstance(s, dict) for s in steps) else "ac_path"
     path = tuple(certify(pres, steps)) if cfg.certify else None
     return HybridResult(True, stage, units, steps, kind, path, stats)
-
-
-def encode_steps(steps):
-    """JSON form of a certificate: ``[i, j, s, k1, k2]``, ``{"aut": k}`` or the dyn dict (lists for tuples)."""
-    def js(x):
-        if isinstance(x, dict):
-            return {str(k): js(v) for k, v in x.items()}
-        return [js(v) for v in x] if isinstance(x, (tuple, list)) else x
-    return [{"aut": s.k} if isinstance(s, Aut) else js(s) if isinstance(s, dict) else list(s) for s in steps]
-
-
-def decode_steps(items):
-    """Inverse of ``encode_steps``."""
-    def tup(x):
-        return tuple(map(tup, x)) if isinstance(x, list) else x
-
-    def dyn(d):
-        ev = {k: tup(v) for k, v in d["event"].items()}
-        rl = d["relabel"] and {k: {int(g): v for g, v in m.items()} for k, m in d["relabel"].items()}
-        return {"op": "dyn", "event": ev, "relabel": rl, "after": tup(d["after"])}
-    return tuple(Move(*s) if isinstance(s, list) else Aut(s["aut"]) if "aut" in s else dyn(s) for s in items)

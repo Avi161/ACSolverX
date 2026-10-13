@@ -12,8 +12,9 @@ from ..core.priority import length
 from ..core.words import canonical_rels
 from . import dynrank as D
 from .capwatch import DYNPOOL, Watch, lazy_entries
-from .cascade import NIELSEN, Aut, Budget, Run, gate_applicable, gate_precheck_key, is_terminal, run_gates
+from .cascade import gate_applicable, gate_precheck_key, run_gates
 from .frontier import backend, orbit, over_cap, pack, unpack
+from .steps import NIELSEN, Aut, Budget, Run, is_terminal
 
 R2, DYN, DEFS = 0, 1, 2           # the kind of a heap entry: rank two, higher rank, deferred defines
 

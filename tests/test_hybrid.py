@@ -22,12 +22,14 @@ import acx.hybrid
 from acx import data, runner
 from acx.aut.autos import AUTOS
 from acx.core.capcount import blank, fields
+from acx.core.moves import Move
 from acx.core.words import Presentation, parse
 from acx.hybrid import HybridConfig, capwatch, certify, decode_steps, dynrank, encode_steps, solve
 from acx.hybrid import search as hybrid_search
-from acx.hybrid.cascade import NIELSEN, Budget, Run, cascade, gate_applicable, gate_precheck_key, run_gates
+from acx.hybrid.cascade import cascade, gate_applicable, gate_precheck_key, run_gates
 from acx.hybrid.frontier import backend, orbit, over_cap, pack, unpack
 from acx.hybrid.pinch import conjugation_forms, from_syllables, syllables
+from acx.hybrid.steps import NIELSEN, Budget, Run
 from acx.verify import replay
 
 FAST = HybridConfig(certify=False)
@@ -520,6 +522,15 @@ def test_encode_decode_steps_roundtrip_through_json(ms640):
         res = solve(pres)
         again = decode_steps(json.loads(json.dumps(encode_steps(res.steps))))
         assert again == res.steps and certify(pres, again) == list(res.path)
+
+
+def test_the_steps_module_holds_the_step_types_and_their_json_form():
+    """M5: ``acx.hybrid.steps`` holds the step types and the JSON codec of a certificate; the package exports ``Aut``."""
+    from acx.hybrid import Aut, steps
+    items = encode_steps(solve(ac19_row("ac19_239"), FAST).steps)
+    assert {type(s) for s in steps.decode_steps(items)} == {Move, Aut, dict}      # every kind of step
+    assert steps.encode_steps(steps.decode_steps(items)) == items
+    assert Aut is steps.Aut
 
 
 # ------------------------------------------------------------------ inputs that are not freely reduced, a bad dyn_ratio
