@@ -147,7 +147,10 @@ levels are defined. Greedy at 10,000 pops, hybrid at 1,000 units a row.*
   (misses `ac1m_54083`, `ac1m_68740`). On raw AC1M (`ac1m_raw_hybrid`), starting from each presentation as given,
   it solves 1,136,135 of 1,136,154 in one pass, again the source's count. The 19 misses are the 9 and 10 members of
   those two orbits. Run again with `--rows <the 19 ids> --set hybrid.budget=10000`, all 19 solve, using 1,040 to 1,153
-  units, as in the source.
+  units, as in the source. The 1,528 `stable_cert` rows are all the members of 124 orbits. Run again with stable moves
+  off (`--set hybrid.min_uses=1000000`, so no generator is ever defined) at 10,000 units, all 1,528 solve as plain
+  `ac_path`s, using 34 to 6,786 units (1,170 within 1,000). So every AC1M presentation has a plain AC path, and
+  every one of those paths replays from its AC1M line.
 - **`fast` against `spec`**: 32x less CPU over the whole MS640 LENGTH run (64 against 2,023 CPU s: search, decoding and
   replay). On search alone the ratio depends on load; `tests/test_fast.py::test_speed` (slow; rows 322 and 466, 2,000
   pops under each priority) prints it and asserts more than 5x.
