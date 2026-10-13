@@ -43,6 +43,12 @@ a file from another config is an error, never merged), `summary.json`, `summary.
 `nodes` (pops), `path_len` (-1 unsolved), `min_total`, the five cap counters `cap_dropped`, `cap_dropped_min_total`,
 `cap_would_pop`, `cap_first_bind`, `cap_needed` (-1 = none), plus the control and null records and a deterministic
 sample of solved paths (`sample`). **The row files are large; keep them out of git** (`results/*/rows/`).
+Row ids are percent-encoded in filenames (including dots); ordinary numeric ids keep the same filenames.
+Use `row_path(result_dir, id)` to locate a file. This keeps ids such as `../row` or `ms:1` inside `rows/` and makes
+ids containing `.npz.tmp` distinguishable from interrupted writes. Older custom-id files whose names change under
+this encoding should be regenerated in a new run folder; numeric benchmark files remain compatible.
+Every existing row is checked against the full current input before resume, not just the selected slice.
+`--fresh` preserves the inline `input.txt`; only earlier results are removed.
 
 In `summary.md` (rank 3: one row per word length, `L1`, `L2`, ...; ranks 4 and 5: one row, `all`), `solved` is a share
 of all rows; `fewer`, `same`, `more` (pops against the control's) and `lost` are shares of the rows the control solves,
@@ -106,7 +112,8 @@ holds its tables):
   at every pop (the baseline's `solvern` kept them as stored); the sweep ships `cyclic = true`.
 - Not ported: the 2,187-word block shards, the relator-subword arm (needs the change-of-variables word family), and
   the shortlex, cross-validation and class-view analyses.
-- Pops are stored as `uint16` (budget at most 65,535); the minimum total is stored exactly (the baseline clipped it to
+- Pops are stored as `uint16` (budget at most 65,535), path lengths as `int32` (-1 unsolved, including lengths above
+  32,767); the minimum total is stored exactly (the baseline clipped it to
   a byte).
 
 ## The n-generator package (`acx.ngen`)

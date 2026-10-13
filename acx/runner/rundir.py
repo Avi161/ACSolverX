@@ -7,6 +7,7 @@ import json
 import os
 
 from .config import run_config
+from .storage import atomic_write, write_json
 
 
 def pres_text(pres):
@@ -14,15 +15,19 @@ def pres_text(pres):
     return ", ".join(pres.strs)
 
 
-def write_config(run_dir, config):
-    """Write ``config`` to ``<run_dir>/config.json``; refuse a folder that holds a run under another config."""
+def check_config(run_dir, config):
+    """Refuse a folder holding a different config, without changing it."""
     config_file = os.path.join(run_dir, "config.json")
     if os.path.exists(config_file):
         with open(config_file) as f:
             if json.load(f) != config:
                 raise SystemExit(f"{run_dir} holds a run with another config: pass --fresh or another name")
-    with open(config_file, "w") as f:
-        json.dump(config, f, indent=1)
+
+
+def write_config(run_dir, config):
+    """Write ``config`` to ``<run_dir>/config.json``; refuse a folder that holds a run under another config."""
+    check_config(run_dir, config)
+    write_json(os.path.join(run_dir, "config.json"), config)
 
 
 def prepare(run_dir, cfg, fresh, n_rows):
@@ -36,6 +41,9 @@ def prepare(run_dir, cfg, fresh, n_rows):
     paths_file = os.path.join(run_dir, "paths.jsonl")
     config_file = os.path.join(run_dir, "config.json")
     summary_file = os.path.join(run_dir, "summary.json")
+    for path in (paths_file, config_file, summary_file):
+        if os.path.islink(path):
+            raise ValueError(f"run output must not be a symlink: {path}")
     if fresh:
         for name in (paths_file, config_file, summary_file):
             if os.path.exists(name):
@@ -63,25 +71,39 @@ def _parse(line):
         return None
 
 
-def read_records(path, repair=False):
-    """The records of a ``paths.jsonl``, in file order.
+def iter_records(path, repair=False):
+    """Stream records of a ``paths.jsonl``, in file order, ignoring blank lines.
 
     A cut-off last line (a run stopped mid-write) is skipped; ``repair`` also cuts it from the file, so that the
     records a resume appends start on a line of their own. A bad line with lines after it raises ``ValueError``.
     """
+    cut = None
     with open(path, "rb") as f:
-        lines = f.readlines()
-    records = []
-    for number, line in enumerate(lines, 1):
-        rec = _parse(line)
-        if rec is None and number < len(lines):
-            raise ValueError(f"{path}:{number}: not a record; fix or delete the line, then run again")
-        if rec is not None:
-            records.append(rec)
-    if repair and len(records) < len(lines):
+        line, number, offset = f.readline(), 1, 0
+        while line:
+            following = f.readline()
+            if line.strip():
+                rec = _parse(line)
+                if rec is None:
+                    if following:
+                        raise ValueError(f"{path}:{number}: not a record; fix or delete the line, then run again")
+                    cut = offset
+                else:
+                    if (not isinstance(rec, dict) or not isinstance(rec.get("id"), str)
+                            or type(rec.get("solved")) is not bool
+                            or ("pres" in rec and not isinstance(rec["pres"], str))):
+                        raise ValueError(f"{path}:{number}: a record needs string id, boolean solved and optional string pres")
+                    yield rec
+            offset += len(line)
+            line, number = following, number + 1
+    if repair and cut is not None:
         with open(path, "r+b") as f:
-            f.truncate(sum(map(len, lines[:-1])))
-    return records
+            f.truncate(cut)
+
+
+def read_records(path, repair=False):
+    """Read all records using the same interrupted-write rules as the report and resume."""
+    return list(iter_records(path, repair))
 
 
 def drop_changed(done, rows, paths_file):
@@ -98,5 +120,4 @@ def drop_changed(done, rows, paths_file):
     if stale:
         for row_id in stale:
             del done[row_id]
-        with open(paths_file, "w") as f:
-            f.writelines(json.dumps(rec) + "\n" for rec in done.values())
+        atomic_write(paths_file, "".join(json.dumps(rec) + "\n" for rec in done.values()))

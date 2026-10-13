@@ -1,6 +1,7 @@
 """``SearchConfig``, the one frozen dataclass every search takes, ``parse_override``, and the value checks every
 config shares: ``parse_cap``, ``reject_unknown``, ``require_bool``, ``require_int`` and ``is_number``."""
 import tomllib
+import math
 from dataclasses import asdict, dataclass, fields, replace
 
 from .priority import PRIORITIES
@@ -98,6 +99,11 @@ def require_int(value, name, low=1):
 def is_number(value):
     """An int or a float, not a bool."""
     return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def is_finite_number(value):
+    """A number suitable for scoring: NaN and infinity do not define a finite heap order."""
+    return is_number(value) and (isinstance(value, int) or math.isfinite(value))
 
 
 def parse_override(item):

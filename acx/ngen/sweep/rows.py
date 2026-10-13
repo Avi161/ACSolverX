@@ -2,6 +2,7 @@
 import json
 import os
 import time
+from urllib.parse import quote, unquote
 
 import numpy as np
 
@@ -67,7 +68,7 @@ def sweep_row(row_id, pres, sc):
     def column(key, dtype=np.int32):
         return np.array([-1 if r[key] is None else r[key] for r in records], dtype)
 
-    return {"nodes": column("pops", np.uint16), "path_len": column("path_len", np.int16),
+    return {"nodes": column("pops", np.uint16), "path_len": column("path_len", np.int32),
             "min_total": column("min_total"), **{k: column(k) for k in COUNTERS},
             "control": np.array(json.dumps(control)), "null": np.array(json.dumps(null)),
             "paths": np.array(json.dumps(kept_paths)), "seconds": np.float32(time.perf_counter() - began),
@@ -76,13 +77,37 @@ def sweep_row(row_id, pres, sc):
 
 def row_path(result_dir, row_id):
     """The row file of ``row_id`` under the result directory ``result_dir``."""
-    return os.path.join(result_dir, "rows", f"{row_id}.npz")
+    # Encode dots too: an id containing '.npz.tmp' must not look like an interrupted write.
+    filename = quote(row_id, safe="").replace(".", "%2E")
+    rows_dir = os.path.join(result_dir, "rows")
+    if os.path.islink(rows_dir):
+        raise ValueError(f"row directory must not be a symlink: {rows_dir}")
+    return os.path.join(rows_dir, f"{filename}.npz")
 
 
 def finished_rows(result_dir):
     """The ids of the row files in ``result_dir``, sorted; a leftover ``<id>.npz.tmp<pid>.npz`` is not a row."""
     names = os.listdir(os.path.join(result_dir, "rows"))
-    return sorted(name[:-4] for name in names if name.endswith(".npz") and ".npz.tmp" not in name)
+    return sorted(unquote(name[:-4]) for name in names if name.endswith(".npz") and ".npz.tmp" not in name)
+
+
+def validate_rows(result_dir, rows, sc):
+    """Refuse stale or foreign files, including rows outside the current selection, before resuming."""
+    if not os.path.isdir(os.path.join(result_dir, "rows")):
+        return
+    current = {r.id: r.pres for r in rows}
+    for row_id in finished_rows(result_dir):
+        if row_id not in current:
+            raise SweepError(f"row {row_id}: no longer in the input; use --fresh or another name")
+        path = row_path(result_dir, row_id)
+        if read_ident(path) != ident_of(sc, row_id, current[row_id]):
+            raise SweepError(f"row {row_id}: {path} is not from this run; use --fresh or another name")
+
+
+def read_ident(path):
+    """Read only the identity; resume need not decompress the search arrays and sampled paths."""
+    with np.load(path) as z:
+        return str(z["ident"])
 
 
 def load_row(path):
@@ -103,7 +128,7 @@ def sweep_row_file(task):
     result_dir, row_id, pres, sc = task
     path, ident = row_path(result_dir, row_id), ident_of(sc, row_id, pres)
     if os.path.exists(path):
-        found = load_row(path)["ident"]
+        found = read_ident(path)
         if found != ident:
             raise SweepError(f"{path} is not from this run: has {found}, expected {ident}")
         return

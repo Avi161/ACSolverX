@@ -139,6 +139,8 @@ elementary AC moves with `aut_assisted: true`; it needs `path = true`, or `--sol
   **`equivalence_classes/certificates.json`** joins their 261 presentations into the 124 classes.
 
 `pytest` runs the default selection (a few minutes); `pytest -m ""` adds the slow parity and census sets.
+Install `.[rl]` to include the policy/PPO tests; CI also runs these with CPU PyTorch.
+The [October 2026 adversarial review](docs/REVIEW.md) records the findings, fixes, validation and remaining limits.
 
 ## License
 

@@ -39,7 +39,10 @@ class VecEnv:
         return self.x, reward, done, terminated
 
     def _normalise(self, reward, done):
-        """Divide each env's reward by the running std of its discounted return."""
+        """Divide each env's reward by the running std of its discounted return.
+
+        Exactly the JAX ``NormalizeVecReward`` that trained the shipped weights, quirks kept: a step's own ``done``
+        clears the return before its reward is added, and each update weighs ``2L`` (the observation length)."""
         raw, bc = reward, float(2 * self.L)
         self.ret = self.ret * self.gamma * (~done) + raw
         delta, tot = self.ret - self.mean, self.count + bc

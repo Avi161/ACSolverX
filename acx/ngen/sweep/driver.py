@@ -7,17 +7,29 @@ from contextlib import nullcontext
 from multiprocessing import Pool
 
 from ... import data
-from ...runner.rundir import write_config
+from ...runner.rundir import check_config, write_config
+from ...runner.storage import run_directory
 from .config import SweepConfig, words_of
-from .rows import check_two_relators, finished_rows, row_path, sweep_row_file
+from .rows import check_two_relators, finished_rows, row_path, sweep_row_file, validate_rows
 from .summary import summarize
 from .words import combos
 
 
 def open_result_dir(result_dir, key, fresh):
     """Create ``result_dir`` and write its ``config.json``; refuse a directory that holds another config."""
+    rows_dir = os.path.join(result_dir, "rows")
+    if os.path.islink(rows_dir) and not fresh:
+        raise ValueError(f"row directory must not be a symlink: {rows_dir}")
     if fresh:
-        shutil.rmtree(result_dir, ignore_errors=True)
+        # --pres stores its input.txt here before running. Preserve it and unrelated user files.
+        if os.path.islink(rows_dir):
+            os.unlink(rows_dir)
+        elif os.path.isdir(rows_dir):
+            shutil.rmtree(rows_dir)
+        for name in ("config.json", "summary.json", "summary.md", "paths.jsonl"):
+            path = os.path.join(result_dir, name)
+            if os.path.lexists(path):
+                os.unlink(path)
     os.makedirs(os.path.join(result_dir, "rows"), exist_ok=True)
     write_config(result_dir, key)
 
@@ -47,11 +59,14 @@ def run(cfg, out="results", fresh=False, log=print):
     that would replace a published summary with one of fewer rows.
     """
     sc = SweepConfig.from_cfg(cfg)
-    rows = data.select(data.rows(cfg["benchmark"]), cfg.get("rows"))
+    result_dir = run_directory(out, cfg["name"])
+    every_row = data.rows(cfg["benchmark"])
+    rows = data.select(every_row, cfg.get("rows"))
     check_two_relators(rows)
-    result_dir = os.path.join(out, cfg["name"])
     if not fresh:
+        check_config(result_dir, {"benchmark": cfg["benchmark"], "method": "rankn", "sweep": sc.key()})
         refuse_to_shrink(result_dir, [row.id for row in rows])
+        validate_rows(result_dir, every_row, sc)
     open_result_dir(result_dir, {"benchmark": cfg["benchmark"], "method": "rankn", "sweep": sc.key()}, fresh)
 
     n_words = len(words_of(sc))
