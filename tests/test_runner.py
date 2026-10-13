@@ -914,3 +914,12 @@ def test_config_errors_name_the_key_and_its_table(name, override, message):
     with pytest.raises(ValueError) as error:
         cfg(name, override)
     assert str(error.value) == message
+
+
+def test_a_subset_run_into_a_published_folder_is_refused_in_the_sweeps_words(tmp_path):
+    """The runner and the rank-n sweep refuse a smaller run into a published folder with the same sentence."""
+    folder = published(tmp_path)
+    with pytest.raises(SystemExit) as error:
+        quiet(cfg("smoke", 'rows="0:2"'), tmp_path)
+    assert error.value.code == (f"{folder} holds a published summary of 20 rows: a run of 2 would replace it; "
+                                "pass --fresh or another name")

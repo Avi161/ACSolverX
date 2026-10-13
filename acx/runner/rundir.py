@@ -44,8 +44,8 @@ def prepare(run_dir, cfg, fresh, n_rows):
         with open(summary_file) as f:
             published = json.load(f).get("rows", 0)
         if n_rows < published:
-            raise SystemExit(f"{run_dir} holds published results of {published} rows: a run of {n_rows} would replace "
-                             "them; pass --fresh or another name")
+            raise SystemExit(f"{run_dir} holds a published summary of {published} rows: a run of {n_rows} would "
+                             "replace it; pass --fresh or another name")
     if os.path.exists(paths_file) and not os.path.exists(config_file):
         raise SystemExit(f"{run_dir} holds paths.jsonl without its config.json, so its records may be of another "
                          "config: pass --fresh or another name")
@@ -85,14 +85,18 @@ def read_records(path, repair=False):
 
 
 def drop_changed(done, rows, paths_file):
-    """Forget the records of rows that left the benchmark or now hold another presentation (the input file changed),
-    in ``done`` (records by id) and in ``paths_file``; ``rows`` is every row, selected or not. A record without
-    ``pres`` is kept."""
-    by_id = {r.id: r.pres for r in rows}
-    changed = [i for i, rec in done.items()
-               if i not in by_id or rec.get("pres", pres_text(by_id[i])) != pres_text(by_id[i])]
-    if changed:
-        for row_id in changed:
+    """Forget, in ``done`` (records by id) and in ``paths_file``, the records whose row left ``rows`` (every row,
+    selected or not) or now holds another presentation. A record without ``pres`` is kept while its row is there."""
+    pres_of = {r.id: r.pres for r in rows}
+
+    def is_stale(row_id, rec):
+        if row_id not in pres_of:
+            return True                                     # the row left the input
+        return "pres" in rec and rec["pres"] != pres_text(pres_of[row_id])
+
+    stale = [row_id for row_id, rec in done.items() if is_stale(row_id, rec)]
+    if stale:
+        for row_id in stale:
             del done[row_id]
         with open(paths_file, "w") as f:
             f.writelines(json.dumps(rec) + "\n" for rec in done.values())

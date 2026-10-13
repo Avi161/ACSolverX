@@ -73,6 +73,7 @@ def run(cfg, out="results", fresh=False, log=print):
     Writes ``<out>/<name>/``: ``config.json``, ``paths.jsonl`` (one record per row, flushed as it is solved) and
     ``summary.json``. Rows already in ``paths.jsonl`` with the same presentation are skipped, so an interrupted run
     resumes and a run under another config (``path`` and ``fields`` included) needs ``fresh`` or another name; the
+    records of rows that left the input, or now hold another presentation, are dropped (``rundir.drop_changed``). The
     summary covers every record in ``paths.jsonl``, error rows included (a row that raised is recorded, not retried
     on resume). The record fields are in ``acx.runner.methods.record`` and ``acx.runner.output``.
     """

@@ -14,7 +14,7 @@ case is the inverse; any number of relators and generators is read (what a metho
 A row's id is the one given, else its 0-based position among the file's presentations. A bad line raises
 ``ValueError("<file>:<line>: <what is wrong>")``, and a file that is not UTF-8 text, or a ``.gz`` file that is not
 whole gzip, ``ValueError("<file>: ...")``.
-``select(rows, "a:b")`` picks rows by slice or ids (``run.py --rows``). ``MS`` and ``AK`` build the Miller-Schupp
+``select(table, "a:b")`` picks rows by slice or ids (``run.py --rows``). ``MS`` and ``AK`` build the Miller-Schupp
 and Akbulut-Kirby families.
 """
 import csv
@@ -192,7 +192,7 @@ def load_split(path, part="holdout"):
 _READERS = {".txt": load, ".csv": load_csv, ".jsonl": load_jsonl}
 
 
-def _format(name):
+def _reader_suffix(name):
     """The suffix that picks a file's reader: ``MINE.TXT.GZ`` -> ``.txt`` (lower case, ``.gz`` left out)."""
     return os.path.splitext(name.lower().removesuffix(".gz"))[1]
 
@@ -202,7 +202,7 @@ def stem_of(path):
     name = os.path.basename(path)
     if name.lower().endswith(".gz"):
         name = name[:-len(".gz")]
-    if _format(name) in _READERS:
+    if _reader_suffix(name) in _READERS:
         name = os.path.splitext(name)[0]
     return name
 
@@ -217,25 +217,26 @@ def rows(spec):
         return load(spec)
     if spec in BENCHMARKS:
         return load_csv(spec)
-    reader = _READERS.get(_format(spec))
+    reader = _READERS.get(_reader_suffix(spec))
     if reader is None:
         names = sorted(DATASETS) + sorted(BENCHMARKS) + sorted(SPLITS)
         raise KeyError(f"unknown benchmark {spec!r}; names: {names}; or a .txt, .csv or .jsonl file, optionally .gz")
     return reader(spec)
 
 
-def select(rows, spec):
-    """``rows`` sliced by ``"a:b[:c]"`` or picked by comma-separated ids (a repeated id once, first place)."""
+def select(table, spec):
+    """The rows of ``table`` sliced by ``"a:b[:c]"`` or picked by comma-separated ids (a repeated id once, first
+    place)."""
     if spec in (None, ""):
-        return rows
+        return table
     spec = str(spec).strip()
     if SLICE.fullmatch(spec):
         try:
-            return rows[slice(*(int(t) if t else None for t in spec.split(":")))]
+            return table[slice(*(int(t) if t else None for t in spec.split(":")))]
         except ValueError:                                       # a step of 0
             raise ValueError(f"bad rows slice {spec!r}: write integers as a:b or a:b:c, the step not 0") from None
     ids = list(dict.fromkeys(i.strip() for i in spec.split(",")))
-    by_id = {r.id: r for r in rows}
+    by_id = {r.id: r for r in table}
     missing = [i for i in ids if i not in by_id]
     if missing:
         raise KeyError(f"rows not in the benchmark: {missing}")
