@@ -71,8 +71,9 @@ A run writes `<out>/<name>/`. The name is the config's `name` key, else the conf
   again with other `--rows` adds those rows to the same folder. A record counts only for the presentation in its `pres`:
   if a line of your file changed (or two lines swapped), that row is solved again and its old record dropped, and the
   record of a row that is no longer in the file is dropped too, whichever rows `--rows` selects; records written before
-  `pres` existed count as done. `summary.json` is rewritten each time and covers every record in the folder. A row recorded with an `error` is not retried. A cut-off last line of `paths.jsonl` (an interrupted write)
-  is dropped; a bad line before others stops the run with `<file>:<line>: not a record ...`.
+  `pres` existed count as done. `summary.json` is rewritten each time and covers every record in the folder. A row
+  recorded with an `error` is not retried. A cut-off last line of `paths.jsonl` (an interrupted write) is dropped; a bad
+  line before others stops the run with `<file>:<line>: not a record ...`.
 - **Another config under the same name is refused** (`holds a run with another config: pass --fresh or another
   name`): `config.json` must match, `rows` and `workers` aside. `--pres` with other presentations is refused the same
   way, and so is a `paths.jsonl` without its `config.json` (`holds paths.jsonl without its config.json`), whose config
@@ -80,9 +81,9 @@ A run writes `<out>/<name>/`. The name is the config's `name` key, else the conf
 - **`--fresh`** deletes that name's `paths.jsonl`, `config.json` and `summary.json` before the run. The folders shipped
   in `results/` hold the published numbers: never `--fresh` them. Pick a new name (`--set name=mine`) or another
   `--out`. A run of fewer rows into such a folder (a `summary.json` and no `paths.jsonl`) is refused, as it would
-  replace the published summary; a rerun of all its rows reproduces it. The rank-n sweep refuses the same way a run
-  whose rows, with the row files already there, are fewer than the published summary's (`holds a published summary of
-  N rows`).
+  replace the published summary (`holds a published summary of N rows: a run of M would replace it`); a rerun of all its
+  rows reproduces it. The rank-n sweep refuses the same way a run whose rows, with the row files already there, are
+  fewer than the published summary's.
 
 ## The config
 
@@ -198,8 +199,9 @@ python compare.py results/greedy_fast_presentations results/hybrid_presentations
 One markdown table, a row per run: rows, solved (%), mean and median cost of the solved rows in the run's unit, mean
 `sub_moves` and `elem_moves` (`n=k` when only k solved rows have one), CPU seconds per row, CPU µs per pop/unit
 (`us_per_cost`: CPU of all rows, verification included, over their total cost), raise-cap rows (a cap dropped a state
-the search would have popped) and errors. Two runs of one benchmark also get a head-to-head line (solved by only one,
-by both, by neither).
+the search would have popped; read from `summary.json` alone, the count is exact when one cap counter binds, and a lower
+bound when more than one binds and a `raise_ids` list was cut at 100) and errors. Two runs of one benchmark also get a
+head-to-head line (solved by only one, by both, by neither).
 
 - **Units.** greedy, aut, cov and ngen count heap pops; the hybrid counts work units (pops of its two queues plus the
   automorphisms, Nielsen images and S-moves of its cascade and gates); rl counts network evaluations. A unit is not a

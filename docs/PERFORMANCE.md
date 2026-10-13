@@ -157,16 +157,17 @@ since only then is the solve replayed on its row.
 
 `compare.py` puts finished runs side by side, and [`compare.html`](compare.html) (self-contained; open it in a browser)
 draws the 16 runs below as bar charts. **How to read them.** *Cost* is in the run's own unit: pops for the greedy search
-(LENGTH and S20_MK2), CoV and aut, work units for the hybrid, network evaluations for RL. **A hybrid unit is not a
-pop** (it also counts accepted automorphisms, image evaluations and substitution moves), so compare speed by CPU, not by
-units against pops. Cost and move columns **average the rows a run solved**, so a run that solves fewer, easier rows
-looks cheaper. CPU **covers every row**, misses included (a greedy miss spends its whole 10,000 pops), plus decoding and
-replaying each certificate; CPU µs per pop/unit is that total over the total cost. *raise-cap rows* counts the rows where
-a larger relator cap would change the search ([CAP.md](CAP.md)). CPU is `time.process_time` of single-threaded runs,
-one at a time, on a 4-core 2.8 GHz VM; identical runs differ by 4 to 11% in total CPU, so trust ratios more than
-milliseconds. The LENGTH, S20_MK2 and hybrid runs are after the replay fix (one run each); **the CoV, aut and RL runs
-were not repeated, so their CPU columns were measured before the replay fix** (their solved counts and costs do not
-depend on it).
+(LENGTH and S20_MK2), CoV and aut, work units for the hybrid, network evaluations for RL. **A hybrid unit is not a pop**
+(it also counts accepted automorphisms, image evaluations and substitution moves), so compare speed by CPU, not by units
+against pops. Cost and move columns **average the rows a run solved**, so a run that solves fewer, easier rows looks
+cheaper. CPU **covers every row**, misses included (a greedy miss spends its whole 10,000 pops), plus decoding and
+replaying each certificate; CPU µs per pop/unit is that total over the total cost. *raise-cap rows* counts the rows
+where a larger relator cap would change the search ([CAP.md](CAP.md)); read from `summary.json` alone, the count is
+exact when one cap counter binds, and a lower bound when more than one binds and a `raise_ids` list was cut at 100. CPU
+is `time.process_time` of single-threaded runs, one at a time, on a 4-core 2.8 GHz VM; identical runs differ by 4 to 11%
+in total CPU, so trust ratios more than milliseconds. The LENGTH, S20_MK2 and hybrid runs are after the replay fix (one
+run each); **the CoV, aut and RL runs were not repeated, so their CPU columns were measured before the replay fix**
+(their solved counts and costs do not depend on it).
 
 ### bench60
 
