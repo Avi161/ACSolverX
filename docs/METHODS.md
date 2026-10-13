@@ -311,11 +311,11 @@ A comparison between a CoV arm and an untransformed arm is a cost comparison, no
 object, and it must hold the cap fixed (CoV rows run at a larger cap).
 
 **The default policy** (`acx.cov.run_cov`; `[search]` and `[cov]` in `configs/cov.toml`, with `total_budget`, `control`,
-`cap_headroom`, `max_len`, `until`, `family`) is one-shot: the row itself first (`control`), then the images in enumeration
-order, each searched with at most `search.budget` pops and the images at cap `max(cap, longest written relator + 16)`,
-until `total_budget` pops are spent or one solves. There is no ranking, no abel top-3, no selection key and no beam or
-ladder (RESULTS.md, Tried). An oracle (the best candidate) is a lower bound, not a procedure; the deployable cost includes
-the failed candidates (RESULTS.md section 5).
+`cap_headroom`, `max_len`, `until`, `family`) is one-shot: the row itself first (`control`), then the images in
+enumeration order, each searched with at most `search.budget` pops and the images at cap
+`max(cap, longest written relator + 16)`, until `total_budget` pops are spent or one solves. There is no ranking, no
+abel top-3, no selection key and no beam or ladder (RESULTS.md, Tried). An oracle (the best candidate) is a lower bound,
+not a procedure; the deployable cost includes the failed candidates (RESULTS.md section 5).
 
 ### The z-family name `subnc2pxysb`, letter by letter
 
@@ -332,8 +332,8 @@ The tag names the *rule that decides which `w` and which branches are tried*. It
 | `b` | every isolating **b**ranch is its own row: when both `r1'` and `r2'` isolate the generator they are two different coordinate changes, kept apart by `iso_index` (the earlier files kept only the first) |
 
 Outputs that land on the same pair are searched once. The default family reads the relators cyclically reduced and
-substitutes in one pass over each relator in its written rotation: a conjugate of a relator gives the same images, a
-rotation of it can give others.
+substitutes in one pass over each relator in its written rotation: a relator padded with a cancelling conjugator
+(`g r g^-1` that reduces back to `r`) gives the same images, but a rotation of `r` can give others.
 
 `family = "suballpxyb8"` is the exhaustive family of the MS640 sweep (`cov/all-subsets-sweep`, stored in
 [results/stable_ac/cov_all/](../results/stable_ac/cov_all/README.md)): `w` is any proper cyclic subword
