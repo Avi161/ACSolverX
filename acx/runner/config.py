@@ -102,7 +102,8 @@ def method_config(cfg):
         from ..cov import CoVConfig
         return _build(CoVConfig, cfg.get("cov", {}), search=search)
     if method == "ngen":
-        return _ngen_config(cfg, search)
+        from ..ngen import NGenConfig
+        return _build(NGenConfig, {**cfg.get("ngen", {}), "lift": keeps_path(cfg)}, search=search)
     return search                                    # greedy, aut
 
 
@@ -110,15 +111,6 @@ def _build(cls, values, **fixed):
     """``cls(**fixed, **values)`` for a config dataclass, with unknown keys of ``values`` named in the error."""
     reject_unknown(values, {f.name for f in fields(cls)} - set(fixed), cls.__name__)
     return cls(**fixed, **values)
-
-
-def _ngen_config(cfg, search):
-    """``NGenConfig`` from ``[ngen]`` and ``search``; the SAC phase has only the 'length' priority."""
-    from ..ngen import NGenConfig
-    config = _build(NGenConfig, {**cfg.get("ngen", {}), "lift": keeps_path(cfg)}, search=search)
-    if config.sac and search.priority != "length":
-        raise ValueError("ngen with sac=true searches past two generators, where only priority 'length' is defined")
-    return config
 
 
 def _rl_keywords(values):

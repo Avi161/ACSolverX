@@ -3,7 +3,7 @@
 ``replay`` re-applies every move and raises ``ReplayError`` unless each move is legal, ``|det|`` of the exponent
 matrix stays 1 (an AC invariant), no relator exceeds ``cap`` and the end is the trivial presentation.
 """
-from ..core.moves import step
+from ..core.moves import is_elementary, step
 
 
 class ReplayError(ValueError):
@@ -67,7 +67,7 @@ def replay(pres, path, cyclic=True, cap=None, normalize=True, require_trivial=Tr
             raise ReplayError(f"move {t} {mv!r} is illegal on {cur}: {e}") from e
         if abs_det(cur) != 1:
             raise ReplayError(f"move {t} {mv!r} changed |det|: {cur}")
-        if cap is not None and not isinstance(mv, dict) and max(map(len, cur.rels)) > cap:
+        if cap is not None and not is_elementary(mv) and max(map(len, cur.rels)) > cap:
             raise ReplayError(f"move {t} {mv!r} exceeds cap {cap}: {cur}")
         states.append(cur)
     if require_trivial and not cur.is_trivial():

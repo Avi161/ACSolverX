@@ -6,7 +6,7 @@ The digram helpers are ``acx.core.digrams``. The definition and the tie-breaks: 
 from dataclasses import dataclass
 
 from ..core.digrams import digram_counts, tokenize
-from ..core.words import Presentation, inverse
+from ..core.words import Presentation, inverse, rotate_left
 
 LIMIT = 3          # the relator length SAC aims for
 
@@ -18,7 +18,7 @@ def excess(rels):
 
 def _least_rotation(w):
     """The smallest rotation of ``w`` in int order."""
-    return min(w[k:] + w[:k] for k in range(len(w)))
+    return min(rotate_left(w, k) for k in range(len(w)))
 
 
 def rewrite(w, d, h):
@@ -30,7 +30,7 @@ def rewrite(w, d, h):
         return False, 0, w
     flip = _least_rotation(inverse(w)) < _least_rotation(w)
     oriented = inverse(w) if flip else w
-    rotations = ((k, tokenize(oriented[k:] + oriented[:k], d, h)) for k in range(len(oriented)))
+    rotations = ((k, tokenize(rotate_left(oriented, k), d, h)) for k in range(len(oriented)))
     k, new = min(rotations, key=lambda rotation: (len(rotation[1]), rotation[1], rotation[0]))
     return flip, k, new
 

@@ -21,7 +21,7 @@ from acx.search.fast import best_first, children, decode, encode
 from acx.search.fast.arrays import Arrays
 from acx.search.fast.dedup import find_slot, hash_state, rehash
 from acx.search.fast.heap import heap_pop, heap_push
-from acx.search.fast.kernels import PRIORITY_IDS, canon_buf, reduce_buf, rel_less, score, tie_bytes
+from acx.search.fast.kernels import PRIORITY_IDS, canon_buf, decode_word, reduce_buf, rel_less, score, tie_bytes
 
 # 36 rows spread over the 566 MS640 rows whose spec cost (length + s20_mk2 pops at budget 10,000)
 # is at most 2,500, plus four rows costing 3,000-7,600 pops: about 22,000 spec pops in all.
@@ -191,6 +191,13 @@ def test_speed(ms640, capsys):
         print(f"\n  pops/s spec {rate['spec']:,.0f}  fast {rate['fast']:,.0f}  "
               f"({rate['fast'] / rate['spec']:.0f}x)")
     assert rate["fast"] > 5 * rate["spec"]
+
+
+def test_decode_word_reads_one_encoded_relator_back():
+    for n_gen in (2, 3, 27, 127):
+        rels = ((1, -2, n_gen, -n_gen), (2, -1), ())
+        syms, lens = encode(rels, n_gen)
+        assert tuple(decode_word(syms[r, :lens[r]], n_gen) for r in range(3)) == rels == decode(syms, lens, n_gen)
 
 
 def test_more_generators_than_the_byte_encoding_holds_is_refused():

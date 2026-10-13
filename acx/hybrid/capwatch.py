@@ -10,14 +10,13 @@ from operator import itemgetter
 
 import numpy as np
 
-from ..core.capcount import CapCount, blank, fields
+from ..core.capcount import PREFIXES, CapCount, blank, fields
 from . import dynrank as D
 from .cascade import gate_applicable, run_gates
 from .frontier import orbit, unpack
 from .steps import Run
 
 INF = float("inf")
-NAMES = ("cap", "dyn_cap", "slack")
 R2POOL, DYNPOOL = 0, 1
 
 
@@ -60,7 +59,7 @@ def lazy_entries(depth, base, penalty, offset, words, offered, items):
 
 def blank_records(cfg):
     """The three records of a run that never reached the search (the cascade solved it): nothing was cut."""
-    return {k: v for name, limit in zip(NAMES, (cfg.r2_cap, cfg.dyn_cap, cfg.slack))
+    return {k: v for name, limit in zip(PREFIXES, (cfg.r2_cap, cfg.dyn_cap, cfg.slack))
             for k, v in blank(name, cap=limit).items()}
 
 
@@ -99,7 +98,7 @@ class Watch:
         self.armed = False                        # set by the first drop: until then no pop has anything to compare
         self.seen_r2, self.seen_dyn, self.transform, self.live = seen_r2, seen_dyn, transform, []
         self.moves, self.mintot, self.pools = {}, {}, {}
-        for name in NAMES:
+        for name in PREFIXES:
             if limits[name] is not None:
                 r2, dyn = CapCount(limits[name]), CapCount(limits[name])
                 r2.accept = partial(self._accept_r2, r2, set())
@@ -225,4 +224,4 @@ class Watch:
 
     def records(self):
         """All 18 fields."""
-        return {k: v for name in NAMES for k, v in self.record(name).items()}
+        return {k: v for name in PREFIXES for k, v in self.record(name).items()}

@@ -5,7 +5,7 @@ used, so scores are bit-identical to ``acx.core.priority``.
 ``expand`` (every child of a state, in ``acx.search.spec`` order), ``score`` (the heap priority) and
 ``scored_children`` (``children``, the Python entry). The names other modules use are re-exported here.
 """
-from .encoding import decode, encode, key_code, tie_bytes
+from .encoding import decode, decode_word, encode, key_code, tie_bytes
 from .expand import child_width, expand, expand_drops, max_children
 from .score import PRIORITY_IDS, priority_id, score
 from .scored_children import children
