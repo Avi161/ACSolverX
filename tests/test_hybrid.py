@@ -28,7 +28,7 @@ from acx.hybrid import HybridConfig, capwatch, certify, decode_steps, dynrank, e
 from acx.hybrid import search as hybrid_search
 from acx.hybrid.cascade import cascade, gate_applicable, gate_precheck_key, run_gates
 from acx.hybrid.frontier import backend, orbit, over_cap, pack, unpack
-from acx.hybrid.pinch import conjugation_forms, from_syllables, syllables
+from acx.hybrid.pinch import conjugation_forms, from_syllables, pinch_preflight, syllables
 from acx.hybrid.steps import NIELSEN, Budget, Run
 from acx.verify import replay
 
@@ -281,6 +281,22 @@ def test_syllables_read_a_cyclic_word_and_conjugation_forms_find_the_pinch_shape
     word = (1, 1, 2, 2, 2, -1, -1, -2)                       # x^2 y^3 x^-2 y^-1
     assert (1, 2, 2, 3, -1) in conjugation_forms(word)
     assert conjugation_forms((1, 2, 1, 2, 1)) == ()
+
+
+def test_pinch_preflight_gives_up_past_max_rules():
+    """The dry run stops after ``max_rules`` rule uses (the cascade keeps the default 400); this pair needs two."""
+    (form,) = conjugation_forms(parse("YYXyx"))
+    companion = parse("YYxxYX")
+    assert [pinch_preflight(form, companion, max_rules=m) for m in (0, 1, 2, 400)] == [None, None, 2, 2]
+
+
+def test_relabel_canonical_raises_past_its_leaf_limit():
+    """Three one-letter relators: each of the 3! generator orders is a leaf, so a limit of 5 raises and 6 does not."""
+    words = ((1,), (2,), (3,))
+    with pytest.raises(RuntimeError, match="leaf limit"):
+        dynrank.relabel_canonical(words, limit=5)
+    canon, perm, _ = dynrank.relabel_canonical(words, limit=6)
+    assert sorted(perm.values()) == [1, 2, 3] and dynrank.relabel_canonical(words[::-1], limit=6)[0] == canon
 
 
 def test_lazy_entries_come_in_key_order_and_equal_the_eager_list(ms640):
