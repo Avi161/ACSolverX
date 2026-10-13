@@ -1,7 +1,8 @@
 """The steps of a hybrid certificate, the run that applies them to the canonical pair, and their JSON form.
 
 A step is a ``Move`` (an S-move), ``Aut(k)`` (the canonical form of ``acx.aut.autos.AUTOS[k]`` applied) or a
-higher-rank event (a dict, from ``dynrank``). ``Run`` charges one work unit per step it applies.
+higher-rank event (a dict, from ``dynrank``). A ``Run`` applies steps to the canonical pair and charges the work units
+spent on it against a budget.
 """
 from collections import namedtuple
 
