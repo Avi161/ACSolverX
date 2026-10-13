@@ -1,0 +1,46 @@
+{
+ "source": {
+  "branch": "cov/all-subsets-sweep",
+  "commit": "fb84a588bc01ec114e8629a026c8c6c16d8684af",
+  "dir": "results/stable_ac/cov_all"
+ },
+ "s3": "s3://acsolver-u124-205558941715/cov_all/b<budget>/results/",
+ "files": [
+  {
+   "path": "cov_all_suballpxyb8_ms640_b100.jsonl.gz",
+   "bytes": 4389364,
+   "sha256": "a99844cd4a4304489fec7c4d525210e89c80dcce4721c904c77979868a9f4839",
+   "in_repo": false
+  },
+  {
+   "path": "cov_all_suballpxyb8_ms640_b100.jsonl",
+   "bytes": 95530755,
+   "sha256": "cf13d8d0031f475675b24281ad41beecba5415146afb8d328f8ce5807fd39b1a",
+   "in_repo": false
+  },
+  {
+   "path": "cov_all_suballpxyb8_ms640_b10000.jsonl.gz",
+   "bytes": 4073851,
+   "sha256": "98d4df81b02c10954e914275a6a49070674c627e12e348a524478cca7b321638",
+   "in_repo": false
+  },
+  {
+   "path": "cov_all_suballpxyb8_ms640_b10000.jsonl",
+   "bytes": 87914023,
+   "sha256": "6a22ff3e7e4177df588b53b8a36d8b6acd1aa9e061af4a898a867bc6c863511f",
+   "in_repo": false
+  },
+  {
+   "path": "cov_all_suballpxyb8_ms640_b100000.jsonl.gz",
+   "bytes": 4124769,
+   "sha256": "d93c55670cb56919396938d69a0b61755e78a296141a13381fa90a8d2c2a09c2",
+   "in_repo": true
+  },
+  {
+   "path": "cov_all_suballpxyb8_ms640_b100000.jsonl",
+   "bytes": 88154686,
+   "sha256": "2c1e80ddcc4753dbf911ec64605ab748c8b86d5fc310fffd6ae4b2fae5e99aa1",
+   "in_repo": false
+  }
+ ]
+}
