@@ -28,8 +28,11 @@ def refuse_to_shrink(result_dir, row_ids):
     summary_file = os.path.join(result_dir, "summary.json")
     if not os.path.exists(summary_file):
         return
-    with open(summary_file) as f:
-        published = json.load(f).get("rows", 0)
+    try:
+        with open(summary_file) as f:
+            published = json.load(f).get("rows", 0)
+    except ValueError:                  # cut off while it was written; the run rewrites it from rows/
+        return
     rows_dir = os.path.join(result_dir, "rows")
     held = set(finished_rows(result_dir)) if os.path.isdir(rows_dir) else set()
     if len(held | set(row_ids)) < published:

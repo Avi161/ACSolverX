@@ -522,3 +522,12 @@ def test_a_run_of_every_published_row_may_rewrite_the_summary(tmp_path):
     published_sweep(tmp_path, 3)
     assert quiet(cfg(rows="0:3", max_len=1, budget=50), tmp_path)["rows"] == 3
     assert quiet(cfg(rows="0:1", max_len=1, budget=50), tmp_path)["rows"] == 3      # rows/ now holds all three
+
+
+@pytest.mark.parametrize("damage", ["", '{"rows": 2, "ext'])
+def test_a_cut_off_summary_does_not_stop_a_resume(tmp_path, damage):
+    """A sweep stopped while writing summary.json leaves it empty or cut off; the resume rebuilds it from rows/."""
+    quiet(cfg(rows="0:2", max_len=1, budget=50), tmp_path)
+    (tmp_path / "t" / "summary.json").write_text(damage)
+    assert quiet(cfg(rows="0:2", max_len=1, budget=50), tmp_path)["rows"] == 2
+    assert json.loads((tmp_path / "t" / "summary.json").read_text())["rows"] == 2
