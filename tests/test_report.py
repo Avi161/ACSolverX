@@ -377,11 +377,18 @@ def test_summary_only_raise_rows_counts_a_row_once_when_two_counters_bind_on_it(
     assert report.measure_summary(summary_with_caps(cap=first, dyn_cap=second))["raise_rows"] == 8
 
 
-def test_summary_only_raise_rows_of_two_cut_lists_is_the_largest_count():
-    """With two counters cut at 100 ids each, the union is unknowable: the largest count is the lower bound."""
+def test_summary_only_raise_rows_of_two_cut_lists_is_a_lower_bound():
+    """Two counters cut at 100 ids each (150 and 120 binding rows, 270 in all): the union is unknowable, so the count is
+    the larger of the pooled kept ids (200) and the biggest counter (150)."""
     first = capcount.summarize(binding_records(0, 150), "cap")
     second = capcount.summarize(binding_records(150, 120, "dyn_cap"), "dyn_cap")
-    assert report.measure_summary(summary_with_caps(cap=first, dyn_cap=second))["raise_rows"] == 150
+    assert report.measure_summary(summary_with_caps(cap=first, dyn_cap=second))["raise_rows"] == 200
+
+
+def test_summary_only_raise_rows_of_two_cut_lists_never_falls_below_the_biggest_counter():
+    first = capcount.summarize(binding_records(0, 300), "cap")                 # 300 rows, 100 kept
+    second = capcount.summarize(binding_records(0, 120, "dyn_cap"), "dyn_cap")   # 120 rows, the same 100 kept
+    assert report.measure_summary(summary_with_caps(cap=first, dyn_cap=second))["raise_rows"] == 300
 
 
 def test_common_and_head_to_head_need_paths_jsonl(capsys, shipped):

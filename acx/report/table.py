@@ -66,12 +66,14 @@ def measure_summary(s):
 
 
 def raise_rows(blocks):
-    """The rows where some counter would pop, from ``summary.json``'s ``caps`` blocks. Each block keeps at most 100 ids,
-    so a cut list counts by its ``rows_would_pop`` (exact when one counter binds, else a lower bound)."""
+    """The rows where some counter would pop, from ``summary.json``'s ``caps`` blocks. Each block keeps at most 100 ids.
+    With every list complete the count is exact; with a cut list it is a lower bound: the larger of the pooled kept ids
+    and the biggest ``rows_would_pop`` (exact when one counter binds)."""
     binding = [block for block in blocks if block["rows_would_pop"]]
+    kept = len(set().union(*(block["raise_ids"] for block in binding)))
     if all(len(block["raise_ids"]) == block["rows_would_pop"] for block in binding):
-        return len(set().union(*(block["raise_ids"] for block in binding)))
-    return max(block["rows_would_pop"] for block in binding)
+        return kept
+    return max(kept, *(block["rows_would_pop"] for block in binding))
 
 
 def solved_ids(run):
