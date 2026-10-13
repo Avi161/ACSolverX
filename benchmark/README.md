@@ -82,6 +82,12 @@ against their AC1M lines.
 All 640 MS640 rows (`pres_id` = line) with their bin, difficulty rank, the baseline's nodes and path length at 1M, the
 Aut(F2) class and minimal total, and progress at 50k nodes: the table the subsets were picked from.
 
+## `speed.py`: the CI speed check
+
+Times every config on a slice of its benchmark, with and without paths, on `main` and on a change, fails when one is
+more than 2% slower, and comments on the pull request how much faster or slower each one is
+([docs/PERFORMANCE.md](../docs/PERFORMANCE.md#speed-check-in-ci)).
+
 ## Related data (`data/`, not benchmarks)
 
 - `AC19_extended_aut_min.csv` (72,779 Aut-min orbits of `AC19_extended`; the ladder's `ac19_N` rows) and

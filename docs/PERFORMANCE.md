@@ -163,8 +163,10 @@ canonicalises words of up to 64 bits as integers. Results are identical record f
 `.github/workflows/speed.yml` runs `benchmark/speed.py` on every pull request and push to `main`: each config of
 `configs/` on a slice of a few CPU seconds, with and without paths, on the base and on the change in turn, three times
 each, in alternating order. It fails when one takes **more than 2% longer** than on `main`. Three runs on a runner
-vary by up to 5% on identical code (10% for RL), so a workload over 2% is timed nine more times and fails only when
-the fastest of its twelve runs is still over. Run it locally against any checkout:
+vary by up to 5% on identical code (10% for RL), so a pipeline more than 2% slower or faster is timed nine more times
+and counts only when the fastest of its twelve runs is still beyond 2%. On a pull request it then comments one table,
+updated on every push, of how much faster or slower each pipeline is (for example `20.0% faster`, `1.5% slower`), so
+a reviewer can weigh the speed change before merging. Run it locally against any checkout:
 
 ```bash
 python benchmark/speed.py ../main . --only hybrid aut      # all workloads when --only is left out

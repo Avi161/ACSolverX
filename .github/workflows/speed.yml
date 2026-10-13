@@ -2,7 +2,8 @@ name: speed
 
 # Times every pipeline (each config, with paths and with path = false) on the base commit and on this one, in turn on
 # one runner (benchmark/speed.py), and fails when one takes more than 2% longer than on the base, timed nine more times
-# first to rule out noise. Four jobs run in parallel, a few minutes each.
+# first to rule out noise. Four jobs run in parallel, a few minutes each; on a pull request, the report job then
+# comments one table of how much faster or slower each pipeline is (and edits that comment on every push).
 
 on:
   pull_request:
@@ -13,6 +14,9 @@ on:
 concurrency:
   group: speed-${{ github.ref }}
   cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   speed:
@@ -40,4 +44,33 @@ jobs:
       - run: python -m pip install --upgrade pip && pip install -e ./head[dev]
       - if: contains(matrix.group, 'rl')
         run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-      - run: python head/benchmark/speed.py base head --only ${{ matrix.group }} --summary "$GITHUB_STEP_SUMMARY"
+      - run: >-
+          python head/benchmark/speed.py base head --only ${{ matrix.group }} --summary "$GITHUB_STEP_SUMMARY"
+          --json speed.json
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: speed-${{ strategy.job-index }}
+          path: speed.json
+          if-no-files-found: ignore
+
+  report:
+    needs: speed
+    if: always() && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: speed-*
+          path: timings
+      - run: python3 benchmark/speed.py --report timings/*/speed.json | tee comment.md >> "$GITHUB_STEP_SUMMARY"
+      - continue-on-error: true                  # a fork's token cannot comment; the run summary has the table
+        run: gh pr comment "$PR" --edit-last --create-if-none --body-file comment.md
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
