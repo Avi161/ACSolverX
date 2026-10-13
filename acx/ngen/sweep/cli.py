@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 
+from ...runner import load_config
 from .check import verify
 from .driver import run
 
@@ -20,7 +21,6 @@ def main(argv=None):
                         help="after the run, re-run N random cells on both backends")
     args = parser.parse_args(argv)
 
-    from ...runner import load_config
     overrides = args.set + ([f'rows="{args.rows}"'] if args.rows else [])
     cfg = load_config(args.config, overrides)
     summary = run(cfg, args.out, args.fresh)

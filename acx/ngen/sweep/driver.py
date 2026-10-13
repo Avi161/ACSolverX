@@ -48,9 +48,8 @@ def run(cfg, out="results", fresh=False, log=print):
     Refused before anything is written: a row that is not two-generator, two-relator, and (unless ``fresh``) a run
     that would replace a published summary with one of fewer rows.
     """
-    from ...runner import select
     sc = SweepConfig.from_cfg(cfg)
-    rows = select(data.rows(cfg["benchmark"]), cfg.get("rows"))
+    rows = data.select(data.rows(cfg["benchmark"]), cfg.get("rows"))
     check_two_relators(rows)
     result_dir = os.path.join(out, cfg["name"])
     if not fresh:

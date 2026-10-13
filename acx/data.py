@@ -14,7 +14,8 @@ case is the inverse; any number of relators and generators is read (what a metho
 A row's id is the one given, else its 0-based position among the file's presentations. A bad line raises
 ``ValueError("<file>:<line>: <what is wrong>")``, and a file that is not UTF-8 text, or a ``.gz`` file that is not
 whole gzip, ``ValueError("<file>: ...")``.
-``MS`` and ``AK`` build the Miller-Schupp and Akbulut-Kirby families.
+``select(rows, "a:b")`` picks rows by slice or ids (``run.py --rows``). ``MS`` and ``AK`` build the Miller-Schupp
+and Akbulut-Kirby families.
 """
 import csv
 import gzip
@@ -54,6 +55,7 @@ SPLITS = {"ac1m_hard_holdout60": ("benchmark/splits/splits_ac1m_hard_aut.json", 
 _GENERATOR_LETTERS = set(GEN_CHARS + GEN_CHARS.upper())
 _RELATOR_COLUMN = re.compile(r"r\d+")
 _LONG_NAME = re.compile(r"[gG][1-9]\d*")          # g27, G27, ...: the generators past the 26th letters
+SLICE = re.compile(r"-?\d*:-?\d*(:-?\d*)?")     # integers around colons; anything else (``ms:1``) is an id
 
 
 def path_of(name_or_path, table=DATASETS):
@@ -205,6 +207,24 @@ def rows(spec):
         names = sorted(DATASETS) + sorted(BENCHMARKS) + sorted(SPLITS)
         raise KeyError(f"unknown benchmark {spec!r}; names: {names}; or a .txt, .csv or .jsonl file, optionally .gz")
     return reader(spec)
+
+
+def select(rows, spec):
+    """``rows`` sliced by ``"a:b[:c]"`` or picked by comma-separated ids (a repeated id once, first place)."""
+    if spec in (None, ""):
+        return rows
+    spec = str(spec).strip()
+    if SLICE.fullmatch(spec):
+        try:
+            return rows[slice(*(int(t) if t else None for t in spec.split(":")))]
+        except ValueError:                                       # a step of 0
+            raise ValueError(f"bad rows slice {spec!r}: write integers as a:b or a:b:c, the step not 0") from None
+    ids = list(dict.fromkeys(i.strip() for i in spec.split(",")))
+    by_id = {r.id: r for r in rows}
+    missing = [i for i in ids if i not in by_id]
+    if missing:
+        raise KeyError(f"rows not in the benchmark: {missing}")
+    return [by_id[i] for i in ids]
 
 
 def MS(n, w):

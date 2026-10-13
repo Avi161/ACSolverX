@@ -5,10 +5,11 @@
 - ``output``: the ``path`` and ``fields`` options: which record keys are written, and whether paths are kept.
 - ``caps``: the cap counters of a record and their ``summary.json`` block.
 - ``summary``: ``summary.json`` from a run's records.
-- ``execute``: pick the rows (``select``), solve them, resume, write ``results/<name>/`` (``run``).
+- ``execute``: solve the rows (picked by ``acx.data.select``), resume, write ``results/<name>/`` (``run``).
 """
+from ..data import select
 from .config import load_config, method_config
-from .execute import run, select
+from .execute import run
 from .summary import summarize
 
 __all__ = ["load_config", "method_config", "run", "select", "summarize"]

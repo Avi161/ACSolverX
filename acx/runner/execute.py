@@ -1,7 +1,6 @@
-"""Solving the rows of a config and writing ``results/<name>/``: row selection, workers, resume, summary."""
+"""Solving the rows of a config and writing ``results/<name>/``: workers, resume, summary."""
 import json
 import os
-import re
 import time
 from contextlib import nullcontext, suppress
 from multiprocessing import Pool
@@ -13,26 +12,7 @@ from .methods import SOLVERS, record
 from .output import shape
 from .summary import summarize
 
-SLICE = re.compile(r"-?\d*:-?\d*(:-?\d*)?")     # integers around colons; anything else (``ms:1``) is an id
 WARM_UP = data.parse_presentation("xxYYY, xyxYXY")     # AK(2): a short solve that every method can take
-
-
-def select(rows, spec):
-    """``rows`` sliced by ``"a:b[:c]"`` or picked by comma-separated ids (a repeated id once, first place)."""
-    if spec in (None, ""):
-        return rows
-    spec = str(spec).strip()
-    if SLICE.fullmatch(spec):
-        try:
-            return rows[slice(*(int(t) if t else None for t in spec.split(":")))]
-        except ValueError:                                       # a step of 0
-            raise ValueError(f"bad rows slice {spec!r}: write integers as a:b or a:b:c, the step not 0") from None
-    ids = list(dict.fromkeys(i.strip() for i in spec.split(",")))
-    by_id = {r.id: r for r in rows}
-    missing = [i for i in ids if i not in by_id]
-    if missing:
-        raise KeyError(f"rows not in the benchmark: {missing}")
-    return [by_id[i] for i in ids]
 
 
 def pres_text(pres):
@@ -179,7 +159,7 @@ def run(cfg, out="results", fresh=False, log=print):
         from ..ngen.sweep import run as run_rankn
         return run_rankn(cfg, out, fresh, log)
     every_row = data.rows(cfg["benchmark"])
-    rows = select(every_row, cfg.get("rows"))
+    rows = data.select(every_row, cfg.get("rows"))
     run_dir = os.path.join(out, cfg["name"])
     paths_file = _prepare_run_dir(run_dir, cfg, fresh, len(rows))
     done = _load_done(paths_file) if os.path.exists(paths_file) else {}
