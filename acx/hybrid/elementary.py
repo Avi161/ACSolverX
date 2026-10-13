@@ -88,7 +88,6 @@ def _transvection(fr, words, ev):
     return D.normalize(D.transvection(w, i, j, s) for w in words)
 
 
-# the dyn event kinds
 EVENTS = {"product": _product, "define": _define, "eliminate": _eliminate, "nielsen": _transvection}
 
 
