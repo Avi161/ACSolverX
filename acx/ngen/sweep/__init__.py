@@ -9,12 +9,12 @@ Modules: ``words`` (word pool, starts), ``config``, ``rows`` (one row's searches
 """
 from .check import check_counters, verify
 from .cli import main
-from .config import COUNTERS, SweepConfig, SweepError, ident_of, words_of
+from .config import COUNTERS, SweepConfig, SweepError, words_of
 from .driver import run
 from .rows import load_row, row_path, sweep_row, sweep_row_file
 from .summary import summarize
-from .words import combos, pool, reduced_words, sampled, start, word_str
+from .words import combos, pool, reduced_words, sampled, start
 
-__all__ = ["COUNTERS", "SweepConfig", "SweepError", "check_counters", "combos", "ident_of", "load_row", "main",
-           "pool", "reduced_words", "row_path", "run", "sampled", "start", "summarize", "sweep_row", "sweep_row_file",
-           "verify", "word_str", "words_of"]
+__all__ = ["COUNTERS", "SweepConfig", "SweepError", "check_counters", "combos", "load_row", "main", "pool",
+           "reduced_words", "row_path", "run", "sampled", "start", "summarize", "sweep_row", "sweep_row_file", "verify",
+           "words_of"]

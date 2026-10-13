@@ -14,12 +14,12 @@
   "all": {
    "starts": 351,
    "solved": 0.8321,
-   "solved_on_control_solved": 0.8473,
+   "solved_on_control_solved": 0.847299,
    "solved_on_control_unsolved": 0.0,
-   "fewer": 0.0007,
-   "same": 0.0,
-   "more": 0.8313,
-   "unsolved": 0.1679,
+   "fewer": 0.000742,
+   "same": 3.9e-05,
+   "more": 0.846518,
+   "lost": 0.152701,
    "oracle": {
     "solved_by_some": 216,
     "gained_over_control": 0,

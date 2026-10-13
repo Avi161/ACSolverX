@@ -20,7 +20,7 @@ def verify(result_dir, recheck=0, seed=0, log=print):
     Per row: ident and array shapes; control equals the null stabilisation, and the null's counters equal the
     control's (smallest score + ``extra``); pops in ``1..budget``; the cap-counter rules (``check_counters``); every
     stored path (control and sampled) replays on its start through ``acx.verify.replay``. Then ``recheck`` random
-    cells re-run on the other backend must agree on solved, pops, path length and the counters.
+    cells re-run on both backends must agree with the file on solved, pops, path length and the counters.
     """
     with open(os.path.join(result_dir, "config.json")) as f:
         key = json.load(f)
@@ -34,14 +34,14 @@ def verify(result_dir, recheck=0, seed=0, log=print):
     for row_id in row_ids:
         row = load_row(row_path(result_dir, row_id))
 
-        def fail(message, row_id=row_id):
+        def fail(message):
             failures.append(f"row {row_id}: {message}")
 
         if row["ident"] != ident_of(sc, row_id, rows[row_id].pres):
             fail("ident differs from the config")
             continue
         check_row(row, rows[row_id].pres, sc, words, starts, fail)
-    failures += recheck_on_other_backend(result_dir, row_ids, rows, sc, words, starts, recheck, random.Random(seed))
+    failures += recheck_on_both_backends(result_dir, row_ids, rows, sc, words, starts, recheck, random.Random(seed))
     log(f"verify {result_dir}: {len(row_ids)} rows, {len(failures)} failures")
     return failures
 
@@ -88,20 +88,25 @@ def check_paths(row, pres, sc, words, starts, solved, pops, fail):
         replay(start(*pres.rels, chosen), decode_path(kept["path"]), cyclic=cyclic, cap=cap)
 
 
-def recheck_on_other_backend(result_dir, row_ids, rows, sc, words, starts, n, rng):
-    """``n`` random cells re-run on the other backend; the failures (solved, pops, path length, counters)."""
-    other = "spec" if sc.search.backend == "fast" else "fast"
+def recheck_on_both_backends(result_dir, row_ids, rows, sc, words, starts, n, rng):
+    """``n`` random cells re-run on ``spec`` and on ``fast``; the failures (solved, pops, path length, counters).
+
+    The stored config does not say which backend wrote the files (``SweepConfig.key`` leaves it out), so each cell
+    runs on both: one of them is always the other backend.
+    """
     failures = []
     for _ in range(n if row_ids else 0):
         row_id, index = rng.choice(row_ids), rng.randrange(len(starts))
         row = load_row(row_path(result_dir, row_id))
-        result = search(start(*rows[row_id].pres.rels, [words[j] for j in starts[index]]),
-                        sc.search.replace(backend=other))
-        got = (bool(result.solved), result.pops, -1 if result.path_length is None else result.path_length)
+        pres = start(*rows[row_id].pres.rels, [words[j] for j in starts[index]])
         want = (bool(row["path_len"][index] >= 0), int(row["nodes"][index]), int(row["path_len"][index]))
-        counters = {k: -1 if result.stats[k] is None else result.stats[k] for k in COUNTERS}
-        if got != want or any(counters[k] != int(row[k][index]) for k in COUNTERS):
-            failures.append(f"row {row_id} start {index}: {other} backend gives {got} {counters}, file has {want}")
+        for backend in ("spec", "fast"):
+            result = search(pres, sc.search.replace(backend=backend))
+            got = (bool(result.solved), result.pops, -1 if result.path_length is None else result.path_length)
+            counters = {k: -1 if result.stats[k] is None else result.stats[k] for k in COUNTERS}
+            if got != want or any(counters[k] != int(row[k][index]) for k in COUNTERS):
+                failures.append(
+                    f"row {row_id} start {index}: {backend} backend gives {got} {counters}, file has {want}")
     return failures
 
 

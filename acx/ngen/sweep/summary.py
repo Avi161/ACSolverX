@@ -1,7 +1,8 @@
 """Read the row files of a result directory into ``summary.json`` and ``summary.md``.
 
-Fractions are per presentation, averaged over presentations. "Fewer" counts every solve when the control fails.
-The oracle counts a presentation as solved when some word of the bucket (up to that length) solves it.
+Fractions are per presentation, averaged over presentations; fewer, same, more and lost (pops against the control's)
+are averaged over the control-solved presentations only, as in the baseline's tables. The oracle counts a presentation
+as solved when some word of the bucket (up to that length) solves it; "some faster" counts control-solved ones only.
 """
 import json
 import os
@@ -40,10 +41,10 @@ class BucketTally:
     fewer: float = 0.0
     same: float = 0.0
     more: float = 0.0
-    unsolved: float = 0.0
+    lost: float = 0.0
     solved_by_some: int = 0
     gained: int = 0
-    lost: int = 0
+    lost_by_every: int = 0
     faster: int = 0
 
     def add_row(self, bucket, solved, pops, control_solved, control_pops):
@@ -55,31 +56,29 @@ class BucketTally:
             self.fewer += (here & (here_pops < control_pops)).mean()
             self.same += (here & (here_pops == control_pops)).mean()
             self.more += (here & (here_pops > control_pops)).mean()
+            self.lost += (~here).mean()
         else:
             self.solved_control_unsolved += here.mean()
-            self.fewer += here.mean()
-        self.unsolved += (~here).mean()
 
         oracle = solved[bucket.upto]
         some = bool(oracle.any())
         self.solved_by_some += some
         self.gained += some and not control_solved
-        self.lost += control_solved and not some
-        self.faster += some and (not control_solved or int(pops[bucket.upto][oracle].min()) < control_pops)
+        self.lost_by_every += control_solved and not some
+        if some and control_solved and int(pops[bucket.upto][oracle].min()) < control_pops:
+            self.faster += 1
 
     def table(self, bucket, n_rows, n_control_solved):
-        """The bucket's entry of ``summary.json``."""
+        """The bucket's entry of ``summary.json``; a share of no presentation is ``None``."""
         n_control_unsolved = n_rows - n_control_solved
         return dict(
-            starts=int(bucket.members.sum()), solved=_fraction(self.solved / n_rows),
-            solved_on_control_solved=_fraction(self.solved_control_solved / n_control_solved)
-            if n_control_solved else None,
-            solved_on_control_unsolved=_fraction(self.solved_control_unsolved / n_control_unsolved)
-            if n_control_unsolved else None,
-            fewer=_fraction(self.fewer / n_rows), same=_fraction(self.same / n_rows),
-            more=_fraction(self.more / n_rows), unsolved=_fraction(self.unsolved / n_rows),
+            starts=int(bucket.members.sum()), solved=_share(self.solved, n_rows),
+            solved_on_control_solved=_share(self.solved_control_solved, n_control_solved),
+            solved_on_control_unsolved=_share(self.solved_control_unsolved, n_control_unsolved),
+            fewer=_share(self.fewer, n_control_solved), same=_share(self.same, n_control_solved),
+            more=_share(self.more, n_control_solved), lost=_share(self.lost, n_control_solved),
             oracle=dict(solved_by_some=self.solved_by_some, gained_over_control=self.gained,
-                        control_solved_lost_by_every=self.lost, some_faster_than_control=self.faster))
+                        control_solved_lost_by_every=self.lost_by_every, some_faster_than_control=self.faster))
 
 
 @dataclass
@@ -102,7 +101,14 @@ class CapTally:
 
 
 def _fraction(x):
-    return round(float(x), 4)
+    """Round to six places, so the markdown's one-decimal percent is not a second coarse rounding (0.806458 prints
+    80.6%, not 80.7% by way of 0.8065)."""
+    return round(float(x), 6)
+
+
+def _share(total, count):
+    """The mean of ``total`` over ``count`` presentations, rounded; ``None`` when there are none."""
+    return _fraction(total / count) if count else None
 
 
 def summarize(result_dir, wall=None):
@@ -134,11 +140,12 @@ def summarize(result_dir, wall=None):
         cap.add_row(row, solved, pops, sc.search.budget)
 
     best = int(solved_per_start.argmax())
+    best_single = dict(word=word_str([words[j] for j in starts[best]]), solved=int(solved_per_start[best]))
     summary = dict(
         rows=n_rows, extra=sc.extra, lengths=[sc.min_len, sc.max_len], budget=sc.search.budget, cap=sc.search.cap,
         starts_per_row=len(starts), searches=n_rows * len(starts), control_solved=n_control_solved,
         buckets={b.name: tallies[b.name].table(b, n_rows, n_control_solved) for b in buckets},
-        best_single=dict(word=word_str([words[j] for j in starts[best]]), solved=int(solved_per_start[best])),
+        best_single=best_single if n_rows else None,
         cap_counters=dict(fields=list(COUNTERS), searches=cap.searches, dropped=cap.dropped,
                           could_bind=cap.could_bind, solved_could_bind=cap.solved_could_bind,
                           below_budget=cap.below_budget),
@@ -154,24 +161,31 @@ def _percent(x):
     return "-" if x is None else f"{100 * x:.1f}%"
 
 
+LEGEND = ("`solved` is a share of all presentations; `fewer`, `same`, `more` (pops against the control's) and `lost` "
+          "are shares of the control-solved presentations and add up to 100%; the last four columns count "
+          "presentations.")
+
+
 def markdown(summary):
-    """The summary as a markdown page: the bucket table, the best single start and the cap counters."""
+    """The summary as a markdown page: the bucket table and its legend, the best single start and the cap counters."""
     s = summary
     lines = [f"# rank {2 + s['extra']} brute force: {s['rows']} rows, budget {s['budget']}, cap {s['cap']}", "",
              f"Control solves {s['control_solved']} of {s['rows']}. {s['searches']:,} searches "
              f"({s['starts_per_row']:,} starts per row), words of length {s['lengths'][0]} to {s['lengths'][1]}.", "",
-             "| bucket | starts | solved | on control-solved | on control-unsolved | fewer | same | more | unsolved "
-             "| solved by some | gained | lost | some faster |", "|" + "---|" * 13]
+             "| bucket | starts | solved | on control-solved | on control-unsolved | fewer | same | more | lost "
+             "| solved by some | gained | lost by every | some faster |", "|" + "---|" * 13]
     for name, t in s["buckets"].items():
         o = t["oracle"]
         lines.append(
             f"| {name} | {t['starts']:,} | {_percent(t['solved'])} | {_percent(t['solved_on_control_solved'])} | "
             f"{_percent(t['solved_on_control_unsolved'])} | {_percent(t['fewer'])} | {_percent(t['same'])} | "
-            f"{_percent(t['more'])} | {_percent(t['unsolved'])} | {o['solved_by_some']} | {o['gained_over_control']} | "
+            f"{_percent(t['more'])} | {_percent(t['lost'])} | {o['solved_by_some']} | {o['gained_over_control']} | "
             f"{o['control_solved_lost_by_every']} | {o['some_faster_than_control']} |")
+    lines += ["", LEGEND]
+    if s["best_single"]:
+        lines += ["", f"Best single start: `{s['best_single']['word']}` solves {s['best_single']['solved']} rows."]
     c = s["cap_counters"]
-    lines += ["", f"Best single start: `{s['best_single']['word']}` solves {s['best_single']['solved']} rows.", "",
-              f"Cap counters ({', '.join(c['fields'])}): the cap dropped a child in {c['dropped']:,} of "
+    lines += ["", f"Cap counters ({', '.join(c['fields'])}): the cap dropped a child in {c['dropped']:,} of "
               f"{c['searches']:,} searches; could bind in {c['could_bind']:,} ({c['solved_could_bind']:,} solved); "
               f"{c['below_budget']:,} unsolved searches stopped below the budget.", ""]
     return "\n".join(lines)

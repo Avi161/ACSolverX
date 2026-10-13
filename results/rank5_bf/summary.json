@@ -13,13 +13,13 @@
  "buckets": {
   "all": {
    "starts": 120,
-   "solved": 0.5747,
-   "solved_on_control_solved": 0.6568,
+   "solved": 0.57474,
+   "solved_on_control_solved": 0.656845,
    "solved_on_control_unsolved": 0.0,
-   "fewer": 0.0016,
-   "same": 0.0003,
-   "more": 0.5729,
-   "unsolved": 0.4253,
+   "fewer": 0.001786,
+   "same": 0.000298,
+   "more": 0.654762,
+   "lost": 0.343155,
    "oracle": {
     "solved_by_some": 21,
     "gained_over_control": 0,
