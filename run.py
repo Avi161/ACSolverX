@@ -92,7 +92,8 @@ def parse_args(argv):
                       help='run a presentation of your own, e.g. "xxYYY, xyxYXY"; repeat for more; the run is named '
                       '<config name>_pres')
     rows = ap.add_mutually_exclusive_group()
-    rows.add_argument("--rows", help='a slice "a:b" or ids "3,17" of the benchmark')
+    rows.add_argument("--rows", help='rows of the benchmark: a slice "a:b" or "a:b:c" (integers), or ids "3,17" (an id '
+                      'may hold a colon, "ms:1")')
     rows.add_argument("--solved-from", metavar="RUN_DIR", help="run only the rows that RUN_DIR/paths.jsonl marks "
                       "solved, e.g. to get and verify the paths of a path=false run: --set path=true")
     ap.add_argument("--out", default="results", help="results root (default: results)")

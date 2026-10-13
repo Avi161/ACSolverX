@@ -204,6 +204,13 @@ def test_help_describes_both_flags(capsys):
     assert "--input" in out and "--pres" in out
 
 
+def test_rows_help_names_every_form_select_takes(capsys):
+    with pytest.raises(SystemExit):
+        run.main(["--help"])
+    text = " ".join(capsys.readouterr().out.split())                 # undo argparse's line wrapping
+    assert all(form in text for form in ('"a:b"', '"a:b:c"', '"3,17"', '"ms:1"'))
+
+
 # ---- the default run name of your own rows: never the shipped folder of the config ----------------------------------
 
 def write_own(tmp_path, name):
