@@ -48,7 +48,7 @@ def combine(parts, prefix="cap"):
     return total
 
 
-def summarize(records, prefix="cap", ids=None, keep=100):
+def summarize(records, prefix="cap", keep=100):
     """The ``summary.json`` block of one counter over a run's row records (rows lacking it are skipped).
 
     It holds the cap(s), the rows seen, the rows that dropped, the rows with ``would_pop > 0`` (their ids, up
@@ -56,8 +56,7 @@ def summarize(records, prefix="cap", ids=None, keep=100):
     Returns None when no row has the counter.
     """
     key = fields(prefix)
-    row_ids = ids or [record.get("id") for record in records]
-    rows = [(row_id, record) for row_id, record in zip(row_ids, records) if key.dropped in record]
+    rows = [(record.get("id"), record) for record in records if key.dropped in record]
     if not rows:
         return None
     caps = sorted({record[key.cap] for _, record in rows}, key=lambda cap: (cap is None, cap))
