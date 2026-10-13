@@ -245,6 +245,84 @@ def test_an_explicit_name_wins_even_when_it_is_the_configs_own(tmp_path, flag, o
     assert os.listdir(tmp_path / "out") == [name]
 
 
+# ---- decode later: --solved-from runs only the rows another run solved ---------------------------------------------
+
+def write_run(run_dir, solved_by_id):
+    """A run folder whose ``paths.jsonl`` holds one record per ``id: solved`` (the fields --solved-from reads)."""
+    run_dir.mkdir(parents=True)
+    lines = [json.dumps({"id": row_id, "solved": solved}) + "\n" for row_id, solved in solved_by_id.items()]
+    (run_dir / "paths.jsonl").write_text("".join(lines))
+    return str(run_dir)
+
+
+def test_solved_ids_are_the_ids_marked_solved_in_file_order(tmp_path):
+    fast = write_run(tmp_path / "fast", {"7": True, "2": False, "ms:1": True, "0": True})
+    assert run.solved_ids(fast) == ["7", "ms:1", "0"]
+
+
+def test_solved_from_runs_exactly_the_solved_rows(tmp_path):
+    fast = write_run(tmp_path / "fast", {"7": True, "2": False, "0": True, "5": True, "9": False})
+    run_cli(tmp_path, "--solved-from", fast, "--set", "name=later", *SPEC, "--set", "search.budget=50")
+    assert [r["id"] for r in records(tmp_path, "later")] == ["7", "0", "5"]
+
+
+def test_solved_from_replaces_the_configs_own_rows(tmp_path):
+    fast = write_run(tmp_path / "fast", {"25": True})                       # smoke.toml says rows = "0:20"
+    run_cli(tmp_path, "--solved-from", fast, "--set", "name=later", *SPEC, "--set", "search.budget=50")
+    assert [r["id"] for r in records(tmp_path, "later")] == ["25"]
+
+
+def test_solved_from_works_on_your_own_file(tmp_path):
+    mine = tmp_path / "mine.jsonl"
+    mine.write_text('{"id": "AK2", "relators": ["xxYYY", "xyxYXY"]}\n{"id": "AK3", "relators": ["xyxYXY", "xxxYYYY"]}\n')
+    options = ("--input", str(mine), *SPEC, "--set", "search.budget=50")
+    run_cli(tmp_path, *options, "--set", "path=false")                     # smoke_mine: AK2 solved, AK3 not
+    run_cli(tmp_path, *options, "--solved-from", str(tmp_path / "smoke_mine"), "--set", "name=later")
+    assert [(r["id"], r["verified"]) for r in records(tmp_path, "later")] == [("AK2", True)]
+
+
+def test_solved_from_a_folder_without_paths_jsonl_exits_with_one_line(tmp_path):
+    shipped = os.path.join(ROOT, "results", "ms640_hybrid")                 # summary.json and config.json only
+    for folder in (shipped, str(tmp_path / "nowhere")):
+        with pytest.raises(SystemExit) as e:
+            run_cli(tmp_path / "out", "--solved-from", folder)
+        assert e.value.code.startswith(os.path.join(folder, "paths.jsonl") + ": ") and "\n" not in e.value.code
+    assert not (tmp_path / "out").exists()
+
+
+def test_solved_from_a_run_that_solved_nothing_exits_with_one_line(tmp_path):
+    fast = write_run(tmp_path / "fast", {"0": False, "1": False})
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", "--solved-from", fast)
+    assert e.value.code == f"{os.path.join(fast, 'paths.jsonl')}: no solved rows"
+    assert not (tmp_path / "out").exists()
+
+
+def test_solved_from_and_rows_cannot_be_combined(tmp_path, capsys):
+    fast = write_run(tmp_path / "fast", {"0": True})
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", "--solved-from", fast, "--rows", "0:3")
+    assert e.value.code == 2 and "not allowed with" in capsys.readouterr().err
+    assert not (tmp_path / "out").exists()
+
+
+@pytest.mark.parametrize("config,rows,options", [
+    (SMOKE, "0:20", ("--set", "search.budget=5")),                          # greedy: some of the 20 rows unsolved
+    (HYBRID, "0:6", ())])                                                   # hybrid: units, aut-assisted paths
+def test_a_fast_run_then_a_decode_run_of_its_solved_rows(tmp_path, config, rows, options):
+    """``path = false`` first, then ``path = true`` on its solved rows: the same solves, now each with a replayed path."""
+    run_cli(tmp_path, "--rows", rows, *options, "--set", "path=false", "--set", "name=fast", config=config)
+    run_cli(tmp_path, "--solved-from", str(tmp_path / "fast"), *options, "--set", "path=true", "--set", "name=paths",
+            config=config)
+    fast, paths = records(tmp_path, "fast"), records(tmp_path, "paths")
+    solved = [r for r in fast if r["solved"]]
+    assert 0 < len(solved) and (config == HYBRID or len(solved) < len(fast))
+    assert [(r["id"], r["cost"], r["sub_moves"], r["kind"]) for r in solved] == \
+        [(r["id"], r["cost"], r["sub_moves"], r["kind"]) for r in paths]
+    assert all(r["verified"] and r["elem_moves"] for r in paths)
+    assert not any(r["verified"] or r["path"] or r["elementary"] for r in fast)
+
+
 # ---- a bad row id, config or input file ends the command with one line, not a traceback ----------------------------
 
 @pytest.mark.parametrize("config", [SMOKE, RANK3])
