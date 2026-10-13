@@ -4,5 +4,6 @@
 COUNTER_SIZE = 10
 NODES, HEAP_LEN, N_DISC, MIN_T, MAX_T, EXP_T, EXP_ID, SOLVED_ID, DROPPED, DMIN_T = range(COUNTER_SIZE)
 
-# What ``_run`` returns: finished, solved, or stopped before a pop whose children might not fit.
-OK, SOLVED, NEED_CAPACITY, NEED_WIDTH = range(4)
+# What ``_run`` returns: finished, solved, or stopped before a pop that might not fit: its children (``NEED_CAPACITY``,
+# ``NEED_WIDTH``) or its record in the cap counters' per-pop arrays (``NEED_POPS``).
+OK, SOLVED, NEED_CAPACITY, NEED_WIDTH, NEED_POPS = range(5)
