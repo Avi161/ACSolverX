@@ -365,6 +365,25 @@ def test_set_cyclic_False_is_refused_at_load():
         load_config(SMOKE, ["search.cyclic=False"])
 
 
+@pytest.mark.parametrize("item, message", [
+    ("name=2026-10-13", "name must be a string"),                 # a TOML date
+    ("name=123", "name must be a string"),
+    ("name=true", "name must be a string"),
+    ("benchmark=640", "benchmark must be a string"),
+    ("search=5", "search is a section"),
+    ("search=[1]", "search is a section")])
+def test_a_wrongly_typed_top_level_value_is_a_valueerror_at_load(item, message):
+    with pytest.raises(ValueError, match=f"^{message}"):
+        load_config(SMOKE, [item])
+
+
+def test_run_py_exits_with_one_line_for_a_date_name(tmp_path):
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", "--rows", "0:1", "--set", "name=2026-10-13")
+    assert e.value.code.startswith("name must be a string") and "\n" not in e.value.code
+    assert not (tmp_path / "out").exists()
+
+
 @pytest.mark.parametrize("method, override", [("rankn", "rankn.inverse=False"), ("greedy", "search.cyclic=False")])
 def test_a_boolean_option_spelled_the_python_way_is_an_error_not_true(tmp_path, method, override):
     path = tmp_path / f"{method}.toml"

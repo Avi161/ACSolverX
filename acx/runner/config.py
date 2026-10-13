@@ -58,10 +58,17 @@ def _apply_override(cfg, item):
 
 
 def _check_keys(cfg):
-    """Raise ``ValueError`` for an unknown top-level key, an unknown method, or a section the method ignores."""
+    """Raise ``ValueError`` for an unknown top-level key, a ``name`` or ``benchmark`` that is not a string, a section
+    that is not a table, an unknown method, or a section the method ignores."""
     unknown = set(cfg) - ALL_KEYS
     if unknown:
         raise ValueError(f"unknown config keys {sorted(unknown)}")
+    for key in ("name", "benchmark"):
+        if key in cfg and not isinstance(cfg[key], str):
+            raise ValueError(f'{key} must be a string, got {cfg[key]!r} (quote it: {key}="...")')
+    for section in set(cfg) - TOP_LEVEL_KEYS:
+        if not isinstance(cfg[section], dict):
+            raise ValueError(f"{section} is a section: set its keys ({section}.key=value), got {cfg[section]!r}")
     if cfg.get("method") not in METHODS:
         raise ValueError(f"method {cfg.get('method')!r} not in {METHODS}")
     ignored = set(cfg) - TOP_LEVEL_KEYS - set(SECTIONS[cfg["method"]])
