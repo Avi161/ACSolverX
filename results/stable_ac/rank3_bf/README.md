@@ -10,7 +10,9 @@ cap have changed the search (section "Relator-length cap").
 
 - **Here** (3.8 MB): the summaries, class views and per-presentation and per-word tables, the
   graphs, the cap tables (`cap/`) and the check logs, 90 files byte for byte the source's. This
-  README is the source's with this block, two links and the last section changed or added.
+  README is the source's plus this block, the two links into absent code (and a note that `PLAN §n`
+  is a section of the source's `PLAN.md`), a paragraph under Files, the "Reproduce with acx" section,
+  and the reworded status line and "Reproduce / check" lead.
 - **Not here:** the 102 raw files (`*.npz`, `*.jsonl`, `*.jsonl.gz`, 70.5 MB), listed with size and
   sha256 in [`MANIFEST.json`](MANIFEST.json). Fetch one from a clone that has the source branch with
   `git show f2d53ced:results/stable_ac/rank3_bf/<file> > <file>`; git ignores a fetched file here,
@@ -20,8 +22,10 @@ cap have changed the search (section "Relator-length cap").
   (`experiments/stable_ac/rank3/`, `solvern*.py`, `tests/stable_ac/`). A link into that code reads
   `rank3/brute-force-baseline:<path>`.
 - **Rerun with acx:** `python run.py --config configs/rank3_bf.toml` searches word lengths 1 to 4
-  at budget 1,000 again (`results/rank3_bf/`, equal to this study cell for cell); section
-  "Reproduce with acx" lists the other commands.
+  at budget 1,000 again, about 2 core-hours; the result equals this study cell for cell (checked
+  against the source arrays, 51,200 cells; the per-row files are not tracked). Without
+  `--set name=...` it rewrites the tracked `results/rank3_bf/summary.*`. Section "Reproduce with
+  acx" lists the other commands.
 
 ## Setup and terms
 
@@ -56,7 +60,8 @@ cap have changed the search (section "Relator-length cap").
 - Percentages for "a random word" are the share of a presentation's words, averaged over
   presentations, so every presentation weighs the same.
 
-Plan, definitions and every deviation: `rank3/brute-force-baseline:experiments/stable_ac/rank3/PLAN.md`.
+Plan, definitions and every deviation: `rank3/brute-force-baseline:experiments/stable_ac/rank3/PLAN.md`
+(not on this branch). Every `PLAN §n` below is a section of that file.
 
 ## Result
 
@@ -458,21 +463,24 @@ The independent scripts read plain `.jsonl`; gunzip the four subword files first
 
 ## Reproduce with acx
 
-`python run.py --config configs/rank3_bf.toml` (see [docs/RANK3.md](../../../docs/RANK3.md)) runs the same searches
-as the source scripts for the lengths asked, and its rerun of lengths 1 to 4 equals the cells of this study. A run
-writes `results/<name>/` (`config.json`, `summary.json`, `summary.md`, the rows in `rows/`); `--set name=...` keeps it
-from overwriting the tracked `results/rank3_bf/`. The longer runs are cluster jobs (1,329 core-hours for budget 1,000,
-lengths 1 to 10).
+`python run.py --config configs/rank3_bf.toml` (see [docs/RANK3.md](../../../docs/RANK3.md)) searches the same starts
+as the source scripts for the lengths asked, and at lengths 1 to 4 equals the cells of this study (checked against the
+source arrays, 51,200 cells; the per-row files are not tracked). A run writes `results/<name>/` (`config.json`,
+`summary.json`, `summary.md`, the rows in `rows/`), and the name is the config's unless `--set name=...` says otherwise.
+Lengths 1 to 4 at budget 1,000 take about 2 core-hours (5,850 core-seconds in the tracked run); the longer runs are
+cluster jobs (1,329 core-hours for budget 1,000, lengths 1 to 10). Run under the config's own name, a command rewrites
+the tracked `summary.json` and `summary.md` of `results/rank3_bf/` (or `rank4_bf/`, `rank5_bf/`), so every command below
+gives the run a new name.
 
 | source branch | acx |
 |---|---|
-| `run_rank3_bf --budget 1000 --max-len 4 --workers N` | `python run.py --config configs/rank3_bf.toml --set workers=N` |
+| `run_rank3_bf --budget 1000 --max-len 4 --workers N` | `python run.py --config configs/rank3_bf.toml --set workers=N --set name=rank3_bf_rerun` |
+| `--inv-max-len L` (the source ran it in the same command; acx runs it on its own) | `--set rankn.inverse=true --set rankn.max_len=L --set name=rank3_bf_inv` |
 | `--max-len 10`, or one length | `--set rankn.max_len=10 --set name=rank3_bf_L10`, or `--set rankn.min_len=9 --set rankn.max_len=9 --set name=rank3_bf_L9` |
 | `--budget 10000 --max-len 7` | `--set search.budget=10000 --set rankn.max_len=7 --set name=rank3_bf_b10000` (a budget up to 65,535: pops are stored as uint16) |
-| `--inv-max-len 6` | `--set rankn.inverse=true --set rankn.max_len=6 --set name=rank3_bf_inv` |
 | `--cap 32` | `--set search.cap=32 --set name=rank3_bf_cap32` |
-| `rankn_bf.py OUT N` (ranks 4 and 5) | `python run.py --config configs/rank4_bf.toml`, `configs/rank5_bf.toml` |
-| `verify_rank3_bf --recheck 30` | `python -m acx.ngen.sweep --config configs/rank3_bf.toml --verify 30` (the control is the empty-word start; paths replayed; 30 cells re-run on the other backend; no CoV-control comparison) |
+| `rankn_bf.py OUT N` (ranks 4 and 5) | `python run.py --config configs/rank4_bf.toml --set name=rank4_bf_full`, `configs/rank5_bf.toml` likewise |
+| `verify_rank3_bf --recheck 30` | `python -m acx.ngen.sweep --config configs/rank3_bf.toml --set name=rank3_bf_check --verify 30` (runs the config first; the control is the empty-word start; paths replayed; 30 cells re-run on the other backend; no CoV-control comparison) |
 | `summarize_rank3_bf`, `plot_rankn_vs_control`, `class_view`, `cap_exhaustion`, `cap_compare`, `indep_*.py` | no acx equivalent: the tables, graphs and logs in this folder are their output |
 
 What acx does not port: the relator-subword arm, the block shards of the long lengths, the shortlex price, the

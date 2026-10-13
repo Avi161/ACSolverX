@@ -51,7 +51,7 @@ def test_manifest_schema_and_source_commit():
 
 
 def test_no_listed_raw_file_is_committed():
-    """The raw files are fetched on demand (README.md), so git must not track any; .gitignore keeps a fetched one out."""
+    """The raw files are fetched on demand (README.md): git tracks none, and .gitignore keeps a fetched one out."""
     try:
         tracked = subprocess.run(["git", "ls-files", "--", str(STUDY)], cwd=ROOT, check=True,
                                  capture_output=True, text=True).stdout.split()
@@ -63,11 +63,23 @@ def test_no_listed_raw_file_is_committed():
 
 
 def test_a_fetched_raw_file_matches_its_manifest_entry():
+    fetched = [(e, STUDY / e["path"]) for e in manifest_files() if (STUDY / e["path"]).exists()]
+    if not fetched:
+        pytest.skip("no raw file is fetched into this checkout")
+    for entry, path in fetched:
+        assert path.stat().st_size == entry["bytes"]
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == entry["sha256"]
+
+
+def test_manifest_matches_the_source_commit():
+    """Where the source commit is in this clone, each listed size and sha256 is the blob's at that commit."""
+    source = stored("MANIFEST.json")["source"]
     for entry in manifest_files():
-        path = STUDY / entry["path"]
-        if path.exists():
-            assert path.stat().st_size == entry["bytes"]
-            assert hashlib.sha256(path.read_bytes()).hexdigest() == entry["sha256"]
+        ref = f'{source["commit"]}:{source["dir"]}/{entry["path"]}'
+        if subprocess.run(["git", "cat-file", "-e", ref], cwd=ROOT, capture_output=True).returncode:
+            pytest.skip("the source commit is not in this clone")
+        blob = subprocess.run(["git", "cat-file", "blob", ref], cwd=ROOT, check=True, capture_output=True).stdout
+        assert (len(blob), hashlib.sha256(blob).hexdigest()) == (entry["bytes"], entry["sha256"])
 
 
 def test_stored_summaries_hold_the_numbers_the_docs_quote():
@@ -102,7 +114,7 @@ def test_our_rank3_run_agrees_with_the_stored_budget_1000_summary(length):
 
 
 def test_stored_budget_10000_control_is_our_length_run():
-    """The study's control is the plain LENGTH greedy at cap 24: its 606 solves and 576,053 pops are ms640_length_fast."""
+    """The study's control is the LENGTH greedy at cap 24: its 606 solves and 576,053 pops are ms640_length_fast."""
     with open(STUDY / "rank3_bf_ms640_b10000_cap24_per_presentation.csv") as f:
         rows = list(csv.DictReader(f))
     solved = [r for r in rows if r["control_solved"] == "1"]
