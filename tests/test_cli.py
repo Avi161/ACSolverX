@@ -262,6 +262,12 @@ def test_solved_ids_are_the_ids_marked_solved_in_file_order(tmp_path):
     assert run.solved_ids(fast) == ["7", "ms:1", "0"]
 
 
+def test_solved_from_reads_a_run_that_was_cut_off(tmp_path):
+    """A run stopped mid-write leaves half a record last; the runner's resume drops it, and so does --solved-from."""
+    (tmp_path / "paths.jsonl").write_text('{"id": "0", "solved": true}\n{"id": "1", "solved": false}\n{"id": "2", "so')
+    assert run.solved_ids(tmp_path) == ["0"]
+
+
 def test_solved_from_runs_exactly_the_solved_rows(tmp_path):
     fast = write_run(tmp_path / "fast", {"7": True, "2": False, "0": True, "5": True, "9": False})
     run_cli(tmp_path, "--solved-from", fast, "--set", "name=later", *SPEC, "--set", "search.budget=50")

@@ -64,7 +64,10 @@ def solved_ids(run_dir):
     paths = Path(run_dir) / "paths.jsonl"
     if not paths.is_file():
         raise SystemExit(f"{paths}: no such file (--solved-from needs the paths.jsonl of a run made here)")
-    ids = [rec["id"] for rec in map(json.loads, paths.read_text().splitlines()) if rec["solved"]]
+    lines = paths.read_text().splitlines(keepends=True)
+    if lines and not lines[-1].endswith("\n"):                     # cut off by a run still writing, or stopped
+        lines.pop()
+    ids = [rec["id"] for rec in map(json.loads, lines) if rec["solved"]]
     if not ids:
         raise SystemExit(f"{paths}: no solved rows")
     return ids
