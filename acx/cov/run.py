@@ -13,8 +13,8 @@ from ..search import Result, search
 from ..search.engine import as_presentation
 from ..verify.replay import replay
 from .certificate import check_cert
-from .cov import CoVImage, enumerate_images
-from .family import MAX_LEN
+from .family import FAMILIES, MAX_LEN
+from .images import CoVImage, enumerate_images
 
 CAP_FIELDS = tuple(blank())
 
@@ -28,10 +28,13 @@ class CoVConfig:
     cap_headroom: int | None = 16       # see ``run``
     max_len: int | None = MAX_LEN       # CoV outputs longer than this are not images (family rule)
     until: str = "solve"                # "solve": stop at the first solve; "ac_path": go on past stable certs
+    family: str = "subnc2pxysb"         # the z-family (``acx.cov.family``): "subnc2pxysb" or "suballpxyb8"
 
     def __post_init__(self):
         if self.until not in ("solve", "ac_path"):
             raise ValueError(f"until {self.until!r} not in ('solve', 'ac_path')")
+        if self.family not in FAMILIES:
+            raise ValueError(f"family {self.family!r} not in {FAMILIES}")
         if not (type(self.total_budget) is int and self.total_budget > 0):
             raise ValueError(f"total_budget must be a positive int, got {self.total_budget!r}")
         object.__setattr__(self, "cap_headroom", parse_cap(self.cap_headroom, "cap_headroom", low=0))
@@ -40,12 +43,6 @@ class CoVConfig:
     def replace(self, **kw):
         """A copy with the given fields changed."""
         return replace(self, **kw)
-
-    @classmethod
-    def from_dict(cls, d):
-        """From a config table; the ``search`` sub-table is a ``SearchConfig`` with ``budget`` 1,000 by default."""
-        d = dict(d)
-        return cls(search=SearchConfig.from_dict({"budget": 1_000, **d.pop("search", {})}), **d)
 
 
 @dataclass(frozen=True)
@@ -149,7 +146,7 @@ def run(pres, cfg=None, **overrides):
     cfg = (cfg or CoVConfig()).replace(**overrides)
     pres = as_presentation(pres)
     search_cfg, started = cfg.search, time.perf_counter()
-    images = enumerate_images(pres, cfg.max_len)
+    images = enumerate_images(pres, cfg.max_len, cfg.family)
     legs_to_try = ([None] if cfg.control else []) + list(images)        # None: the row itself
     seen_starts, outcomes = set(), []
     pops = duplicates = tried = 0

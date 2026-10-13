@@ -63,6 +63,62 @@ def substitute(word, w):
     return reduce(tuple(out), False), len(hits) + (seam is not None)
 
 
+def occurrences(cyc, w):
+    """``(start, +-Z)`` for every cyclic window of ``cyc`` spelling ``w`` / ``w^-1`` (the seam is an ordinary place)."""
+    n, m, w_inv = len(cyc), len(w), inverse(w)
+    if m > n:
+        return ()
+    doubled, found = cyc + cyc, []
+    for i in range(n):
+        window = doubled[i:i + m]
+        if window == w:
+            found.append((i, Z))
+        elif window == w_inv:
+            found.append((i, -Z))
+    return tuple(found)
+
+
+def patterns(occs, n, m):
+    """Every set of pairwise non-overlapping occurrences of a length-``m`` word in a cyclic word of length ``n``.
+
+    Each occurrence is left out before it is taken, so the empty set comes first (the sweep's order).
+    """
+    spans = [{(start + j) % n for j in range(m)} for start, _ in occs]
+    out = []
+
+    def extend(k, used, chosen):
+        if k == len(occs):
+            out.append(tuple(chosen))
+            return
+        extend(k + 1, used, chosen)
+        if not used & spans[k]:
+            extend(k + 1, used | spans[k], chosen + [occs[k]])
+
+    extend(0, set(), [])
+    return out
+
+
+def substitute_pattern(cyc, chosen, m):
+    """The cyclic word ``cyc`` with each chosen occurrence ``(start, +-Z)`` replaced by its letter, freely reduced.
+
+    The word is rotated to begin at the first chosen occurrence, so no chosen window wraps around the end.
+    """
+    if not chosen:
+        return cyc
+    n, base = len(cyc), chosen[0][0]
+    rotated = cyc[base:] + cyc[:base]
+    letters = {(start - base) % n: letter for start, letter in chosen}
+    out, i = [], 0
+    while i < n:
+        if i in letters:
+            out.append(letters[i])
+            i += m
+        else:
+            out.append(rotated[i])
+            i += 1
+    return reduce(tuple(out), False)
+
+
 def isolate(rel, g):
     """``expr`` with ``g = expr`` solved from ``rel``, or None.
 

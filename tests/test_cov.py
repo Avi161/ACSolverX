@@ -3,6 +3,8 @@
 The bench60 numbers are a golden regression (fast backend, so the test is skipped without it); the same numbers on
 spec follow from the spec/fast parity of ``tests/test_fast.py``.
 """
+import dataclasses
+import hashlib
 import json
 
 import pytest
@@ -13,18 +15,20 @@ from acx.core.config import SearchConfig
 from acx.core.moves import decode_path, encode_path
 from acx.core.words import Presentation, fmt, inverse, parse, renumber, substitute_generator
 from acx.cov import CoVConfig, ReplayError, apply_steps, check_cert, enumerate_images, verify
-from acx.cov.family import subwords
-from acx.cov.run import run
-from acx.cov.substitution import Z, isolate, substitute
+from acx.cov.family import FAMILIES, proper_subwords, subwords
+from acx.cov.images import class_key
+from acx.cov.run import _leg_cap, run
+from acx.cov.substitution import Z, isolate, occurrences, patterns, substitute, substitute_pattern
+from acx.runner import method_config
 from acx.search import BackendUnavailable, search
 from acx.search.engine import backend as load_backend
 from acx.verify import replay
 
 CAP_KEYS = ("cap", "cap_dropped", "cap_dropped_min_total", "cap_would_pop", "cap_first_bind", "cap_needed", "cap_legs_bound")
 AK3 = Presentation.parse("xyxYXY", "xxxYYYY")
-# Planted: built from the trivial T = <x, y | xYX, xYxYX> by running a CoV backwards (T is the image of
-# P under z = Xyy, eliminating x), so P has an image that a search solves in 3 pops. T is not in P's Aut orbit.
-PLANTED = Presentation.parse("xxYYxYX", "yyxYYxYXY")
+# Planted: found by running CoVs backwards to the trivial T = <x, y | xYX, xYxYX>. T is the image of P under
+# z = xYx, eliminating y, so P has an image that a search solves in 3 pops. T is not in P's Aut orbit.
+PLANTED = Presentation.parse("XyXXy", "yyXXyXX")
 PLANTED_IMAGE = Presentation.parse("xYX", "xYxYX")
 
 
@@ -104,6 +108,27 @@ def test_every_image_replays_from_its_steps():
             assert apply_steps(pres, img.steps) == img.pres
 
 
+# The default family's images of the shipped CoV benchmarks, which the published CoV numbers were run on:
+# (number of images, sha256 of every field of every image in order).
+IMAGE_PINS = {
+    "bench60": (6_177, "639caf309037f933b586c8c9181ef652a7377b650b81c9757a6004aafda32041"),
+    "ladder60": (4_801, "8c5dfe186686a35a0bfbd5fec04935609444e017fef899bdf3a8cc1a164af23a"),
+    "ladder200": (13_880, "c167c8a79df66406d5e85ced4f53652067913db8c10f90bc9480afdd48340cc9"),
+    "ms640": (44_311, "99638e148636daa25e0c3b22019c3137fce8478d831fa68e5023d984f3e7e7a0"),
+}
+
+
+@pytest.mark.parametrize("benchmark", sorted(IMAGE_PINS))
+def test_default_images_of_the_shipped_benchmarks_do_not_move(benchmark):
+    digest, n_images = hashlib.sha256(), 0
+    for r in data.rows(benchmark):
+        for i in enumerate_images(r.pres):
+            fields = (r.id, i.pres.rels, i.w, i.gen, i.iso_index, i.expr, i.substituted, i.n_subs)
+            digest.update(repr(fields).encode() + b"\n")
+            n_images += 1
+    assert (n_images, digest.hexdigest()) == IMAGE_PINS[benchmark]
+
+
 def planted_image():
     """The CoV image of PLANTED that is PLANTED_IMAGE up to rotation, inversion and order."""
     want = PLANTED_IMAGE.reduced().canonical()
@@ -111,11 +136,11 @@ def planted_image():
 
 
 def test_check_cert_cap_bounds_what_the_moves_of_the_leg_produce():
-    """As in the search, the cap bounds the relators each S-move produces and not the image as written (5 letters):
+    """As in the search, the cap bounds the relators each S-move produces and not the image as written (7 letters):
     the planted leg's two moves leave relators of at most 2 letters, so a cap of 2 passes and a cap of 1 does not."""
     img = planted_image()
     res = search(img.pres, SearchConfig(budget=100))
-    assert max(map(len, img.pres.rels)) == 5 and res.path_length == 2
+    assert max(map(len, img.pres.rels)) == 7 and res.path_length == 2
     for cap in (None, 24, 2):
         assert check_cert(PLANTED, img.steps, res.path, cap=cap) == img.pres
     with pytest.raises(ReplayError, match="exceeds cap 1"):
@@ -130,6 +155,8 @@ def test_planted_case_stable_cert():
     out = run(PLANTED, CoVConfig(total_budget=2000, control=False))
     assert out.solved and out.ac_path is None and out.stable_cert.kind == "stable_cert"
     verify(PLANTED, out.stable_cert)
+    with pytest.raises(ReplayError, match="exceeds cap 2"):                    # verify holds the leg to its cap
+        verify(PLANTED, dataclasses.replace(out.stable_cert, cap=2))
 
 
 def test_planted_case_row_itself_is_an_ac_path():
@@ -149,8 +176,7 @@ def test_until_ac_path_keeps_going_past_a_stable_cert():
 
 def test_config_cyclic_and_capture_path():
     """Outcomes carry the search's reduction, and paths are captured whatever the search config says."""
-    cfg = CoVConfig.from_dict({"search": {"budget": 40, "cyclic": False, "capture_path": False}, "total_budget": 400})
-    assert cfg.search.budget == 40 and not cfg.search.cyclic
+    cfg = CoVConfig(search=SearchConfig(budget=40, cyclic=False, capture_path=False), total_budget=400)
     solved = 0
     for r in data.load_csv("bench60")[:6]:
         for o in run(r.pres, cfg.replace(until="ac_path")).outcomes:
@@ -178,10 +204,10 @@ def test_noncyclic_rows_replay_on_the_row(rid):
 def test_image_cap_is_the_written_length_plus_headroom():
     """The source's per-image cap: max(cap, longest relator of the image as written + headroom).
 
-    The first solved image of PLANTED is xYXX, YXY (cyclically reduced: YX, YXY), so the cap is 4 + 30.
+    The first solved image of PLANTED is yxYYY, YYYx (cyclically reduced: xYY, YYYx), so the cap is 5 + 30.
     """
     out = run(PLANTED, CoVConfig(total_budget=2000, control=False, cap_headroom=30))
-    assert out.stable_cert.image.pres.strs == ("xYXX", "YXY") and out.stable_cert.cap == 34
+    assert out.stable_cert.image.pres.strs == ("yxYYY", "YYYx") and out.stable_cert.cap == 35
     assert run(PLANTED, CoVConfig(total_budget=2000, control=False, cap_headroom=None)).stable_cert.cap == 24
 
 
@@ -193,24 +219,26 @@ def test_budget_is_total_and_deterministic():
 
 
 def test_checker_rejects_tampering():
+    """Each tampered certificate is rejected by the check that guards that hypothesis, not by a later one."""
     img = planted_image()
     res = search(img.pres, SearchConfig(budget=100))
     define, sub, elim = img.steps
     bad = [
-        (define, {**sub, "rels": (sub["rels"][0] + (1, -1, 2), sub["rels"][1])}, elim),         # not the same relator
-        (define, sub, {**elim, "expr": elim["expr"] + (2, -2, 2)}),                                # g != expr
-        (define, sub, {**elim, "gen": 3 - elim["gen"]}),
-        ({**define, "word": define["word"][::-1]}, sub, elim),
-        (sub, define, elim),
-        (define, sub, {**elim, "op": "teleport"}),
+        ((define, {**sub, "rels": (sub["rels"][0] + (1, -1, 2), sub["rels"][1])}, elim), "with w put for z"),
+        ((define, sub, {**elim, "expr": elim["expr"] + (1, -1, 1)}), "is not of the form"),          # g != expr
+        ((define, sub, {**elim, "gen": 3 - elim["gen"]}), "bad elimination"),
+        (({**define, "word": define["word"][1:] + define["word"][:1]}, sub, elim), "with w put for z"),  # another w
+        (({**define, "word": (1,)}, sub, elim), "cannot define"),                                    # a rename
+        ((sub, define, elim), "needs the defined presentation"),
+        ((define, sub, {**elim, "op": "teleport"}), "unknown CoV step"),
     ]
-    for steps in bad:
-        with pytest.raises(ReplayError):
+    for steps, reason in bad:
+        with pytest.raises(ReplayError, match=reason):
             check_cert(PLANTED, steps, res.path)
-    with pytest.raises(ReplayError):
+    with pytest.raises(ReplayError, match="non-trivial"):
         check_cert(PLANTED, img.steps, res.path[:-1])                                              # the leg must end trivial
-    with pytest.raises(ReplayError):
-        check_cert(Presentation.parse("xx", "yy"), img.steps, res.path)                            # |det| != 1
+    with pytest.raises(ReplayError, match=r"\|det\| != 1"):
+        check_cert(Presentation.parse("xx", "yy"), img.steps, res.path)
 
 
 def test_certificates_on_bench60():
@@ -345,3 +373,100 @@ def test_row_with_no_binding_leg_is_the_same_row_at_any_larger_cap():
                 b = run(rows[pid].pres, cfg.replace(search=cfg.search.replace(cap=bigger)))
                 assert a.pops == b.pops and [(o.kind, o.path) for o in a.outcomes] == [(o.kind, o.path) for o in b.outcomes]
     assert zero >= 6 and nonzero >= 3
+
+
+# The family suballpxyb8 (``CoVConfig.family``): every pattern of every proper cyclic subword, one image per class.
+# The sweep's starts: results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz (the b100 file of the
+# sweep's branch has the same starts).
+SWEEP_MS640_SHA256 = "1e10f931608808511df10ae319e84622b99256d684942e14344066307b5c1ae4"
+SWEEP_PRES0 = {("XXy", "YXyxx"), ("XyXX", "YxyXX"), ("Xyx", "YXyxYx"), ("Xyx", "YXyxx"), ("xYx", "YxyXyX")}
+
+
+@pytest.mark.parametrize("family", FAMILIES)
+def test_a_relator_that_is_not_cyclically_reduced_gives_the_images_of_its_reduced_form(family):
+    for conj in (Presentation.parse("xxyxYXYX", "xxxYYYY"), Presentation.parse("yxxxYYYYY", "xyxYXY")):
+        assert conj.reduced() != conj
+        images = enumerate_images(conj, family=family)
+        assert images == enumerate_images(conj.reduced(), family=family)
+        assert all(apply_steps(conj, i.steps) == i.pres for i in images)          # the certificate is the row's
+
+
+def test_only_the_default_family_depends_on_the_rotation_of_a_relator():
+    """MS640 row 20 with r1 rotated: the default family substitutes in one pass over the relator in its rotation."""
+    def classes(pres, family):
+        return {class_key(i.pres) for i in enumerate_images(pres, family=family)}
+
+    row = data.rows("ms640")[20].pres                                          # YYYYYx, YYXyx
+    rotated = Presentation.parse("YYxYYY", "YYXyx")
+    assert classes(rotated, "suballpxyb8") == classes(row, "suballpxyb8")
+    assert classes(rotated, "subnc2pxysb") != classes(row, "subnc2pxysb")
+
+
+def test_all_subsets_words_are_the_proper_cyclic_subwords():
+    """Lengths 2 to |r| - 1, the seam included; a whole relator is dropped even when it sits inside the other one."""
+    r1, r2 = parse("xyxxy"), parse("yxxy")
+    words = proper_subwords(r1, r2)
+    assert {len(w) for w in words} == {2, 3, 4} and parse("yxxy") not in words
+    assert words == sorted(set(words), key=lambda w: (len(w), w)) and not any(inverse(w) in words for w in words)
+    assert set(subwords(r1, r2)) <= set(words)
+    assert "xyx" in {fmt(w) for w in proper_subwords(parse("xyxY"), parse("yy"))}                  # no nc2 gate
+
+
+def test_patterns_are_every_non_overlapping_set_of_occurrences():
+    """The seam is an ordinary position; partial substitution counts; the order is the sweep's."""
+    cyc = parse("xxxxy")
+    occs = occurrences(cyc, parse("xx"))
+    assert occs == ((0, Z), (1, Z), (2, Z))
+    assert [tuple(s for s, _ in p) for p in patterns(occs, 5, 2)] == [(), (2,), (1,), (0,), (0, 2)]
+    assert substitute_pattern(cyc, ((1, Z),), 2) == (Z, 1, 2, 1)
+    seam = occurrences(parse("yxxxy"), parse("yy"))
+    assert seam == ((4, Z),) and substitute_pattern(parse("yxxxy"), seam, 2) == (Z, 1, 1, 1)
+    shadowed = occurrences(parse("xxyx"), parse("xx"))                         # substitute takes position 0 only
+    assert [fmt(substitute_pattern(parse("xxyx"), p, 2)) for p in patterns(shadowed, 4, 2)[1:]] == ["zxy", "zyx"]
+
+
+def test_all_subsets_is_one_image_per_class_and_contains_the_default_family():
+    for pres in [AK3, PLANTED] + [r.pres for r in data.rows("ms640")[::80]]:
+        own = class_key(pres)
+        images = enumerate_images(pres, family="suballpxyb8")
+        keys = [class_key(i.pres) for i in images]
+        assert len(set(keys)) == len(keys) and own not in keys
+        assert {class_key(i.pres) for i in enumerate_images(pres)} - {own} <= set(keys)
+        assert all(apply_steps(pres, i.steps) == i.pres for i in images)
+
+
+def test_all_subsets_matches_the_sweep():
+    """The sweep's class counts and, for MS640 row 0, its five starts as written (the sweep's file above)."""
+    rows = data.rows("ms640")
+    counts = {pid: len(enumerate_images(rows[pid].pres, family="suballpxyb8")) for pid in (0, 155, 580, 634)}
+    assert len(enumerate_images(AK3, family="suballpxyb8")) == 12 and counts == {0: 5, 155: 24, 580: 236, 634: 566}
+    assert {i.pres.strs for i in enumerate_images(rows[0].pres, family="suballpxyb8")} == SWEEP_PRES0
+
+
+@pytest.mark.slow
+def test_all_subsets_is_the_sweep_on_ms640():
+    """The sweep's 114,042 MS640 starts, each as written with its w, eliminated generator, isolating relator, number
+    of substitutions and acx's leg cap (sha256 of the sorted rows of the sweep's file above)."""
+    cfg, lines = CoVConfig(), []
+    for r in data.rows("ms640"):
+        for i in enumerate_images(r.pres, family="suballpxyb8"):
+            r1, r2 = i.pres.strs
+            lines.append(f"{r.id},{r1},{r2},{fmt(i.w)},{'xy'[i.gen - 1]},{i.iso_index},{i.n_subs},{_leg_cap(cfg, i)}")
+    assert len(lines) == 114_042
+    assert hashlib.sha256("\n".join(sorted(lines)).encode()).hexdigest() == SWEEP_MS640_SHA256
+
+
+def test_family_is_a_config_choice():
+    """``[cov] family`` reaches ``CoVConfig`` through the runner; an unknown family is a ``ValueError`` everywhere."""
+    assert CoVConfig().family == "subnc2pxysb"
+    assert method_config({"method": "cov", "cov": {"family": "suballpxyb8"}}).family == "suballpxyb8"
+    with pytest.raises(ValueError, match="family 'zf3' not in"):
+        method_config({"method": "cov", "cov": {"family": "zf3"}})
+    with pytest.raises(ValueError, match="family 'zf3' not in"):
+        CoVConfig(family="zf3")
+    with pytest.raises(ValueError, match="family 'zf3' not in"):
+        enumerate_images(AK3, family="zf3")
+    out = run(PLANTED, CoVConfig(total_budget=2000, control=False, family="suballpxyb8"))
+    assert out.solved and out.stats["images"] == len(enumerate_images(PLANTED, family="suballpxyb8"))
+    for o in out.outcomes:
+        verify(PLANTED, o)

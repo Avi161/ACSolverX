@@ -28,6 +28,7 @@ trace = false              # keep every popped state (parity tests only; memory 
 # cap_headroom = 16     # an image's cap: its longest relator + this, if larger; "none" = the search cap
 # max_len = 239         # CoV outputs longer than this are not images; "none" = no limit
 # until = "solve"       # "solve" stops at the first solve; "ac_path" goes on past stable certificates
+# family = "subnc2pxysb"  # the z-family; "suballpxyb8" substitutes every pattern, one image per class (docs/METHODS.md)
 
 # [ngen]  # n-generator search: SAC triangulation, then lift; sac = true needs priority "length"
 # sac = true  # false: search the presentation itself (an ac_path, any priority)
