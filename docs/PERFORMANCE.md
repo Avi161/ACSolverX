@@ -162,7 +162,9 @@ canonicalises words of up to 64 bits as integers. Results are identical record f
 
 `.github/workflows/speed.yml` runs `benchmark/speed.py` on every pull request and push to `main`: each config of
 `configs/` on a slice of a few CPU seconds, with and without paths, on the base and on the change in turn, three times
-each. It fails when one takes more than 15% longer (runners vary by about 4%). Run it locally against any checkout:
+each, in alternating order. It fails when one takes **more than 2% longer** than on `main`. Three runs on a runner
+vary by up to 5% on identical code (10% for RL), so a workload over 2% is timed nine more times and fails only when
+the fastest of its twelve runs is still over. Run it locally against any checkout:
 
 ```bash
 python benchmark/speed.py ../main . --only hybrid aut      # all workloads when --only is left out

@@ -1,8 +1,8 @@
 name: speed
 
 # Times every pipeline (each config, with paths and with path = false) on the base commit and on this one, in turn on
-# one runner (benchmark/speed.py), and fails when one takes more than 15% longer than on the base. Four jobs run in
-# parallel, a few minutes each.
+# one runner (benchmark/speed.py), and fails when one takes more than 2% longer than on the base, timed nine more times
+# first to rule out noise. Four jobs run in parallel, a few minutes each.
 
 on:
   pull_request:
