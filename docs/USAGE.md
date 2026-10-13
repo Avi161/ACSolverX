@@ -119,7 +119,7 @@ value is an error before anything is written.
 | `sub_moves` | substitution moves (S-moves) of the path |
 | `elem_moves` | elementary AC moves of the path on the row: null without `path`, for a CoV `stable_cert`, and without `decode` except for the hybrid and aut (their certificates are elementary moves) |
 | `path` | the S-moves, `[i, j, s, k1, k2]` each (`acx.core.moves.decode_path`) |
-| `elementary` | the elementary moves, packed (`acx.verify.decode.unpack`); aut-assisted, hybrid, n-generator and CoV paths |
+| `elementary` | the elementary moves, packed (`acx.verify.pack.unpack`); aut-assisted, hybrid, n-generator and CoV paths |
 | `verified` | the path was replayed on the row before the record was written (once: by the search, CoV, the hybrid's `certify` or rl, or by the runner for aut and ngen) |
 | `error` | only on a row that was not searched or whose method failed: `Type: message` |
 | `seconds`, `cpu_seconds` | the row's wall and CPU time, replay and decoding included |

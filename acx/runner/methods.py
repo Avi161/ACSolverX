@@ -23,7 +23,7 @@ def record(solved, kind=None, aut_assisted=False, cost=0, sub_moves=None, elem_m
     ``kind``: ``ac_path``, ``stable_cert`` or None. ``aut_assisted``: an ``ac_path`` carried back to the row from
     another basis. ``cost``: pops, hybrid units or network evaluations. ``sub_moves``: substitution moves.
     ``elem_moves``: elementary AC moves on the row (None for a CoV ``stable_cert``). ``path``: the S-moves
-    (``acx.core.moves.encode_path``). ``elementary``: the elementary moves (``acx.verify.decode.pack``).
+    (``acx.core.moves.encode_path``). ``elementary``: the elementary moves (``acx.verify.pack.pack``).
     ``verified`` starts false; ``output.shape`` sets it for a solve whose path was kept, as each method replays it.
     """
     return dict(solved=solved, kind=kind, aut_assisted=aut_assisted, cost=cost, sub_moves=sub_moves,

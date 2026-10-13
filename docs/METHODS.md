@@ -385,7 +385,7 @@ Run `pytest` (the default selection, a few minutes) and `pytest -m ""` (adds the
 solved record of every run is replayed before it is written. To check a finished run again, replay each record on its
 row: `replay(pres, decode_path(rec["path"]))` for a plain greedy `ac_path` (`acx.core.moves.decode_path`), and
 `replay(pres, unpack(rec["elementary"]), normalize=False)` for any record that has `elementary` moves (aut-assisted,
-hybrid, n-generator and CoV paths; `acx.verify.decode.unpack`), with `pres` from `acx.data.rows(benchmark)`.
+hybrid, n-generator and CoV paths; `acx.verify.pack.unpack`), with `pres` from `acx.data.rows(benchmark)`.
 
 A result counts only after it replays on the presentation it claims to solve, through code that shares nothing with the
 solver: every move legal, `|det M| = 1` at the start and after every move, no S-move child over the cap, and a trivial
