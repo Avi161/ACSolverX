@@ -5,15 +5,15 @@ The tag names the rules, and changing one is a different experiment. The default
     sub   ``w`` is a cyclic subword of a relator, the seam included, of length >= 2 (``subwords``)
     nc2   ``w`` is dropped when substituting it brings a relator it occurs in below 3 letters (``subwords``)
     p     pure powers such as ``xx`` count (nothing filters them out)
-    xy    both generators are tried as the one to eliminate (``cov.enumerate_images``)
+    xy    both generators are tried as the one to eliminate (``images.enumerate_images``)
     s     ``substitute`` also matches ``w`` across the seam of the written relator (``substitution.substitute``)
-    b     every relator that isolates the generator gives its own image (``cov.branches``)
+    b     every relator that isolates the generator gives its own image (``images.branches``)
 
 The exhaustive sweep's ``suballpxyb8`` keeps ``p``, ``xy`` and ``b`` and replaces the rest:
 
     sub   ``w`` is a cyclic subword of length 2 to |r| - 1 and not a whole relator; no nc2 gate (``proper_subwords``)
     all   every set of non-overlapping occurrences is substituted, the seam an ordinary place (``substitution.patterns``)
-    8     one image per class under relator order, rotation, inversion and the 8 signed permutations (``cov.class_key``)
+    8     one image per class under relator order, rotation, inversion and the 8 signed permutations (``images.class_key``)
 """
 from ..core.words import inverse, reduce
 from .substitution import substitute

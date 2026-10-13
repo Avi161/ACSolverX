@@ -14,7 +14,7 @@ from acx.core.config import SearchConfig
 from acx.core.moves import decode_path, encode_path
 from acx.core.words import Presentation, fmt, inverse, parse, renumber, substitute_generator
 from acx.cov import CoVConfig, ReplayError, apply_steps, check_cert, enumerate_images, verify
-from acx.cov.cov import class_key
+from acx.cov.images import class_key
 from acx.cov.family import FAMILIES, proper_subwords, subwords
 from acx.cov.run import run
 from acx.cov.substitution import Z, isolate, occurrences, patterns, substitute, substitute_pattern

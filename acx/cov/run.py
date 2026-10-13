@@ -13,7 +13,7 @@ from ..search import Result, search
 from ..search.engine import as_presentation
 from ..verify.replay import replay
 from .certificate import check_cert
-from .cov import CoVImage, enumerate_images
+from .images import CoVImage, enumerate_images
 from .family import FAMILIES, MAX_LEN
 
 CAP_FIELDS = tuple(blank())
