@@ -6,7 +6,12 @@
   {
    "cap": 32,
    "dir": "/opt/r3/old/b1000_cap32",
-   "word_lengths_not_in_other": [],
+   "word_lengths_not_in_other": [
+    7,
+    8,
+    9,
+    10
+   ],
    "rows": [
     {
      "searches": 640,
@@ -189,7 +194,12 @@
   {
    "cap": 48,
    "dir": "/opt/r3/old/b1000_cap48",
-   "word_lengths_not_in_other": [],
+   "word_lengths_not_in_other": [
+    7,
+    8,
+    9,
+    10
+   ],
    "rows": [
     {
      "searches": 640,

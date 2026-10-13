@@ -91,11 +91,11 @@
    "unsolved_before_budget": 0,
    "presentations_with_one": 0,
    "fewest_nodes_of_those": null,
-   "cap_dropped_a_child": null,
-   "cap_could_bind": null,
-   "cap_could_bind_solved": null,
-   "cap_could_bind_unsolved": null,
-   "children_dropped": null
+   "cap_dropped_a_child": 782,
+   "cap_could_bind": 0,
+   "cap_could_bind_solved": 0,
+   "cap_could_bind_unsolved": 0,
+   "children_dropped": 123106262
   },
   {
    "file": "rank3_bf_ms640_b10000_cap24_L7.npz",
@@ -107,11 +107,11 @@
    "unsolved_before_budget": 0,
    "presentations_with_one": 0,
    "fewest_nodes_of_those": null,
-   "cap_dropped_a_child": null,
-   "cap_could_bind": null,
-   "cap_could_bind_solved": null,
-   "cap_could_bind_unsolved": null,
-   "children_dropped": null
+   "cap_dropped_a_child": 4195,
+   "cap_could_bind": 0,
+   "cap_could_bind_solved": 0,
+   "cap_could_bind_unsolved": 0,
+   "children_dropped": 1964023680
   },
   {
    "file": "rank3_bf_ms640_b10000_cap24_control.jsonl",
@@ -171,11 +171,11 @@
    "unsolved_before_budget": 0,
    "presentations_with_one": 0,
    "fewest_nodes_of_those": null,
-   "cap_dropped_a_child": null,
-   "cap_could_bind": null,
-   "cap_could_bind_solved": null,
-   "cap_could_bind_unsolved": null,
-   "children_dropped": null
+   "cap_dropped_a_child": 1740815,
+   "cap_could_bind": 0,
+   "cap_could_bind_solved": 0,
+   "cap_could_bind_unsolved": 0,
+   "children_dropped": 23041147708
   },
   {
    "file": "rank3_bf_ms640_b1000_cap24_L1_inv.npz",
@@ -395,11 +395,11 @@
    "unsolved_before_budget": 0,
    "presentations_with_one": 0,
    "fewest_nodes_of_those": null,
-   "cap_dropped_a_child": null,
-   "cap_could_bind": null,
-   "cap_could_bind_solved": null,
-   "cap_could_bind_unsolved": null,
-   "children_dropped": null
+   "cap_dropped_a_child": 540604,
+   "cap_could_bind": 0,
+   "cap_could_bind_solved": 0,
+   "cap_could_bind_unsolved": 0,
+   "children_dropped": 5824749364
   },
   {
    "file": "rank3_bf_ms640_b1000_cap24_control.jsonl",
@@ -443,11 +443,11 @@
    "unsolved_before_budget": 0,
    "presentations_with_one": 0,
    "fewest_nodes_of_those": null,
-   "cap_dropped_a_child": null,
-   "cap_could_bind": null,
-   "cap_could_bind_solved": null,
-   "cap_could_bind_unsolved": null,
-   "children_dropped": null
+   "cap_dropped_a_child": 0,
+   "cap_could_bind": 0,
+   "cap_could_bind_solved": 0,
+   "cap_could_bind_unsolved": 0,
+   "children_dropped": 0
   },
   {
    "file": "rankn_bf_ms640_b1000_cap24_r5.npz",
@@ -459,22 +459,22 @@
    "unsolved_before_budget": 0,
    "presentations_with_one": 0,
    "fewest_nodes_of_those": null,
-   "cap_dropped_a_child": null,
-   "cap_could_bind": null,
-   "cap_could_bind_solved": null,
-   "cap_could_bind_unsolved": null,
-   "children_dropped": null
+   "cap_dropped_a_child": 0,
+   "cap_could_bind": 0,
+   "cap_could_bind_solved": 0,
+   "cap_could_bind_unsolved": 0,
+   "children_dropped": 0
   }
  ],
  "total": {
   "searches": 40098032,
   "unsolved": 13516429,
   "unsolved_before_budget": 0,
-  "searches_with_cap_counters": 4960112,
-  "cap_dropped_a_child": 45315,
+  "searches_with_cap_counters": 40098032,
+  "cap_dropped_a_child": 2331711,
   "cap_could_bind": 0,
   "cap_could_bind_solved": 0,
   "cap_could_bind_unsolved": 0,
-  "children_dropped": 626766636
+  "children_dropped": 31579793650
  }
 }

@@ -47,9 +47,12 @@ A child is dropped when one of its relators is longer than the cap. "Could bind"
 | `rank3_bf_ms640_b10000_cap24_L3.npz` | rank 3, length 3 | 10,000 | 24 | 11,520 | 4 | 0 | 0 | 0 | 440,902 |
 | `rank3_bf_ms640_b10000_cap24_L4.npz` | rank 3, length 4 | 10,000 | 24 | 34,560 | 10 | 0 | 0 | 0 | 296,488 |
 | `rank3_bf_ms640_b10000_cap24_L5.npz` | rank 3, length 5 | 10,000 | 24 | 103,680 | 198 | 0 | 0 | 0 | 29,730,824 |
+| `rank3_bf_ms640_b10000_cap24_L6.npz` | rank 3, length 6 | 10,000 | 24 | 311,040 | 782 | 0 | 0 | 0 | 123,106,262 |
+| `rank3_bf_ms640_b10000_cap24_L7.npz` | rank 3, length 7 | 10,000 | 24 | 933,120 | 4,195 | 0 | 0 | 0 | 1,964,023,680 |
 | `rank3_bf_ms640_b10000_cap24_control.jsonl` | control | 10,000 | 24 | 640 | 26 | 0 | 0 | 0 | 12,195,104 |
 | `rank3_bf_ms640_b10000_cap24_relsub.jsonl.gz` | relator subwords | 10,000 | 24 | 69,816 | 10,708 | 0 | 0 | 0 | 176,302,798 |
 | `rank3_bf_ms640_b1000_cap24_L1.npz` | rank 3, length 1 | 1,000 | 24 | 1,280 | 0 | 0 | 0 | 0 | 0 |
+| `rank3_bf_ms640_b1000_cap24_L10.npz` | rank 3, length 10 | 1,000 | 24 | 25,194,240 | 1,740,815 | 0 | 0 | 0 | 23,041,147,708 |
 | `rank3_bf_ms640_b1000_cap24_L1_inv.npz` | rank 3, length 1, inverse words | 1,000 | 24 | 1,280 | 0 | 0 | 0 | 0 | 0 |
 | `rank3_bf_ms640_b1000_cap24_L2.npz` | rank 3, length 2 | 1,000 | 24 | 3,840 | 0 | 0 | 0 | 0 | 0 |
 | `rank3_bf_ms640_b1000_cap24_L2_inv.npz` | rank 3, length 2, inverse words | 1,000 | 24 | 3,840 | 0 | 0 | 0 | 0 | 0 |
@@ -63,7 +66,10 @@ A child is dropped when one of its relators is longer than the cap. "Could bind"
 | `rank3_bf_ms640_b1000_cap24_L6_inv.npz` | rank 3, length 6, inverse words | 1,000 | 24 | 311,040 | 140 | 0 | 0 | 0 | 1,278,076 |
 | `rank3_bf_ms640_b1000_cap24_L7.npz` | rank 3, length 7 | 1,000 | 24 | 933,120 | 1,862 | 0 | 0 | 0 | 55,854,194 |
 | `rank3_bf_ms640_b1000_cap24_L8.npz` | rank 3, length 8 | 1,000 | 24 | 2,799,360 | 21,431 | 0 | 0 | 0 | 335,186,728 |
+| `rank3_bf_ms640_b1000_cap24_L9.npz` | rank 3, length 9 | 1,000 | 24 | 8,398,080 | 540,604 | 0 | 0 | 0 | 5,824,749,364 |
 | `rank3_bf_ms640_b1000_cap24_control.jsonl` | control | 1,000 | 24 | 640 | 14 | 0 | 0 | 0 | 446,142 |
 | `rank3_bf_ms640_b1000_cap24_relsub.jsonl.gz` | relator subwords | 1,000 | 24 | 69,816 | 10,630 | 0 | 0 | 0 | 8,450,096 |
+| `rankn_bf_ms640_b1000_cap24_r4.npz` | rank 4 | 1,000 | 24 | 224,640 | 0 | 0 | 0 | 0 | 0 |
+| `rankn_bf_ms640_b1000_cap24_r5.npz` | rank 5 | 1,000 | 24 | 76,800 | 0 | 0 | 0 | 0 | 0 |
 
-Total with counters: 4,960,112 searches, the cap dropped a child in 45,315, could bind in 0 (0 solved, 0 unsolved).
+Total with counters: 40,098,032 searches, the cap dropped a child in 2,331,711, could bind in 0 (0 solved, 0 unsolved).

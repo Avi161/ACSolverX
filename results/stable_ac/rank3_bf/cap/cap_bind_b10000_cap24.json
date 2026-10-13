@@ -6,7 +6,11 @@
   {
    "cap": 32,
    "dir": "/opt/r3/old/b10000_cap32",
-   "word_lengths_not_in_other": [],
+   "word_lengths_not_in_other": [
+    5,
+    6,
+    7
+   ],
    "rows": [
     {
      "searches": 640,

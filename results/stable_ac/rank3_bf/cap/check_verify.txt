@@ -25,13 +25,16 @@
   cap counters: a child dropped in 198 of 103680 searches, could bind in 0
 /opt/r3/new/rank3_bf_ms640_b10000_cap24_L6.npz: 311040 searches, 251825 solved
   1670 sampled certificates replayed through the spec
+  cap counters: a child dropped in 782 of 311040 searches, could bind in 0
 /opt/r3/new/rank3_bf_ms640_b10000_cap24_L7.npz: 933120 searches, 753403 solved
   1599 sampled certificates replayed through the spec
+  cap counters: a child dropped in 4195 of 933120 searches, could bind in 0
 /opt/r3/new/rank3_bf_ms640_b1000_cap24_L1.npz: 1280 searches, 769 solved
   769 sampled certificates replayed through the spec
   cap counters: a child dropped in 0 of 1280 searches, could bind in 0
 /opt/r3/new/rank3_bf_ms640_b1000_cap24_L10.npz: 25194240 searches, 16550697 solved
   1256 sampled certificates replayed through the spec
+  cap counters: a child dropped in 1740815 of 25194240 searches, could bind in 0
 /opt/r3/new/rank3_bf_ms640_b1000_cap24_L1_inv.npz: 1280 searches, 769 solved
   769 sampled certificates replayed through the spec
   cap counters: a child dropped in 0 of 1280 searches, could bind in 0
@@ -73,6 +76,7 @@
   cap counters: a child dropped in 21431 of 2799360 searches, could bind in 0
 /opt/r3/new/rank3_bf_ms640_b1000_cap24_L9.npz: 8398080 searches, 5535501 solved
   1296 sampled certificates replayed through the spec
+  cap counters: a child dropped in 540604 of 8398080 searches, could bind in 0
 /opt/r3/new/rank3_bf_ms640_b10000_cap24_relsub.jsonl.gz: 69816 rows, 49272 solved, 0 failed to replay
   relator subwords: the cap dropped a child in 10708 of 69816 searches, could bind in 0
 /opt/r3/new/rank3_bf_ms640_b1000_cap24_relsub.jsonl.gz: 69816 rows, 39968 solved, 0 failed to replay

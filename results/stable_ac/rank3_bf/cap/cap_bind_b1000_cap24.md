@@ -18,6 +18,8 @@ Same searches at two caps, matched by presentation and word. "only" columns coun
 | words of length 6 | 311,040 | 207,888 | 207,888 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | all word lengths compared | 465,920 | 312,833 | 312,833 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
+Word lengths not run at cap 32: [7, 8, 9, 10].
+
 ## Cap 24 against cap 48
 
 | searches | number | solved at 24 | solved at 48 | only at 24 | only at 48 | node count differs | path length differs | both solved, fewer nodes at 48 | both solved, more nodes at 48 | largest node difference | differ at all | bind at cap 24 | differ with no bind |
@@ -33,3 +35,5 @@ Same searches at two caps, matched by presentation and word. "only" columns coun
 | words of length 5 | 103,680 | 69,811 | 69,811 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | words of length 6 | 311,040 | 207,888 | 207,888 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | all word lengths compared | 465,920 | 312,833 | 312,833 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+Word lengths not run at cap 48: [7, 8, 9, 10].

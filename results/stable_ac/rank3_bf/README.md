@@ -1,10 +1,9 @@
 # 3-, 4- and 5-generator brute-force baseline on MS640
 
-**Status, 12 Oct 2026: final at cap 24.** In this directory: word lengths 1 to 10 at budget
+**Status, 13 Oct 2026: final at cap 24.** In this directory: word lengths 1 to 10 at budget
 1,000, lengths 1 to 7 at budget 10,000, rank 4 and rank 5. Every sweep finished and passed its
-verifier. The cap changed no search wherever it was measured (section "Relator-length cap");
-the per-search cap counters are stored for lengths 1 to 8 at budget 1,000 and 1 to 5 at budget
-10,000, for the inverse words, and for every control and relator-subword row.
+verifier. Every one of the 40,098,032 searches stores its cap counters, and in none could the
+cap have changed the search (section "Relator-length cap").
 
 ## Setup and terms
 
@@ -288,15 +287,21 @@ seven caps, including caps that do bind.
 | budget 1,000: control | 640 | 14 | 0 |
 | budget 1,000: relator subwords | 69,816 | 10,630 | 0 |
 | budget 1,000: words of length 1 to 8 | 4,198,400 | 23,509 | 0 |
+| budget 1,000: words of length 9 | 8,398,080 | 540,604 | 0 |
+| budget 1,000: words of length 10 | 25,194,240 | 1,740,815 | 0 |
 | budget 1,000: inverse words of length 1 to 6 | 465,920 | 216 | 0 |
 | budget 10,000: control | 640 | 26 | 0 |
 | budget 10,000: relator subwords | 69,816 | 10,708 | 0 |
 | budget 10,000: words of length 1 to 5 | 154,880 | 212 | 0 |
-| all | 4,960,112 | 45,315 | 0 |
+| budget 10,000: words of length 6 | 311,040 | 782 | 0 |
+| budget 10,000: words of length 7 | 933,120 | 4,195 | 0 |
+| budget 1,000: rank 4 | 224,640 | 0 | 0 |
+| budget 1,000: rank 5 | 76,800 | 0 | 0 |
+| all | 40,098,032 | 2,331,711 | 0 |
 
-The cap dropped a child in 0.9% of these searches and could bind in none, so each of the
-4,960,112 is the search every larger cap runs, a cap of 64 letters per relator included. Per
-file:
+That is every search stored here. The cap dropped a child in 5.8% of them (6.9% at length 10)
+and could bind in none, so each of the 40,098,032 is the search every larger cap runs, a cap
+of 64 letters per relator included. Per file:
 [`cap/cap_counters_cap24.md`](cap/cap_counters_cap24.md). The rerun is search for search the
 first run (section "Checks"), so the tables and graphs above, computed from the first run,
 stand.
@@ -308,11 +313,10 @@ Where the counters are stored:
 - relator-subword rows and sampled rows: `cap_dropped`, `cap_dropped_min_total`,
   `cap_first_bind`;
 - every word of a length: `..._L<n>_capcount.npz` (and `..._L<n>_inv_capcount.npz`) beside
-  the result array, same `pres_ids` and `words`.
-
-Without counters as of this commit, because their rerun had not finished: words of length 9
-and 10 at budget 1,000 (33,592,320 searches), lengths 6 and 7 at budget 10,000 (1,244,160),
-rank 4 and rank 5. For those, measurement 1 applies and nothing else.
+  the result array, same `pres_ids` and `words`;
+- rank 4 and rank 5: arrays `cap_dropped`, `cap_dropped_min_total`, `cap_first_bind`
+  [640, C] in the result file itself, with `base_cap` and `null_cap` [640, 3] for the control
+  and the empty-word start.
 
 **3. Runs at other caps are the same searches.** A cross-check of the counters on the short
 words, by running the searches themselves at other caps (no counters in those runs). Budget
@@ -368,16 +372,26 @@ post-processing machine (commit `a27bf4e`). Logs: `post_*.txt`.
 319 classes (318 of two, one of four) as `class_view`, and 117,612 starts (58,806 pairs) that
 duplicate another start of their own presentation, out of the 37,790,720 of lengths 1 to 10.
 
-- **Counted rerun** (the files committed here, on an AWS box at commit `1db8166`,
-  `aws_rank3_check_box.sh`; logs `cap/check_*.txt`). `tests/stable_ac` passes (486 tests, 1
+- **Counted rerun** (the files committed here, on an AWS box at commit `50d26d3`,
+  `aws_rank3_check_box.sh`; logs `cap/check_*.txt`). `tests/stable_ac` passes (502 tests, 1
   skipped), among them the repo-wide replay of every solved row under `results/stable_ac`.
   `verify_rank3_bf --recheck 10` exits 0: 121,549 stored paths replayed, the counters of every
   file consistent with its node counts, 250 stored results re-run with the reference solver
-  and equal, counters included. The rerun is the first run search for search: its 19 result
-  files (4,819,200 searches, inverse words included) equal the first run's array for
+  and equal, counters included. The rerun is the first run search for search: its 25 result
+  files (39,957,120 searches: every length at both budgets, the inverse words, rank 4 and
+  rank 5) equal the first run's array for
   array ([`cap/check_arrays.txt`](cap/check_arrays.txt)), and its 1,280 control rows and
   139,632 relator-subword rows have the same solved flag, node count and path length
   ([`cap/same_b1000.md`](cap/same_b1000.md), [`cap/same_b10000.md`](cap/same_b10000.md)).
+  The box that merged the last length ran the same checks on its own files before they were
+  copied here (`aws_rank3_arm_main_box.sh`, commit `64b41ff`): the verifier with 20 draws per
+  file exits 0 at both budgets (121,549 paths replayed, 500 results re-run;
+  [`cap/main_verify_b1000.txt`](cap/main_verify_b1000.txt),
+  [`cap/main_verify_b10000.txt`](cap/main_verify_b10000.txt)), and `rankn_checks.py` re-ran
+  3,860 stored results with the reference solver, cap counters included (2,860 at rank 3, 300
+  at rank 4, 300 at rank 5, 80 controls, 80 empty-word starts, both sides of 120 relabeled
+  pairs whose solved flags differ): 0 mismatches
+  ([`cap/checks_reference_counted.json`](cap/checks_reference_counted.json)).
 
 **Not independently recomputed.** One derived count per budget (on how many gained
 presentations the shortlex cost is below the control's; the two columns it compares are both
@@ -392,15 +406,15 @@ left out and the readings its tester had to choose.
 | `rank3_bf_ms640_b<B>_cap24_control.jsonl` | 640 control rows, with the n-generator solver's copy (`n2_*`) and the empty-word start (`null_*`), their cap counters, and `path_moves` on every solved row |
 | `..._L<n>.npz` | every word of length n on every presentation: `pres_ids` [640], `words` [K], `nodes` uint16 [640, K], `path_len` int16 (-1 = unsolved), `min_total`, `block_seconds`, `meta` |
 | `..._L<n>_inv.npz` | the same for the inverse words, n <= 6, budget 1,000 |
-| `..._L<n>_capcount.npz`, `..._L<n>_inv_capcount.npz` | the cap counters of the same searches: `cap_dropped` uint32, `cap_dropped_min_total` int16 (-1 = none), `cap_first_bind` int32 (-1 = never), each [640, K], with `pres_ids`, `words`, `meta` (n <= 8 at budget 1,000, n <= 5 at 10,000) |
+| `..._L<n>_capcount.npz`, `..._L<n>_inv_capcount.npz` | the cap counters of the same searches: `cap_dropped` uint32, `cap_dropped_min_total` int16 (-1 = none), `cap_first_bind` int32 (-1 = never), each [640, K], with `pres_ids`, `words`, `meta` |
 | `..._L<n>_sample.jsonl`, `..._sample_paths.jsonl` | 769 to 1,694 solved (presentation, word) rows per length with their full move paths (PLAN §5 said about 2,000: that target counts unsolved rows too) |
 | `..._relsub.jsonl.gz`, `..._relsub_paths.jsonl.gz` | every cyclic subword of a relator as w (69,816 rows per budget, 59,486 proper), every solved row with its path |
-| `rankn_bf_ms640_b1000_cap24_r4.npz`, `..._r5.npz` | rank 4 and 5: `pres_ids`, `combos` [C, k] (word indices), `nodes`, `path_len` [640, C], `base` (control), `null` (empty words), `meta`; `_sample_paths.jsonl` and `_summary.json` beside each |
+| `rankn_bf_ms640_b1000_cap24_r4.npz`, `..._r5.npz` | rank 4 and 5: `pres_ids`, `combos` [C, k] (word indices), `nodes`, `path_len` [640, C], `base` (control), `null` (empty words), the cap counters (`cap_dropped`, `cap_dropped_min_total`, `cap_first_bind` [640, C]; `base_cap`, `null_cap`), `meta`; `_sample_paths.jsonl` and `_summary.json` beside each |
 | `*_summary.md` / `.json`, `*_per_word.csv`, `*_per_presentation.csv` | `summarize_rank3_bf` |
 | `*_control_vs_start*.png` / `.md` | `plot_rankn_vs_control` |
 | `*_class_view.md` / `.json` | `class_view` |
 | `indep_*.json`, `post_*.txt`, `checks_reference.json` | check results and logs |
-| `cap/` | cap tables: searches ended by the cap, the counters per file, the comparisons with caps 20, 32 and 48, and the logs of the check of the rerun (`check_*.txt`) |
+| `cap/` | cap tables: searches ended by the cap, the counters per file, the comparisons with caps 20, 32 and 48, the logs of the check of the rerun (`check_*.txt`), and the last box's own verifier logs and reference re-check (`main_verify_*.txt`, `checks_reference_counted.json`) |
 
 Not committed: the per-block partial files and the machine logs, in
 `s3://acsolver-u124-205558941715/cov_all/rank3_bf/`.
@@ -427,3 +441,7 @@ Budget 1,000, lengths 1 to 10: 1,329 core-hours, 0.13 core-seconds per search. B
 lengths 1 to 7: 354 core-hours, 0.91 core-seconds per search. Rank 4 and 5: 0.075 core-seconds
 per search. The control's wall time was not recorded by this run, so the cost per node of the
 third generator is not reported. Machines and their settings: PLAN §11.
+
+The counted rerun (the same searches with the cap counters): lengths 9 and 10 at budget 1,000
+took 1,008 core-hours on Graviton4 cores (c8g), 0.11 core-seconds per search; lengths 6 and 7
+at budget 10,000 took 303 core-hours on c7a cores, 0.88 core-seconds per search.

@@ -452,6 +452,52 @@ Recorded 12 Oct 2026, 08:45 UTC.
     and 5.
     (e) Check of the committed files: `aws_rank3_check_box.sh` on a
     c7a.4xlarge on demand at commit `1db8166`. All jobs exit 0: 486 tests pass; the verifier replays 121,549 paths and re-runs 250 results; every rerun file equals the first run (127 arrays compared, both control files, both relator-subword files).
+    (f) Rest of the counted rerun, 12 and 13 Oct: lengths 9 and 10 at budget
+    1,000, lengths 6 and 7 at budget 10,000, ranks 4 and 5. Every search ran
+    commit `64b41ff`; a helper box takes `run_rank3_bf.py` from `faa8831`,
+    which adds `--reverse` and `--no-merge` to the driver and touches no
+    solver. Box E merged length 6 at budget 10,000 (15:30 UTC) and was
+    reclaimed at 16:18 UTC with length 7 at 516 of 640 tasks. Each relaunch
+    resumes from the shards in S3, so no finished task is searched twice; a
+    task in flight at a reclaim is lost and run again. Three spot relaunches
+    (c7a.48xlarge twice, c7a.32xlarge) were reclaimed 6 to 15 minutes after
+    boot, before one more task was kept. An on-demand c7a.24xlarge then ran
+    the 124 tasks left of length 7 (merged 20:28:57 UTC) and ranks 4 and 5.
+    ARM: `aws_rank3_bench_box.sh` measured a Graviton4 core at 2,045 nodes per
+    second against 2,320 for a c7a core, with the same sha256 over the result
+    arrays of 3,888 searches and the same test outcomes
+    (`experiments/lessons/pick-the-cpu-by-nodes-per-dollar.md`), so lengths 9
+    and 10 at budget 1,000 ran on c8g machines. Two spot boxes in us-east-1c
+    were reclaimed after 18 and 10 minutes (127 length-9 tasks kept from the
+    first, none from the second). Then an on-demand c8g.24xlarge
+    (`aws_rank3_arm_main_box.sh`) took the tasks from the slow end and merged,
+    and a spot c8g.16xlarge (`aws_rank3_arm_helper_box.sh`) took them from the
+    fast end with `--reverse --no-merge`, each copying the other's shards from
+    S3 every 45 seconds. Length 9 merged at 22:16:25 UTC. At 23:44 UTC the
+    helper was replaced by a spot c8g.48xlarge in us-east-1c, which was
+    reclaimed at 23:50 UTC, 16 minutes after its first task; the main box then ran
+    alone for 50 minutes, because the relaunch waited on a person. From 00:40
+    UTC, 13 Oct, three spot c8g.16xlarge helpers in three zones each ran one
+    third of the presentations (`aws_rank3_split_helpers.py`: `--pres`, with
+    `--path-sample-target` 675, 675, 650 so that the sample fraction is the
+    full run's), under `aws_rank3_supervise.zsh`, which relaunches a reclaimed
+    box; none was reclaimed
+    (`experiments/lessons/relaunch-spot-boxes-automatically.md`). Length 10
+    merged at 02:40:19 UTC. A shard's name and identity record hold the
+    source, budget, cap, length, side, block and presentation, not the
+    machine, so a shard from an x86 box and one from an ARM box are
+    interchangeable: lengths 1 to 8, the inverse words, both budget-10,000
+    lengths and ranks 4 and 5 come from x86, lengths 9 and 10 from ARM.
+    Counters: length 9, 8,398,080 searches, a child dropped in 540,604;
+    length 10, 25,194,240 and 1,740,815; budget 10,000 length 6, 311,040 and
+    782; length 7, 933,120 and 4,195; rank 4, 224,640 and 0; rank 5, 76,800
+    and 0. A possible bind in 0 of them. With (d): all 40,098,032 stored
+    searches carry counters, a child was dropped in 2,331,711, a possible bind
+    in 0, so no search was run at another cap.
+    (g) Checks of the complete rerun. On the main box, on its own files:
+    `verify_rank3_bf --recheck 20` exits 0 at both budgets (121,549 paths replayed, 500 results re-run with the reference solver), every result array equals the first run's (127 arrays), every control and relator-subword row has the same solved flag, node count and path length, and `rankn_checks.py` re-ran 3,860 stored results with the reference solver, counters included (2,860 at rank 3, 300 at rank 4, 300 at rank 5, 80 controls, 80 empty-word starts, both sides of 120 relabeled pairs): 0 mismatches. Last log line: `DONE verify=0,0 same=0,0 arrays=0,0,0 reference=0` (02:54:44 UTC).
+    On the committed files: `aws_rank3_check_box.sh` on a c8g.4xlarge on
+    demand at commit `50d26d3`. All jobs exit 0 (`DONE fails=0`, 02:52:45 UTC): 502 tests pass, 1 skipped; the verifier replays 121,549 paths and re-runs 250 results; every committed file equals the first run (127 arrays in 25 files, both control files, both relator-subword files); the counter table over the committed files gives 40,098,032 searches, a child dropped in 2,331,711, a possible bind in 0.
 
 ### Boxes
 
@@ -473,6 +519,28 @@ Box C: c7a.2xlarge spot, 8 vCPU, launched 12 Oct 04:29:03 UTC, commit
 | `PRE_IDS`, `PRE_MAX_LEN` | 0,320 and 4 | 0,320 and 4 |
 | `DEADMAN` (minutes) | 720 (780 after the relaunch, item 12) | 600 (300 after the relaunch, item 14) |
 | `PREFIX` | `cov_all/rank3_bf/b1000` | `cov_all/rank3_bf/b10000` |
+
+Counted rerun (item 26 d, f and g). Searches at commit `64b41ff` on every box; times UTC.
+
+| Boot | Instance | Type, market, zone | Ended | Work kept |
+|---|---|---|---|---|
+| 12 Oct 13:07:29 | `i-06f654117e39eb529` (box E) | c7a.48xlarge spot, 1d | reclaimed 16:18 | budget 1,000 lengths 1 to 8, inverse 1 to 6; budget 10,000 lengths 1 to 6 and 516 of 640 tasks of length 7 |
+| 16:46:14 | `i-0b784ebb0b144c48a` | c7a.48xlarge spot, 1d | reclaimed about 17:01 | none |
+| 17:08:18 | `i-0aa5d1559823b221d` | c7a.48xlarge spot, 1a | reclaimed about 17:14 | none |
+| 17:21:29 | `i-0f33c7d33c55d5d73` | c7a.32xlarge spot, 1a | reclaimed about 17:35 | none |
+| 17:36:11 | `i-01f36dbdcd13a7fe6` | c7a.24xlarge on demand, 1a | terminated 20:36 | budget 10,000 length 7 (merged 20:28:57), ranks 4 and 5 |
+| 19:47:44 | `i-04f1320bf5dbe2124` | c8g.48xlarge spot, 1c | reclaimed about 20:05 | 127 length-9 tasks |
+| 20:19:12 | `i-03b0ac891287281b3` | c8g.24xlarge spot, 1c | reclaimed about 20:29 | none |
+| 20:37:56 | `i-01387ad2eb2241564` (main) | c8g.24xlarge on demand, 1a | shut itself down 02:54:44, 13 Oct | length 9 (merged 22:16:25), length 10 (merged 02:40:19, 13 Oct), the checks of (g) |
+| 20:38:06 | `i-00233e2c3c2394d7f` | c8g.16xlarge spot, 1d | terminated 23:44:38, replaced | shards of lengths 9 and 10 from the fast end |
+| 23:28:31 | `i-09ac8a2f49fdf8835` | c8g.48xlarge spot, 1c | reclaimed 23:50:04 | 385 length-10 tasks at its last log line (23:47:48) |
+| 13 Oct 00:41:02 | `i-0143da6774f340b33` (A) | c8g.16xlarge spot, 1d | finished 02:36:47 | from 896 length-10 tasks |
+| 00:41:05 | `i-0c032cd6441f7fc34` (B) | c8g.16xlarge spot, 1a | finished 02:40:09 | from 884 length-10 tasks |
+| 00:41:07 | `i-052a556523db34d45` (C) | c8g.16xlarge spot, 1f | finished 02:20:24 | from 753 length-10 tasks |
+| 02:44:35 | `i-0cafd438f3592c203` | c8g.4xlarge on demand, 1a | shut itself down 02:52:45 | the check of the committed files |
+
+The counts of A, B and C are the tasks each had left to run when it started; the main box
+ran some of them first, and a helper skips a task whose shard exists when it picks it.
 
 ## 12. Literature: what exists, and what a rank-3 baseline has to state
 

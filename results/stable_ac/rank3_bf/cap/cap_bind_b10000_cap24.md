@@ -15,3 +15,5 @@ Same searches at two caps, matched by presentation and word. "only" columns coun
 | words of length 3 | 11,520 | 9,297 | 9,297 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | words of length 4 | 34,560 | 28,267 | 28,267 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | all word lengths compared | 51,200 | 41,559 | 41,559 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+Word lengths not run at cap 32: [5, 6, 7].
