@@ -124,6 +124,21 @@ def test_a_start_with_det_not_one_is_unsolved_not_an_assertion(rels, name):
     assert not res.solved and res.units == 0 and res.steps == () and res.path is None
 
 
+def test_hybrid_stats_hold_the_documented_keys_when_the_cascade_solves(ms640):
+    """D7-8: a result the search never reached (a terminal pair, stages B and C, ``|det| != 1``, a cascade that spends
+    the budget) holds every documented key: no pops, rank two, nothing rejected, blank cap records."""
+    ends = {"terminal": solve(("x", "y")), "B": solve(ms640[0], FAST), "C": solve(ms640[6], FAST),
+            "det": solve(("xx", "y"), FAST), "budget": solve(ms640[0], FAST, budget=1)}
+    assert [ends[name].stage for name in ("terminal", "B", "C", "det", "budget")] == ["terminal", "B", "C", None, None]
+    for name, res in ends.items():
+        stats = dict(res.stats)
+        assert stats.pop("seconds") >= 0, name
+        assert stats == dict(pops=0, dyn_pops=0, max_rank=2, dyn_rejected=0, **capwatch.blank_records(FAST)), name
+    searched = solve(ms640[176], FAST)                         # stage H: the search fills the same keys
+    assert searched.stage == "H" and searched.stats["pops"] > 0
+    assert set(ends["B"].stats) == set(searched.stats)
+
+
 # ------------------------------------------------------------------ cap counters (acx.hybrid.capwatch)
 PREFIXES = ("cap", "dyn_cap", "slack")
 LIMITS = dict(zip(PREFIXES, ("r2_cap", "dyn_cap", "slack")))

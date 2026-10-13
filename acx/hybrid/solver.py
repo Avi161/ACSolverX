@@ -71,7 +71,8 @@ def solve(pres, cfg=None, **overrides):
     if pres.n_gen != 2 or len(pres.rels) != 2:
         raise ValueError("the hybrid solves balanced two-generator presentations")
     start = time.perf_counter()
-    stats = blank_records(cfg)                  # the cascade has no caps; a search replaces these
+    # the cascade has no search and no caps: zero counts, nothing cut; a search replaces all of it
+    stats = dict(pops=0, dyn_pops=0, max_rank=2, dyn_rejected=0, **blank_records(cfg))
     if abs_det(pres) != 1:                      # |det| is an AC invariant: no path starts here, the cascade needs 1
         stats["seconds"] = time.perf_counter() - start
         return HybridResult(False, None, 0, (), None, stats=stats)
