@@ -66,6 +66,9 @@ has another shape.
 A run writes `<out>/<name>/`. The name is the config's `name` key, else the config file's stem (`greedy_fast`). With
 `--input` or `--pres` and no `--set name=...`, it is `<config name>_<file stem>` or `<config name>_pres`:
 `configs/hybrid.toml --input examples/presentations.csv` writes `results/hybrid_presentations/`.
+The name must be one nonempty directory component: no absolute path, separators, `.` or `..`.
+Choose a different output location with `--out`. Run directories must not be symlinks; the ordinary runner also
+refuses symlinked result files, and rank-n resume refuses a symlinked `rows/` directory.
 
 - **Resume.** Rows already in `paths.jsonl` are skipped, so an interrupted run continues where it stopped, and running
   again with other `--rows` adds those rows to the same folder. A record counts only for the presentation in its `pres`:
@@ -74,6 +77,9 @@ A run writes `<out>/<name>/`. The name is the config's `name` key, else the conf
   `pres` existed count as done. `summary.json` is rewritten each time and covers every record in the folder. A row
   recorded with an `error` is not retried. A cut-off last line of `paths.jsonl` (an interrupted write) is dropped; a bad
   line before others stops the run with `<file>:<line>: not a record ...`.
+  Reports use this same reader: a final record without a newline is incomplete even if it is valid JSON.
+  Configs, summaries and rewritten record files are replaced atomically, so interruption before replacement leaves
+  the previous complete file. Use one writer per run folder; `workers` coordinates parallel work within that writer.
 - **Another config under the same name is refused** (`holds a run with another config: pass --fresh or another
   name`): `config.json` must match, `rows` and `workers` aside. `--pres` with other presentations is refused the same
   way, and so is a `paths.jsonl` without its `config.json` (`holds paths.jsonl without its config.json`), whose config
@@ -84,6 +90,9 @@ A run writes `<out>/<name>/`. The name is the config's `name` key, else the conf
   replace the published summary (`holds a published summary of N rows: a run of M would replace it`); a rerun of all its
   rows reproduces it. The rank-n sweep refuses the same way a run whose rows, with the row files already there, are
   fewer than the published summary's.
+  A rank-n fresh run clears its `rows/` and result files while preserving `input.txt` and unrelated files.
+  Rank-n resume validates every stored row against the current input, including rows outside `--rows`; a changed
+  or removed row requires `--fresh` or a new name, preventing a summary that mixes different inputs.
 
 ## The config
 
@@ -92,7 +101,8 @@ lists every key with its default and a comment. An unknown key, a section the me
 value is an error before anything is written. Types are checked too: a switch is the TOML `true` or `false`
 (`--set path=False` is the string `"False"`, an error); `name` and `benchmark` are strings (`--set name=123` is an int
 and `--set name=2026-10-13` a TOML date: quote them, `--set 'name="123"'`); `rl.width` and `rl.steps` are ints >= 1
-and `rl.alpha` a number; `cov.total_budget` is an int >= 1, `rankn.extra` 1, 2 or 3 and `rankn.sample` a number in
+and `rl.alpha` a finite number; `hybrid.dyn_ratio` must also be finite; `cov.total_budget` is an int >= 1,
+`rankn.extra` 1, 2 or 3 and `rankn.sample` a number in
 [0, 1]; a section is a table, set key by key (`--set search.budget=1000`).
 
 | top-level key | default | meaning |
@@ -136,7 +146,7 @@ and `rl.alpha` a number; `cov.total_budget` is an int >= 1, `rankn.extra` 1, 2 o
 | `elem_moves` | elementary AC moves of the path on the row: null without `path`, for a CoV `stable_cert`, and without `decode` except for the hybrid and aut (their certificates are elementary moves) |
 | `path` | the S-moves, `[i, j, s, k1, k2]` each (`acx.core.moves.decode_path`) |
 | `elementary` | the elementary moves, packed (`acx.verify.pack.unpack`); aut-assisted, hybrid, n-generator and CoV paths |
-| `verified` | the path was replayed on the row before the record was written (once: by the search, CoV, the hybrid's `certify` or rl, or by the runner for aut and ngen) |
+| `verified` | the path was replayed on the row before the record was written; false with `path=false` |
 | `error` | only on a row that was not searched or whose method failed: `Type: message` |
 | `seconds`, `cpu_seconds` | the row's wall and CPU time, replay and decoding included |
 | `cap`, `cap_dropped`, `cap_dropped_min_total`, `cap_would_pop`, `cap_first_bind`, `cap_needed` | the cap counters ([CAP.md](CAP.md)); the hybrid adds them under `dyn_cap_` and `slack_`, CoV adds `cap_legs_bound` |
@@ -160,11 +170,11 @@ The rank-n sweep (`rankn`) writes per-row `rows/<id>.npz` files and its own summ
 
 ## Faster runs
 
-- **`path = false`** (`--set path=false`): the searches keep no parent links, and the hybrid writes out no
-  elementary path, so nothing is decoded, replayed or stored. CoV is the exception: it still captures and checks the
-  paths of its searches, and only the record leaves them out. Records keep `solved`, `kind`, `cost`, `sub_moves` and
+- **`path = false`** (`--set path=false`): best-first searches keep no parent links, RL keeps no action history, and
+  the hybrid writes out no elementary path. Nothing is decoded, transported, replayed or stored. CoV still checks
+  orbit membership to classify a solve. Records keep `solved`, `kind`, `cost`, `sub_moves` and
   the cap counters; `path` and `elementary` are null, `verified` is false, so a solve is not checked, and
-  `elem_moves` is null (but for a CoV path carried back from an image). Rerun with `path = true` to get and check
+  `elem_moves` is null. Rerun with `path = true` to get and check
   the paths, or decode later (below).
 - **Decode later.** `--solved-from RUN_DIR` runs only the rows that run solved. After a `path = false` run, the same
   config with `path = true` recomputes just those rows, and the searches are deterministic, so it finds the same solves
@@ -177,6 +187,8 @@ The rank-n sweep (`rankn`) writes per-row `rows/<id>.npz` files and its own summ
 
   Give the same benchmark (or `--input`/`--pres`) and another name, as the config differs. A folder without
   `paths.jsonl` (the shipped `results/`) or with no solved row stops the command with one line.
+  Stored `pres` values must match the current input: reusing an id for another presentation is refused before writing.
+  Legacy records without `pres` can only be matched by id; use their original benchmark unchanged.
 - **`fields = ["solved", "cost", "sub_moves"]`** keeps the records small; `id`, `pres`, `solved` and `error` are
   always written. `summary.json` reads the records as written, so a dropped key leaves its entries empty (without
   `kind`, every kind counts 0; without `cpu_seconds`, `cpu_seconds` and `us_per_cost` are null).
@@ -203,6 +215,8 @@ One markdown table, a row per run: rows, solved (%), mean and median cost of the
 the search would have popped; read from `summary.json` alone, the count is exact when one cap counter binds, and a lower
 bound when more than one binds and a `raise_ids` list was cut at 100) and errors. Two runs of one benchmark also get a
 head-to-head line (solved by only one, by both, by neither).
+Head-to-head and `--common` reject shared ids whose recorded `pres` values differ, even if the benchmark path is
+the same. Historical records without `pres` cannot establish that identity.
 
 - **Units.** greedy, aut, cov and ngen count heap pops; the hybrid counts work units (pops of its two queues plus the
   automorphisms, Nielsen images and S-moves of its cascade and gates); rl counts network evaluations. A unit is not a

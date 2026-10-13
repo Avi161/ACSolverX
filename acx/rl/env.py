@@ -41,11 +41,12 @@ class VecEnv:
     def _normalise(self, reward, done):
         """Divide each env's reward by the running std of its discounted return."""
         raw, bc = reward, float(2 * self.L)
-        self.ret = self.ret * self.gamma * (~done) + raw
+        self.ret = self.ret * self.gamma + raw
         delta, tot = self.ret - self.mean, self.count + bc
         self.mean = self.mean + delta * bc / tot
         self.var = (self.var * self.count + delta.square() * self.count * bc / tot) / tot
         self.count = tot
+        self.ret = torch.where(done, torch.zeros_like(self.ret), self.ret)
         return raw / torch.sqrt(self.var + 1e-8)
 
     def _reset(self, done, terminated):

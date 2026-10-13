@@ -186,14 +186,20 @@ def test_until_ac_path_keeps_going_past_a_stable_cert():
     assert more.pops >= first.pops
 
 
-def test_config_cyclic_and_capture_path():
-    """Outcomes carry the search's reduction, and paths are captured whatever the search config says."""
-    cfg = CoVConfig(search=SearchConfig(budget=40, cyclic=False, capture_path=False), total_budget=400)
+@pytest.mark.parametrize("capture", [True, False])
+def test_config_cyclic_and_capture_path(capture):
+    """Outcomes carry the reduction and obey capture_path; unrecorded solves are not certificates."""
+    cfg = CoVConfig(search=SearchConfig(budget=40, cyclic=False, capture_path=capture), total_budget=400)
     solved = 0
     for r in data.load_csv("bench60")[:6]:
         for o in run(r.pres, cfg.replace(until="ac_path")).outcomes:
-            assert o.path is not None and not o.cyclic
-            verify(r.pres, o)
+            assert (o.path is not None) == capture and not o.cyclic
+            assert o.result.path_length is not None
+            if capture:
+                verify(r.pres, o)
+            else:
+                with pytest.raises(ValueError, match="no captured path"):
+                    verify(r.pres, o)
             solved += 1
     assert solved
 

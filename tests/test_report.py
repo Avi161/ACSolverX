@@ -413,7 +413,7 @@ def test_a_half_written_last_line_is_skipped_but_a_corrupt_middle_line_is_not(tm
     (tmp_path / "r" / "paths.jsonl").write_text("\n".join(lines) + '\n{"id": "4", "sol')   # cut off mid-write
     assert len(report.load_run(folder).records) == 4
     (tmp_path / "r" / "paths.jsonl").write_text("\n".join([lines[0], "garbage", lines[1]]) + "\n")
-    with pytest.raises(SystemExit, match="paths.jsonl: line 2 is not JSON$"):
+    with pytest.raises(SystemExit, match="paths.jsonl:2: not a record"):
         report.load_run(folder)
 
 

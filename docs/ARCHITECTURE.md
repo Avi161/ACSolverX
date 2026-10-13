@@ -43,6 +43,9 @@ Top level: `from acx import Presentation, Move, SearchConfig, search, Result, re
 - `acx.core.digrams`: `digram(w, k)` and `digram_counts(words)` (cyclic digrams, each with its inverse) and
   `tokenize(w, d, h)` (the shortest rewriting with `d -> h`), shared by the SAC transform and the hybrid's definitions.
 
+`Presentation` validates a nonnegative integer rank and integer generator symbols. NumPy integer scalars are
+accepted; floats, strings and bools are rejected before conversion, so malformed input cannot silently change groups.
+
 ## Moves (`acx.core.moves`)
 
 - **S-move** `Move(i, j, s, k1, k2)` (0-based, `i != j`, `s = +-1`): `r_i <- rotate(r_i, k1) + rotate(r_j**s, k2)`,
@@ -85,8 +88,8 @@ by `parse_cap`: a positive int or `"none"` (`0` and bools raise; `slack` and `ca
 (`capture_path`, `cyclic`, `trace`, the runner's `path` and `decode`, `rankn.inverse`, `CoVConfig.control`,
 `NGenConfig.sac`/`lift`, `HybridConfig.certify`) is read by `require_bool`: a string such as `"False"` raises. Int knobs
 (`budget`, `total_budget`, `workers`, the hybrid's `penalty`/`min_uses`, `rl.width`/`steps`, the RL `cap`) are read by
-`require_int` (`<name> must be an int >= <low>`), and numbers (`dyn_ratio`, `rl.alpha`, `rankn.sample`) by `is_number`
-(an int or a float, not a bool).
+`require_int` (`<name> must be an int >= <low>`). `dyn_ratio` and `rl.alpha` use `is_finite_number`, rejecting
+NaN/infinity as well as bools; `rankn.sample` must be a number in [0, 1].
 
 ## Search (`acx.search.search(pres, cfg=None, **overrides) -> Result`)
 
@@ -187,10 +190,13 @@ The runner is a package, one job per module, and nothing is re-exported but `loa
   section, unknown key or invalid value.
 - `methods`: one function per method (`SOLVERS`), returning a record; `output`: the `path` and `fields` options;
   `caps`: the counters of a record and the `caps` block; `summary`: `summary.json` (`COST_UNIT`).
+- `storage`: shared output-name and symlink checks, plus atomic text/JSON replacement. Names are directory
+  components under `out`, not paths. Replacement files are written and flushed before `os.replace`.
 - `rundir`: the run folder. `prepare` writes `config.json` and refuses a folder written under another config, a
   `paths.jsonl` without its `config.json` and a smaller run into a published folder (`write_config`, the first of
-  these, is shared with the rank-n sweep); `read_records` reads `paths.jsonl` the same way for the resume and for
-  `run.py` (a cut-off last line is skipped, an earlier bad line stops the run); `drop_changed` forgets the records of
+  these, is shared with the rank-n sweep); `iter_records` streams `paths.jsonl` for reports and `read_records`
+  materializes it for resume and `run.py`. Both skip an incomplete final line (including JSON without its newline),
+  reject earlier bad lines and validate record identity/status types. `drop_changed` forgets the records of
   rows that changed or left the input.
 - `execute`: `run` picks the rows (`acx.data.select`), resumes an interrupted run (a record counts only for the
   presentation in its `pres`), skips repeated row ids, solves AK(2) once, unrecorded, before the timed rows, and writes
@@ -198,6 +204,7 @@ The runner is a package, one job per module, and nothing is re-exported but `loa
   refuses a row that is not two-generator, two-relator and a run that would shrink a published summary. A row with
   `|det| != 1`, or whose method raises, is recorded unsolved with an `error`. `summary.json` always covers every
   record in `paths.jsonl`.
+  Rank-n resume checks every stored row against the entire current input, including rows outside the selected slice.
 
 ## Data (`acx.data`)
 

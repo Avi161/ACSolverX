@@ -6,6 +6,7 @@ tie-break uses the key order ``X < Y < x < y`` (``state_key``). The two must not
 import re
 from dataclasses import dataclass
 from functools import lru_cache
+from numbers import Integral
 
 GEN_CHARS = "xyzabcdefghijklmnopqrstuvw"
 _NAME = re.compile(r"[gG][1-9]\d*|.", re.DOTALL)        # a long name such as g27, else a single letter
@@ -186,7 +187,13 @@ class Presentation:
     rels: tuple
 
     def __post_init__(self):
-        object.__setattr__(self, "rels", tuple(tuple(int(g) for g in r) for r in self.rels))
+        if isinstance(self.n_gen, bool) or not isinstance(self.n_gen, Integral) or self.n_gen < 0:
+            raise ValueError(f"n_gen must be a nonnegative integer, got {self.n_gen!r}")
+        rels = tuple(tuple(r) for r in self.rels)
+        if any(isinstance(g, bool) or not isinstance(g, Integral) for r in rels for g in r):
+            raise ValueError("generator symbols must be integers (not bools, floats or strings)")
+        object.__setattr__(self, "n_gen", int(self.n_gen))
+        object.__setattr__(self, "rels", tuple(tuple(int(g) for g in r) for r in rels))
         if any(g == 0 or abs(g) > self.n_gen for r in self.rels for g in r):
             raise ValueError(f"symbol outside 1..{self.n_gen}: {self.rels}")
 

@@ -390,18 +390,24 @@ length-1 relators appears or after `steps` steps. It needs `pip install -e .[rl]
 (`width`, `steps`, `alpha`, `cap`); two generators only, relators of length at most 24 (the policy's input width), so a
 longer row comes back unsolved with `skipped` set. `cost` is the number of states the network scored. The path is a
 list of S-moves, replayed like any other. Training code is included (`acx.rl.env`, `acx.rl.ppo`).
+PPO's reward normalizer observes `return = gamma * return + reward`, updates its running moments, then clears the
+return of finished environments. Terminal rewards belong to the episode that just ended. The October 2026 review
+corrected the reset order in this trainer; it does not modify the released checkpoint or its recorded JAX references.
 
 ## 14. Verification
 
 Run `pytest` (the default selection, a few minutes) and `pytest -m ""` (adds the slow parity and census sets). Every
-solved record of every run is replayed before it is written. To check a finished run again, replay each record on its
+solved record with `path=true` is replayed before it is written; `path=false` records are unverified search counts.
+To check a finished run again, replay each record on its
 row: `replay(pres, decode_path(rec["path"]))` for a plain greedy `ac_path` (`acx.core.moves.decode_path`), and
 `replay(pres, unpack(rec["elementary"]), normalize=False)` for any record that has `elementary` moves (aut-assisted,
 hybrid, n-generator and CoV paths; `acx.verify.pack.unpack`), with `pres` from `acx.data.rows(benchmark)`.
 
-A result counts only after it replays on the presentation it claims to solve, through code that shares nothing with the
-solver: every move legal, `|det M| = 1` at the start and after every move, no S-move child over the cap, and a trivial
+A certified result counts only after it replays on the presentation it claims to solve. Replay is separate from the
+optimized expansion kernels, but shares Python word operations and move definitions with the reference solver;
+it is not an independent formal proof checker. It checks every move is legal, `|det M| = 1` at the start and after
+every move, no S-move child over the configured cap, and a trivial
 end (`acx.verify.replay`). An aut-assisted solve counts after transport to the original row; a `stable_cert` replays
 its search leg with the replayer and its transform in the CoV code (`acx.cov.check_cert`), or its stabilised elementary
-path (hybrid, n-generator) directly, and is reported separately from an `ac_path`. `run.py` writes a record only after
-this replay, and the summary keeps `ac_path`, `aut_assisted` and `stable_cert` apart.
+path (hybrid, n-generator) directly, and is reported separately from an `ac_path`. With `path=true`, `run.py` writes a
+solved record only after this replay. Summaries keep `ac_path`, `aut_assisted` and `stable_cert` apart.
