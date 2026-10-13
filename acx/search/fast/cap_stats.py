@@ -18,6 +18,7 @@ from ...core.capcount import C_POOL, CapArrays, blank, cc_drop, cc_free, cc_pop
 from ...core.words import state_bytes
 from .counters import DMIN_T, DROPPED, HEAP_LEN, NODES
 from .kernels import expand_drops, max_children, tie_bytes
+from .packing import unpack_state
 
 
 @njit(cache=True)
@@ -33,13 +34,14 @@ def _suffix_max(prio, popped, n, dry):
 
 
 @njit(cache=True)
-def _replay(arena, lens, depth, prio, popped, n, t0, smax, live, n_gen, cap, cyclic, pid,
+def _replay(arena, lens, depth, prio, popped, n, t0, smax, live, n_gen, bits, cap, cyclic, pid,
             out, out_len, out_mv, dout, dout_len, dprio, bar, cc):
     """The exact counter over the recorded pops ``t0..n-1`` (``live[t]``: pop ``t``'s drops may matter).
 
     Returns the pop to resume from when the counter's arrays need to grow, else ``n``.
     """
     R = lens.shape[1]
+    cur = np.empty((R, out.shape[2]), dtype=np.uint8)       # the popped state, unpacked
     for t in range(t0, n):
         top = popped[t]
         if live[t]:
@@ -54,11 +56,12 @@ def _replay(arena, lens, depth, prio, popped, n, t0, smax, live, n_gen, cap, cyc
                 dout_len = np.empty((2 * room, R), dtype=np.int32)
                 dprio = np.empty(2 * room, dtype=np.float64)
         # The bar comes before this pop's own drops (the solving pop included).
-        bar_len = tie_bytes(arena[top], lens[top], n_gen, bar, 0)
+        unpack_state(arena[top], lens[top], bits, cur)
+        bar_len = tie_bytes(cur, lens[top], n_gen, bar, 0)
         cc_pop(cc, prio[top], depth[top], bar, bar_len)
         if not live[t]:
             continue
-        _, _, dcount, _, _ = expand_drops(arena[top], lens[top], n_gen, cap, cyclic, out, out_len, out_mv,
+        _, _, dcount, _, _ = expand_drops(cur, lens[top], n_gen, cap, cyclic, out, out_len, out_mv,
                                           dout, dout_len, dprio, pid, smax[t], False)
         child_depth = depth[top] + 1
         pool = cc[8]
@@ -92,7 +95,7 @@ def cap_counts(arrays, st, start, cfg, pid, popped, dmin, solved):
 
     counter = CapArrays(cfg.cap)
     counter.known(state_bytes(start.rels, start.n_gen))
-    width = arrays.arena.shape[2]
+    width = arrays.width
     longest_popped = int(arrays.lens[popped[:n]].max(axis=1).max())
     drop_width = max(2 * cfg.cap, 2 * longest_popped)              # child_width of any popped state
     rows = 64
@@ -106,7 +109,8 @@ def cap_counts(arrays, st, start, cfg, pid, popped, dmin, solved):
     t = 0
     while t < n:
         t = _replay(arrays.arena, arrays.lens, arrays.depth, arrays.prio, popped, n, t, smax, live, start.n_gen,
-                    cfg.cap, cfg.cyclic, pid, out, out_len, out_mv, dout, dout_len, dprio, bar, counter.cc)
+                    arrays.bits, cfg.cap, cfg.cyclic, pid, out, out_len, out_mv, dout, dout_len, dprio, bar,
+                    counter.cc)
         if t < n:                                                   # the counter's arrays are full: grow, resume
             room = int(max_children(arrays.lens[popped[t]]))
             counter.grow(room, room * (R * drop_width + R))

@@ -1,7 +1,7 @@
 # Performance
 
-What a setting costs in CPU time and memory, measured with `run.py` on MS640: the relator cap, recording the path, and
-(last section) the methods side by side.
+What a setting costs in CPU time and memory, measured with `run.py` on MS640: the packed words (first section), the
+relator cap, recording the path, and (last section) the methods side by side.
 
 **After the replay fix.** Commit `0712d76a` makes the runner replay each solve once instead of twice and warm up before
 the timed rows, which changes CPU only: solved counts, pops, units and paths are identical. Only the two hybrid rows of
@@ -26,6 +26,33 @@ To reproduce a row, run the config with the `--set` lines named above its table 
 python run.py --config configs/greedy_fast.toml --set search.cap=none --set name=len_nocap --fresh
 python -c "import json; s = json.load(open('results/len_nocap/summary.json')); print(s['cpu_seconds'], s['us_per_cost'])"
 /usr/bin/time -v python run.py --config configs/greedy_fast.toml --set search.cap=none --set name=len_nocap --fresh 2>&1 | grep Maximum   # peak memory
+```
+
+## Packed words
+
+The fast engine stores each relator packed (2 bits a symbol at two generators, 4 at three to eight;
+`acx/search/fast/packing.py`) and canonicalises a word of up to 64 bits as integers (`kernels/words.py`). This changes
+CPU and memory only: every record of every config equals the unpacked engine's, timing keys aside. **Every other
+number in this file was measured before it.** The unpacked engine (`main` at `f4d5d211`) against the packed one,
+`run.py` with `workers = 1`, two runs of each alternating on an otherwise idle machine (load 1.0 to 1.1), the faster
+run (CPU) and the smaller peak:
+
+| run | rows | CPU s before | CPU s after | x | peak MB before | peak MB after |
+|---|---|---:|---:|---:|---:|---:|
+| LENGTH, cap 24, 10,000 pops (`greedy_fast`) | MS640 | 90.7 | 75.7 | 1.20 | 330 | 278 |
+| S20_MK2, cap 24, 10,000 pops (`s20_mk2_fast`) | MS640 | 69.2 | 61.0 | 1.13 | 259 | 228 |
+| LENGTH, no cap, 100,000 pops | MS640 568, 604, 620, 639 | 61.4 | 43.9 | 1.40 | 2,506 | 1,689 |
+| rank 3, cap 24, 1,000 pops a start (`rank3_bf`) | MS640 `0:640:32`, 1,600 searches | 57.5 | 52.5 | 1.09 | 177 | 171 |
+
+Memory falls most where the arena dominates: a third on the long uncapped searches (at cap 24 with the path, about
+68 to 76 B a state against 104 to 112). Most of the CPU gain is the packed canonical form: on MS640 rows 568, 604
+and 620 at 50,000 pops (both priorities, three runs on a shared machine) it alone gives 1.47x of the 1.65x. The rank-3
+searches are short (three generators, 4 bits a symbol), and their two runs differed by 10% (after: 52.5 and 58.3 s),
+so read that row as no slower. To reproduce a row, run it in a checkout of either commit, for example:
+
+```bash
+python run.py --config configs/greedy_fast.toml --set search.cap=none --set search.budget=100000 \
+  --rows 568,604,620,639 --set workers=1 --set name=nocap100k --fresh
 ```
 
 ## Relator cap: cost of a larger or no cap

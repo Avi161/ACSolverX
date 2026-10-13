@@ -11,7 +11,8 @@ pip install -e ".[dev]"          # editable: acx reads data/ and benchmark/; ".[
 export NUMBA_NUM_THREADS=1       # one core per search; a config's `workers` solves rows in parallel
 ```
 
-The first run compiles the numba kernels (under a minute) and caches them.
+The first run compiles the numba kernels (under a minute) and caches them; an edit to any acx file that uses numba
+compiles them again (`acx/jit_cache.py`).
 
 ## `run.py`: one command for every method
 

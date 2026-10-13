@@ -146,13 +146,17 @@ and its transform in `acx.cov.check_cert`, and is reported separately from an `a
 
 ## Fast backend (`acx.search.fast`)
 
-The package: `best_first.py` (the pop loop), `arrays.py` (the state arena), `heap.py`, `dedup.py`, `cap_stats.py` (the
-cap counters) and `kernels/`. States are rows of Booth symbols `b = 2 (n - |g|) + (g > 0)` (integer order is Booth order, the inverse is `b ^ 1`),
-one byte each, in a flat arena with an int32 heap and an FNV-1a dedup table; paths are int32 `(parent, move)`, so caps
-of 128 and above work. Uncapped runs start at the longest start relator and re-lay rows wider on demand. The kernels
-(`expand`, `expand_drops`, `score`, `children`, `reduce_buf`, `canon_buf`) are general in generators and relators.
-With a cap, the engine counts in two stages (the least dropped score per pop during the search, an exact replay of the
-few pops whose drops could win afterwards); `tests/test_fast.py` pins trace equality with `spec`.
+The package: `best_first.py` (the pop loop), `arrays.py` (the state arena), `packing.py` (its packed rows), `heap.py`,
+`dedup.py`, `cap_stats.py` (the cap counters) and `kernels/`. States are rows of Booth symbols
+`b = 2 (n - |g|) + (g > 0)` (integer order is Booth order, the inverse is `b ^ 1`), one byte each in the kernels and
+packed in the arena (2 bits a symbol at two generators, 4 at three to eight, 8 beyond), with an int32 heap and an
+FNV-1a dedup table over the packed bytes; paths are int32 `(parent, move)`, so caps of 128 and above work. Uncapped
+runs start at the longest start relator and re-lay rows wider on demand. The kernels (`expand`, `expand_drops`,
+`score`, `children`, `reduce_buf`, `canon_buf`) are general in generators and relators. With a cap, the engine counts
+in two stages (the least dropped score per pop during the search, an exact replay of the few pops whose drops could
+win afterwards); `tests/test_fast.py` pins trace equality with `spec`. numba's cache of every acx kernel carries a
+digest of acx's numba source (`acx/jit_cache.py`): numba checks a cached kernel only against its own file, so without
+it an edit to a helper inlined from another file (`canon_buf` into `expand`) would leave the old machine code running.
 
 ## Other methods
 
