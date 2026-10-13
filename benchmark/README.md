@@ -8,7 +8,9 @@ against its source file. Run one by name with `python run.py --config configs/<m
 `acx.data.rows(name)`: `ms640`, `1190ms`, `bench10`..`bench60`, `ladder20`..`ladder500`,
 `ladder20_s20hard`..`ladder300_s20hard`, `ac1m_hard_holdout60`, `ac19_autmin`, `ac1m_autmin`, `u124`. `u124` is
 `data/ms_unsolved_reps/aca_124_initial.csv`, the same rows as `ladder/unsolved_124.csv`. `ladder_pairs.csv` and the
-other tables without relator columns are reference data, not benchmarks.
+other tables without relator columns are reference data, not benchmarks. Results are not kept here: the rank-n
+brute-force tables that were in `rank3_bf/` are in [`results/stable_ac/rank3_bf/`](../results/stable_ac/rank3_bf/README.md)
+with the rest of that study ([results/README.md](../results/README.md#studies)).
 
 ## The difficulty ladder (`ladder/`), the headline benchmark
 
@@ -89,19 +91,6 @@ to equal their AC1M lines in `tests/test_data.py`.
 All 640 MS-640 rows with the bin each falls in (`pres_id` = MS-640 line), the difficulty rank,
 the baseline's nodes and path length at 1M, the `Aut(F2)` class and minimal total, and progress at
 50k nodes. It is the table the subsets were picked from.
-
-## `rank3_bf/`: stored rank-n brute-force tables
-
-Small reference tables (40 KB) from the baseline's rank-3/4/5 sweep on MS640 at budget 1,000 (and 10,000 for the
-rank-3 summary), cap 24, for comparison with `python -m acx.ngen.sweep` ([docs/RANK3.md](../docs/RANK3.md)); the row
-files they were made from are large and not carried.
-
-| file | what |
-|---|---|
-| `rank3_bf_ms640_b1000_cap24_summary.md`, `rank3_bf_ms640_b10000_cap24_summary.md` | rank 3, every word to length 10 (budget 1,000) or 7 (budget 10,000): solved by length, best single word, lost presentations |
-| `rankn_bf_ms640_b1000_cap24_r{4,5}_summary.json` | rank 4 and 5 summaries |
-| `cap_counters_cap24.md` | the cap counters (dropped, could bind) per file of searches ([docs/CAP.md](../docs/CAP.md)) |
-| `cap_exhaustion_all_cap24.md` | unsolved searches that ended below the budget because every child was over the cap |
 
 ## Related data (in `data/`, not benchmarks)
 

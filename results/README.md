@@ -38,3 +38,45 @@ The hybrid also carries the same fields under `dyn_cap_` and `slack_`, and CoV a
 `rows_would_pop == 0` means the whole run is independent of the cap (any larger cap gives the same pops and paths). The
 rank-n runs (`rankn`) write `rows/<id>.npz` and a different `summary.json` (docs/RANK3.md); their `cap_counters` block counts
 searches that dropped a child and searches where the cap could bind. Row files (`results/*/rows/`) are not for git.
+
+## Studies
+
+`results/` holds two kinds of folder:
+
+- **Runs**, `results/<run>/`: what `run.py` writes (above). The command in
+  [docs/RESULTS.md](../docs/RESULTS.md) section 0 reproduces each one.
+- **Studies**, `results/stable_ac/<study>/`: a sweep made on another branch with its own code, carried as its compact
+  files (summaries, tables, graphs, check logs), byte for byte the source's apart from the README, plus a
+  `MANIFEST.json`. `run.py` never writes there. Each README starts with an "In this checkout" block: what is here, what is not, and how acx reproduces it.
+
+| study | what | source branch, commit | raw files not in git |
+|---|---|---|---|
+| [`rank3_bf/`](stable_ac/rank3_bf/README.md) | 3-, 4- and 5-generator brute force on MS640, budgets 1,000 and 10,000, cap 24 | `rank3/brute-force-baseline`, `f2d53ced` | 102 (`*.npz`, `*.jsonl`, `*.jsonl.gz`), 70.5 MB |
+| [`cov_all/`](stable_ac/cov_all/README.md) | exhaustive CoV sweep (`suballpxyb8`) on MS640, budgets 100, 10,000 and 100,000 | `cov/all-subsets-sweep`, `fb84a588` | 5 (the 100 and 10,000 `.jsonl.gz`, the three `.jsonl`), 280 MB |
+
+`results/rank3_bf/` is acx's rerun of the rank-3 study at word lengths 1 to 4 (equal cell for cell); `rank4_bf/` and
+`rank5_bf/` are row slices of ranks 4 and 5. The CoV sweep has no acx driver: `[cov] family = "suballpxyb8"` enumerates
+its starts, and the study README shows how to check its records with `acx.cov` and `acx.verify`.
+
+**Manifests.** Each study's `MANIFEST.json` names its source (`branch`, `commit`, `dir`) and lists every raw file of the
+source folder with `path`, `bytes`, `sha256` and `in_repo`. The one raw file in git is
+`cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz` (4.1 MB, the transform of every start). Fetch another from a
+clone that has the source branch, for example
+`git show f2d53ced:results/stable_ac/rank3_bf/<file> > results/stable_ac/rank3_bf/<file>`;
+`tests/test_rank3_study.py` and `tests/test_cov_all_study.py` check a fetched file against its size and sha256.
+`.gitignore` ignores `*.npz`, `*.jsonl` and `*.jsonl.gz` under `results/stable_ac/`, apart from that one file, so a
+fetched file is never committed. The manifest's `s3` field is where the rest was kept: the rank-3 per-block partials
+and machine logs in `s3://acsolver-u124-205558941715/cov_all/rank3_bf/`, the CoV sweep's raw files in
+`s3://acsolver-u124-205558941715/cov_all/b<budget>/results/` (confirmed for `b100000`; the 100 and 10,000 prefixes
+follow the same pattern and were not listed).
+
+**Naming a new run folder.** `<benchmark>_<method>[_<variant>]`:
+
+- the benchmark's short name: `ms640`, `bench60`, `ladder60`, `ladder200`, `holdout60`, `ac19`, `ac1m`, `u124`;
+- the method: `hybrid`, `aut`, `cov`, `ngen_sac`, `rl`, and the greedy by its priority, `length` or `s20_mk2`;
+- variants, in this order: the backend where both are published (`_fast`, `_spec`), the budget and cap when they are
+  not the config's, a row subset (`ms640_rl30`: the first 30 rows).
+
+Write a budget and a cap as `b<budget>` and `cap<N>`, as the studies' file names do (`..._ms640_b1000_cap24_...`); the
+two older `holdout60_*_1k_cap48` folders write the budget as `1k`. A run without `--set name=...` keeps its config's
+stem (`smoke`, `rank3_bf`). Studies keep the folder and file names of their source branch.
