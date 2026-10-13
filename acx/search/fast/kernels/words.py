@@ -1,5 +1,8 @@
 """Word operations on Booth-symbol buffers: free and cyclic reduction, canonical form, relator order."""
+import numpy as np
 from numba import njit
+
+_ALL_ONES = np.uint64(0xFFFFFFFFFFFFFFFF)
 
 
 @njit(inline="always")
@@ -59,14 +62,8 @@ def _least_rotation(w, lo, m, inverse):
 
 
 @njit(inline="always")
-def canon_buf(w, lo, m, out):
-    """Write the canonical form of ``w[lo:lo+m]`` to ``out[:m]``.
-
-    That is the smaller (Booth order) of the least rotation of the word and of its inverse, the same string as
-    ``acx.core.words.canonical_word``.
-    """
-    if m == 0:
-        return
+def _canon_booth(w, lo, m, out):
+    """The smaller (Booth order) of the least rotation of ``w[lo:lo+m]`` and of its inverse, written to ``out[:m]``."""
     start = _least_rotation(w, lo, m, False)
     inv_start = _least_rotation(w, lo, m, True)
     use_inverse = False
@@ -79,6 +76,63 @@ def canon_buf(w, lo, m, out):
     first = inv_start if use_inverse else start
     for t in range(m):
         out[t] = _ring_letter(w, lo, m, use_inverse, first + t)
+
+
+@njit(inline="always")
+def _symbol_bits(w, lo, m):
+    """The bits that hold every symbol of the word and of its inverse (``b ^ 1``): at least 1."""
+    seen = 0
+    for t in range(m):
+        seen |= w[lo + t]
+    bits = 1
+    while seen >> bits:
+        bits += 1
+    return bits
+
+
+@njit(inline="always")
+def _least_packed(w, lo, m, inverse, bits):
+    """The least rotation of the word (or its inverse), ``bits`` a symbol in one uint64, the first symbol highest.
+
+    For ``bits * m <= 64``. Packed words of one length compare like their strings. Each step moves the first symbol
+    to the end, with shifts of ``bits`` and ``bits * (m - 1)``, both below 64.
+    """
+    b = np.uint64(bits)
+    rest = np.uint64(bits * (m - 1))
+    mask = _ALL_ONES >> np.uint64(64 - bits * m)
+    v = np.uint64(0)
+    for t in range(m):
+        v = (v << b) | np.uint64(_letter(w, lo, m, inverse, t))
+    least = v
+    for _ in range(m - 1):
+        v = ((v << b) | (v >> rest)) & mask
+        least = min(least, v)
+    return least
+
+
+@njit(inline="always")
+def _canon_packed(w, lo, m, out, bits):
+    """``_canon_booth`` for ``bits * m <= 64``: the lesser packed word, unpacked to ``out[:m]``."""
+    least = min(_least_packed(w, lo, m, False, bits), _least_packed(w, lo, m, True, bits))
+    symbol = (np.uint64(1) << np.uint64(bits)) - np.uint64(1)
+    for t in range(m):
+        out[t] = (least >> np.uint64(bits * (m - 1 - t))) & symbol
+
+
+@njit(inline="always")
+def canon_buf(w, lo, m, out):
+    """Write the canonical form of ``w[lo:lo+m]`` to ``out[:m]``, the string ``acx.core.words.canonical_word`` gives.
+
+    A word of ``m`` symbols of ``b`` bits with ``b * m <= 64`` (two generators: up to 32 letters; three or four: 21;
+    five to eight: 16) is canonicalised packed in one integer, a longer one by Booth's scan.
+    """
+    if m == 0:
+        return
+    bits = _symbol_bits(w, lo, m)
+    if bits * m <= 64:
+        _canon_packed(w, lo, m, out, bits)
+    else:
+        _canon_booth(w, lo, m, out)
 
 
 @njit(inline="always")

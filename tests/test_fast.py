@@ -22,6 +22,8 @@ from acx.search.fast.arrays import Arrays
 from acx.search.fast.dedup import find_slot, hash_state, rehash
 from acx.search.fast.heap import heap_pop, heap_push
 from acx.search.fast.kernels import PRIORITY_IDS, canon_buf, decode_word, reduce_buf, rel_less, score, tie_bytes
+from acx.search.fast.kernels.words import _canon_booth, _canon_packed
+from acx.search.fast.packing import field_bits, pack_state, packed_width, unpack_state
 
 # 36 rows spread over the 566 MS640 rows whose spec cost (length + s20_mk2 pops at budget 10,000)
 # is at most 2,500, plus four rows costing 3,000-7,600 pops: about 22,000 spec pops in all.
@@ -100,6 +102,14 @@ def test_three_generators(kw):
     parity(Presentation.parse("xyxYXY", "xxyXYY", "zxZyy"), budget=300, **kw)
     r = parity(Presentation.parse("xY", "yZ", "zyX"), budget=200, **kw)
     assert r.solved and r.end.n_gen == 3
+
+
+@pytest.mark.parametrize("n_gen", [5, 9])
+def test_more_generators(n_gen):
+    """Five generators are stored 4 bits a symbol, nine 8 bits (``packing``)."""
+    rels = ((1, 2, 1, -2, -1, -2), (1, 1, 2, -1, -2, -2)) + tuple((g, 1 - g, g - 2) for g in range(3, n_gen + 1))
+    for cap in (7, None):
+        parity(Presentation(n_gen, rels), budget=200, cap=cap)
 
 
 def test_s20_mk2_needs_two_generators():
@@ -228,6 +238,36 @@ def test_reduce_and_canon_kernels_match_core_words(n_gen, cyclic):
         assert decode(out.reshape(1, -1), [m], n_gen)[0] == canonical_word(reduced)
 
 
+def orbit_words(n_gen, seed=0):
+    """Random, periodic, one-letter and last-generator-only (1-bit) words of every length 0-90: both sides of the
+    64-bit bound of the packed canonical form at every symbol width."""
+    rng = random.Random(seed)
+    letters = [g for k in range(1, n_gen + 1) for g in (k, -k)]
+    words = []
+    for m in range(91):
+        period = [rng.choice(letters) for _ in range(rng.randint(1, 4))]
+        words += [tuple(rng.choice(letters) for _ in range(m)), tuple((period * m)[:m]), (rng.choice(letters),) * m,
+                  tuple(rng.choice((n_gen, -n_gen)) for _ in range(m))]
+    return words
+
+
+@pytest.mark.parametrize("n_gen", [1, 2, 3, 4, 8, 27, 127])
+def test_canon_kernel_packed_and_booth_paths(n_gen):
+    """Both paths of ``canon_buf`` give ``canonical_word``, each checked on its own: the packed one (``b`` bits a
+    symbol, the bit length of the largest symbol or its inverse, when ``b * m <= 64``) and Booth's scan."""
+    at_bound = 0
+    for w in orbit_words(n_gen):
+        syms, lens = encode((w,), n_gen)
+        m, want = int(lens[0]), canonical_word(w)
+        bits = (int(max(syms[0, :m], default=0)) | 1).bit_length()
+        at_bound += bits * m <= 64 < bits * (m + 1)
+        for canon in [canon_buf, _canon_booth] + ([lambda *a: _canon_packed(*a, bits)] if bits * m <= 64 else []):
+            out = np.zeros_like(syms[0])
+            canon(syms[0], 0, m, out)
+            assert decode_word(out[:m], n_gen) == want
+    assert at_bound >= 2
+
+
 def test_rel_less_is_the_sort_rels_order():
     words = random_words(2, count=60)
     for a, b in zip(words, words[1:]):
@@ -269,35 +309,82 @@ def test_state_bytes_sort_like_state_key(n_gen):
     assert len(by_key) > 300
 
 
-# ---- the engine parts: heap order, dedup table, array growth ----
+# ---- the engine parts: packed rows, heap order, dedup table, array growth ----
 
-def test_heap_pops_in_priority_depth_order():
-    """Ties in (prio, depth) are broken by the symbols, so give each state a distinct 4-symbol word."""
+def packed_arena(states, n_gen):
+    """``states`` (tuples of relators) packed as an arena: ``(arena, lens, bits)``."""
+    bits, width = field_bits(n_gen), max(len(r) for rels in states for r in rels)
+    arena = np.zeros((len(states), len(states[0]), packed_width(width, bits)), dtype=np.uint8)
+    lens = np.zeros((len(states), len(states[0])), dtype=np.int32)
+    for sid, rels in enumerate(states):
+        syms, lens[sid] = encode(rels, n_gen, width)
+        pack_state(syms, lens[sid], bits, arena[sid])
+    return arena, lens, bits
+
+
+@pytest.mark.parametrize("n_gen, bits", [(1, 1), (2, 2), (3, 4), (8, 4), (9, 8), (127, 8)])
+def test_packed_rows_round_trip(n_gen, bits):
+    """A relator packs ``bits`` a symbol (a power of two), the first symbol in the high bits and the rest of the last
+    byte 0, whatever the row held before; it unpacks to itself."""
+    assert field_bits(n_gen) == bits and packed_width(24, 2) == 6
+    rng = random.Random(n_gen)
+    letters = [g for k in range(1, n_gen + 1) for g in (k, -k)]
+    for width in range(1, 18):
+        rels = tuple(tuple(rng.choice(letters) for _ in range(rng.randint(0, width))) for _ in range(3))
+        syms, lens = encode(rels, n_gen, width)
+        packed = np.full((3, packed_width(width, bits)), 0xFF, dtype=np.uint8)
+        pack_state(syms, lens, bits, packed)
+        for r in range(3):
+            used = (int(lens[r]) * bits + 7) // 8
+            layout = "".join(format(b, f"0{bits}b") for b in syms[r, :lens[r]]).ljust(8 * used, "0")
+            assert packed[r, :used].tobytes() == int(layout or "0", 2).to_bytes(used, "big")
+        out = np.zeros_like(syms)
+        unpack_state(packed, lens, bits, out)
+        assert decode(out, lens, n_gen) == rels
+
+
+@pytest.mark.parametrize("n_gen", [2, 3])
+def test_heap_pops_in_spec_order(n_gen):
+    """From a packed arena the heap pops in spec's order ``(prio, depth, state_key)``, also among states equal in
+    prio and depth and where one relator is a proper prefix of another."""
+    words = random_words(n_gen, count=150, seed=2)
+    states = [(a, b) for a, b in zip(words, words[1:])] + [(w[:2], v) for w, v in zip(words, words[2:])]
+    states = list(dict.fromkeys(states))
+    arena, lens, bits = packed_arena(states, n_gen)
     rng = random.Random(1)
-    n = 200
-    prio = np.array([rng.randint(0, 5) for _ in range(n)], dtype=np.float64)
-    depth = np.array([rng.randint(0, 5) for _ in range(n)], dtype=np.int32)
-    arena = np.array([[[(sid >> (2 * t)) & 3 for t in range(4)]] for sid in range(n)], dtype=np.uint8)
-    lens = np.full((n, 1), 4, dtype=np.int32)
-    heap, size = np.zeros(n, dtype=np.int32), 0
-    for sid in range(n):
-        size = heap_push(heap, size, sid, prio, depth, arena, lens, 2)
+    prio = np.array([rng.randint(0, 2) for _ in states], dtype=np.float64)
+    depth = np.array([rng.randint(0, 2) for _ in states], dtype=np.int32)
+    heap, size = np.zeros(len(states), dtype=np.int32), 0
+    for sid in range(len(states)):
+        size = heap_push(heap, size, sid, prio, depth, arena, lens, n_gen, bits)
     popped = []
     while size:
         popped.append(int(heap[0]))
-        size = heap_pop(heap, size, prio, depth, arena, lens, 2)
-    assert sorted(popped) == list(range(n))
-    assert [(prio[s], depth[s]) for s in popped] == sorted((prio[s], depth[s]) for s in range(n))
+        size = heap_pop(heap, size, prio, depth, arena, lens, n_gen, bits)
+    assert popped == sorted(range(len(states)), key=lambda s: (prio[s], depth[s], state_key(states[s], n_gen)))
+
+
+def test_dedup_tells_packed_states_apart_by_length():
+    """``Y`` is symbol 0 at two generators: ``Y`` and ``YY`` pack to the same zero byte, an empty relator to none."""
+    states = [((), (-2,)), ((-2,), ()), ((-2,), (-2, -2)), ((-2, -2), (-2,)), ((-2,), (-2,)), ((), ()), ((-2,) * 4, ())]
+    arena, lens, bits = packed_arena(states, 2)
+    table = np.zeros(32, dtype=np.int32)
+    rehash(table, arena, lens, len(states), bits)
+    assert sorted(table[table > 0]) == list(range(1, len(states) + 1))
+    for sid in range(len(states)):
+        h = np.uint64(hash_state(arena[sid], lens[sid], bits))
+        assert table[find_slot(table, arena, lens, arena[sid], lens[sid], h, bits)] == sid + 1
 
 
 def test_arrays_grow_keeps_states_and_lookups():
     syms, lens = encode(((1, 2, -1, -2), (1, 1, 2)), 2)
-    a = Arrays(8, 2, syms.shape[1], track=True)
-    a.arena[0], a.lens[0] = syms, lens
-    rehash(a.table, a.arena, a.lens, 1)
-    b = a.grow(32, syms.shape[1] + 3, 1, 0)
-    assert b.capacity == 32 and b.arena.shape == (32, 2, syms.shape[1] + 3)
+    a = Arrays(8, 2, syms.shape[1], True, field_bits(2))
+    pack_state(syms, lens, a.bits, a.arena[0])
+    a.lens[0] = lens
+    rehash(a.table, a.arena, a.lens, 1, a.bits)
+    b = a.grow(32, syms.shape[1] + 5, 1, 0)
+    assert b.capacity == 32 and b.width == syms.shape[1] + 5 and b.arena.shape == (32, 2, packed_width(b.width, 2))
     row, rlen = b.arena[0], b.lens[0]
-    slot = find_slot(b.table, b.arena, b.lens, row, rlen, hash_state(row, rlen))
+    slot = find_slot(b.table, b.arena, b.lens, row, rlen, np.uint64(hash_state(row, rlen, b.bits)), b.bits)
     assert b.table[slot] == 1
-    assert decode(b.arena[0], b.lens[0], 2) == ((1, 2, -1, -2), (1, 1, 2))
+    assert decode(b.symbols(0), b.lens[0], 2) == ((1, 2, -1, -2), (1, 1, 2))
