@@ -139,6 +139,16 @@ def test_rerunning_the_same_presentations_resumes_and_other_ones_need_fresh(tmp_
     assert (tmp_path / "smoke_pres" / "input.txt").read_text() == AK3 + "\n"
 
 
+def test_other_presentations_into_records_without_config_json_leave_input_txt_alone(tmp_path):
+    """The refusal comes before ``input.txt`` is rewritten, so the folder still names the presentations of its
+    records."""
+    run_cli(tmp_path, "--pres", AK2, *SPEC, "--set", "search.budget=50")
+    (tmp_path / "smoke_pres" / "config.json").unlink()
+    with pytest.raises(SystemExit, match="other presentations"):
+        run_cli(tmp_path, "--pres", AK3, *SPEC, "--set", "search.budget=50")
+    assert (tmp_path / "smoke_pres" / "input.txt").read_text() == AK2 + "\n"
+
+
 def test_pres_does_not_take_over_the_folder_of_a_regular_run(tmp_path):
     run_cli(tmp_path, "--rows", "0:2", *SPEC)                                          # smoke on its own benchmark
     run_cli(tmp_path, "--pres", AK2, *SPEC)                                            # smoke_pres, a folder of its own

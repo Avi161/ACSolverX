@@ -34,7 +34,8 @@ def write_input(lines, run_dir, fresh):
     run_dir = Path(run_dir)
     path, text = run_dir / "input.txt", "".join(line + "\n" for line in lines)
     old = path.read_text() if path.exists() else ""
-    if (run_dir / "config.json").exists() and old != text and not fresh:
+    holds_results = (run_dir / "config.json").exists() or (run_dir / "paths.jsonl").exists()
+    if holds_results and old != text and not fresh:
         raise SystemExit(f"{run_dir} holds results for other presentations: pass --fresh or add --set name=<another name>")
     run_dir.mkdir(parents=True, exist_ok=True)
     path.write_text(text)
