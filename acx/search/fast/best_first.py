@@ -5,10 +5,10 @@ The pieces: ``arrays.Arrays`` (the state arena and its growth), ``heap`` (the or
 kernels in ``kernels`` (children, scores). This module is the pop loop and the Python wrapper that sizes the arrays
 and builds the ``Result``. Uncapped searches skip the cap counters.
 
-``_run`` pops until solved, empty or out of budget, and returns early (before popping) when the next pop's children
-might not fit: ``NEED_CAPACITY`` (the arrays and table are doubled and rehashed), ``NEED_POPS`` (capped only: the
-per-pop arrays of the cap counters are doubled) or, uncapped only, ``NEED_WIDTH`` (the arena is re-laid at a wider
-row). With a cap the row width is ``max(cap, longest start relator)`` and never changes.
+``_run`` pops until solved, empty or out of budget, and returns early (before popping) when the next pop might not fit
+(its children, or its record in the cap counters): ``NEED_CAPACITY`` (the arrays and table are doubled and rehashed),
+``NEED_POPS`` (capped only: the per-pop arrays of the cap counters are doubled) or, uncapped only, ``NEED_WIDTH`` (the
+arena is re-laid at a wider row). With a cap the row width is ``max(cap, longest start relator)`` and never changes.
 """
 import numpy as np
 from numba import njit
