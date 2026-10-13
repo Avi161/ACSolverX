@@ -531,3 +531,18 @@ def test_a_cut_off_summary_does_not_stop_a_resume(tmp_path, damage):
     (tmp_path / "t" / "summary.json").write_text(damage)
     assert quiet(cfg(rows="0:2", max_len=1, budget=50), tmp_path)["rows"] == 2
     assert json.loads((tmp_path / "t" / "summary.json").read_text())["rows"] == 2
+
+
+def test_cli_exits_with_one_line_for_a_bad_config_or_row(tmp_path):
+    """As ``run.py``: a ValueError or KeyError of the library ends ``python -m acx.ngen.sweep`` with its message."""
+    rank3 = os.path.join(ROOT, "configs", "rank3_bf.toml")
+    three = tmp_path / "rows.csv"
+    three.write_text("id,r1,r2,r3\nthree,xx,yy,zz\n")
+    for extra, message in ((["--set", "rankn.bogus=1"], "unknown rankn keys ['bogus']"),
+                           (["--rows", "nope"], "rows not in the benchmark: ['nope']"),
+                           (["--set", f'benchmark="{three}"', "--set", 'rows=""'],
+                            "rankn takes two-generator, two-relator rows; not ['three']")):
+        with pytest.raises(SystemExit) as error:
+            sweep.main(["--config", rank3, "--out", str(tmp_path / "out"), *extra])
+        assert error.value.code == message
+    assert not (tmp_path / "out").exists()
