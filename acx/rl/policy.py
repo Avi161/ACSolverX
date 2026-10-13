@@ -144,6 +144,12 @@ class ActorCritic(nn.Module):
         return self.actor1(h).reshape(B, -1).masked_fill(~self.action_mask(obs), -1e9), value
 
 
+def forward(model, states, chunk):
+    """``model(states)`` in chunks of ``chunk`` rows: ``(logits, value)``."""
+    out = [model(states[lo:lo + chunk]) for lo in range(0, len(states), chunk)]
+    return torch.cat([o[0] for o in out]), torch.cat([o[1] for o in out])
+
+
 def log_prob_entropy(logits, actions):
     """Log-probability of ``actions`` and the entropy of each row."""
     lp = torch.log_softmax(logits, -1)

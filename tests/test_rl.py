@@ -54,6 +54,16 @@ def test_policy_matches_jax(model):
             assert abs(float(logp[k, action]) - lp) < 1e-4
 
 
+def test_forward_in_chunks_equals_one_call(model):
+    """``policy.forward``, which the beam search and the trainer share, gives the one-call result at any chunk size."""
+    x = torch.tensor([p["obs"] for p in REF["policy"]])
+    with torch.no_grad():
+        logits, value = model(x)
+        for chunk in (1, 2, len(x), 4096):
+            chunked = policy.forward(model, x, chunk)
+            assert torch.allclose(chunked[0], logits, atol=1e-5) and torch.allclose(chunked[1], value, atol=1e-5)
+
+
 def test_checkpoint_conversion_is_exhaustive(model):
     """Every flax array maps to exactly one torch parameter (95 arrays, no silent skips)."""
     names = {n for n, _ in model.named_parameters()}
