@@ -1,18 +1,23 @@
 # Results
 
 Section 0 and the section "Relator-length cap" are measured on this branch with `python run.py` (every path replayed
-before it is written). Sections 1 to 10 are read from files on source branches, written `branch:path`; the commit that last touched each path is in
-[PROVENANCE.md](PROVENANCE.md). A line tagged **[survey]** comes from the branch survey and was not re-read at its
-source. A line tagged **[rerun]** was reproduced with the unmodified original code (Python 3.12.3, numba 0.63.1, numpy
-2.1.3, one single-threaded process per run); those reruns are deterministic, and section 0 matches them exactly.
+before it is written). Sections 1 to 10 are read from files on source branches, written `branch:path`; the commit that
+last touched each path is in [PROVENANCE.md](PROVENANCE.md). Two studies of source branches are stored in this
+repository, in `results/stable_ac/` ([results/README.md](../results/README.md#studies)): the rank-n brute force (section
+7) and the exhaustive CoV sweep (section 5); they are cited by their path here. A line tagged **[survey]** comes from
+the branch survey and was not re-read at its source. A line tagged **[rerun]** was reproduced with the unmodified
+original code (Python 3.12.3, numba 0.63.1, numpy 2.1.3, one single-threaded process per run); those reruns are
+deterministic, and section 0 matches them exactly.
 
 ## 0. This branch: `python run.py`, every path replayed
 
 **Reproduced on this branch** with the current code: every row below is the committed `results/<run>/summary.json`
 (and `config.json`) of `python run.py --config configs/<config>.toml --set name=<run> <overrides>`; the certificates
-(`paths.jsonl`, gitignored) regenerate with the same command. Every folder of `results/` was regenerated with `--fresh`
-after the cap counters were added, so each record carries the cap fields and each `summary.json` the `caps` block
-(section "Relator-length cap"). Fast backend unless stated, cap 24 unless stated, one core
+(`paths.jsonl`, gitignored) regenerate with the same command. Every run folder of `results/` was regenerated with
+`--fresh` after the cap counters were added, so each record carries the cap fields and each `summary.json` the `caps`
+block (section "Relator-length cap"). The summaries were written before the timing and cost keys were added: they have
+no `cpu_seconds`, `us_per_cost`, `cost_unit`, `cost_mean` or `cost_median`, and their `config` block still holds
+`workers`. The same command today writes those keys. Fast backend unless stated, cap 24 unless stated, one core
 per worker on a shared 4-core 2.8 GHz VM. Each record was written only after its certificate replayed on the row, and
 after the reruns the stored paths of the solved records were replayed again from the files by a separate script (77,723
 records of every run but `ac1m_hybrid`, 0 failures; the 103 CoV `stable_cert`s are checked by `acx.cov.verify` when written). Path lengths are totals over
@@ -71,20 +76,24 @@ Every run except the MS640 configs as shipped also sets `workers=4`; `ladder` al
 | hybrid | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 20 | 19 | 9 | 188 |
 
 - **Regenerated with the cap counters.** All 32 folders of the table and the three rank-n runs were rerun with `--fresh`
-  on the current code. Every record of the 32 (150,492 rows in all: solved, pops or units, S-move and elementary paths,
-  certificates, stage) is identical to the earlier run, except the 11 plain `ac_path` rows of `ms640_aut` (below). The CPU
-  s column keeps the timings of the earlier runs on an idle machine: the reruns shared the 4 cores with other jobs (1.1x
-  to 4x the time) and used 2 workers where the table says 4, so their `row_seconds` are not comparable. Runs split into
-  row slices of the same config to stay under 15 minutes (`ms640_length_spec`, `u124_hybrid`, `ac19_hybrid`,
-  `ac1m_hybrid`, `rank3_bf`) have a `wall_seconds` that is the sum of the slices.
+  once the cap counters were in, by the runner of that time (the summaries' missing keys are above). Every record of the
+  32 (150,492 rows in all: solved, pops or units, S-move and elementary paths, certificates, stage) is identical to the
+  earlier run, except the 11 plain `ac_path` rows of `ms640_aut` (below). The CPU s column keeps the timings of the
+  earlier runs on an idle machine: the reruns shared the 4 cores with other jobs (1.1x to 4x the time) and used 2
+  workers where the table says 4, so their `row_seconds` are not comparable. Runs split into row slices of the same
+  config to stay under 15 minutes (`ms640_length_spec`, `u124_hybrid`, `ac19_hybrid`, `ac1m_hybrid`, `rank3_bf`) have a
+  `wall_seconds` that is the sum of the slices.
 - **Parity with the original code.** `spec` and `fast` give identical records (solved, pops, S-move path, elementary
-  path, and the six cap-counter fields) on all 640 MS640 rows, and the per-row pops and path lengths equal the original `greedy_baseline` / `heuristics`
-  reruns (`work/reference/`, 0 mismatches over 1,280 rows); the hybrid's per-row stage and units equal the original
-  `hfhybrid` run on all 640 rows (stages B / C / H = 98 / 328 / 214; the reference's 4,759 stage-H steps are 3,258
-  S-moves plus 1,501 automorphism steps here); on the AC19 Aut-min census it reproduces the source's 2,489,726 units and
-  its 72,591 rank-two / 188 stable split exactly (72,591 = 36,811 + 35,780 here). On AC1M Aut-min it solves 71,281 of
-  71,283, the source's count (misses `ac1m_54083`, `ac1m_68740`). `fast` is 32x (CPU) faster than `spec` on this run,
-  40x to 49x per row in `tests/test_fast.py`.
+  path, and the six cap-counter fields) on all 640 MS640 rows, and the per-row pops and path lengths equal the original
+  `greedy_baseline` / `heuristics` reruns (`work/reference/`, not in git; 0 mismatches over 1,280 rows); the hybrid's
+  per-row stage and units equal the original `hfhybrid` run on all 640 rows (stages B / C / H = 98 / 328 / 214; the
+  reference's 4,759 stage-H steps are 3,258 S-moves plus 1,501 automorphism steps here); on the AC19 Aut-min census it
+  reproduces the source's 2,489,726 units and its 72,591 rank-two / 188 stable split exactly (72,591 = 36,811 + 35,780
+  here). On AC1M Aut-min it solves 71,281 of 71,283, the source's count (misses `ac1m_54083`, `ac1m_68740`).
+- **Speed of `fast` against `spec`.** Over the whole MS640 LENGTH run, `spec` takes 32x the CPU of `fast` (2,023 against
+  64 CPU s in the table: search, decoding and replay of every row). On search alone the ratio depends on the machine's
+  load: the slow test `tests/test_fast.py::test_speed` (MS640 rows 322 and 466, 2,000 pops under each priority) prints
+  it and asserts only more than 5x.
 - **Ladder by level**: length greedy solves levels 1-2 only, as the levels are defined; S20_MK2 solves 6 of the 19
   level-9 rows at 10,000, as on record; the hybrid solves every row, 7 of `ladder200` as `stable_cert`. The 10M-pop
   grades of levels 9 and 10 are by record and were not rerun. The ladder rows were graded at their own caps (24 to 64);
@@ -109,17 +118,18 @@ Every run except the MS640 configs as shipped also sets `workers=4`; `ladder` al
   `summary.json` and `summary.md`; the long ones were run in row slices of the same config (`rank3_bf`: `--rows 0:160`,
   `160:320`, `320:480`, `480:640`).
 
-| run | rows | starts per row | searches | control solves | solved by some start | published (baseline) |
+| run | rows | starts per row | searches | control solves | solved by some start | the baseline's stored study |
 |---|---:|---:|---:|---:|---:|---|
-| `rank3_bf`, lengths 1-4 | 640 | 80 | 51,200 | 554 | 403 / 472 / 516 / 540 up to length 1 / 2 / 3 / 4 | the same 403 / 472 / 516 / 540; lost 151 / 82 / 38 / 18 |
+| `rank3_bf`, lengths 1-4 | 640 | 80 | 51,200 | 554 | 403 / 472 / 516 / 540 up to length 1 / 2 / 3 / 4 | the same 403 / 472 / 516 / 540; lost by every word 151 / 82 / 38 / 18 |
 | `rank4_bf`, extra 2, lengths 1-3 (`--rows 0:201`, `207:640:20`) | 223 | 351 | 78,273 | 219 | 216 | slice of the baseline's 506 / 640, not comparable |
 | `rank5_bf`, extra 3, lengths 1-2 (`--rows 0:640:20`) | 32 | 120 | 3,840 | 28 | 21 | slice of the baseline's 416 / 640, not comparable |
 
   The rank 4 and 5 runs are row slices (a full rank-4 run is two to three core-hours here). `rank4_bf` is every 20th
   row from 7 plus the first rows 0 to 200, which a full sweep had reached when it was stopped at the 15-minute limit; the
   first rows are the easy ones (the control solves 219 of its 223), so its numbers are not those of MS640. The rank-3
-  run covers all of MS640 and equals the baseline's published tables (random word solves 60.1% / 68.4% /
-  69.8% / 68.6% of its starts at length 1 / 2 / 3 / 4).
+  run covers all of MS640 and equals the tables of the baseline's study, stored in
+  [results/stable_ac/rank3_bf/](../results/stable_ac/rank3_bf/README.md) (random word solves 60.1% / 68.4% / 69.8% /
+  68.6% of its starts at length 1 / 2 / 3 / 4).
 
 ## Relator-length cap
 
@@ -197,6 +207,10 @@ Its three limits (`r2_cap`, `dyn_cap`, `slack`; [CAP.md](CAP.md)) are counted se
 | `ladder60_hybrid` | 60 / 60 | 0 | 7 / 7 | 273,121 / 192 | 9-13 | 54 | 0 / 0 | 0 |
 | `ladder200_hybrid` | 188 / 188 | 0 | 23 / 21 | 606,830 / 559 | 9-13 | 14 | 1 / 0 | 8 |
 
+The `ladder200_hybrid` summary was written before the last change to the hybrid's limit counters: run again on the
+current code it counts 507 `dyn_cap` would-pop states where the stored file has 559, with every other field equal
+(solved, units, the other counters).
+
 - **Reading the hybrid columns.** A hybrid `*_dropped` counts classes of dropped children (plus the tail moves of the
   solving pop), not moves, and `*_would_pop` counts distinct canonical pairs; a zero still means that a larger limit
   pops the same states, and a non-zero count says only that the run may change (the count is first order, see
@@ -216,9 +230,12 @@ The rank-n summary counts searches (one per start), not moves; the cap counters 
 | `rank3_bf` | 640 | 51,200 | 8 | 0 |
 | `rank4_bf` | 223 | 78,273 | 0 | 0 |
 | `rank5_bf` | 32 | 3,840 | 0 | 0 |
+| baseline (stored study), ranks 3 to 5 | 640 | 40,098,032 | 2,331,711 | 0 |
 
-So no rank-n result depends on the cap 24: as in the baseline's own sweep (the cap could bind in none of its 4,960,112
-counted searches), a dropped child would have been popped in none. The rows and slices of each run are in section 0.
+So no rank-n result depends on the cap 24: in acx's runs a dropped child would have been popped in none, and the
+baseline's whole study counted the cap able to bind in none of its 40,098,032 searches
+(`results/stable_ac/rank3_bf/cap/cap_counters_cap24.md`); its test never misses a bind that acx's exact counters
+find, so a baseline null is an acx null. The rows and slices of each run are in section 0.
 
 ### The 20 MS640 rows where S20_MK2 at cap 24 would pop
 
@@ -272,8 +289,9 @@ For every run whose `raise_ids` is not empty, the rows were rerun uncapped (hybr
 - **The hybrid does change**, as its counters warned: at `dyn_cap` 13 the 21 `ladder200` rows still solve, in 3 percent
   fewer units, but with 25 more S-moves in total, and 36 states still would pop at 13 (a further raise changes the run
   again).
-- To redo one: `python run.py --config configs/s20_mk2_fast.toml --rows 527 --set search.cap=25` (a hybrid row:
-  `--set hybrid.dyn_cap=13`).
+- To redo one: `python run.py --config configs/s20_mk2_fast.toml --rows 527 --set search.cap=25 --set
+  name=ms640_s20_mk2_row527_cap25` (a hybrid row: `--set hybrid.dyn_cap=13`). Give a new name: without one the run
+  goes to `results/s20_mk2_fast/`, and a published folder refuses a run of fewer rows.
 
 
 ## Reading the numbers
@@ -327,8 +345,8 @@ Best-first search ordered by total relator length, Definition 2.1 substitution m
   `claude/heuristic-search-benchmark-e1f9l8:experiments/search/HEURISTICS.md`.
 - **Smaller budgets, cap 24, all 640 rows [rerun]:** 606/640 at 10,000 nodes (mean path 19.97, median 8 S-moves;
   576,053 pops in total) and 554/640 at 1,000 (mean path 12.09; 122,208 pops). Per-row files:
-  `work/reference/greedy_length_ms640_b{10000,1000}_cap24.csv`; on bench60 at 10,000, 40/60 with 48,227 pops on the
-  solved rows (`greedy_length_bench60_b10000_cap24.csv`).
+  `work/reference/greedy_length_ms640_b{10000,1000}_cap24.csv` (not in git); on bench60 at 10,000, 40/60 with 48,227
+  pops on the solved rows (`greedy_length_bench60_b10000_cap24.csv`).
 - **Test oracle.** A pure-Python specification (AC4/AC5, the |det| = 1 invariant, general n-relator S-move) agrees
   with the numba baseline; 554 of the 640 rows solve within 1,000 nodes (ladder level 1).
   `test/greedy-test-suite:experiments/greedy_tests/`, `golden/greedy_golden.json`.
@@ -351,10 +369,12 @@ vector (Tried, below).
   The published S20_MK2 column ran at cap 48 against greedy's 24; **a same-cap rerun at cap 24 reproduces every one
   of these figures** (52 vs 40, 12 to 0, medians 86 vs 197, means 280.1 vs 1,205.7, and at 1,000 nodes 37 vs 29 with
   means 153 vs 176), so the cap mismatch does not move them. Paths are longer: mean 62.25 vs 36.88 S-moves on each
-  arm's own solves, 36.08 vs 36.88 on the 40 shared. **[rerun]** `work/reference/greedy_*_bench60_b10000_cap24.csv`.
+  arm's own solves, 36.08 vs 36.88 on the 40 shared. **[rerun]** `work/reference/greedy_*_bench60_b10000_cap24.csv`
+  (not in git).
 - **MS640 at 10,000 and 1,000 nodes, cap 24 [rerun].** At 10,000: S20_MK2 626/640 against length 606, a strict
   superset (20 to 0, 14 solved by neither); mean path 26.95 vs 19.97 on own solves; on the 606 shared rows 143,722 vs
-  236,053 pops. At 1,000: 574 vs 554 (24 to 4, 62 neither). `work/reference/greedy_*_ms640_b{10000,1000}_cap24.csv`.
+  236,053 pops. At 1,000: 574 vs 554 (24 to 4, 62 neither). `work/reference/greedy_*_ms640_b{10000,1000}_cap24.csv`
+  (not in git).
 - **MS640 at 1,000,000 nodes, cap 24, same engine, only the ordering differs: 640/640 both.** Mean nodes **994.8 vs
   4,963.0** (4.99x), total 636,670 vs 3,176,297, max 34,438 vs 574,959; the 14 rows needing over 10,000 nodes under
   both orderings average 28,139 vs 96,150. **Paths are longer:** mean 42.88 vs 36.77 S-moves.
@@ -392,8 +412,9 @@ table). Every promoted change was gated bit-identical against the Python oracle 
 | campaign box, per pop | **941.6 to 209.8 us (4.49x)**, same search statistics (44,077,944 states, 331.7 candidates per pop) | `perf_lab/REPORT.md` |
 | 10M-node rows | 4.4x to 5.2x faster per row (12,320-13,428 s to 2,350-2,839 s); about 23,000 nodes/s over six lanes vs about 5,400 before | `results/heuristic_search/u124_10m/RESULTS.md` |
 
-All on `codex/ac-elementary-decoder`: the `perf_lab/` pages under `experiments/heuristic_search/core/`, the 10M-node
-row timings at the repository root's `results/heuristic_search/u124_10m/RESULTS.md`.
+All on `codex/ac-elementary-decoder` (none is in this repository): the `perf_lab/` pages under
+`experiments/heuristic_search/core/`, and the 10M-node row timings at
+`codex/ac-elementary-decoder:results/heuristic_search/u124_10m/RESULTS.md`.
 
 - **Which ratios carry.** The lab's 1.7x from the first two changes did not carry to campaign-length relators (per lane
   0.95x to 1.15x); the campaign gain of that step was memory turned into lanes (4 to 6, per box about 1.46x). The 4.49x
@@ -411,7 +432,7 @@ row timings at the repository root's `results/heuristic_search/u124_10m/RESULTS.
 - **`acx.search.fast` (this branch)** ports the expansion kernel and the arena/heap/dedup design but not the 2-bit
   packing (it worked at two generators only): one byte per symbol, about 100 to 120 B per state at cap 24 with path
   capture, against 52 to 68 B in `hcompact`. Fine to about 1M pops a row; a 10M-pop campaign wants the packing back
-  (open). Speed: about 13,000 to 17,000 pops/s on MS640 rows, 40x to 49x the `spec` backend.
+  (open). Speed against `spec`: 32x the CPU over the whole MS640 LENGTH run (section 0).
 
 ## 4. Hybrid solver ("solve everything")
 
@@ -422,7 +443,7 @@ block-sorted closed sets, and its cost unit is the work unit. Budget 1,000 units
 
 | set | rows | solved | notes |
 |---|---:|---:|---|
-| MS640 | 640 | **640** | 2.22 s search on one core (5.76 s batch under the cascade's protocol, which includes verification and cooldowns); at most 283 units on a row. The cascade it replaces: 2.36 s / 6.32 s, max 404 |
+| MS640 | 640 | **640** | 2.22 s of search time on one core, by the source (5.76 s batch under the cascade's protocol, which includes verification and cooldowns); at most 283 units on a row. The cascade it replaces: 2.36 s / 6.32 s, max 404 |
 | AC19 Aut-min census | 72,779 | **72,779** | 95 s wall on 4 workers; median 27 units, p99 128, max 954. 72,591 rank-two certificates plus **188 stable** |
 | the 727 rows the earlier policy missed | 727 | 727 | |
 | the 9 rows unsolved by every fixed-basis arm at 10M nodes | 9 | 9 | the rank-two engine already solves all 9 (7 at 318 units or fewer, 2 need permutation canonicalisation at 440 to 545) |
@@ -433,8 +454,9 @@ block-sorted closed sets, and its cost unit is the work unit. Budget 1,000 units
 - **MS640 rerun [rerun].** 640/640 solved and 640/640 replayed by the branch's own verifier at the default budget
   1,000, penalty 5, `dyn_ratio` 0.5; every certificate is an explicit rank-two certificate (no `define`/`eliminate`).
   Units: 25,064 in total, at most 283 on a row. Finishing stage: relator descent 98 rows, pinch cascade 328, best-first
-  search 214 (the search part's path sums to 4,759 substitution steps, mean 22.24, max 72). Wall: 2.4 s warm for all
-  640 on one core; the first call adds about 36 s of numba compilation. `work/reference/hfhybrid_ms640_b1000.*`.
+  search 214 (the search part's path sums to 4,759 substitution steps, mean 22.24, max 72). Wall time of the rerun,
+  warm: 2.4 s for all 640 on one core (the whole batch, not the search time of the table); the first call adds about
+  36 s of numba compilation. `work/reference/hfhybrid_ms640_b1000.*` (not in git).
 - **Certificate scope.** Rows with `define`/`eliminate` steps are `stable_cert`, not `ac_path`. Every stored certificate
   replays under two independent verifiers, 0 failures.
 - **Ablation** (the 727 policy leftovers, 1,000 units). No closed set: 9/604 (best-first or beam 8). Block-sorted closed
@@ -479,36 +501,61 @@ is in the transformed presentation's coordinates, so these are `stable_cert` res
   `results/stable_ac/cov/allcov_escape/ESCAPE.md`.
 - **bench60 at 10,000 nodes, cap 24 controls:** greedy 40/60, best-CoV oracle **52/60**, withdrawn `RECOMMENDED`
   47/60. At 1,000 nodes the one-hop oracle ceiling is 45/60 against greedy 29/60 and `RECOMMENDED` 43/60. **Cap
-  confound:** transformed arms run at `max(24, longest + 16)`, up to 41; an Aut-min-only control at the same cap
-  already reaches 36/60 at 1,000 nodes, against 29/60 for the original at the same cap.
+  confound:** transformed arms run at `max(24, longest + 16)`, up to 41 here (the exhaustive sweep's starts below: 24
+  to 91); an Aut-min-only control at the same cap already reaches 36/60 at 1,000 nodes, against 29/60 for the original
+  at the same cap.
   `claude/abelianized-exponents-verify-1i6muh:benchmark/subsets/ARMS.md`;
   `cursor/heur-u124-s20mk2-a42e:results/comparison/COVBEAM_K4_B1K_ADVISOR_REVISE.md`,
   `results/comparison/covbeam_nonsym_b1kfull_subset60.md` (the 36/60).
-- **Budget 100 on MS640, all 640 presentations** (the exhaustive-family sweep: 114,042 CoV starts plus 640 controls,
-  1.086 CPU-hours). From the stored summary: untransformed control **455** (cap 24); best-start oracle over the
-  exhaustive `suballpxyb8` family **555**, and over its one-pattern starts also **555**; 0 presentations are solved
-  only by a multi-pattern start; summing every start, the oracle's real cost is a mean of 5,328 nodes per presentation
-  (median 1,372, max 173,997). `cov/all-subsets-sweep:results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100_summary.md`.
-  From the survey's rerun over the shipped jsonl (`work/all_subsets_sweep.md`; tests 40/40 pass, the summary
-  regenerates exactly): restricting the oracle to the default `subnc2pxysb` starts gives the same **555** (the same 100
-  gained presentations), with 21.4 starts per presentation on average against 178.2 (about 8.3x the search work for 0
-  extra solves); bench60 17/60 to 34/60; bins 7 to 9 stay at 0 either way; 90,234 of 90,234 stable certificates replay.
-  Caveats: the oracle assumes the best start is known, and only budget 100 was run.
-- **Budget 10,000 on MS640, all 640 presentations** (draft PR #26, the same exhaustive family, 114,042 CoV starts plus
-  640 controls, 49.8 CPU-hours; read from its summary files): control **606**, best-start oracle **626** over all starts
-  and **626** over one-pattern starts; at 1,000 nodes 554 / 604 / 604. No presentation at any budget is solved only
+- **The exhaustive CoV sweep on MS640** (`cov/all-subsets-sweep` at `fb84a588`, stored in
+  [results/stable_ac/cov_all/](../results/stable_ac/cov_all/README.md)): every start of the `suballpxyb8` family,
+  114,042 CoV starts plus the 640 controls, each searched with the full budget, LENGTH, at budgets 100, 10,000 and
+  100,000 (a smaller budget is read off a larger run's records, so 1,000 is given too). The paths below are in this
+  repository.
+- **Budget 100 on MS640, all 640 presentations** (1.086 CPU-hours). From the stored summary: untransformed control
+  **455** (cap 24); best-start oracle over the exhaustive `suballpxyb8` family **555**, and over its one-pattern starts
+  also **555**; 0 presentations are solved only by a multi-pattern start; summing every start, the oracle's real cost
+  is a mean of 5,328.4 nodes per presentation (median 1,371.5, max 173,997).
+  `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100_summary.md`. From the survey's rerun over the sweep's
+  jsonl (`work/all_subsets_sweep.md`, not in git; tests 40/40 pass, the summary regenerates exactly): restricting the
+  oracle to the default `subnc2pxysb` starts gives the same **555** (the same 100 gained presentations), with 21.4
+  starts per presentation on average against 178.2 (about 8.3x the search work for 0 extra solves); bench60 17/60 to
+  34/60; bins 7 to 9 stay at 0 either way; 90,234 of 90,234 stable certificates replay. Caveat: the oracle assumes the
+  best start is known.
+- **Budget 10,000 on MS640, all 640 presentations** (the same family and starts, 49.8 CPU-hours; read from its summary
+  files): control **606**, best-start oracle **626** over all starts and **626** over one-pattern starts; at 1,000
+  nodes 554 / 604 / 604. No presentation at any budget is solved only
   through a start outside the one-pattern set. The oracle's real cost is a mean of **164,758.7 nodes per presentation**
   (median 2,001.5, max 7,847,894). bench60: control 40, oracle 52. The 20 rows solved only from a CoV start (568 to 635)
   and the 14 that no start solves (616 to 625, 636 to 639) are **exactly** S20_MK2's 20 extra solves and 14 failures at
   10,000 pops in one search (section 0), at 598 pops per presentation on average. Both 626s are **oracle** arms (the
   best of 114,042 starts known in advance); the deployable one-shot CoV of this package reaches 584 (section 0). **Cap
   confound:** controls ran at cap 24, the CoV starts at `max_relator_length_cap` 24 to 91 (109,336 of the 114,042
-  starts above 24). The `subnc2pxysb`-only oracle at 10,000 was not computed.
-  `pr26:results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b10000_summary.md`, `..._subset60_summary.md`,
-  caps from `cov_all_suballpxyb8_ms640_b10000.jsonl.gz`.
-- **Certificates.** Every solved-row certificate under that branch's `results/stable_ac/` (CoV and no-CoV runs alike)
-  replays through the pure-Python specification: 13,649 solved rows (45,633 rows in 14 files), with 0 budget-invariance
-  violations over 6,608 jobs seen at more than one budget. `research/w5/stable-ac-escape:results/README.md`.
+  starts above 24). `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b10000_summary.md`, `..._subset60_summary.md`;
+  the caps from `cov_all_suballpxyb8_ms640_b10000.jsonl.gz` (not in git, listed in
+  `results/stable_ac/cov_all/MANIFEST.json`).
+- **Budget 100,000 on MS640, all 640 presentations** (335.2 CPU-hours): control **634**, best-start oracle **640** over
+  all starts and over one-pattern starts; bench60: control 54, oracle 60. The control fails on rows 634 to 639, each
+  solved by 16 or 17 of its starts, and these six stay unsolved by the control at cap 64 and uncapped, so they are not
+  a cap artifact. The oracle's real cost is a mean of **657,198.0 nodes per presentation** (median 2,001.5, max
+  55,122,480). A random start against the control: fewer nodes 33.7%, the same 9.6%, more 52.4%, unsolved 4.2% (at
+  10,000: 33.0 / 9.6 / 48.2 / 9.2). By acx's typing (a start in the row's Aut orbit carries back to an `ac_path`), the
+  best start of a presentation is the control on 3, a start in the orbit on 329 and a start outside it (a
+  `stable_cert`) on 308; at every budget, each presentation that some start solves and the control does not also has a
+  solving start in its orbit. `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000_summary.md`, the study
+  README.
+- **The default family inside the sweep.** Restricted to the default `subnc2pxysb` family's 13,727 classes (searched
+  once each, from the sweep's representative), the best start solves the same 555 / 604 / 626 / 640 presentations at
+  100 / 1,000 / 10,000 / 100,000 nodes. Under the shipped one-shot policy (`configs/cov.toml`, 1,000 pops per image,
+  10,000 per row), `family = "suballpxyb8"` solves bench60 39, MS640 584, ladder200 47 and ladder60 16, against
+  39 / 584 / 92 / 32 for the default family: its enumeration order spends the legs on near-copies of the shortest `w`.
+  Measured for this release with `acx.cov` (`class_key` over the stored records, `run.py` for the policy); the scripts
+  are not in git. So the exhaustive family costs 8.3x the starts for no extra solve as an oracle, and solves fewer
+  ladder rows as a policy.
+- **Certificates.** Every solved-row certificate under `research/w5/stable-ac-escape:results/stable_ac/` (CoV and
+  no-CoV runs alike) replays through the pure-Python specification: 13,649 solved rows (45,633 rows in 14 files), with
+  0 budget-invariance violations over 6,608 jobs seen at more than one budget.
+  `research/w5/stable-ac-escape:results/README.md`.
 
 ## 6. Automorphisms: Whitehead canonical form and certificate transport
 
@@ -540,6 +587,12 @@ is in the transformed presentation's coordinates, so these are `stable_cert` res
   the four arms (`w` = r1, r2, x, y) solve 619, 602, 540 and 523 of 640, against 638 for the two-generator baseline at
   that budget (derived from the per-row costs: only rows 634 and 635, at about 574k nodes, exceed it); 0/261 on the hard
   Aut-class representatives. `test/stable-ac-moves:results/stable_ac/3_generators_w_choices/README.md`.
+- **Every word, as an oracle** (the rank-n brute-force study: MS640, LENGTH, cap 24, stored in
+  [results/stable_ac/rank3_bf/](../results/stable_ac/rank3_bf/README.md)). At budget 1,000, over the 59,048 words of
+  length 1 to 10, some word solves 578 against the control's 554 (24 gained, 0 lost), but no single word solves as many
+  as the control: the best, `yXYYYxyyy`, picked with hindsight, solves 528. At 10,000 (lengths 1 to 7) the oracle's
+  edge is 608 against 606. Two or three added generators gain nothing: rank 4 (words of length 3 or less) 506, rank 5
+  (length 2 or less) 416. `rankn` reruns rank 3 at lengths 1 to 4 cell for cell (section 0).
 - **Inside the hybrid** the same idea is `define`/`eliminate`: 188 of the 72,779 census representatives (327 of the
   156,762 original spellings) needed a stable certificate. Section 4.
 - **Transform to relators of length 3 or less.** `triangulate` (in `dynrank.py`) applies `define` to the most frequent
@@ -601,7 +654,8 @@ Ten levels by plain greedy node count `g` (cap 24 for MS640, 48 and 64 for AC19 
 budget and cap), with nested panels of 20, 40, 60, 100, 200, 300 and 500 rows drawn from AC19 Aut-minimal orbits and
 MS640 rows. Subsets 60, 100 and 200 are the main testers. Every row is solved by something on record; the U124 classes
 are kept off the ladder in `unsolved_124.csv`.
-`claude/ac19-theorem-strength-8v1wp6:benchmark/ladder/LADDER.md`, `benchmark/ac19_ladder/`.
+`claude/ac19-theorem-strength-8v1wp6:benchmark/ladder/LADDER.md` and
+`claude/ac19-theorem-strength-8v1wp6:benchmark/ac19_ladder/`.
 
 | level | rule | AC19 orbits | MS640 rows |
 |---|---|---:|---:|
@@ -681,7 +735,6 @@ One line each. These are write-up only; no code ships for them.
 - **AK(3) theory**: AK(3) funnels into exactly two length-13 floor presentations (AK(3) itself and F, 71% of the
   attractor, joined by a certified 21-move path); the capacity BFS closes at every cap up to 16; AK(3) is open in both
   directions. About 33k lines of theory, linked not shipped. `codex/proofs`, `fable/proofs`, `cursor/u124-stable-ac-1b54`.
-- **Exhaustive CoV family** (`suballpxyb8`): 8.3x the starts for 0 extra solves over the default family (section 5).
 - **Autchoice orbit images**: on a 124-row panel of *solved* ladder rows (not U124), choosing the best of the 13
   radius-2 Aut(F2) images (an oracle) raises S20_MK2 solves at 20,000 pops from 94/124 to 119/124 (64 to 101 at 5,000);
   no single Whitehead generator helps on average. On U124 the same images within two Whitehead moves solve 0/124 at

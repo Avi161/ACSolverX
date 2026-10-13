@@ -1,9 +1,10 @@
 # Provenance
 
 Where every part of this branch comes from: component -> source branch -> path -> the commit that last touched that path
-(`git log -1 --format=%h origin/<branch> -- <path>`, read 11 Oct 2026; the rank-n rows, 12 Oct 2026). The origin is the public repository
-`Avi161/ACSolverX`. Code was ported file by file into `acx/` (rewritten on the `acx` word and move types, then checked
-against the source: the tests named in each row). Nothing was copied as a whole tree.
+(`git log -1 --format=%h origin/<branch> -- <path>`, read 11 Oct 2026; the rows of `rank3/brute-force-baseline` and
+`cov/all-subsets-sweep`, 13 Oct 2026). The origin is the public repository `Avi161/ACSolverX`. Code was ported file by
+file into `acx/` (rewritten on the `acx` word and move types, then checked against the source: the tests named in each
+row). Nothing was copied as a whole tree.
 
 ## Code (`acx/`)
 
@@ -21,33 +22,34 @@ against the source: the tests named in each row). Nothing was copied as a whole 
 | `aut/fast.py` | numba Aut-min (`autcanon_fast`) | `research/w5/stable-ac-escape` | `experiments/stable_ac/cov/ladder/autcanon_fast.py` | `584f8809` | `test_aut` (parity with pure) |
 | `aut/transport.py`, `aut/emitter.py` | certificate transport (equivariance) | `claude/ac19-leftover-solver-notebook-6yan6d` | `experiments/search/transport_ac19_orig.py` | `24178792` | `test_aut` |
 | `aut/equivalence.py` | checker for the equivalence certificates (new; data from `codex/proofs`) | new | | | `test_data` |
-| `cov/cov.py`, `cov/substitution.py`, `cov/family.py`, `cov/certificate.py` | CoV transform and family `subnc2pxysb` | `cov/all-subsets-sweep` (same blob on `research/w5/stable-ac-escape`) | `experiments/stable_ac/cov/cov.py` | `4f63f976` | `test_cov` (17,313 images equal to the source) |
+| `cov/images.py`, `cov/substitution.py`, `cov/family.py`, `cov/certificate.py` | CoV transform and family `subnc2pxysb` (acx reads the relators cyclically reduced first; every shipped row already is) | `cov/all-subsets-sweep` (same blob on `research/w5/stable-ac-escape`) | `experiments/stable_ac/cov/cov.py` | `4f63f976` | `test_cov` (17,313 images equal to the source) |
 | `cov/run.py` | per-image cap `max(24, longest + 16)` | `cov/all-subsets-sweep` | `experiments/stable_ac/cov/run/run_cov.py` | `584f8809` | `test_cov` |
-| `hybrid/solver.py`, `hybrid/search.py`, `hybrid/frontier.py` | hybrid search and solve | `claude/vigilant-babbage-nnbuj0` | `research/ac_hashfree_cascade_20260914/hfhybrid.py` | `62108ade` | `test_hybrid` (MS640 per row) |
-| `hybrid/cascade.py`, `hybrid/pinch.py` | stages A-C and the finishing gates | `claude/vigilant-babbage-nnbuj0` | `research/ac_hashfree_cascade_20260914/hfcascade.py` | `62108ade` | `test_hybrid` |
+| `cov/` family `suballpxyb8` (`family.proper_subwords`, `substitution.patterns`, `images.class_key`) | exhaustive CoV family | `cov/all-subsets-sweep` | `experiments/stable_ac/cov/cov_all.py` | `58b34b9f` | `test_cov` (the sweep's 114,042 MS640 starts, sha256) |
+| `hybrid/solver.py`, `hybrid/search.py`, `hybrid/frontier.py`, `hybrid/steps.py` (the steps' JSON form) | hybrid search and solve | `claude/vigilant-babbage-nnbuj0` | `research/ac_hashfree_cascade_20260914/hfhybrid.py` | `62108ade` | `test_hybrid` (MS640 per row) |
+| `hybrid/cascade.py`, `hybrid/steps.py`, `hybrid/pinch.py` | stages A-C, the step types and the `Run` that applies them, and the finishing gates | `claude/vigilant-babbage-nnbuj0` | `research/ac_hashfree_cascade_20260914/hfcascade.py` | `62108ade` | `test_hybrid` |
 | `hybrid/dynrank.py` | define, eliminate, products; transvections | `claude/vigilant-babbage-nnbuj0` | `research/ac_dynamic_rank_20260913/dynrank.py`; `research/ac_hashfree_cascade_20260914/hfunified.py` | `61bc4ebc` | `test_hybrid` |
 | `hybrid/kernels.py` | rank-two expansion and Nielsen/permutation transforms | `codex/ac-elementary-decoder` | `experiments/search/basis_moves.py` (on the fast kernels) | `d01a315f` | `test_hybrid` (spec = fast) |
-| `hybrid/certify.py`, `hybrid/frame.py` | certificate to elementary/stable moves (replaces `verify_hybrid`) | `claude/vigilant-babbage-nnbuj0` | `research/ac_hashfree_cascade_20260914/hfhybrid.py`, `research/ac_dynamic_rank_20260913/verify.py` | `62108ade`, `61bc4ebc` | `test_hybrid` |
+| `hybrid/elementary.py`, `hybrid/frame.py` | certificate to elementary/stable moves (replaces `verify_hybrid`) | `claude/vigilant-babbage-nnbuj0` | `research/ac_hashfree_cascade_20260914/hfhybrid.py`, `research/ac_dynamic_rank_20260913/verify.py` | `62108ade`, `61bc4ebc` | `test_hybrid` |
 | `ngen/sac.py` | `triangulate`, `define` (the SAC transform to relators of length <= 3) | `claude/vigilant-babbage-nnbuj0` | `research/ac_dynamic_rank_20260913/dynrank.py` (blob `901efc11`) | `61bc4ebc` | `test_ngen` (equal on 142,365 rows) |
-| `ngen/solve.py` | n-generator search (replaces `solvern`, `solvern_fast` by `acx.search`) | `worktree-hsearch-hyper` | `experiments/stable_ac/solvern.py`, `solvern_fast.py` | `eff4b4c7`, `a4024828` | `test_ngen` |
-| `ngen/lift.py` | lift of a root solve to a stable path (new, on `aut.emitter.Emitter`) | new | | | `test_ngen` |
-| `ngen/sweep/` | rank-n brute-force sweep: word pool, stabilised starts, per-row sweep with control and null stabilisation, summary tables, verifier. The search is `acx.search`; `solvern` and `solvern_fast` are not ported | `rank3/brute-force-baseline` (tip `068ea77`) | `experiments/stable_ac/rank3/words.py`, `run_rank3_bf.py`, `rankn_bf.py`, `verify_rank3_bf.py`, `summarize_rank3_bf.py` | `6fd59c2b`, `878d939a`, `ec5dde8e`, `878d939a`, `d6d6513a` | `test_rankn_sweep` (every cell of the stored MS640 results equal: control, rank 3 lengths 1-4, rank 4 and 5 slices) |
-| `core/capcount/` and the six counter fields in every search | the relator-cap counters (`docs/CAP.md`). **Origin:** the rank-3 baseline's `cap_dropped`, `cap_dropped_min_total` and `cap_first_bind` in `solvern.py` / `solvern_fast.py`, and the analyses `cap_compare.py` and `cap_exhaustion.py`. acx rewrote them as one heuristic-blind module that compares full heap keys, and added `cap_would_pop` and `cap_needed` (new) | `rank3/brute-force-baseline` (tip `068ea77`) | `experiments/stable_ac/solvern.py`, `solvern_fast.py`, `rank3/cap_compare.py`, `rank3/cap_exhaustion.py` | `ec5dde8e` | `test_capcount`, `test_cap_invariant` (same search at any larger cap when the count is 0); `cap_dropped` equals the earlier per-move rejected count on every MS640 row |
+| `ngen/solver.py` | n-generator search (replaces `solvern`, `solvern_fast` by `acx.search`) | `worktree-hsearch-hyper` | `experiments/stable_ac/solvern.py`, `solvern_fast.py` | `eff4b4c7`, `a4024828` | `test_ngen` |
+| `ngen/lifting.py` | lift of a root solve to a stable path (new, on `aut.emitter.Emitter`) | new | | | `test_ngen` |
+| `ngen/sweep/` | rank-n brute-force sweep: word pool, stabilised starts, per-row sweep with control and null stabilisation, summary tables, verifier. The search is `acx.search`; `solvern` and `solvern_fast` are not ported | `rank3/brute-force-baseline` (tip `f2d53ced`; ported at `068ea77`, after which only `run_rank3_bf.py` changed, in its cloud options `--reverse` and `--no-merge`) | `experiments/stable_ac/rank3/words.py`, `run_rank3_bf.py`, `rankn_bf.py`, `verify_rank3_bf.py`, `summarize_rank3_bf.py` | `6fd59c2b`, `faa88318`, `ec5dde8e`, `878d939a`, `d6d6513a` | `test_rankn_sweep` (every cell of the stored MS640 results equal: control, rank 3 lengths 1-4, rank 4 and 5 slices) |
+| `core/capcount/` and the six counter fields in every search | the relator-cap counters (`docs/CAP.md`). **Origin:** the rank-3 baseline's `cap_dropped`, `cap_dropped_min_total` and `cap_first_bind` in `solvern.py` / `solvern_fast.py`, and the analyses `cap_compare.py` and `cap_exhaustion.py`. acx rewrote them as one heuristic-blind module that compares full heap keys, and added `cap_would_pop` and `cap_needed` (new) | `rank3/brute-force-baseline` (tip `f2d53ced`) | `experiments/stable_ac/solvern.py`, `solvern_fast.py`, `rank3/cap_compare.py`, `rank3/cap_exhaustion.py` | `ec5dde8e` | `test_capcount`, `test_cap_invariant` (same search at any larger cap when the count is 0); `cap_dropped` equals the earlier per-move rejected count on every MS640 row |
 | `hybrid/capwatch.py` | counters of the hybrid's three limits (new, on `core/capcount/`) | new | | | `test_hybrid` |
 | `rl/moves.py`, `rl/policy.py` | batched S-move; Dual-Ring actor-critic | `experiments/ppo` | `experiments/ppo/acs_moves.py`, `policy.py` | `fde45378` | `test_rl` (JAX reference) |
-| `rl/beam.py` | beam search | `experiments/ppo` | `experiments/ppo/beam.py` | `5326550d` | `test_rl` |
+| `rl/beam.py` (its chunked forward pass is `rl/policy.forward`) | beam search | `experiments/ppo` | `experiments/ppo/beam.py` | `5326550d` | `test_rl` |
 | `rl/env.py`, `rl/ppo.py` | training environment and PPO | `experiments/ppo` | `experiments/ppo/acs_env.py`, `ppo.py` | `42302b0a`, `91c74c0b` | `test_rl` (smoke) |
 | `rl/convert.py` | orbax -> torch weights | `experiments/ppo` | `experiments/ppo/transplant.py` | `6359ea90` | `test_rl` |
 | `rl/checkpoint/610model_1000.pt` | the step-1000 weights (converted) | `main` | `ppo_checkpoints/610model/1000/params` | `aa0371c7` | `test_rl` |
 | `data.py` (`MS`, `AK`) | the Miller-Schupp and Akbulut-Kirby families | `main` | `greedy_search.ipynb` | `aa0371c7` | `test_data` |
-| `runner/`, `run.py`, `configs/`, `examples/` | the one CLI and its inputs (new) | new | | | `test_runner`, `test_cli` |
-| `report.py`, `compare.py` | the comparison table and charts (new) | new | | | `test_report` |
+| `runner/` (with `runner/rundir.py`, the run folder), `run.py`, `configs/`, `examples/` | the one CLI and its inputs (new) | new | | | `test_runner`, `test_cli` |
+| `report/` (`load`, `table`, `charts`, `page`), `compare.py` | the comparison table and charts (new) | new | | | `test_report` |
 
 ## Data (`data/`, `benchmark/`)
 
 | file | source branch | source path | commit |
 |---|---|---|---|
-| `data/*.txt[.gz]`, `data/ms_unsolved_reps/ms_*` (as on `main`) | `main` | `data/` | `317f9c1d` (`ms640_solved.txt`) |
+| `data/*.txt[.gz]` (`1190MS.txt`, `AC19.txt`, `AC19_extended.txt`, `AC1M.txt.gz`, `ms640_solved.txt`), `data/ms_unsolved_reps/ms_*` (the same blobs as on `main`) | `main` | `data/` | `317f9c1d` (`ms640_solved.txt`) |
 | `benchmark/subsets/` | `main` | `benchmark/subsets/` | `e7fef21a` |
 | `benchmark/ladder/` (panels, pairs, `unsolved_124.csv`, `LADDER.md`) | `claude/ac19-theorem-strength-8v1wp6` | `benchmark/ladder/` | `1fc160c8` (built from `dab82a84` on `claude/ac19-leftover-solver-notebook-6yan6d`, `9033f13e` on `claude/summer-results-docs-scoring-u6klsb` and the MS-640 greedy blob `525050dd`, hashed in `ladder_manifest.json`; the build and tester scripts, `runs/`, `sources/` and `ladder_all.csv` stay there) |
 | `benchmark/splits/splits_ac1m_hard_aut.json` | `cursor/heur-12h-anti-overfit-a42e` | `results/heuristic_search/splits/splits_ac1m_hard_aut.json` | `3643a8da` |
@@ -56,11 +58,22 @@ against the source: the tests named in each row). Nothing was copied as a whole 
 | `data/ms_unsolved_reps/aca_124_*` | `cursor/u124-stable-ac-1b54` | `data/ms_unsolved_reps/` | `33eb4147` |
 | `data/equivalence_classes/certificates.json` | `codex/proofs` | `results/equivalence_classes/certificates.json` | `d89d3dde` |
 | `benchmark/difficulty_bins.csv` | `claude/summer-results-docs-scoring-u6klsb` | `benchmark/difficulty_bins.csv` | `9033f13e` |
-| `benchmark/rank3_bf/` (the six summary and cap tables) | `rank3/brute-force-baseline` | `results/stable_ac/rank3_bf/` (`rank3_bf_ms640_b{1000,10000}_cap24_summary.md`, `rankn_bf_ms640_b1000_cap24_r{4,5}_summary.json`, `cap/cap_counters_cap24.md`, `cap/cap_exhaustion_all_cap24.md`) | `d8acbeb4` (tip `068ea77`) |
 
 Every copied file matches its source blob (`git hash-object`), except `LADDER.md` and `README_aca_124.md` (a provenance
-note added; `LADDER.md` also points to `run.py` instead of the source's tester, and its source refs moved here). The rank-n row files (`rows/*.npz`, about 70 MB on the source branch) are not carried; `docs/RANK3.md`
-says how to regenerate them.
+note added; `LADDER.md` also points to `run.py` instead of the source's tester, and its source refs moved here).
+
+## Stored studies (`results/stable_ac/`)
+
+Two studies run on their own branches, carried as their compact files (summaries, tables, logs, graphs) byte for byte,
+plus a README edited for this checkout and a new `MANIFEST.json` that lists every raw file of the source folder with its
+size and sha256 ([results/README.md](../results/README.md#studies)).
+
+| folder or file | what | source branch | source path | commit |
+|---|---|---|---|---|
+| `results/stable_ac/rank3_bf/` | the rank-3/4/5 brute force on MS640: the 91 files of the source folder that are not raw data; its raw `.npz`/`.jsonl` files (102, 70.5 MB) listed in the manifest | `rank3/brute-force-baseline` | `results/stable_ac/rank3_bf/` | `f14945df` (tip `f2d53ced`) |
+| `results/stable_ac/cov_all/` | the exhaustive CoV sweep on MS640 at budgets 100, 10,000 and 100,000: summaries, the per-presentation csv, logs, graphs, and the budget 100,000 `.jsonl.gz` (4.1 MB, the transform of every start); the other raw files (5, 280 MB) listed in the manifest; the source's day logs are not carried, their facts are in the README | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/` | `f8d5dce7` (tip `fb84a588`) |
+| `tests/test_rank3_study.py` | the manifest, no raw file committed, a fetched raw file against its size and sha256, the stored numbers the docs quote, `results/rank3_bf/` against the stored tables (new) | new | | |
+| `tests/test_cov_all_study.py` | the manifest, the stored numbers the docs quote, the stored certificates and paths replayed with `acx.cov` and `acx.verify`; slow: every transform rebuilt, 100 rows searched again, the six control failures at cap 64 and uncapped (new) | new | | |
 
 ## Evidence (numbers quoted in RESULTS.md)
 
@@ -75,7 +88,7 @@ says how to regenerate them.
 | evidence: abel top-3 on MS640 | `research/w5/stable-ac-escape` | `results/stable_ac/cov/cov_top3/RESULTS.md` | `605db83d` |
 | evidence: one-shot CoV sweep 10k | `research/w5/stable-ac-escape` | `results/stable_ac/cov/graphs/SUMMARY_b10000.md` | `bab3e40f` |
 | evidence: three-way cost | `research/w5/stable-ac-escape` | `results/comparison/THREE_WAY_COST.md` | `0f4eefc1` |
-| evidence: rank-3/4/5 brute force and its cap-counter tables (final at cap 24, 12 Oct 2026) | `rank3/brute-force-baseline` | `results/stable_ac/rank3_bf/README.md` | `d8acbeb4` |
+| evidence: rank-3/4/5 brute force and its cap-counter tables (final at cap 24, 13 Oct 2026; stored in `results/stable_ac/rank3_bf/`) | `rank3/brute-force-baseline` | `results/stable_ac/rank3_bf/README.md` | `f14945df`; the study's commits: `6fd59c2b` (plan and code), `13c6e536` (interim results), `7c9ab33b` (final at cap 24), `ec5dde8e` (cap counters), `a416bad9` (the counted rerun), `f14945df` (README) |
 | evidence: nonsym K=4 beam | `cursor/heur-u124-s20mk2-a42e` | `results/comparison/COVBEAM_K4_B1K_ADVISOR_REVISE.md` | `83116e0f` |
 | evidence: u124 s20_mk2 1M census (runner only) | `cursor/heur-u124-s20mk2-a42e` | `results/heuristic_search/u124_s20mk2_1m/README.md` | `17e19950` |
 | evidence: mu-ladder findings | `cursor/cloud-agent-1785265366483-2x3ne` | `results/stable_ac/mu_scan/MU_SCAN_FINDINGS.md` | `584f8809` |
@@ -107,9 +120,12 @@ says how to regenerate them.
 | evidence: PyTorch port plan and parity | `experiments/ppo` | `experiments/ppo/PLAN.md` | `5c567a36` |
 | evidence: A100 smoke (530/530) | `experiments/ppo` | `logs/10-08-2026.md` | `7d38f5fa` |
 | evidence: hybrid at 10M (code only, open) | `codex/ac19-hybrid-10m` | `experiments/search/hybrid_10m.py` | `0e77ffce` |
-| evidence: exhaustive CoV sweep, MS640 at 100 | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100_summary.md` | `58b34b9f` |
-| evidence: exhaustive CoV sweep, MS640 at 10,000 (draft PR #26) | `pr26` (PR #26 head) | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b10000_summary.md` | `9b496d5f` |
+| evidence: exhaustive CoV sweep, MS640 at 100 (stored in `results/stable_ac/cov_all/`, as are the next three) | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100_summary.md` | `58b34b9f` |
+| evidence: exhaustive CoV sweep, MS640 at 10,000 | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b10000_summary.md` | `9b496d5f` |
+| evidence: exhaustive CoV sweep, MS640 at 100,000 | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000_summary.md`, `..._b100000.jsonl.gz` | `22b7e37c` |
+| evidence: the sweep's per-presentation csv and its box script | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000_per_presentation.csv` | `f8d5dce7` (tip `fb84a588`) |
 | reference reruns of the original code (not in git) | `main` e7fef21a, `claude/vigilant-babbage-nnbuj0` 5ae1bd8e | `work/reference/` of the consolidation run | |
+| checks of this branch: test runs, the fast/spec speed print (not in git) | this branch | `work/verify/` of the consolidation run (`NUMBERS.md`, `logs/`) | |
 
 ## Where several copies exist, and the one chosen
 
@@ -161,11 +177,11 @@ Every public branch is accounted for. A "covered" branch contributes nothing new
 | `claude/summer-results-docs-scoring-u6klsb` | `9033f13e` | MS640 reference run and difficulty bins |
 | `results/ms640-s20-mk2-1m` | `dbbf22b9` | numbers only (MS640 1M, AC19 100k); not copied wholesale |
 | `research/w5/stable-ac-escape` | `525050dd` | one-shot CoV, n-generator solver, numba Whitehead, certificate verifier |
-| `cov/all-subsets-sweep` | `99968daa` | evidence that the exhaustive CoV family adds nothing; reach tier |
+| `cov/all-subsets-sweep` | `fb84a588` | family `suballpxyb8` (`[cov] family`); the sweep's compact files in `results/stable_ac/cov_all/`, evidence that it adds no solve; reach tier |
 | `claude/abelianized-exponents-verify-1i6muh` | `90461e9c` | evidence: abel top-3 |
 | `cursor/heur-u124-s20mk2-a42e` | `8de34cb5` | evidence: nonsymmetric beam; U124 census runner (no results) |
 | `cursor/cloud-agent-1785265366483-2x3ne` | `c9aff6b8` | evidence: mu-ladder |
-| `rank3/brute-force-baseline` | `068ea77d` | rank-n brute-force sweep and the cap counters it introduced (`acx/ngen/sweep/`, `acx/core/capcount/`), with its stored MS640 tables; its row files, AWS scripts, class view and plots are not carried |
+| `rank3/brute-force-baseline` | `f2d53ced` | rank-n brute-force sweep and the cap counters it introduced (`acx/ngen/sweep/`, `acx/core/capcount/`); its study folder in `results/stable_ac/rank3_bf/`, compact files only (the raw `.npz`/`.jsonl` files and the cloud scripts are not carried) |
 | `experiments/ppo` | `c73b11f2` | PyTorch PPO and beam port, splits, covmeet audit |
 | `test/eda` | `0f4149a1` | beam restore fix; path datasets not carried |
 | `test/stable-ac-moves` | `2278437b` | stable moves, z = w negative results, beam fix, AK(3) attempts |
@@ -183,11 +199,15 @@ Every public branch is accounted for. A "covered" branch contributes nothing new
 - Raw 1k/10k AC19 chunk runs (about 380 MB); the backward-ball `.npz` (282 MB, rebuilt in about 27 minutes); the 610
   checkpoint's steps 900 and 950 (step 1000 only, converted to a 0.6 MB `.pt`); the JAX training stack (`ppo_ac_s.py`,
   `network.py`, `envs/`, `wrappers.py`, `beam/`), removed from this branch's tree.
-- The AC19, AC19_extended and AC1M datasets (22.0, 24.5 and 12.8 MB) are read from their `main` paths, not copied.
 - The website and paper on `test/stable-ac-moves`; the `dot_archive_v2` dataset and `merged_best_paths.jsonl` on `test/eda`.
-- On `rank3/brute-force-baseline`: the per-row `.npz`/`.jsonl` result files (about 70 MB), the cloud run scripts, the
-  2,187-word block shards, the relator-subword arm, and the shortlex, cross-validation and class-view analyses
-  (`class_view.py`, `indep/`, `rankn_checks.py`, `word_families.py`, plots), and `PLAN.md`.
+- On `rank3/brute-force-baseline`: the per-row `.npz`/`.jsonl` result files (102 files, 70.5 MB, listed in
+  `results/stable_ac/rank3_bf/MANIFEST.json`), the cloud run scripts, the 2,187-word block shards, the relator-subword
+  arm, the code of the shortlex, cross-validation and class-view analyses (`class_view.py`, `indep/`, `rankn_checks.py`,
+  `word_families.py`; their outputs are in the study folder), and `PLAN.md`.
+- On `cov/all-subsets-sweep`: the sweep's `.jsonl` files and the `.jsonl.gz` of budgets 100 and 10,000 (listed in
+  `results/stable_ac/cov_all/MANIFEST.json`), the sweep's runner, checker, summary, table and plot scripts and its box
+  script (`experiments/stable_ac/cov/run/`, `verify/`; the enumerator `cov_all.py` is ported as `[cov] family`), and
+  the source's day logs.
 - Nothing outside the branches of the public repository.
 
 ## Environment of the original runs

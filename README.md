@@ -73,11 +73,27 @@ aut-assisted `ac_path` / `stable_cert` (next section). Nodes explored cover ever
 | aut, S20_MK2 on the Aut-min form (`aut`) | 626 | 11 / 615 / 0 | 408,174 pops | 637.8 | 27.2 | 1,258.4 |
 | change of variables (`cov`) | 584 | 554 / 0 / 30 | 693,162 pops | 1,083.1 | 14.3 | 99.2 (the 554 `ac_path`s) |
 | n-generator, SAC (`ngen_sac`) | 298 | 0 / 0 / 298 | 3,729,167 pops | 5,826.8 | 16.9 | 769.1 (stable moves) |
-| rl, first 30 rows only (`rl`) | 30 / 30 | 30 / 0 / 0 | 9,650 evaluations | 321.7 | 4.4 | 28.2 |
+| rl, first 30 rows only (`rl`, stored as `ms640_rl30`) | 30 / 30 | 30 / 0 / 0 | 9,650 evaluations | 321.7 | 4.4 | 28.2 |
 
 A hybrid unit is not a pop: compare them by CPU, which [docs/PERFORMANCE.md, "Methods side by side"](docs/PERFORMANCE.md#methods-side-by-side)
 gives per pop or unit, with bench60 and ladder200. [docs/RESULTS.md](docs/RESULTS.md) has every published run and its
 command, such as the hybrid on all 72,779 AC19 Aut(F2) orbits: 72,779 solved, 188 as `stable_cert`.
+
+### Two stored studies on MS640
+
+Two larger sweeps were run on their own branches, with their own code, and are stored as their tables, summaries and
+graphs under `results/stable_ac/`; each README says what is here, what is only listed in its `MANIFEST.json`, and how
+`acx` reproduces it. Both count the **best start known in advance** (an oracle), so they measure what a start can do,
+not what a solver finds:
+
+| study | what was searched (LENGTH greedy) | presentations solved of 640 |
+|---|---|---|
+| [n-generator brute force](results/stable_ac/rank3_bf/README.md) | add a generator `z = w` for every word `w` (rank 3), or two or three such generators (ranks 4 and 5); cap 24; 40,098,032 searches in all | budget 1,000: control 554; some word of length 1 to 10, 578; the best single word, 528; rank 4, 506; rank 5, 416. Budget 10,000, lengths 1 to 7: control 606, some word 608 |
+| [CoV sweep to budget 100,000](results/stable_ac/cov_all/README.md) | every change of variables of the exhaustive family `suballpxyb8`: 114,042 starts; the control at cap 24, each start at `max(24, longest relator + 16)`, up to 91 | best start 555 / 604 / 626 / 640 at 100 / 1,000 / 10,000 / 100,000 nodes, against the control's 455 / 554 / 606 / 634 |
+
+`results/rank3_bf/` is acx's own rerun of the rank-3 lengths 1 to 4 (equal cell for cell), and
+`[cov] family = "suballpxyb8"` enumerates the CoV sweep's starts. [results/README.md](results/README.md#studies)
+explains the two kinds of folder.
 
 ## AC path or stable AC
 
@@ -92,7 +108,7 @@ command, such as the hybrid on all 72,779 AC19 Aut(F2) orbits: 72,779 solved, 18
 
 **Automorphisms do not make a solve stable.** A solve found in another basis (the Aut-minimal form, a CoV image in
 the orbit, the hybrid's Nielsen/pinch cascade) is decoded back to the row: `acx/aut/transport.py` (aut, cov) and
-`acx/hybrid/certify.py` (hybrid) map each move's conjugators through the inverse automorphism, end with the Nielsen
+`acx/hybrid/elementary.py` (hybrid) map each move's conjugators through the inverse automorphism, end with the Nielsen
 moves that turn the basis back into `x, y`, and replay the result on the row. Such a row is an ordinary `ac_path` of
 elementary AC moves with `aut_assisted: true`; it needs `path = true`, or `--solved-from` after a high-speed run.
 
@@ -106,6 +122,11 @@ elementary AC moves with `aut_assisted: true`; it needs `path = true`, or `--sol
 - [docs/RANK3.md](docs/RANK3.md): the rank-n brute force and the n-generator package.
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/PROVENANCE.md](docs/PROVENANCE.md): the module map; sources.
 - [benchmark/README.md](benchmark/README.md): the evaluation sets and the difficulty ladder.
+- [results/README.md](results/README.md): run folders, the two stored studies and their manifests.
+- [results/stable_ac/rank3_bf/README.md](results/stable_ac/rank3_bf/README.md): the 3-, 4- and 5-generator brute
+  force on MS640.
+- [results/stable_ac/cov_all/README.md](results/stable_ac/cov_all/README.md): the exhaustive CoV sweep on MS640 at
+  budgets 100 to 100,000.
 
 ## Datasets (`data/`) and tests
 
@@ -120,9 +141,12 @@ elementary AC moves with `aut_assisted: true`; it needs `path = true`, or `--sol
 
 ## License
 
-Code: [MIT](LICENSE). Datasets (`data/`, including AC-19 and AC-1M): [CC BY 4.0](LICENSE-DATA). Two binary files are
-kept on purpose: the RL checkpoint `acx/rl/checkpoint/610model_1000.pt` (0.6 MB, the paper's step-1000 weights) and
-`benchmark/subsets/subset_coverage.png`.
+Code: [MIT](LICENSE). Datasets (`data/`, including AC-19 and AC-1M): [CC BY 4.0](LICENSE-DATA). Binary files kept on
+purpose: the RL checkpoint `acx/rl/checkpoint/610model_1000.pt` (0.6 MB, the paper's step-1000 weights),
+`benchmark/subsets/subset_coverage.png`, the eight graphs (`.png`) of the two studies under `results/stable_ac/`, and
+the CoV sweep's budget-100,000 records `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz` (4.1 MB,
+the transform of every start). The studies' other raw files are not in git; each `MANIFEST.json` lists them with size
+and sha256.
 
 ## Citation
 

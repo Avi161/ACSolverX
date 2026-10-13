@@ -21,7 +21,7 @@ python run.py --config configs/hybrid.toml --pres "xxYYY, xyxYXY" --pres "YYXyx,
 | `--input PATH` | run every presentation of your own file (formats below) instead of the config's `benchmark` and `rows` |
 | `--pres "R1, R2"` | run a presentation typed here, repeatable; it is saved as `<out>/<name>/input.txt`, and after the run one line per presentation is printed (id, solved, kind, cost, sub_moves, elem_moves) |
 | `--rows SPEC` | only some rows: a slice `a:b` (or `a:b:c`, integers only) of the row list, else ids `3, 17` (an id may hold a colon, `ms:1`) |
-| `--solved-from RUN_DIR` | only the rows that `RUN_DIR/paths.jsonl` marks solved, in its order (not with `--rows`); see "Decode later" |
+| `--solved-from RUN_DIR` | only the rows that `RUN_DIR/paths.jsonl` marks solved, in its order (not with `--rows`; a cut-off last line is skipped, as a resume does); see "Decode later" |
 | `--out DIR` | the results root (default `results`) |
 | `--fresh` | delete this run name's earlier results first |
 
@@ -58,6 +58,8 @@ and a `.gz` file that is not whole gzip with `<file>: not a whole gzip file ...`
 What the methods take: `greedy` with the `length` priority and `ngen` take any number of generators; `s20_mk2`, `aut`,
 `cov`, `hybrid` and `rl` take two generators and two relators (`rl` also at most 24 letters each). A row a method
 cannot take, or with `|det| != 1` (never AC-trivial), is written as unsolved with an `error`, and the run goes on.
+`rankn` also takes two generators and two relators, but refuses the whole run, before anything is written, if one row
+has another shape.
 
 ## Run names, resume and `--fresh`
 
@@ -67,23 +69,30 @@ A run writes `<out>/<name>/`. The name is the config's `name` key, else the conf
 
 - **Resume.** Rows already in `paths.jsonl` are skipped, so an interrupted run continues where it stopped, and running
   again with other `--rows` adds those rows to the same folder. A record counts only for the presentation in its `pres`:
-  if a line of your file changed (or two lines swapped), that row is solved again and its old record dropped; records
-  written before `pres` existed count as done. `summary.json` is rewritten each time and covers every record in the
-  folder. A row recorded with an `error` is not retried. A cut-off last line of `paths.jsonl` (an interrupted write)
-  is dropped; a bad line before others stops the run with `<file>:<line>: not a record ...`.
+  if a line of your file changed (or two lines swapped), that row is solved again and its old record dropped, and the
+  record of a row that is no longer in the file is dropped too, whichever rows `--rows` selects; records written before
+  `pres` existed count as done. `summary.json` is rewritten each time and covers every record in the folder. A row
+  recorded with an `error` is not retried. A cut-off last line of `paths.jsonl` (an interrupted write) is dropped; a bad
+  line before others stops the run with `<file>:<line>: not a record ...`.
 - **Another config under the same name is refused** (`holds a run with another config: pass --fresh or another
   name`): `config.json` must match, `rows` and `workers` aside. `--pres` with other presentations is refused the same
-  way.
+  way, and so is a `paths.jsonl` without its `config.json` (`holds paths.jsonl without its config.json`), whose config
+  is unknown.
 - **`--fresh`** deletes that name's `paths.jsonl`, `config.json` and `summary.json` before the run. The folders shipped
   in `results/` hold the published numbers: never `--fresh` them. Pick a new name (`--set name=mine`) or another
   `--out`. A run of fewer rows into such a folder (a `summary.json` and no `paths.jsonl`) is refused, as it would
-  replace the published summary; a rerun of all its rows reproduces it.
+  replace the published summary (`holds a published summary of N rows: a run of M would replace it`); a rerun of all its
+  rows reproduces it. The rank-n sweep refuses the same way a run whose rows, with the row files already there, are
+  fewer than the published summary's.
 
 ## The config
 
 A TOML file: top-level keys, then one section per part of the method. [`configs/template.toml`](../configs/template.toml)
 lists every key with its default and a comment. An unknown key, a section the method does not read or an invalid
-value is an error before anything is written.
+value is an error before anything is written. Types are checked too: a switch is the TOML `true` or `false`
+(`--set path=False` is the string `"False"`, an error); `name` and `benchmark` are strings (`--set name=123` is an int
+and `--set name=2026-10-13` a TOML date: quote them, `--set 'name="123"'`); `rl.width` and `rl.steps` are ints >= 1
+and `rl.alpha` a number; a section is a table, set key by key (`--set search.budget=1000`).
 
 | top-level key | default | meaning |
 |---|---|---|
@@ -98,11 +107,17 @@ value is an error before anything is written.
 
 - `[search]` (greedy, aut, cov, ngen, rankn): the best-first search: `priority` (`length` or `s20_mk2`), `cap` (24,
   or `"none"`), `budget` (pops, 10,000), `backend` (`fast`, numba, by default in a run; `spec` is the pure-Python
-  reference, the same steps 27x slower, which only `baseline_spec.toml` sets), `cyclic`.
-- `[cov]`: the change of variables: pops per row over all its searches, and which images are searched.
+  reference, which only `baseline_spec.toml` sets: the same steps, at 32x the CPU time of `fast` over the MS640 LENGTH
+  run, [RESULTS.md](RESULTS.md) section 0), `cyclic`.
+- `[cov]`: the change of variables: pops per row over all its searches, and which images are searched. `family` is
+  `"subnc2pxysb"` (the default, used by every published run) or `"suballpxyb8"`, the exhaustive family of the MS640
+  sweep with one image per class ([METHODS.md](METHODS.md) section 11). Either family runs the same one-shot policy
+  within `total_budget`; `suballpxyb8` does not repeat the sweep, which searched every start with a full budget of its
+  own ([results/stable_ac/cov_all/](../results/stable_ac/cov_all/README.md)).
 - `[ngen]`: `sac`, the transform to relators of length at most 3 before the search.
-- `[hybrid]`: `budget` in work units, the three limits `r2_cap`, `dyn_cap`, `slack` (each an int or `"none"`;
-  `r2_cap` also `"parent"`), the queue knobs and `backend` (`fast` by default).
+- `[hybrid]`: `budget` in work units (an int >= 1), the three limits `r2_cap`, `dyn_cap`, `slack` (each an int or
+  `"none"`; `r2_cap` also `"parent"`), the queue knobs (`penalty` an int >= 0, `min_uses` an int >= 1, `dyn_ratio`)
+  and `backend` (`fast` by default).
 - `[rl]`: the beam's `width`, `steps`, `alpha` and `cap`.
 - `[rankn]`: the stabilising words of the rank-n sweep ([RANK3.md](RANK3.md)).
 
@@ -151,8 +166,8 @@ The rank-n sweep (`rankn`) writes per-row `rows/<id>.npz` files and its own summ
   `elem_moves` is null (but for a CoV path carried back from an image). Rerun with `path = true` to get and check
   the paths, or decode later (below).
 - **Decode later.** `--solved-from RUN_DIR` runs only the rows that run solved. After a `path = false` run, the same
-  config with `path = true` recomputes just those rows, and the searches are deterministic, so it finds the same
-  solves at the same cost, now decoded and replayed (`verified: true`):
+  config with `path = true` recomputes just those rows, and the searches are deterministic, so it finds the same solves
+  at the same cost, now decoded and replayed (`verified: true`):
 
   ```bash
   python run.py --config configs/hybrid.toml --set path=false --set name=ms640_fast
@@ -184,8 +199,9 @@ python compare.py results/greedy_fast_presentations results/hybrid_presentations
 One markdown table, a row per run: rows, solved (%), mean and median cost of the solved rows in the run's unit, mean
 `sub_moves` and `elem_moves` (`n=k` when only k solved rows have one), CPU seconds per row, CPU µs per pop/unit
 (`us_per_cost`: CPU of all rows, verification included, over their total cost), raise-cap rows (a cap dropped a state
-the search would have popped) and errors. Two runs of one benchmark also get a head-to-head line (solved by only one,
-by both, by neither).
+the search would have popped; read from `summary.json` alone, the count is exact when one cap counter binds, and a lower
+bound when more than one binds and a `raise_ids` list was cut at 100) and errors. Two runs of one benchmark also get a
+head-to-head line (solved by only one, by both, by neither).
 
 - **Units.** greedy, aut, cov and ngen count heap pops; the hybrid counts work units (pops of its two queues plus the
   automorphisms, Nielsen images and S-moves of its cascade and gates); rl counts network evaluations. A unit is not a

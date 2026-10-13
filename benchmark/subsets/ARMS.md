@@ -6,7 +6,7 @@ These are run outputs, generated on the research branch by `experiments/analysis
 
 ## Not every row has been tested
 
-The four subsets are *not* nested (`nested: false` in each file), and both the CoV sweep and the heuristic sweep were run against **subset-60's** row list. So the smaller subsets contain presentations no transformed arm has ever run on:
+The four subsets are *not* nested (`nested: false` in each `benchmark_subset_<N>.json`), and both the CoV sweep and the heuristic sweep were run against **subset-60's** row list. So the smaller subsets contain presentations no transformed arm has ever run on:
 
 | subset | rows | tested | not tested |
 |---|---|---|---|
