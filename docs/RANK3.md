@@ -3,8 +3,9 @@
 Add a generator `z` and the relator `Z.w` to a two-generator presentation, for every freely reduced word `w`, and
 search each stabilised start with the ordinary best-first search. It answers one question: does knowing the right
 word for each presentation make greedy cheaper? Ported from the rank-3 brute-force baseline (its source is in
-[PROVENANCE.md](PROVENANCE.md)). The sweep is the package `acx/ngen/sweep/` (below); the search is
-`acx.search.search`, unchanged.
+[PROVENANCE.md](PROVENANCE.md); its stored results, up to word length 10, are in
+[results/stable_ac/rank3_bf/](../results/stable_ac/rank3_bf/README.md)). The sweep is the package `acx/ngen/sweep/`
+(below); the search is `acx.search.search`, unchanged.
 
 ## What is searched
 
@@ -28,7 +29,7 @@ word for each presentation make greedy cheaper? Ported from the rank-3 brute-for
 python run.py --config configs/rank3_bf.toml                  # MS640, words of length 1-4, budget 1,000, cap 24
 python run.py --config configs/rank3_bf.toml --rows 0:40      # a smoke, seconds
 python run.py --config configs/rank4_bf.toml --rows 7:640:40  # a rank-4 slice (a full run is ~2 core-hours)
-python -m acx.ngen.sweep --config configs/rank5_bf.toml --verify 100   # the same config, then 100 cells re-run on the other backend
+python -m acx.ngen.sweep --config configs/rank5_bf.toml --verify 100   # the same config, then 100 cells re-run on both backends
 ```
 
 `run.py` loads the config with the runner (method `rankn`, `acx.runner.method_config`), which refuses bad keys and
@@ -43,20 +44,27 @@ a file from another config is an error, never merged), `summary.json`, `summary.
 `cap_would_pop`, `cap_first_bind`, `cap_needed` (-1 = none), plus the control and null records and a deterministic
 sample of solved paths (`sample`). **The row files are large; keep them out of git** (`results/*/rows/`).
 
+In `summary.md` (one row per word length, `L1`, `L2`, ...), `solved` is a share of all rows; `fewer`, `same`, `more`
+(pops against the control's) and `lost` are shares of the rows the control solves, and add up to 100%; `solved by
+some`, `gained`, `lost by every` and `some faster` count rows, `some faster` among the rows the control solves only. A
+share over no row is `null` in `summary.json` (`-` in the table).
+
 The package `acx.ngen.sweep` has one module per job: `words` (the word pool and the starts), `config`, `rows` (one row's
 searches and its file), `driver` (`run`), `summary`, `check` (`verify`) and `cli`. `acx.ngen.sweep` re-exports the
 public names.
 
 `sweep.verify(dir, recheck=N)` (also `--verify N`) checks: control equals null stabilisation (and their cap counters,
 scores shifted by `extra`), shapes and ranges, cap-counter rules, every stored path through `acx.verify.replay`, and
-`N` random cells re-run on the other backend. Measured here (3 workers): lengths 1-3 over all of MS640 (16,640 searches) take 4.6 minutes, length 4 alone
-(34,560 searches) about 9 minutes. Length 10 (37.8 M searches) is a cluster job.
+`N` random cells re-run on both backends (spec and fast). Measured here (3 workers): lengths 1-3 over all of MS640
+(16,640 searches) take 4.6 minutes, length 4 alone (34,560 searches) about 9 minutes. Length 10 (37.8 M searches) is a
+cluster job.
 
 ## Reproduction against the baseline's stored results
 
 Budget 1,000, cap 24, MS640, fast backend; every cell compared with the baseline's `rank3_bf_ms640_b1000_cap24_*.npz`
-and `rankn_bf_ms640_b1000_cap24_r{4,5}.npz` (not shipped; `nodes`, `path_len`, `min_total`, `cap_dropped`, and the
-control's solved/pops/path length):
+and `rankn_bf_ms640_b1000_cap24_r{4,5}.npz` (not in git; listed in
+[`results/stable_ac/rank3_bf/MANIFEST.json`](../results/stable_ac/rank3_bf/MANIFEST.json); `nodes`, `path_len`,
+`min_total`, `cap_dropped`, and the control's solved/pops/path length):
 
 | slice | cells | solved | mismatches |
 |---|---|---|---|
@@ -67,21 +75,29 @@ control's solved/pops/path length):
 | rank 4, 16 rows (`--rows 7:640:40`) | 5,616 | 2,899 | 0 |
 | rank 5, 16 rows (`--rows 0:640:40`) | 1,920 | 1,150 | 0 |
 
-Checked on the current code (`nodes`, `path_len`, `min_total`, `cap_dropped`, `cap_dropped_min_total`; the rank 4 and 5
-slices compare `nodes`, `path_len` and the control and null records, since the baseline stores no cap counters for
-them): lengths 1-3 over all MS640, length 4 over all MS640, `inverse = true` lengths 1-2 over all MS640, and the two
-rank-4 and rank-5 slices: 0 mismatches in every cell.
+Checked on the current code (`nodes`, `path_len`, `min_total`, `cap_dropped`, `cap_dropped_min_total`): lengths 1-3
+over all MS640, length 4 over all MS640, `inverse = true` lengths 1-2 over all MS640, and the two rank-4 and rank-5
+slices (`nodes`, `path_len`, the control and null records): 0 mismatches in every cell. The baseline's tip
+(`f2d53ced`) also stores the cap counters of ranks 4 and 5; they equal acx's on the rank-5 slice and on 150 sampled
+rank-4 cells (0 mismatches).
 
 The summary tables agree too (solved by some word up to length 1/2/3/4: 403 / 472 / 516 / 540; a random word solves
-60.1% / 68.4% / 69.8% / 68.6% of its starts; lost 151 / 82 / 38 / 18). The cap dropped a child in 4 of the 16,640
-searches of lengths 1-3 (the same 4 cells as the baseline, the same smallest dropped total) and could bind in none.
+60.1% / 68.4% / 69.8% / 68.6% of its starts; lost by every word 151 / 82 / 38 / 18). The cap dropped a child in 4 of
+the 16,640 searches of lengths 1-3 (the same 4 cells as the baseline, the same smallest dropped total) and could bind
+in none.
 The baseline's `cap_first_bind` is a conservative total-length test; acx's counters are exact (strict full heap key,
 first-drop keys), so a baseline bind may be a tie that acx clears, and a baseline null implies an acx null.
 
-Published numbers of the baseline (MS640, budget 1,000, cap 24; `benchmark/rank3_bf/` holds its tables): control 554;
-the oracle over lengths 1-10 solves 578 (24 gained, 0 lost); the best single word `yXYYYxyyy` solves 528; rank 4: 506
-solved by some start, rank 5: 416; the cap dropped a child in 45,315 of 4,960,112 counted searches and could bind in
-none.
+The baseline's stored results (MS640, cap 24; [results/stable_ac/rank3_bf/](../results/stable_ac/rank3_bf/README.md)
+holds its tables):
+
+- budget 1,000, words of length 1 to 10 (37,790,720 searches): the control solves 554, some word 578 (24 gained, 0
+  lost), the best single word `yXYYYxyyy` 528;
+- budget 10,000, words of length 1 to 7 (1,399,040 searches): the control solves 606, some word 608 (6 gained, 4
+  lost);
+- budget 1,000, ranks 4 and 5: 506 and 416 solved by some start;
+- every one of its 40,098,032 searches carries the cap counters: the cap dropped a child in 2,331,711 and could bind in
+  none.
 
 ## Differences from the baseline
 
@@ -107,7 +123,7 @@ reduction of an input can change its relators by conjugation, so the path would 
 - `sac = false`: search the presentation itself; a solve is an `ac_path`, replayed with the search's normal form.
 - Refused up front: SAC with any priority but LENGTH (raised when the config is built, so `run.py` refuses
   `configs/ngen_sac.toml --set search.priority=s20_mk2` before it writes a result); a root with more than 127 generators
-  (`acx.ngen.solve.MAX_GENERATORS`), a `ValueError` before the search. Generators past `z` are written `g27`, `G27`
+  (`acx.ngen.solver.MAX_GENERATORS`), a `ValueError` before the search. Generators past `z` are written `g27`, `G27`
   (its inverse), `g28`, ...
 
 ### The stable-AC transform (`acx.ngen.sac`)
