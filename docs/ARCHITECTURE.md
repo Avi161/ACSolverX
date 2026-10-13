@@ -157,11 +157,11 @@ Each module keeps a frozen config and returns typed results; `acx.runner.methods
   (`FAMILIES` and the rules of each), `substitution.py` (the word operations), `certificate.py`
   (`apply_steps`, `check_cert`), `run.py` (`run_cov`).
 - `acx.hybrid.solve(pres, HybridConfig) -> HybridResult(solved, stage, units, steps, kind, path, stats)`; `path` is
-  elementary (plus AC4/AC5 for a `stable_cert`), replayed with `normalize=False`; `stats` has the counters of its
-  three limits. Modules: `steps.py` (the step types, the `Run` that applies them, `encode_steps`/`decode_steps`),
-  `cascade.py` and `pinch.py` (stages A-C and the finishing gates), `search.py` (with `frontier.py`, `kernels.py` and
-  `dynrank.py`), `capwatch.py`, `solver.py` (`solve`), `elementary.py` and `frame.py` (`certify`: the certificate as
-  elementary moves).
+  elementary (plus AC4/AC5 for a `stable_cert`), replayed with `normalize=False`; `stats` has the counters of its three
+  limits. `acx.hybrid` also exports `certify`, `Aut`, `encode_steps` and `decode_steps`. Modules: `steps.py` (the step
+  types, the `Run` that applies them, `encode_steps`/`decode_steps`), `cascade.py` and `pinch.py` (stages A-C and the
+  finishing gates), `search.py` (with `frontier.py`, `kernels.py` and `dynrank.py`), `capwatch.py`, `solver.py`
+  (`solve`), `elementary.py` and `frame.py` (`certify`: the certificate as elementary moves).
 - `acx.ngen.solve(pres, NGenConfig) -> NGenResult(solved, kind, search, sac, moves)`; a SAC solve is lifted to an
   elementary stable path (`stable_cert`). Modules: `sac.py` (the transform), `solver.py` (`solve`, `NGenConfig`,
   `NGenResult`), `lifting.py` (`lift`), and the package `sweep/`, the rank-n brute force ([RANK3.md](RANK3.md)).
@@ -194,8 +194,9 @@ The runner is a package, one job per module, and nothing is re-exported but `loa
 `rows(spec)` resolves `DATASETS` (`ms640`, `ms_unsolved`, `1190ms`, `ac19`, `ac19_extended`, `ac1m`; flat-int
 `.txt[.gz]`, `id` = line index), `BENCHMARKS` (CSVs: `bench10..60`, `ladder20..500`, `ladder20..300_s20hard`,
 `ac19_autmin`, `ac1m_autmin`, `u124`) and `SPLITS` (`ac1m_hard_holdout60`), or a path to a `.txt`, `.csv` or `.jsonl`
-file (optionally `.gz`; formats in [USAGE.md](USAGE.md)). `parse_presentation("xxYYY, xyxYXY")` reads one line. Each
-row is `Row(id, pres, meta)`. `select(rows, spec)` picks rows by a slice `a:b[:c]` or by ids, as `--rows` does.
+file (optionally `.gz`; formats in [USAGE.md](USAGE.md)). `parse_presentation("xxYYY, xyxYXY")` reads one line. Each row
+is `Row(id, pres, meta)`. `select(rows, spec)` picks rows by a slice `a:b[:c]` or by ids, as `--rows` does;
+`stem_of(path)` is a file's name without the suffixes `rows` reads it by (the run name of `--input`).
 
 ## Tests
 

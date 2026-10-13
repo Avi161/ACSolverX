@@ -208,6 +208,10 @@ Its three limits (`r2_cap`, `dyn_cap`, `slack`; [CAP.md](CAP.md)) are counted se
 | `ladder60_hybrid` | 60 / 60 | 0 | 7 / 7 | 273,121 / 192 | 9-13 | 54 | 0 / 0 | 0 |
 | `ladder200_hybrid` | 188 / 188 | 0 | 23 / 21 | 606,830 / 559 | 9-13 | 14 | 1 / 0 | 8 |
 
+The `ladder200_hybrid` summary was written before the last change to the hybrid's limit counters: run again on the
+current code it counts 507 `dyn_cap` would-pop states where the stored file has 559, with every other field equal
+(solved, units, the other counters).
+
 - **Reading the hybrid columns.** A hybrid `*_dropped` counts classes of dropped children (plus the tail moves of the
   solving pop), not moves, and `*_would_pop` counts distinct canonical pairs; a zero still means that a larger limit
   pops the same states, and a non-zero count says only that the run may change (the count is first order, see

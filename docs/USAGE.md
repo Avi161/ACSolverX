@@ -21,7 +21,7 @@ python run.py --config configs/hybrid.toml --pres "xxYYY, xyxYXY" --pres "YYXyx,
 | `--input PATH` | run every presentation of your own file (formats below) instead of the config's `benchmark` and `rows` |
 | `--pres "R1, R2"` | run a presentation typed here, repeatable; it is saved as `<out>/<name>/input.txt`, and after the run one line per presentation is printed (id, solved, kind, cost, sub_moves, elem_moves) |
 | `--rows SPEC` | only some rows: a slice `a:b` (or `a:b:c`, integers only) of the row list, else ids `3, 17` (an id may hold a colon, `ms:1`) |
-| `--solved-from RUN_DIR` | only the rows that `RUN_DIR/paths.jsonl` marks solved, in its order (not with `--rows`); see "Decode later" |
+| `--solved-from RUN_DIR` | only the rows that `RUN_DIR/paths.jsonl` marks solved, in its order (not with `--rows`; a cut-off last line is skipped, as a resume does); see "Decode later" |
 | `--out DIR` | the results root (default `results`) |
 | `--fresh` | delete this run name's earlier results first |
 
@@ -89,8 +89,9 @@ A run writes `<out>/<name>/`. The name is the config's `name` key, else the conf
 A TOML file: top-level keys, then one section per part of the method. [`configs/template.toml`](../configs/template.toml)
 lists every key with its default and a comment. An unknown key, a section the method does not read or an invalid
 value is an error before anything is written. Types are checked too: a switch is the TOML `true` or `false`
-(`--set path=False` is the string `"False"`, an error); `name` and `benchmark` are strings (`--set name=123` is an int:
-write `--set 'name="123"'`); a section is a table, set key by key (`--set search.budget=1000`).
+(`--set path=False` is the string `"False"`, an error); `name` and `benchmark` are strings (`--set name=123` is an int
+and `--set name=2026-10-13` a TOML date: quote them, `--set 'name="123"'`); `rl.width` and `rl.steps` are ints >= 1
+and `rl.alpha` a number; a section is a table, set key by key (`--set search.budget=1000`).
 
 | top-level key | default | meaning |
 |---|---|---|
@@ -113,8 +114,9 @@ write `--set 'name="123"'`); a section is a table, set key by key (`--set search
   within `total_budget`; `suballpxyb8` does not repeat the sweep, which searched every start with a full budget of its
   own ([results/stable_ac/cov_all/](../results/stable_ac/cov_all/README.md)).
 - `[ngen]`: `sac`, the transform to relators of length at most 3 before the search.
-- `[hybrid]`: `budget` in work units, the three limits `r2_cap`, `dyn_cap`, `slack` (each an int or `"none"`;
-  `r2_cap` also `"parent"`), the queue knobs and `backend` (`fast` by default).
+- `[hybrid]`: `budget` in work units (an int >= 1), the three limits `r2_cap`, `dyn_cap`, `slack` (each an int or
+  `"none"`; `r2_cap` also `"parent"`), the queue knobs (`penalty` an int >= 0, `min_uses` an int >= 1, `dyn_ratio`)
+  and `backend` (`fast` by default).
 - `[rl]`: the beam's `width`, `steps`, `alpha` and `cap`.
 - `[rankn]`: the stabilising words of the rank-n sweep ([RANK3.md](RANK3.md)).
 
@@ -163,8 +165,8 @@ The rank-n sweep (`rankn`) writes per-row `rows/<id>.npz` files and its own summ
   `elem_moves` is null (but for a CoV path carried back from an image). Rerun with `path = true` to get and check
   the paths, or decode later (below).
 - **Decode later.** `--solved-from RUN_DIR` runs only the rows that run solved. After a `path = false` run, the same
-  config with `path = true` recomputes just those rows, and the searches are deterministic, so it finds the same
-  solves at the same cost, now decoded and replayed (`verified: true`):
+  config with `path = true` recomputes just those rows, and the searches are deterministic, so it finds the same solves
+  at the same cost, now decoded and replayed (`verified: true`):
 
   ```bash
   python run.py --config configs/hybrid.toml --set path=false --set name=ms640_fast
