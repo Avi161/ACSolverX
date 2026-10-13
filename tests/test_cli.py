@@ -3,6 +3,7 @@ and how it ends on a bad config, row id or file."""
 import gzip
 import json
 import os
+import shutil
 import re
 import subprocess
 import sys
@@ -282,8 +283,10 @@ def test_solved_from_works_on_your_own_file(tmp_path):
 
 
 def test_solved_from_a_folder_without_paths_jsonl_exits_with_one_line(tmp_path):
-    shipped = os.path.join(ROOT, "results", "ms640_hybrid")                 # summary.json and config.json only
-    for folder in (shipped, str(tmp_path / "nowhere")):
+    shipped = tmp_path / "ms640_hybrid"                                     # what git ships: no paths.jsonl
+    shipped.mkdir()
+    shutil.copy(os.path.join(ROOT, "results", "ms640_hybrid", "summary.json"), shipped)
+    for folder in (str(shipped), str(tmp_path / "nowhere")):
         with pytest.raises(SystemExit) as e:
             run_cli(tmp_path / "out", "--solved-from", folder)
         assert e.value.code.startswith(os.path.join(folder, "paths.jsonl") + ": ") and "\n" not in e.value.code

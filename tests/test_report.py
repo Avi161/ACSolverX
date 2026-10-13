@@ -4,6 +4,7 @@ import json
 import math
 import os
 import re
+import shutil
 from typing import NamedTuple
 from xml.etree import ElementTree
 
@@ -293,13 +294,25 @@ def test_a_folder_with_neither_paths_jsonl_nor_a_run_summary_is_refused(tmp_path
         report.load_run(tmp_path / "nowhere")
 
 
-SHIPPED = [os.path.join(ROOT, "results", name) for name in ("bench60_hybrid", "bench60_length", "ms640_cov")]
+SHIPPED_NAMES = ("bench60_hybrid", "bench60_length", "ms640_cov")
 
 
-def test_compare_py_tabulates_the_shipped_summary_only_folders(capsys):
+@pytest.fixture
+def shipped(tmp_path):
+    """The tracked files of three shipped runs (summary.json, config.json), copied without any local paths.jsonl."""
+    folders = []
+    for name in SHIPPED_NAMES:
+        (tmp_path / name).mkdir()
+        for file in ("summary.json", "config.json"):
+            shutil.copy(os.path.join(ROOT, "results", name, file), tmp_path / name / file)
+        folders.append(str(tmp_path / name))
+    return folders
+
+
+def test_compare_py_tabulates_the_shipped_summary_only_folders(capsys, shipped):
     """The folders kept in results/ hold summary.json and config.json only: their table row comes from the summary,
     with a dash for the median and the CPU columns, which it lacks."""
-    compare.main(SHIPPED)
+    compare.main(shipped)
     hybrid, length, cov = table(capsys.readouterr().out)
     assert hybrid == {
         "run": "bench60_hybrid", "method": "hybrid", "benchmark": "bench60", "rows": "60", "solved": "60 (100.0%)",
@@ -324,10 +337,10 @@ def test_a_summary_only_run_reads_like_its_paths_jsonl(tmp_path):
     assert only == full and full["raise_rows"] == 2
 
 
-def test_common_and_head_to_head_need_paths_jsonl(capsys):
+def test_common_and_head_to_head_need_paths_jsonl(capsys, shipped):
     with pytest.raises(SystemExit, match="^--common needs paths.jsonl: bench60_hybrid has only summary.json$"):
-        compare.main([SHIPPED[0], SHIPPED[1], "--common"])
-    compare.main(SHIPPED[:2])
+        compare.main([shipped[0], shipped[1], "--common"])
+    compare.main(shipped[:2])
     printed = capsys.readouterr().out
     assert "Head to head" not in printed and "from summary.json" in printed
 
