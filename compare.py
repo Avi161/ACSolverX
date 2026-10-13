@@ -1,7 +1,7 @@
 """Compare finished runs: ``python compare.py results/A results/B ... [--html FILE] [--common]``.
 
 Prints one markdown table (solve rate, cost per solved row, moves, CPU per row and per pop/unit). ``--html`` also
-writes one self-contained page with the table and three bar charts. The code is in ``acx/report.py``.
+writes one self-contained page with the table and three bar charts. The code is in ``acx/report/``.
 """
 import argparse
 
