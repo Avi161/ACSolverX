@@ -51,7 +51,7 @@ def test_decoded_end_is_canonical_trivial_and_json_safe(solves):
 
 
 def test_non_canonical_and_unreduced_starts(solves):
-    pres, path = solves[3]
+    pres = solves[3][0]
     shuffled = Presentation(2, (inverse(pres.rels[1]), pres.rels[0]))
     r = search(shuffled, SearchConfig(budget=500))
     assert r.solved and r.start == pres.reduced().canonical()
@@ -81,7 +81,7 @@ def test_s_move_after_a_dict_move_that_breaks_cyclic_reduction(solves):
         assert replay(pres, decode(pres, [conj, m]), normalize=False, require_trivial=False)[-1] == mid
         r = search(mid, SearchConfig(budget=500))
         if r.solved:
-            moves, states = decode_and_replay(pres, [conj, m, *r.path])
+            _, states = decode_and_replay(pres, [conj, m, *r.path])
             done += states[-1].is_trivial()
     assert done
 
@@ -90,7 +90,7 @@ def test_three_generators(solves):
     pres = stabilize(solves[2][0])
     r = search(pres, SearchConfig(budget=3000))
     assert r.solved and pres.n_gen == 3
-    moves, states = decode_and_replay(pres, r.path)
+    _, states = decode_and_replay(pres, r.path)
     assert states[-1].is_trivial() and states[-1].n_gen == 3
 
 

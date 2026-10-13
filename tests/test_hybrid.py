@@ -357,7 +357,7 @@ def zero_means_same(ms640, configs, stride):
             nonzero += 1
             for q in PREFIXES:
                 if a.stats[f"{q}_would_pop"]:
-                    c, lc = run_with_pops(p, **dict(kw, **{LIMITS[q]: a.stats[f"{q}_needed"]}))
+                    _, lc = run_with_pops(p, **dict(kw, **{LIMITS[q]: a.stats[f"{q}_needed"]}))
                     n = min(len(la), len(lc))
                     moved += la[:n] != lc[:n]
     return zero, nonzero, dropped_zero, moved
@@ -371,7 +371,7 @@ def test_zero_would_pop_means_the_run_does_not_change(ms640):
 @pytest.mark.slow
 def test_zero_would_pop_means_the_run_does_not_change_on_tight_limits(ms640):
     """Limits tight enough that many rows bind (about 4 minutes): no false zero among 108 runs."""
-    zero, nonzero, dropped_zero, moved = zero_means_same(ms640, TIGHT, 6)
+    zero, nonzero, _, moved = zero_means_same(ms640, TIGHT, 6)
     assert zero > 40 and nonzero > 20 and moved > 15
 
 
@@ -540,7 +540,8 @@ def test_encode_decode_steps_roundtrip_through_json(ms640):
 
 
 def test_the_steps_module_holds_the_step_types_and_their_json_form():
-    """M5: ``acx.hybrid.steps`` holds the step types and the JSON codec of a certificate; the package exports ``Aut``."""
+    """M5: ``acx.hybrid.steps`` holds the step types and the JSON codec of a certificate; ``acx.hybrid`` exports
+    ``Aut``."""
     from acx.hybrid import Aut, steps
     items = encode_steps(solve(ac19_row("ac19_239"), FAST).steps)
     assert {type(s) for s in steps.decode_steps(items)} == {Move, Aut, dict}      # every kind of step

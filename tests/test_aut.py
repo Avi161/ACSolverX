@@ -154,7 +154,7 @@ def test_transport_round_trip_on_ac19_extended():
     for pres in dataset("data/AC19_extended.txt")[::997]:
         if not aut_canon(pres).phi:
             continue
-        res, path = solve_via_aut_min(pres, budget=100)
+        _, path = solve_via_aut_min(pres, budget=100)
         if path is None:
             continue
         states = replay(pres, path, normalize=False)
