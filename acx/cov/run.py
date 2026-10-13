@@ -12,7 +12,7 @@ from ..core.config import SearchConfig, parse_cap, require_bool, require_int
 from ..core.moves import is_elementary
 from ..core.words import as_presentation
 from ..search import Result, search
-from ..verify.replay import replay
+from ..verify.replay import ReplayError, replay
 from .certificate import check_cert
 from .family import FAMILIES, MAX_LEN
 from .images import CoVImage, enumerate_images
@@ -50,14 +50,15 @@ class Outcome:
     kind: str                # "ac_path" | "stable_cert"
     image: CoVImage | None   # None: the row itself
     result: Result           # the search leg
-    path: tuple              # ac_path: moves that replay on the row; stable_cert: the leg on ``image.pres``
+    path: tuple | None       # absent when capture_path=False; otherwise on the row or stable image
     cap: int | None          # cap of the search leg
     cyclic: bool = True      # the search leg's reduction
+    aut_assisted: bool = False   # retained without a path, so high-speed runs keep the same classification
 
     @property
     def transported(self):
         """An ``ac_path`` carried back from an image by ``acx.aut.transport``: elementary moves, not S-moves."""
-        return bool(self.path) and is_elementary(self.path[0])
+        return self.aut_assisted or (bool(self.path) and is_elementary(self.path[0]))
 
 
 @dataclass(frozen=True)
@@ -89,6 +90,8 @@ class CoVResult:
 
 def verify(pres, outcome):
     """Replay an outcome on the row it claims to solve; raises ``ReplayError`` if it does not hold."""
+    if outcome.path is None:
+        raise ReplayError("outcome has no captured path; rerun with capture_path=True")
     if outcome.kind == "stable_cert":
         check_cert(pres, outcome.image.steps, outcome.path, outcome.cap, outcome.cyclic)
     else:
@@ -97,7 +100,7 @@ def verify(pres, outcome):
 
 def _typed(pres, img, res, cap, cyclic):
     """The outcome of a solved search: the row's own ``ac_path``, a transported ``ac_path``, or a ``stable_cert``."""
-    if img is None or res.start == pres.reduced(cyclic).canonical():     # the row itself, as written or as an image
+    if img is None or res.start == pres.normal(cyclic):     # the row itself, as written or as an image
         return Outcome("ac_path", img, res, res.path, cap, cyclic)
     try:
         phi = automorphism(pres, img.pres)
@@ -105,7 +108,8 @@ def _typed(pres, img, res, cap, cyclic):
         phi = None
     if phi is None:
         return Outcome("stable_cert", img, res, res.path, cap, cyclic)
-    return Outcome("ac_path", img, res, tuple(transport(pres, phi, res.path, res.start, cyclic)), cap, cyclic)
+    path = None if res.path is None else tuple(transport(pres, phi, res.path, res.start, cyclic))
+    return Outcome("ac_path", img, res, path, cap, cyclic, aut_assisted=True)
 
 
 def _leg_cap(cfg, img):
@@ -146,6 +150,8 @@ def run(pres, cfg=None, **overrides):
     in letters of the binding leg's own cap), ``cap_first_bind`` is a pop number of the row (pops of earlier legs plus
     the first binding leg's) and ``cap_legs_bound`` counts the legs with ``cap_would_pop > 0``. When no leg binds,
     every larger cap gives the same run. ``max_len`` only decides which images exist (``stats["images"]``): no counter.
+    With ``search.capture_path=False``, classification still checks the Aut(F2) orbit, but paths are neither
+    captured, transported nor verified. ``Outcome.path`` is None and ``result.path_length`` retains the depth.
     """
     cfg = (cfg or CoVConfig()).replace(**overrides)
     pres = as_presentation(pres)
@@ -160,18 +166,19 @@ def run(pres, cfg=None, **overrides):
         if pops_left <= 0:
             break
         raw = pres if img is None else img.pres
-        start = raw.reduced(search_cfg.cyclic).canonical()
+        start = raw.normal(search_cfg.cyclic)
         if start in seen_starts:
             duplicates += 1
             continue
         seen_starts.add(start)
         cap = _leg_cap(cfg, img)
-        res = search(raw, search_cfg.replace(budget=min(search_cfg.budget, pops_left), cap=cap, capture_path=True))
+        res = search(raw, search_cfg.replace(budget=min(search_cfg.budget, pops_left), cap=cap))
         legs.append(({f: res.stats[f] for f in FIELDS}, pops))
         tried, pops = tried + 1, pops + res.pops
         if res.solved:
             outcomes.append(_typed(pres, img, res, cap, search_cfg.cyclic))
-            verify(pres, outcomes[-1])
+            if search_cfg.capture_path:
+                verify(pres, outcomes[-1])
             if cfg.until == "solve" or outcomes[-1].kind == "ac_path":
                 break
     stats = {"images": len(images), "tried": tried, "duplicates": duplicates, **_row_caps(legs, search_cfg.cap),

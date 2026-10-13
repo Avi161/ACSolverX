@@ -6,7 +6,7 @@ a ``stable_cert`` also has higher-rank steps. ``certify`` writes either as eleme
 import time
 from dataclasses import dataclass, field, replace
 
-from ..core.config import BACKENDS, is_number, parse_cap, require_bool, require_int
+from ..core.config import BACKENDS, is_finite_number, parse_cap, require_bool, require_int
 from ..core.words import as_presentation
 from ..verify.replay import abs_det
 from .capwatch import blank_records
@@ -36,7 +36,7 @@ class HybridConfig:
         require_bool(self.certify, "certify")
         if self.backend not in BACKENDS:
             raise ValueError(f"backend {self.backend!r} not in {BACKENDS}")
-        if not (is_number(self.dyn_ratio) and self.dyn_ratio >= 0):
+        if not (is_finite_number(self.dyn_ratio) and self.dyn_ratio >= 0):
             raise ValueError(f"dyn_ratio must be a number >= 0, got {self.dyn_ratio!r}")
         object.__setattr__(self, "r2_cap", parse_cap(self.r2_cap, "r2_cap", keep=("parent",)))
         object.__setattr__(self, "dyn_cap", parse_cap(self.dyn_cap, "dyn_cap"))

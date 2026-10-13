@@ -11,6 +11,7 @@ from .methods import SOLVERS, record
 from .output import shape
 from .rundir import drop_changed, prepare, pres_text, read_records
 from .summary import summarize
+from .storage import run_directory, write_json
 
 WARM_UP = data.parse_presentation("xxYYY, xyxYXY")     # AK(2): a short solve that every method can take
 
@@ -77,6 +78,7 @@ def run(cfg, out="results", fresh=False, log=print):
     summary covers every record in ``paths.jsonl``, error rows included (a row that raised is recorded, not retried
     on resume). The record fields are in ``acx.runner.methods.record`` and ``acx.runner.output``.
     """
+    run_dir = run_directory(out, cfg["name"])
     if cfg["method"] == "rl":
         try:
             import torch  # noqa: F401
@@ -87,7 +89,6 @@ def run(cfg, out="results", fresh=False, log=print):
         return run_rankn(cfg, out, fresh, log)
     every_row = data.rows(cfg["benchmark"])
     rows = data.select(every_row, cfg.get("rows"))
-    run_dir = os.path.join(out, cfg["name"])
     paths_file = prepare(run_dir, cfg, fresh, len(rows))
     done = {}
     if os.path.exists(paths_file):
@@ -99,6 +100,5 @@ def run(cfg, out="results", fresh=False, log=print):
     if todo:
         _solve_rows(cfg, todo, done, paths_file, log)
     summary = summarize(cfg, list(done.values()), time.perf_counter() - start)
-    with open(os.path.join(run_dir, "summary.json"), "w") as f:
-        json.dump(summary, f, indent=1)
+    write_json(run_dir / "summary.json", summary)
     return summary

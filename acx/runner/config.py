@@ -3,8 +3,9 @@ import os
 import tomllib
 from dataclasses import fields
 
-from ..core.config import SearchConfig, is_number, parse_cap, parse_override, reject_unknown, require_int
+from ..core.config import SearchConfig, is_finite_number, parse_cap, parse_override, reject_unknown, require_int
 from .output import check_output, keeps_path
+from .storage import check_name
 
 # The config sections each method reads; any other section is an error.
 SECTIONS = {"greedy": ("search",), "aut": ("search",), "cov": ("search", "cov"), "ngen": ("search", "ngen"),
@@ -66,6 +67,8 @@ def _check_keys(cfg):
     for key in ("name", "benchmark"):
         if key in cfg and not isinstance(cfg[key], str):
             raise ValueError(f'{key} must be a string, got {cfg[key]!r} (quote it: {key}="...")')
+    if "name" in cfg:
+        check_name(cfg["name"])
     for section in set(cfg) - TOP_LEVEL_KEYS:
         if not isinstance(cfg[section], dict):
             raise ValueError(f"{section} is a section: set its keys ({section}.key=value), got {cfg[section]!r}")
@@ -121,8 +124,8 @@ def _rl_keywords(values):
     for name in ("width", "steps"):
         if name in keywords:
             require_int(keywords[name], f"rl.{name}")
-    if "alpha" in keywords and not is_number(keywords["alpha"]):
-        raise ValueError(f"rl.alpha must be a number, got {keywords['alpha']!r}")
+    if "alpha" in keywords and not is_finite_number(keywords["alpha"]):
+        raise ValueError(f"rl.alpha must be a finite number, got {keywords['alpha']!r}")
     keywords["cap"] = parse_cap(keywords.get("cap", L), "rl.cap")
     if keywords["cap"] is None or keywords["cap"] > L:
         raise ValueError(f"rl.cap must be at most {L}, the policy's observation width")

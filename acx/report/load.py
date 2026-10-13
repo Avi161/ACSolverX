@@ -5,9 +5,10 @@ from pathlib import Path
 from typing import NamedTuple
 
 from ..runner.summary import COST_UNIT
+from ..runner.rundir import iter_records
 
 # The record fields the report reads, besides the ``*_would_pop`` cap flags; a record's other fields are dropped.
-KEEP = {"id", "solved", "cost", "sub_moves", "elem_moves", "seconds", "cpu_seconds", "error"}
+KEEP = {"id", "pres", "solved", "cost", "sub_moves", "elem_moves", "seconds", "cpu_seconds", "error"}
 
 
 class Run(NamedTuple):
@@ -32,20 +33,11 @@ def read_json(path):
 def read_records(path):
     """The records of a ``paths.jsonl``, cut down to the fields the report reads: the move lists are most of a big
     file. A last line cut off by a run still writing is skipped; any other line that is not JSON stops the report."""
-    records, bad = [], None
-    with open(path, encoding="utf-8") as lines:
-        for number, line in enumerate(lines, 1):
-            if not line.strip():
-                continue
-            if bad:                                      # a bad line with more lines after it is not a cut-off
-                raise SystemExit(f"{path}: line {bad} is not JSON")
-            try:
-                record = json.loads(line)
-            except ValueError:
-                bad = number
-            else:
-                records.append({k: v for k, v in record.items() if k in KEEP or k.endswith("_would_pop")})
-    return records
+    try:
+        return [{k: v for k, v in record.items() if k in KEEP or k.endswith("_would_pop")}
+                for record in iter_records(path)]
+    except ValueError as e:
+        raise SystemExit(str(e)) from e
 
 
 def load_run(folder):

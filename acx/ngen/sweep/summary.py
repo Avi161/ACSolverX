@@ -11,6 +11,8 @@ from typing import NamedTuple
 
 import numpy as np
 
+from ...runner.storage import atomic_write, write_json
+
 from .config import COUNTERS, SweepConfig, words_of
 from .rows import finished_rows, load_row, row_path
 from .words import combos, word_str
@@ -150,10 +152,8 @@ def summarize(result_dir, wall=None):
                           could_bind=cap.could_bind, solved_could_bind=cap.solved_could_bind,
                           below_budget=cap.below_budget),
         core_seconds=round(core_seconds, 2), **({} if wall is None else {"wall_seconds": round(wall, 2)}))
-    with open(os.path.join(result_dir, "summary.json"), "w") as f:
-        json.dump(summary, f, indent=1)
-    with open(os.path.join(result_dir, "summary.md"), "w") as f:
-        f.write(markdown(summary))
+    write_json(os.path.join(result_dir, "summary.json"), summary)
+    atomic_write(os.path.join(result_dir, "summary.md"), markdown(summary))
     return summary
 
 
