@@ -8,9 +8,9 @@ import pytest
 
 from acx.aut import (AUTOS, are_automorphic, aut_canon, automorphism, check, images, invert, orbit_key,
                      solve_via_aut_min, transport)
-from acx.aut.autos import IDENTITY, apply_pres
+from acx.aut.autos import IDENTITY, apply, apply_pres, image
 from acx.aut.emitter import Emitter
-from acx.core.words import Presentation
+from acx.core.words import Presentation, reduce
 from acx.search import search
 from acx.verify import replay
 from acx.verify.decode import decode
@@ -76,6 +76,16 @@ def test_auto_table_layout():
     """The numba twin relies on it: ``AUTOS[0]`` is the identity and only ``AUTOS[8:]`` change a total length."""
     assert AUTOS[0] == IDENTITY and len(AUTOS) == 20
     assert all(sum(map(len, a)) == 2 for a in AUTOS[:8]) and all(sum(map(len, a)) > 2 for a in AUTOS[8:])
+
+
+def test_image_is_the_cyclically_reduced_word_under_each_auto():
+    """``image(w, k)``, the one helper the Whitehead search and the hybrid's steps share: ``AUTOS[k]`` applied to ``w``,
+    then cyclically reduced."""
+    rng = random.Random(5)
+    for _ in range(100):
+        w = tuple(rng.choice((1, -1, 2, -2)) for _ in range(rng.randrange(12)))
+        for k in range(len(AUTOS)):
+            assert image(w, k) == reduce(apply(w, AUTOS[k]))
 
 
 @pytest.mark.parametrize("backend", ["spec", "fast"])

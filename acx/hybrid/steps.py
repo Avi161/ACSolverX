@@ -5,7 +5,7 @@ higher-rank event (a dict, from ``dynrank``). ``Run`` charges one work unit per 
 """
 from collections import namedtuple
 
-from ..aut.autos import TABLES, apply_table
+from ..aut.autos import image
 from ..core.moves import Move, apply_raw
 from ..core.words import booth_str, canonical_rels, canonical_word, inverse, reduce, rotate
 
@@ -15,11 +15,6 @@ NIELSEN = (14, 17, 8, 11)       # AUTOS indices of x -> xy, x -> xY, y -> yx, y 
 
 class Budget(Exception):
     """Raised when a ``Run`` is charged past its budget of work units."""
-
-
-def image(w, k):
-    """``AUTOS[k](w)``, cyclically reduced."""
-    return reduce(apply_table(w, TABLES[k]))
 
 
 def aut_child(state, k):

@@ -8,14 +8,14 @@ from collections import namedtuple
 
 from ..core.priority import length
 from ..core.words import Presentation, canonical_rels, reduce, state_key
-from .autos import AUTOS, DESCENT, TABLES, apply_pres, apply_table, invert
+from .autos import AUTOS, DESCENT, apply_pres, image, invert
 
 AutCanon = namedtuple("AutCanon", "total rep phi")
 
 
 def _image(rels, k):
     """Every relator under ``AUTOS[k]``, cyclically reduced."""
-    return tuple(reduce(apply_table(r, TABLES[k])) for r in rels)
+    return tuple(image(r, k) for r in rels)
 
 
 def peak_reduce(rels):

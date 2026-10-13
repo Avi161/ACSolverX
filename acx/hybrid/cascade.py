@@ -3,11 +3,12 @@
 The stages apply the steps of ``steps`` through a ``Run``. Work units: one per Nielsen image evaluated, per
 automorphism accepted and per S-move applied; the gates' inspections are free.
 """
+from ..aut.autos import image
 from ..core.moves import Move
 from ..core.priority import length
 from ..core.words import booth_str, canonical_word, inverse, rotate
 from .pinch import bracket, conjugation_forms, from_syllables, pinch_once, pinch_preflight, syllables
-from .steps import NIELSEN, image, is_terminal
+from .steps import NIELSEN, is_terminal
 
 
 def _count(w, g):
