@@ -72,7 +72,6 @@ def _run(arena, lens, depth, prio, parent, pmove, heap, table, trace, st,
             out_len = np.empty((2 * max_new, out.shape[1]), dtype=np.int32)
             out_mv = np.empty((2 * max_new, 5), dtype=np.int32)
 
-        # Pop.
         st[HEAP_LEN] = heap_pop(heap, st[HEAP_LEN], prio, depth, arena, lens, n_gen)
         pop_no = st[NODES]
         st[NODES] += 1
