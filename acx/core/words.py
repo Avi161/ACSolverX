@@ -179,6 +179,11 @@ def state_bytes(rels, n_gen=2):
     return bytes(c for r in state_key(rels, n_gen) for c in (*r, 0))
 
 
+def _is_integer(value):
+    """An int or a NumPy integer scalar, not a bool."""
+    return type(value) is int or (isinstance(value, Integral) and not isinstance(value, bool))
+
+
 @dataclass(frozen=True)
 class Presentation:
     """``<x_1..x_n_gen | rels>`` with relators as int tuples (balanced or not; ``n_gen`` is explicit because a
@@ -187,15 +192,19 @@ class Presentation:
     rels: tuple
 
     def __post_init__(self):
-        if isinstance(self.n_gen, bool) or not isinstance(self.n_gen, Integral) or self.n_gen < 0:
+        if not _is_integer(self.n_gen) or self.n_gen < 0:
             raise ValueError(f"n_gen must be a nonnegative integer, got {self.n_gen!r}")
-        rels = tuple(tuple(r) for r in self.rels)
-        if any(isinstance(g, bool) or not isinstance(g, Integral) for r in rels for g in r):
-            raise ValueError("generator symbols must be integers (not bools, floats or strings)")
-        object.__setattr__(self, "n_gen", int(self.n_gen))
-        object.__setattr__(self, "rels", tuple(tuple(int(g) for g in r) for r in rels))
-        if any(g == 0 or abs(g) > self.n_gen for r in self.rels for g in r):
-            raise ValueError(f"symbol outside 1..{self.n_gen}: {self.rels}")
+        n = int(self.n_gen)
+        rels = tuple(map(tuple, self.rels))
+        # Plain ints in range, the case of every search and replay step, skip the slower ``Integral`` check.
+        if not all(type(g) is int and 0 < abs(g) <= n for r in rels for g in r):
+            if not all(_is_integer(g) for r in rels for g in r):
+                raise ValueError("generator symbols must be integers (not bools, floats or strings)")
+            rels = tuple(tuple(int(g) for g in r) for r in rels)
+            if any(g == 0 or abs(g) > n for r in rels for g in r):
+                raise ValueError(f"symbol outside 1..{n}: {rels}")
+        object.__setattr__(self, "n_gen", n)
+        object.__setattr__(self, "rels", rels)
 
     @classmethod
     def parse(cls, *strs, n_gen=None):

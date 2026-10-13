@@ -102,7 +102,7 @@ def test_cov_high_speed_skips_certificate_work(monkeypatch):
     assert cov(data.AK(2), cfg)["solved"]
 
 
-def test_ppo_returns_reset_after_the_terminal_reward():
+def test_ppo_normaliser_follows_the_trainer_of_the_checkpoint():
     torch = pytest.importorskip("torch")
     from acx.rl.env import VecEnv
     env = VecEnv(torch.tensor([[1, 0, 2, 0]]), 1, L=2, gamma=.5)
@@ -110,9 +110,10 @@ def test_ppo_returns_reset_after_the_terminal_reward():
     for reward, done in [(1., False), (2., True), (3., False)]:
         env._normalise(torch.tensor([reward]), torch.tensor([done]))
         observed.append(float(env.mean[0]))
-    # The running moments observe 1, 2.5, 3; terminal reward belongs to the old episode.
-    assert observed == pytest.approx([1., 1.75, 6.5 / 3], abs=1e-4)
-    assert env.ret.tolist() == [3.]
+    # As the JAX NormalizeVecReward that trained the shipped weights: a step's own done clears the return before its
+    # reward is added, so the moments observe 1, 2, 4 (each update weighted by the observation length, 4 here).
+    assert observed == pytest.approx([1., 1.5, 7 / 3], abs=1e-4)
+    assert env.ret.tolist() == [4.]
 
 
 def test_rl_high_speed_skips_certificate_work(monkeypatch):
@@ -175,6 +176,12 @@ def test_run_directory_symlink_is_not_followed(tmp_path):
 
 def test_numpy_integer_words_remain_supported():
     assert Presentation(np.int64(2), ((np.int8(1),), (np.int32(2),))) == Presentation.parse("x", "y")
+
+
+@pytest.mark.parametrize("symbol", [0, 3, -3, np.int64(3), np.int8(0)])
+def test_presentation_rejects_symbols_outside_its_rank(symbol):
+    with pytest.raises(ValueError, match="outside"):
+        Presentation(2, ((1, symbol),))
 
 
 def test_rankn_fresh_keeps_its_inline_input(tmp_path):

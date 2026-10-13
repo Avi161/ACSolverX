@@ -85,15 +85,14 @@ an error. Default certificate behavior remains enabled. Tests replace certificat
 they are not called; existing runner tests compare solves, costs, kinds and counters between both modes. CoV start
 deduplication also uses the same fixed-point `normal(cyclic)` state as the search.
 
-### 8. P1 — PPO normalized rewards using returns across episode boundaries
+### 8. Kept — PPO's reward normalizer resets the return before adding the terminal step's reward
 
-`VecEnv._normalise` reset the accumulated return using the *current* terminal flag before adding the reward. This
-discarded the earlier return at termination and carried the terminal reward into the next episode. For rewards
-`1, 2 (terminal), 3` with gamma `0.5`, its observed returns were `1, 2, 4`, rather than `1, 2.5, 3`.
-
-The normalizer now accumulates the reward, updates moments, then resets finished environments to zero. A hand-derived
-three-step test checks the moments and the next episode's return. PPO smoke tests exercise optimization. This changes
-future training behavior; the shipped weights and their recorded JAX inference/move references are unchanged.
+`VecEnv._normalise` clears the accumulated return with the *current* step's `done` before adding its reward, so for
+rewards `1, 2 (terminal), 3` with gamma `0.5` its running moments observe `1, 2, 4`, not the textbook `1, 2.5, 3`.
+This is the JAX trainer's `NormalizeVecReward` (`experiments/ppo`, `wrappers.py`), the one that trained the shipped
+weights, reproduced exactly with its other quirk (each update weighs the observation length). Changing it would make
+the trainer stop reproducing the checkpoint's training, so it stays; a three-step test pins the order and the docs
+say why.
 
 ### 9. P2 — supported sweep budgets exceeded the path-length storage range
 
@@ -108,6 +107,8 @@ serializer, avoiding an artificial long search merely to test storage.
 were also accepted, and rank had no type/range check. The constructor now requires a nonnegative integral rank and
 integral symbols, preserving NumPy integer support while rejecting floats, strings and bools before coercion. Tests
 cover both rejection and the legitimate array-scalar API. Rank zero remains available for stable destabilization.
+Plain in-range ints, which every search and replay step builds, skip the `Integral` check: without that fast path the
+check made replay 2.5 times slower; with it, replay takes about a quarter less time than before.
 
 ### 11. P2 — non-finite numeric settings were accepted
 
@@ -123,8 +124,8 @@ minimal job remains available without PyTorch.
 
 The methods guide claimed replay shared nothing with the solver and that every recorded solve was verified. Replay
 shares Python words/moves with the reference engine, and `path=false` deliberately omits verification. The docs now
-state those boundaries, the capture behavior, output naming, resume identity, encoded row filenames, storage range,
-and the PPO correction. The architecture guide names the new persistence boundary rather than leaving duplicated
+state those boundaries, the capture behavior, output naming, resume identity, encoded row filenames, storage range
+and the PPO normalizer's order. The architecture guide names the new persistence boundary rather than leaving duplicated
 behavior hidden in CLI/report code.
 
 ## Architecture and research limits

@@ -390,9 +390,9 @@ length-1 relators appears or after `steps` steps. It needs `pip install -e .[rl]
 (`width`, `steps`, `alpha`, `cap`); two generators only, relators of length at most 24 (the policy's input width), so a
 longer row comes back unsolved with `skipped` set. `cost` is the number of states the network scored. The path is a
 list of S-moves, replayed like any other. Training code is included (`acx.rl.env`, `acx.rl.ppo`).
-PPO's reward normalizer observes `return = gamma * return + reward`, updates its running moments, then clears the
-return of finished environments. Terminal rewards belong to the episode that just ended. The October 2026 review
-corrected the reset order in this trainer; it does not modify the released checkpoint or its recorded JAX references.
+PPO's reward normalizer is the JAX trainer's `NormalizeVecReward`, which trained the shipped weights, quirks kept: a
+step's own `done` clears the return before that step's reward is added, so a terminal reward carries into the next
+episode's return. Keep it so, or training no longer reproduces the checkpoint's.
 
 ## 14. Verification
 
