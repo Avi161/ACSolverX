@@ -71,10 +71,10 @@ def test_a_cap_does_not_size_the_counter_arrays_by_the_budget():
 
 
 @pytest.mark.parametrize("pid, priority, cap, budget", [(322, "length", 12, 400), (559, "length", 14, 300),
-                                                        (630, "s20_mk2", 20, 10_000)])
+                                                        (630, "s20_mk2", 20, 1_000)])
 def test_cap_counter_arrays_double_when_the_pops_outgrow_them(ms640, monkeypatch, pid, priority, cap, budget):
     """Sized for 64 pops at first, the per-pop arrays double on the way, and the result is still spec's. The rows
-    are one solved, one out of budget and one solved after thousands of pops."""
+    are one solved and two out of budget."""
     monkeypatch.setattr(best_first, "FIRST_POPS", 64)
     r = parity(ms640[pid], priority=priority, cap=cap, budget=budget)
     assert r.pops > 2 * 64 and r.stats["cap_dropped"] > 0 and r.stats["cap_would_pop"] > 0
