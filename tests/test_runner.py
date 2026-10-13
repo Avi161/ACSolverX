@@ -851,3 +851,49 @@ def test_records_without_their_config_json_are_not_resumed(tmp_path):
         quiet(cfg("smoke", 'rows="0:5"', "name=nocfg", "search.budget=1000"), tmp_path)
     assert (folder / "paths.jsonl").read_text() == kept and not (folder / "config.json").exists()
     assert quiet(cfg("smoke", 'rows="0:5"', "name=nocfg", "search.budget=1000"), tmp_path, fresh=True)["rows"] == 5
+
+
+# ---- one reader of paths.jsonl: the resume, --solved-from and run.py's report agree ----------------------------
+
+def test_resume_solved_from_and_report_read_a_cut_off_paths_jsonl_the_same_way(tmp_path, capsys):
+    c = own_rows(tmp_path, AK2, AK3, "xy, y")                     # solved, unsolved, solved
+    quiet(c, tmp_path)
+    paths = tmp_path / "m" / "paths.jsonl"
+    whole = paths.read_text()
+    paths.write_text(whole[:whole.rindex('"pres"')])              # the last record cut mid-way: {"id": "2",
+    assert run.solved_ids(tmp_path / "m") == ["0"]
+    run.report(tmp_path / "m", [AK2, AK3, "xy, y"], "pops")
+    assert [line.split("  ")[2] for line in capsys.readouterr().out.splitlines()] == ["solved", "unsolved"]
+    log = []
+    runner.run(c, str(tmp_path), log=log.append)
+    assert "3 rows (2 done)" in log[0]
+    assert [(r["id"], r["solved"]) for r in records(tmp_path, "m")] == [("0", True), ("1", False), ("2", True)]
+
+
+def test_a_bad_line_before_the_last_is_refused_by_the_resume_and_by_solved_from(tmp_path):
+    c = own_rows(tmp_path, AK2, AK3, "xy, y")
+    quiet(c, tmp_path)
+    paths = tmp_path / "m" / "paths.jsonl"
+    first, _, third = paths.read_text().splitlines(keepends=True)
+    paths.write_text(first + "garbage\n" + third)
+    message = r"paths\.jsonl:2: not a record; fix or delete the line, then run again$"
+    with pytest.raises(ValueError, match=message):
+        run.solved_ids(tmp_path / "m")
+    with pytest.raises(ValueError, match=message):
+        quiet(c, tmp_path)
+    with pytest.raises(SystemExit, match=message):
+        run.main(["--config", os.path.join(ROOT, "configs", "smoke.toml"), "--solved-from", str(tmp_path / "m"),
+                  "--out", str(tmp_path / "out")])
+    assert paths.read_text() == first + "garbage\n" + third and not (tmp_path / "out").exists()
+
+
+def test_read_records_cuts_the_cut_off_line_only_when_asked(tmp_path):
+    from acx.runner.rundir import read_records
+    path = tmp_path / "paths.jsonl"
+    text = '{"id": "0", "solved": true}\n{"id": "1", "solved": false}\n{"id": "2", "so'
+    path.write_text(text)
+    assert [r["id"] for r in read_records(path)] == ["0", "1"] and path.read_text() == text
+    assert [r["id"] for r in read_records(path, repair=True)] == ["0", "1"]
+    assert path.read_text() == text[:text.rindex("\n") + 1]
+    path.write_text("")
+    assert read_records(path, repair=True) == [] and path.read_text() == ""

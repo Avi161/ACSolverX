@@ -16,6 +16,7 @@ from pathlib import Path
 from acx.core.config import parse_override
 from acx.data import parse_presentation
 from acx.runner import load_config, run
+from acx.runner.rundir import read_records
 
 OWN_FILE_SUFFIX = re.compile(r"(\.txt|\.csv|\.jsonl)?(\.gz)?$", re.IGNORECASE)      # the formats of acx/data.py
 
@@ -49,7 +50,7 @@ def report(run_dir, lines, unit):
     paths = Path(run_dir) / "paths.jsonl"
     if not paths.exists():                                          # the rank-n sweep keeps its rows in other files
         return
-    records = {rec["id"]: rec for rec in map(json.loads, paths.read_text().splitlines())}
+    records = {rec["id"]: rec for rec in read_records(paths)}
     for k, line in enumerate(lines):
         if str(k) in records:                                       # a row that --rows left out has no record
             rec = records[str(k)]
@@ -64,10 +65,7 @@ def solved_ids(run_dir):
     paths = Path(run_dir) / "paths.jsonl"
     if not paths.is_file():
         raise SystemExit(f"{paths}: no such file (--solved-from needs the paths.jsonl of a run made here)")
-    lines = paths.read_text().splitlines(keepends=True)
-    if lines and not lines[-1].endswith("\n"):                     # cut off by a run still writing, or stopped
-        lines.pop()
-    ids = [rec["id"] for rec in map(json.loads, lines) if rec["solved"]]
+    ids = [rec["id"] for rec in read_records(paths) if rec["solved"]]
     if not ids:
         raise SystemExit(f"{paths}: no solved rows")
     return ids

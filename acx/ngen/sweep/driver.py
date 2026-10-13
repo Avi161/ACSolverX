@@ -7,6 +7,7 @@ from contextlib import nullcontext
 from multiprocessing import Pool
 
 from ... import data
+from ...runner.rundir import write_config
 from .config import SweepConfig, words_of
 from .rows import check_two_relators, finished_rows, row_path, sweep_row_file
 from .summary import summarize
@@ -18,13 +19,7 @@ def open_result_dir(result_dir, key, fresh):
     if fresh:
         shutil.rmtree(result_dir, ignore_errors=True)
     os.makedirs(os.path.join(result_dir, "rows"), exist_ok=True)
-    config_file = os.path.join(result_dir, "config.json")
-    if os.path.exists(config_file):
-        with open(config_file) as f:
-            if json.load(f) != key:
-                raise SystemExit(f"{result_dir} holds a run with another config: pass --fresh or another name")
-    with open(config_file, "w") as f:
-        json.dump(key, f, indent=1)
+    write_config(result_dir, key)
 
 
 def refuse_to_shrink(result_dir, row_ids):
