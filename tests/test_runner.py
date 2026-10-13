@@ -644,7 +644,7 @@ def test_resume_keeps_the_rows_whose_presentation_is_unchanged(tmp_path):
 
 @pytest.mark.parametrize("method", ["greedy", "aut", "cov", "ngen", "rankn", "hybrid"])
 def test_a_config_without_backend_runs_the_fast_backend(tmp_path, method):
-    """``SearchConfig`` keeps ``spec`` as its default, but a run defaults to ``fast`` (the same steps, 27x faster)."""
+    """``SearchConfig`` defaults to ``spec``, a run to ``fast`` (same steps; ``spec`` takes 32x the CPU on MS640)."""
     from acx.core.config import SearchConfig
     bare = tmp_path / "bare.toml"
     bare.write_text(f'method = "{method}"\nbenchmark = "ms640"\n')

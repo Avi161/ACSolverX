@@ -6,9 +6,9 @@ said here.
 
 | module | what | entry point |
 |---|---|---|
-| `acx.core` | words, presentations, moves, priorities, `SearchConfig`, the cap counter | `Presentation`, `Move`, `SearchConfig` (`step` is in `acx.core.moves`, `CapCount` in `acx.core.capcount`) |
+| `acx.core` | words, presentations, digrams, moves, priorities, `SearchConfig`, the cap counter | `Presentation`, `Move`, `SearchConfig` (`step` is in `acx.core.moves`, `CapCount` in `acx.core.capcount`) |
 | `acx.search` | best-first search; `spec` (pure Python) and `fast` (numba) backends | `search(pres, cfg) -> Result` |
-| `acx.search.fast.kernels` | package of reusable numba kernels: `encode`/`decode`, `expand`, `score`, `children` | used by `hybrid` and `aut` |
+| `acx.search.fast.kernels` | package of reusable numba kernels: `encode`/`decode`/`decode_word`, `expand`, `score`, `children` | used by `hybrid` and `aut` |
 | `acx.verify` | `replay` (the only judge), `decode` (S-moves -> elementary moves), `pack` | `replay(pres, path)`, `ReplayError`, `abs_det` |
 | `acx.aut` | Whitehead canonical form, numba twin, transport, equivalence-certificate checker | `aut_canon`, `solve_via_aut_min` |
 | `acx.cov` | one-shot change of variables (family `subnc2pxysb`, or the exhaustive `suballpxyb8` with `[cov] family`) | `run_cov(pres, CoVConfig)` |
@@ -37,6 +37,11 @@ Top level: `from acx import Presentation, Move, SearchConfig, search, Result, re
   per-relator code tuples, and `state_bytes` is the same order as bytes (what the cap counter and the fast kernels
   compare). At two generators it sorts like the pair of relator strings.
 - `conjugators(w, t)` yields every `(sign, c)` with `c^-1 w^sign c == t` (the witness used by transport and certify).
+- `as_presentation(pres)`: a `Presentation` as it is, relator strings parsed (what `search` and every `solve` do
+  with their input). `rotate_left(w, k)` is `rotate(w, -k)` (the word from `w[k]`); `conjugate(w, c)` is `c^-1 w c`,
+  freely reduced.
+- `acx.core.digrams`: `digram(w, k)` and `digram_counts(words)` (cyclic digrams, each with its inverse) and
+  `tokenize(w, d, h)` (the shortest rewriting with `d -> h`), shared by the SAC transform and the hybrid's definitions.
 
 ## Moves (`acx.core.moves`)
 
@@ -50,9 +55,10 @@ Top level: `from acx import Presentation, Move, SearchConfig, search, Result, re
   `{"op":"swap"[,"a":1,"b":2]}`, `{"op":"conjugate","target":t,"by":"x"}` (`r_t <- by^-1 r_t by`),
   `{"op":"multiply","target":t,"source":s}` (`r_t <- r_t r_s`), `{"op":"stabilize"}` (AC4: add generator n+1 and
   relator `(n+1,)`), `{"op":"destabilize"}` (AC5: drop the last generator and a relator equal to it).
-- A **path** is a list mixing `Move`s and dicts; `step(pres, mv)` applies one. `Trace(pres)` records elementary moves
-  (`do`, `conj`, `invert`, `multiply`, `conjugated_multiply`); the decoder, transport (`Emitter`) and the n-generator
-  lift write their paths with it. JSON: `encode_path` (S-move -> `[i, j, s, k1, k2]`), `decode_path`.
+- A **path** is a list mixing `Move`s and dicts (`is_elementary(mv)` tells them apart); `step(pres, mv)` applies one.
+  `Trace(pres)` records elementary moves (`do`, `conj`, `invert`, `multiply`, `conjugated_multiply`); the decoder,
+  transport (`Emitter`) and the n-generator lift write their paths with it.
+  JSON: `encode_path` (S-move -> `[i, j, s, k1, k2]`), `decode_path`.
 
 ## Priorities (`acx.core.priority`)
 
@@ -76,8 +82,11 @@ fast engine uses so that both backends agree bit for bit. These are the only two
 Other modules keep their own frozen config and nest a `SearchConfig`. Every cap of every config
 (`SearchConfig.cap`, `HybridConfig.r2_cap`/`dyn_cap`/`slack`, `CoVConfig.max_len`/`cap_headroom`, the RL `cap`) is read
 by `parse_cap`: a positive int or `"none"` (`0` and bools raise; `slack` and `cap_headroom` may be 0). Every switch
-(`capture_path`, `cyclic`, `trace`, the runner's `path` and `decode`, `rankn.inverse`) is read by `require_bool`: a
-string such as `"False"` raises.
+(`capture_path`, `cyclic`, `trace`, the runner's `path` and `decode`, `rankn.inverse`, `CoVConfig.control`,
+`NGenConfig.sac`/`lift`, `HybridConfig.certify`) is read by `require_bool`: a string such as `"False"` raises. Int knobs
+(`budget`, `total_budget`, `workers`, the hybrid's `penalty`/`min_uses`, `rl.width`/`steps`, the RL `cap`) are read by
+`require_int` (`<name> must be an int >= <low>`), and numbers (`dyn_ratio`, `rl.alpha`, `rankn.sample`) by `is_number`
+(an int or a float, not a bool).
 
 ## Search (`acx.search.search(pres, cfg=None, **overrides) -> Result`)
 
@@ -117,9 +126,10 @@ states), `max_total_expanded` and `max_expanded` (the first popped state of stri
 One small package every search calls; it compares the heap keys the search passes and knows no heuristic.
 `counter.py`: `CapCount(cap)` with `drop(key, total, longest, ident)`, `pop(bar)`, `end(ran_dry, left)` and
 `record(prefix)`. `kernels.py` (`cc_drop`, `cc_pop`) and `arrays.py` (`CapArrays`): the numba twin for the fast
-engine (parity in `tests/test_capcount.py`). `records.py`: `FIELDS`, `blank()`, `combine()` (searches run one after
-another) and `summarize()` (the `caps` block of `summary.json`). The contract is in [CAP.md](CAP.md); `tests/test_cap_invariant.py` pins "count 0 means the same run at any
-larger cap" on both backends.
+engine (parity in `tests/test_capcount.py`). `records.py`: `FIELDS`, `PREFIXES` (`cap`, `dyn_cap`, `slack`: the
+counters a run records), `blank()`, `combine()` (searches run one after another) and `summarize()` (the `caps` block
+of `summary.json`). The contract is in [CAP.md](CAP.md); `tests/test_cap_invariant.py` pins "count 0 means the same
+run at any larger cap" on both backends.
 
 ## Verification (`acx.verify`)
 

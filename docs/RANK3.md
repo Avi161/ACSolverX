@@ -134,8 +134,9 @@ than 3, so repeating it terminates; the rank grows by one per definition.
 
 - The digram defined next has the most cyclic occurrences over all relators (ties: the most occurrences inside
   relators longer than 3, then the smaller digram).
-- A relator is rewritten as its shortest rewriting (`tokenize`, ties: the smaller word) over the rotations of the
-  relator, oriented as the source's canonical form: the least rotation in int order of the relator or of its inverse.
+- A relator is rewritten as its shortest rewriting (`acx.core.digrams.tokenize`, ties: the smaller word) over the
+  rotations of the relator, oriented as the source's canonical form: the least rotation in int order of the relator or
+  of its inverse.
   This reproduces the tie-breaks of the source on the MS640, AC19 and 1190ms rows (`tests/test_ngen.py` pins a sample).
 - Relators keep their positions, so the lift can track them.
 

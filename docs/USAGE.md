@@ -92,7 +92,8 @@ lists every key with its default and a comment. An unknown key, a section the me
 value is an error before anything is written. Types are checked too: a switch is the TOML `true` or `false`
 (`--set path=False` is the string `"False"`, an error); `name` and `benchmark` are strings (`--set name=123` is an int
 and `--set name=2026-10-13` a TOML date: quote them, `--set 'name="123"'`); `rl.width` and `rl.steps` are ints >= 1
-and `rl.alpha` a number; a section is a table, set key by key (`--set search.budget=1000`).
+and `rl.alpha` a number; `cov.total_budget` is an int >= 1, `rankn.extra` 1, 2 or 3 and `rankn.sample` a number in
+[0, 1]; a section is a table, set key by key (`--set search.budget=1000`).
 
 | top-level key | default | meaning |
 |---|---|---|
