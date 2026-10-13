@@ -1,0 +1,32 @@
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_control.jsonl: 640 presentations, 606 solved; 3-way agreement checked
+  rank-n code on 2 generators: the cap dropped a child in 26 of 640 searches, could bind in 0
+  third relator Z: the cap dropped a child in 26 of 640 searches, could bind in 0
+  matches the cov_all control on 640 presentations
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_control.jsonl: 606 solved, 0 failed to replay
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_L1.npz: 1280 searches, 915 solved
+  915 sampled certificates replayed through the spec
+  cap counters: a child dropped in 0 of 1280 searches, could bind in 0
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_L2.npz: 3840 searches, 3080 solved
+  1569 sampled certificates replayed through the spec
+  cap counters: a child dropped in 0 of 3840 searches, could bind in 0
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_L3.npz: 11520 searches, 9297 solved
+  1600 sampled certificates replayed through the spec
+  cap counters: a child dropped in 4 of 11520 searches, could bind in 0
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_L4.npz: 34560 searches, 28267 solved
+  1694 sampled certificates replayed through the spec
+  cap counters: a child dropped in 10 of 34560 searches, could bind in 0
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_L5.npz: 103680 searches, 84394 solved
+  1653 sampled certificates replayed through the spec
+  cap counters: a child dropped in 198 of 103680 searches, could bind in 0
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_L6.npz: 311040 searches, 251825 solved
+  1670 sampled certificates replayed through the spec
+  cap counters: a child dropped in 782 of 311040 searches, could bind in 0
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_L7.npz: 933120 searches, 753403 solved
+  1599 sampled certificates replayed through the spec
+  cap counters: a child dropped in 4195 of 933120 searches, could bind in 0
+/opt/r3/b10000_cap24/rank3_bf_ms640_b10000_cap24_relsub.jsonl: 69816 rows, 49272 solved, 0 failed to replay
+  relator subwords: the cap dropped a child in 10708 of 69816 searches, could bind in 0
+recheck: 140 entries re-run with the reference solvern.search_n
+recheck: 20 relator-subword rows re-run with the reference solvern.search_n
+
+OK: 7 npz files, 60578 certificates replayed, 0 failures

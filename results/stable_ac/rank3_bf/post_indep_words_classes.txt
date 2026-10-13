@@ -1,0 +1,9 @@
+0_dataset_format             compared=641 mismatches=0  ok
+1_word_family                compared=201633 mismatches=0  ok  [files checked: 23]
+2_value_sanity               compared=26491203 mismatches=0  ok  [nodes-path_len over solved: max=9953 min=1; unsolved with nodes<budget=0]
+3_control_files              compared=6402 mismatches=0  ok
+4_rank45_npz                 compared=4709 mismatches=0  ok
+5_cross_budget_prefix        compared=1408266 mismatches=0  ok  [npz pairs compared: L1,L2,L3,L4,L5,L6,L7; control: yes]
+6_signed_relabelings_ms640   compared=640 mismatches=0  ok  [classes=319 sizes={2: 318, 4: 1} duplicate_rows=0 fixed_rows=2]
+7_duplicate_starts_in_row    compared=640 mismatches=0  ok  [fixed_rows=2 duplicate_starts=117612 of total_starts=37790720]
+total mismatches=0 skipped=9

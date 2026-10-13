@@ -13,5 +13,11 @@ data/AC1M.txt
 .env
 # Per-row arrays of the rank-n sweeps are regenerated like paths.jsonl.
 results/*/rows/
+# Raw files of the studies in results/stable_ac/ stay on their source commits (see each MANIFEST.json), so one
+# fetched into a study folder is never committed by accident. The one the cov_all study ships is kept.
+results/stable_ac/**/*.npz
+results/stable_ac/**/*.jsonl
+results/stable_ac/**/*.jsonl.gz
+!results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz
 # Local agent worktrees.
 .claude/

@@ -1,0 +1,622 @@
+{
+ "source": {
+  "branch": "rank3/brute-force-baseline",
+  "commit": "f2d53ced3da48802568f83ce4d48e2d0945a25e5",
+  "dir": "results/stable_ac/rank3_bf"
+ },
+ "s3": "s3://acsolver-u124-205558941715/cov_all/rank3_bf/",
+ "files": [
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L1.npz",
+   "bytes": 6574,
+   "sha256": "eb99d4a39033bf8f13181f5a354545f1648abcac81cc4f9bbdb9dac2bc2778f1",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L1_capcount.npz",
+   "bytes": 3028,
+   "sha256": "ece2e6857dc644c1b090c5921b833b9228bf4f48029a87d92d911588308e8de4",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L1_sample.jsonl",
+   "bytes": 348977,
+   "sha256": "96a058122cc7a521602a0e82fa70487ce7e7de8c7632882a1332e083ff77a4bb",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl",
+   "bytes": 188847,
+   "sha256": "f984f0b9afc39095b3e3d24c83c7034d2eceb6adb479d379b84bc649cbba2834",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L2.npz",
+   "bytes": 9929,
+   "sha256": "ddd71e1dac3a92251ef52e425f7df95f846c9cdb7291339ce57a1d329eec9856",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L2_capcount.npz",
+   "bytes": 3074,
+   "sha256": "f3e6f8802e805b0db4a01168161eb63427949c09c7bc5a199d63367cf282f4a5",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L2_sample.jsonl",
+   "bytes": 602586,
+   "sha256": "b00a5d1ac57ce3606be73f86e1234016106318b5c05aa37c4a1eaf96e061cafc",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl",
+   "bytes": 546574,
+   "sha256": "5e738246c370f3d225651bae96e0cf78808f785bc60d7a313f1315210691fcf9",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L3.npz",
+   "bytes": 21364,
+   "sha256": "7b322c5fdeaac1827312ca3881c48acb31205a7bd27c703c1c5f6aef5d820631",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L3_capcount.npz",
+   "bytes": 3213,
+   "sha256": "6b9c3c1b9ddebab4ad0c5b3e6070e6b4e9ad4b69f7a76dfb72ec675453901cad",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L3_sample.jsonl",
+   "bytes": 618871,
+   "sha256": "30c701e51a2887a3f5ec18a31954727ae43780d0d76a47f5e46da6ad1e842311",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl",
+   "bytes": 558185,
+   "sha256": "3dff547b0cfacad777ad431a3cd2e1e9b5295cbe5838106baa66425ff94f7bef",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L4.npz",
+   "bytes": 53450,
+   "sha256": "0e3752fa6fd381fe8c086760031cccd0e19098a71c444fe222e47039912ef141",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L4_capcount.npz",
+   "bytes": 3573,
+   "sha256": "f656b28132b49eac7519743e96ec42a0bb6d36b9cc59172e43866baa5743842b",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L4_sample.jsonl",
+   "bytes": 659708,
+   "sha256": "48338b9f0a515f9101a6737262294f5fb52b364ce4c23d964150c8bc03ed481a",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl",
+   "bytes": 650763,
+   "sha256": "29bf5eed77251de384aa8e300555f45503106f6738a1d6ab93a32ccac9c3f6e3",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L5.npz",
+   "bytes": 147935,
+   "sha256": "e79de131b9c9ec0f15a36f1a02d46ac9048823084357b89a9e2e2c7ee15cd67f",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L5_capcount.npz",
+   "bytes": 5633,
+   "sha256": "573bceb910309a94897a65f0fb85b523833ee7e8ea9b15cdd4a89de28f3dda02",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L5_sample.jsonl",
+   "bytes": 647373,
+   "sha256": "41d12c4b3b6b32f94f0a21dc2bbb0f876c8073251b02359e50017daca02ec8a8",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl",
+   "bytes": 622384,
+   "sha256": "9ba37fdf73200dc087059c0782e15824cbed1413406cc2d74b7133bfe0d60d38",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L6.npz",
+   "bytes": 433757,
+   "sha256": "6f81d5a2a0a850944002b9b135299d4e2a463642747483074654585182fd105c",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L6_capcount.npz",
+   "bytes": 11458,
+   "sha256": "e7ed1c8dff65ccaa7f3690c148ee1ce4179623c31992ccbfc8fa8de827e49cce",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L6_sample.jsonl",
+   "bytes": 658685,
+   "sha256": "2780122cfcfde6eae1698b2c8460b6c61154e7de127b95eecdbdf966314115e9",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl",
+   "bytes": 673928,
+   "sha256": "e3376a87df1c771db658bfe154bdb3740e32b952b25798366861b998fb94f2cd",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L7.npz",
+   "bytes": 1306291,
+   "sha256": "9942a814da1bcfd7f16b0ca432063f335e07ed5f4778cd6ef8109c3ab17be2b7",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L7_capcount.npz",
+   "bytes": 35781,
+   "sha256": "91383531768a7b4ec22d2fac0819cfdd4caea71a797c0c1be1bbefa9c6e16b7f",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L7_sample.jsonl",
+   "bytes": 634527,
+   "sha256": "298378bebbbbd63e616058432ad76be7eb194e8e4abbcf787a50f5ee8048b6b8",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl",
+   "bytes": 631348,
+   "sha256": "d777e3262ad5c4d6e87af4cc03ef06957e76a90337fb4886878679336cff4a06",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_control.jsonl",
+   "bytes": 439764,
+   "sha256": "14552451bccafd41c05e6516baca886df7eb431a94f4653870b363cc48b56a47",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_relsub.jsonl.gz",
+   "bytes": 904192,
+   "sha256": "a2565c0496685c2ca86e20f1f266129f57b6fed1e28b66262b538a745e38f2fd",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl.gz",
+   "bytes": 1247419,
+   "sha256": "15bfaedc9e75b1fe0f1c9db8a8d001d34ecadcb40cbb6e16cd776a5a8c9706a4",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L1.npz",
+   "bytes": 6261,
+   "sha256": "2cf986bacb5db95bf645d2593e32602e89b8520c693063073872b1ce9580c1a8",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L10.npz",
+   "bytes": 23763999,
+   "sha256": "4eccaee424cc2740cefaf2055aaf82b7659e25b5b32dc12b809920012ac23571",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L10_capcount.npz",
+   "bytes": 2898568,
+   "sha256": "46e871a48198907e7662667ab6b21f6543d2d96b1dfc03595ca63cfb8ecc9900",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L10_sample.jsonl",
+   "bytes": 506840,
+   "sha256": "9416159709204809f8efa9c49491476da1b014244ba6b6109825c6ad055f701b",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl",
+   "bytes": 397098,
+   "sha256": "ad29c39d194750ecae489b6e6736ba687ca36e3e0aa56cf72774238c82090b0f",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L1_capcount.npz",
+   "bytes": 3028,
+   "sha256": "f9161fb95bd03b8b5338cf53ab87edc0cd461c9060b16fe6662b77e46645b5b0",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L1_inv.npz",
+   "bytes": 6292,
+   "sha256": "58a108480883b03ee4daefbdd19acfe25ff800ff51a44d44a44ee66d64163d9e",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L1_inv_capcount.npz",
+   "bytes": 3027,
+   "sha256": "8a3d721d0306ba08ff4ffd748f5d9b20d04f9abfc1c1cd965daff78566f5c34a",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L1_inv_sample.jsonl",
+   "bytes": 291892,
+   "sha256": "d6a799d5f9a1a373b64c0a7513b56bce145cdd443aafffd4cec3469116ae091a",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl",
+   "bytes": 147107,
+   "sha256": "406cb26429d64f1868812913fe9d311b7bd2bd4a196a99cac47ffb11c9b22db9",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L1_sample.jsonl",
+   "bytes": 291892,
+   "sha256": "c5f9017f770e1d25526183346a0bbd09a07121ddcfb8ba47db6f7e6d8b9b2988",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl",
+   "bytes": 146338,
+   "sha256": "ed9d894efab28d8188d9b0881d7e05024c0999ea395c27a0d188956cb0c01284",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L2.npz",
+   "bytes": 8825,
+   "sha256": "e80c8717d3803ff2fb079a868788f26b4b6536c6d5299ef20c27b51a0e6a3173",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L2_capcount.npz",
+   "bytes": 3074,
+   "sha256": "923af3281f7eb7f1c8eabfbf7b256b1fca564b84fb537adce5526da78daddd53",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L2_inv.npz",
+   "bytes": 8861,
+   "sha256": "00320b7bb0da6feb0ed040898478067e6c6cce3d4ef2e68a2dc1f0ad3035d2ba",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L2_inv_capcount.npz",
+   "bytes": 3070,
+   "sha256": "944f11c0f325943eac14d7a2fb6bf758c2124be8f28f55b8a930d5a21d9b62e5",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L2_inv_sample.jsonl",
+   "bytes": 519855,
+   "sha256": "d4eeff7555300c87b64ec615f5e4e92e295290a967ee0c8e6e268518a91bde46",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl",
+   "bytes": 356776,
+   "sha256": "e5a2b679e8f1442366745a15ec8e680e207b5b501ab6019dccbf307ac0d2483e",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L2_sample.jsonl",
+   "bytes": 512939,
+   "sha256": "aef766e8fb980fc48f580635e7ce422593c9e057396f0c695571967df2c9bb91",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl",
+   "bytes": 353289,
+   "sha256": "0265830a25582fc357c6e03bd3d882b800390f1d001536503dec73cae42166ea",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L3.npz",
+   "bytes": 18060,
+   "sha256": "ac7386420958d77f0361aac1dc25eb04bf512917f8682ce47cb9488aae188e28",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L3_capcount.npz",
+   "bytes": 3215,
+   "sha256": "c9ac6588f68fcf9f789a0ce72179689f662a2f387e05e76088efe5e8f6511098",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L3_inv.npz",
+   "bytes": 18083,
+   "sha256": "aed1c8e1b19e8d4ca0b7e541df75340d5828248554d7fdc03271e9e9ad2dad7c",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L3_inv_capcount.npz",
+   "bytes": 3211,
+   "sha256": "93b5201274867c44502579118d38bb82b349990347f449b52ec7a3bd672837e5",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L3_inv_sample.jsonl",
+   "bytes": 525702,
+   "sha256": "ed2bc55288457d4959091aa1fb616134fbf83635894652861c344050f6c5d657",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl",
+   "bytes": 371258,
+   "sha256": "da7748c673e281ba8e192050bb7457d103858876e3c8db6e57bfafc6ede56f42",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L3_sample.jsonl",
+   "bytes": 536797,
+   "sha256": "066506e6942d8741ba6006a66554d0f37fb8c94a0f9490f332d8f9437966664e",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl",
+   "bytes": 386986,
+   "sha256": "ac4c8af1174000a8dfe4516d600571c269feae8568b82a0d85eb8cabed028cff",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L4.npz",
+   "bytes": 41925,
+   "sha256": "21819be04b76788357c85127a049e985069ea16f5cc7ad84706d4c982b8898a8",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L4_capcount.npz",
+   "bytes": 3518,
+   "sha256": "dc80ba08e7d7896f51ff6012624550c5552065d4360dbc6be76b32cc21d84ec5",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L4_inv.npz",
+   "bytes": 41746,
+   "sha256": "0f0355ccaa72b39485cf431e328fba859a13900b972fc3ff468747f829f7c985",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L4_inv_capcount.npz",
+   "bytes": 3509,
+   "sha256": "76b11d0d80d749b98a66fcb4a7676f8465f950a111c5433324f64a89c3f59bc5",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L4_inv_sample.jsonl",
+   "bytes": 541123,
+   "sha256": "e32b3a76a8f8c41353a2c2e39cf3341cb3ddeaba6961165dc7a655ed90432bd9",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl",
+   "bytes": 384466,
+   "sha256": "4b7d7d942ca3cb2757356c146fa9f310633d0a0d02c7e6947a183ddd4f067547",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L4_sample.jsonl",
+   "bytes": 540880,
+   "sha256": "bbfb791355a1a7f392d4c3f1011ecac6caf3e8884e72df1c13cde6e7ae9128e1",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl",
+   "bytes": 391670,
+   "sha256": "e1f4ce239fe1cc36495b7ac67e324818bcab905dfe8334e3bb0db3e76c030e48",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L5.npz",
+   "bytes": 111556,
+   "sha256": "059d0213b8d1314f00e2b86081fe40fe422a446b9625bb11dd1307405d3adc9f",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L5_capcount.npz",
+   "bytes": 4801,
+   "sha256": "5ab42dc2358fe7957762eed975fe361a14668a2bdebd54c9f61e817d7171a080",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L5_inv.npz",
+   "bytes": 111355,
+   "sha256": "c1c0e5171594e5e328fa31e383db57c6ec003289961b8ec0f57899400e7df3b2",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L5_inv_capcount.npz",
+   "bytes": 4793,
+   "sha256": "cd2822be4bb21fdd9fec6e92230a4f50440078da5e162c11b4964e74f2c57ab6",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L5_inv_sample.jsonl",
+   "bytes": 502745,
+   "sha256": "ea0e55046c0fa98e24a59f93910c8b4e3cf129b2b7d504a09b0382f4295fc021",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl",
+   "bytes": 362849,
+   "sha256": "5e251ca13217e0cf7683feb82c3c197906b03a0241b4e111d51621876fbfe38c",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L5_sample.jsonl",
+   "bytes": 537737,
+   "sha256": "ef55e2718a205d6cd17b54b612cd69f82b1b20a847870a097f3be567b629e5f8",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl",
+   "bytes": 381950,
+   "sha256": "5e947aaf43f12ff40108fdf5b386c99a981b9b94eab73def8272ec92333ed4fa",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L6.npz",
+   "bytes": 324727,
+   "sha256": "fab10a3f7e1ea42439d0fd15f028e9f132df870058249035e00dd34278a8be45",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L6_capcount.npz",
+   "bytes": 7970,
+   "sha256": "9c8c8dccc4acc250c0105bb0870fea0e329b662d9652d5cf53908de20ef8ba3f",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L6_inv.npz",
+   "bytes": 323822,
+   "sha256": "b7e9d3bd51708181bbba77e0b5f98a15739c4c0cdf7f8ae7ad0605fdcaf4f3cb",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L6_inv_capcount.npz",
+   "bytes": 7960,
+   "sha256": "515b48d4f62952a6130b890563daa277d4bc3a76c138ba3bbd6a1d4306791d07",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L6_inv_sample.jsonl",
+   "bytes": 526395,
+   "sha256": "dc18cbb8b66116fcfd8644f0d384e6fbb5e8ca1c65bab0d485b70940a96b65da",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl",
+   "bytes": 377518,
+   "sha256": "a0fb7e3fe5d9d2e58d2bbef6371c0efd52d203ef5611dff9bbb3f475678dfd09",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L6_sample.jsonl",
+   "bytes": 537590,
+   "sha256": "3b22e58a9c3b23941cff15b271bfdee311f2840d425ec5bcad1e4e5818458a36",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl",
+   "bytes": 395928,
+   "sha256": "7fa6a064c140157de1b1a5a886320cc3741f3f06370e85ecaa096ca5fa1bf5e8",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L7.npz",
+   "bytes": 980592,
+   "sha256": "88c7ac0018f71ceadcc6a4993977ed72a9d6ff7a16ac5cfb53e19ef4c769d741",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L7_capcount.npz",
+   "bytes": 24549,
+   "sha256": "ff15082c9bba600832d9bb1fdaec8d7e6bb57720c4ae44d8329115c45b6679fb",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L7_sample.jsonl",
+   "bytes": 527266,
+   "sha256": "10373a47aacc9c5d4c44bbf38e0902898ab8f8c2bd6f054c4887cab0527d78cc",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl",
+   "bytes": 388348,
+   "sha256": "1d0cd234a2ec669e2d6fc7418b77f04612ca7231ceb1121bdda3a1dc49bed3ed",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L8.npz",
+   "bytes": 2983056,
+   "sha256": "d105ef59ffcdadf929641e14a7f9111eb5f6208c39cbf8c046290f5db12bd05b",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L8_capcount.npz",
+   "bytes": 121398,
+   "sha256": "c42d6b52e417ccf762e0701607f2bf15e5ee268a78f7e750d2991033d6b1b8ec",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L8_sample.jsonl",
+   "bytes": 552033,
+   "sha256": "ebeb9f11656cf35a618f4b0dfb9725e4609167c784abb2542c62eb97eae760e7",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl",
+   "bytes": 428195,
+   "sha256": "bc22b2fb1b3c4d3db98598a657388b6016ee68a7bc16425a6d10348dfd8d49b4",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L9.npz",
+   "bytes": 8463579,
+   "sha256": "c7d8fb97667b980cee549903995fffe0d6553ff321c0200da4c302cea6503b7d",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L9_capcount.npz",
+   "bytes": 793770,
+   "sha256": "7ffc64bd2943ffae6314e2eca6a1ad36ca616b06a0f655282514b777ceb64238",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L9_sample.jsonl",
+   "bytes": 518670,
+   "sha256": "72001dc80c3011a68490d8082aae50fb88802548995d362577c0c6d44a90116e",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl",
+   "bytes": 407081,
+   "sha256": "2d2c5b2834338cf92c8ec24d0a8a6342686e8621d51c16976a75b9f7ac561022",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_control.jsonl",
+   "bytes": 370307,
+   "sha256": "fb65c8e2cc7ed951df670a34f7b04bae06c4b2d999b0884ecc2d9c826bfc3776",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_relsub.jsonl.gz",
+   "bytes": 848656,
+   "sha256": "59c18b55824253c8d85cd14c79df10c014f41af7ed2b74357efd63dac8121622",
+   "in_repo": false
+  },
+  {
+   "path": "rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl.gz",
+   "bytes": 712176,
+   "sha256": "8c8bc6b17e0b9724cae9c4028e98853df7747967ad2759bf118591ec9d927061",
+   "in_repo": false
+  },
+  {
+   "path": "rankn_bf_ms640_b1000_cap24_r4.npz",
+   "bytes": 150273,
+   "sha256": "663e3f00ae699057d47463a52b616c06e9c5a21970f33a4437a49c97afca3124",
+   "in_repo": false
+  },
+  {
+   "path": "rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl",
+   "bytes": 799948,
+   "sha256": "80329ea4b9fd8a56abeb1fcf010955645927e70fa5c92493a75a6f2e1d31c013",
+   "in_repo": false
+  },
+  {
+   "path": "rankn_bf_ms640_b1000_cap24_r5.npz",
+   "bytes": 25588,
+   "sha256": "a0c9959d781002cde7bfe4acd73656636b0e4aa1960a54ac6be4f9812a3fd68f",
+   "in_repo": false
+  },
+  {
+   "path": "rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl",
+   "bytes": 213830,
+   "sha256": "0d001ffbba98a7bb3d8151a1c9903347360c1f4a8c7c36d3800e9c6407d30339",
+   "in_repo": false
+  }
+ ]
+}

@@ -1,0 +1,563 @@
+{
+ "script": "indep_stats_rank3.py",
+ "checks": [
+  {
+   "name": "b1000:header",
+   "compared": 41,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b1000:view100:by_length",
+   "compared": 111,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b1000:view1000:by_length",
+   "compared": 111,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b1000:control_equals_null_start",
+   "compared": 1280,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "the .md says the control is identical to the null stabilization: (solved, nodes, path_length) of the 2-generator control compared with the n2_* and the null_* columns of the same row; 'published' in an example is the control triple; the path length is compared only when the search is solved (null and -1 both mean no path)"
+  },
+  {
+   "name": "b1000:inferred:view100:words_vs_control",
+   "compared": 12,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred from the .md: number of words whose solved count over all presentations is larger than (beating) or equal to (matching) the control's solved count"
+  },
+  {
+   "name": "b1000:inferred:timing",
+   "compared": 21,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: ms_per_search = 1000 * sum(block_seconds of L<n>.npz) / (presentations * words); core_seconds = that sum over the main L files (not the _inv files); relative tolerance 1e-05 because block_seconds is float32"
+  },
+  {
+   "name": "b1000:view100:oracle",
+   "compared": 40,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b1000:inferred:view1000:words_vs_control",
+   "compared": 12,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred from the .md: number of words whose solved count over all presentations is larger than (beating) or equal to (matching) the control's solved count"
+  },
+  {
+   "name": "b1000:view1000:oracle",
+   "compared": 40,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b1000:inverse_pairs",
+   "compared": 11,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "at the file budget, not in a view; identical = same solved flag and same nodes; pairs also identical in path_len: 372263; the mean and the 99th percentile of |nodes(w) - nodes(w^-1)| over pairs where both solve are inferred from the field names"
+  },
+  {
+   "name": "b1000:view100:overall",
+   "compared": 6,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b1000:inferred:view100:relator_rotations",
+   "compared": 20,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: a (presentation, word) pair is a relator rotation when w or w^-1 is a cyclic rotation of r1 or r2 (the family keeps one of w, w^-1); rows = all such pairs, solved = those solved in the view, faster/equal/slower only where the control solves; 'without' = per-presentation fractions over the other words, mean over control-solved presentations. Rows under the alternative reading (only w itself a rotation): 2277"
+  },
+  {
+   "name": "b1000:inferred:view100:top_words",
+   "compared": 90,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: solved = presentations the word solves; gained = solved where the control does not; lost = control-solved presentations the word does not solve; faster = control-solved presentations it solves with fewer nodes; the list is the words with the largest solved counts, in non-increasing order"
+  },
+  {
+   "name": "b1000:inferred:view100:fixed_word_cross_validated",
+   "compared": 12,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: even/odd is the parity of pres_id; the word is one with the largest solved count on the train half (ties accepted); *_control is the control's solved count on that half"
+  },
+  {
+   "name": "b1000:inferred:view100:price",
+   "compared": 4,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: words run in the order of the files (L1, L2, ... and inside a file the column order); a search that does not solve inside the view costs min(nodes, view), the first solving one costs its nodes; the median is over the presentations solved; 'beats' = fewer nodes than the control, or solved where the control is not. control_nodes_median_same_presentations: checked reading = median of the control's nodes over the presentations the run solves and the control solves in the view (8.0); alternative, over every presentation the run solves: 9.0"
+  },
+  {
+   "name": "b1000:view1000:overall",
+   "compared": 6,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b1000:inferred:view1000:relator_rotations",
+   "compared": 20,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: a (presentation, word) pair is a relator rotation when w or w^-1 is a cyclic rotation of r1 or r2 (the family keeps one of w, w^-1); rows = all such pairs, solved = those solved in the view, faster/equal/slower only where the control solves; 'without' = per-presentation fractions over the other words, mean over control-solved presentations. Rows under the alternative reading (only w itself a rotation): 2277"
+  },
+  {
+   "name": "b1000:inferred:view1000:top_words",
+   "compared": 90,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: solved = presentations the word solves; gained = solved where the control does not; lost = control-solved presentations the word does not solve; faster = control-solved presentations it solves with fewer nodes; the list is the words with the largest solved counts, in non-increasing order"
+  },
+  {
+   "name": "b1000:inferred:view1000:fixed_word_cross_validated",
+   "compared": 12,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: even/odd is the parity of pres_id; the word is one with the largest solved count on the train half (ties accepted); *_control is the control's solved count on that half"
+  },
+  {
+   "name": "b1000:inferred:view1000:price",
+   "compared": 78,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: words run in the order of the files (L1, L2, ... and inside a file the column order); a search that does not solve inside the view costs min(nodes, view), the first solving one costs its nodes; the median is over the presentations solved; 'beats' = fewer nodes than the control, or solved where the control is not. control_nodes_median_same_presentations: checked reading = median of the control's nodes over the presentations the run solves and the control solves in the view (9.0); alternative, over every presentation the run solves: 9.0"
+  },
+  {
+   "name": "b1000:inferred:view1000:gained_priced_control_columns",
+   "compared": 44,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: this budget's control file does not reach control_file_budget, so only the rows whose published control_nodes fit in the budget-10000 control file are compared with it (solved flag and nodes); for the other rows that file must leave the presentation unsolved. Those other rows and the four totals of the block stay unchecked"
+  },
+  {
+   "name": "b1000:oracle_some_word_faster_than_control",
+   "compared": 20,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "the STRICT reading reproduces every row (the control solves and some word solves with fewer nodes); rows: 20, rows where the two readings differ: 16, rows not reproduced: strict 0, inclusive 16; mismatches are counted against the strict reading"
+  },
+  {
+   "name": "b1000:inferred:median_extra_nodes",
+   "compared": 20,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "no definition was given for this field and the .md does not print it. Checked against: per-presentation median over its solving words, then the median over presentations. Rows reproduced by each reading, of 20: pooled cells 16; per-presentation 20; per-word 15. A failure here with another reading at 20 of 20 is a difference of definition, not of data"
+  },
+  {
+   "name": "b1000:inferred:relsub_row_counts",
+   "compared": 2,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: rows = lines of the relsub file, rows_proper = lines with is_proper true; nothing else of the relsub block is recomputed"
+  },
+  {
+   "name": "b1000:inferred:control_at_larger_budgets",
+   "compared": 3,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: number of presentations the control solves within that many nodes; an entry above this control file's own budget is taken from the other budget's control file when that one reaches it, otherwise it is skipped"
+  },
+  {
+   "name": "b10000:header",
+   "compared": 34,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:view100:by_length",
+   "compared": 78,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:view1000:by_length",
+   "compared": 78,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:view10000:by_length",
+   "compared": 78,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:control_equals_null_start",
+   "compared": 1280,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "the .md says the control is identical to the null stabilization: (solved, nodes, path_length) of the 2-generator control compared with the n2_* and the null_* columns of the same row; 'published' in an example is the control triple; the path length is compared only when the search is solved (null and -1 both mean no path)"
+  },
+  {
+   "name": "b10000:inferred:view100:words_vs_control",
+   "compared": 9,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred from the .md: number of words whose solved count over all presentations is larger than (beating) or equal to (matching) the control's solved count"
+  },
+  {
+   "name": "b10000:inferred:timing",
+   "compared": 22,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: ms_per_search = 1000 * sum(block_seconds of L<n>.npz) / (presentations * words); core_seconds = that sum over the main L files (not the _inv files); relative tolerance 1e-05 because block_seconds is float32"
+  },
+  {
+   "name": "b10000:view100:oracle",
+   "compared": 28,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:inferred:view1000:words_vs_control",
+   "compared": 9,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred from the .md: number of words whose solved count over all presentations is larger than (beating) or equal to (matching) the control's solved count"
+  },
+  {
+   "name": "b10000:view1000:oracle",
+   "compared": 28,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:inferred:view10000:words_vs_control",
+   "compared": 9,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred from the .md: number of words whose solved count over all presentations is larger than (beating) or equal to (matching) the control's solved count"
+  },
+  {
+   "name": "b10000:view10000:oracle",
+   "compared": 28,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:view100:overall",
+   "compared": 6,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:inferred:view100:relator_rotations",
+   "compared": 17,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: a (presentation, word) pair is a relator rotation when w or w^-1 is a cyclic rotation of r1 or r2 (the family keeps one of w, w^-1); rows = all such pairs, solved = those solved in the view, faster/equal/slower only where the control solves; 'without' = per-presentation fractions over the other words, mean over control-solved presentations. Rows under the alternative reading (only w itself a rotation): 1202"
+  },
+  {
+   "name": "b10000:inferred:view100:top_words",
+   "compared": 90,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: solved = presentations the word solves; gained = solved where the control does not; lost = control-solved presentations the word does not solve; faster = control-solved presentations it solves with fewer nodes; the list is the words with the largest solved counts, in non-increasing order"
+  },
+  {
+   "name": "b10000:inferred:view100:fixed_word_cross_validated",
+   "compared": 12,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: even/odd is the parity of pres_id; the word is one with the largest solved count on the train half (ties accepted); *_control is the control's solved count on that half"
+  },
+  {
+   "name": "b10000:inferred:view100:price",
+   "compared": 4,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: words run in the order of the files (L1, L2, ... and inside a file the column order); a search that does not solve inside the view costs min(nodes, view), the first solving one costs its nodes; the median is over the presentations solved; 'beats' = fewer nodes than the control, or solved where the control is not. control_nodes_median_same_presentations: checked reading = median of the control's nodes over the presentations the run solves and the control solves in the view (8.0); alternative, over every presentation the run solves: 9.0"
+  },
+  {
+   "name": "b10000:view1000:overall",
+   "compared": 6,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:inferred:view1000:relator_rotations",
+   "compared": 17,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: a (presentation, word) pair is a relator rotation when w or w^-1 is a cyclic rotation of r1 or r2 (the family keeps one of w, w^-1); rows = all such pairs, solved = those solved in the view, faster/equal/slower only where the control solves; 'without' = per-presentation fractions over the other words, mean over control-solved presentations. Rows under the alternative reading (only w itself a rotation): 1202"
+  },
+  {
+   "name": "b10000:inferred:view1000:top_words",
+   "compared": 90,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: solved = presentations the word solves; gained = solved where the control does not; lost = control-solved presentations the word does not solve; faster = control-solved presentations it solves with fewer nodes; the list is the words with the largest solved counts, in non-increasing order"
+  },
+  {
+   "name": "b10000:inferred:view1000:fixed_word_cross_validated",
+   "compared": 12,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: even/odd is the parity of pres_id; the word is one with the largest solved count on the train half (ties accepted); *_control is the control's solved count on that half"
+  },
+  {
+   "name": "b10000:inferred:view1000:price",
+   "compared": 4,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: words run in the order of the files (L1, L2, ... and inside a file the column order); a search that does not solve inside the view costs min(nodes, view), the first solving one costs its nodes; the median is over the presentations solved; 'beats' = fewer nodes than the control, or solved where the control is not. control_nodes_median_same_presentations: checked reading = median of the control's nodes over the presentations the run solves and the control solves in the view (9.0); alternative, over every presentation the run solves: 9.0"
+  },
+  {
+   "name": "b10000:view10000:overall",
+   "compared": 6,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": ""
+  },
+  {
+   "name": "b10000:inferred:view10000:relator_rotations",
+   "compared": 17,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: a (presentation, word) pair is a relator rotation when w or w^-1 is a cyclic rotation of r1 or r2 (the family keeps one of w, w^-1); rows = all such pairs, solved = those solved in the view, faster/equal/slower only where the control solves; 'without' = per-presentation fractions over the other words, mean over control-solved presentations. Rows under the alternative reading (only w itself a rotation): 1202"
+  },
+  {
+   "name": "b10000:inferred:view10000:top_words",
+   "compared": 90,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: solved = presentations the word solves; gained = solved where the control does not; lost = control-solved presentations the word does not solve; faster = control-solved presentations it solves with fewer nodes; the list is the words with the largest solved counts, in non-increasing order"
+  },
+  {
+   "name": "b10000:inferred:view10000:fixed_word_cross_validated",
+   "compared": 12,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: even/odd is the parity of pres_id; the word is one with the largest solved count on the train half (ties accepted); *_control is the control's solved count on that half"
+  },
+  {
+   "name": "b10000:inferred:view10000:price",
+   "compared": 24,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: words run in the order of the files (L1, L2, ... and inside a file the column order); a search that does not solve inside the view costs min(nodes, view), the first solving one costs its nodes; the median is over the presentations solved; 'beats' = fewer nodes than the control, or solved where the control is not. control_nodes_median_same_presentations: checked reading = median of the control's nodes over the presentations the run solves and the control solves in the view (10.0); alternative, over every presentation the run solves: 10.0"
+  },
+  {
+   "name": "b10000:inferred:view10000:gained_priced_control_columns",
+   "compared": 0,
+   "mismatches": 0,
+   "status": "not_compared",
+   "detail": "inferred: this budget's control file does not reach control_file_budget, so only the rows whose published control_nodes fit in the budget-10000 control file are compared with it (solved flag and nodes); for the other rows that file must leave the presentation unsolved. Those other rows and the four totals of the block stay unchecked"
+  },
+  {
+   "name": "b10000:oracle_some_word_faster_than_control",
+   "compared": 21,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "the STRICT reading reproduces every row (the control solves and some word solves with fewer nodes); rows: 21, rows where the two readings differ: 14, rows not reproduced: strict 0, inclusive 14; mismatches are counted against the strict reading"
+  },
+  {
+   "name": "b10000:inferred:median_extra_nodes",
+   "compared": 21,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "no definition was given for this field and the .md does not print it. Checked against: per-presentation median over its solving words, then the median over presentations. Rows reproduced by each reading, of 21: pooled cells 16; per-presentation 21; per-word 13. A failure here with another reading at 21 of 21 is a difference of definition, not of data"
+  },
+  {
+   "name": "b10000:inferred:relsub_row_counts",
+   "compared": 2,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: rows = lines of the relsub file, rows_proper = lines with is_proper true; nothing else of the relsub block is recomputed"
+  },
+  {
+   "name": "b10000:inferred:control_at_larger_budgets",
+   "compared": 3,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "inferred: number of presentations the control solves within that many nodes; an entry above this control file's own budget is taken from the other budget's control file when that one reaches it, otherwise it is skipped"
+  },
+  {
+   "name": "cross:prefix_property_b1000_vs_b10000",
+   "compared": 142,
+   "mismatches": 0,
+   "status": "ok",
+   "detail": "not a comparison with the summary: the per-length numbers of the views 100 and 1,000, recomputed here from the budget-1,000 arrays and from the budget-10,000 arrays, must agree if 'solved in the file and nodes <= V' is a true prefix of the longer search; 'published' in an example is the b1000 value, 'recomputed' the b10000 value"
+  }
+ ],
+ "mismatches": 0,
+ "compared": 4383,
+ "skipped": [
+  "b1000 summary: max_len (10) not checked: it is the summarizer's choice of lengths, not a statistic; RESULTS_DIR has L files without a gap for lengths 1..10",
+  "b1000 summary: inverse_pairs.max_len (6) not checked: it is the summarizer's choice of lengths; usable _inv files exist for lengths 1..6",
+  "rank3_bf_ms640_b10000_cap24_L8.npz is absent",
+  "rank3_bf_ms640_b10000_cap24_L9.npz is absent",
+  "rank3_bf_ms640_b10000_cap24_L10.npz is absent",
+  "rank3_bf_ms640_b10000_cap24_L1_inv.npz is absent",
+  "rank3_bf_ms640_b10000_cap24_L2_inv.npz is absent",
+  "rank3_bf_ms640_b10000_cap24_L3_inv.npz is absent",
+  "rank3_bf_ms640_b10000_cap24_L4_inv.npz is absent",
+  "rank3_bf_ms640_b10000_cap24_L5_inv.npz is absent",
+  "rank3_bf_ms640_b10000_cap24_L6_inv.npz is absent",
+  "b10000 summary: max_len (7) not checked: it is the summarizer's choice of lengths, not a statistic; RESULTS_DIR has L files without a gap for lengths 1..7",
+  "b10000: views.10000.gained_presentations_priced.rows[*] control_solved/control_nodes beyond 10000 nodes not checked: the only control file that reaches furthest is this budget's own, and it is what makes these rows gained",
+  "b1000 summary: source (1 value) not checked: a label, not a number",
+  "b1000 summary: views.*.subword_vs_other_within_bf.presentations_with_a_subword (2 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b1000 summary: views.*.subword_vs_other_within_bf.subword_solve_rate (2 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b1000 summary: views.*.subword_vs_other_within_bf.other_solve_rate (2 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b1000 summary: views.*.subword_vs_other_within_bf.subword_faster_than_control (2 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b1000 summary: views.*.subword_vs_other_within_bf.other_faster_than_control (2 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b1000 summary: views.*.gained_presentations_priced.control_file_budget (1 value) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b1000 summary: views.*.gained_presentations_priced.control_solves_them_at_file_budget (1 value) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b1000 summary: views.*.gained_presentations_priced.best_word_cheaper_than_control (1 value) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b1000 summary: views.*.gained_presentations_priced.shortlex_to_first_solve_cheaper_than_control (1 value) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b1000 summary: views.*.gained_presentations_priced.rows[*].control_solved (4 values) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b1000 summary: views.*.gained_presentations_priced.rows[*].control_nodes (4 values) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b1000 summary: control_at_larger_budgets.100000 (1 value) not checked: needs a control file run at that budget, which is not in RESULTS_DIR",
+  "b1000 summary: relsub.proper.solved_by_some_subword (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.proper.gained_over_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.proper.mean_solve_rate (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.proper.some_subword_faster_than_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.proper.mean_fraction_faster_than_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.all.solved_by_some_subword (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.all.gained_over_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.all.mean_solve_rate (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.all.some_subword_faster_than_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.all.mean_fraction_faster_than_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b1000 summary: relsub.vs_cov.cov_file_budget (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.cov_median_cap (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.same_word_pairs_joined (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.same_word_neither (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.control (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.rank3_subword_oracle (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.cov_oracle (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.control_or_rank3 (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.control_or_cov (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.rank3_not_cov (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.cov_not_rank3 (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.same_word_rank3_fewer_nodes (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.same_word_tie (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.same_word_cov_fewer_nodes (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.same_word_only_rank3_solves (1 value) not checked: CoV column: needs the CoV result files",
+  "b1000 summary: relsub.vs_cov.same_word_only_cov_solves (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: source (1 value) not checked: a label, not a number",
+  "b10000 summary: views.*.subword_vs_other_within_bf.presentations_with_a_subword (3 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b10000 summary: views.*.subword_vs_other_within_bf.subword_solve_rate (3 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b10000 summary: views.*.subword_vs_other_within_bf.other_solve_rate (3 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b10000 summary: views.*.subword_vs_other_within_bf.subword_faster_than_control (3 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b10000 summary: views.*.subword_vs_other_within_bf.other_faster_than_control (3 values) not checked: relator-subword column: needs the summarizer's rule for which brute-force words count as a subword of a relator (linear or cyclic, with or without inverses), which the task does not define",
+  "b10000 summary: views.*.gained_presentations_priced.control_file_budget (1 value) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b10000 summary: views.*.gained_presentations_priced.control_solves_them_at_file_budget (1 value) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b10000 summary: views.*.gained_presentations_priced.best_word_cheaper_than_control (1 value) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b10000 summary: views.*.gained_presentations_priced.shortlex_to_first_solve_cheaper_than_control (1 value) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b10000 summary: views.*.gained_presentations_priced.rows[*].control_solved (6 values) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b10000 summary: views.*.gained_presentations_priced.rows[*].control_nodes (6 values) not checked: needs the control search at control_file_budget, and the control file in RESULTS_DIR was not run at that budget",
+  "b10000 summary: control_at_larger_budgets.100000 (1 value) not checked: needs a control file run at that budget, which is not in RESULTS_DIR",
+  "b10000 summary: relsub.proper.solved_by_some_subword (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.proper.gained_over_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.proper.mean_solve_rate (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.proper.some_subword_faster_than_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.proper.mean_fraction_faster_than_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.all.solved_by_some_subword (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.all.gained_over_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.all.mean_solve_rate (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.all.some_subword_faster_than_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.all.mean_fraction_faster_than_control (1 value) not checked: relator-subword column: computed from <stem>_relsub.jsonl with rules (denominators, which rows count as faster) that the task does not define; only the two row counts are checked, and only when that file is present",
+  "b10000 summary: relsub.vs_cov.cov_file_budget (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.cov_median_cap (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.same_word_pairs_joined (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.same_word_neither (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.control (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.rank3_subword_oracle (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.cov_oracle (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.control_or_rank3 (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.control_or_cov (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.rank3_not_cov (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.cov_not_rank3 (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.same_word_rank3_fewer_nodes (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.same_word_tie (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.same_word_cov_fewer_nodes (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.same_word_only_rank3_solves (1 value) not checked: CoV column: needs the CoV result files",
+  "b10000 summary: relsub.vs_cov.same_word_only_cov_solves (1 value) not checked: CoV column: needs the CoV result files"
+ ],
+ "first_mismatches": [],
+ "info": {
+  "dataset": {
+   "lines": 640,
+   "b1000_control_rows_whose_r1_r2_equal_the_dataset_line": "640 of 640",
+   "b10000_control_rows_whose_r1_r2_equal_the_dataset_line": "640 of 640"
+  },
+  "b1000:control_file_node_budget": [
+   1000
+  ],
+  "b1000:max_len": {
+   "summary": 10,
+   "L_files_present_without_a_gap_to": 10
+  },
+  "b1000:lengths_recomputed": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "b1000:median_extra_nodes_rows_reproduced": {
+   "rows": 20,
+   "pooled_cells": 16,
+   "per_presentation_then_median": 20,
+   "per_word_then_median": 15
+  },
+  "b10000:control_file_node_budget": [
+   10000
+  ],
+  "b10000:max_len": {
+   "summary": 7,
+   "L_files_present_without_a_gap_to": 7
+  },
+  "b10000:lengths_recomputed": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "b10000:median_extra_nodes_rows_reproduced": {
+   "rows": 21,
+   "pooled_cells": 16,
+   "per_presentation_then_median": 21,
+   "per_word_then_median": 13
+  }
+ },
+ "errors": [],
+ "crashed": null
+}
