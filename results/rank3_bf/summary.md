@@ -2,12 +2,12 @@
 
 Control solves 554 of 640. 51,200 searches (80 starts per row), words of length 1 to 4.
 
-| bucket | starts | solved | on control-solved | on control-unsolved | fewer | same | more | unsolved | solved by some | gained | lost | some faster |
+| bucket | starts | solved | on control-solved | on control-unsolved | fewer | same | more | lost | solved by some | gained | lost by every | some faster |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| L1 | 2 | 60.1% | 69.4% | 0.0% | 0.0% | 0.0% | 60.1% | 39.9% | 403 | 0 | 151 | 0 |
-| L2 | 6 | 68.4% | 79.0% | 0.0% | 1.1% | 0.1% | 67.2% | 31.6% | 472 | 0 | 82 | 35 |
-| L3 | 18 | 69.8% | 80.7% | 0.0% | 0.6% | 0.0% | 69.2% | 30.2% | 516 | 0 | 38 | 60 |
-| L4 | 54 | 68.6% | 79.2% | 0.2% | 1.1% | 0.0% | 67.5% | 31.4% | 540 | 4 | 18 | 134 |
+| L1 | 2 | 60.1% | 69.4% | 0.0% | 0.0% | 0.0% | 69.4% | 30.6% | 403 | 0 | 151 | 0 |
+| L2 | 6 | 68.4% | 79.0% | 0.0% | 1.3% | 0.1% | 77.7% | 21.0% | 472 | 0 | 82 | 35 |
+| L3 | 18 | 69.8% | 80.6% | 0.0% | 0.7% | 0.0% | 80.0% | 19.4% | 516 | 0 | 38 | 60 |
+| L4 | 54 | 68.6% | 79.2% | 0.2% | 1.2% | 0.0% | 77.9% | 20.8% | 540 | 4 | 18 | 130 |
 
 Best single start: `yXYx` solves 506 rows.
 

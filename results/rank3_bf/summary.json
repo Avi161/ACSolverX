@@ -13,13 +13,13 @@
  "buckets": {
   "L1": {
    "starts": 2,
-   "solved": 0.6008,
-   "solved_on_control_solved": 0.694,
+   "solved": 0.600781,
+   "solved_on_control_solved": 0.694043,
    "solved_on_control_unsolved": 0.0,
    "fewer": 0.0,
    "same": 0.0,
-   "more": 0.6008,
-   "unsolved": 0.3992,
+   "more": 0.694043,
+   "lost": 0.305957,
    "oracle": {
     "solved_by_some": 403,
     "gained_over_control": 0,
@@ -29,13 +29,13 @@
   },
   "L2": {
    "starts": 6,
-   "solved": 0.6841,
-   "solved_on_control_solved": 0.7903,
+   "solved": 0.684115,
+   "solved_on_control_solved": 0.790313,
    "solved_on_control_unsolved": 0.0,
-   "fewer": 0.0112,
-   "same": 0.0005,
-   "more": 0.6724,
-   "unsolved": 0.3159,
+   "fewer": 0.012936,
+   "same": 0.000602,
+   "more": 0.776775,
+   "lost": 0.209687,
    "oracle": {
     "solved_by_some": 472,
     "gained_over_control": 0,
@@ -45,13 +45,13 @@
   },
   "L3": {
    "starts": 18,
-   "solved": 0.6981,
-   "solved_on_control_solved": 0.8065,
+   "solved": 0.69809,
+   "solved_on_control_solved": 0.806458,
    "solved_on_control_unsolved": 0.0,
-   "fewer": 0.0056,
-   "same": 0.0002,
-   "more": 0.6923,
-   "unsolved": 0.3019,
+   "fewer": 0.006518,
+   "same": 0.000201,
+   "more": 0.799739,
+   "lost": 0.193542,
    "oracle": {
     "solved_by_some": 516,
     "gained_over_control": 0,
@@ -61,18 +61,18 @@
   },
   "L4": {
    "starts": 54,
-   "solved": 0.6856,
-   "solved_on_control_solved": 0.7918,
-   "solved_on_control_unsolved": 0.0017,
-   "fewer": 0.011,
-   "same": 0.0002,
-   "more": 0.6745,
-   "unsolved": 0.3144,
+   "solved": 0.685648,
+   "solved_on_control_solved": 0.791817,
+   "solved_on_control_unsolved": 0.001723,
+   "fewer": 0.012435,
+   "same": 0.000201,
+   "more": 0.779182,
+   "lost": 0.208183,
    "oracle": {
     "solved_by_some": 540,
     "gained_over_control": 4,
     "control_solved_lost_by_every": 18,
-    "some_faster_than_control": 134
+    "some_faster_than_control": 130
    }
   }
  },

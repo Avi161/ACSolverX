@@ -2,9 +2,9 @@
 
 Control solves 219 of 223. 78,273 searches (351 starts per row), words of length 1 to 3.
 
-| bucket | starts | solved | on control-solved | on control-unsolved | fewer | same | more | unsolved | solved by some | gained | lost | some faster |
+| bucket | starts | solved | on control-solved | on control-unsolved | fewer | same | more | lost | solved by some | gained | lost by every | some faster |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| all | 351 | 83.2% | 84.7% | 0.0% | 0.1% | 0.0% | 83.1% | 16.8% | 216 | 0 | 3 | 9 |
+| all | 351 | 83.2% | 84.7% | 0.0% | 0.1% | 0.0% | 84.7% | 15.3% | 216 | 0 | 3 | 9 |
 
 Best single start: `yxY,Yxy` solves 208 rows.
 
