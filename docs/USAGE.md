@@ -21,6 +21,7 @@ python run.py --config configs/hybrid.toml --pres "xxYYY, xyxYXY" --pres "YYXyx,
 | `--input PATH` | run every presentation of your own file (formats below) instead of the config's `benchmark` and `rows` |
 | `--pres "R1, R2"` | run a presentation typed here, repeatable; it is saved as `<out>/<name>/input.txt`, and after the run one line per presentation is printed (id, solved, kind, cost, sub_moves, elem_moves) |
 | `--rows SPEC` | only some rows: a slice `a:b` (or `a:b:c`, integers only) of the row list, else ids `3, 17` (an id may hold a colon, `ms:1`) |
+| `--solved-from RUN_DIR` | only the rows that `RUN_DIR/paths.jsonl` marks solved, in its order (not with `--rows`); see "Decode later" |
 | `--out DIR` | the results root (default `results`) |
 | `--fresh` | delete this run name's earlier results first |
 
@@ -148,7 +149,18 @@ The rank-n sweep (`rankn`) writes per-row `rows/<id>.npz` files and its own summ
   paths of its searches, and only the record leaves them out. Records keep `solved`, `kind`, `cost`, `sub_moves` and
   the cap counters; `path` and `elementary` are null, `verified` is false, so a solve is not checked, and
   `elem_moves` is null (but for a CoV path carried back from an image). Rerun with `path = true` to get and check
-  the paths.
+  the paths, or decode later (below).
+- **Decode later.** `--solved-from RUN_DIR` runs only the rows that run solved. After a `path = false` run, the same
+  config with `path = true` recomputes just those rows, and the searches are deterministic, so it finds the same
+  solves at the same cost, now decoded and replayed (`verified: true`):
+
+  ```bash
+  python run.py --config configs/hybrid.toml --set path=false --set name=ms640_fast
+  python run.py --config configs/hybrid.toml --set path=true --solved-from results/ms640_fast --set name=ms640_fast_paths
+  ```
+
+  Give the same benchmark (or `--input`/`--pres`) and another name, as the config differs. A folder without
+  `paths.jsonl` (the shipped `results/`) or with no solved row stops the command with one line.
 - **`fields = ["solved", "cost", "sub_moves"]`** keeps the records small; `id`, `pres`, `solved` and `error` are
   always written. `summary.json` reads the records as written, so a dropped key leaves its entries empty (without
   `kind`, every kind counts 0; without `cpu_seconds`, `cpu_seconds` and `us_per_cost` are null).

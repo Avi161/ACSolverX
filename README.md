@@ -1,118 +1,122 @@
 # AC-SolverX
 
 AC-SolverX searches for Andrews-Curtis paths that reduce balanced presentations of the trivial group, such as
-`<x, y | xxYYY, xyxYXY>`, to the trivial presentation, with several search methods behind one command. Give it a
-shipped benchmark or your own file of presentations, and it tells you per presentation whether it was solved, what the
-search cost and how long the path is, having replayed every path on the presentation it claims to solve.
-
-Code and datasets for *The Two-Hump Problem: Bridging the Difficulty Gap in Mathematical Reinforcement Learning*
-(ICML 2026; [project page](https://icml.cc/virtual/2026/poster/64251), [arXiv](https://arxiv.org/abs/2606.21611)),
-and the stable Andrews-Curtis follow-up. A solve is an **`ac_path`** (AC moves on the presentation, `aut_assisted` when
-found in another basis and carried back) or a **`stable_cert`** (stable AC: AC4/AC5 moves or a change of variables),
-always reported apart.
-
-## Install
+`<x, y | xxYYY, xyxYXY>`, to the trivial presentation. Code and datasets for *The Two-Hump Problem: Bridging the
+Difficulty Gap in Mathematical Reinforcement Learning* (ICML 2026; [project page](https://icml.cc/virtual/2026/poster/64251),
+[arXiv](https://arxiv.org/abs/2606.21611)), and the stable Andrews-Curtis follow-up.
 
 ```bash
 python3.12 -m venv .venv && . .venv/bin/activate
-pip install -e ".[dev]"          # numpy, numba, pytest; ".[rl]" adds PyTorch for the rl method
+pip install -e ".[dev]"          # editable: acx reads data/ and benchmark/; ".[rl]" adds PyTorch for the rl method
 export NUMBA_NUM_THREADS=1       # one core per search; a config's `workers` solves rows in parallel
 ```
 
-The install is editable because `acx` reads `data/` and `benchmark/` from the checkout. The first run compiles the
-numba kernels (under a minute) and caches them.
+The first run compiles the numba kernels (under a minute) and caches them.
 
-## Quick start
+## `run.py`: one command for every method
+
+`python run.py --config configs/<method>.toml` runs one search method on a set of presentations, row by row, and writes
+what it found. **The config** (TOML) names the `method`, the `benchmark` and the method's settings (budget, priority,
+relator cap); `configs/` has one per method and [`configs/template.toml`](configs/template.toml) lists every key with
+its default. `--set key=value` overrides any of them for one run, `--rows 0:20` runs a slice.
 
 ```bash
-python run.py --config configs/smoke.toml                                 # 20 MS640 rows, about a second
-python run.py --config configs/s20_mk2_fast.toml --set benchmark=bench60  # a shipped benchmark by name
-python run.py --config configs/hybrid.toml --input examples/presentations.csv   # your file -> results/hybrid_presentations/
-python run.py --config configs/greedy_fast.toml --pres "xxYYY, xyxYXY"    # one presentation -> results/greedy_fast_pres/
-python run.py --config configs/greedy_fast.toml --set benchmark=bench60 --set path=false --set name=bench60_nopath
-python run.py --config configs/greedy_fast.toml --input examples/presentations.csv   # the same file, another method
+python run.py --config configs/smoke.toml                                     # 20 MS640 rows, about a second
+python run.py --config configs/s20_mk2_fast.toml --set benchmark=bench60      # a shipped benchmark by name
+python run.py --config configs/hybrid.toml --pres "xxYYY, xyxYXY"            # one presentation -> results/hybrid_pres/
+python run.py --config configs/hybrid.toml --input examples/presentations.csv # your file -> results/hybrid_presentations/
+python run.py --config configs/greedy_fast.toml --input examples/presentations.csv     # the same file, another method
 python compare.py results/greedy_fast_presentations results/hybrid_presentations --html compare.html
 ```
 
-A run writes `results/<name>/`: `paths.jsonl` (one record per presentation), `summary.json` and `config.json`; run it
-again and it resumes (a row whose presentation changed is solved again). `path=false` skips writing and replaying
-the paths, which is faster. `compare.py` prints one table of solve rate, cost, path length and CPU per pop, and
-`--html` adds charts. Input formats, every flag, the config keys and every output field are in
-[docs/USAGE.md](docs/USAGE.md).
+**Your own presentations**: `--input FILE` runs a `.txt` (one presentation per line, `xxYYY, xyxYXY`; upper case is
+the inverse), `.csv` (columns `r1, r2, ...`) or `.jsonl` file, optionally gzipped; `--pres "r1, r2"` (repeatable) runs
+presentations typed on the command line and prints one line each: solved or not, kind, cost and path length.
+[`examples/`](examples/) holds the same eight presentations in each format.
 
-## Methods
+**The output** is `results/<name>/`: `paths.jsonl` (one record per presentation: `solved`, `kind`, `cost`, `sub_moves`,
+`elem_moves`, the path, `verified`, CPU time, the cap counters), `summary.json` (solve counts by kind, total and mean
+cost, path lengths, CPU per pop) and `config.json`. Running the same command again resumes. `compare.py` puts finished
+runs side by side. Every flag, input format, config key and output field: [docs/USAGE.md](docs/USAGE.md).
 
-Each is a `method` of `run.py` with a ready config in `configs/`; [docs/METHODS.md](docs/METHODS.md) defines them.
+## Two pipelines: normal or high-speed
 
-| method | what it does | config |
+| | normal: `path = true` (default) | high-speed: `--set path=false` |
 |---|---|---|
-| **greedy** | best-first search over substitution moves, ordered by total length (the baseline) or **S20_MK2** (`L + 20 S + 2 MK`); a pure-Python `spec` backend and a numba `fast` one that takes the same steps | `greedy_fast.toml`, `s20_mk2_fast.toml`, `baseline_spec.toml`, `ladder.toml` |
-| **aut** | search the Aut(F2)-minimal (Whitehead) form of the row, carry the path back to the row | `aut.toml` |
-| **cov** | the row, then its changes of variables, in one budget; a solve outside the row's orbit is a `stable_cert` | `cov.toml` |
-| **hybrid** | a Nielsen/pinch cascade, then one best-first search over rank two and higher rank; the most solves | `hybrid.toml` |
-| **ngen** | n-generator search, after a transform to relators of length <= 3, lifted to a stable path | `ngen_sac.toml` |
-| **rl** (optional) | the paper's PPO policy (step 1000) as a beam search; needs `pip install -e ".[rl]"` | `rl.toml` |
-| **rankn** | rank-3/4/5 brute force: stabilise each row with every short word and search each start ([docs/RANK3.md](docs/RANK3.md)) | `rank3_bf.toml`, `rank4_bf.toml`, `rank5_bf.toml` |
+| solved, kind, nodes explored (`cost`: pops, hybrid units or rl evaluations) | yes | yes |
+| path length in S-moves (`sub_moves`) | yes | yes |
+| the path, decoded to elementary AC moves (`elem_moves`, `elementary`) | yes | no |
+| every solve replayed on its own row (`verified: true`) | yes | no: not a certificate |
 
-Children with a relator longer than `cap` (default 24, `"none"` = uncapped) are not searched, and every search counts
-whether that changed what it popped ([docs/CAP.md](docs/CAP.md)); the counting is one package, `acx/core/capcount/`.
-
-## Numbers
-
-Each published run is a `results/<run>/summary.json`, with its command, in [docs/RESULTS.md](docs/RESULTS.md); CPU cost
-per pop and the cost of an uncapped search are in [docs/PERFORMANCE.md](docs/PERFORMANCE.md). Cap 24, fast backend:
-
-| benchmark (rows) | length greedy, 10k pops | S20_MK2, 10k pops | hybrid, 1,000 units |
-|---|---:|---:|---:|
-| MS640 (640) | 606 | 626 | **640** |
-| bench60 (60) | 40 | 52 | **60** |
-| ladder200 (188) | 40 | 116 | **188** |
-| AC19 Aut-min (72,779) | | | **72,779** (188 `stable_cert`) |
-
-## Tests
+Use the high-speed pipeline to count solves or compare settings; how much CPU it saves, per method, is measured in
+[docs/PERFORMANCE.md, "Recording the path"](docs/PERFORMANCE.md#recording-the-path). A result to quote needs the
+normal one. **Decode later**: `--solved-from RUN_DIR` reruns only the rows that run solved, with `path = true`; the
+search is deterministic, so it finds the same solves at the same cost, now with decoded and verified paths:
 
 ```bash
-pytest                    # the default selection, a few minutes
-pytest -m ""              # adds the slow parity and census sets
+python run.py --config configs/hybrid.toml --set path=false --set name=ms640_fast
+python run.py --config configs/hybrid.toml --set path=true --solved-from results/ms640_fast --set name=ms640_fast_paths
 ```
 
-## Layout
+## MS640: what each method solves, explores and finds
 
-```
-run.py, compare.py      the two commands
-configs/                one TOML per method; template.toml lists every key
-examples/               sample input files (.txt, .csv, .jsonl)
-acx/core/               words, moves, priorities, SearchConfig, capcount/ (the cap counters)
-acx/search/             best-first search: spec (Python) and fast (numba) backends
-acx/verify/             replay (the only judge), elementary decoder
-acx/aut/ cov/ hybrid/ ngen/ rl/    the methods
-acx/runner/, data.py, report.py    configs, rows and results folders; datasets by name; compare.py's tables
-data/, benchmark/       datasets, frozen evaluation sets and the ladder
-results/                summary.json and config.json of the published runs (paths.jsonl is regenerated)
-```
+The 640 Miller-Schupp rows of `data/ms640_solved.txt`, fast backend, relator cap 24 (the hybrid has its own limits),
+from the shipped `results/ms640_*/summary.json` (normal pipeline, every path replayed). Kinds: plain `ac_path` /
+aut-assisted `ac_path` / `stable_cert` (next section). Nodes explored cover every row, a miss spending its whole budget:
+10,000 pops (greedy, aut, ngen; CoV in total), 1,000 hybrid units, an rl beam of 256 x 150. Path lengths: mean per solve.
+
+| method (config) | solved / 640 | kinds | nodes explored, total | mean per row | S-moves | elementary moves |
+|---|---:|---|---:|---:|---:|---:|
+| greedy, LENGTH (`greedy_fast`) | 606 | 606 / 0 / 0 | 576,053 pops | 900.1 | 20.0 | 189.5 |
+| greedy, S20_MK2 (`s20_mk2_fast`) | 626 | 626 / 0 / 0 | 382,718 pops | 598.0 | 27.0 | 269.5 |
+| hybrid (`hybrid`) | **640** | 128 / 512 / 0 | 25,064 units | 39.2 | 19.3 | 139.1 |
+| aut, S20_MK2 on the Aut-min form (`aut`) | 626 | 11 / 615 / 0 | 408,174 pops | 637.8 | 27.2 | 1,258.4 |
+| change of variables (`cov`) | 584 | 554 / 0 / 30 | 693,162 pops | 1,083.1 | 14.3 | 99.2 (the 554 `ac_path`s) |
+| n-generator, SAC (`ngen_sac`) | 298 | 0 / 0 / 298 | 3,729,167 pops | 5,826.8 | 16.9 | 769.1 (stable moves) |
+| rl, first 30 rows only (`rl`) | 30 / 30 | 30 / 0 / 0 | 9,650 evaluations | 321.7 | 4.4 | 28.2 |
+
+A hybrid unit is not a pop: compare them by CPU, which [docs/PERFORMANCE.md, "Methods side by side"](docs/PERFORMANCE.md#methods-side-by-side)
+gives per pop or unit, with bench60 and ladder200. [docs/RESULTS.md](docs/RESULTS.md) has every published run and its
+command, such as the hybrid on all 72,779 AC19 Aut(F2) orbits: 72,779 solved, 188 as `stable_cert`.
+
+## AC path or stable AC
+
+| method | `ac_path` (AC moves on the row) | `stable_cert` (stable AC) |
+|---|---|---|
+| greedy, rl | always: the S-moves decode to elementary AC moves | never |
+| aut | always; `aut_assisted` when the row is not its own Aut-minimal form | never |
+| hybrid | when every step is at rank two; `aut_assisted` when one is an automorphism | when its search took higher-rank steps (new generators, AC4/AC5) |
+| cov | when the row, or an image in its Aut(F2) orbit (`aut_assisted`), is solved | when an image outside the orbit is solved: a change of variables, no elementary path (`elem_moves` null) |
+| ngen | when the SAC transform adds no generator | when it adds generators (all 298 MS640 solves): lifted to elementary stable moves |
+| rankn | | its stabilised starts add generators; the sweep counts their solves, writes no certificate ([docs/RANK3.md](docs/RANK3.md)) |
+
+**Automorphisms do not make a solve stable.** A solve found in another basis (the Aut-minimal form, a CoV image in
+the orbit, the hybrid's Nielsen/pinch cascade) is decoded back to the row: `acx/aut/transport.py` (aut, cov) and
+`acx/hybrid/certify.py` (hybrid) map each move's conjugators through the inverse automorphism, end with the Nielsen
+moves that turn the basis back into `x, y`, and replay the result on the row. Such a row is an ordinary `ac_path` of
+elementary AC moves with `aut_assisted: true`; it needs `path = true`, or `--solved-from` after a high-speed run.
 
 ## Docs
 
-- [docs/USAGE.md](docs/USAGE.md): inputs, flags, run names, config keys, output fields, comparing runs.
-- [docs/METHODS.md](docs/METHODS.md): moves, the search, priorities, backends, automorphisms, hybrid, change of
-  variables, n-generator search, RL, verification.
-- [docs/CAP.md](docs/CAP.md): the relator cap and its counters.
-- [docs/RESULTS.md](docs/RESULTS.md) and [docs/PERFORMANCE.md](docs/PERFORMANCE.md): every number, and what it costs.
+- [docs/USAGE.md](docs/USAGE.md): inputs, flags, run names and resume, config keys, output fields, comparing runs.
+- [docs/METHODS.md](docs/METHODS.md): moves, search, priorities, transport, the decoder, every method, verification.
+- [docs/PERFORMANCE.md](docs/PERFORMANCE.md): CPU per pop or unit, recording the path, the uncapped search.
+- [docs/RESULTS.md](docs/RESULTS.md): every published number and the command that reproduces it.
+- [docs/CAP.md](docs/CAP.md): the relator cap (`cap`, default 24, `"none"` = uncapped) and its counters.
 - [docs/RANK3.md](docs/RANK3.md): the rank-n brute force and the n-generator package.
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): the module map and the interfaces.
-- [docs/PROVENANCE.md](docs/PROVENANCE.md): where each part comes from.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), [docs/PROVENANCE.md](docs/PROVENANCE.md): the module map; sources.
 - [benchmark/README.md](benchmark/README.md): the evaluation sets and the difficulty ladder.
 
-## Datasets (`data/`)
+## Datasets (`data/`) and tests
 
-- **`1190MS.txt`**: the 1,190 Miller-Schupp benchmark. **`ms640_solved.txt`**: 640 of them (MS640), every one solved by
-  the length greedy at 1,000,000 pops.
-- **`AC19_extended.txt`**: 156,762 presentations; **`AC19.txt`**: the 140,535 of length <= 19;
+- **`1190MS.txt`**: the 1,190 Miller-Schupp benchmark; **`ms640_solved.txt`**: the 640 (MS640) the length greedy solves
+  at 1,000,000 pops. **`AC19_extended.txt`**: 156,762 presentations; **`AC19.txt`**: the 140,535 of length <= 19;
   **`AC19_extended_aut_min.csv`**: its 72,779 Aut(F2) orbits. **`AC1M.txt.gz`**: 1,136,154 presentations;
   **`AC1M_aut_min.csv.gz`**: its 71,283 orbits.
 - **`ms_unsolved_reps/`**: the unsolved Miller-Schupp representatives and the 124 classes nobody has solved (U124);
-  **`equivalence_classes/certificates.json`** joins their 261 presentations into the 124 classes
-  (`acx.aut.equivalence.check` re-checks it).
+  **`equivalence_classes/certificates.json`** joins their 261 presentations into the 124 classes.
+
+`pytest` runs the default selection (a few minutes); `pytest -m ""` adds the slow parity and census sets.
 
 ## License
 

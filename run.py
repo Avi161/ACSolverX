@@ -3,8 +3,9 @@
 Writes ``results/<run name>/{paths.jsonl, summary.json}``; the config format is in ``acx/runner/config.py``.
 Your own presentations: ``--input FILE`` (formats in ``acx/data.py``) or ``--pres "xxYYY, xyxYXY"``, repeated. They run
 as ``<config name>_<file stem>`` (``<config name>_pres`` for ``--pres``), never as the config's own shipped results,
-unless ``--set name=...`` says otherwise. A bad config, row slice or id, input file or a missing file ends the command
-with its message.
+unless ``--set name=...`` says otherwise. Decode later: ``--solved-from RUN_DIR`` runs only the rows that RUN_DIR
+solved, e.g. a ``path = false`` run again with ``--set path=true``. A bad config, row slice or id, input file or a
+missing file ends the command with its message.
 """
 import argparse
 import json
@@ -58,6 +59,17 @@ def report(run_dir, lines, unit):
             print(k, line, "solved" if rec["solved"] else "unsolved", *shown, sep="  ")
 
 
+def solved_ids(run_dir):
+    """The ids that ``<run_dir>/paths.jsonl`` marks solved, in file order (``--solved-from``)."""
+    paths = Path(run_dir) / "paths.jsonl"
+    if not paths.is_file():
+        raise SystemExit(f"{paths}: no such file (--solved-from needs the paths.jsonl of a run made here)")
+    ids = [rec["id"] for rec in map(json.loads, paths.read_text().splitlines()) if rec["solved"]]
+    if not ids:
+        raise SystemExit(f"{paths}: no solved rows")
+    return ids
+
+
 def own_name(config_name, input_path):
     """The run name of your own presentations: ``<config name>_<file stem>`` for ``--input`` (the file's name without
     .txt, .csv, .jsonl and .gz), ``<config name>_pres`` for ``--pres``."""
@@ -78,7 +90,10 @@ def parse_args(argv):
     mine.add_argument("--pres", action="append", default=[], type=presentation, metavar='"R1,R2"',
                       help='run a presentation of your own, e.g. "xxYYY, xyxYXY"; repeat for more; the run is named '
                       '<config name>_pres')
-    ap.add_argument("--rows", help='a slice "a:b" or ids "3,17" of the benchmark')
+    rows = ap.add_mutually_exclusive_group()
+    rows.add_argument("--rows", help='a slice "a:b" or ids "3,17" of the benchmark')
+    rows.add_argument("--solved-from", metavar="RUN_DIR", help="run only the rows that RUN_DIR/paths.jsonl marks "
+                      "solved, e.g. to get and verify the paths of a path=false run: --set path=true")
     ap.add_argument("--out", default="results", help="results root (default: results)")
     ap.add_argument("--fresh", action="store_true", help="discard earlier results of this run name")
     return ap.parse_args(argv)
@@ -89,6 +104,8 @@ def execute(args):
     # your own presentations replace the config's benchmark, and with it the config's slice of rows
     own = ['benchmark="own"', 'rows=""'] if args.input is not None or args.pres else []
     cfg = load_config(args.config, own + args.set + ([f'rows="{args.rows}"'] if args.rows else []))
+    if args.solved_from:
+        cfg["rows"] = ",".join(solved_ids(args.solved_from))
     if own and not any(parse_override(item)[0] == "name" for item in args.set):
         cfg["name"] = own_name(cfg["name"], args.input)
     run_dir = Path(args.out) / cfg["name"]
