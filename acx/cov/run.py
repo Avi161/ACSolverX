@@ -13,8 +13,8 @@ from ..search import Result, search
 from ..search.engine import as_presentation
 from ..verify.replay import replay
 from .certificate import check_cert
-from .images import CoVImage, enumerate_images
 from .family import FAMILIES, MAX_LEN
+from .images import CoVImage, enumerate_images
 
 CAP_FIELDS = tuple(blank())
 

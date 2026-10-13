@@ -3,6 +3,7 @@
 The bench60 numbers are a golden regression (fast backend, so the test is skipped without it); the same numbers on
 spec follow from the spec/fast parity of ``tests/test_fast.py``.
 """
+import dataclasses
 import hashlib
 import json
 
@@ -16,7 +17,7 @@ from acx.core.words import Presentation, fmt, inverse, parse, renumber, substitu
 from acx.cov import CoVConfig, ReplayError, apply_steps, check_cert, enumerate_images, verify
 from acx.cov.family import FAMILIES, proper_subwords, subwords
 from acx.cov.images import class_key
-from acx.cov.run import run
+from acx.cov.run import _leg_cap, run
 from acx.cov.substitution import Z, isolate, occurrences, patterns, substitute, substitute_pattern
 from acx.runner import method_config
 from acx.search import BackendUnavailable, search
@@ -154,6 +155,8 @@ def test_planted_case_stable_cert():
     out = run(PLANTED, CoVConfig(total_budget=2000, control=False))
     assert out.solved and out.ac_path is None and out.stable_cert.kind == "stable_cert"
     verify(PLANTED, out.stable_cert)
+    with pytest.raises(ReplayError, match="exceeds cap 2"):                    # verify holds the leg to its cap
+        verify(PLANTED, dataclasses.replace(out.stable_cert, cap=2))
 
 
 def test_planted_case_row_itself_is_an_ac_path():
@@ -216,24 +219,26 @@ def test_budget_is_total_and_deterministic():
 
 
 def test_checker_rejects_tampering():
+    """Each tampered certificate is rejected by the check that guards that hypothesis, not by a later one."""
     img = planted_image()
     res = search(img.pres, SearchConfig(budget=100))
     define, sub, elim = img.steps
     bad = [
-        (define, {**sub, "rels": (sub["rels"][0] + (1, -1, 2), sub["rels"][1])}, elim),         # not the same relator
-        (define, sub, {**elim, "expr": elim["expr"] + (2, -2, 2)}),                                # g != expr
-        (define, sub, {**elim, "gen": 3 - elim["gen"]}),
-        ({**define, "word": define["word"][1:] + define["word"][:1]}, sub, elim),                 # another w
-        (sub, define, elim),
-        (define, sub, {**elim, "op": "teleport"}),
+        ((define, {**sub, "rels": (sub["rels"][0] + (1, -1, 2), sub["rels"][1])}, elim), "with w put for z"),
+        ((define, sub, {**elim, "expr": elim["expr"] + (1, -1, 1)}), "is not of the form"),          # g != expr
+        ((define, sub, {**elim, "gen": 3 - elim["gen"]}), "bad elimination"),
+        (({**define, "word": define["word"][1:] + define["word"][:1]}, sub, elim), "with w put for z"),  # another w
+        (({**define, "word": (1,)}, sub, elim), "cannot define"),                                    # a rename
+        ((sub, define, elim), "needs the defined presentation"),
+        ((define, sub, {**elim, "op": "teleport"}), "unknown CoV step"),
     ]
-    for steps in bad:
-        with pytest.raises(ReplayError):
+    for steps, reason in bad:
+        with pytest.raises(ReplayError, match=reason):
             check_cert(PLANTED, steps, res.path)
-    with pytest.raises(ReplayError):
+    with pytest.raises(ReplayError, match="non-trivial"):
         check_cert(PLANTED, img.steps, res.path[:-1])                                              # the leg must end trivial
-    with pytest.raises(ReplayError):
-        check_cert(Presentation.parse("xx", "yy"), img.steps, res.path)                            # |det| != 1
+    with pytest.raises(ReplayError, match=r"\|det\| != 1"):
+        check_cert(Presentation.parse("xx", "yy"), img.steps, res.path)
 
 
 def test_certificates_on_bench60():
@@ -371,6 +376,8 @@ def test_row_with_no_binding_leg_is_the_same_row_at_any_larger_cap():
 
 
 # The family suballpxyb8 (``CoVConfig.family``): every pattern of every proper cyclic subword, one image per class.
+# The sweep's starts: results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz (the b100 file of the
+# sweep's branch has the same starts).
 SWEEP_MS640_SHA256 = "1e10f931608808511df10ae319e84622b99256d684942e14344066307b5c1ae4"
 SWEEP_PRES0 = {("XXy", "YXyxx"), ("XyXX", "YxyXX"), ("Xyx", "YXyxYx"), ("Xyx", "YXyxx"), ("xYx", "YxyXyX")}
 
@@ -385,7 +392,7 @@ def test_a_relator_that_is_not_cyclically_reduced_gives_the_images_of_its_reduce
 
 
 def test_only_the_default_family_depends_on_the_rotation_of_a_relator():
-    """MS640 row 20 with r1 rotated: the default family substitutes in one pass over the relator as written."""
+    """MS640 row 20 with r1 rotated: the default family substitutes in one pass over the relator in its rotation."""
     def classes(pres, family):
         return {class_key(i.pres) for i in enumerate_images(pres, family=family)}
 
@@ -429,7 +436,7 @@ def test_all_subsets_is_one_image_per_class_and_contains_the_default_family():
 
 
 def test_all_subsets_matches_the_sweep():
-    """The sweep's class counts and, for MS640 row 0, its five starts as written (budget-100 file of the branch)."""
+    """The sweep's class counts and, for MS640 row 0, its five starts as written (the sweep's file above)."""
     rows = data.rows("ms640")
     counts = {pid: len(enumerate_images(rows[pid].pres, family="suballpxyb8")) for pid in (0, 155, 580, 634)}
     assert len(enumerate_images(AK3, family="suballpxyb8")) == 12 and counts == {0: 5, 155: 24, 580: 236, 634: 566}
@@ -439,12 +446,14 @@ def test_all_subsets_matches_the_sweep():
 @pytest.mark.slow
 def test_all_subsets_is_the_sweep_on_ms640():
     """The sweep's 114,042 MS640 starts, each as written with its w, eliminated generator, isolating relator, number
-    of substitutions and cap (sha256 of the sorted rows of the branch's budget-100 file)."""
-    lines = sorted(f"{r.id},{i.pres.strs[0]},{i.pres.strs[1]},{fmt(i.w)},{'xy'[i.gen - 1]},{i.iso_index},{i.n_subs},"
-                   f"{max(24, max(map(len, i.pres.rels)) + 16)}"
-                   for r in data.rows("ms640") for i in enumerate_images(r.pres, family="suballpxyb8"))
+    of substitutions and acx's leg cap (sha256 of the sorted rows of the sweep's file above)."""
+    cfg, lines = CoVConfig(), []
+    for r in data.rows("ms640"):
+        for i in enumerate_images(r.pres, family="suballpxyb8"):
+            r1, r2 = i.pres.strs
+            lines.append(f"{r.id},{r1},{r2},{fmt(i.w)},{'xy'[i.gen - 1]},{i.iso_index},{i.n_subs},{_leg_cap(cfg, i)}")
     assert len(lines) == 114_042
-    assert hashlib.sha256("\n".join(lines).encode()).hexdigest() == SWEEP_MS640_SHA256
+    assert hashlib.sha256("\n".join(sorted(lines)).encode()).hexdigest() == SWEEP_MS640_SHA256
 
 
 def test_family_is_a_config_choice():

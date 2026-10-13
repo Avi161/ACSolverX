@@ -6,14 +6,14 @@ The tag names the rules, and changing one is a different experiment. The default
     nc2   ``w`` is dropped when substituting it brings a relator it occurs in below 3 letters (``subwords``)
     p     pure powers such as ``xx`` count (nothing filters them out)
     xy    both generators are tried as the one to eliminate (``images.enumerate_images``)
-    s     ``substitute`` also matches ``w`` across the seam of the written relator (``substitution.substitute``)
+    s     ``substitute`` also matches ``w`` across the seam of the relator in its rotation (``substitution.substitute``)
     b     every relator that isolates the generator gives its own image (``images.branches``)
 
 The exhaustive sweep's ``suballpxyb8`` keeps ``p``, ``xy`` and ``b`` and replaces the rest:
 
-    sub   ``w`` is a cyclic subword of length 2 to |r| - 1 and not a whole relator; no nc2 gate (``proper_subwords``)
-    all   every set of non-overlapping occurrences is substituted, the seam an ordinary place (``substitution.patterns``)
-    8     one image per class under relator order, rotation, inversion and the 8 signed permutations (``images.class_key``)
+    sub   ``w`` is a cyclic subword of length 2 to |r| - 1, not a whole relator; no nc2 gate (``proper_subwords``)
+    all   every set of non-overlapping occurrences is substituted; the seam is an ordinary place (``patterns``)
+    8     one image per class: relator order, rotation, inversion, the 8 signed permutations (``images.class_key``)
 """
 from ..core.words import inverse, reduce
 from .substitution import substitute
@@ -52,7 +52,7 @@ def proper_subwords(r1, r2):
     of either relator or its inverse, even inside the other relator), ordered by (length, word)."""
     found, whole = set(), set()
     for rel in (r1, r2):
-        words = _cyclic_subwords(rel)
+        words, n = _cyclic_subwords(rel), len(reduce(rel))
         found |= words
-        whole |= {w for w in words if len(w) == len(reduce(rel))}
+        whole |= {w for w in words if len(w) == n}
     return sorted(found - whole, key=lambda w: (len(w), w))

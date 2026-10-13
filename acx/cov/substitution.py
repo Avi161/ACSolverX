@@ -68,9 +68,14 @@ def occurrences(cyc, w):
     n, m, w_inv = len(cyc), len(w), inverse(w)
     if m > n:
         return ()
-    doubled = cyc + cyc
-    windows = ((i, doubled[i:i + m]) for i in range(n))
-    return tuple((i, Z if window == w else -Z) for i, window in windows if window in (w, w_inv))
+    doubled, found = cyc + cyc, []
+    for i in range(n):
+        window = doubled[i:i + m]
+        if window == w:
+            found.append((i, Z))
+        elif window == w_inv:
+            found.append((i, -Z))
+    return tuple(found)
 
 
 def patterns(occs, n, m):

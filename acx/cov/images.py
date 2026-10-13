@@ -51,7 +51,9 @@ def substitutions(r1, r2, w, exhaustive):
             yield r1_sub, r2_sub, n1 + n2
         return
     m = len(w)
-    for c1, c2 in product(patterns(occurrences(r1, w), len(r1), m), patterns(occurrences(r2, w), len(r2), m)):
+    patterns1 = patterns(occurrences(r1, w), len(r1), m)
+    patterns2 = patterns(occurrences(r2, w), len(r2), m)
+    for c1, c2 in product(patterns1, patterns2):
         if c1 or c2:
             yield substitute_pattern(r1, c1, m), substitute_pattern(r2, c2, m), len(c1) + len(c2)
 
@@ -73,7 +75,7 @@ def enumerate_images(pres, max_len=MAX_LEN, family="subnc2pxysb"):
     ``w`` by (length, word), then each substitution of ``w``, then eliminate x before y, then relator 1 before
     relator 2. Both families read the relators cyclically reduced. ``subnc2pxysb`` substitutes in one pass over each
     relator in its written rotation and drops repeated images; ``suballpxyb8`` keeps the first image of each
-    ``class_key``, not the row's own.
+    ``class_key`` and drops the row's own class.
 
     Per image: **define** ``z = w`` (a relator ``Z w``), **substitute** ``z`` for ``w`` / ``w^-1`` in ``r1, r2``,
     **isolate** ``g^+-1`` in one relator (``g = expr(other, z)``), **destabilise** (put ``expr`` for ``g`` in the
