@@ -15,6 +15,7 @@ from acx.core.config import SearchConfig
 from acx.core.words import fmt
 from acx.ngen import sweep
 from acx.ngen.sweep import SweepConfig, SweepError, combos, pool, reduced_words, start
+from acx.ngen.sweep.summary import Bucket, BucketTally, _fraction, _percent
 from acx.search import search
 from acx.verify.replay import abs_det
 
@@ -134,7 +135,7 @@ def test_config_errors(bad):
         SweepConfig.from_cfg(c)
 
 
-def test_uncapped_rows_drop_nothing(ms640, tmp_path):
+def test_uncapped_rows_drop_nothing(tmp_path):
     """Without a cap the counters report nothing: no drop, no bind, the same searches as capped rows solved."""
     c = cfg(rows="0:4", budget=200, max_len=2)
     c["search"]["cap"] = "none"
@@ -230,10 +231,29 @@ def test_summary_matches_the_arrays(tmp_path):
         assert t["oracle"]["solved_by_some"] == sum(some)
         assert t["oracle"]["gained_over_control"] == sum(a and not r["control"]["solved"] for a, r in zip(some, rows))
         rate = np.mean([(r["path_len"][wl == n] >= 0).mean() for r in rows])
-        assert t["solved"] == round(float(rate), 4)
-        assert round(t["fewer"] + t["same"] + t["more"] + t["unsolved"], 3) == 1.0
+        assert t["solved"] == round(float(rate), 6)
+        assert round(t["fewer"] + t["same"] + t["more"] + t["lost"], 3) == 1.0
     assert s["buckets"]["L2"]["oracle"]["solved_by_some"] >= s["buckets"]["L1"]["oracle"]["solved_by_some"]
     assert os.path.exists(os.path.join(d, "summary.md")) and os.path.exists(os.path.join(d, "summary.json"))
+
+
+def test_summary_columns_are_the_baselines():
+    """fewer/same/more/lost are over the control-solved rows; a start that solves a control-unsolved row is a gain,
+    not "some faster" (the definitions of the baseline's published tables)."""
+    every = np.ones(2, bool)
+    bucket = Bucket("L1", every, every)
+    t = BucketTally()
+    t.add_row(bucket, np.array([True, False]), np.array([5, 40]), control_solved=True, control_pops=10)
+    t.add_row(bucket, np.array([True, True]), np.array([3, 7]), control_solved=False, control_pops=40)
+    s = t.table(bucket, n_rows=2, n_control_solved=1)
+    assert (s["fewer"], s["same"], s["more"], s["lost"]) == (0.5, 0.0, 0.0, 0.5)
+    assert s["oracle"] == {"solved_by_some": 2, "gained_over_control": 1, "control_solved_lost_by_every": 0,
+                           "some_faster_than_control": 1}
+
+
+def test_summary_percent_is_rounded_once():
+    """0.806458 prints as 80.6% (the baseline's L3 cell at budget 1,000), not 80.7% via 0.8065."""
+    assert _percent(_fraction(0.8064580826313679)) == "80.6%"
 
 
 @pytest.mark.parametrize("extra,max_len", [(2, 1), (3, 1)])
@@ -287,6 +307,17 @@ def test_verify_passes_and_rejects_tampering(tmp_path):
     with open(os.path.join(d, "config.json"), "w") as f:
         json.dump(key, f)
     assert any("ident differs" in m for m in quiet_v())
+
+
+def test_verify_names_the_row_each_failure_belongs_to(tmp_path):
+    quiet(cfg(rows="0:3"), tmp_path)
+    d = str(tmp_path / "t")
+    for row_id in ("0", "2"):
+        path = sweep.row_path(d, row_id)
+        good = dict(np.load(path))
+        np.savez_compressed(path, **{**good, "nodes": np.full_like(good["nodes"], 999)})      # above the budget
+    failures = sweep.verify(d, log=lambda *a: None)
+    assert sorted({f.split(":")[0] for f in failures}) == ["row 0", "row 2"]
 
 
 def test_counter_consistency_rules():
@@ -351,7 +382,7 @@ def test_rank3_counters_prove_the_cap_irrelevant(tmp_path):
 
 
 # --------------------------------------------------------------------------------------------- entry points
-def test_cli_entry_point(tmp_path, monkeypatch):
+def test_cli_entry_point(tmp_path):
     sweep.main(["--config", os.path.join(ROOT, "configs", "rank3_bf.toml"), "--rows", "0:3", "--set", "rankn.max_len=2",
                 "--set", "workers=1", "--set", "search.budget=300", "--out", str(tmp_path), "--verify", "5"])
     assert os.path.exists(tmp_path / "rank3_bf" / "summary.json")
@@ -385,6 +416,11 @@ def test_ms640_lengths_1_and_2_reproduce_the_baseline(tmp_path):
     assert s["buckets"]["L1"]["oracle"]["solved_by_some"] == 403
     assert s["buckets"]["L2"]["oracle"]["solved_by_some"] == 472
     assert (round(s["buckets"]["L1"]["solved"], 3), round(s["buckets"]["L2"]["solved"], 3)) == (0.601, 0.684)
+    published = {"L1": (0.0, 0.0, 69.4, 30.6, 0), "L2": (1.3, 0.1, 77.7, 21.0, 35)}     # faster, same, slower, lost
+    for name, cells in published.items():
+        t = s["buckets"][name]
+        got = tuple(round(100 * t[k], 1) for k in ("fewer", "same", "more", "lost"))
+        assert got + (t["oracle"]["some_faster_than_control"],) == cells
     assert sweep.verify(str(tmp_path / "t"), recheck=40, log=lambda *a: None) == []
     shutil.rmtree(tmp_path)
 

@@ -34,7 +34,7 @@ def verify(result_dir, recheck=0, seed=0, log=print):
     for row_id in row_ids:
         row = load_row(row_path(result_dir, row_id))
 
-        def fail(message, row_id=row_id):
+        def fail(message):
             failures.append(f"row {row_id}: {message}")
 
         if row["ident"] != ident_of(sc, row_id, rows[row_id].pres):

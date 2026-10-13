@@ -7,7 +7,8 @@ import pytest
 
 from acx.core.config import SearchConfig
 from acx.core.moves import Move, decode_path, elementary_step, encode_path
-from acx.core.words import Presentation
+from acx.core.words import Presentation, parse
+from acx.ngen.sweep import start
 from acx.search import search
 from acx.verify import ReplayError, abs_det, replay
 from acx.verify.replay import det
@@ -32,6 +33,21 @@ def test_legacy_and_json_paths_replay(ms640):
     legacy = [f"{m.i + 1}_{m.s}_{m.k1}_{m.k2}" for m in r.path]       # the baseline's path_moves strings
     assert replay(pres, decode_path(legacy))[-1] == r.end
     assert decode_path(json.loads(json.dumps(encode_path(r.path)))) == list(r.path)
+
+
+def test_decode_path_tells_the_two_string_forms_apart():
+    """'target_jsign_k1_k2' has 4 fields (two relators, 1-based target), 'i_j_s_k1_k2' has 5 (rank n, 0-based)."""
+    assert decode_path(["1_-1_3_4", "2_0_1_5_6"]) == [Move(0, 1, -1, 3, 4), Move(2, 0, 1, 5, 6)]
+
+
+def test_rank_n_baseline_path_strings_replay(ms640):
+    """The rank-n baseline stores 'i_j_s_k1_k2' (0-based relators of the canonical parent): its stored length-10
+    sample path of row 0 (w = xxyxxxxyxy) replays at cap 24 and is the path acx finds."""
+    pres = start(*ms640[0].rels, [parse("xxyxxxxyxy")])
+    stored = ["1_0_-1_0_0", "2_0_1_1_0", "2_0_1_2_0", "2_0_1_2_0", "2_0_1_2_0", "2_0_1_2_0", "2_0_1_3_0",
+              "2_0_1_3_0", "1_0_1_0_0", "2_0_1_0_0", "2_0_1_0_0", "2_0_1_0_0"]
+    assert replay(pres, decode_path(stored), cap=24)[-1].is_trivial()
+    assert decode_path(stored) == list(search(pres, cap=24, budget=1000).path)
 
 
 def test_broken_paths_are_rejected(ms640):

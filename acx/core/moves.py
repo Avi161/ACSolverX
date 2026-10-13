@@ -193,13 +193,15 @@ def encode_path(path):
 
 
 def decode_path(items):
-    """Inverse of ``encode_path``; also reads the baseline's ``'target_jsign_k1_k2'`` strings."""
+    """Inverse of ``encode_path``; also reads the baseline's ``'target_jsign_k1_k2'`` strings and the rank-n
+    baseline's ``'i_j_s_k1_k2'`` strings."""
     out = []
     for m in items:
         if isinstance(m, dict):
             out.append(m)
         elif isinstance(m, str):
-            out.append(from_legacy(*map(int, m.split("_"))))
+            fields = tuple(map(int, m.split("_")))
+            out.append(Move(*fields) if len(fields) == 5 else from_legacy(*fields))
         else:
             out.append(Move(*m))
     return out
