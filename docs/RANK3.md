@@ -44,10 +44,10 @@ a file from another config is an error, never merged), `summary.json`, `summary.
 `cap_would_pop`, `cap_first_bind`, `cap_needed` (-1 = none), plus the control and null records and a deterministic
 sample of solved paths (`sample`). **The row files are large; keep them out of git** (`results/*/rows/`).
 
-In `summary.md` (one row per word length, `L1`, `L2`, ...), `solved` is a share of all rows; `fewer`, `same`, `more`
-(pops against the control's) and `lost` are shares of the rows the control solves, and add up to 100%; `solved by
-some`, `gained`, `lost by every` and `some faster` count rows, `some faster` among the rows the control solves only. A
-share over no row is `null` in `summary.json` (`-` in the table).
+In `summary.md` (rank 3: one row per word length, `L1`, `L2`, ...; ranks 4 and 5: one row, `all`), `solved` is a share
+of all rows; `fewer`, `same`, `more` (pops against the control's) and `lost` are shares of the rows the control solves,
+and add up to 100%; `solved by some`, `gained`, `lost by every` and `some faster` count rows, `some faster` among the
+rows the control solves only. A share over no row is `null` in `summary.json` (`-` in the table).
 
 The package `acx.ngen.sweep` has one module per job: `words` (the word pool and the starts), `config`, `rows` (one row's
 searches and its file), `driver` (`run`), `summary`, `check` (`verify`) and `cli`. `acx.ngen.sweep` re-exports the

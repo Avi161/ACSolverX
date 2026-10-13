@@ -2,8 +2,9 @@
 
 Where every part of this branch comes from: component -> source branch -> path -> the commit that last touched that path
 (`git log -1 --format=%h origin/<branch> -- <path>`, read 11 Oct 2026; the rows of `rank3/brute-force-baseline` and
-`cov/all-subsets-sweep`, 13 Oct 2026). The origin is the public repository `Avi161/ACSolverX`. Code was ported file by file into `acx/` (rewritten on the `acx` word and move types, then checked
-against the source: the tests named in each row). Nothing was copied as a whole tree.
+`cov/all-subsets-sweep`, 13 Oct 2026). The origin is the public repository `Avi161/ACSolverX`. Code was ported file by
+file into `acx/` (rewritten on the `acx` word and move types, then checked against the source: the tests named in each
+row). Nothing was copied as a whole tree.
 
 ## Code (`acx/`)
 
@@ -87,7 +88,7 @@ size and sha256 ([results/README.md](../results/README.md#studies)).
 | evidence: abel top-3 on MS640 | `research/w5/stable-ac-escape` | `results/stable_ac/cov/cov_top3/RESULTS.md` | `605db83d` |
 | evidence: one-shot CoV sweep 10k | `research/w5/stable-ac-escape` | `results/stable_ac/cov/graphs/SUMMARY_b10000.md` | `bab3e40f` |
 | evidence: three-way cost | `research/w5/stable-ac-escape` | `results/comparison/THREE_WAY_COST.md` | `0f4eefc1` |
-| evidence: rank-3/4/5 brute force and its cap-counter tables (final at cap 24, 12 Oct 2026; stored in `results/stable_ac/rank3_bf/`) | `rank3/brute-force-baseline` | `results/stable_ac/rank3_bf/README.md` | `f14945df`; the study's commits: `6fd59c2b` (plan and code), `13c6e536` (interim results), `7c9ab33b` (final at cap 24), `ec5dde8e` (cap counters), `a416bad9` (the counted rerun), `f14945df` (README) |
+| evidence: rank-3/4/5 brute force and its cap-counter tables (final at cap 24, 13 Oct 2026; stored in `results/stable_ac/rank3_bf/`) | `rank3/brute-force-baseline` | `results/stable_ac/rank3_bf/README.md` | `f14945df`; the study's commits: `6fd59c2b` (plan and code), `13c6e536` (interim results), `7c9ab33b` (final at cap 24), `ec5dde8e` (cap counters), `a416bad9` (the counted rerun), `f14945df` (README) |
 | evidence: nonsym K=4 beam | `cursor/heur-u124-s20mk2-a42e` | `results/comparison/COVBEAM_K4_B1K_ADVISOR_REVISE.md` | `83116e0f` |
 | evidence: u124 s20_mk2 1M census (runner only) | `cursor/heur-u124-s20mk2-a42e` | `results/heuristic_search/u124_s20mk2_1m/README.md` | `17e19950` |
 | evidence: mu-ladder findings | `cursor/cloud-agent-1785265366483-2x3ne` | `results/stable_ac/mu_scan/MU_SCAN_FINDINGS.md` | `584f8809` |

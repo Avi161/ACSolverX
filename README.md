@@ -86,14 +86,14 @@ graphs under `results/stable_ac/`; each README says what is here, what is only l
 `acx` reproduces it. Both count the **best start known in advance** (an oracle), so they measure what a start can do,
 not what a solver finds:
 
-| study | what was searched (LENGTH greedy, cap 24) | presentations solved of 640 |
+| study | what was searched (LENGTH greedy) | presentations solved of 640 |
 |---|---|---|
-| [n-generator brute force](results/stable_ac/rank3_bf/README.md) | add a generator `z = w` for every word `w` (rank 3), or two or three such generators (ranks 4 and 5); 40,098,032 searches in all | budget 1,000: control 554; some word of length 1 to 10, 578; the best single word, 528; rank 4, 506; rank 5, 416. Budget 10,000, lengths 1 to 7: control 606, some word 608 |
-| [CoV sweep to budget 100,000](results/stable_ac/cov_all/README.md) | every change of variables of the exhaustive family `suballpxyb8`: 114,042 starts | best start 555 / 604 / 626 / 640 at 100 / 1,000 / 10,000 / 100,000 nodes, against the control's 455 / 554 / 606 / 634 |
+| [n-generator brute force](results/stable_ac/rank3_bf/README.md) | add a generator `z = w` for every word `w` (rank 3), or two or three such generators (ranks 4 and 5); cap 24; 40,098,032 searches in all | budget 1,000: control 554; some word of length 1 to 10, 578; the best single word, 528; rank 4, 506; rank 5, 416. Budget 10,000, lengths 1 to 7: control 606, some word 608 |
+| [CoV sweep to budget 100,000](results/stable_ac/cov_all/README.md) | every change of variables of the exhaustive family `suballpxyb8`: 114,042 starts; the control at cap 24, each start at `max(24, longest relator + 16)`, up to 91 | best start 555 / 604 / 626 / 640 at 100 / 1,000 / 10,000 / 100,000 nodes, against the control's 455 / 554 / 606 / 634 |
 
 `results/rank3_bf/` is acx's own rerun of the rank-3 lengths 1 to 4 (equal cell for cell), and
-`[cov] family = "suballpxyb8"` enumerates the CoV sweep's starts. [results/README.md](results/README.md#studies) explains
-the two kinds of folder.
+`[cov] family = "suballpxyb8"` enumerates the CoV sweep's starts. [results/README.md](results/README.md#studies)
+explains the two kinds of folder.
 
 ## AC path or stable AC
 

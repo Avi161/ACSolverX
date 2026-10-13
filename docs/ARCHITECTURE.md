@@ -127,9 +127,9 @@ larger cap" on both backends.
 `ReplayError` unless every move is legal, `|det|` of the exponent-sum matrix is 1 at the start and after every move, no
 S-move child exceeds `cap`, and the end is trivial (each relator cyclically reduces to one letter, all generators
 present). `normalize=True` starts from `pres.normal(cyclic)` (search paths); elementary paths on raw words pass
-`normalize=False`. `abs_det(pres)` is the `|det|` it checks. A result counts only after it replays on the presentation it
-claims to solve: an aut-assisted solve after transport to the row; a CoV `stable_cert` replays its search leg here and
-its transform in `acx.cov.check_cert`, and is reported separately from an `ac_path`.
+`normalize=False`. `abs_det(pres)` is the `|det|` it checks. A result counts only after it replays on the presentation
+it claims to solve: an aut-assisted solve after transport to the row; a CoV `stable_cert` replays its search leg here
+and its transform in `acx.cov.check_cert`, and is reported separately from an `ac_path`.
 
 `decode(pres, path)` / `decode_and_replay` turn S-moves into elementary moves; `pack`/`unpack` are their JSON form
 (`I`, `S`, `C`, `M`, `Z`, `D`).

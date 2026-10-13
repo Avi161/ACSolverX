@@ -91,10 +91,9 @@ Every run except the MS640 configs as shipped also sets `workers=4`; `ladder` al
   reproduces the source's 2,489,726 units and its 72,591 rank-two / 188 stable split exactly (72,591 = 36,811 + 35,780
   here). On AC1M Aut-min it solves 71,281 of 71,283, the source's count (misses `ac1m_54083`, `ac1m_68740`).
 - **Speed of `fast` against `spec`.** Over the whole MS640 LENGTH run, `spec` takes 32x the CPU of `fast` (2,023 against
-  64 CPU s in the table: search, decoding and replay of every row). On search alone the ratio is larger: the slow test
-  `tests/test_fast.py::test_speed` (MS640 rows 322 and 466, 2,000 pops under each priority) prints the ratio and
-  asserts only more than 5x; one run of it printed 16,611 against 366 pops/s, 45x (`work/verify/NUMBERS.md`, not in
-  git).
+  64 CPU s in the table: search, decoding and replay of every row). On search alone the ratio depends on the machine's
+  load: the slow test `tests/test_fast.py::test_speed` (MS640 rows 322 and 466, 2,000 pops under each priority) prints
+  it and asserts only more than 5x.
 - **Ladder by level**: length greedy solves levels 1-2 only, as the levels are defined; S20_MK2 solves 6 of the 19
   level-9 rows at 10,000, as on record; the hybrid solves every row, 7 of `ladder200` as `stable_cert`. The 10M-pop
   grades of levels 9 and 10 are by record and were not rerun. The ladder rows were graded at their own caps (24 to 64);
@@ -233,10 +232,10 @@ The rank-n summary counts searches (one per start), not moves; the cap counters 
 | `rank5_bf` | 32 | 3,840 | 0 | 0 |
 | baseline (stored study), ranks 3 to 5 | 640 | 40,098,032 | 2,331,711 | 0 |
 
-So no rank-n result depends on the cap 24: in acx's runs a dropped child would have been popped in none, and in the
-baseline's whole study (every one of its 40,098,032 searches stores the cap counters) the cap could bind in none; its
-test is conservative, so a bind it rules out is ruled out here too.
-`results/stable_ac/rank3_bf/cap/cap_counters_cap24.md`. The rows and slices of each run are in section 0.
+So no rank-n result depends on the cap 24: in acx's runs a dropped child would have been popped in none, and the
+baseline's whole study counted the cap able to bind in none of its 40,098,032 searches
+(`results/stable_ac/rank3_bf/cap/cap_counters_cap24.md`); its test never misses a bind that acx's exact counters
+find, so a baseline null is an acx null. The rows and slices of each run are in section 0.
 
 ### The 20 MS640 rows where S20_MK2 at cap 24 would pop
 
@@ -433,8 +432,7 @@ All on `codex/ac-elementary-decoder` (none is in this repository): the `perf_lab
 - **`acx.search.fast` (this branch)** ports the expansion kernel and the arena/heap/dedup design but not the 2-bit
   packing (it worked at two generators only): one byte per symbol, about 100 to 120 B per state at cap 24 with path
   capture, against 52 to 68 B in `hcompact`. Fine to about 1M pops a row; a 10M-pop campaign wants the packing back
-  (open). Speed against `spec`: 32x the CPU over the whole MS640 LENGTH run, 45x in pops/s on search alone (section
-  0 gives both workloads).
+  (open). Speed against `spec`: 32x the CPU over the whole MS640 LENGTH run (section 0).
 
 ## 4. Hybrid solver ("solve everything")
 

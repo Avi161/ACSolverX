@@ -8,9 +8,9 @@ against its source file. Run one by name with `python run.py --config configs/<m
 `acx.data.rows(name)`: `ms640`, `1190ms`, `bench10`..`bench60`, `ladder20`..`ladder500`,
 `ladder20_s20hard`..`ladder300_s20hard`, `ac1m_hard_holdout60`, `ac19_autmin`, `ac1m_autmin`, `u124`. `u124` is
 `data/ms_unsolved_reps/aca_124_initial.csv`, the same rows as `ladder/unsolved_124.csv`. `ladder_pairs.csv` and the
-other tables without relator columns are reference data, not benchmarks. Results are not kept here: the rank-n
-brute-force tables that were in `rank3_bf/` are in [`results/stable_ac/rank3_bf/`](../results/stable_ac/rank3_bf/README.md)
-with the rest of that study ([results/README.md](../results/README.md#studies)).
+other tables without relator columns are reference data, not benchmarks. Results are not kept here; the rank-n
+brute-force study is in [`results/stable_ac/rank3_bf/`](../results/stable_ac/rank3_bf/README.md)
+([results/README.md](../results/README.md#studies)).
 
 ## The difficulty ladder (`ladder/`), the headline benchmark
 

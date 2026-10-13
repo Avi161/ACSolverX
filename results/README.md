@@ -47,7 +47,8 @@ searches that dropped a child and searches where the cap could bind. Row files (
   [docs/RESULTS.md](../docs/RESULTS.md) section 0 reproduces each one.
 - **Studies**, `results/stable_ac/<study>/`: a sweep made on another branch with its own code, carried as its compact
   files (summaries, tables, graphs, check logs), byte for byte the source's apart from the README, plus a
-  `MANIFEST.json`. `run.py` never writes there. Each README starts with an "In this checkout" block: what is here, what is not, and how acx reproduces it.
+  `MANIFEST.json`. `run.py` never writes there. Each README starts with an "In this checkout" block: what is here, what
+  is not, and how acx reproduces it.
 
 | study | what | source branch, commit | raw files not in git |
 |---|---|---|---|
@@ -60,15 +61,12 @@ its starts, and the study README shows how to check its records with `acx.cov` a
 
 **Manifests.** Each study's `MANIFEST.json` names its source (`branch`, `commit`, `dir`) and lists every raw file of the
 source folder with `path`, `bytes`, `sha256` and `in_repo`. The one raw file in git is
-`cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz` (4.1 MB, the transform of every start). Fetch another from a
-clone that has the source branch, for example
-`git show f2d53ced:results/stable_ac/rank3_bf/<file> > results/stable_ac/rank3_bf/<file>`;
-`tests/test_rank3_study.py` and `tests/test_cov_all_study.py` check a fetched file against its size and sha256.
-`.gitignore` ignores `*.npz`, `*.jsonl` and `*.jsonl.gz` under `results/stable_ac/`, apart from that one file, so a
-fetched file is never committed. The manifest's `s3` field is where the rest was kept: the rank-3 per-block partials
-and machine logs in `s3://acsolver-u124-205558941715/cov_all/rank3_bf/`, the CoV sweep's raw files in
-`s3://acsolver-u124-205558941715/cov_all/b<budget>/results/` (confirmed for `b100000`; the 100 and 10,000 prefixes
-follow the same pattern and were not listed).
+`cov_all/cov_all_suballpxyb8_ms640_b100000.jsonl.gz` (4.1 MB, the transform of every start). Fetch another from a clone
+that has the source branch (except the three uncompressed `.jsonl` of `cov_all/`, which are only in S3), for example
+`git show f2d53ced:results/stable_ac/rank3_bf/<file> > results/stable_ac/rank3_bf/<file>`; `tests/test_rank3_study.py`
+and `tests/test_cov_all_study.py` check a fetched file against its size and sha256. `.gitignore` ignores `*.npz`,
+`*.jsonl` and `*.jsonl.gz` under `results/stable_ac/`, apart from that one file, so a fetched file is never committed.
+The S3 prefixes are in each `MANIFEST.json` (`s3`) and study README.
 
 **Naming a new run folder.** `<benchmark>_<method>[_<variant>]`:
 
