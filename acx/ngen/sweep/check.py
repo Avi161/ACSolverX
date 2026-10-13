@@ -106,7 +106,7 @@ def recheck_on_other_backend(result_dir, row_ids, rows, sc, words, starts, n, rn
 
 
 def check_counters(row, solved, pops, budget, sc, fail, start_over_cap=False):
-    """The relations the cap counters must satisfy (ported from the baseline's ``cap_violations``).
+    """The relations the cap counters must satisfy.
 
     Per search: ``dropped`` children were not pushed; ``bind`` is the first pop (1 = the start) at which a dropped
     child would have been popped, or -1; ``would`` counts the dropped children that would have been popped; ``need``

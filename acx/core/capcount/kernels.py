@@ -26,7 +26,8 @@ except ModuleNotFoundError:                     # the kernels then run as plain 
 SLOT_STATE, SLOT_PRIO, SLOT_DEPTH, SLOT_OFFSET, SLOT_NBYTES, SLOT_LONGEST, SLOT_HEAP, SLOT_TABLE, SLOT_POOL = range(9)
 
 # Slots of the int64 ``state`` array. The "first" and "need" and "min total" slots hold -1 until they are set.
-C_DROPPED, C_WOULD, C_FIRST, C_NEED, C_MINTOT, C_POPS, C_NENT, C_NHEAP, C_POOL = range(9)
+STATE_SIZE = 9
+C_DROPPED, C_WOULD, C_FIRST, C_NEED, C_MINTOT, C_POPS, C_NENT, C_NHEAP, C_POOL = range(STATE_SIZE)
 
 
 # --- key order -------------------------------------------------------------------------------------

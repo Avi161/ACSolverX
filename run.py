@@ -3,7 +3,8 @@
 Writes ``results/<run name>/{paths.jsonl, summary.json}``; the config format is in ``acx/runner/config.py``.
 Your own presentations: ``--input FILE`` (formats in ``acx/data.py``) or ``--pres "xxYYY, xyxYXY"``, repeated. They run
 as ``<config name>_<file stem>`` (``<config name>_pres`` for ``--pres``), never as the config's own shipped results,
-unless ``--set name=...`` says otherwise. A bad config, row id or input file ends the command with its message.
+unless ``--set name=...`` says otherwise. A bad config, row slice or id, input file or a missing file ends the command
+with its message.
 """
 import argparse
 import json
@@ -102,11 +103,13 @@ def execute(args):
 
 
 def main(argv=None):
-    """The command line. A bad config, row id or input file ends it with that message on one line, not a traceback."""
+    """The command line. A bad config, row slice or id, input file or a missing file ends it with one line."""
     try:
         execute(parse_args(argv))
     except (ValueError, KeyError) as e:              # the library raises these; a KeyError would show its repr
         raise SystemExit(e.args[0] if isinstance(e, KeyError) else str(e)) from e
+    except FileNotFoundError as e:
+        raise SystemExit(f"{e.filename}: no such file") from e
 
 
 if __name__ == "__main__":

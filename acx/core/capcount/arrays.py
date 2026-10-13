@@ -2,11 +2,9 @@
 import numpy as np
 
 from .kernels import (C_DROPPED, C_FIRST, C_MINTOT, C_NEED, C_NENT, C_NHEAP, C_POOL, C_POPS, C_WOULD, SLOT_DEPTH,
-                      SLOT_HEAP, SLOT_LONGEST, SLOT_NBYTES, SLOT_OFFSET, SLOT_POOL, SLOT_PRIO, SLOT_STATE, cc_drop,
-                      cc_free, cc_known, cc_pop, rehash)
+                      SLOT_HEAP, SLOT_LONGEST, SLOT_NBYTES, SLOT_OFFSET, SLOT_POOL, SLOT_PRIO, SLOT_STATE,
+                      STATE_SIZE, cc_drop, cc_free, cc_known, cc_pop, rehash)
 from .records import fields
-
-STATE_SIZE = 9                                  # the C_* slots
 
 # The arrays holding one value per entry (copied as they are when the arrays grow).
 _PER_ENTRY = (SLOT_PRIO, SLOT_DEPTH, SLOT_OFFSET, SLOT_NBYTES, SLOT_LONGEST)

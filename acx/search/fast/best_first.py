@@ -19,8 +19,8 @@ from ...core.words import Presentation, fmt
 from ..engine import Result
 from .arrays import Arrays
 from .cap_stats import cap_counts
-from .counters import (DMIN_T, DROPPED, EXP_ID, EXP_T, HEAP_LEN, MAX_T, MIN_T, N_DISC, NEED_CAPACITY, NEED_WIDTH,
-                       NODES, OK, SOLVED, SOLVED_ID)
+from .counters import (COUNTER_SIZE, DMIN_T, DROPPED, EXP_ID, EXP_T, HEAP_LEN, MAX_T, MIN_T, N_DISC, NEED_CAPACITY,
+                       NEED_WIDTH, NODES, OK, SOLVED, SOLVED_ID)
 from .dedup import find_slot, hash_state, rehash
 from .heap import heap_pop, heap_push
 from .kernels import child_width, decode, encode, expand_drops, max_children, priority_id, score
@@ -126,7 +126,7 @@ def _initial_arrays(start, cfg, pid):
     arrays.prio[0] = score(syms, lens, n_gen, pid)
     arrays.parent[0] = -1
     rehash(arrays.table, arrays.arena, arrays.lens, 1)
-    st = np.zeros(10, dtype=np.int64)
+    st = np.zeros(COUNTER_SIZE, dtype=np.int64)
     st[HEAP_LEN], st[N_DISC], st[SOLVED_ID], st[DMIN_T] = 1, 1, -1, -1
     st[MIN_T] = st[MAX_T] = st[EXP_T] = int(lens.sum())
     return arrays, st

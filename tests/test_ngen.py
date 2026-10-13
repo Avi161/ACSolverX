@@ -28,7 +28,7 @@ def test_triangulate_ms640(ms640):
         assert abs_det(sac.root) == 1
 
 
-# digrams and root of dynrank.triangulate (origin/claude/vigilant-babbage-nnbuj0) on rows whose
+# digrams and root of the reference triangulation on rows whose
 # tie-breaks depend on orienting each relator as its canonical form (roots in acx letters)
 SOURCE = {252: (((-2, -2), (-1, -1), (1, -2), (-5, 3), (-5, 4)), ["DBa", "Daz", "CBz", "CzX", "BxY", "AXX", "ZYY"]),
           285: (((-2, -2), (-1, -1), (-3, 1), (-5, -4), (-5, 1)), ["DBx", "DYz", "CBA", "CAY", "BZx", "AXX", "ZYY"]),

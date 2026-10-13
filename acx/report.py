@@ -61,7 +61,7 @@ def load_run(folder):
     if not folder.is_dir():
         raise SystemExit(f"{folder}: not a folder")
     if not (folder / "paths.jsonl").exists():
-        raise SystemExit(f"{folder.name}: no paths.jsonl (run.py writes one per run; a rankn sweep has none)")
+        raise SystemExit(f"{folder.name} has no paths.jsonl: run it again with run.py to compare it")
     info = {**read_json(folder / "config.json"), **read_json(folder / "summary.json")}
     method = info.get("method", "?")
     unit = info.get("cost_unit") or UNIT.get(method, "pops")

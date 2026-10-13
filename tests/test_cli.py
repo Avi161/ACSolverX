@@ -180,11 +180,6 @@ def test_a_bad_line_in_the_input_file_stops_the_run_before_anything_is_written(t
     assert not (tmp_path / "out").exists()
 
 
-def test_a_missing_input_file_names_the_path(tmp_path):
-    with pytest.raises(FileNotFoundError, match="nowhere.csv"):
-        run_cli(tmp_path / "out", "--input", str(tmp_path / "nowhere.csv"))
-
-
 def test_an_empty_input_path_is_an_error_and_not_the_configs_benchmark(tmp_path):
     with pytest.raises(SystemExit, match="unknown benchmark"):
         run_cli(tmp_path / "out", "--input", "")
@@ -281,6 +276,26 @@ def test_a_bad_config_exits_with_one_line_naming_the_problem(tmp_path, args, mes
     assert not (tmp_path / "out").exists()
 
 
+@pytest.mark.parametrize("slice_text", ["x:3", "1:y", "0:5:0", "1:2:3:4", "0:1.5"])
+def test_a_malformed_rows_slice_exits_with_one_line_naming_it(tmp_path, slice_text):
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", "--rows", slice_text)
+    assert e.value.code.startswith(f"bad rows slice {slice_text!r}") and "\n" not in e.value.code
+    assert not (tmp_path / "out").exists()
+
+
+def test_a_missing_config_or_input_file_exits_with_one_line_naming_it(tmp_path):
+    missing = str(tmp_path / "nowhere.toml")
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", config=missing)
+    assert e.value.code == f"{missing}: no such file"
+    missing = str(tmp_path / "nowhere.txt")
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", "--input", missing)
+    assert e.value.code == f"{missing}: no such file"
+    assert not (tmp_path / "out").exists()
+
+
 def test_a_config_file_that_is_not_toml_exits_with_one_line(tmp_path):
     broken = tmp_path / "broken.toml"
     broken.write_text('method = "greedy"\nbenchmark = ms640\n')
@@ -303,3 +318,7 @@ def test_run_py_prints_the_message_and_no_traceback(tmp_path):
                            "--rows", "nope"], capture_output=True, text=True)
     assert (done.returncode, done.stdout) == (1, "")
     assert "Traceback" not in done.stderr and done.stderr.splitlines()[-1] == "rows not in the benchmark: ['nope']"
+    done = subprocess.run([sys.executable, os.path.join(ROOT, "run.py"), "--config", str(tmp_path / "no.toml")],
+                          capture_output=True, text=True)
+    assert (done.returncode, done.stdout) == (1, "")
+    assert "Traceback" not in done.stderr and done.stderr.splitlines()[-1] == f"{tmp_path / 'no.toml'}: no such file"

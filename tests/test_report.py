@@ -282,10 +282,20 @@ def test_loading_falls_back_to_config_json_then_to_question_marks(tmp_path, monk
 
 def test_a_folder_without_paths_jsonl_is_refused(tmp_path):
     (tmp_path / "rank3_bf").mkdir()
-    with pytest.raises(SystemExit, match="rank3_bf.*paths.jsonl"):
+    with pytest.raises(SystemExit, match="^rank3_bf has no paths.jsonl: run it again with run.py to compare it$"):
         report.load_run(tmp_path / "rank3_bf")
     with pytest.raises(SystemExit, match="nowhere: not a folder$"):
         report.load_run(tmp_path / "nowhere")
+
+
+def test_compare_py_exits_with_that_one_line_for_a_shipped_summary_only_folder(tmp_path):
+    """The folders kept in results/ hold summary.json and config.json only."""
+    shipped = tmp_path / "ac19_hybrid"
+    shipped.mkdir()
+    (shipped / "summary.json").write_text("{}")
+    (shipped / "config.json").write_text("{}")
+    with pytest.raises(SystemExit, match="^ac19_hybrid has no paths.jsonl: run it again with run.py to compare it$"):
+        compare.main([str(shipped)])
 
 
 def test_loading_keeps_only_the_fields_the_report_reads(tmp_path):

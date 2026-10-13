@@ -17,7 +17,7 @@ class SearchConfig:
     budget: int = 10_000         # maximum pops
     backend: str = "spec"        # "spec" (pure Python reference) | "fast" (numba)
     capture_path: bool = True    # return the move path of a solve
-    cyclic: bool = True          # cyclic reduction of children (main's default)
+    cyclic: bool = True          # cyclic reduction of children (the default)
     trace: bool = False          # return the popped states in order (parity tests)
 
     def __post_init__(self):

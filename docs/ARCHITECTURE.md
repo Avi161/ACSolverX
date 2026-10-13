@@ -84,7 +84,9 @@ backend's `run(start, cfg) -> Result`, and **replays every returned path** with
 `acx.verify.replay(pres, path, cyclic=cfg.cyclic, cap=cfg.cap)`. A start with `|det| != 1` is reported unsolved.
 
 `Result` (frozen): `solved`, `pops` (the solving pop counts), `path` (tuple of `Move` from `start`, or `None`),
-`start`, `end` (the popped all-length-1 state), `stats`, `trace` (popped states, when `cfg.trace`), `path_length`.
+`start`, `end` (the popped all-length-1 state), `stats`, `trace` (popped states, when `cfg.trace`), `depth` (the solved
+state's depth, `None` when unsolved), `path_length` (`len(path)`, or `depth` when no path was captured; identical on both
+backends).
 
 `stats` keys that both backends must report **identically** (`PARITY_STATS`): `discovered` (distinct states
 inserted, root included), the six cap-counter fields (`cap`, `cap_dropped`, `cap_dropped_min_total`,

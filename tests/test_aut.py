@@ -17,7 +17,7 @@ from acx.verify.decode import decode
 
 from conftest import ROOT, dataset
 
-# benchmark/ladder/ladder_pairs.csv (origin/claude/ac19-theorem-strength-8v1wp6): an easy original
+# benchmark/ladder/ladder_pairs.csv: an easy original
 # and its Aut-minimal ladder representative (levels 9-10). These 8 rows are used when the CSV is absent.
 PAIRS = [
     ("YXXyxYXXXYxxx", "YXyXXyxxx", "YYXXXyx", "YXyxxxxxyXyxx"),
@@ -110,7 +110,7 @@ def test_ladder_pairs_are_automorphic():
 
 
 def test_reps_match_the_published_orbit_table():
-    """data/AC19_extended_aut_min.csv is the source branch's own output: same reps, in its string order."""
+    """data/AC19_extended_aut_min.csv lists the published orbit table: same reps, in its string order."""
     path = os.path.join(ROOT, "data", "AC19_extended_aut_min.csv")
     if not os.path.exists(path):
         pytest.skip("data/AC19_extended_aut_min.csv not shipped")

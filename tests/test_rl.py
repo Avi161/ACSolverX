@@ -67,7 +67,6 @@ def test_package_import_is_torch_free():
     """``acx.rl`` itself (the width ``L`` the config checks need) never imports torch; its modules do."""
     code = "import sys, acx.rl; assert 'torch' not in sys.modules and acx.rl.L == 24"
     subprocess.run([sys.executable, "-c", code], check=True)
-    assert rl_solve.encode is codec.encode and rl_solve.decode is codec.decode and rl_solve.to_acx_path is codec.to_acx_path
 
 
 def test_visited_table_is_sorted_fixed_size_and_ignores_dead_beams():
@@ -113,7 +112,7 @@ def test_beam_never_takes_an_illegal_action_under_a_uniform_model(model, row, ev
     """These rows have 10 to 22 legal moves at the start and the beam holds 512, so an illegal action scoring above
     -inf would enter it. Every action of the path found is legal under the real policy and the path replays."""
     pres = data.load("ms640", ids=[row])[0].pres
-    x = rl_solve.encode(pres.reduced().rels)
+    x = codec.encode(pres.reduced().rels)
     actions, stats = beam.beam_search(Uniform(model), x, cap=24, width=512, steps=12)
     assert actions and stats["evaluated"] == evaluated
     with torch.no_grad():
@@ -121,7 +120,7 @@ def test_beam_never_takes_an_illegal_action_under_a_uniform_model(model, row, ev
             assert model(x[None])[0][0, action] > -1e8
             x = moves.s_move(x[None], *moves.decode_action(torch.tensor([action]), 24), 24)[0][0]
     assert int((x != 0).sum()) == 2                                          # both relators of length 1
-    assert replay(pres, rl_solve.to_acx_path(pres, actions), cap=24)[-1].is_trivial()
+    assert replay(pres, codec.to_acx_path(pres, actions), cap=24)[-1].is_trivial()
 
 
 def test_cap_is_applied_counted_and_bounded(model):
@@ -149,7 +148,7 @@ def test_bridge_follows_the_environment_on_random_walks(model):
     """Every non-no-op action is an acx S-move: the replayed state equals the environment state up to canonical form."""
     gen = torch.Generator().manual_seed(0)
     for row in data.load("ms640", ids=range(0, 640, 64)):
-        x, actions = rl_solve.encode(row.pres.reduced().rels), []
+        x, actions = codec.encode(row.pres.reduced().rels), []
         for _ in range(8):
             with torch.no_grad():
                 legal = (model(x[None])[0][0] > -1e8).nonzero().flatten()
@@ -160,15 +159,15 @@ def test_bridge_follows_the_environment_on_random_walks(model):
             x, actions = y, actions + [a]
             if int((x != 0).sum()) == 2:
                 break
-        path = rl_solve.to_acx_path(row.pres, actions)
+        path = codec.to_acx_path(row.pres, actions)
         end = replay(row.pres, path, require_trivial=False)[-1]
-        assert end == Presentation(2, rl_solve.decode(x)).reduced().canonical()
+        assert end == Presentation(2, codec.decode(x)).reduced().canonical()
 
 
 def test_bridge_rejects_a_no_op_action():
     x, action, _ = next(m for m in REF["moves"] if m[0] == m[2])
     with pytest.raises(ValueError):
-        rl_solve.to_acx_path(Presentation(2, rl_solve.decode(torch.tensor(x))), [action])
+        codec.to_acx_path(Presentation(2, codec.decode(torch.tensor(x))), [action])
 
 
 def test_ppo_smoke():

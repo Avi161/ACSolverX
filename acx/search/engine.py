@@ -28,7 +28,7 @@ class Result:
     the cap counters only observe (``cap_would_pop == 0``: no larger cap changes the search; otherwise
     ``cap_needed`` is the smallest cap that does)."""
     solved: bool
-    pops: int                       # states popped, the solved one included (main's nodes_explored)
+    pops: int                       # states popped, the solved one included
     path: tuple | None              # tuple of Move from ``start`` when solved and captured
     start: Presentation             # the normal form the search started from
     end: Presentation | None        # the popped all-length-1 state, when solved

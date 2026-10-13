@@ -13,7 +13,7 @@ from ..search.engine import Result, as_presentation
 from ..verify.replay import replay
 from . import L
 from .beam import beam_search
-from .codec import decode, encode, to_acx_path          # noqa: F401  (decode: kept importable from here)
+from .codec import encode, to_acx_path
 from .policy import pretrained
 
 

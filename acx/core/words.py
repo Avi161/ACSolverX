@@ -129,7 +129,7 @@ _BSYM = _Table(_booth_symbol)
 
 def booth_str(w):
     """``w`` as a string whose character order is Booth order, so that ``min`` over rotations is the least one."""
-    return "".join(_BCHAR[g] for g in w)
+    return "".join([_BCHAR[g] for g in w])      # a list is faster than a generator here (hot path)
 
 
 def canonical_word(w):
@@ -141,7 +141,7 @@ def canonical_word(w):
     doubled_inverse = booth_str(inverse(w)) * 2
     least_rotation = min(doubled[i:i + n] for i in range(n))
     least_inverse_rotation = min(doubled_inverse[i:i + n] for i in range(n))
-    return tuple(_BSYM[c] for c in min(least_rotation, least_inverse_rotation))
+    return tuple([_BSYM[c] for c in min(least_rotation, least_inverse_rotation)])    # list: faster (hot path)
 
 
 def sort_rels(rels):

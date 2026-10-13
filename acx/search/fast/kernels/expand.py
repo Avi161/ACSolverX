@@ -49,9 +49,8 @@ def _source_letter(syms, j, lj, s, t):
 
 
 @njit(inline="always")
-def _seam_cancels(syms, i, li, j, lj, s, k1, k2):
-    """Whether ``rot(r_i, k1) * rot(r_j ** s, k2)`` cancels at the seam."""
-    last = syms[i, li - 1 - k1]
+def _seam_cancels(syms, j, lj, s, k2, last):
+    """Whether ``rot(r_j ** s, k2)`` starts with the inverse of ``last``, the last letter of ``rot(r_i, k1)``."""
     first = _source_letter(syms, j, lj, s, lj - k2 if k2 else 0)
     return first == last ^ 1
 
@@ -252,8 +251,9 @@ def _expand(syms, lens, n_gen, cap, cyclic, out, out_len, out_mv, dout, dout_len
                     seen[:li * lj] = False
                     dseen[:li * lj] = False
                 for k1 in range(li):
+                    last = syms[i, li - 1 - k1]
                     for k2 in range(lj):
-                        if not _seam_cancels(syms, i, li, j, lj, s, k1, k2):
+                        if not _seam_cancels(syms, j, lj, s, k2, last):
                             continue
                         mark = k1 * lj + k2
                         if cyclic and k1 >= 1:

@@ -549,7 +549,7 @@ def test_the_library_raises_where_run_py_exits(tmp_path):
     """``runner.run`` raises on a row id or a file that is wrong, before it writes anything; only run.py exits."""
     bad = tmp_path / "bad.txt"
     bad.write_text("xxYYY, xyxYXY\nxy1\n")
-    for override, error in (('rows="nope"', KeyError), (f'benchmark="{bad}"', ValueError)):
+    for override, error in (('rows="nope"', KeyError), ('rows="x:3"', ValueError), (f'benchmark="{bad}"', ValueError)):
         with pytest.raises(error):
             quiet(cfg("smoke", override), tmp_path / "out")
     assert not (tmp_path / "out").exists()

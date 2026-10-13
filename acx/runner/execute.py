@@ -19,7 +19,10 @@ def select(rows, spec):
         return rows
     spec = str(spec)
     if ":" in spec:
-        return rows[slice(*(int(t) if t else None for t in spec.split(":")))]
+        try:
+            return rows[slice(*(int(t) if t else None for t in spec.split(":")))]
+        except (ValueError, TypeError):
+            raise ValueError(f"bad rows slice {spec!r}: write integers as a:b or a:b:c, the step not 0") from None
     ids = list(dict.fromkeys(spec.split(",")))
     by_id = {r.id: r for r in rows}
     missing = [i for i in ids if i not in by_id]
