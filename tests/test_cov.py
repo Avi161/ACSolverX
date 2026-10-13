@@ -165,6 +165,18 @@ def test_planted_case_row_itself_is_an_ac_path():
     assert out.ac_path.image is None and isinstance(out.ac_path.path[0], tuple)
 
 
+def test_an_ac_path_says_whether_it_was_carried_over_from_an_image():
+    """``transported``: elementary moves carried back from an image in the row's orbit, not the S-moves of a search
+    on the row (the row's own leg, or an image that is the row itself)."""
+    cfg = CoVConfig(search=SearchConfig(budget=200), total_budget=2000, control=False, until="ac_path")
+    carried = run(Presentation.parse("YYXyx", "Yx"), cfg).ac_path
+    assert carried.image.tag == "xy/x/0" and carried.transported and isinstance(carried.path[0], dict)
+    same = run(Presentation.parse("YYXyx", "YXyXXyxx"), cfg).ac_path
+    assert same.image is not None and not same.transported and isinstance(same.path[0], tuple)
+    own = run(PLANTED, CoVConfig(until="ac_path")).ac_path
+    assert own.image is None and not own.transported
+
+
 def test_until_ac_path_keeps_going_past_a_stable_cert():
     cfg = CoVConfig(search=SearchConfig(budget=200), total_budget=2000, control=False)
     first = run(PLANTED, cfg)
@@ -470,3 +482,11 @@ def test_family_is_a_config_choice():
     assert out.solved and out.stats["images"] == len(enumerate_images(PLANTED, family="suballpxyb8"))
     for o in out.outcomes:
         verify(PLANTED, o)
+
+
+@pytest.mark.parametrize("bad", [0, -5, 1.5, "100", True, None])
+def test_total_budget_must_be_an_int_of_at_least_one(bad):
+    with pytest.raises(ValueError) as error:
+        CoVConfig(total_budget=bad)
+    assert str(error.value) == f"total_budget must be an int >= 1, got {bad!r}"
+    assert CoVConfig(total_budget=1).total_budget == 1

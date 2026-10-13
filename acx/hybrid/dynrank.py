@@ -14,9 +14,9 @@ the least of its rotations and those of its inverse in int order (``-2 < -1 < 1 
 """
 from collections import Counter
 
+from ..core.digrams import digram_counts, tokenize
 from ..core.priority import length
 from ..core.words import inverse, reduce, renumber, substitute_generator
-from ..ngen.sac import tokenize
 
 
 def dcanon(w):
@@ -134,19 +134,6 @@ def products(words, cap):
                             seen[key] = {"kind": "product", "i": i, "j": j, "sign": sign,
                                          "k1": k1, "k2": k2, "result": product}
     return list(seen.items()), cut
-
-
-def digram_counts(words):
-    """How often each cyclic digram occurs (a digram and its inverse count as one)."""
-    counts = Counter()
-    for w in words:
-        m = len(w)
-        if m < 2:
-            continue
-        for k in range(m):
-            d = (w[k], w[(k + 1) % m])
-            counts[min(d, inverse(d))] += 1
-    return counts
 
 
 def define(words, d):

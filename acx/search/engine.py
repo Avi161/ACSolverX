@@ -10,7 +10,7 @@ from dataclasses import dataclass, field, replace
 
 from ..core.capcount import FIELDS as CAP_FIELDS
 from ..core.config import SearchConfig
-from ..core.words import Presentation
+from ..core.words import Presentation, as_presentation
 from ..verify.replay import replay
 
 # Stats every backend reports with identical values (the cap counters are ``acx.core.capcount.FIELDS``).
@@ -41,13 +41,6 @@ class Result:
     def path_length(self):
         """Number of moves of a solve, None when unsolved; the same whether or not the path was captured."""
         return self.depth if self.path is None else len(self.path)
-
-
-def as_presentation(pres):
-    """``pres`` as a ``Presentation``: relator strings (``("xxYXY", "xyyXY")``) are parsed."""
-    if isinstance(pres, Presentation):
-        return pres
-    return Presentation.parse(*pres)
 
 
 def backend(name):

@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 import acx.core.capcount
-from acx.core.capcount import FIELDS, CapArrays, CapCount, blank, combine, fields, summarize
+from acx.core.capcount import FIELDS, PREFIXES, CapArrays, CapCount, blank, combine, fields, summarize
 
 
 def test_semantics_by_hand():
@@ -121,6 +121,17 @@ def test_numba_twin_matches_the_plain_counter(seed):
 def test_fields_address_a_record_by_short_name():
     assert fields().would_pop == "cap_would_pop"
     assert fields("dyn_cap").first_bind == "dyn_cap_first_bind"
+
+
+def test_every_counter_a_run_records_has_one_of_the_prefixes():
+    """The search's ``cap`` and the hybrid's ``dyn_cap`` and ``slack``: the hybrid writes them, the runner copies
+    them."""
+    from acx.hybrid import HybridConfig
+    from acx.hybrid.capwatch import blank_records
+    from acx.runner.caps import CAP_KEYS
+    assert PREFIXES == ("cap", "dyn_cap", "slack")
+    assert list(blank_records(HybridConfig())) == [f for prefix in PREFIXES for f in fields(prefix)]
+    assert CAP_KEYS == (*blank_records(HybridConfig()), "cap_legs_bound")
 
 
 def imports(source):

@@ -4,7 +4,7 @@ import json
 from dataclasses import asdict, dataclass, fields
 
 from ...core.capcount import FIELDS
-from ...core.config import SearchConfig, require_bool
+from ...core.config import SearchConfig, is_number, reject_unknown, require_bool
 from ...core.words import fmt
 from .words import pool
 
@@ -30,7 +30,7 @@ class SweepConfig:
         """Refuse what the stored arrays or the start relators cannot hold, and anything but LENGTH."""
         search = self.search
         require_bool(self.inverse, "rankn.inverse")
-        if self.extra not in (1, 2, 3):
+        if type(self.extra) is not int or self.extra not in (1, 2, 3):
             raise ValueError(f"rankn.extra must be 1, 2 or 3, got {self.extra!r}")
         lengths_ok = type(self.min_len) is int and type(self.max_len) is int and 1 <= self.min_len <= self.max_len
         if not lengths_ok:
@@ -41,7 +41,7 @@ class SweepConfig:
             raise ValueError("the sweep stores pops as uint16: search.budget must be at most 65535")
         if search.cap is not None and 1 + self.max_len > search.cap:
             raise ValueError(f"search.cap {search.cap} is below the start relator Z.w of length {1 + self.max_len}")
-        if not 0 <= self.sample <= 1:
+        if not (is_number(self.sample) and 0 <= self.sample <= 1):
             raise ValueError(f"rankn.sample must be in [0, 1], got {self.sample!r}")
 
     @classmethod
@@ -51,9 +51,7 @@ class SweepConfig:
         As for every method of the runner, the backend defaults to ``fast`` (``SearchConfig`` alone says ``spec``).
         """
         rankn = dict(cfg.get("rankn", {}))
-        unknown = set(rankn) - {f.name for f in fields(cls) if f.name != "search"}
-        if unknown:
-            raise ValueError(f"unknown rankn keys {sorted(unknown)}")
+        reject_unknown(rankn, {f.name for f in fields(cls) if f.name != "search"}, "rankn")
         search = SearchConfig.from_dict({"backend": "fast", **cfg.get("search", {}), "capture_path": True})
         return cls(search=search, **rankn)
 

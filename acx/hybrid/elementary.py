@@ -6,7 +6,7 @@ on ``E`` only, a product, definition, elimination or transvection is spelled out
 to ``<x, y | x, y>``. The path is long but deterministic, and ``acx.verify.replay`` checks it before it is returned.
 """
 from ..core.moves import seam_cancels
-from ..core.words import canonical_rels, free, inverse, reduce, rotate, substitute_generator
+from ..core.words import canonical_rels, conjugate, free, inverse, reduce, rotate, rotate_left, substitute_generator
 from ..verify.replay import replay
 from . import dynrank as D
 from .frame import Frame
@@ -18,9 +18,9 @@ def _product(fr, words, ev):
     i, j, k1, k2 = ev["i"], ev["j"], ev["k1"], ev["k2"]
     target = words[i]
     base = words[j] if ev["sign"] == 1 else inverse(words[j])
-    fr.set_word(i, target[k1:] + target[:k1])
-    fr.cmul(i, j, base[k2:] + base[:k2])
-    result = D.dcanon(target[k1:] + target[:k1] + base[k2:] + base[:k2])
+    fr.set_word(i, rotate_left(target, k1))
+    fr.cmul(i, j, rotate_left(base, k2))
+    result = D.dcanon(rotate_left(target, k1) + rotate_left(base, k2))
     if result != tuple(ev["result"]):
         raise ValueError("product result differs")
     return D.normalize(words[:i] + (result,) + words[i + 1:])
@@ -47,7 +47,7 @@ def _define(fr, words, ev):
         for p in reversed(range(len(t))):
             if abs(t[p]) == h:
                 q, de = t[p + 1:], (d if t[p] > 0 else inverse(d))
-                fr.cmul(i, n, free(inverse(q) + inverse(de) + (t[p],) + q))
+                fr.cmul(i, n, conjugate(inverse(de) + (t[p],), q))
         if fr.E[i] != t:
             raise ValueError(f"template {t} does not expand to relator {words[i]}")
     return D.normalize(((-h,) + d,) + tuple(map(tuple, ev["templates"])))
@@ -68,7 +68,7 @@ def _eliminate(fr, words, ev):
             if abs(w[p]) == g:
                 f = 1 if w[p] > 0 else -1
                 s = substitute_generator(w[p + 1:], g, image)
-                fr.cmul(k, i, free(inverse(s) + (-f * g,) + (image if f > 0 else inverse(image)) + s))
+                fr.cmul(k, i, conjugate((-f * g,) + (image if f > 0 else inverse(image)), s))
         if fr.E[k] != substitute_generator(w, g, image):
             raise AssertionError("substitution differs")
     fr.set_word(i, (g,) + inverse(image))

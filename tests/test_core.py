@@ -5,12 +5,13 @@ import re
 
 import pytest
 
-from acx.core.config import SearchConfig, parse_override, reject_unknown, require_bool, require_int
+from acx.core.config import SearchConfig, is_number, parse_override, reject_unknown, require_bool, require_int
+from acx.core.digrams import digram, digram_counts, tokenize
 from acx.core.moves import (Move, Trace, apply_raw, destabilize, elementary_step, enumerate_moves,
-                            from_legacy, s_step, seam_cancels, stabilize)
+                            from_legacy, is_elementary, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
-from acx.core.words import (Presentation, canonical_rels, canonical_word, fmt, inverse,
-                            parse, reduce, rotate, state_key)
+from acx.core.words import (Presentation, as_presentation, canonical_rels, canonical_word, conjugate, fmt, inverse,
+                            parse, reduce, rotate, rotate_left, state_key)
 
 RNG = random.Random(7)
 
@@ -29,9 +30,33 @@ def test_parse_format_roundtrip():
     assert inverse(parse("xyY")) == parse("yYX")
 
 
+def test_as_presentation_takes_a_presentation_or_relator_strings():
+    pres = Presentation.parse("xxYXY", "xyyXY")
+    assert as_presentation(pres) is pres
+    assert as_presentation(("xxYXY", "xyyXY")) == as_presentation(["xxYXY", "xyyXY"]) == pres
+    assert as_presentation(("xy", "yz", "zx")).n_gen == 3
+
+
 def test_rotate_rolls_right():
     """``rotate(w, k)`` is ``np.roll(w, k)``: element ``m`` of the result is ``w[m - k]``."""
     assert rotate((1, 2, 3, 4), 1) == (4, 1, 2, 3) and rotate((1, 2, 3, 4), 6) == (3, 4, 1, 2) and rotate((), 3) == ()
+
+
+def test_rotate_left_starts_the_word_at_k():
+    assert rotate_left((1, 2, 3, 4), 1) == (2, 3, 4, 1) and rotate_left((1, 2, 3, 4), 0) == (1, 2, 3, 4)
+    for n in range(1, 6):
+        w = tuple(range(1, n + 1))
+        assert all(rotate_left(w, k) == rotate(w, -k) for k in range(n))
+
+
+def test_conjugate_is_c_inverse_w_c_freely_reduced():
+    assert conjugate(parse("xy"), parse("x")) == parse("yx") == conjugate(parse("xy"), parse("Y"))
+    assert conjugate(parse("xy"), ()) == parse("xy") and conjugate((), parse("xy")) == ()
+    for _ in range(200):                                    # a letter at a time, as the elementary move does it
+        w, c = reduce(rand_word(RNG.randint(0, 8)), cyclic=False), rand_word(RNG.randint(0, 4))
+        trace = Trace(Presentation(2, (w, (1,))))
+        trace.conj(0, c)
+        assert trace.pres.rels[0] == conjugate(w, c)
 
 
 def test_reduce():
@@ -101,6 +126,8 @@ def test_legacy_moves_and_s_step():
 
 def test_elementary_and_stable_moves():
     p = Presentation.parse("xy", "y")
+    assert is_elementary({"op": "swap"})
+    assert not is_elementary(Move(0, 1, 1, 0, 0)) and not is_elementary([0, 1, 1, 0, 0])
     assert elementary_step(p, {"op": "invert", "target": 2}).strs == ("xy", "Y")
     assert elementary_step(p, {"op": "swap"}).strs == ("y", "xy")
     assert elementary_step(p, {"op": "conjugate", "target": 1, "by": "x"}).strs == ("yx", "y")
@@ -164,6 +191,11 @@ def test_require_int_takes_an_int_at_or_above_its_bound():
         assert str(error.value) == f"n must be an int >= {low}, got {value!r}"
 
 
+def test_is_number_takes_ints_and_floats_but_not_bools():
+    assert is_number(0) and is_number(-2) and is_number(0.5) and is_number(float("nan"))
+    assert not any(is_number(value) for value in (True, False, "1", None, [1]))
+
+
 def test_reject_unknown_names_the_unknown_keys_sorted():
     reject_unknown({"a": 1}, {"a", "b"}, "x")
     reject_unknown({}, (), "x")
@@ -218,3 +250,23 @@ def test_trace_conjugated_multiply(s):
     src = p.rels[1] if s == 1 else inverse(p.rels[1])
     want = reduce(p.rels[0] + reduce(inverse(c) + src + c, cyclic=False), cyclic=False)
     assert tr.pres.rels == (want, p.rels[1]) and all(m["op"] in ("invert", "conjugate", "multiply") for m in tr.moves)
+
+
+def test_digram_is_the_cyclic_pair_in_the_orientation_it_shares_with_its_inverse():
+    w = parse("xyXY")
+    assert [digram(w, k) for k in range(4)] == [parse("YX"), parse("xY"), parse("XY"), parse("Yx")]
+    assert digram(parse("YX"), 0) == digram(parse("xy"), 0) == parse("YX")
+
+
+def test_digram_counts_tallies_each_cyclic_digram_once_with_its_inverse():
+    counts = digram_counts([parse("xyXY"), parse("xx"), parse("y"), ()])
+    assert counts == {parse("YX"): 1, parse("xY"): 1, parse("XY"): 1, parse("Yx"): 1, parse("XX"): 2}
+    assert list(digram_counts([parse("xx"), parse("xy")])) == [parse("XX"), parse("YX"), parse("XY")]   # as they occur
+
+
+def test_tokenize_is_the_shortest_rewriting_ties_to_the_smaller_word():
+    xy = parse("xy")
+    assert tokenize(parse("xyxy"), xy, 3) == (3, 3)
+    assert tokenize(parse("YXxy"), xy, 3) == (-3, 3)                # d^-1 becomes h^-1
+    assert tokenize(parse("yx"), xy, 3) == parse("yx")              # linear: no match across the end
+    assert tokenize(parse("xxx"), parse("xx"), 3) == (1, 3)         # (1, 3) and (3, 1) tie: the smaller

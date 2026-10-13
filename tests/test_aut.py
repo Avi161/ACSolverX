@@ -8,7 +8,7 @@ import pytest
 
 from acx.aut import (AUTOS, are_automorphic, aut_canon, automorphism, check, images, invert, orbit_key,
                      solve_via_aut_min, transport)
-from acx.aut.autos import IDENTITY, apply, apply_pres, image
+from acx.aut.autos import DESCENT, IDENTITY, SIGNED, apply, apply_pres, image
 from acx.aut.emitter import Emitter
 from acx.core.words import Presentation, reduce
 from acx.search import search
@@ -76,6 +76,7 @@ def test_auto_table_layout():
     """The numba twin relies on it: ``AUTOS[0]`` is the identity and only ``AUTOS[8:]`` change a total length."""
     assert AUTOS[0] == IDENTITY and len(AUTOS) == 20
     assert all(sum(map(len, a)) == 2 for a in AUTOS[:8]) and all(sum(map(len, a)) > 2 for a in AUTOS[8:])
+    assert (SIGNED, DESCENT) == (range(0, 8), range(8, 20))
 
 
 def test_image_is_the_cyclically_reduced_word_under_each_auto():
@@ -97,6 +98,12 @@ def test_orbit_key_is_invariant_under_every_auto(backend):
         key = orbit_key(pres, backend)
         for k in range(len(AUTOS)):
             assert orbit_key(apply_pres(pres, (k,)), backend) == key, (pres, k)
+
+
+def test_orbit_key_names_the_backends_it_has():
+    with pytest.raises(ValueError) as error:
+        orbit_key(Presentation.parse("xy", "y"), "numba")
+    assert str(error.value) == "backend 'numba' not in ('spec', 'fast')"
 
 
 def test_level_cap_raises():

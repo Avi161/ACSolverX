@@ -10,7 +10,7 @@ import numpy as np
 from numba import njit
 
 from ..core.words import Presentation, state_key
-from ..search.fast.kernels import canon_buf, encode, reduce_buf, rel_less
+from ..search.fast.kernels import canon_buf, decode_word, encode, reduce_buf, rel_less
 from .autos import AUTOS, DESCENT
 
 N_AUTOS = len(AUTOS)
@@ -78,11 +78,6 @@ def _expand_level(r1, r2, t, img, lens):
     return buf, ln, ok
 
 
-def _word(syms):
-    """Symbols -> the signed int word of ``acx.core.words``."""
-    return tuple((2 - (s >> 1)) * (1 if s & 1 else -1) for s in syms.tolist())
-
-
 def aut_min(pres, level_cap=50_000):
     """``(total, rep)`` equal to ``whitehead.aut_canon(pres)[:2]`` (pairs on F2 only)."""
     if pres.n_gen != 2 or len(pres.rels) != 2:
@@ -102,5 +97,5 @@ def aut_min(pres, level_cap=50_000):
             if key not in seen:
                 seen[key] = (c1, c2)
                 stack.append((c1, c2))
-    rep = min(((_word(c1), _word(c2)) for c1, c2 in seen.values()), key=state_key)
+    rep = min(((decode_word(c1, 2), decode_word(c2, 2)) for c1, c2 in seen.values()), key=state_key)
     return int(t), Presentation(2, rep)

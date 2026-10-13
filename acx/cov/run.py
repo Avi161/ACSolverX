@@ -7,16 +7,15 @@ import time
 from dataclasses import dataclass, field, replace
 
 from ..aut import automorphism, transport
-from ..core.capcount import blank, combine
-from ..core.config import SearchConfig, parse_cap
+from ..core.capcount import FIELDS, blank, combine
+from ..core.config import SearchConfig, parse_cap, require_bool, require_int
+from ..core.moves import is_elementary
+from ..core.words import as_presentation
 from ..search import Result, search
-from ..search.engine import as_presentation
 from ..verify.replay import replay
 from .certificate import check_cert
 from .family import FAMILIES, MAX_LEN
 from .images import CoVImage, enumerate_images
-
-CAP_FIELDS = tuple(blank())
 
 
 @dataclass(frozen=True)
@@ -35,8 +34,8 @@ class CoVConfig:
             raise ValueError(f"until {self.until!r} not in ('solve', 'ac_path')")
         if self.family not in FAMILIES:
             raise ValueError(f"family {self.family!r} not in {FAMILIES}")
-        if not (type(self.total_budget) is int and self.total_budget > 0):
-            raise ValueError(f"total_budget must be a positive int, got {self.total_budget!r}")
+        require_int(self.total_budget, "total_budget")
+        require_bool(self.control, "control")
         object.__setattr__(self, "cap_headroom", parse_cap(self.cap_headroom, "cap_headroom", low=0))
         object.__setattr__(self, "max_len", parse_cap(self.max_len, "max_len"))
 
@@ -54,6 +53,11 @@ class Outcome:
     path: tuple              # ac_path: moves that replay on the row; stable_cert: the leg on ``image.pres``
     cap: int | None          # cap of the search leg
     cyclic: bool = True      # the search leg's reduction
+
+    @property
+    def transported(self):
+        """An ``ac_path`` carried back from an image by ``acx.aut.transport``: elementary moves, not S-moves."""
+        return bool(self.path) and is_elementary(self.path[0])
 
 
 @dataclass(frozen=True)
@@ -88,7 +92,7 @@ def verify(pres, outcome):
     if outcome.kind == "stable_cert":
         check_cert(pres, outcome.image.steps, outcome.path, outcome.cap, outcome.cyclic)
     else:
-        replay(pres, outcome.path, outcome.cyclic, normalize=not (outcome.path and isinstance(outcome.path[0], dict)))
+        replay(pres, outcome.path, outcome.cyclic, normalize=not outcome.transported)
 
 
 def _typed(pres, img, res, cap, cyclic):
@@ -163,7 +167,7 @@ def run(pres, cfg=None, **overrides):
         seen_starts.add(start)
         cap = _leg_cap(cfg, img)
         res = search(raw, search_cfg.replace(budget=min(search_cfg.budget, pops_left), cap=cap, capture_path=True))
-        legs.append(({f: res.stats[f] for f in CAP_FIELDS}, pops))
+        legs.append(({f: res.stats[f] for f in FIELDS}, pops))
         tried, pops = tried + 1, pops + res.pops
         if res.solved:
             outcomes.append(_typed(pres, img, res, cap, search_cfg.cyclic))

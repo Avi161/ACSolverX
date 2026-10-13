@@ -1,12 +1,12 @@
 """The stable-AC (SAC) transform: define generators until every relator has length <= 3.
 
 ``triangulate(pres) -> Sac`` records the source, the digrams defined and the root; ``check`` re-derives the root.
-``tokenize`` is shared with ``acx.hybrid``. The definition and the tie-breaks: ``docs/RANK3.md``.
+The digram helpers are ``acx.core.digrams``. The definition and the tie-breaks: ``docs/RANK3.md``.
 """
-from collections import Counter
 from dataclasses import dataclass
 
-from ..core.words import Presentation, inverse
+from ..core.digrams import digram_counts, tokenize
+from ..core.words import Presentation, inverse, rotate_left
 
 LIMIT = 3          # the relator length SAC aims for
 
@@ -16,29 +16,9 @@ def excess(rels):
     return sum(max(0, len(r) - LIMIT) for r in rels)
 
 
-def digram(w, k):
-    """The cyclic digram of ``w`` at ``k``, in the orientation shared with its inverse."""
-    d = (w[k], w[(k + 1) % len(w)])
-    return min(d, inverse(d))
-
-
-def tokenize(w, d, h):
-    """The shortest rewriting of the linear word ``w`` with ``d -> h`` and ``d^-1 -> -h`` (ties: the smaller word)."""
-    d_inverse = inverse(d)
-    shortest = [()] * (len(w) + 1)              # shortest[i]: the best rewriting of the suffix w[i:]
-    for i in range(len(w) - 1, -1, -1):
-        options = [(w[i],) + shortest[i + 1]]
-        if w[i:i + 2] == d:
-            options.append((h,) + shortest[i + 2])
-        if w[i:i + 2] == d_inverse:
-            options.append((-h,) + shortest[i + 2])
-        shortest[i] = min(options, key=lambda option: (len(option), option))
-    return shortest[0]
-
-
 def _least_rotation(w):
     """The smallest rotation of ``w`` in int order."""
-    return min(w[k:] + w[:k] for k in range(len(w)))
+    return min(rotate_left(w, k) for k in range(len(w)))
 
 
 def rewrite(w, d, h):
@@ -50,7 +30,7 @@ def rewrite(w, d, h):
         return False, 0, w
     flip = _least_rotation(inverse(w)) < _least_rotation(w)
     oriented = inverse(w) if flip else w
-    rotations = ((k, tokenize(oriented[k:] + oriented[:k], d, h)) for k in range(len(oriented)))
+    rotations = ((k, tokenize(rotate_left(oriented, k), d, h)) for k in range(len(oriented)))
     k, new = min(rotations, key=lambda rotation: (len(rotation[1]), rotation[1], rotation[0]))
     return flip, k, new
 
@@ -64,12 +44,8 @@ def define(pres, d):
 def next_digram(rels):
     """The digram to define next: most cyclic occurrences, then most inside relators longer than ``LIMIT``, then
     the smallest."""
-    total, longs = Counter(), Counter()
-    for w in rels:
-        for k in range(len(w)) if len(w) > 1 else ():
-            total[digram(w, k)] += 1
-            if len(w) > LIMIT:
-                longs[digram(w, k)] += 1
+    total = digram_counts(rels)
+    longs = digram_counts(w for w in rels if len(w) > LIMIT)
     return min(longs, key=lambda d: (-total[d], -longs[d], d))
 
 

@@ -8,8 +8,9 @@ on the row.
 import time
 
 from ..core.capcount import blank
-from ..core.words import reduce
-from ..search.engine import Result, as_presentation
+from ..core.config import require_int
+from ..core.words import as_presentation, reduce
+from ..search.engine import Result
 from ..verify.replay import replay
 from . import L
 from .beam import beam_search
@@ -25,8 +26,8 @@ def solve(pres, model=None, width=1024, steps=150, alpha=0.0, cap=L):
     network cannot see a longer relator). Rows with other than two generators, or a relator longer than
     ``cap``, come back unsolved with ``stats["skipped"]`` set.
     """
-    if cap is None or not 0 < cap <= L:
-        raise ValueError(f"acx.rl needs 0 < cap <= {L} (the policy's observation width), got {cap}")
+    if require_int(cap, "cap") > L:
+        raise ValueError(f"acx.rl needs cap <= {L} (the policy's observation width), got {cap}")
     pres = as_presentation(pres)
     start, rels = pres.reduced().canonical(), tuple(reduce(r) for r in pres.rels)
     t0, stats = time.perf_counter(), dict(backend="rl-beam", width=width, steps=steps, alpha=alpha, cap=cap)

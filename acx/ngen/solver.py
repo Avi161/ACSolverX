@@ -6,9 +6,9 @@ root is searched and a solve is lifted to elementary stable AC moves (``acx.ngen
 """
 from dataclasses import dataclass, field
 
-from ..core.config import SearchConfig
-from ..search import search
-from ..search.engine import Result, as_presentation
+from ..core.config import SearchConfig, require_bool
+from ..core.words import as_presentation
+from ..search import Result, search
 from ..verify.replay import replay
 from .lifting import lift
 from .sac import Sac, triangulate
@@ -25,6 +25,8 @@ class NGenConfig:
 
     def __post_init__(self):
         """SAC always raises the rank past two, and only LENGTH is defined there: refused here, before any run."""
+        for name in ("sac", "lift"):
+            require_bool(getattr(self, name), name)
         if self.sac and self.search.priority != "length":
             raise ValueError("ngen with sac = true needs search.priority = 'length': the SAC root has more than two "
                              "generators, and s20_mk2 is defined for two (use sac = false to search as it is)")

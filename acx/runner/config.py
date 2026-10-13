@@ -3,7 +3,7 @@ import os
 import tomllib
 from dataclasses import fields
 
-from ..core.config import SearchConfig, parse_cap, parse_override, reject_unknown, require_int
+from ..core.config import SearchConfig, is_number, parse_cap, parse_override, reject_unknown, require_int
 from .output import check_output, keeps_path
 
 # The config sections each method reads; any other section is an error.
@@ -102,7 +102,8 @@ def method_config(cfg):
         from ..cov import CoVConfig
         return _build(CoVConfig, cfg.get("cov", {}), search=search)
     if method == "ngen":
-        return _ngen_config(cfg, search)
+        from ..ngen import NGenConfig
+        return _build(NGenConfig, {**cfg.get("ngen", {}), "lift": keeps_path(cfg)}, search=search)
     return search                                    # greedy, aut
 
 
@@ -110,15 +111,6 @@ def _build(cls, values, **fixed):
     """``cls(**fixed, **values)`` for a config dataclass, with unknown keys of ``values`` named in the error."""
     reject_unknown(values, {f.name for f in fields(cls)} - set(fixed), cls.__name__)
     return cls(**fixed, **values)
-
-
-def _ngen_config(cfg, search):
-    """``NGenConfig`` from ``[ngen]`` and ``search``; the SAC phase has only the 'length' priority."""
-    from ..ngen import NGenConfig
-    config = _build(NGenConfig, {**cfg.get("ngen", {}), "lift": keeps_path(cfg)}, search=search)
-    if config.sac and search.priority != "length":
-        raise ValueError("ngen with sac=true searches past two generators, where only priority 'length' is defined")
-    return config
 
 
 def _rl_keywords(values):
@@ -129,10 +121,8 @@ def _rl_keywords(values):
     for name in ("width", "steps"):
         if name in keywords:
             require_int(keywords[name], f"rl.{name}")
-    if "alpha" in keywords:
-        alpha = keywords["alpha"]
-        if isinstance(alpha, bool) or not isinstance(alpha, (int, float)):
-            raise ValueError(f"rl.alpha must be a number, got {alpha!r}")
+    if "alpha" in keywords and not is_number(keywords["alpha"]):
+        raise ValueError(f"rl.alpha must be a number, got {keywords['alpha']!r}")
     keywords["cap"] = parse_cap(keywords.get("cap", L), "rl.cap")
     if keywords["cap"] is None or keywords["cap"] > L:
         raise ValueError(f"rl.cap must be at most {L}, the policy's observation width")

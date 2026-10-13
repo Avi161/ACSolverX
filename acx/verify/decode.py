@@ -4,7 +4,7 @@ An S-move is expanded into conjugations that rotate the relators, one ``multiply
 of the source's changes), and the canonical form of every relator again plus ``swap`` to sort them; the shortest
 of the conjugator choices wins. Only ``cyclic=True`` S-moves are decoded. The JSON form of the result is in ``pack``.
 """
-from ..core.moves import Move, Trace, step
+from ..core.moves import Move, Trace, is_elementary, step
 from ..core.words import canonical_rels, canonical_word, inverse, reduce, rotate
 from .replay import replay
 
@@ -114,7 +114,7 @@ def decode(pres, path):
     _canonicalize(tr)
     for mv in path:
         expect = step(expect, mv)
-        if isinstance(mv, dict):
+        if is_elementary(mv):
             tr.do(mv)
         else:
             _expand_move(tr, Move(*mv))

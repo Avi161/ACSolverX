@@ -22,10 +22,12 @@ def encode(rels, n_gen, width=None):
 
 def decode(syms, lens, n_gen):
     """Inverse of ``encode``: a tuple of int-tuple relators."""
-    def letter(b):
-        return (n_gen - (int(b) >> 1)) * (1 if b & 1 else -1)
+    return tuple(decode_word(syms[r, :lens[r]], n_gen) for r in range(len(lens)))
 
-    return tuple(tuple(letter(b) for b in syms[r, :lens[r]]) for r in range(len(lens)))
+
+def decode_word(syms, n_gen):
+    """One relator's symbols (a ``uint8`` array) -> its int-tuple word."""
+    return tuple((n_gen - (b >> 1)) * (1 if b & 1 else -1) for b in syms.tolist())
 
 
 @njit(inline="always")

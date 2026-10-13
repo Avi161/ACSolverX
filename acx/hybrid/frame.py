@@ -4,7 +4,8 @@ Invariant ``W = psi(E)`` letter for letter, ``psi`` an automorphism of the free 
 written on ``W`` with its conjugating words replaced by their ``psi`` images. ``certify`` drives it.
 """
 from ..aut.autos import AUTOS, apply_table
-from ..core.words import canonical_word, conjugators, free, inverse, reduce, substitute_generator, to_char
+from ..core.words import (canonical_word, conjugate, conjugators, free, inverse, reduce, substitute_generator,
+                          to_char)
 
 
 class RealPresentation:
@@ -28,7 +29,7 @@ class RealPresentation:
         """Write out the held-back conjugation of relator ``t``."""
         c, self.pend[t] = self.pend[t], ()
         self.ops.extend({"op": "conjugate", "target": t + 1, "by": to_char(g)} for g in c)
-        self.rels[t] = free(inverse(c) + self.rels[t] + c)
+        self.rels[t] = conjugate(self.rels[t], c)
 
     def invert(self, t):
         """Invert relator ``t``."""
@@ -89,7 +90,7 @@ class Frame:
         """Conjugate ``E_i`` by ``c``."""
         c = free(c)
         if c:
-            self.E[i] = free(inverse(c) + self.E[i] + c)
+            self.E[i] = conjugate(self.E[i], c)
             self.w.conj(i, apply_table(c, self.tab))
 
     def invert(self, i):

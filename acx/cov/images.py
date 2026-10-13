@@ -7,7 +7,7 @@ The word operations are in ``substitution``, the choice of ``w`` in ``family``, 
 from dataclasses import dataclass
 from itertools import product
 
-from ..aut.autos import apply_pres
+from ..aut.autos import SIGNED, apply_pres
 from ..core.words import Presentation, fmt, renumber, substitute_generator
 from .family import FAMILIES, MAX_LEN, proper_subwords, subwords
 from .substitution import X, Y, Z, isolate, occurrences, patterns, substitute, substitute_pattern
@@ -39,7 +39,7 @@ class CoVImage:
 
 def class_key(pres):
     """``pres`` up to relator order, rotation, inversion, cyclic reduction and the 8 signed permutations of x, y."""
-    return min(apply_pres(pres, (k,)).reduced().canonical().rels for k in range(8))     # AUTOS[0:8]
+    return min(apply_pres(pres, (k,)).reduced().canonical().rels for k in SIGNED)
 
 
 def substitutions(r1, r2, w, exhaustive):

@@ -51,6 +51,11 @@ def rotate(w, k):
     return w[n - k:] + w[:n - k]
 
 
+def rotate_left(w, k):
+    """``w`` rotated left by ``k`` (``0 <= k < len(w)``): it starts at ``w[k]``; ``rotate(w, -k)``."""
+    return w[k:] + w[:k]
+
+
 def reduce(w, cyclic=True):
     """Free reduction; with ``cyclic`` also cancel across the wrap-around, fewer than half the length
     (the baseline's rule), so a freely reduced word never empties."""
@@ -74,6 +79,11 @@ def free(w):
     return reduce(w, cyclic=False)
 
 
+def conjugate(w, c):
+    """``c^-1 w c``, freely reduced."""
+    return free(inverse(c) + w + c)
+
+
 def substitute_generator(w, g, image):
     """``w`` with every ``g`` replaced by ``image`` (``g^-1`` by its inverse), freely reduced."""
     back, out = inverse(image), []
@@ -95,7 +105,7 @@ def conjugators(w, t):
     a, b = w[:(len(w) - len(cw)) // 2], t[:(len(t) - len(ct)) // 2]
     for sign, cs in ((1, cw), (-1, inverse(cw))):
         for k in range(max(len(cs), 1)):
-            if cs[k:] + cs[:k] == ct:
+            if rotate_left(cs, k) == ct:
                 yield sign, free(a + cs[:k] + inverse(b))
                 yield sign, free(a + inverse(cs[k:]) + inverse(b))
 
@@ -227,3 +237,10 @@ class Presentation:
 
     def __str__(self):
         return "<" + ", ".join(map(to_char, range(1, self.n_gen + 1))) + " | " + ", ".join(self.strs) + ">"
+
+
+def as_presentation(pres):
+    """``pres`` as a ``Presentation``: relator strings (``("xxYXY", "xyyXY")``) are parsed."""
+    if isinstance(pres, Presentation):
+        return pres
+    return Presentation.parse(*pres)

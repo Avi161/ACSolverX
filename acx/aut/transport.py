@@ -4,7 +4,7 @@
 moves; ``solve_via_aut_min`` searches the Aut-minimal representative and transports the solve back to the row.
 """
 from ..core.config import SearchConfig
-from ..core.moves import Move
+from ..core.moves import Move, is_elementary
 from ..core.words import canonical_rels
 from ..verify.decode import decode
 from ..verify.replay import replay
@@ -36,7 +36,7 @@ def transport(pres, phi, path, start, cyclic=True):
     em = Emitter(pres)
     states = replay(start, path, cyclic=cyclic, normalize=False)
     for state, mv in zip(states, path):
-        if isinstance(mv, dict):
+        if is_elementary(mv):
             em.align(tuple(apply_table(r, tab) for r in state.rels))
             em.dict_move(mv, tab)
         else:

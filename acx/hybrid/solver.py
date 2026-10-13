@@ -6,13 +6,12 @@ a ``stable_cert`` also has higher-rank steps. ``certify`` writes either as eleme
 import time
 from dataclasses import dataclass, field, replace
 
-from ..core.config import parse_cap
-from ..core.words import Presentation
+from ..core.config import BACKENDS, is_number, parse_cap, require_bool, require_int
+from ..core.words import as_presentation
 from ..verify.replay import abs_det
 from .capwatch import blank_records
 from .cascade import cascade
 from .elementary import certify
-from .frontier import BACKENDS
 from .search import BestFirst
 from .steps import Budget, Run
 
@@ -33,12 +32,11 @@ class HybridConfig:
 
     def __post_init__(self):
         for name, low in (("budget", 1), ("penalty", 0), ("min_uses", 1)):
-            value = getattr(self, name)
-            if type(value) is not int or value < low:
-                raise ValueError(f"{name} must be an int >= {low}, got {value!r}")
+            require_int(getattr(self, name), name, low)
+        require_bool(self.certify, "certify")
         if self.backend not in BACKENDS:
             raise ValueError(f"backend {self.backend!r} not in {BACKENDS}")
-        if isinstance(self.dyn_ratio, bool) or not isinstance(self.dyn_ratio, (int, float)) or not self.dyn_ratio >= 0:
+        if not (is_number(self.dyn_ratio) and self.dyn_ratio >= 0):
             raise ValueError(f"dyn_ratio must be a number >= 0, got {self.dyn_ratio!r}")
         object.__setattr__(self, "r2_cap", parse_cap(self.r2_cap, "r2_cap", keep=("parent",)))
         object.__setattr__(self, "dyn_cap", parse_cap(self.dyn_cap, "dyn_cap"))
@@ -66,8 +64,7 @@ class HybridResult:
 def solve(pres, cfg=None, **overrides):
     """Solve ``pres`` (a ``Presentation`` or two relator strings), with ``cfg`` and ``overrides`` of its fields."""
     cfg = (cfg or HybridConfig()).replace(**overrides)
-    if not isinstance(pres, Presentation):
-        pres = Presentation.parse(*pres)
+    pres = as_presentation(pres)
     if pres.n_gen != 2 or len(pres.rels) != 2:
         raise ValueError("the hybrid solves balanced two-generator presentations")
     start = time.perf_counter()

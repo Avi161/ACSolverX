@@ -1,9 +1,9 @@
 """The 20 Whitehead automorphisms of F2 and how they act on words.
 
 Each automorphism is the pair ``(image of x, image of y)`` of int words (``x = 1``, ``y = 2``, inverse = negative).
-``AUTOS[0:8]`` are the signed permutations (they never change a length); ``AUTOS[8:20]`` are the second-kind
-automorphisms, the only ones a descent step uses (``DESCENT``). A sequence of indices into ``AUTOS`` is a ``phi``:
-the first index acts first.
+``AUTOS[0:8]`` are the signed permutations (``SIGNED``: they never change a length); ``AUTOS[8:20]`` are the
+second-kind automorphisms, the only ones a descent step uses (``DESCENT``). A sequence of indices into ``AUTOS`` is a
+``phi``: the first index acts first.
 """
 from ..core.words import Presentation, inverse, parse, reduce
 
@@ -19,6 +19,7 @@ _SECOND_KIND = [
 ]
 
 AUTOS = tuple((parse(fx), parse(fy)) for fx, fy in _SIGNED_PERMUTATIONS + _SECOND_KIND)
+SIGNED = range(len(_SIGNED_PERMUTATIONS))
 DESCENT = range(len(_SIGNED_PERMUTATIONS), len(AUTOS))
 IDENTITY = ((1,), (2,))
 

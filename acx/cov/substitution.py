@@ -1,5 +1,5 @@
 """The word operations of a change of variables: put ``z`` for ``w``, isolate a generator."""
-from ..core.words import inverse, reduce
+from ..core.words import inverse, reduce, rotate_left
 
 X, Y, Z = 1, 2, 3       # letters (negative = inverse); Z is the new generator z = w(x, y)
 
@@ -106,7 +106,7 @@ def substitute_pattern(cyc, chosen, m):
     if not chosen:
         return cyc
     n, base = len(cyc), chosen[0][0]
-    rotated = cyc[base:] + cyc[:base]
+    rotated = rotate_left(cyc, base)
     letters = {(start - base) % n: letter for start, letter in chosen}
     out, i = [], 0
     while i < n:

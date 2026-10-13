@@ -2,6 +2,7 @@
 from typing import NamedTuple
 
 FIELDS = ("cap", "cap_dropped", "cap_dropped_min_total", "cap_would_pop", "cap_first_bind", "cap_needed")
+PREFIXES = ("cap", "dyn_cap", "slack")     # every search's cap counter, and the hybrid's two other limits
 
 
 class FieldNames(NamedTuple):

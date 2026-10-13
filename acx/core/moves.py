@@ -5,7 +5,7 @@ seam cancels; the child is reduced and canonicalised. Elementary moves are the d
 """
 from collections import namedtuple
 
-from .words import Presentation, canonical_rels, free, inverse, parse, reduce, rotate, to_char
+from .words import Presentation, canonical_rels, conjugate, free, inverse, parse, reduce, rotate, to_char
 
 Move = namedtuple("Move", "i j s k1 k2")
 
@@ -104,7 +104,7 @@ def elementary_step(pres, op):
         c = parse(_field(op, "by"))
         if len(c) != 1 or abs(c[0]) > pres.n_gen:
             raise ValueError(f"conjugate by one generator letter, got {op['by']!r}")
-        rels[i] = free(inverse(c) + rels[i] + c)
+        rels[i] = conjugate(rels[i], c)
     elif kind == "multiply":
         i = _relator_index(pres, _field(op, "target"))
         j = _relator_index(pres, _field(op, "source"))
@@ -138,9 +138,14 @@ def destabilize(pres):
     return Presentation(z - 1, keep)
 
 
+def is_elementary(mv):
+    """A path element that is an elementary or stable move (a dict), not an S-move (a ``Move`` or its list)."""
+    return isinstance(mv, dict)
+
+
 def step(pres, mv, cyclic=True):
     """Apply one path element, a ``Move`` or an elementary/stable dict, to ``pres``."""
-    return elementary_step(pres, mv) if isinstance(mv, dict) else s_step(pres, Move(*mv), cyclic)
+    return elementary_step(pres, mv) if is_elementary(mv) else s_step(pres, Move(*mv), cyclic)
 
 
 class Trace:
@@ -189,7 +194,7 @@ class Trace:
 
 def encode_path(path):
     """JSON form: an S-move is the list ``[i, j, s, k1, k2]``, any other move its dict."""
-    return [m if isinstance(m, dict) else list(m) for m in path]
+    return [m if is_elementary(m) else list(m) for m in path]
 
 
 def decode_path(items):
@@ -197,7 +202,7 @@ def decode_path(items):
     baseline's ``'i_j_s_k1_k2'`` strings."""
     out = []
     for m in items:
-        if isinstance(m, dict):
+        if is_elementary(m):
             out.append(m)
         elif isinstance(m, str):
             fields = tuple(map(int, m.split("_")))

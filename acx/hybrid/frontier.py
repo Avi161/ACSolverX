@@ -8,6 +8,8 @@ from collections import namedtuple
 
 import numpy as np
 
+from ..aut.autos import SIGNED
+from ..core.config import BACKENDS
 from ..core.moves import Move
 from ..core.words import canonical_rels, inverse, reduce, rotate
 from .steps import aut_child
@@ -71,9 +73,6 @@ def spec_full(key):
     return b"".join(keys), np.cumsum([0] + [len(k) for k in keys]), np.array([k.index(0) for k in keys], dtype=np.int64)
 
 
-BACKENDS = ("spec", "fast")
-
-
 def backend(name):
     """``(expand, full, transform)`` of a backend; ``fast`` (numba) is imported only when asked for."""
     if name == "spec":
@@ -85,8 +84,8 @@ def backend(name):
 
 
 def orbit(key, transform):
-    """The eight images of ``key`` under the signed permutations (``AUTOS[0..7]``, the identity first)."""
-    return [key] + [transform(key, k) for k in range(1, 8)]
+    """The eight images of ``key`` under the signed permutations (``SIGNED``, the identity first)."""
+    return [key] + [transform(key, k) for k in SIGNED[1:]]
 
 
 Drops = namedtuple("Drops", "raw pos before total longest start end flag")

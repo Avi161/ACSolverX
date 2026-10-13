@@ -72,8 +72,7 @@ def cov(pres, cfg):
     if found.kind == "stable_cert":
         return record(True, "stable_cert", cost=res.pops, sub_moves=len(found.path), path=found.path,
                       image=image, steps=list(found.image.steps), **caps)
-    on_the_row = not (found.path and isinstance(found.path[0], dict))      # S-moves on the row itself
-    if on_the_row:
+    if not found.transported:                        # S-moves on the row itself
         return record(True, "ac_path", cost=res.pops, sub_moves=len(found.path),
                       elem_moves=decoded_length(pres, found.path, cfg), path=found.path, image=image, **caps)
     # Otherwise the path is elementary moves on the row, and the S-moves are those of the image.
