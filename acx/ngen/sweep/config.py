@@ -4,7 +4,7 @@ import json
 from dataclasses import asdict, dataclass, fields
 
 from ...core.capcount import FIELDS
-from ...core.config import SearchConfig
+from ...core.config import SearchConfig, require_bool
 from ...core.words import fmt
 from .words import pool
 
@@ -29,6 +29,7 @@ class SweepConfig:
     def __post_init__(self):
         """Refuse what the stored arrays or the start relators cannot hold, and anything but LENGTH."""
         search = self.search
+        require_bool(self.inverse, "rankn.inverse")
         if self.extra not in (1, 2, 3):
             raise ValueError(f"rankn.extra must be 1, 2 or 3, got {self.extra!r}")
         lengths_ok = type(self.min_len) is int and type(self.max_len) is int and 1 <= self.min_len <= self.max_len

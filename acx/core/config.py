@@ -1,4 +1,5 @@
-"""``SearchConfig``, the one frozen dataclass every search takes, and ``parse_cap`` / ``parse_override``."""
+"""``SearchConfig``, the one frozen dataclass every search takes, and the shared value checks ``parse_cap``,
+``require_bool`` and ``parse_override``."""
 import tomllib
 from dataclasses import asdict, dataclass, fields, replace
 
@@ -28,6 +29,8 @@ class SearchConfig:
             raise ValueError(f"backend {self.backend!r} not in {BACKENDS}")
         if not (type(self.budget) is int and self.budget > 0):
             raise ValueError(f"budget must be a positive int, got {self.budget!r}")
+        for name in ("capture_path", "cyclic", "trace"):
+            require_bool(getattr(self, name), name)
 
     def replace(self, **changes):
         """A copy with fields changed."""
@@ -72,6 +75,13 @@ def parse_cap(value, name="cap", low=1, keep=()):
         return value
     allowed = " or ".join([f"an int >= {low}", "'none'", *map(repr, keep)])
     raise ValueError(f"{name} must be {allowed}, got {value!r}")
+
+
+def require_bool(value, name):
+    """``value`` if it is a bool. A string such as ``"False"`` (``--set key=False`` is not TOML) would read as true."""
+    if not isinstance(value, bool):
+        raise ValueError(f"{name} must be true or false, got {value!r}")
+    return value
 
 
 def parse_override(item):

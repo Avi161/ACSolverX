@@ -13,6 +13,7 @@ import pytest
 from conftest import ROOT
 
 import run
+from acx.runner import load_config
 
 SMOKE = os.path.join(ROOT, "configs", "smoke.toml")        # S20_MK2 greedy, fast backend, budget 1000, rows "0:20"
 HYBRID = os.path.join(ROOT, "configs", "hybrid.toml")
@@ -349,12 +350,27 @@ def test_an_unknown_row_id_among_your_presentations_exits_the_same_way(tmp_path)
     (("--set", "search.cap=0"), "cap must be an int >= 1"),
     (("--set", "method=beam"), "method 'beam' not in"),
     (("--set", "path=1"), "path must be true or false"),
-    (("--set", "search"), "'search' is not key=value")])
+    (("--set", "search"), "'search' is not key=value"),
+    (("--set", "search.cyclic=False"), "cyclic must be true or false, got 'False'")])
 def test_a_bad_config_exits_with_one_line_naming_the_problem(tmp_path, args, message):
     with pytest.raises(SystemExit) as e:
         run_cli(tmp_path / "out", *args)
     assert message in e.value.code and "\n" not in e.value.code
     assert not (tmp_path / "out").exists()
+
+
+def test_set_cyclic_False_is_refused_at_load():
+    """``--set search.cyclic=False`` (Python spelling) is the string 'False', which ran cyclic=True."""
+    with pytest.raises(ValueError):
+        load_config(SMOKE, ["search.cyclic=False"])
+
+
+@pytest.mark.parametrize("method, override", [("rankn", "rankn.inverse=False"), ("greedy", "search.cyclic=False")])
+def test_a_boolean_option_spelled_the_python_way_is_an_error_not_true(tmp_path, method, override):
+    path = tmp_path / f"{method}.toml"
+    path.write_text(f'method = "{method}"\nbenchmark = "bench60"\n')
+    with pytest.raises(ValueError, match="true or false"):
+        load_config(str(path), [override])
 
 
 @pytest.mark.parametrize("slice_text", ["0:5:0", "::0"])

@@ -1,5 +1,6 @@
 """The output options of a run config, ``path`` (keep and verify each solve's path) and ``fields`` (the keys written),
 and the checks of the other top-level values."""
+from ..core.config import require_bool
 from .caps import CAP_KEYS
 
 # Every key a record can hold: the common ones (``methods.record``, plus the ``pres``, ``error`` and timings
@@ -22,8 +23,7 @@ def check_output(cfg):
     """``ValueError`` unless ``path`` and ``decode`` are bools, ``workers`` an int >= 1, ``fields`` a list of record
     keys, the methods' own path switches are left to ``path``, and the method honours ``path`` and ``fields``."""
     for key in ("path", "decode"):
-        if not isinstance(cfg.get(key, True), bool):
-            raise ValueError(f"{key} must be true or false, got {cfg[key]!r}")
+        require_bool(cfg.get(key, True), key)
     workers = cfg.get("workers", 1)
     if isinstance(workers, bool) or not isinstance(workers, int) or workers < 1:
         raise ValueError(f"workers must be an int >= 1, got {workers!r}")

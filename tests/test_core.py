@@ -1,10 +1,11 @@
 """acx.core: words, canonical forms, encodings, moves, priorities, config."""
 import itertools
 import random
+import re
 
 import pytest
 
-from acx.core.config import SearchConfig, parse_override
+from acx.core.config import SearchConfig, parse_override, require_bool
 from acx.core.moves import (Move, Trace, apply_raw, destabilize, elementary_step, enumerate_moves,
                             from_legacy, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
@@ -140,6 +141,19 @@ def test_config(tmp_path):
     for bad in (["nope=1"], ["cap=-1"], ["priority=recommended"], ["backend=gpu"], ["budget=0"]):
         with pytest.raises(ValueError):
             SearchConfig().with_overrides(bad)
+
+
+@pytest.mark.parametrize("value", ["False", "false", "no", "0", 0, 1, None])
+def test_search_config_refuses_a_string_for_a_bool(value):
+    """``--set cyclic=False`` is not TOML, so it arrives as the string ``"False"``, which would read as true."""
+    for name in ("capture_path", "cyclic", "trace"):
+        with pytest.raises(ValueError, match=re.escape(f"{name} must be true or false, got {value!r}")):
+            SearchConfig(**{name: value})
+
+
+def test_require_bool_returns_a_bool_as_it_is():
+    assert require_bool(True, "x") is True and require_bool(False, "x") is False
+    assert SearchConfig(cyclic=False, trace=True, capture_path=False).cyclic is False
 
 
 def test_normal_form_is_a_fixed_point():
