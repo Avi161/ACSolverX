@@ -20,7 +20,7 @@ python run.py --config configs/hybrid.toml --pres "xxYYY, xyxYXY" --pres "YYXyx,
 | `--set KEY=VALUE` | override a config value, repeatable; a dotted key reaches a section (`--set search.cap=none`); the value is read as TOML, else as a plain string |
 | `--input PATH` | run every presentation of your own file (formats below) instead of the config's `benchmark` and `rows` |
 | `--pres "R1, R2"` | run a presentation typed here, repeatable; it is saved as `<out>/<name>/input.txt`, and after the run one line per presentation is printed (id, solved, kind, cost, sub_moves, elem_moves) |
-| `--rows SPEC` | only some rows: a slice `a:b` (or `a:b:c`) of the row list, or ids `3,17` |
+| `--rows SPEC` | only some rows: a slice `a:b` (or `a:b:c`, integers only) of the row list, else ids `3, 17` (an id may hold a colon, `ms:1`) |
 | `--out DIR` | the results root (default `results`) |
 | `--fresh` | delete this run name's earlier results first |
 
@@ -40,7 +40,7 @@ for an unknown name.
 
 **Your own file** (`--input PATH` or `benchmark = "PATH"`), UTF-8 text, optionally gzipped (`.txt.gz`, ...). Generators
 are the 26 letters in the order `x y z a b c ... w`; upper case is the inverse; past the 26th they are
-`g27`, `g28`, ... (`G27` the inverse). The samples
+`g27`, `g28`, ... (`G27` the inverse), as in `g27x, G27g28`. The samples
 `examples/presentations.{txt,csv,jsonl}` hold the same eight presentations in each format.
 
 | format | one presentation | row id |
@@ -51,7 +51,8 @@ are the 26 letters in the order `x y z a b c ... w`; upper case is the inverse; 
 
 Any number of generators and relators loads; which presentations a method can take is up to the method (below).
 Other CSV columns and JSON keys are kept as the row's `meta`. A bad line stops the run with `<file>:<line>: <what is
-wrong>`, and a repeated id is an error. A file that is not UTF-8 fails with `UnicodeDecodeError`.
+wrong>`, and a repeated id is an error. A file that is not UTF-8 text stops it with `<file>: not UTF-8 text ...`,
+and a `.gz` file that is not whole gzip with `<file>: not a whole gzip file ...`.
 
 What the methods take: `greedy` with the `length` priority and `ngen` take any number of generators; `s20_mk2`, `aut`,
 `cov`, `hybrid` and `rl` take two generators and two relators (`rl` also at most 24 letters each). A row a method
@@ -64,14 +65,18 @@ A run writes `<out>/<name>/`. The name is the config's `name` key, else the conf
 `configs/hybrid.toml --input examples/presentations.csv` writes `results/hybrid_presentations/`.
 
 - **Resume.** Rows already in `paths.jsonl` are skipped, so an interrupted run continues where it stopped, and running
-  again with other `--rows` adds those rows to the same folder. `summary.json` is rewritten each time and covers every
-  record in the folder. A row recorded with an `error` is not retried.
+  again with other `--rows` adds those rows to the same folder. A record counts only for the presentation in its `pres`:
+  if a line of your file changed (or two lines swapped), that row is solved again and its old record dropped; records
+  written before `pres` existed count as done. `summary.json` is rewritten each time and covers every record in the
+  folder. A row recorded with an `error` is not retried. A cut-off last line of `paths.jsonl` (an interrupted write)
+  is dropped; a bad line before others stops the run with `<file>:<line>: not a record ...`.
 - **Another config under the same name is refused** (`holds a run with another config: pass --fresh or another
   name`): `config.json` must match, `rows` and `workers` aside. `--pres` with other presentations is refused the same
   way.
 - **`--fresh`** deletes that name's `paths.jsonl`, `config.json` and `summary.json` before the run. The folders shipped
   in `results/` hold the published numbers: never `--fresh` them. Pick a new name (`--set name=mine`) or another
-  `--out`.
+  `--out`. A run of fewer rows into such a folder (a `summary.json` and no `paths.jsonl`) is refused, as it would
+  replace the published summary; a rerun of all its rows reproduces it.
 
 ## The config
 
@@ -85,16 +90,18 @@ value is an error before anything is written.
 | `method` | required | `greedy`, `aut`, `cov`, `hybrid`, `ngen`, `rl` or `rankn` |
 | `benchmark` | required | a shipped name or a file path |
 | `rows` | every row | as `--rows` |
-| `workers` | 1 | processes; rows are solved in parallel |
-| `decode` | true | count each path in elementary moves too (`elem_moves`) |
+| `workers` | 1 | processes (an int >= 1); rows are solved in parallel |
+| `decode` | true | count each S-move path in elementary moves too (`elem_moves`); the hybrid and aut give it either way, as their certificates are elementary moves |
 | `path` | true | keep and replay each path; false is faster (below) |
 | `fields` | every key | write only these record keys (below) |
 
 - `[search]` (greedy, aut, cov, ngen, rankn): the best-first search: `priority` (`length` or `s20_mk2`), `cap` (24,
-  or `"none"`), `budget` (pops, 10,000), `backend` (`spec` by default; every shipped config sets `fast`), `cyclic`.
+  or `"none"`), `budget` (pops, 10,000), `backend` (`fast`, numba, by default in a run; `spec` is the pure-Python
+  reference, the same steps 27x slower, which only `baseline_spec.toml` sets), `cyclic`.
 - `[cov]`: the change of variables: pops per row over all its searches, and which images are searched.
 - `[ngen]`: `sac`, the transform to relators of length at most 3 before the search.
-- `[hybrid]`: `budget` in work units, the three limits `r2_cap`, `dyn_cap`, `slack`, and the queue knobs.
+- `[hybrid]`: `budget` in work units, the three limits `r2_cap`, `dyn_cap`, `slack` (each an int or `"none"`;
+  `r2_cap` also `"parent"`), the queue knobs and `backend` (`fast` by default).
 - `[rl]`: the beam's `width`, `steps`, `alpha` and `cap`.
 - `[rankn]`: the stabilising words of the rank-n sweep ([RANK3.md](RANK3.md)).
 
@@ -104,15 +111,15 @@ value is an error before anything is written.
 
 | field | meaning |
 |---|---|
-| `id`, `solved` | the row, and whether it was solved |
+| `id`, `pres`, `solved` | the row, its presentation as a LETTERS line (`xxYYY, xyxYXY`; resume compares it), and whether it was solved |
 | `kind` | `ac_path` (AC moves on the row) or `stable_cert` (stable AC: AC4/AC5 moves or a change of variables); null if unsolved |
 | `aut_assisted` | an `ac_path` found in another basis and carried back to the row |
 | `cost` | what the row spent, solved or not: heap pops, hybrid work units or network evaluations (rl) |
 | `sub_moves` | substitution moves (S-moves) of the path |
-| `elem_moves` | elementary AC moves of the path on the row (null without `path` or `decode`, and for a CoV `stable_cert`) |
+| `elem_moves` | elementary AC moves of the path on the row: null without `path`, for a CoV `stable_cert`, and without `decode` except for the hybrid and aut (their certificates are elementary moves) |
 | `path` | the S-moves, `[i, j, s, k1, k2]` each (`acx.core.moves.decode_path`) |
 | `elementary` | the elementary moves, packed (`acx.verify.decode.unpack`); aut-assisted, hybrid, n-generator and CoV paths |
-| `verified` | the path was replayed on the row before the record was written |
+| `verified` | the path was replayed on the row before the record was written (once: by the search, CoV, the hybrid's `certify` or rl, or by the runner for aut and ngen) |
 | `error` | only on a row that was not searched or whose method failed: `Type: message` |
 | `seconds`, `cpu_seconds` | the row's wall and CPU time, replay and decoding included |
 | `cap`, `cap_dropped`, `cap_dropped_min_total`, `cap_would_pop`, `cap_first_bind`, `cap_needed` | the cap counters ([CAP.md](CAP.md)); the hybrid adds them under `dyn_cap_` and `slack_`, CoV adds `cap_legs_bound` |
@@ -129,24 +136,26 @@ value is an error before anything is written.
 | `cost_unit`, `cost_mean`, `cost_median` | `pops`, `units` or `evaluations`, and the mean and median per row over all rows |
 | `path_length` | per kind, `sub_moves` and `elem_moves`: `n`, `sum`, `mean`, `median`, `max` |
 | `caps` | the cap counters over the rows, one block per limit ([CAP.md](CAP.md)) |
-| `wall_seconds`, `row_seconds`, `cpu_seconds` | this invocation's wall time; the rows' summed wall and CPU time |
-| `us_per_cost` | CPU microseconds per pop, unit or evaluation: `cpu_seconds` over the total cost |
+| `wall_seconds`, `row_seconds`, `cpu_seconds` | this invocation's wall time; the rows' summed wall and CPU time (null when `fields` leaves out `cpu_seconds`) |
+| `us_per_cost` | CPU microseconds per pop, unit or evaluation: `cpu_seconds` over the total cost (null without `cpu_seconds`) |
 
 The rank-n sweep (`rankn`) writes per-row `rows/<id>.npz` files and its own summary instead ([RANK3.md](RANK3.md)).
 
 ## Faster runs
 
-- **`path = false`** (`--set path=false`): the search keeps no parent links and nothing is decoded, replayed or
-  written out. Records keep `solved`, `kind`, `cost`, `sub_moves` and the cap counters; `path` and `elementary` are
-  null, `elem_moves` is null and `verified` is false, so a solve is not checked. Rerun with `path = true` to get and
-  check the paths.
-- **`fields = ["solved", "cost", "sub_moves"]`** keeps the records small; `id`, `solved` and `error` are always written.
-  `summary.json` reads the records as written, so a dropped key leaves its entries empty (without `kind`, every kind
-  counts 0).
+- **`path = false`** (`--set path=false`): the searches keep no parent links, and the hybrid writes out no
+  elementary path, so nothing is decoded, replayed or stored. CoV is the exception: it still captures and checks the
+  paths of its searches, and only the record leaves them out. Records keep `solved`, `kind`, `cost`, `sub_moves` and
+  the cap counters; `path` and `elementary` are null, `verified` is false, so a solve is not checked, and
+  `elem_moves` is null (but for a CoV path carried back from an image). Rerun with `path = true` to get and check
+  the paths.
+- **`fields = ["solved", "cost", "sub_moves"]`** keeps the records small; `id`, `pres`, `solved` and `error` are
+  always written. `summary.json` reads the records as written, so a dropped key leaves its entries empty (without
+  `kind`, every kind counts 0; without `cpu_seconds`, `cpu_seconds` and `us_per_cost` are null).
 - **`workers = 4`** solves rows in four processes. Keep `NUMBA_NUM_THREADS=1`.
-- The first run compiles the numba kernels (under a minute) and caches them; that time lands in its first row's
-  `seconds` and `cpu_seconds`. Time a method on a run after that, and over many pops: on a few tiny rows fixed costs
-  dominate `us_per_cost`.
+- Before its rows, a run (each worker) solves AK(2) once, unrecorded, so that compiling the numba kernels and
+  loading the rl policy are not timed in the first row. Time a method over many pops: on a few tiny rows fixed costs
+  still dominate `us_per_cost`.
 - **`cap = "none"`** pushes every child, whatever its relator length: nothing is dropped and nothing is counted, but
   the search graph is larger, so each pop costs more and memory grows. How much slower it is, per benchmark, is in
   [PERFORMANCE.md](PERFORMANCE.md) (the uncapped-cost section); when the cap matters at all is in [CAP.md](CAP.md).
@@ -174,8 +183,10 @@ by both, by neither).
 - **`--html FILE`** also writes one self-contained page: the table and three bar charts (solve rate, mean cost per
   solved row on a log scale, CPU µs per pop/unit), with a panel per unit.
 - Values marked `*` are wall-clock seconds, from runs that predate `cpu_seconds`.
-- compare.py reads `paths.jsonl`, which only runs made on your machine have: the folders shipped in `results/` keep
-  `summary.json` and `config.json` (rerun a config to compare it; [RESULTS.md](RESULTS.md) section 0 has each command).
+- compare.py reads `paths.jsonl`, which only runs made on your machine have. The folders shipped in `results/` keep
+  `summary.json` and `config.json`: their row comes from the summary, with `-` for the median and the CPU columns,
+  and they take no part in `--common` or the head-to-head line (rerun a config for those; [RESULTS.md](RESULTS.md)
+  section 0 has each command).
 
 ## From Python
 

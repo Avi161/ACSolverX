@@ -1,8 +1,8 @@
 """Dataset and benchmark loaders; each returns a list of ``Row(id, pres, meta)``.
 
 ``rows(spec)`` reads a dataset, benchmark or split by name (``DATASETS``, ``BENCHMARKS``, ``SPLITS``), or your own
-presentations from a file, optionally gzipped. Generators are ``x y z a b ...`` and upper case is the inverse; any
-number of relators and generators is read (what a method can solve is up to the method)::
+presentations from a file, optionally gzipped. Generators are ``x y z a b ... w``, then ``g27 g28 ...``, and upper
+case is the inverse; any number of relators and generators is read (what a method can solve is up to the method)::
 
     mine.txt     xxYYY, xyxYXY             one presentation per line, relators split by commas or spaces;
                  xyxYXY xxxYYYY  # AK(3)   "#" starts a comment, blank lines are skipped (the flat-int lines
@@ -12,7 +12,8 @@ number of relators and generators is read (what a method can solve is up to the 
     mine.jsonl   {"id": "AK2", "relators": ["xxYYY", "xyxYXY"], "note": "easy"}     other keys are the meta
 
 A row's id is the one given, else its 0-based position among the file's presentations. A bad line raises
-``ValueError("<file>:<line>: <what is wrong>")``, and a file that is not UTF-8 text ``ValueError("<file>: ...")``.
+``ValueError("<file>:<line>: <what is wrong>")``, and a file that is not UTF-8 text, or a ``.gz`` file that is not
+whole gzip, ``ValueError("<file>: ...")``.
 ``MS`` and ``AK`` build the Miller-Schupp and Akbulut-Kirby families.
 """
 import csv
@@ -20,6 +21,7 @@ import gzip
 import json
 import os
 import re
+import zlib
 from collections import namedtuple
 from contextlib import contextmanager
 
@@ -51,6 +53,7 @@ SPLITS = {"ac1m_hard_holdout60": ("benchmark/splits/splits_ac1m_hard_aut.json", 
 
 _GENERATOR_LETTERS = set(GEN_CHARS + GEN_CHARS.upper())
 _RELATOR_COLUMN = re.compile(r"r\d+")
+_LONG_NAME = re.compile(r"[gG][1-9]\d*")          # g27, G27, ...: the generators past the 26th letters
 
 
 def path_of(name_or_path, table=DATASETS):
@@ -63,26 +66,29 @@ def path_of(name_or_path, table=DATASETS):
 @contextmanager
 def _open(p):
     """Text file handle of ``p``, gunzipped if it ends in ``.gz``; a leading byte-order mark is dropped. A file that
-    is not UTF-8 text raises ``ValueError`` naming it, wherever in the file the bad byte is."""
+    is not UTF-8 text, or a ``.gz`` file that is not whole gzip, raises ``ValueError`` naming it."""
     opener = gzip.open if p.lower().endswith(".gz") else open
     try:
         with opener(p, "rt", encoding="utf-8-sig", newline="") as f:
             yield f
     except UnicodeDecodeError:
         raise ValueError(f"{p}: not UTF-8 text (save the file as UTF-8)") from None
+    except (gzip.BadGzipFile, EOFError, zlib.error) as e:
+        raise ValueError(f"{p}: not a whole gzip file ({e})") from None
 
 
 def _presentation(relators):
     """The ``Presentation`` of relator strings (empty ones are skipped); ``ValueError`` for a character that is not
-    a generator letter, or when no relator is left."""
+    a generator letter or part of a long name (``g27``), or when no relator is left."""
     if not all(isinstance(r, str) for r in relators):
         raise ValueError(f"relators must be strings, got {relators}")
     relators = [text for r in relators if (text := r.strip())]
     if not relators:
         raise ValueError("no relators")
-    unknown = sorted(set("".join(relators)) - _GENERATOR_LETTERS)
+    unknown = sorted(set(_LONG_NAME.sub("", "".join(relators))) - _GENERATOR_LETTERS)
     if unknown:
-        raise ValueError(f"unknown letters {''.join(unknown)!r}: generators are x y z a b ... w, upper case inverts")
+        raise ValueError(f"unknown letters {''.join(unknown)!r}: generators are x y z a b ... w, then g27 g28 ..., "
+                         "upper case inverts")
     return Presentation.parse(*relators)
 
 

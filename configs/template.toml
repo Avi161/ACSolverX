@@ -1,20 +1,20 @@
 # Greedy search on the fast (numba) backend, run on the shipped examples; --input FILE runs your own file.
-# Every key is listed: active values are the defaults (backend aside: "spec" is its default); # lines are off.
+# Every key is listed: active values are the defaults; # lines are off.
 
 name = "template"                          # results/<name>/ (default: this file's name)
 method = "greedy"                          # greedy | aut | cov | ngen | hybrid | rl | rankn (blocks below)
 benchmark = "examples/presentations.txt"   # a benchmark name, or your own .txt/.csv/.jsonl file
-rows = ""                                  # "" = every row; a slice "0:3" or ids "ak2,gen3"
+rows = ""                                  # "" = every row; a slice "0:3" or ids "0,6"
 workers = 1                                # processes; 1 runs in this process
-decode = true                              # elementary length of each solve's path (needs path = true)
+decode = true                              # elementary length of S-move paths (hybrid, aut: always given)
 path = true                                # false: faster; no path, no replay, elem_moves null
-# fields = ["solved", "cost", "sub_moves"] # only these record keys (id, solved, error always); absent = all
+# fields = ["solved", "cost", "sub_moves"] # only these record keys (id, pres, solved, error always); absent = all
 
 [search]
 priority = "length"        # "length" (total relator length) or "s20_mk2" (two generators only)
 cap = 24                   # longest relator a child may have; "none" = every child, slower (docs/CAP.md)
 budget = 10000             # pops per row; a row that runs out is unsolved
-backend = "fast"           # "fast" (numba) takes the same steps as "spec" (pure Python, the code default)
+backend = "fast"           # "fast" (numba) takes the same steps as "spec" (pure Python, 27x slower)
 cyclic = true              # cyclic reduction of children
 trace = false              # keep every popped state (parity tests only; memory grows)
 # capture_path = true      # not written: the top-level path sets it; setting it here is an error
@@ -37,7 +37,7 @@ trace = false              # keep every popped state (parity tests only; memory 
 # penalty = 5         # priority letters per generator above two
 # dyn_ratio = 0.5     # higher-rank pops <= dyn_ratio * rank-two pops + 20
 # dyn_cap = 8         # longest relator a higher-rank product may create; "none" = uncapped
-# slack = 8           # higher-rank total length ceiling above the search root
+# slack = 8           # higher-rank total length ceiling above the search root; "none" = no ceiling
 # min_uses = 2        # a defined digram must occur this often
 # r2_cap = "parent"   # rank-two relator cap: "parent" (the parent's total length), an int, or "none"
 # backend = "fast"    # rank-two expansion: "fast" (numba) or "spec" (pure Python)

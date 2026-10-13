@@ -95,8 +95,8 @@ are two of the rows it binds on most; one run):
 In pure Python the cap changes the CPU time by no more than 3% per row (building a child costs far more than storing it, and
 the cap drops a child only after building it), but it still changes the memory 2.2x, as 1.87M states are kept instead of
 275k. The hybrid on all of MS640 (`hybrid.toml`, `--set hybrid.r2_cap=24`, `--set hybrid.r2_cap=none`, `--set
-hybrid.dyn_cap=none`; the third limit, `slack`, takes an integer only) and CoV on bench60 (`cov.toml`, `--set
-search.cap=none`):
+hybrid.dyn_cap=none`; the third limit, `slack`, also takes an integer or `"none"`, not measured here) and CoV on
+bench60 (`cov.toml`, `--set search.cap=none`):
 
 | setting | solved | units | r2_cap drops | dyn_cap drops | CPU s | x default | us/unit | peak MB | load |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|

@@ -276,12 +276,26 @@ def test_a_bad_config_exits_with_one_line_naming_the_problem(tmp_path, args, mes
     assert not (tmp_path / "out").exists()
 
 
-@pytest.mark.parametrize("slice_text", ["x:3", "1:y", "0:5:0", "1:2:3:4", "0:1.5"])
-def test_a_malformed_rows_slice_exits_with_one_line_naming_it(tmp_path, slice_text):
+@pytest.mark.parametrize("slice_text", ["0:5:0", "::0"])
+def test_a_rows_slice_with_step_zero_exits_with_one_line_naming_it(tmp_path, slice_text):
     with pytest.raises(SystemExit) as e:
         run_cli(tmp_path / "out", "--rows", slice_text)
     assert e.value.code.startswith(f"bad rows slice {slice_text!r}") and "\n" not in e.value.code
     assert not (tmp_path / "out").exists()
+
+
+@pytest.mark.parametrize("spec", ["x:3", "1:y", "1:2:3:4", "0:1.5"])
+def test_rows_that_are_not_integers_around_colons_are_ids(tmp_path, spec):
+    """Only integers around colons make a slice, so ids such as ``ms:1`` can be picked; these name no row."""
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", "--rows", spec)
+    assert e.value.code == f"rows not in the benchmark: [{spec!r}]"
+    assert not (tmp_path / "out").exists()
+
+
+def test_rows_ids_may_have_spaces_after_the_commas(tmp_path):
+    run_cli(tmp_path, "--rows", "0, 2", *SPEC, "--set", "search.budget=50")
+    assert [r["id"] for r in records(tmp_path)] == ["0", "2"]
 
 
 def test_a_missing_config_or_input_file_exits_with_one_line_naming_it(tmp_path):
@@ -311,6 +325,43 @@ def test_an_input_file_that_is_not_utf8_exits_with_one_line_naming_the_file(tmp_
         run_cli(tmp_path / "out", "--input", str(latin1))
     assert e.value.code.startswith(f"{latin1}: ") and "UTF-8" in e.value.code and "\n" not in e.value.code
     assert not (tmp_path / "out").exists()
+
+
+def test_an_input_file_that_is_not_gzip_exits_with_one_line_naming_the_file(tmp_path):
+    fake = tmp_path / "fake.txt.gz"
+    fake.write_text(AK2 + "\n")                                    # plain text under a .gz name
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", "--input", str(fake))
+    assert e.value.code.startswith(f"{fake}: ") and "gzip" in e.value.code and "\n" not in e.value.code
+    assert not (tmp_path / "out").exists()
+
+
+def test_an_input_path_that_cannot_be_read_exits_with_one_line_naming_it(tmp_path):
+    folder = tmp_path / "folder.txt"                               # a directory where a file was expected
+    folder.mkdir()
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", "--input", str(folder))
+    assert e.value.code.startswith(f"{folder}: ") and "\n" not in e.value.code
+
+
+def test_the_same_input_file_spelled_another_way_resumes_the_run(tmp_path, monkeypatch):
+    """``./mine.txt`` and ``mine.txt`` are one file: the second run resumes instead of being refused."""
+    (tmp_path / "mine.txt").write_text(AK2 + "\n")
+    monkeypatch.chdir(tmp_path)
+    for spelling in ("mine.txt", "./mine.txt", "sub/../mine.txt"):
+        run.main(["--config", SMOKE, "--input", spelling, *SPEC])
+    assert [r["solved"] for r in records(tmp_path / "results", "smoke_mine")] == [True]
+    assert json.loads((tmp_path / "results" / "smoke_mine" / "config.json").read_text())["benchmark"] == "mine.txt"
+
+
+def test_the_template_examples_of_rows_name_rows_of_its_benchmark():
+    """``configs/template.toml`` shows a slice and ids; both pick rows of the template's own benchmark."""
+    from acx import data
+    from acx.runner import load_config, select
+    template = os.path.join(ROOT, "configs", "template.toml")
+    slice_text, ids = re.search(r'a slice "([^"]+)" or ids "([^"]+)"', Path(template).read_text()).groups()
+    rows = data.rows(load_config(template)["benchmark"])
+    assert len(select(rows, slice_text)) == 3 and [r.id for r in select(rows, ids)] == ids.replace(" ", "").split(",")
 
 
 def test_run_py_prints_the_message_and_no_traceback(tmp_path):

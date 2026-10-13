@@ -20,11 +20,11 @@ def load_config(path, overrides=()):
 
     Top level: ``name`` (the results folder, default the file's stem), ``method``, ``benchmark`` (a name of
     ``acx.data.rows`` or a path), ``rows`` (optional: a slice ``"a:b[:c]"`` or ids ``"3,17"``), ``workers``
-    (processes, default 1) and ``decode`` (default true: elementary length of S-move paths). Two options shape the
-    records (``acx.runner.output``): ``path`` (default true: store each solve's path and replay it on the row; false:
-    search without the path, which is faster, with ``path`` and ``elementary`` null, ``verified`` false and
-    ``elem_moves`` null where it needs the path; ``sub_moves`` is kept) and ``fields`` (optional list: write only
-    these record keys, besides ``id``, ``solved`` and ``error``).
+    (processes, an int >= 1, default 1) and ``decode`` (a bool, default true: elementary length of S-move paths).
+    Two options shape the records (``acx.runner.output``): ``path`` (default true: store each solve's path and replay
+    it on the row; false: search without the path, which is faster, with ``path`` and ``elementary`` null,
+    ``verified`` false and ``elem_moves`` null where it needs the path; ``sub_moves`` is kept) and ``fields``
+    (optional list: write only these record keys, besides ``id``, ``pres``, ``solved`` and ``error``).
     A method reads only its own sections (``SECTIONS``): ``[search]`` is ``SearchConfig``, ``[cov]`` ``CoVConfig``
     and ``[ngen]`` ``NGenConfig`` without their ``search``, ``[hybrid]`` ``HybridConfig``, ``[rl]`` the keywords of
     ``acx.rl.solve.solve``. Any other section, unknown key or invalid value raises ``ValueError`` here, before
@@ -74,21 +74,23 @@ def _check_keys(cfg):
 def method_config(cfg):
     """The method's settings object (a dict of keywords for ``rl``), built from its sections.
 
-    ``ValueError`` on an unknown key or an invalid value. The path switches of the methods (``search.capture_path``,
-    ``hybrid.certify``, ``ngen.lift``) are set from the top-level ``path``: a solve is replayed exactly when its
-    path is kept.
+    ``ValueError`` on an unknown key or an invalid value. The search backend defaults to ``fast`` (``SearchConfig``
+    keeps ``spec`` as its own default; the hybrid's is ``fast`` too). The path switches of the methods
+    (``search.capture_path``, ``hybrid.certify``, ``ngen.lift``) are set from the top-level ``path``: a solve is
+    replayed exactly when its path is kept.
     """
     method = cfg["method"]
+    search_values = {"backend": "fast", **cfg.get("search", {})}     # a run's default backend is numba, not "spec"
     if method == "rankn":
         from ..ngen.sweep import SweepConfig
-        return SweepConfig.from_cfg(cfg)
+        return SweepConfig.from_cfg({**cfg, "search": search_values})
     if method == "rl":
         return _rl_keywords(cfg.get("rl", {}))
     if method == "hybrid":
         from ..hybrid import HybridConfig
         return _build(HybridConfig, {**cfg.get("hybrid", {}), "certify": keeps_path(cfg)})
     default_budget = {"budget": 1_000} if method == "cov" else {}
-    search = SearchConfig.from_dict({**default_budget, **cfg.get("search", {}), "capture_path": keeps_path(cfg)})
+    search = SearchConfig.from_dict({**default_budget, **search_values, "capture_path": keeps_path(cfg)})
     if method == "cov":
         from ..cov import CoVConfig
         return _build(CoVConfig, cfg.get("cov", {}), search=search)

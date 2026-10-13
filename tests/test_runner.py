@@ -1,8 +1,10 @@
 """run.py / acx.runner: every method end to end on a few rows, the path and fields options, per-row errors, resume,
 config errors, record and cap helpers."""
+import importlib
 import importlib.util
 import json
 import os
+import shutil
 import statistics
 import time
 
@@ -88,6 +90,12 @@ def test_resume_and_config_guard(tmp_path):
     ("cov", ["cov.cap_headroom=-1"]),
     ("smoke", ["path=1"]),                        # path is true or false
     ("smoke", ['path="no"']),
+    ("smoke", ["decode=no"]),                     # decode is true or false
+    ("smoke", ["decode=1"]),
+    ("smoke", ["workers=two"]),                   # workers is an int >= 1
+    ("smoke", ["workers=0"]),
+    ("smoke", ["workers=true"]),
+    ("smoke", ["workers=1.5"]),
     ("smoke", ['fields="cost"']),                 # fields is a list of record keys ...
     ("smoke", ["fields=[1]"]),
     ("smoke", ['fields=["cots"]']),               # ... that a record can hold
@@ -282,14 +290,29 @@ def test_path_option_sets_each_methods_own_switch():
     assert runner.method_config(cfg("ngen_sac")).lift is True
 
 
-# (config, overrides, the check each method runs on its certificate): the first rows of every method
+# (config, overrides, the one check of each method's certificate): the search, CoV, the hybrid's certify and rl
+# replay inside; the runner replays only aut's carried-back path and ngen's lift
 CHECK_CASES = [
-    ("smoke", ['rows="0:2"'], "acx.runner.methods.replay"),
+    ("smoke", ['rows="0:2"'], "acx.search.engine.replay"),
     ("aut", ['rows="0:2"'], "acx.runner.methods.replay"),
-    ("cov", ['rows="0,496"'], "acx.cov.verify"),
-    ("hybrid", ['benchmark="ladder60"', 'rows="ac19_11987,ms_000"'], "acx.runner.methods.replay"),
+    ("cov", ['rows="0,496"'], "acx.cov.run.verify"),
+    ("hybrid", ['benchmark="ladder60"', 'rows="ac19_11987,ms_000"'], "acx.hybrid.certify.replay"),
     ("ngen_sac", ['rows="0:2"'], "acx.ngen.verify"),
-    pytest.param("rl", ['rows="0:2"', "rl.width=64", "rl.steps=60"], "acx.runner.methods.replay", marks=needs_torch)]
+    pytest.param("rl", ['rows="0:2"', "rl.width=64", "rl.steps=60"], "acx.rl.solve.replay", marks=needs_torch)]
+
+
+@pytest.fixture
+def no_warm_up(monkeypatch):
+    """Leave out the run's warm-up solve, for tests that count the solves of the rows."""
+    from acx.runner import execute
+    monkeypatch.setattr(execute, "warm_up", lambda cfg: None)
+
+
+def module_and_name(check):
+    """``"acx.hybrid.certify.replay"`` -> the module ``acx.hybrid.certify`` and ``"replay"``; imported, as a package
+    may export a function under its submodule's name (``acx.hybrid.certify``, ``acx.search``)."""
+    module, name = check.rsplit(".", 1)
+    return importlib.import_module(module), name
 
 
 @pytest.mark.parametrize("name,overrides,check", CHECK_CASES)
@@ -301,7 +324,7 @@ def test_a_certificate_that_fails_its_check_is_an_error_never_a_verified_solve(t
     def fails(*args, **kwargs):
         raise ReplayError("the path does not end trivial")
 
-    monkeypatch.setattr(check, fails)
+    monkeypatch.setattr(*module_and_name(check), fails)
     s = quiet(cfg(name, *overrides), tmp_path)
     recs = records(tmp_path, s["name"])
     assert s["solved"] == 0 and s["errors"] >= 1 and not any(r["verified"] for r in recs)
@@ -320,13 +343,24 @@ def count_calls(monkeypatch, module, name):
     return calls
 
 
+@pytest.mark.parametrize("name,overrides,check", CHECK_CASES)
+def test_every_solve_is_checked_exactly_once(tmp_path, monkeypatch, no_warm_up, name, overrides, check):
+    """With ``path = true`` each solved row passes its method's check once; the runner adds a second replay only
+    where it is the one check (aut's carried-back path; ngen's lift is checked by ``acx.ngen.verify``)."""
+    from acx.runner import methods
+    checks = count_calls(monkeypatch, *module_and_name(check))
+    runner_checks = [count_calls(monkeypatch, methods, "replay"),
+                     count_calls(monkeypatch, importlib.import_module("acx.cov"), "verify")]   # the runner's own
+    s = quiet(cfg(name, *overrides), tmp_path)
+    assert s["solved"] > 0 and len(checks) == s["solved"]
+    assert sum(map(len, runner_checks)) == (s["solved"] if name == "aut" else 0)
+
+
 def test_path_false_does_no_replay_and_no_decode(tmp_path, monkeypatch):
     """The speed-up is work skipped: the search is not asked for a path, and nothing replays or decodes one."""
-    import importlib
     from acx.runner import methods
-    search_replay = importlib.import_module("acx.verify.replay")      # the name ``acx.verify.replay`` is the function
-    calls = [count_calls(monkeypatch, methods, "replay"), count_calls(monkeypatch, methods, "decode_and_replay"),
-             count_calls(monkeypatch, search_replay, "replay")]
+    engine = importlib.import_module("acx.search.engine")
+    calls = [count_calls(monkeypatch, engine, "replay"), count_calls(monkeypatch, methods, "decode_and_replay")]
     quiet(cfg("smoke", 'rows="0:4"', "name=lite", "path=false"), tmp_path)
     assert not any(calls)
     quiet(cfg("smoke", 'rows="0:4"', "name=full"), tmp_path)
@@ -337,6 +371,8 @@ def test_path_false_does_no_replay_and_no_decode(tmp_path, monkeypatch):
 
 @pytest.mark.parametrize("name,override,message", [
     ("smoke", "path=1", "path must be true or false"),
+    ("smoke", "decode=no", "decode must be true or false, got 'no'"),
+    ("smoke", "workers=two", "workers must be an int >= 1, got 'two'"),
     ("smoke", 'fields="cost"', "fields must be a list"),
     ("smoke", 'fields=["cots"]', r"unknown record keys in fields: \['cots'\]"),
     ("smoke", "search.capture_path=false", "search.capture_path follows the top-level path"),    # path drives these
@@ -355,7 +391,7 @@ def test_fields_keeps_the_listed_keys_through_a_resume(tmp_path):
     quiet(cfg("smoke", 'rows="0:4"', slim), tmp_path)
     s = quiet(cfg("smoke", 'rows="0:8"', slim), tmp_path)                          # resumed: rows 4-7 are new
     recs = records(tmp_path, "smoke")
-    assert len(recs) == s["rows"] == 8 and all(set(r) == {"id", "solved", "cost", "sub_moves"} for r in recs)
+    assert len(recs) == s["rows"] == 8 and all(set(r) == {"id", "pres", "solved", "cost", "sub_moves"} for r in recs)
     assert s["solved"] == sum(r["solved"] for r in recs) > 0
     assert s["cost"]["total"] == sum(r["cost"] for r in recs) and s["cost_unit"] == "pops"
     assert s["config"]["fields"] == ["cost", "sub_moves"]
@@ -366,7 +402,8 @@ def test_fields_never_hides_an_error(tmp_path):
     csv.write_text("r1,r2\nX,x\nxxY,Yx\n")                   # det 0, a good row
     s = quiet(cfg("smoke", f'benchmark="{csv}"', "rows=", "name=bad", 'fields=["cost"]'), tmp_path)
     recs = by_id(tmp_path, "bad")
-    assert set(recs["0"]) == {"id", "solved", "cost", "error"} and set(recs["1"]) == {"id", "solved", "cost"}
+    assert set(recs["0"]) == {"id", "pres", "solved", "cost", "error"}
+    assert set(recs["1"]) == {"id", "pres", "solved", "cost"}
     assert s["errors"] == 1
 
 
@@ -397,14 +434,17 @@ def test_cpu_seconds_is_cpu_time_not_waiting(tmp_path, monkeypatch):
 
 
 def test_resuming_a_run_whose_records_predate_cpu_seconds_still_summarizes(tmp_path):
-    """Older result folders have no ``cpu_seconds`` or ``verified`` in their records."""
+    """Older result folders have no ``cpu_seconds``, ``verified`` or ``pres`` in their records: their rows count as
+    done, so a shipped run still resumes."""
     quiet(cfg("smoke", 'rows="0:3"'), tmp_path)
     file = tmp_path / "smoke" / "paths.jsonl"
-    old = [{k: v for k, v in rec.items() if k not in ("verified", "cpu_seconds")} for rec in records(tmp_path, "smoke")]
+    old = [{k: v for k, v in rec.items() if k not in ("verified", "cpu_seconds", "pres")}
+           for rec in records(tmp_path, "smoke")]
     file.write_text("".join(json.dumps(rec) + "\n" for rec in old))
     s = quiet(cfg("smoke", 'rows="0:5"'), tmp_path)
     recs = records(tmp_path, "smoke")
     assert s["rows"] == len(recs) == 5 and sum("cpu_seconds" in rec for rec in recs) == 2
+    assert sum("pres" in rec for rec in recs) == 2
     assert s["cost"]["total"] == sum(rec["cost"] for rec in recs) and s["cpu_seconds"] > 0
 
 
@@ -430,7 +470,7 @@ def test_two_workers_write_the_same_records_as_one(tmp_path):
 # ---- a row that raises ---------------------------------------------------------------------------------------------
 
 @pytest.mark.parametrize("error", [RuntimeError("boom"), ValueError("bad row"), AssertionError("unreduced")])
-def test_a_row_that_raises_is_an_error_record_and_the_run_goes_on(tmp_path, monkeypatch, error):
+def test_a_row_that_raises_is_an_error_record_and_the_run_goes_on(tmp_path, monkeypatch, no_warm_up, error):
     """One bad row (a method that raises, a certificate that does not replay) is recorded as unsolved with its
     ``error`` (type: message) and counted in the summary; the other rows still run."""
     from acx.runner.methods import SOLVERS
@@ -531,6 +571,15 @@ def test_cyclic_false_and_decode_false_store_no_elementary_length(tmp_path, opti
     assert lengths["elem_moves"] is None and lengths["sub_moves"]["n"] == len(solved)
 
 
+@pytest.mark.parametrize("name,overrides", [("aut", ['rows="0:4"']),
+                                            ("hybrid", ['benchmark="ladder60"', 'rows="ac19_11987,ms_000"'])])
+def test_decode_false_keeps_the_length_of_an_elementary_certificate(tmp_path, name, overrides):
+    """The hybrid's and aut's certificates are elementary moves: ``decode = false`` does not take ``elem_moves``."""
+    s = quiet(cfg(name, *overrides, "decode=false"), tmp_path)
+    solved = [r for r in records(tmp_path, s["name"]) if r["solved"]]
+    assert len(solved) == s["solved"] > 0 and all(r["elem_moves"] >= r["sub_moves"] > 0 for r in solved)
+
+
 def test_rows_selection_forms_and_unknown_ids():
     from acx import data
     rows = data.rows("bench60")
@@ -549,7 +598,175 @@ def test_the_library_raises_where_run_py_exits(tmp_path):
     """``runner.run`` raises on a row id or a file that is wrong, before it writes anything; only run.py exits."""
     bad = tmp_path / "bad.txt"
     bad.write_text("xxYYY, xyxYXY\nxy1\n")
-    for override, error in (('rows="nope"', KeyError), ('rows="x:3"', ValueError), (f'benchmark="{bad}"', ValueError)):
+    for override, error in (('rows="nope"', KeyError), ('rows="x:3"', KeyError), ('rows="0:3:0"', ValueError),
+                            (f'benchmark="{bad}"', ValueError)):
         with pytest.raises(error):
             quiet(cfg("smoke", override), tmp_path / "out")
     assert not (tmp_path / "out").exists()
+
+
+# ---- resume checks the presentation of each row ------------------------------------------------------------------
+
+AK3 = "xxxYYYY, xyxYXY"                # n = 3: the smoke search does not solve it within its budget
+
+
+def own_rows(tmp_path, *lines):
+    """A config running the smoke search on a file of ``lines``, run name ``m``; each call rewrites the file."""
+    mine = tmp_path / "mine.txt"
+    mine.write_text("".join(line + "\n" for line in lines))
+    return cfg("smoke", f'benchmark="{mine}"', "rows=", "name=m", "search.budget=200")
+
+
+def outcomes(out):
+    return [(r["id"], r["pres"], r["solved"]) for r in records(out, "m")]
+
+
+def test_resume_solves_again_a_row_whose_presentation_changed(tmp_path):
+    """Swapping two lines of an input file changes both rows: neither keeps the record of the other presentation,
+    in paths.jsonl or in the summary."""
+    quiet(own_rows(tmp_path, AK2, AK3), tmp_path)
+    assert outcomes(tmp_path) == [("0", AK2, True), ("1", AK3, False)]
+    log = []
+    s = runner.run(own_rows(tmp_path, AK3, AK2), str(tmp_path), log=log.append)
+    assert "2 rows (0 done)" in log[0]
+    assert outcomes(tmp_path) == [("0", AK3, False), ("1", AK2, True)] and (s["rows"], s["solved"]) == (2, 1)
+
+
+def test_resume_keeps_the_rows_whose_presentation_is_unchanged(tmp_path):
+    quiet(own_rows(tmp_path, AK2, AK3), tmp_path)
+    log = []
+    s = runner.run(own_rows(tmp_path, AK2, "xy, y"), str(tmp_path), log=log.append)
+    assert "2 rows (1 done)" in log[0]
+    assert outcomes(tmp_path) == [("0", AK2, True), ("1", "xy, y", True)] and (s["rows"], s["solved"]) == (2, 2)
+
+
+# ---- the run's search backend ------------------------------------------------------------------------------------
+
+@pytest.mark.parametrize("method", ["greedy", "aut", "cov", "ngen", "rankn", "hybrid"])
+def test_a_config_without_backend_runs_the_fast_backend(tmp_path, method):
+    """``SearchConfig`` keeps ``spec`` as its default, but a run defaults to ``fast`` (the same steps, 27x faster)."""
+    from acx.core.config import SearchConfig
+    bare = tmp_path / "bare.toml"
+    bare.write_text(f'method = "{method}"\nbenchmark = "ms640"\n')
+    settings = runner.method_config(runner.load_config(str(bare)))
+    assert getattr(settings, "search", settings).backend == "fast"
+    assert SearchConfig().backend == "spec"
+
+
+def test_a_config_that_names_the_spec_backend_keeps_it():
+    assert runner.method_config(cfg("baseline_spec")).backend == "spec"
+    assert runner.method_config(cfg("smoke", "search.backend=spec")).backend == "spec"
+    assert runner.method_config(cfg("hybrid", "hybrid.backend=spec")).backend == "spec"
+
+
+# ---- the warm-up solve -------------------------------------------------------------------------------------------
+
+def watch_solves(monkeypatch, log_file):
+    """Wrap the greedy solver so that each presentation it is given is appended to ``log_file`` (also from workers)."""
+    from acx.runner.methods import SOLVERS
+    real = SOLVERS["greedy"]
+
+    def watched(pres, cfg):
+        with open(log_file, "a") as f:
+            f.write(", ".join(pres.strs) + "\n")
+        return real(pres, cfg)
+
+    monkeypatch.setitem(SOLVERS, "greedy", watched)
+
+
+def test_the_warm_up_solve_comes_before_the_rows_and_is_not_recorded(tmp_path, monkeypatch):
+    """Compiling the numba kernels must not land in row 0's ``cpu_seconds``: one unrecorded solve runs first."""
+    from acx.runner.execute import WARM_UP
+    log_file = tmp_path / "solves.txt"
+    watch_solves(monkeypatch, log_file)
+    quiet(cfg("smoke", 'rows="0:2"'), tmp_path / "out")
+    solves = log_file.read_text().splitlines()
+    assert len(solves) == 3 and solves[0] == ", ".join(WARM_UP.strs)
+    assert [r["id"] for r in records(tmp_path / "out", "smoke")] == ["0", "1"]
+    log_file.unlink()
+    quiet(cfg("smoke", 'rows="0:2"'), tmp_path / "out")                    # nothing left to solve: no warm-up either
+    assert not log_file.exists()
+
+
+def test_each_worker_warms_up_once_as_it_starts(tmp_path, monkeypatch):
+    from acx.runner.execute import WARM_UP
+    log_file = tmp_path / "solves.txt"
+    watch_solves(monkeypatch, log_file)
+    quiet(cfg("smoke", 'rows="0:4"', "workers=2"), tmp_path / "out")
+    solves = log_file.read_text().splitlines()
+    assert len(solves) == 6 and solves.count(", ".join(WARM_UP.strs)) == 2
+    assert len(records(tmp_path / "out", "smoke")) == 4
+
+
+def test_a_warm_up_that_raises_does_not_stop_the_run(tmp_path, monkeypatch):
+    """The rows record their own errors; a warm-up the method cannot take (three generators here) is skipped."""
+    from acx.data import parse_presentation
+    from acx.runner import execute
+    monkeypatch.setattr(execute, "WARM_UP", parse_presentation("xy, yz, z"))
+    assert quiet(cfg("smoke", 'rows="0:2"'), tmp_path)["solved"] == 2
+
+
+# ---- a damaged paths.jsonl, a summary without CPU times, a published folder --------------------------------------
+
+def test_a_bad_line_before_the_last_stops_the_resume_and_names_it(tmp_path):
+    """Only a cut-off last line is an interrupted write; a bad line with records after it is not dropped silently."""
+    quiet(cfg("smoke", 'rows="0:3"'), tmp_path)
+    f = tmp_path / "smoke" / "paths.jsonl"
+    first, second, third = f.read_text().splitlines(keepends=True)
+    for bad in ("garbage\n", second[:30] + "\n"):
+        f.write_text(first + bad + third)
+        with pytest.raises(ValueError, match=r"paths\.jsonl:2: "):
+            quiet(cfg("smoke", 'rows="0:5"'), tmp_path)
+        assert f.read_text() == first + bad + third                    # nothing truncated
+
+
+def test_without_cpu_seconds_in_fields_the_summary_has_no_cpu_numbers(tmp_path):
+    s = quiet(cfg("smoke", 'rows="0:3"', 'fields=["cost"]'), tmp_path)
+    assert s["cost"]["total"] > 0 and s["cpu_seconds"] is None and s["us_per_cost"] is None
+
+
+def published(tmp_path):
+    """A copy of the shipped ``results/smoke`` (summary.json and config.json, no paths.jsonl) under ``tmp_path``."""
+    folder = tmp_path / "smoke"
+    folder.mkdir()
+    for name in ("summary.json", "config.json"):
+        shutil.copy(os.path.join(ROOT, "results", "smoke", name), folder)
+    return folder
+
+
+def test_a_subset_run_never_replaces_a_published_summary(tmp_path):
+    folder = published(tmp_path)
+    shipped = (folder / "summary.json").read_text()
+    with pytest.raises(SystemExit, match="published"):
+        quiet(cfg("smoke", 'rows="0:2"'), tmp_path)
+    assert (folder / "summary.json").read_text() == shipped
+    assert sorted(os.listdir(folder)) == ["config.json", "summary.json"]
+    assert quiet(cfg("smoke", 'rows="0:2"'), tmp_path, fresh=True)["rows"] == 2
+
+
+def test_a_full_rerun_of_a_published_folder_reproduces_it(tmp_path):
+    """The config's own 20 rows: the run is the published one again, so it may rewrite the summary."""
+    folder = published(tmp_path)
+    shipped = json.loads((folder / "summary.json").read_text())
+    s = quiet(cfg("smoke"), tmp_path)
+    assert s["rows"] == s["solved"] == shipped["solved"] == 20 and s["cost"] == shipped["cost"]
+
+
+# ---- --rows: ids with spaces or colons ---------------------------------------------------------------------------
+
+def test_rows_ids_may_carry_spaces_and_colons():
+    rows = [type("R", (), {"id": i})() for i in ("0", "1", "2", "ms:1", "a")]
+
+    def ids(spec):
+        return [r.id for r in runner.select(rows, spec)]
+
+    assert ids("0, 2") == ids(" 0 ,2 ") == ["0", "2"]
+    assert ids("ms:1") == ["ms:1"] and ids("a, ms:1") == ["a", "ms:1"]
+    assert ids("-2:") == ["ms:1", "a"] and ids(" 1:3 ") == ["1", "2"] and ids("::2") == ["0", "2", "a"]
+    for spec in ("a:b", "1:2:3:4", "0:1.5"):
+        with pytest.raises(KeyError) as error:
+            runner.select(rows, spec)
+        assert error.value.args[0] == f"rows not in the benchmark: [{spec!r}]"
+    for spec in ("0:5:0", "::0"):
+        with pytest.raises(ValueError, match=f"^bad rows slice {spec!r}"):
+            runner.select(rows, spec)

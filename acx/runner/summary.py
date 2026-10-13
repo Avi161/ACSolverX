@@ -22,7 +22,7 @@ def summarize(cfg, records, wall):
     A key that ``fields`` dropped leaves its entries empty (no ``kind``: every kind reads 0). ``cost_mean`` and
     ``cost_median`` are per row over all rows, so ``cost_mean * rows`` is ``cost.total`` up to rounding;
     ``cpu_seconds`` is the rows' CPU time, replay and decoding included (nothing of either with ``path = false``), and
-    ``us_per_cost`` is its microseconds per pop, unit or evaluation.
+    ``us_per_cost`` is its microseconds per pop, unit or evaluation; both are None when no record has ``cpu_seconds``.
     """
     solved = [r for r in records if r["solved"]]
     groups = {
@@ -37,7 +37,8 @@ def summarize(cfg, records, wall):
     }
     unit = COST_UNIT.get(cfg["method"], "pops")
     cost = describe(r.get("cost") for r in records) or {}
-    cpu = sum(r.get("cpu_seconds", 0) for r in records)
+    timed = [r["cpu_seconds"] for r in records if "cpu_seconds" in r]       # none when ``fields`` leaves it out
+    cpu = sum(timed)
     return dict(
         name=cfg["name"], method=cfg["method"], benchmark=cfg["benchmark"], rows=len(records), solved=len(solved),
         **{kind: len(group) for kind, group in groups.items()},
@@ -48,5 +49,6 @@ def summarize(cfg, records, wall):
         path_length=path_length,
         caps=caps_block(records),
         wall_seconds=round(wall, 2), row_seconds=round(sum(r.get("seconds", 0) for r in records), 2),
-        cpu_seconds=round(cpu, 3), us_per_cost=round(1e6 * cpu / cost["sum"], 3) if cost.get("sum") else None,
+        cpu_seconds=round(cpu, 3) if timed else None,
+        us_per_cost=round(1e6 * cpu / cost["sum"], 3) if timed and cost.get("sum") else None,
         config=run_config(cfg))

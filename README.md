@@ -35,9 +35,10 @@ python compare.py results/greedy_fast_presentations results/hybrid_presentations
 ```
 
 A run writes `results/<name>/`: `paths.jsonl` (one record per presentation), `summary.json` and `config.json`; run it
-again and it resumes. `path=false` skips writing and replaying the paths, which is faster. `compare.py` prints one
-table of solve rate, cost, path length and CPU per pop, and `--html` adds charts. Input formats, every flag, the
-config keys and every output field are in [docs/USAGE.md](docs/USAGE.md).
+again and it resumes (a row whose presentation changed is solved again). `path=false` skips writing and replaying
+the paths, which is faster. `compare.py` prints one table of solve rate, cost, path length and CPU per pop, and
+`--html` adds charts. Input formats, every flag, the config keys and every output field are in
+[docs/USAGE.md](docs/USAGE.md).
 
 ## Methods
 

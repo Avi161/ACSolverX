@@ -1,8 +1,9 @@
 """One function per method: solve a presentation, verify the certificate on it, return a record.
 
 Each function takes the row's presentation and the run config. A record is written only after its certificate
-is verified on the row (``acx.verify.replay``; a CoV ``stable_cert`` by ``acx.cov.verify``). With ``path = false`` no
-certificate is made where the method can skip it, and none is verified.
+is verified on the row, once: the search, CoV (``acx.cov.verify``), the hybrid's ``certify`` and rl replay their own
+paths, and the runner replays aut's carried-back path and checks ngen's lift (``acx.ngen.verify``). With
+``path = false`` no certificate is made where the method can skip it, and none is verified.
 """
 from functools import lru_cache
 
@@ -45,27 +46,22 @@ def length(moves):
 def greedy(pres, cfg):
     """Plain best-first search (``acx.search``)."""
     from ..search import search
-    config = method_config(cfg)
-    res = search(pres, config)
+    res = search(pres, method_config(cfg))           # replays the path it finds (``acx.search.engine``)
     caps = record_caps(res.stats)
     if not res.solved:
         return record(False, cost=res.pops, **caps)
-    if keeps_path(cfg):
-        replay(pres, res.path, cyclic=config.cyclic, cap=config.cap)
     return record(True, "ac_path", cost=res.pops, sub_moves=res.path_length,
                   elem_moves=decoded_length(pres, res.path, cfg), path=res.path, **caps)
 
 
 def cov(pres, cfg):
     """Change-of-variables search (``acx.cov``)."""
-    from ..cov import run_cov, verify
-    res = run_cov(pres, method_config(cfg))
+    from ..cov import run_cov
+    res = run_cov(pres, method_config(cfg))          # checks each outcome on the row (``acx.cov.verify``)
     caps = record_caps(res.stats)
     found = res.ac_path or res.stable_cert
     if found is None:
         return record(False, cost=res.pops, **caps)
-    if keeps_path(cfg):
-        verify(pres, found)
     image = found.image and found.image.tag
     if found.kind == "stable_cert":
         return record(True, "stable_cert", cost=res.pops, sub_moves=len(found.path), path=found.path,
@@ -102,12 +98,10 @@ def hybrid(pres, cfg):
     from ..core.moves import Move
     from ..hybrid import encode_steps, solve
     from ..hybrid.cascade import Aut
-    res = solve(pres, method_config(cfg))
+    res = solve(pres, method_config(cfg))            # ``certify`` replays the elementary path
     caps = record_caps(res.stats)
     if not res.solved:
         return record(False, cost=res.units, **caps)
-    if keeps_path(cfg):
-        replay(pres, res.path, normalize=False)
     used_aut = res.kind == "ac_path" and any(isinstance(step, Aut) for step in res.steps)
     return record(True, res.kind, aut_assisted=used_aut, cost=res.units,
                   sub_moves=sum(isinstance(step, Move) for step in res.steps), elem_moves=length(res.path),
@@ -142,13 +136,11 @@ def _policy():
 def rl(pres, cfg):
     """Network-guided beam search (``acx.rl``, needs PyTorch)."""
     from ..rl.solve import solve
-    res = solve(pres, _policy(), **method_config(cfg))
+    res = solve(pres, _policy(), **method_config(cfg))       # replays the path it finds
     caps = record_caps(res.stats)
     if not res.solved:
         skipped = {"skipped": res.stats["skipped"]} if "skipped" in res.stats else {}
         return record(False, cost=res.pops, **skipped, **caps)
-    if keeps_path(cfg):
-        replay(pres, res.path, cap=res.stats["cap"])
     return record(True, "ac_path", cost=res.pops, sub_moves=res.path_length,
                   elem_moves=decoded_length(pres, res.path, cfg), path=res.path, **caps)
 

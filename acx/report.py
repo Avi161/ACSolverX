@@ -7,7 +7,8 @@ from pathlib import Path
 from string import Template
 from typing import NamedTuple
 
-UNIT = {"hybrid": "units", "rl": "evaluations"}          # what ``cost`` counts; every other method counts pops
+from .runner.summary import COST_UNIT
+
 # The record fields the report reads, besides the ``*_would_pop`` cap flags; a record's other fields are dropped.
 KEEP = {"id", "solved", "cost", "sub_moves", "elem_moves", "seconds", "cpu_seconds", "error"}
 UNITS_NOTE = ("Units differ: a pop is one heap pop of a search; a hybrid unit also counts accepted automorphisms, "
@@ -18,12 +19,14 @@ HEADER = ("run", "method", "benchmark", "rows", "solved", "mean cost (solved)", 
 
 
 class Run(NamedTuple):
-    """One results folder: its name, method, benchmark, the unit its ``cost`` counts, and its records."""
+    """One results folder: its name, method, benchmark, the unit its ``cost`` counts, and its records; a folder
+    without ``paths.jsonl`` (the shipped ``results/``) has ``records`` None and its ``summary.json`` as ``summary``."""
     name: str
     method: str
     benchmark: str
     unit: str
-    records: list
+    records: list | None
+    summary: dict | None = None
 
 
 # ---- loading -------------------------------------------------------------------------------------------------
@@ -56,16 +59,20 @@ def read_records(path):
 
 
 def load_run(folder):
-    """The ``Run`` in a results folder; ``summary.json``, else ``config.json``, names its method and benchmark."""
+    """The ``Run`` in a results folder; ``summary.json``, else ``config.json``, names its method and benchmark. A
+    folder without ``paths.jsonl`` is read from its ``summary.json``, which must be one that run.py wrote."""
     folder = Path(folder).absolute()
     if not folder.is_dir():
         raise SystemExit(f"{folder}: not a folder")
-    if not (folder / "paths.jsonl").exists():
-        raise SystemExit(f"{folder.name} has no paths.jsonl: run it again with run.py to compare it")
-    info = {**read_json(folder / "config.json"), **read_json(folder / "summary.json")}
+    summary = read_json(folder / "summary.json")
+    info = {**read_json(folder / "config.json"), **summary}
     method = info.get("method", "?")
-    unit = info.get("cost_unit") or UNIT.get(method, "pops")
-    return Run(folder.name, method, info.get("benchmark", "?"), unit, read_records(folder / "paths.jsonl"))
+    unit = info.get("cost_unit") or COST_UNIT.get(method, "pops")
+    if (folder / "paths.jsonl").exists():
+        return Run(folder.name, method, info.get("benchmark", "?"), unit, read_records(folder / "paths.jsonl"))
+    if "solved" not in summary:
+        raise SystemExit(f"{folder.name} has no paths.jsonl and no summary.json of run.py to compare")
+    return Run(folder.name, method, info.get("benchmark", "?"), unit, None, summary)
 
 
 # ---- numbers -------------------------------------------------------------------------------------------------
@@ -87,17 +94,15 @@ def column(records, key):
     return [r[key] for r in records if r.get(key) is not None]
 
 
-def cpu_seconds(record):
-    """A row's CPU seconds; a run older than ``cpu_seconds`` has only the wall-clock ``seconds``."""
-    return record.get("cpu_seconds", record.get("seconds"))
-
-
 def measure(run, ids=None):
     """The numbers of a run's table row. ``ids`` limits the cost, move and CPU means to those rows (``--common``)."""
+    if run.records is None:
+        return measure_summary(run.summary)
     scope = [r for r in run.records if ids is None or r["id"] in ids]
     solved = [r for r in scope if r["solved"]]
     cost, sub, elem = (column(solved, key) for key in ("cost", "sub_moves", "elem_moves"))
-    cpu = [seconds for seconds in map(cpu_seconds, scope) if seconds is not None]
+    # A row's CPU seconds; a run older than ``cpu_seconds`` has only the wall-clock ``seconds``.
+    cpu = [s for s in (r.get("cpu_seconds", r.get("seconds")) for r in scope) if s is not None]
     total_cost = sum(column(scope, "cost"))
     return {
         "rows": len(run.records),
@@ -111,6 +116,22 @@ def measure(run, ids=None):
     }
 
 
+def measure_summary(s):
+    """The numbers of a table row from a ``summary.json`` alone: no median, and no CPU in a summary without it."""
+    def path_mean(key):
+        parts = [lengths[key] for lengths in s["path_length"].values() if lengths[key]]
+        n = sum(part["n"] for part in parts)
+        return (sum(part["sum"] for part in parts) / n if n else None), n
+
+    (sub, sub_n), (elem, elem_n) = path_mean("sub_moves"), path_mean("elem_moves")
+    raise_ids = set().union(*(block["raise_ids"] for block in s["caps"].values()))
+    cpu, rows, solved = s.get("cpu_seconds"), s["rows"], s["solved"]
+    return {"rows": rows, "solved": solved, "errors": s["errors"], "raise_rows": len(raise_ids), "n": solved,
+            "cost": s["cost"]["on_solved"] / solved if solved else None, "median": None,
+            "sub": sub, "sub_n": sub_n, "elem": elem, "elem_n": elem_n,
+            "cpu_row": cpu / rows if cpu is not None and rows else None, "us": s.get("us_per_cost"), "wall": False}
+
+
 def solved_ids(run):
     return {r["id"] for r in run.records if r["solved"]}
 
@@ -120,6 +141,9 @@ def common_ids(runs):
     benchmarks = sorted({run.benchmark for run in runs})
     if len(benchmarks) > 1:
         raise SystemExit(f"--common needs runs on one benchmark, got {benchmarks}")
+    for run in runs:
+        if run.records is None:
+            raise SystemExit(f"--common needs paths.jsonl: {run.name} has only summary.json")
     return set.intersection(*(solved_ids(run) for run in runs))
 
 
@@ -168,10 +192,12 @@ def notes(runs, measured, ids):
     if any(m["wall"] and m["cpu_row"] is not None for m in measured):
         lines.append("Starred (*) CPU values are wall-clock seconds, not CPU: the run has no cpu_seconds, and a "
                      "busy machine inflates them.")
+    if any(run.records is None for run in runs):
+        lines.append("Runs without paths.jsonl are read from summary.json: no median, and no CPU in a shipped one.")
     if any(m["raise_rows"] for m in measured):
         lines.append("raise-cap rows: rows where a relator cap dropped a state the search would have popped "
                      "(a larger cap changes that row's search).")
-    if len(runs) == 2 and runs[0].benchmark == runs[1].benchmark:
+    if len(runs) == 2 and runs[0].benchmark == runs[1].benchmark and None not in (runs[0].records, runs[1].records):
         lines.append(head_to_head(*runs))
     return lines
 
@@ -302,13 +328,6 @@ def place(value, ticks, log):
     return (value - low) / (high - low)
 
 
-def bar_path(x, y, width, height, radius=4):
-    """A horizontal bar growing from the baseline at ``x``: square there, rounded at the tip."""
-    r = min(radius, width, height / 2)
-    return (f"M{x:g},{y:g}h{width - r:g}a{r:g},{r:g} 0 0 1 {r:g},{r:g}v{height - 2 * r:g}"
-            f"a{r:g},{r:g} 0 0 1 {-r:g},{r:g}h{r - width:g}z")
-
-
 def by_unit(bars):
     """The bars in groups of one unit each, in order of first appearance; a group shares an axis, others do not."""
     groups = {}
@@ -335,7 +354,7 @@ def panel(title, bars, ticks, log):
         svg.append(f'<g class="s{SLOT.get(bar.unit, 0)}"><title>{escape(bar.tooltip)}</title>'
                    f'<rect class="hit" y="{top}" width="{W}" height="{ROW}"/>'
                    f'<text x="{LEFT}" y="{top + 14}">{escape(name)}</text>'
-                   f'<path class="bar" d="{bar_path(LEFT, top + 20, width, BAR)}"/>'
+                   f'<rect class="bar" x="{LEFT}" y="{top + 20}" width="{width:g}" height="{BAR}" rx="4"/>'
                    f'<text class="val" x="{LEFT + width + GAP:.1f}" y="{top + 32}">{escape(label)}</text></g>')
     return f'<svg viewBox="0 0 {W} {base + 22}" role="img" aria-label="{escape(title)}">{"".join(svg)}</svg>'
 

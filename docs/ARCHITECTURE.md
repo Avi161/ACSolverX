@@ -169,9 +169,10 @@ The runner is a package, one job per module, and nothing is re-exported but `loa
   section, unknown key or invalid value.
 - `methods`: one function per method (`SOLVERS`), returning a record; `output`: the `path` and `fields` options;
   `caps`: the counters of a record and the `caps` block; `summary`: `summary.json` (`COST_UNIT`).
-- `execute`: `run` writes `results/<name>/{config.json, paths.jsonl, summary.json}`, resumes an interrupted run, skips
-  repeated row ids and refuses a folder written under another config; `rankn` is handed to `acx.ngen.sweep.run`
-  after the same check. A row with `|det| != 1`, or whose method raises, is recorded unsolved with an `error`.
+- `execute`: `run` writes `results/<name>/{config.json, paths.jsonl, summary.json}`, resumes an interrupted run (a
+  record counts only for the presentation in its `pres`), skips repeated row ids, refuses a folder written under
+  another config or a smaller run into a published folder, and solves AK(2) once, unrecorded, before the timed rows;
+  `rankn` is handed to `acx.ngen.sweep.run` after the same check. A row with `|det| != 1`, or whose method raises, is recorded unsolved with an `error`.
   `summary.json` always covers every record in `paths.jsonl`.
 
 ## Data (`acx.data`)

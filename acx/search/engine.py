@@ -11,6 +11,7 @@ from dataclasses import dataclass, field, replace
 from ..core.capcount import FIELDS as CAP_FIELDS
 from ..core.config import SearchConfig
 from ..core.words import Presentation
+from ..verify.replay import replay
 
 # Stats every backend reports with identical values (the cap counters are ``acx.core.capcount.FIELDS``).
 PARITY_STATS = ("discovered", *CAP_FIELDS, "min_total", "max_total",
@@ -76,6 +77,5 @@ def search(pres, cfg=None, **overrides):
     if res.solved and not res.end.is_trivial():
         return replace(res, solved=False, path=None, end=None, depth=None)
     if res.path is not None:
-        from ..verify.replay import replay
         replay(pres, res.path, cyclic=cfg.cyclic, cap=cfg.cap)
     return res

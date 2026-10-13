@@ -280,22 +280,56 @@ def test_loading_falls_back_to_config_json_then_to_question_marks(tmp_path, monk
     assert (run.name, run.method, run.benchmark, run.unit) == ("live", "rl", "ms640", "evaluations")
 
 
-def test_a_folder_without_paths_jsonl_is_refused(tmp_path):
-    (tmp_path / "rank3_bf").mkdir()
-    with pytest.raises(SystemExit, match="^rank3_bf has no paths.jsonl: run it again with run.py to compare it$"):
-        report.load_run(tmp_path / "rank3_bf")
+def test_a_folder_with_neither_paths_jsonl_nor_a_run_summary_is_refused(tmp_path):
+    (tmp_path / "empty").mkdir()
+    with pytest.raises(SystemExit, match="^empty has no paths.jsonl and no summary.json of run.py to compare$"):
+        report.load_run(tmp_path / "empty")
+    sweep = tmp_path / "rank3_bf"                                   # the rank-n sweep writes a summary of its own
+    sweep.mkdir()
+    (sweep / "summary.json").write_text(json.dumps({"rows": 40, "searches": 7}))
+    with pytest.raises(SystemExit, match="^rank3_bf has no paths.jsonl and no summary.json of run.py to compare$"):
+        report.load_run(sweep)
     with pytest.raises(SystemExit, match="nowhere: not a folder$"):
         report.load_run(tmp_path / "nowhere")
 
 
-def test_compare_py_exits_with_that_one_line_for_a_shipped_summary_only_folder(tmp_path):
-    """The folders kept in results/ hold summary.json and config.json only."""
-    shipped = tmp_path / "ac19_hybrid"
-    shipped.mkdir()
-    (shipped / "summary.json").write_text("{}")
-    (shipped / "config.json").write_text("{}")
-    with pytest.raises(SystemExit, match="^ac19_hybrid has no paths.jsonl: run it again with run.py to compare it$"):
-        compare.main([str(shipped)])
+SHIPPED = [os.path.join(ROOT, "results", name) for name in ("bench60_hybrid", "bench60_length", "ms640_cov")]
+
+
+def test_compare_py_tabulates_the_shipped_summary_only_folders(capsys):
+    """The folders kept in results/ hold summary.json and config.json only: their table row comes from the summary,
+    with a dash for the median and the CPU columns, which it lacks."""
+    compare.main(SHIPPED)
+    hybrid, length, cov = table(capsys.readouterr().out)
+    assert hybrid == {
+        "run": "bench60_hybrid", "method": "hybrid", "benchmark": "bench60", "rows": "60", "solved": "60 (100.0%)",
+        MEAN: "79.7 units", MEDIAN: "-", "mean sub_moves": "56.4", "mean elem_moves": "460.7", "CPU s/row": "-",
+        "CPU µs per pop/unit": "-", "raise-cap rows": "0", "errors": "0"}
+    assert (length["rows"], length["solved"], length[MEDIAN], length["CPU s/row"]) == ("60", "40 (66.7%)", "-", "-")
+    assert (cov["mean sub_moves"], cov["mean elem_moves"]) == ("14.3", "99.2 (n=554)")       # 30 CoV certificates
+
+
+def test_a_summary_only_run_reads_like_its_paths_jsonl(tmp_path):
+    """The same run with and without paths.jsonl: equal numbers, but for the median (none in a summary)."""
+    overrides = ['rows="7,500,620,639"', "search.cap=16", "search.budget=300", "search.backend=fast", "name=real"]
+    config = runner.load_config(os.path.join(ROOT, "configs", "baseline_spec.toml"), overrides)
+    runner.run(config, str(tmp_path), log=lambda *a: None)
+    full = report.measure(report.load_run(tmp_path / "real"))
+    os.remove(tmp_path / "real" / "paths.jsonl")
+    only = report.measure(report.load_run(tmp_path / "real"))
+    assert only.pop("median") is None and full.pop("median") is not None
+    for key in ("cost", "sub", "elem", "us"):
+        assert only.pop(key) == pytest.approx(full.pop(key), rel=1e-3)
+    assert only.pop("cpu_row") == pytest.approx(full.pop("cpu_row"), abs=1e-3)
+    assert only == full and full["raise_rows"] == 2
+
+
+def test_common_and_head_to_head_need_paths_jsonl(capsys):
+    with pytest.raises(SystemExit, match="^--common needs paths.jsonl: bench60_hybrid has only summary.json$"):
+        compare.main([SHIPPED[0], SHIPPED[1], "--common"])
+    compare.main(SHIPPED[:2])
+    printed = capsys.readouterr().out
+    assert "Head to head" not in printed and "from summary.json" in printed
 
 
 def test_loading_keeps_only_the_fields_the_report_reads(tmp_path):
@@ -494,13 +528,6 @@ def test_short_numbers_keep_three_significant_digits(value, text):
     assert report.short(value) == text
 
 
-def test_the_rounded_bar_is_square_at_the_baseline():
-    assert report.bar_path(8, 20, 100, 14) == "M8,20h96a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-96z"   # flat start, round tip
-    assert report.bar_path(8, 20, 2, 14) == "M8,20h0a2,2 0 0 1 2,2v10a2,2 0 0 1 -2,2h0z"      # a thin bar rounds less
-    assert report.bar_path(8, 20, 100, 6) == "M8,20h97a3,3 0 0 1 3,3v0a3,3 0 0 1 -3,3h-97z"   # so does a short one
-    assert report.bar_path(8, 20, 0, 14).startswith("M8,20h0")                 # a zero-width bar is empty, not an error
-
-
 def test_a_panel_is_a_row_per_bar_under_a_baseline_and_gridlines():
     """The markup of a small panel: a name over each bar, its label at the tip, a tooltip; no data draws no bar."""
     bars = [report.Bar("run <1>", 50, "pops", "%", 'run <1>: "half"'), report.Bar("gap", None, "units", "%", "no data")]
@@ -513,12 +540,12 @@ def test_a_panel_is_a_row_per_bar_under_a_baseline_and_gridlines():
         '<g class="s1"><title>run &lt;1&gt;: &quot;half&quot;</title>',
         '<rect class="hit" y="0" width="280" height="42"/>',
         '<text x="8" y="14">run &lt;1&gt;</text>',
-        '<path class="bar" d="M8,20h101.5a4,4 0 0 1 4,4v6a4,4 0 0 1 -4,4h-101.5z"/>',
+        '<rect class="bar" x="8" y="20" width="105.5" height="14" rx="4"/>',
         '<text class="val" x="119.5" y="32">50%</text></g>',
         '<g class="s2"><title>no data</title>',
         '<rect class="hit" y="42" width="280" height="42"/>',
         '<text x="8" y="56">gap</text>',
-        '<path class="bar" d="M8,62h0a0,0 0 0 1 0,0v14a0,0 0 0 1 0,0h0z"/>',
+        '<rect class="bar" x="8" y="62" width="0" height="14" rx="4"/>',
         '<text class="val" x="14.0" y="74">no data</text></g></svg>'])
 
 

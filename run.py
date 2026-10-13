@@ -8,6 +8,7 @@ with its message.
 """
 import argparse
 import json
+import os
 import re
 from pathlib import Path
 
@@ -92,8 +93,8 @@ def execute(args):
         cfg["name"] = own_name(cfg["name"], args.input)
     run_dir = Path(args.out) / cfg["name"]
     lines = [", ".join(p.strs) for p in args.pres]
-    if args.input is not None:
-        cfg["benchmark"] = args.input
+    if args.input is not None:                       # ./mine.txt and mine.txt are one run; "" stays an error
+        cfg["benchmark"] = os.path.normpath(args.input) if args.input else ""
     if lines:
         cfg["benchmark"] = write_input(lines, run_dir, args.fresh)
     summary = run(cfg, args.out, args.fresh)
@@ -103,13 +104,16 @@ def execute(args):
 
 
 def main(argv=None):
-    """The command line. A bad config, row slice or id, input file or a missing file ends it with one line."""
+    """The command line. A bad config, row slice or id, input file, or a file that is missing or cannot be read,
+    ends it with one line."""
     try:
         execute(parse_args(argv))
     except (ValueError, KeyError) as e:              # the library raises these; a KeyError would show its repr
         raise SystemExit(e.args[0] if isinstance(e, KeyError) else str(e)) from e
     except FileNotFoundError as e:
         raise SystemExit(f"{e.filename}: no such file") from e
+    except OSError as e:                             # a folder, no permission, ...
+        raise SystemExit(f"{e.filename}: {e.strerror}" if e.filename else str(e)) from e
 
 
 if __name__ == "__main__":

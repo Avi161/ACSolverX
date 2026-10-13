@@ -257,14 +257,21 @@ def test_parse_presentation_generators_and_inverses():
 
 
 @pytest.mark.parametrize("text,fragment", [("", "no relators"), (" , ,", "no relators"), ("xy1X", "'1'"),
-                                           ("x-y", "'-'"), ("x|y", "'|'"), ("xéy", "'é'"), ("g27", "'27'")])
+                                           ("x-y", "'-'"), ("x|y", "'|'"), ("xéy", "'é'"), ("xg0", "'0'"),
+                                           ("g5", "'g5' is not a name")])
 def test_parse_presentation_rejects_what_is_not_a_presentation(text, fragment):
     with pytest.raises(ValueError) as e:
         data.parse_presentation(text)
     assert fragment in str(e.value)
 
 
-@pytest.mark.parametrize("pres", [AK2, AK3, THREE, data.AK(3), data.MS(3, "YXyxy")])
+def test_parse_presentation_reads_generators_past_the_26th():
+    """``g27``, ``G27`` (its inverse), ... as ``acx.core.words`` prints them."""
+    assert data.parse_presentation("g27x, G27g28") == Presentation(28, ((27, 1), (-27, 28)))
+
+
+@pytest.mark.parametrize("pres", [AK2, AK3, THREE, data.AK(3), data.MS(3, "YXyxy"),
+                                  Presentation(27, ((27, -1), (1,), (-27, 26)))])
 def test_parse_presentation_reads_what_strs_prints(pres):
     assert data.parse_presentation(", ".join(pres.strs)) == pres
 
@@ -355,6 +362,14 @@ def test_a_file_that_is_not_utf8_is_a_valueerror_naming_it(tmp_path, name):
     (tmp_path / name).write_bytes(NOT_UTF8[name])
     message = error_of(str(tmp_path / name))
     assert message.startswith(f"{tmp_path / name}: ") and "UTF-8" in message
+
+
+@pytest.mark.parametrize("name,raw", [("fake.txt.gz", b"xxYYY, xyxYXY\n"),                    # plain text, .gz name
+                                      ("cut.txt.gz", gzip.compress(b"xxYYY, xyxYXY\n" * 50)[:-12])])   # cut short
+def test_a_gz_file_that_is_not_whole_gzip_is_a_valueerror_naming_it(tmp_path, name, raw):
+    (tmp_path / name).write_bytes(raw)
+    message = error_of(str(tmp_path / name))
+    assert message.startswith(f"{tmp_path / name}: ") and "gzip" in message
 
 
 def test_utf8_beyond_ascii_still_loads(tmp_path):
