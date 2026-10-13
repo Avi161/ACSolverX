@@ -70,14 +70,14 @@ def cov(pres, cfg):
         return record(False, cost=res.pops, **caps)
     image = found.image and found.image.tag
     if found.kind == "stable_cert":
-        return record(True, "stable_cert", cost=res.pops, sub_moves=len(found.path), path=found.path,
+        return record(True, "stable_cert", cost=res.pops, sub_moves=found.result.path_length, path=found.path,
                       image=image, steps=list(found.image.steps), **caps)
     if not found.transported:                        # S-moves on the row itself
-        return record(True, "ac_path", cost=res.pops, sub_moves=len(found.path),
+        return record(True, "ac_path", cost=res.pops, sub_moves=found.result.path_length,
                       elem_moves=decoded_length(pres, found.path, cfg), path=found.path, image=image, **caps)
     # Otherwise the path is elementary moves on the row, and the S-moves are those of the image.
-    return record(True, "ac_path", aut_assisted=True, cost=res.pops, sub_moves=len(found.result.path),
-                  elem_moves=len(found.path), path=found.result.path, elementary=found.path, image=image, **caps)
+    return record(True, "ac_path", aut_assisted=True, cost=res.pops, sub_moves=found.result.path_length,
+                  elem_moves=length(found.path), path=found.result.path, elementary=found.path, image=image, **caps)
 
 
 def aut(pres, cfg):
@@ -140,7 +140,7 @@ def _policy():
 def rl(pres, cfg):
     """Network-guided beam search (``acx.rl``, needs PyTorch)."""
     from ..rl.solve import solve
-    res = solve(pres, _policy(), **method_config(cfg))       # replays the path it finds
+    res = solve(pres, _policy(), capture_path=keeps_path(cfg), **method_config(cfg))
     caps = record_caps(res.stats)
     if not res.solved:
         skipped = {"skipped": res.stats["skipped"]} if "skipped" in res.stats else {}

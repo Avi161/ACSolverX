@@ -66,11 +66,13 @@ def top_children(model, states, live, cum, alpha, chunk):
 
 
 @torch.no_grad()
-def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, chunk=4096):
+def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, chunk=4096, capture_path=True):
     """Search from the ``(2L,)`` presentation ``x0``. Returns ``(actions, stats)``.
 
     ``actions`` is the list of flat actions of the best beam that reaches both relators of length 1 (``None`` if none
     does within ``steps``); ``stats`` has ``evaluated`` (states scored by the network) and the cap counters.
+    ``capture_path=False`` omits action history and returns ``actions=None`` even on a solve; ``stats['depth']``
+    and ``stats['end']`` hold its length and final observation (both None on a miss).
 
     **Cap counters** (``acx.core.capcount``). A beam has no queue: its "pop" is the selection of the global
     top-``width`` children, made from the network's scores before any move is applied, so the cap never changes what is
@@ -86,9 +88,9 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
     alive = torch.zeros(width, dtype=torch.bool)
     alive[0] = True
     cum = torch.where(alive, 0.0, MINUS_INF)                         # cumulative log-prob of each beam
-    action_seqs = torch.full((width, steps), -1, dtype=torch.int64)
+    action_seqs = torch.full((width, steps), -1, dtype=torch.int64) if capture_path else None
     visited = Visited((x0 * hash_vec).sum(), width * steps)
-    evaluated, solution = 0, None
+    evaluated, solution, depth, end = 0, None, None, None
     counter = CapCount(L if cap is None else cap)
     for t in range(steps):
         live = alive.nonzero().squeeze(1)
@@ -99,8 +101,9 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
         parent, action = idx // n_actions, idx % n_actions
         old = states[parent]
         new, over, size, total = s_move(old, *decode_action(action, L), L, cap)
-        action_seqs = action_seqs[parent]
-        action_seqs[:, t] = action
+        if capture_path:
+            action_seqs = action_seqs[parent]
+            action_seqs[:, t] = action
 
         real = top > MINUS_INF                                       # a live parent and a legal action
         counter.pop(None)                                            # step t + 1 selected
@@ -117,6 +120,9 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
         visited.add(hashes, alive)
         states = new
         if solved.any():
-            solution = action_seqs[int(solved.nonzero()[0]), :t + 1].tolist()
+            index = int(solved.nonzero()[0])
+            depth, end = t + 1, new[index].tolist()
+            if capture_path:
+                solution = action_seqs[index, :depth].tolist()
             break
-    return solution, {"evaluated": evaluated, **counter.record()}
+    return solution, {"evaluated": evaluated, "depth": depth, "end": end, **counter.record()}

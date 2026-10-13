@@ -13,9 +13,10 @@ import os
 from pathlib import Path
 
 from acx.core.config import parse_override
-from acx.data import parse_presentation, stem_of
+from acx.data import Row, parse_presentation, rows as load_rows, stem_of
 from acx.runner import load_config, run
-from acx.runner.rundir import read_records
+from acx.runner.rundir import pres_text, read_records
+from acx.runner.storage import atomic_write, run_directory
 
 
 def presentation(text):
@@ -38,7 +39,7 @@ def write_input(lines, run_dir, fresh):
     if holds_results and old != text and not fresh:
         raise SystemExit(f"{run_dir} holds results for other presentations: pass --fresh or add --set name=<another name>")
     run_dir.mkdir(parents=True, exist_ok=True)
-    path.write_text(text)
+    atomic_write(path, text)
     return str(path)
 
 
@@ -58,12 +59,18 @@ def report(run_dir, lines, unit):
             print(k, line, "solved" if rec["solved"] else "unsolved", *shown, sep="  ")
 
 
-def solved_ids(run_dir):
+def solved_ids(run_dir, rows=None):
     """The ids that ``<run_dir>/paths.jsonl`` marks solved, in file order (``--solved-from``)."""
     paths = Path(run_dir) / "paths.jsonl"
     if not paths.is_file():
         raise SystemExit(f"{paths}: no such file (--solved-from needs the paths.jsonl of a run made here)")
-    ids = [rec["id"] for rec in read_records(paths) if rec["solved"]]
+    records = [rec for rec in read_records(paths) if rec["solved"]]
+    if rows is not None:
+        current = {row.id: pres_text(row.pres) for row in rows}
+        for rec in records:
+            if rec["id"] in current and "pres" in rec and rec["pres"] != current[rec["id"]]:
+                raise ValueError(f"{paths}: row {rec['id']!r} is a different presentation in the current input")
+    ids = [rec["id"] for rec in records]
     if not ids:
         raise SystemExit(f"{paths}: no solved rows")
     return ids
@@ -104,14 +111,16 @@ def execute(args):
     # your own presentations replace the config's benchmark, and with it the config's slice of rows
     own = ['benchmark="own"', 'rows=""'] if args.input is not None or args.pres else []
     cfg = load_config(args.config, own + args.set + ([f'rows="{args.rows}"'] if args.rows else []))
-    if args.solved_from:
-        cfg["rows"] = ",".join(solved_ids(args.solved_from))
     if own and not any(parse_override(item)[0] == "name" for item in args.set):
         cfg["name"] = own_name(cfg["name"], args.input)
-    run_dir = Path(args.out) / cfg["name"]
+    run_dir = run_directory(args.out, cfg["name"])
     lines = [", ".join(p.strs) for p in args.pres]
     if args.input is not None:                       # ./mine.txt and mine.txt are one run; "" stays an error
         cfg["benchmark"] = os.path.normpath(args.input) if args.input else ""
+    if args.solved_from:
+        current = ([Row(str(i), pres, {}) for i, pres in enumerate(args.pres)] if lines
+                   else load_rows(cfg["benchmark"]))
+        cfg["rows"] = ",".join(solved_ids(args.solved_from, current))
     if lines:
         cfg["benchmark"] = write_input(lines, run_dir, args.fresh)
     summary = run(cfg, args.out, args.fresh)

@@ -1,10 +1,11 @@
 # Provenance
 
-Where every part of this branch comes from: component -> source branch -> path -> the commit that last touched that path
-(`git log -1 --format=%h origin/<branch> -- <path>`, read 11 Oct 2026; the rows of `rank3/brute-force-baseline` and
-`cov/all-subsets-sweep`, 13 Oct 2026). The origin is the public repository `Avi161/ACSolverX`. Code was ported file by
-file into `acx/` (rewritten on the `acx` word and move types, then checked against the source: the tests named in each
-row). Nothing was copied as a whole tree.
+**TL;DR.** Where every file and number comes from: component, source branch of the public repository
+`Avi161/ACSolverX`, path, and the commit that last touched that path
+(`git log -1 --format=%h origin/<branch> -- <path>`, read 11 Oct 2026; the `rank3/brute-force-baseline` and
+`cov/all-subsets-sweep` rows 13 Oct 2026). Code was ported file by file into `acx/`, rewritten on acx's word and move
+types and checked against the source by the tests named in each row; nothing was copied as a whole tree. Every public
+branch is accounted for (last tables).
 
 ## Code (`acx/`)
 
@@ -59,14 +60,16 @@ row). Nothing was copied as a whole tree.
 | `data/equivalence_classes/certificates.json` | `codex/proofs` | `results/equivalence_classes/certificates.json` | `d89d3dde` |
 | `benchmark/difficulty_bins.csv` | `claude/summer-results-docs-scoring-u6klsb` | `benchmark/difficulty_bins.csv` | `9033f13e` |
 
-Every copied file matches its source blob (`git hash-object`), except `LADDER.md` and `README_aca_124.md` (a provenance
-note added; `LADDER.md` also points to `run.py` instead of the source's tester, and its source refs moved here).
+Every copied file matches its source blob (`git hash-object`) except three docs edited for this checkout:
+`LADDER.md` and `README_aca_124.md` (a provenance note; `LADDER.md` also points to `run.py` instead of the source's
+tester) and `benchmark/subsets/ARMS.md` (links to code not shipped here removed, its withdrawn heuristic marked). All
+three are also shortened here; their tables and numbers are the source's.
 
 ## Stored studies (`results/stable_ac/`)
 
 Two studies run on their own branches, carried as their compact files (summaries, tables, logs, graphs) byte for byte,
-plus a README edited for this checkout and a new `MANIFEST.json` that lists every raw file of the source folder with its
-size and sha256 ([results/README.md](../results/README.md#studies)).
+plus a README edited for this checkout and a new `MANIFEST.json` listing every raw file of the source folder with size
+and sha256 ([results/README.md](../results/README.md#studies)).
 
 | folder or file | what | source branch | source path | commit |
 |---|---|---|---|---|
@@ -75,55 +78,55 @@ size and sha256 ([results/README.md](../results/README.md#studies)).
 | `tests/test_rank3_study.py` | the manifest, no raw file committed, a fetched raw file against its size and sha256, the stored numbers the docs quote, `results/rank3_bf/` against the stored tables (new) | new | | |
 | `tests/test_cov_all_study.py` | the manifest, the stored numbers the docs quote, the stored certificates and paths replayed with `acx.cov` and `acx.verify`; slow: every transform rebuilt, 100 rows searched again, the six control failures at cap 64 and uncapped (new) | new | | |
 
-## Evidence (numbers quoted in RESULTS.md)
+## Evidence: the numbers quoted in RESULTS.md
 
-| component | source branch | source path | commit |
+| evidence | source branch | source path | commit |
 |---|---|---|---|
-| evidence: MS640 length vs S20_MK2 at 1M | `results/ms640-s20-mk2-1m` | `results/heuristic_search/ms640_s20_mk2_1m/RESULTS.md` | `dbbf22b9` |
-| evidence: AC19 hard tail at 100k | `results/ms640-s20-mk2-1m` | `results/heuristic_search/hsearch_ac19_hard100k/RESULTS.md` | `4fe83008` |
-| evidence: AC19 Aut-min 10k, complete run | `claude/ac19-leftover-solver-notebook-6yan6d` | `results/heuristic_search/ac19_autmin_10k/RESULTS.md` | `a2ea9786` |
-| evidence: AC19 originals at 10M and transport | `claude/ac19-leftover-solver-notebook-6yan6d` | `results/heuristic_search/ac19_orig_10m/RESULTS.md` | `9f50ff3a` |
-| evidence: MS640 elementary decode | `codex/ac-elementary-decoder` | `results/heuristic_search/ms640_elementary_ac/RESULTS.md` | `0ed6d9d3` |
-| evidence: S20_MK2 selection tables | `claude/heuristic-search-benchmark-e1f9l8` | `experiments/search/HEURISTICS.md` | `df0ddeae` |
-| evidence: abel top-3 on MS640 | `research/w5/stable-ac-escape` | `results/stable_ac/cov/cov_top3/RESULTS.md` | `605db83d` |
-| evidence: one-shot CoV sweep 10k | `research/w5/stable-ac-escape` | `results/stable_ac/cov/graphs/SUMMARY_b10000.md` | `bab3e40f` |
-| evidence: three-way cost | `research/w5/stable-ac-escape` | `results/comparison/THREE_WAY_COST.md` | `0f4eefc1` |
-| evidence: rank-3/4/5 brute force and its cap-counter tables (final at cap 24, 13 Oct 2026; stored in `results/stable_ac/rank3_bf/`) | `rank3/brute-force-baseline` | `results/stable_ac/rank3_bf/README.md` | `f14945df`; the study's commits: `6fd59c2b` (plan and code), `13c6e536` (interim results), `7c9ab33b` (final at cap 24), `ec5dde8e` (cap counters), `a416bad9` (the counted rerun), `f14945df` (README) |
-| evidence: nonsym K=4 beam | `cursor/heur-u124-s20mk2-a42e` | `results/comparison/COVBEAM_K4_B1K_ADVISOR_REVISE.md` | `83116e0f` |
-| evidence: u124 s20_mk2 1M census (runner only) | `cursor/heur-u124-s20mk2-a42e` | `results/heuristic_search/u124_s20mk2_1m/README.md` | `17e19950` |
-| evidence: mu-ladder findings | `cursor/cloud-agent-1785265366483-2x3ne` | `results/stable_ac/mu_scan/MU_SCAN_FINDINGS.md` | `584f8809` |
-| evidence: covmeet audit | `experiments/ppo` | `results/stable_ac/covmeet/AUDIT_2026-08-16.md` | `51b3dfbd` |
-| evidence: z=w stabilisation arms (negative) | `test/stable-ac-moves` | `experiments/stable_ac/ak3_stable_proof/RESULTS.md` | `2278437b` |
-| evidence: S x MK x F holdout read | `experiments/ppo` | `results/heuristic_search/smk_f_grid/HOLDOUT.md` | `f5842134` |
-| evidence: S-family arms on never-read AC1M | `cursor/heur-12h-anti-overfit-a42e` | `results/heuristic_search/campaign_12h/RESULTS.md` | `8ba73131` |
-| evidence: depth term (EXP-11) | `cursor/heur-depth-tie-a42e` | `results/heuristic_search/runs/EXP11_depth.md` | `69146acb` |
-| evidence: cut-shift and packed canonicalisation | `codex/ac-elementary-decoder` | `experiments/heuristic_search/core/perf_lab/EXPAND_SPLIT.md` | `d4b222b7` |
-| evidence: 10M-node row timings | `codex/ac-elementary-decoder` | `results/heuristic_search/u124_10m/RESULTS.md` | `153aecfe` |
-| evidence: solvern_fast speed and parity | `research/w5/stable-ac-escape` | `experiments/stable_ac/nocov/PIPELINE.md` | `b736f001` |
-| evidence: 501-node cascade screen | `codex/ac-elementary-decoder` | `results/heuristic_search/ac19_cascade_screen/RESULTS.md` | `8be0c041` |
-| evidence: cascade_bs probe | `claude/ac19-leftover-solver-notebook-6yan6d` | `results/heuristic_search/ac19_bs_probe/RESULTS.md` | `dab82a84` |
-| evidence: final_policy census at 1,000 units | `claude/results-collection-org-wmvpxu` | `results/heuristic_search/ac19_final_policy_full_1k/README.md` | `98f719e2` |
-| evidence: cascade with the cap-14 backward table | `claude/ac19-theorem-strength-8v1wp6` | `research/residual_20260909/CAMPAIGN_REPORT.md` | `460904f9` |
-| evidence: U124 probes at 10,000 (incl. orbit search) | `claude/ac19-theorem-strength-8v1wp6` | `research/residual_20260909/u124/README.md` | `7f6bcdb4` |
-| evidence: orbit-image atlas (autchoice) | `claude/ac19-theorem-strength-8v1wp6` | `research/autchoice_20260910/ATLAS.md` | `7fa813ae` |
-| evidence: CoV escape at 20,000 | `research/w5/stable-ac-escape` | `results/stable_ac/cov/allcov_escape/ESCAPE.md` | `81078f47` |
-| evidence: certificate standing count | `research/w5/stable-ac-escape` | `results/README.md` | `9e748f60` |
-| evidence: abelian-mass ranking | `research/w5/stable-ac-escape` | `experiments/IDEAS.md` | `81078f47` |
-| evidence: bench60 arms tables | `claude/abelianized-exponents-verify-1i6muh` | `benchmark/subsets/ARMS.md` | `cd913649` |
-| evidence: abel top-3 at 1,000 nodes | `claude/abelianized-exponents-verify-1i6muh` | `logs/05-08-2026.md` | `90461e9c` |
-| evidence: same-cap Aut-min control (36/60) | `cursor/heur-u124-s20mk2-a42e` | `results/comparison/covbeam_nonsym_b1kfull_subset60.md` | `06672c5d` |
-| evidence: z=w arms on MS640 at 500k | `test/stable-ac-moves` | `results/stable_ac/3_generators_w_choices/README.md` | `3d181532` |
-| evidence: stabilisation that only rebookkeeps is inert | `claude/stable-ac-conjecture-stabilization-rwo9as` | `experiments/lessons/stabilization-that-only-rebookkeeps-is-inert.md` | `2c053e63` |
-| evidence: dynamic-rank search and triangulated roots | `claude/vigilant-babbage-nnbuj0` | `research/ac_dynamic_rank_20260913/RESULTS.md` | `3e8aa893` |
-| evidence: triangular expansion on hard AC19 rows | `claude/vigilant-babbage-nnbuj0` | `research/ac19_triangle_expansion_20260912/RESULTS.md` | `9eb31975` |
-| evidence: macros and the Whitehead portal | `new_moves` | `experiments/search/NEW_MOVES.md` | `ddb4f874` |
-| evidence: PyTorch port plan and parity | `experiments/ppo` | `experiments/ppo/PLAN.md` | `5c567a36` |
-| evidence: A100 smoke (530/530) | `experiments/ppo` | `logs/10-08-2026.md` | `7d38f5fa` |
-| evidence: hybrid at 10M (code only, open) | `codex/ac19-hybrid-10m` | `experiments/search/hybrid_10m.py` | `0e77ffce` |
-| evidence: exhaustive CoV sweep, MS640 at 100 (stored in `results/stable_ac/cov_all/`, as are the next three) | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100_summary.md` | `58b34b9f` |
-| evidence: exhaustive CoV sweep, MS640 at 10,000 | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b10000_summary.md` | `9b496d5f` |
-| evidence: exhaustive CoV sweep, MS640 at 100,000 | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000_summary.md`, `..._b100000.jsonl.gz` | `22b7e37c` |
-| evidence: the sweep's per-presentation csv and its box script | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000_per_presentation.csv` | `f8d5dce7` (tip `fb84a588`) |
+| MS640 length vs S20_MK2 at 1M | `results/ms640-s20-mk2-1m` | `results/heuristic_search/ms640_s20_mk2_1m/RESULTS.md` | `dbbf22b9` |
+| AC19 hard tail at 100k | `results/ms640-s20-mk2-1m` | `results/heuristic_search/hsearch_ac19_hard100k/RESULTS.md` | `4fe83008` |
+| AC19 Aut-min 10k, complete run | `claude/ac19-leftover-solver-notebook-6yan6d` | `results/heuristic_search/ac19_autmin_10k/RESULTS.md` | `a2ea9786` |
+| AC19 originals at 10M and transport | `claude/ac19-leftover-solver-notebook-6yan6d` | `results/heuristic_search/ac19_orig_10m/RESULTS.md` | `9f50ff3a` |
+| MS640 elementary decode | `codex/ac-elementary-decoder` | `results/heuristic_search/ms640_elementary_ac/RESULTS.md` | `0ed6d9d3` |
+| S20_MK2 selection tables | `claude/heuristic-search-benchmark-e1f9l8` | `experiments/search/HEURISTICS.md` | `df0ddeae` |
+| abel top-3 on MS640 | `research/w5/stable-ac-escape` | `results/stable_ac/cov/cov_top3/RESULTS.md` | `605db83d` |
+| one-shot CoV sweep 10k | `research/w5/stable-ac-escape` | `results/stable_ac/cov/graphs/SUMMARY_b10000.md` | `bab3e40f` |
+| three-way cost | `research/w5/stable-ac-escape` | `results/comparison/THREE_WAY_COST.md` | `0f4eefc1` |
+| rank-3/4/5 brute force and its cap-counter tables (final at cap 24, 13 Oct 2026; stored in `results/stable_ac/rank3_bf/`) | `rank3/brute-force-baseline` | `results/stable_ac/rank3_bf/README.md` | `f14945df`; the study's commits: `6fd59c2b` (plan and code), `13c6e536` (interim results), `7c9ab33b` (final at cap 24), `ec5dde8e` (cap counters), `a416bad9` (the counted rerun), `f14945df` (README) |
+| nonsym K=4 beam | `cursor/heur-u124-s20mk2-a42e` | `results/comparison/COVBEAM_K4_B1K_ADVISOR_REVISE.md` | `83116e0f` |
+| u124 s20_mk2 1M census (runner only) | `cursor/heur-u124-s20mk2-a42e` | `results/heuristic_search/u124_s20mk2_1m/README.md` | `17e19950` |
+| mu-ladder findings | `cursor/cloud-agent-1785265366483-2x3ne` | `results/stable_ac/mu_scan/MU_SCAN_FINDINGS.md` | `584f8809` |
+| covmeet audit | `experiments/ppo` | `results/stable_ac/covmeet/AUDIT_2026-08-16.md` | `51b3dfbd` |
+| z=w stabilisation arms (negative) | `test/stable-ac-moves` | `experiments/stable_ac/ak3_stable_proof/RESULTS.md` | `2278437b` |
+| S x MK x F holdout read | `experiments/ppo` | `results/heuristic_search/smk_f_grid/HOLDOUT.md` | `f5842134` |
+| S-family arms on never-read AC1M | `cursor/heur-12h-anti-overfit-a42e` | `results/heuristic_search/campaign_12h/RESULTS.md` | `8ba73131` |
+| depth term (EXP-11) | `cursor/heur-depth-tie-a42e` | `results/heuristic_search/runs/EXP11_depth.md` | `69146acb` |
+| cut-shift and packed canonicalisation | `codex/ac-elementary-decoder` | `experiments/heuristic_search/core/perf_lab/EXPAND_SPLIT.md` | `d4b222b7` |
+| 10M-node row timings | `codex/ac-elementary-decoder` | `results/heuristic_search/u124_10m/RESULTS.md` | `153aecfe` |
+| solvern_fast speed and parity | `research/w5/stable-ac-escape` | `experiments/stable_ac/nocov/PIPELINE.md` | `b736f001` |
+| 501-node cascade screen | `codex/ac-elementary-decoder` | `results/heuristic_search/ac19_cascade_screen/RESULTS.md` | `8be0c041` |
+| cascade_bs probe | `claude/ac19-leftover-solver-notebook-6yan6d` | `results/heuristic_search/ac19_bs_probe/RESULTS.md` | `dab82a84` |
+| final_policy census at 1,000 units | `claude/results-collection-org-wmvpxu` | `results/heuristic_search/ac19_final_policy_full_1k/README.md` | `98f719e2` |
+| cascade with the cap-14 backward table | `claude/ac19-theorem-strength-8v1wp6` | `research/residual_20260909/CAMPAIGN_REPORT.md` | `460904f9` |
+| U124 probes at 10,000 (incl. orbit search) | `claude/ac19-theorem-strength-8v1wp6` | `research/residual_20260909/u124/README.md` | `7f6bcdb4` |
+| orbit-image atlas (autchoice) | `claude/ac19-theorem-strength-8v1wp6` | `research/autchoice_20260910/ATLAS.md` | `7fa813ae` |
+| CoV escape at 20,000 | `research/w5/stable-ac-escape` | `results/stable_ac/cov/allcov_escape/ESCAPE.md` | `81078f47` |
+| certificate standing count | `research/w5/stable-ac-escape` | `results/README.md` | `9e748f60` |
+| abelian-mass ranking | `research/w5/stable-ac-escape` | `experiments/IDEAS.md` | `81078f47` |
+| bench60 arms tables | `claude/abelianized-exponents-verify-1i6muh` | `benchmark/subsets/ARMS.md` | `cd913649` |
+| abel top-3 at 1,000 nodes | `claude/abelianized-exponents-verify-1i6muh` | `logs/05-08-2026.md` | `90461e9c` |
+| same-cap Aut-min control (36/60) | `cursor/heur-u124-s20mk2-a42e` | `results/comparison/covbeam_nonsym_b1kfull_subset60.md` | `06672c5d` |
+| z=w arms on MS640 at 500k | `test/stable-ac-moves` | `results/stable_ac/3_generators_w_choices/README.md` | `3d181532` |
+| stabilisation that only rebookkeeps is inert | `claude/stable-ac-conjecture-stabilization-rwo9as` | `experiments/lessons/stabilization-that-only-rebookkeeps-is-inert.md` | `2c053e63` |
+| dynamic-rank search and triangulated roots | `claude/vigilant-babbage-nnbuj0` | `research/ac_dynamic_rank_20260913/RESULTS.md` | `3e8aa893` |
+| triangular expansion on hard AC19 rows | `claude/vigilant-babbage-nnbuj0` | `research/ac19_triangle_expansion_20260912/RESULTS.md` | `9eb31975` |
+| macros and the Whitehead portal | `new_moves` | `experiments/search/NEW_MOVES.md` | `ddb4f874` |
+| PyTorch port plan and parity | `experiments/ppo` | `experiments/ppo/PLAN.md` | `5c567a36` |
+| A100 smoke (530/530) | `experiments/ppo` | `logs/10-08-2026.md` | `7d38f5fa` |
+| hybrid at 10M (code only, open) | `codex/ac19-hybrid-10m` | `experiments/search/hybrid_10m.py` | `0e77ffce` |
+| exhaustive CoV sweep, MS640 at 100 (stored in `results/stable_ac/cov_all/`, as are the next three) | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100_summary.md` | `58b34b9f` |
+| exhaustive CoV sweep, MS640 at 10,000 | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b10000_summary.md` | `9b496d5f` |
+| exhaustive CoV sweep, MS640 at 100,000 | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000_summary.md`, `..._b100000.jsonl.gz` | `22b7e37c` |
+| the sweep's per-presentation csv and its box script | `cov/all-subsets-sweep` | `results/stable_ac/cov_all/cov_all_suballpxyb8_ms640_b100000_per_presentation.csv` | `f8d5dce7` (tip `fb84a588`) |
 | reference reruns of the original code (not in git) | `main` e7fef21a, `claude/vigilant-babbage-nnbuj0` 5ae1bd8e | `work/reference/` of the consolidation run | |
 | checks of this branch: test runs, the fast/spec speed print (not in git) | this branch | `work/verify/` of the consolidation run (`NUMBERS.md`, `logs/`) | |
 

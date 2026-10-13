@@ -780,8 +780,8 @@ def test_rows_ids_may_carry_spaces_and_colons():
     ("rl.width=1.5", "rl.width must be an int >= 1, got 1.5"),
     ("rl.width=true", "rl.width must be an int >= 1, got True"),
     ("rl.steps=0", "rl.steps must be an int >= 1, got 0"),
-    ('rl.alpha="x"', "rl.alpha must be a number, got 'x'"),
-    ("rl.alpha=true", "rl.alpha must be a number, got True")])
+    ('rl.alpha="x"', "rl.alpha must be a finite number, got 'x'"),
+    ("rl.alpha=true", "rl.alpha must be a finite number, got True")])
 def test_rl_numbers_are_checked_when_the_config_loads(tmp_path, override, message):
     """A bad ``rl.width``, ``steps`` or ``alpha`` raised once per row (IndexError, TypeError); now once, at load."""
     path = tmp_path / "rl.toml"

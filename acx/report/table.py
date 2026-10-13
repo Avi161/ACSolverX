@@ -88,6 +88,7 @@ def common_ids(runs):
     for run in runs:
         if run.records is None:
             raise SystemExit(f"--common needs paths.jsonl: {run.name} has only summary.json")
+    check_presentations(runs)
     return set.intersection(*(solved_ids(run) for run in runs))
 
 
@@ -97,11 +98,25 @@ def rows_of(n):
 
 def head_to_head(a, b):
     """The rows two runs solved, by only a, only b, both or neither, over the rows both ran."""
+    check_presentations((a, b))
     shared = {r["id"] for r in a.records} & {r["id"] for r in b.records}
     by_a, by_b = solved_ids(a) & shared, solved_ids(b) & shared
     return (f"Head to head on {a.benchmark} ({rows_of(len(shared))} in common): solved by {a.name} only "
             f"{len(by_a - by_b)}, by {b.name} only {len(by_b - by_a)}, by both {len(by_a & by_b)}, "
             f"by neither {len(shared - by_a - by_b)}.")
+
+
+def check_presentations(runs):
+    """Matching ids in a named benchmark must still denote the same words (files can change between runs)."""
+    seen = {}
+    for run in runs:
+        for rec in run.records or ():
+            if "pres" not in rec:     # legacy records have no presentation witness
+                continue
+            key = run.benchmark, rec["id"]
+            if key in seen and seen[key] != rec["pres"]:
+                raise SystemExit(f"row {rec['id']!r} of {run.benchmark} has different presentations across runs")
+            seen[key] = rec["pres"]
 
 
 # ---- the table -----------------------------------------------------------------------------------------------
