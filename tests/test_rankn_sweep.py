@@ -485,3 +485,40 @@ def test_help_names_the_module(capsys):
     with pytest.raises(SystemExit):
         sweep.main(["--help"])
     assert "usage: python -m acx.ngen.sweep" in capsys.readouterr().out
+
+
+# ------------------------------------------------------------------- the driver refuses before it writes anything
+def test_sweep_refuses_a_row_that_is_not_two_generators_two_relators(tmp_path):
+    rows = tmp_path / "rows.csv"
+    rows.write_text("id,r1,r2,r3\nok,xxYYY,xyxYXY,\nthree,xx,yy,zz\n")
+    with pytest.raises(ValueError, match="two-generator, two-relator"):
+        quiet(cfg(rows=None, benchmark=str(rows)), tmp_path / "out", fresh=True)
+    assert not (tmp_path / "out" / "t").exists()
+
+
+def published_sweep(tmp_path, rows):
+    """A sweep folder as git ships it: config.json and summary.*, no ``rows/``; its summary claims ``rows`` rows."""
+    quiet(cfg(rows="0:3", max_len=1, budget=50), tmp_path)
+    folder = tmp_path / "t"
+    shutil.rmtree(folder / "rows")
+    summary = json.loads((folder / "summary.json").read_text())
+    summary["rows"] = rows
+    (folder / "summary.json").write_text(json.dumps(summary))
+    return folder
+
+
+def test_a_smoke_run_does_not_replace_a_published_summary(tmp_path):
+    folder = published_sweep(tmp_path, 640)
+    shipped = {name: (folder / name).read_text() for name in ("summary.json", "summary.md", "config.json")}
+    with pytest.raises(SystemExit, match="published summary"):
+        quiet(cfg(rows="0:1", max_len=1, budget=50), tmp_path)
+    assert json.loads((folder / "summary.json").read_text())["rows"] == 640
+    assert {name: (folder / name).read_text() for name in shipped} == shipped and not (folder / "rows").exists()
+    assert quiet(cfg(rows="0:1", max_len=1, budget=50), tmp_path, fresh=True)["rows"] == 1
+
+
+def test_a_run_of_every_published_row_may_rewrite_the_summary(tmp_path):
+    """The rows held plus the rows asked for cover the published count: that run is the published one again."""
+    published_sweep(tmp_path, 3)
+    assert quiet(cfg(rows="0:3", max_len=1, budget=50), tmp_path)["rows"] == 3
+    assert quiet(cfg(rows="0:1", max_len=1, budget=50), tmp_path)["rows"] == 3      # rows/ now holds all three

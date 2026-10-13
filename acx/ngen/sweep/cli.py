@@ -17,7 +17,7 @@ def main(argv=None):
     parser.add_argument("--out", default="results")
     parser.add_argument("--fresh", action="store_true")
     parser.add_argument("--verify", type=int, metavar="N",
-                        help="after the run, re-run N random cells on the other backend")
+                        help="after the run, re-run N random cells on both backends")
     args = parser.parse_args(argv)
 
     from ...runner import load_config
