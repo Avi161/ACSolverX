@@ -14,10 +14,11 @@ from acx.core.config import SearchConfig
 from acx.core.moves import decode_path, encode_path
 from acx.core.words import Presentation, fmt, inverse, parse, renumber, substitute_generator
 from acx.cov import CoVConfig, ReplayError, apply_steps, check_cert, enumerate_images, verify
+from acx.cov.family import proper_subwords, subwords
 from acx.cov.images import class_key
-from acx.cov.family import FAMILIES, proper_subwords, subwords
 from acx.cov.run import run
 from acx.cov.substitution import Z, isolate, occurrences, patterns, substitute, substitute_pattern
+from acx.runner import method_config
 from acx.search import BackendUnavailable, search
 from acx.search.engine import backend as load_backend
 from acx.verify import replay
@@ -151,8 +152,7 @@ def test_until_ac_path_keeps_going_past_a_stable_cert():
 
 def test_config_cyclic_and_capture_path():
     """Outcomes carry the search's reduction, and paths are captured whatever the search config says."""
-    cfg = CoVConfig.from_dict({"search": {"budget": 40, "cyclic": False, "capture_path": False}, "total_budget": 400})
-    assert cfg.search.budget == 40 and not cfg.search.cyclic
+    cfg = CoVConfig(search=SearchConfig(budget=40, cyclic=False, capture_path=False), total_budget=400)
     solved = 0
     for r in data.load_csv("bench60")[:6]:
         for o in run(r.pres, cfg.replace(until="ac_path")).outcomes:
@@ -419,11 +419,14 @@ def test_all_subsets_is_the_sweep_on_ms640():
 
 
 def test_family_is_a_config_choice():
+    """``[cov] family`` reaches ``CoVConfig`` through the runner; an unknown family is a ``ValueError`` everywhere."""
     assert CoVConfig().family == "subnc2pxysb"
-    assert CoVConfig.from_dict({"family": "suballpxyb8"}).family == "suballpxyb8"
-    with pytest.raises(ValueError, match="family"):
+    assert method_config({"method": "cov", "cov": {"family": "suballpxyb8"}}).family == "suballpxyb8"
+    with pytest.raises(ValueError, match="family 'zf3' not in"):
+        method_config({"method": "cov", "cov": {"family": "zf3"}})
+    with pytest.raises(ValueError, match="family 'zf3' not in"):
         CoVConfig(family="zf3")
-    with pytest.raises(ValueError, match="family"):
+    with pytest.raises(ValueError, match="family 'zf3' not in"):
         enumerate_images(AK3, family="zf3")
     out = run(PLANTED, CoVConfig(total_budget=2000, control=False, family="suballpxyb8"))
     assert out.solved and out.stats["images"] == len(enumerate_images(PLANTED, family="suballpxyb8"))

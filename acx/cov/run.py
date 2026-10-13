@@ -44,12 +44,6 @@ class CoVConfig:
         """A copy with the given fields changed."""
         return replace(self, **kw)
 
-    @classmethod
-    def from_dict(cls, d):
-        """From a config table; the ``search`` sub-table is a ``SearchConfig`` with ``budget`` 1,000 by default."""
-        d = dict(d)
-        return cls(search=SearchConfig.from_dict({"budget": 1_000, **d.pop("search", {})}), **d)
-
 
 @dataclass(frozen=True)
 class Outcome:
