@@ -325,15 +325,18 @@ def packed_arena(states, n_gen):
 @pytest.mark.parametrize("n_gen, bits", [(1, 1), (2, 2), (3, 4), (8, 4), (9, 8), (127, 8)])
 def test_packed_rows_round_trip(n_gen, bits):
     """A relator packs ``bits`` a symbol (a power of two), the first symbol in the high bits and the rest of the last
-    byte 0, whatever the row held before; it unpacks to itself."""
+    byte 0, whatever the row holds past the relator and the packed row held before; it unpacks to itself. Packing
+    returns the dedup hash of the packed state."""
     assert field_bits(n_gen) == bits and packed_width(24, 2) == 6
     rng = random.Random(n_gen)
     letters = [g for k in range(1, n_gen + 1) for g in (k, -k)]
     for width in range(1, 18):
         rels = tuple(tuple(rng.choice(letters) for _ in range(rng.randint(0, width))) for _ in range(3))
-        syms, lens = encode(rels, n_gen, width)
+        syms, lens = encode(rels, n_gen, width + 8)
+        for r in range(3):
+            syms[r, lens[r]:] = 2 * n_gen - 1                   # the largest symbol, past the relator
         packed = np.full((3, packed_width(width, bits)), 0xFF, dtype=np.uint8)
-        pack_state(syms, lens, bits, packed)
+        assert pack_state(syms, lens, bits, packed) == hash_state(packed, lens, bits)
         for r in range(3):
             used = (int(lens[r]) * bits + 7) // 8
             layout = "".join(format(b, f"0{bits}b") for b in syms[r, :lens[r]]).ljust(8 * used, "0")

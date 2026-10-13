@@ -1,23 +1,23 @@
 """The dedup table of the fast engine: open addressing, linear probing, int32 slots.
 
 Slot ``h`` holds ``sid + 1`` for the state ``arena[sid]`` stored there, or 0 when empty. States hash by FNV-1a over
-their lengths and packed bytes (``packing``), and compare by the same.
+their lengths and packed bytes (``packing``, which hashes a child as it packs it), and compare by the same.
 """
 import numpy as np
 from numba import njit
 
-from .packing import used_bytes
+from .packing import FNV_OFFSET, fnv, fnv_end, used_bytes
 
 
 @njit(inline="always")
 def hash_state(prow, rlen, bits):
-    h = np.uint64(1469598103934665603)
-    prime = np.uint64(1099511628211)
+    """The hash of a packed state, the one ``packing.pack_state`` returns."""
+    h = FNV_OFFSET
     for r in range(len(rlen)):
-        h = (h ^ np.uint64(rlen[r] + 256)) * prime
+        h = fnv(h, rlen[r] + 256)
         for k in range(used_bytes(rlen[r], bits)):
-            h = (h ^ np.uint64(prow[r, k])) * prime
-    return h ^ (h >> np.uint64(29))
+            h = fnv(h, prow[r, k])
+    return fnv_end(h)
 
 
 @njit(inline="always")

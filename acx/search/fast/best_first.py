@@ -21,7 +21,7 @@ from .arrays import Arrays
 from .cap_stats import cap_counts
 from .counters import (COUNTER_SIZE, DMIN_T, DROPPED, EXP_ID, EXP_T, HEAP_LEN, MAX_T, MIN_T, N_DISC, NEED_CAPACITY,
                        NEED_POPS, NEED_WIDTH, NODES, OK, SOLVED, SOLVED_ID)
-from .dedup import find_slot, hash_state, rehash
+from .dedup import find_slot, rehash
 from .heap import heap_pop, heap_push
 from .kernels import child_width, decode, encode, expand_drops, max_children, priority_id, score
 from .packing import field_bits, pack_state, unpack_state, used_bytes
@@ -107,8 +107,7 @@ def _run(arena, lens, depth, prio, parent, pmove, heap, table, trace, st,
             dmin[pop_no] = least_drop
         for c in range(count):
             row, rlen = out[c], out_len[c]
-            pack_state(row, rlen, bits, prow)
-            slot = find_slot(table, arena, lens, prow, rlen, hash_state(prow, rlen, bits), bits)
+            slot = find_slot(table, arena, lens, prow, rlen, pack_state(row, rlen, bits, prow), bits)
             if table[slot] != 0:
                 continue
             sid = st[N_DISC]

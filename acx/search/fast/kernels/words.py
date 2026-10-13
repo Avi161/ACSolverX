@@ -123,8 +123,9 @@ def _canon_packed(w, lo, m, out, bits):
 def canon_buf(w, lo, m, out):
     """Write the canonical form of ``w[lo:lo+m]`` to ``out[:m]``, the string ``acx.core.words.canonical_word`` gives.
 
-    A word of ``m`` symbols of ``b`` bits with ``b * m <= 64`` (two generators: up to 32 letters; three or four: 21;
-    five to eight: 16) is canonicalised packed in one integer, a longer one by Booth's scan.
+    A word of ``m`` symbols with ``b * m <= 64``, ``b`` the bit length of its largest symbol, is canonicalised packed
+    in one integer (any word of up to 32 letters at two generators, 21 at three or four, 16 at five to eight), a
+    longer one by Booth's scan.
     """
     if m == 0:
         return
