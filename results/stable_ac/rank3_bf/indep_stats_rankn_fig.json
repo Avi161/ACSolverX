@@ -1,0 +1,903 @@
+{
+ "script": "indep_stats_rankn_fig.py",
+ "checks": [
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4.npz: structure of the raw arrays",
+   "compared": 17,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4.npz: base (2-generator control) vs rank3_bf_ms640_b1000_cap24_control.jsonl",
+   "compared": 640,
+   "mismatches": 0,
+   "detail": {
+    "rule": "solved flags equal; node counts equal where solved"
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4_summary.json: every field",
+   "compared": 17,
+   "mismatches": 0,
+   "detail": {
+    "best_single_combo": {
+     "named_row": 305,
+     "named_solved": 454,
+     "max_solved": 454,
+     "number_of_combos_at_the_maximum": 1,
+     "named_is_first_maximiser": true,
+     "same_word_order_as_combos_row": true
+    },
+    "recomputed": {
+     "rank": 4,
+     "combos_per_presentation": 351,
+     "searches": 224640,
+     "core_seconds": 16783.680295467377,
+     "ms_per_search": 74.71367652896802,
+     "null_mismatch_pres_ids": [],
+     "control_solved": 554,
+     "mean_solve_rate_per_presentation": 0.5914396367521368,
+     "mean_solve_rate_on_control_solved": 0.6832515659230461,
+     "mean_solve_rate_on_control_unsolved": 0.0,
+     "solved_by_some_combo": 506,
+     "gained_presentations": [],
+     "lost_by_every_combo": 48,
+     "share_of_solved_combos_faster_than_control": 0.002679492100766967,
+     "presentations_where_some_combo_is_faster": 49,
+     "best_single_combo_solved": 454,
+     "best_single_combo": [
+      "yxY",
+      "Yxy"
+     ]
+    },
+    "other_readings_not_compared": {
+     "share_faster / all cells with a solved control": 0.0018307671737274626,
+     "share_faster incl. gained / all solved cells": 0.002679492100766967,
+     "presentations with some combo 'fewer' (counting an unsolved control as fewer)": 49,
+     "null mismatch on (solved, nodes) only": [],
+     "faster cells": 356,
+     "solved cells with a solved control": 132861
+    }
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4_control_vs_start.md: table rows",
+   "compared": 36,
+   "mismatches": 0,
+   "detail": {
+    "exact_integer_17pct_cells_classified_differently [fewer17, more17]": [
+     0,
+     0
+    ],
+    "recomputed_rows": {
+     "1 to 9": {
+      "presentations": 295,
+      "pct": [
+       0.0,
+       0.0,
+       99.6533,
+       0.3467,
+       0.0,
+       99.6533
+      ]
+     },
+     "10 to 99": {
+      "presentations": 159,
+      "pct": [
+       0.6128,
+       0.1021,
+       51.1136,
+       48.1714,
+       0.2813,
+       50.7732
+      ]
+     },
+     "100 to 999": {
+      "presentations": 100,
+      "pct": [
+       0.0399,
+       0.0,
+       2.0969,
+       97.8632,
+       0.0199,
+       2.0712
+      ]
+     },
+     "unsolved": {
+      "presentations": 86,
+      "pct": [
+       0.0,
+       0.0,
+       0.0,
+       100.0,
+       0.0,
+       0.0
+      ]
+     },
+     "all": {
+      "presentations": 640,
+      "pct": [
+       0.1585,
+       0.0254,
+       58.9601,
+       40.856,
+       0.073,
+       58.8715
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4_control_vs_start.md: numbers in the title and the prose",
+   "compared": 11,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5.npz: structure of the raw arrays",
+   "compared": 17,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5.npz: base (2-generator control) vs rank3_bf_ms640_b1000_cap24_control.jsonl",
+   "compared": 640,
+   "mismatches": 0,
+   "detail": {
+    "rule": "solved flags equal; node counts equal where solved"
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5_summary.json: every field",
+   "compared": 17,
+   "mismatches": 0,
+   "detail": {
+    "best_single_combo": {
+     "named_row": 105,
+     "named_solved": 376,
+     "max_solved": 376,
+     "number_of_combos_at_the_maximum": 1,
+     "named_is_first_maximiser": true,
+     "same_word_order_as_combos_row": true
+    },
+    "recomputed": {
+     "rank": 5,
+     "combos_per_presentation": 120,
+     "searches": 76800,
+     "core_seconds": 5804.761263847351,
+     "ms_per_search": 75.58282895634572,
+     "null_mismatch_pres_ids": [],
+     "control_solved": 554,
+     "mean_solve_rate_per_presentation": 0.5358203125000001,
+     "mean_solve_rate_on_control_solved": 0.6189981949458483,
+     "mean_solve_rate_on_control_unsolved": 0.0,
+     "solved_by_some_combo": 416,
+     "gained_presentations": [],
+     "lost_by_every_combo": 138,
+     "share_of_solved_combos_faster_than_control": 0.0008019246190858059,
+     "presentations_where_some_combo_is_faster": 12,
+     "best_single_combo_solved": 376,
+     "best_single_combo": [
+      "yx",
+      "yy",
+      "yX"
+     ]
+    },
+    "other_readings_not_compared": {
+     "share_faster / all cells with a solved control": 0.0004963898916967509,
+     "share_faster incl. gained / all solved cells": 0.0008019246190858059,
+     "presentations with some combo 'fewer' (counting an unsolved control as fewer)": 12,
+     "null mismatch on (solved, nodes) only": [],
+     "faster cells": 33,
+     "solved cells with a solved control": 41151
+    }
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5_control_vs_start.md: table rows",
+   "compared": 36,
+   "mismatches": 0,
+   "detail": {
+    "exact_integer_17pct_cells_classified_differently [fewer17, more17]": [
+     0,
+     0
+    ],
+    "recomputed_rows": {
+     "1 to 9": {
+      "presentations": 295,
+      "pct": [
+       0.0,
+       0.0,
+       99.8588,
+       0.1412,
+       0.0,
+       99.8588
+      ]
+     },
+     "10 to 99": {
+      "presentations": 159,
+      "pct": [
+       0.173,
+       0.0681,
+       30.0105,
+       69.7484,
+       0.021,
+       29.7432
+      ]
+     },
+     "100 to 999": {
+      "presentations": 100,
+      "pct": [
+       0.0,
+       0.0,
+       0.2417,
+       99.7583,
+       0.0,
+       0.2417
+      ]
+     },
+     "unsolved": {
+      "presentations": 86,
+      "pct": [
+       0.0,
+       0.0,
+       0.0,
+       100.0,
+       0.0,
+       0.0
+      ]
+     },
+     "all": {
+      "presentations": 640,
+      "pct": [
+       0.043,
+       0.0169,
+       53.5221,
+       46.418,
+       0.0052,
+       53.4557
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5_control_vs_start.md: numbers in the title and the prose",
+   "compared": 11,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24: raw inputs of the tables (control.jsonl, L<n>.npz)",
+   "compared": 74,
+   "mismatches": 0,
+   "detail": {
+    "rank3_bf_ms640_b1000_cap24_control.jsonl": {
+     "presentations": 640,
+     "control_solved": 554,
+     "rows where n2_(solved, nodes) differ from the control (not compared)": 0,
+     "rows where null_(solved, nodes) differ from the control (not compared)": 0
+    }
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24_control_vs_start_L1-4.md: table rows",
+   "compared": 63,
+   "mismatches": 0,
+   "detail": {
+    "exact_integer_17pct_cells_classified_differently [fewer17, more17]": [
+     0,
+     0
+    ],
+    "recomputed_rows": {
+     "1 to 9": {
+      "presentations": 295,
+      "pct": [
+       0.0,
+       0.0,
+       100.0,
+       0.0,
+       0.0,
+       95.7331
+      ]
+     },
+     "10 to 99": {
+      "presentations": 159,
+      "pct": [
+       2.2563,
+       0.055,
+       79.1509,
+       18.5377,
+       1.5802,
+       77.5472
+      ]
+     },
+     "100 to 999": {
+      "presentations": 100,
+      "pct": [
+       2.4125,
+       0.0375,
+       12.1,
+       85.45,
+       1.75,
+       11.325
+      ]
+     },
+     "unsolved": {
+      "presentations": 86,
+      "pct": [
+       0.1163,
+       0.0,
+       0.0,
+       99.8837,
+       0.1163,
+       0.0
+      ]
+     },
+     "all": {
+      "presentations": 640,
+      "pct": [
+       0.9531,
+       0.0195,
+       67.6484,
+       31.3789,
+       0.6816,
+       65.1621
+      ]
+     }
+    },
+    "recomputed_length_rows": {
+     "1": {
+      "starts": 2,
+      "pct": [
+       0.0,
+       0.0,
+       60.0781,
+       39.9219,
+       0.0,
+       30.8594
+      ]
+     },
+     "2": {
+      "starts": 6,
+      "pct": [
+       1.1198,
+       0.0521,
+       67.2396,
+       31.5885,
+       0.7812,
+       63.3073
+      ]
+     },
+     "3": {
+      "starts": 18,
+      "pct": [
+       0.5642,
+       0.0174,
+       69.2274,
+       30.191,
+       0.3472,
+       66.5799
+      ]
+     },
+     "4": {
+      "starts": 54,
+      "pct": [
+       1.0995,
+       0.0174,
+       67.4479,
+       31.4352,
+       0.8073,
+       66.1661
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24_control_vs_start_L1-4.md: numbers in the title and the prose",
+   "compared": 9,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24_control_vs_start_L1-10.md: table rows",
+   "compared": 105,
+   "mismatches": 0,
+   "detail": {
+    "exact_integer_17pct_cells_classified_differently [fewer17, more17]": [
+     0,
+     0
+    ],
+    "recomputed_rows": {
+     "1 to 9": {
+      "presentations": 295,
+      "pct": [
+       0.0,
+       0.0,
+       99.9999,
+       0.0001,
+       0.0,
+       99.8565
+      ]
+     },
+     "10 to 99": {
+      "presentations": 159,
+      "pct": [
+       1.2577,
+       0.0731,
+       71.3877,
+       27.2815,
+       0.7003,
+       70.5401
+      ]
+     },
+     "100 to 999": {
+      "presentations": 100,
+      "pct": [
+       1.2735,
+       0.0128,
+       9.2018,
+       89.5119,
+       0.893,
+       8.5831
+      ]
+     },
+     "unsolved": {
+      "presentations": 86,
+      "pct": [
+       0.1433,
+       0.0,
+       0.0,
+       99.8567,
+       0.1433,
+       0.0
+      ]
+     },
+     "all": {
+      "presentations": 640,
+      "pct": [
+       0.5307,
+       0.0202,
+       65.2668,
+       34.1823,
+       0.3328,
+       64.8935
+      ]
+     }
+    },
+    "recomputed_length_rows": {
+     "1": {
+      "starts": 2,
+      "pct": [
+       0.0,
+       0.0,
+       60.0781,
+       39.9219,
+       0.0,
+       30.8594
+      ]
+     },
+     "2": {
+      "starts": 6,
+      "pct": [
+       1.1198,
+       0.0521,
+       67.2396,
+       31.5885,
+       0.7812,
+       63.3073
+      ]
+     },
+     "3": {
+      "starts": 18,
+      "pct": [
+       0.5642,
+       0.0174,
+       69.2274,
+       30.191,
+       0.3472,
+       66.5799
+      ]
+     },
+     "4": {
+      "starts": 54,
+      "pct": [
+       1.0995,
+       0.0174,
+       67.4479,
+       31.4352,
+       0.8073,
+       66.1661
+      ]
+     },
+     "5": {
+      "starts": 162,
+      "pct": [
+       0.8642,
+       0.0174,
+       66.4516,
+       32.6669,
+       0.6163,
+       64.2901
+      ]
+     },
+     "6": {
+      "starts": 486,
+      "pct": [
+       0.6761,
+       0.0296,
+       66.1307,
+       33.1636,
+       0.4469,
+       65.6015
+      ]
+     },
+     "7": {
+      "starts": 1458,
+      "pct": [
+       0.6278,
+       0.0296,
+       65.855,
+       33.4877,
+       0.4154,
+       64.9404
+      ]
+     },
+     "8": {
+      "starts": 4374,
+      "pct": [
+       0.5856,
+       0.018,
+       65.6014,
+       33.7951,
+       0.3834,
+       65.1653
+      ]
+     },
+     "9": {
+      "starts": 13122,
+      "pct": [
+       0.5455,
+       0.0225,
+       65.3459,
+       34.0861,
+       0.3444,
+       64.8919
+      ]
+     },
+     "10": {
+      "starts": 39366,
+      "pct": [
+       0.5121,
+       0.0192,
+       65.1612,
+       34.3076,
+       0.3169,
+       64.8553
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24_control_vs_start_L1-10.md: numbers in the title and the prose",
+   "compared": 9,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24: raw inputs of the tables (control.jsonl, L<n>.npz)",
+   "compared": 53,
+   "mismatches": 0,
+   "detail": {
+    "rank3_bf_ms640_b10000_cap24_control.jsonl": {
+     "presentations": 640,
+     "control_solved": 606,
+     "rows where n2_(solved, nodes) differ from the control (not compared)": 0,
+     "rows where null_(solved, nodes) differ from the control (not compared)": 0
+    }
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24_control_vs_start_L1-4.md: table rows",
+   "compared": 70,
+   "mismatches": 0,
+   "detail": {
+    "exact_integer_17pct_cells_classified_differently [fewer17, more17]": [
+     0,
+     0
+    ],
+    "recomputed_rows": {
+     "1 to 9": {
+      "presentations": 295,
+      "pct": [
+       0.0,
+       0.0,
+       100.0,
+       0.0,
+       0.0,
+       95.7331
+      ]
+     },
+     "10 to 99": {
+      "presentations": 159,
+      "pct": [
+       2.2563,
+       0.055,
+       97.2484,
+       0.4403,
+       1.5802,
+       95.6447
+      ]
+     },
+     "100 to 999": {
+      "presentations": 100,
+      "pct": [
+       2.4125,
+       0.0375,
+       60.0375,
+       37.5125,
+       1.75,
+       59.2625
+      ]
+     },
+     "1000 to 9999": {
+      "presentations": 52,
+      "pct": [
+       1.5385,
+       0.0,
+       5.1442,
+       93.3173,
+       1.25,
+       4.9519
+      ]
+     },
+     "unsolved": {
+      "presentations": 34,
+      "pct": [
+       0.6618,
+       0.0,
+       0.0,
+       99.3382,
+       0.6618,
+       0.0
+      ]
+     },
+     "all": {
+      "presentations": 640,
+      "pct": [
+       1.0977,
+       0.0195,
+       80.0527,
+       18.8301,
+       0.8027,
+       77.5508
+      ]
+     }
+    },
+    "recomputed_length_rows": {
+     "1": {
+      "starts": 2,
+      "pct": [
+       0.0,
+       0.0,
+       71.4844,
+       28.5156,
+       0.0,
+       42.2656
+      ]
+     },
+     "2": {
+      "starts": 6,
+      "pct": [
+       1.1198,
+       0.0521,
+       79.0365,
+       19.7917,
+       0.7812,
+       75.1042
+      ]
+     },
+     "3": {
+      "starts": 18,
+      "pct": [
+       0.5729,
+       0.0174,
+       80.1128,
+       19.2969,
+       0.3472,
+       77.4479
+      ]
+     },
+     "4": {
+      "starts": 54,
+      "pct": [
+       1.3108,
+       0.0174,
+       80.463,
+       18.2089,
+       0.9867,
+       79.1638
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24_control_vs_start_L1-4.md: numbers in the title and the prose",
+   "compared": 9,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24_control_vs_start_L1-7.md: table rows",
+   "compared": 91,
+   "mismatches": 0,
+   "detail": {
+    "exact_integer_17pct_cells_classified_differently [fewer17, more17]": [
+     0,
+     0
+    ],
+    "recomputed_rows": {
+     "1 to 9": {
+      "presentations": 295,
+      "pct": [
+       0.0,
+       0.0,
+       100.0,
+       0.0,
+       0.0,
+       98.8528
+      ]
+     },
+     "10 to 99": {
+      "presentations": 159,
+      "pct": [
+       1.6028,
+       0.1044,
+       97.5876,
+       0.7052,
+       0.9817,
+       96.2106
+      ]
+     },
+     "100 to 999": {
+      "presentations": 100,
+      "pct": [
+       1.5887,
+       0.0151,
+       59.2484,
+       39.1478,
+       1.1624,
+       58.5572
+      ]
+     },
+     "1000 to 9999": {
+      "presentations": 52,
+      "pct": [
+       1.9187,
+       0.0009,
+       4.6555,
+       93.4249,
+       1.551,
+       4.1884
+      ]
+     },
+     "unsolved": {
+      "presentations": 34,
+      "pct": [
+       0.9297,
+       0.0,
+       0.0,
+       99.0703,
+       0.9297,
+       0.0
+      ]
+     },
+     "all": {
+      "presentations": 640,
+      "pct": [
+       0.8517,
+       0.0284,
+       79.974,
+       19.1459,
+       0.6009,
+       78.9571
+      ]
+     }
+    },
+    "recomputed_length_rows": {
+     "1": {
+      "starts": 2,
+      "pct": [
+       0.0,
+       0.0,
+       71.4844,
+       28.5156,
+       0.0,
+       42.2656
+      ]
+     },
+     "2": {
+      "starts": 6,
+      "pct": [
+       1.1198,
+       0.0521,
+       79.0365,
+       19.7917,
+       0.7812,
+       75.1042
+      ]
+     },
+     "3": {
+      "starts": 18,
+      "pct": [
+       0.5729,
+       0.0174,
+       80.1128,
+       19.2969,
+       0.3472,
+       77.4479
+      ]
+     },
+     "4": {
+      "starts": 54,
+      "pct": [
+       1.3108,
+       0.0174,
+       80.463,
+       18.2089,
+       0.9867,
+       79.1638
+      ]
+     },
+     "5": {
+      "starts": 162,
+      "pct": [
+       1.0658,
+       0.0174,
+       80.3154,
+       18.6015,
+       0.7822,
+       78.1134
+      ]
+     },
+     "6": {
+      "starts": 486,
+      "pct": [
+       0.8841,
+       0.0296,
+       80.0485,
+       19.0377,
+       0.6298,
+       79.4747
+      ]
+     },
+     "7": {
+      "starts": 1458,
+      "pct": [
+       0.8036,
+       0.0297,
+       79.9069,
+       19.2598,
+       0.5601,
+       78.9555
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24_control_vs_start_L1-7.md: numbers in the title and the prose",
+   "compared": 9,
+   "mismatches": 0,
+   "detail": {}
+  }
+ ],
+ "mismatches": 0,
+ "compared": 1934,
+ "skipped": [],
+ "first_mismatches": []
+}

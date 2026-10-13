@@ -1,0 +1,41 @@
+{
+ "budget": 1000,
+ "cap": 24,
+ "reference": "solvern.search_n",
+ "jobs_planned": 3860,
+ "seconds": 20,
+ "stats": {
+  "flip": {
+   "compared": 240,
+   "equal": 240
+  },
+  "r3": {
+   "compared": 2860,
+   "equal": 2860
+  },
+  "r4": {
+   "compared": 300,
+   "equal": 300
+  },
+  "r2": {
+   "compared": 80,
+   "equal": 80
+  },
+  "r5": {
+   "compared": 300,
+   "equal": 300
+  },
+  "r4null": {
+   "compared": 40,
+   "equal": 40
+  },
+  "r5null": {
+   "compared": 40,
+   "equal": 40
+  }
+ },
+ "flip_pairs_rerun": 120,
+ "flip_pairs_reproduced_by_reference": 120,
+ "mismatches": 0,
+ "first_mismatches": []
+}

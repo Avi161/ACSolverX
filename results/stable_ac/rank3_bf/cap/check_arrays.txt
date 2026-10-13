@@ -1,0 +1,26 @@
+compared rank3_bf_ms640_b10000_cap24_L1.npz
+compared rank3_bf_ms640_b10000_cap24_L2.npz
+compared rank3_bf_ms640_b10000_cap24_L3.npz
+compared rank3_bf_ms640_b10000_cap24_L4.npz
+compared rank3_bf_ms640_b10000_cap24_L5.npz
+compared rank3_bf_ms640_b10000_cap24_L6.npz
+compared rank3_bf_ms640_b10000_cap24_L7.npz
+compared rank3_bf_ms640_b1000_cap24_L1.npz
+compared rank3_bf_ms640_b1000_cap24_L10.npz
+compared rank3_bf_ms640_b1000_cap24_L1_inv.npz
+compared rank3_bf_ms640_b1000_cap24_L2.npz
+compared rank3_bf_ms640_b1000_cap24_L2_inv.npz
+compared rank3_bf_ms640_b1000_cap24_L3.npz
+compared rank3_bf_ms640_b1000_cap24_L3_inv.npz
+compared rank3_bf_ms640_b1000_cap24_L4.npz
+compared rank3_bf_ms640_b1000_cap24_L4_inv.npz
+compared rank3_bf_ms640_b1000_cap24_L5.npz
+compared rank3_bf_ms640_b1000_cap24_L5_inv.npz
+compared rank3_bf_ms640_b1000_cap24_L6.npz
+compared rank3_bf_ms640_b1000_cap24_L6_inv.npz
+compared rank3_bf_ms640_b1000_cap24_L7.npz
+compared rank3_bf_ms640_b1000_cap24_L8.npz
+compared rank3_bf_ms640_b1000_cap24_L9.npz
+compared rankn_bf_ms640_b1000_cap24_r4.npz
+compared rankn_bf_ms640_b1000_cap24_r5.npz
+127 arrays compared with the stored run, 0 problems

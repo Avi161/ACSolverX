@@ -1,0 +1,3 @@
+Total: 40,098,032 searches, 13,516,429 unsolved, 0 stopped before the budget.
+Total with counters: 40,098,032 searches, the cap dropped a child in 2,331,711, could bind in 0 (0 solved, 0 unsolved).
+/opt/r3/out/cap_counters_committed.json
