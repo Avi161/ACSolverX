@@ -1,5 +1,5 @@
 """``SearchConfig``, the one frozen dataclass every search takes, ``parse_override``, and the value checks every
-config shares: ``parse_cap``, ``reject_unknown``, ``require_bool`` and ``require_int``."""
+config shares: ``parse_cap``, ``reject_unknown``, ``require_bool``, ``require_int`` and ``is_number``."""
 import tomllib
 from dataclasses import asdict, dataclass, fields, replace
 
@@ -93,6 +93,11 @@ def require_int(value, name, low=1):
     if type(value) is not int or value < low:
         raise ValueError(f"{name} must be an int >= {low}, got {value!r}")
     return value
+
+
+def is_number(value):
+    """An int or a float, not a bool."""
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
 def parse_override(item):

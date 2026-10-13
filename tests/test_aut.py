@@ -99,6 +99,12 @@ def test_orbit_key_is_invariant_under_every_auto(backend):
             assert orbit_key(apply_pres(pres, (k,)), backend) == key, (pres, k)
 
 
+def test_orbit_key_names_the_backends_it_has():
+    with pytest.raises(ValueError) as error:
+        orbit_key(Presentation.parse("xy", "y"), "numba")
+    assert str(error.value) == "backend 'numba' not in ('spec', 'fast')"
+
+
 def test_level_cap_raises():
     with pytest.raises(RuntimeError, match="level_cap"):
         aut_canon(_p("YYYYXyyyx", "YYXYxYx"), level_cap=1)

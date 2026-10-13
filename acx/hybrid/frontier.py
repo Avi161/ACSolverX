@@ -8,6 +8,7 @@ from collections import namedtuple
 
 import numpy as np
 
+from ..core.config import BACKENDS
 from ..core.moves import Move
 from ..core.words import canonical_rels, inverse, reduce, rotate
 from .steps import aut_child
@@ -69,9 +70,6 @@ def spec_full(key):
     """Every child of ``key`` with no cap, as arrays: ``(raw, offsets, first relator lengths)``."""
     keys = [k for k, _ in spec_expand(key, None)[0]]
     return b"".join(keys), np.cumsum([0] + [len(k) for k in keys]), np.array([k.index(0) for k in keys], dtype=np.int64)
-
-
-BACKENDS = ("spec", "fast")
 
 
 def backend(name):

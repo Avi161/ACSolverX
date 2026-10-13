@@ -8,7 +8,7 @@ from dataclasses import dataclass, field, replace
 
 from ..aut import automorphism, transport
 from ..core.capcount import blank, combine
-from ..core.config import SearchConfig, parse_cap
+from ..core.config import SearchConfig, parse_cap, require_bool, require_int
 from ..search import Result, search
 from ..search.engine import as_presentation
 from ..verify.replay import replay
@@ -35,8 +35,8 @@ class CoVConfig:
             raise ValueError(f"until {self.until!r} not in ('solve', 'ac_path')")
         if self.family not in FAMILIES:
             raise ValueError(f"family {self.family!r} not in {FAMILIES}")
-        if not (type(self.total_budget) is int and self.total_budget > 0):
-            raise ValueError(f"total_budget must be a positive int, got {self.total_budget!r}")
+        require_int(self.total_budget, "total_budget")
+        require_bool(self.control, "control")
         object.__setattr__(self, "cap_headroom", parse_cap(self.cap_headroom, "cap_headroom", low=0))
         object.__setattr__(self, "max_len", parse_cap(self.max_len, "max_len"))
 

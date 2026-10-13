@@ -470,3 +470,11 @@ def test_family_is_a_config_choice():
     assert out.solved and out.stats["images"] == len(enumerate_images(PLANTED, family="suballpxyb8"))
     for o in out.outcomes:
         verify(PLANTED, o)
+
+
+@pytest.mark.parametrize("bad", [0, -5, 1.5, "100", True, None])
+def test_total_budget_must_be_an_int_of_at_least_one(bad):
+    with pytest.raises(ValueError) as error:
+        CoVConfig(total_budget=bad)
+    assert str(error.value) == f"total_budget must be an int >= 1, got {bad!r}"
+    assert CoVConfig(total_budget=1).total_budget == 1

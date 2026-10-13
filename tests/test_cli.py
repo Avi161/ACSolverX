@@ -418,12 +418,29 @@ def test_run_py_exits_with_one_line_for_a_date_name(tmp_path):
     assert not (tmp_path / "out").exists()
 
 
-@pytest.mark.parametrize("method, override", [("rankn", "rankn.inverse=False"), ("greedy", "search.cyclic=False")])
-def test_a_boolean_option_spelled_the_python_way_is_an_error_not_true(tmp_path, method, override):
+@pytest.mark.parametrize("method, override, message", [
+    ("rankn", "rankn.inverse=False", "rankn.inverse must be true or false, got 'False'"),
+    ("greedy", "search.cyclic=False", "cyclic must be true or false, got 'False'"),
+    ("cov", "cov.control=False", "control must be true or false, got 'False'"),
+    ("ngen", "ngen.sac=False", "sac must be true or false, got 'False'"),
+    ("ngen", "ngen.lift=False", "ngen.lift follows the top-level path: set path instead"),
+    ("hybrid", "hybrid.certify=False", "hybrid.certify follows the top-level path: set path instead")])
+def test_a_boolean_option_spelled_the_python_way_is_an_error_not_true(tmp_path, method, override, message):
     path = tmp_path / f"{method}.toml"
     path.write_text(f'method = "{method}"\nbenchmark = "bench60"\n')
-    with pytest.raises(ValueError, match="true or false"):
+    with pytest.raises(ValueError, match=re.escape(message)):
         load_config(str(path), [override])
+
+
+def test_the_method_configs_refuse_a_string_for_a_bool():
+    """Built directly too: the runner sets ``lift`` and ``certify`` from ``path``, but a library caller sets them."""
+    from acx.cov import CoVConfig
+    from acx.hybrid import HybridConfig
+    from acx.ngen import NGenConfig
+    for cls, name in ((CoVConfig, "control"), (NGenConfig, "sac"), (NGenConfig, "lift"), (HybridConfig, "certify")):
+        with pytest.raises(ValueError, match=re.escape(f"{name} must be true or false, got 'False'")):
+            cls(**{name: "False"})
+        assert getattr(cls(**{name: False}), name) is False
 
 
 @pytest.mark.parametrize("slice_text", ["0:5:0", "::0"])

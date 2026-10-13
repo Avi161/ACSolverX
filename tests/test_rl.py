@@ -141,8 +141,8 @@ def test_cap_is_applied_counted_and_bounded(model):
     assert rl_solve.solve(pres, model, width=64, steps=30).stats["cap_dropped"] == 0
     skipped = rl_solve.solve(pres, model, cap=4)                    # a start relator over the cap
     assert not skipped.solved and "skipped" in skipped.stats
-    for bad in (None, 0, 25):
-        with pytest.raises(ValueError):
+    for bad in (None, 0, 25, True, "8", 8.0):          # True was a cap of 1; "8" a TypeError
+        with pytest.raises(ValueError, match="cap"):
             rl_solve.solve(pres, model, cap=bad)
 
 

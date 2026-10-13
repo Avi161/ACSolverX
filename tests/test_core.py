@@ -5,7 +5,7 @@ import re
 
 import pytest
 
-from acx.core.config import SearchConfig, parse_override, reject_unknown, require_bool, require_int
+from acx.core.config import SearchConfig, is_number, parse_override, reject_unknown, require_bool, require_int
 from acx.core.moves import (Move, Trace, apply_raw, destabilize, elementary_step, enumerate_moves,
                             from_legacy, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
@@ -162,6 +162,11 @@ def test_require_int_takes_an_int_at_or_above_its_bound():
         with pytest.raises(ValueError) as error:
             require_int(value, "n", low=low)
         assert str(error.value) == f"n must be an int >= {low}, got {value!r}"
+
+
+def test_is_number_takes_ints_and_floats_but_not_bools():
+    assert is_number(0) and is_number(-2) and is_number(0.5) and is_number(float("nan"))
+    assert not any(is_number(value) for value in (True, False, "1", None, [1]))
 
 
 def test_reject_unknown_names_the_unknown_keys_sorted():

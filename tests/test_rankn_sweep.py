@@ -148,6 +148,18 @@ def test_config_errors(bad):
         SweepConfig.from_cfg(c)
 
 
+@pytest.mark.parametrize("key, value, message", [
+    ("extra", True, "rankn.extra must be 1, 2 or 3, got True"),        # True == 1, so `in (1, 2, 3)` took it
+    ("extra", 2.0, "rankn.extra must be 1, 2 or 3, got 2.0"),
+    ("sample", "x", "rankn.sample must be in [0, 1], got 'x'"),         # was a TypeError from 0 <= "x"
+    ("sample", True, "rankn.sample must be in [0, 1], got True"),
+    ("bogus", 1, "unknown rankn keys ['bogus']")])
+def test_a_wrongly_typed_rankn_value_is_one_valueerror(key, value, message):
+    with pytest.raises(ValueError) as error:
+        SweepConfig.from_cfg(cfg(**{key: value}))
+    assert str(error.value) == message
+
+
 def test_uncapped_rows_drop_nothing(tmp_path):
     """Without a cap the counters report nothing: no drop, no bind, the same searches as capped rows solved."""
     c = cfg(rows="0:4", budget=200, max_len=2)
