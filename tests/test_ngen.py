@@ -184,6 +184,14 @@ def test_cyclic_false_ngen_replays(ms640, pid, digrams):
     assert verify(ms640[pid], res, cyclic=False)[-1].is_trivial()
 
 
+def test_the_package_exports_the_result_type(ms640):
+    """``acx.ngen.NGenResult`` is the type ``solve`` returns, solved or not (``docs/ARCHITECTURE.md`` lists it)."""
+    from acx.ngen import NGenResult
+    assert "NGenResult" in acx.ngen.__all__
+    assert isinstance(solve(ms640[0], NGenConfig(FAST)), NGenResult)
+    assert isinstance(solve(ms640[64], NGenConfig(FAST.replace(budget=5))), NGenResult)
+
+
 def test_solve_unsolved_and_guard(ms640):
     res = solve(ms640[64], NGenConfig(FAST.replace(budget=5)))
     assert not res.solved and res.kind is None and res.moves is None

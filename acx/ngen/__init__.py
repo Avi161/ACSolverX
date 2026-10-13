@@ -4,6 +4,6 @@ Method and results: ``docs/RANK3.md``. The sweep is the package ``acx.ngen.sweep
 """
 from .lifting import lift
 from .sac import check, define, triangulate
-from .solver import NGenConfig, solve, verify
+from .solver import NGenConfig, NGenResult, solve, verify
 
-__all__ = ["NGenConfig", "check", "define", "lift", "solve", "triangulate", "verify"]
+__all__ = ["NGenConfig", "NGenResult", "check", "define", "lift", "solve", "triangulate", "verify"]
