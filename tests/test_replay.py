@@ -40,6 +40,13 @@ def test_decode_path_tells_the_two_string_forms_apart():
     assert decode_path(["1_-1_3_4", "2_0_1_5_6"]) == [Move(0, 1, -1, 3, 4), Move(2, 0, 1, 5, 6)]
 
 
+@pytest.mark.parametrize("text", ["1_2_3", "1_2_3_4_5_6", "7"])
+def test_a_path_string_of_another_field_count_is_a_value_error(text):
+    """``sweep.verify`` reports ``ValueError`` as a failed replay; a bad string must not end it with a ``TypeError``."""
+    with pytest.raises(ValueError, match="4 or 5 fields"):
+        decode_path([text])
+
+
 def test_rank_n_baseline_path_strings_replay(ms640):
     """The rank-n baseline stores 'i_j_s_k1_k2' (0-based relators of the canonical parent): its stored length-10
     sample path of row 0 (w = xxyxxxxyxy) replays at cap 24 and is the path acx finds."""

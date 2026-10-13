@@ -247,19 +247,23 @@ def test_summary_matches_the_arrays(tmp_path):
         assert t["solved"] == round(float(rate), 6)
         assert round(t["fewer"] + t["same"] + t["more"] + t["lost"], 3) == 1.0
     assert s["buckets"]["L2"]["oracle"]["solved_by_some"] >= s["buckets"]["L1"]["oracle"]["solved_by_some"]
-    assert os.path.exists(os.path.join(d, "summary.md")) and os.path.exists(os.path.join(d, "summary.json"))
+    assert os.path.exists(os.path.join(d, "summary.json"))
+    with open(os.path.join(d, "summary.md")) as f:
+        assert "shares of the control-solved presentations" in f.read()               # the legend under the table
 
 
 def test_summary_columns_are_the_baselines():
     """fewer/same/more/lost are over the control-solved rows; a start that solves a control-unsolved row is a gain,
     not "some faster" (the definitions of the baseline's published tables)."""
-    every = np.ones(2, bool)
+    every = np.ones(4, bool)
     bucket = Bucket("L1", every, every)
     t = BucketTally()
-    t.add_row(bucket, np.array([True, False]), np.array([5, 40]), control_solved=True, control_pops=10)
-    t.add_row(bucket, np.array([True, True]), np.array([3, 7]), control_solved=False, control_pops=40)
+    # the control solves row 1 in 10 pops: the four starts need 5 (fewer), 10 (same), 20 (more) and do not solve (lost)
+    t.add_row(bucket, np.array([True, True, True, False]), np.array([5, 10, 20, 40]), control_solved=True,
+              control_pops=10)
+    t.add_row(bucket, np.array([True, True, True, True]), np.array([3, 7, 9, 9]), control_solved=False, control_pops=40)
     s = t.table(bucket, n_rows=2, n_control_solved=1)
-    assert (s["fewer"], s["same"], s["more"], s["lost"]) == (0.5, 0.0, 0.0, 0.5)
+    assert (s["fewer"], s["same"], s["more"], s["lost"]) == (0.25, 0.25, 0.25, 0.25)
     assert s["oracle"] == {"solved_by_some": 2, "gained_over_control": 1, "control_solved_lost_by_every": 0,
                            "some_faster_than_control": 1}
 
@@ -274,7 +278,9 @@ def test_a_sweep_over_no_row_writes_an_empty_summary(tmp_path):
     s = quiet(cfg(rows="5:5"), tmp_path)
     assert (s["rows"], s["searches"], s["control_solved"]) == (0, 0, 0)
     assert all(t["solved"] is None and t["fewer"] is None and t["lost"] is None for t in s["buckets"].values())
-    assert "| L1 | 2 | - | - |" in (tmp_path / "t" / "summary.md").read_text()
+    markdown = (tmp_path / "t" / "summary.md").read_text()
+    assert "| L1 | 2 | - | - |" in markdown
+    assert s["best_single"] is None and "Best single start" not in markdown      # no start is the best of nothing
     assert sweep.verify(str(tmp_path / "t"), log=lambda *a: None) == []
 
 

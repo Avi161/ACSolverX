@@ -201,6 +201,8 @@ def decode_path(items):
             out.append(m)
         elif isinstance(m, str):
             fields = tuple(map(int, m.split("_")))
+            if len(fields) not in (4, 5):
+                raise ValueError(f"a path string has 4 or 5 fields, got {len(fields)}: {m!r}")
             out.append(Move(*fields) if len(fields) == 5 else from_legacy(*fields))
         else:
             out.append(Move(*m))
