@@ -13,6 +13,7 @@ import pytest
 from conftest import ROOT
 
 import run
+from acx.runner import load_config
 
 SMOKE = os.path.join(ROOT, "configs", "smoke.toml")        # S20_MK2 greedy, fast backend, budget 1000, rows "0:20"
 HYBRID = os.path.join(ROOT, "configs", "hybrid.toml")
@@ -138,6 +139,16 @@ def test_rerunning_the_same_presentations_resumes_and_other_ones_need_fresh(tmp_
     assert (tmp_path / "smoke_pres" / "input.txt").read_text() == AK3 + "\n"
 
 
+def test_other_presentations_into_records_without_config_json_leave_input_txt_alone(tmp_path):
+    """The refusal comes before ``input.txt`` is rewritten, so the folder still names the presentations of its
+    records."""
+    run_cli(tmp_path, "--pres", AK2, *SPEC, "--set", "search.budget=50")
+    (tmp_path / "smoke_pres" / "config.json").unlink()
+    with pytest.raises(SystemExit, match="other presentations"):
+        run_cli(tmp_path, "--pres", AK3, *SPEC, "--set", "search.budget=50")
+    assert (tmp_path / "smoke_pres" / "input.txt").read_text() == AK2 + "\n"
+
+
 def test_pres_does_not_take_over_the_folder_of_a_regular_run(tmp_path):
     run_cli(tmp_path, "--rows", "0:2", *SPEC)                                          # smoke on its own benchmark
     run_cli(tmp_path, "--pres", AK2, *SPEC)                                            # smoke_pres, a folder of its own
@@ -203,6 +214,13 @@ def test_help_describes_both_flags(capsys):
     assert "--input" in out and "--pres" in out
 
 
+def test_rows_help_names_every_form_select_takes(capsys):
+    with pytest.raises(SystemExit):
+        run.main(["--help"])
+    text = " ".join(capsys.readouterr().out.split())                 # undo argparse's line wrapping
+    assert all(form in text for form in ('"a:b"', '"a:b:c"', '"3,17"', '"ms:1"'))
+
+
 # ---- the default run name of your own rows: never the shipped folder of the config ----------------------------------
 
 def write_own(tmp_path, name):
@@ -259,6 +277,12 @@ def write_run(run_dir, solved_by_id):
 def test_solved_ids_are_the_ids_marked_solved_in_file_order(tmp_path):
     fast = write_run(tmp_path / "fast", {"7": True, "2": False, "ms:1": True, "0": True})
     assert run.solved_ids(fast) == ["7", "ms:1", "0"]
+
+
+def test_solved_from_reads_a_run_that_was_cut_off(tmp_path):
+    """A run stopped mid-write leaves half a record last; the runner's resume drops it, and so does --solved-from."""
+    (tmp_path / "paths.jsonl").write_text('{"id": "0", "solved": true}\n{"id": "1", "solved": false}\n{"id": "2", "so')
+    assert run.solved_ids(tmp_path) == ["0"]
 
 
 def test_solved_from_runs_exactly_the_solved_rows(tmp_path):
@@ -349,12 +373,57 @@ def test_an_unknown_row_id_among_your_presentations_exits_the_same_way(tmp_path)
     (("--set", "search.cap=0"), "cap must be an int >= 1"),
     (("--set", "method=beam"), "method 'beam' not in"),
     (("--set", "path=1"), "path must be true or false"),
-    (("--set", "search"), "'search' is not key=value")])
+    (("--set", "search"), "'search' is not key=value"),
+    (("--set", "search.cyclic=False"), "cyclic must be true or false, got 'False'"),
+    (("--set", "name.x=1"), "name.x: name is not a section")])
 def test_a_bad_config_exits_with_one_line_naming_the_problem(tmp_path, args, message):
     with pytest.raises(SystemExit) as e:
         run_cli(tmp_path / "out", *args)
     assert message in e.value.code and "\n" not in e.value.code
     assert not (tmp_path / "out").exists()
+
+
+def test_set_cyclic_False_is_refused_at_load():
+    """``--set search.cyclic=False`` (Python spelling) is the string 'False', which ran cyclic=True."""
+    with pytest.raises(ValueError):
+        load_config(SMOKE, ["search.cyclic=False"])
+
+
+@pytest.mark.parametrize("item, message", [
+    ("name=2026-10-13", "name must be a string"),                 # a TOML date
+    ("name=123", "name must be a string"),
+    ("name=true", "name must be a string"),
+    ("benchmark=640", "benchmark must be a string"),
+    ("search=5", "search is a section"),
+    ("search=[1]", "search is a section")])
+def test_a_wrongly_typed_top_level_value_is_a_valueerror_at_load(item, message):
+    with pytest.raises(ValueError, match=f"^{message}"):
+        load_config(SMOKE, [item])
+
+
+@pytest.mark.parametrize("items, message", [
+    (["name.x=1"], "name.x: name is not a section"),
+    (["search=5", "search.budget=1"], "search.budget: search is not a section"),
+    (["search.budget.x=1"], "search.budget.x: budget is not a section")])
+def test_a_dotted_key_through_a_value_is_a_valueerror(items, message):
+    with pytest.raises(ValueError) as error:
+        load_config(SMOKE, items)
+    assert str(error.value) == message
+
+
+def test_run_py_exits_with_one_line_for_a_date_name(tmp_path):
+    with pytest.raises(SystemExit) as e:
+        run_cli(tmp_path / "out", "--rows", "0:1", "--set", "name=2026-10-13")
+    assert e.value.code.startswith("name must be a string") and "\n" not in e.value.code
+    assert not (tmp_path / "out").exists()
+
+
+@pytest.mark.parametrize("method, override", [("rankn", "rankn.inverse=False"), ("greedy", "search.cyclic=False")])
+def test_a_boolean_option_spelled_the_python_way_is_an_error_not_true(tmp_path, method, override):
+    path = tmp_path / f"{method}.toml"
+    path.write_text(f'method = "{method}"\nbenchmark = "bench60"\n')
+    with pytest.raises(ValueError, match="true or false"):
+        load_config(str(path), [override])
 
 
 @pytest.mark.parametrize("slice_text", ["0:5:0", "::0"])

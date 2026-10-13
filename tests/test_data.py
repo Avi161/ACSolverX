@@ -479,3 +479,22 @@ def test_relative_paths_start_from_the_current_directory(tmp_path, monkeypatch):
     assert [r.pres for r in data.rows("mine.txt")] == [AK2]
     assert len(data.rows("ms640")) == 640                                                # a name is always the shipped file
     assert len(data.rows("benchmark/subsets/benchmark_subset_10.csv")) == 10            # not here: from the repository root
+
+
+def test_select_picks_rows_of_a_benchmark_by_slice_or_id():
+    """``data.select`` sits beside ``rows``; the runner and the rank-n sweep both use it (``acx.runner.select``)."""
+    from acx import runner
+    rows = data.rows("bench10")
+    assert runner.select is data.select
+    assert data.select(rows, "1:7:2") == rows[1:7:2] and data.select(rows, None) == data.select(rows, "") == rows
+    ids = [rows[3].id, rows[0].id, rows[3].id]
+    assert data.select(rows, ", ".join(ids)) == [rows[3], rows[0]]
+
+
+@pytest.mark.parametrize("path, stem", [
+    ("mine.txt", "mine"), ("mine.csv.gz", "mine"), ("MINE.TXT", "MINE"), ("two.v2.jsonl", "two.v2"), ("a.TXT.GZ", "a"),
+    ("mine.gz", "mine"), ("mine.dat", "mine.dat"), ("mine.txt.bak", "mine.txt.bak"), ("mine.json", "mine.json"),
+    ("mine.csv.txt", "mine.csv"), (os.path.join("dir", "x.jsonl.gz"), "x")])
+def test_stem_of_drops_the_suffixes_rows_reads_a_file_by(path, stem):
+    """``run.py --input`` names its run ``<config name>_<stem>``; the suffixes are those of ``rows``."""
+    assert data.stem_of(path) == stem

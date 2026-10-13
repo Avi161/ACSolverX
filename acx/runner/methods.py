@@ -35,7 +35,13 @@ def decoded_length(pres, path, cfg):
     """Elementary length of an S-move path (``path`` and ``decode`` true, cyclic reduction on), else None."""
     if not (keeps_path(cfg) and cfg.get("decode", True) and cfg.get("search", {}).get("cyclic", True)):
         return None
-    return len(decode_and_replay(pres.reduced(False), path)[0])
+    return len(elementary_moves(pres, path))
+
+
+def elementary_moves(pres, path):
+    """The S-move ``path`` as elementary moves on the row ``pres`` (its relators freely, not cyclically, reduced),
+    replayed there."""
+    return decode_and_replay(pres.reduced(False), path)[0]
 
 
 def length(moves):
@@ -88,7 +94,7 @@ def aut(pres, cfg):
         replay(pres, moves, normalize=False)
         if not carried_back and config.cyclic:
             # The S-moves replay on the row itself and may decode shorter than the transported path.
-            moves = min(moves, decode_and_replay(pres.reduced(False), res.path)[0], key=len)
+            moves = min(moves, elementary_moves(pres, res.path), key=len)
     return record(True, "ac_path", aut_assisted=carried_back, cost=res.pops, sub_moves=res.path_length,
                   elem_moves=length(moves), path=res.path, elementary=moves, rep=list(res.start.strs), **caps)
 

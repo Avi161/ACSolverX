@@ -770,3 +770,156 @@ def test_rows_ids_may_carry_spaces_and_colons():
     for spec in ("0:5:0", "::0"):
         with pytest.raises(ValueError, match=f"^bad rows slice {spec!r}"):
             runner.select(rows, spec)
+
+
+# ---- the rl numbers are checked when the config loads ------------------------------------------------------------
+
+@pytest.mark.parametrize("override, message", [
+    ("rl.width=0", "rl.width must be an int >= 1, got 0"),
+    ('rl.width="a"', "rl.width must be an int >= 1, got 'a'"),
+    ("rl.width=1.5", "rl.width must be an int >= 1, got 1.5"),
+    ("rl.width=true", "rl.width must be an int >= 1, got True"),
+    ("rl.steps=0", "rl.steps must be an int >= 1, got 0"),
+    ('rl.alpha="x"', "rl.alpha must be a number, got 'x'"),
+    ("rl.alpha=true", "rl.alpha must be a number, got True")])
+def test_rl_numbers_are_checked_when_the_config_loads(tmp_path, override, message):
+    """A bad ``rl.width``, ``steps`` or ``alpha`` raised once per row (IndexError, TypeError); now once, at load."""
+    path = tmp_path / "rl.toml"
+    path.write_text('method = "rl"\nbenchmark = "bench60"\n')
+    with pytest.raises(ValueError) as error:
+        runner.load_config(str(path), [override])
+    assert str(error.value) == message
+
+
+def test_rl_numbers_in_range_are_kept():
+    keywords = runner.method_config(cfg("rl", "rl.width=1", "rl.steps=1", "rl.alpha=1"))
+    assert (keywords["width"], keywords["steps"], keywords["alpha"]) == (1, 1, 1)
+    assert runner.method_config(cfg("rl", "rl.alpha=0.5"))["alpha"] == 0.5
+
+
+# ---- resume keeps only the records of rows the input still holds, under their own config -------------------------
+
+THREE_ROWS = "xxYYY, xyxYXY\nYYXyx, Yx\nYYXyx, YX\n"          # all three solved by the length search below
+
+
+def three_rows(tmp_path, name):
+    """A length search over ``mine.txt`` (written with ``THREE_ROWS``), every row, run name ``name``."""
+    mine = tmp_path / "mine.txt"
+    mine.write_text(THREE_ROWS)
+    return mine, cfg("smoke", f'benchmark="{mine}"', 'rows=""', f"name={name}", "search.priority=length")
+
+
+def test_rows_removed_from_the_input_leave_the_summary(tmp_path):
+    mine, c = three_rows(tmp_path, "shrink")
+    assert quiet(c, tmp_path)["rows"] == 3
+    mine.write_text("xx, yyy\n")                                  # one row now, |det| = 6
+    s = quiet(c, tmp_path)
+    assert (s["rows"], s["solved"]) == (1, 0)                     # was (3, 2): ids 1 and 2 stayed, solved
+    assert [(r["id"], r["pres"]) for r in records(tmp_path, "shrink")] == [("0", "xx, yyy")]
+
+
+def test_a_changed_row_outside_the_selection_is_not_summarized_as_solved(tmp_path):
+    mine, c = three_rows(tmp_path, "edit")
+    assert quiet(c, tmp_path)["solved"] == 3
+    mine.write_text("xxYYY, xyxYXY\nYYXyx, Yx\nxx, yyy\n")        # row 2 is now not AC-trivial
+    s = quiet({**c, "rows": "0:1"}, tmp_path)
+    assert [r["id"] for r in records(tmp_path, "edit")] == ["0", "1"]      # row 2's old record is gone
+    assert (s["rows"], s["solved"]) == (2, 2)                     # was (3, 3)
+
+
+def test_a_record_without_pres_is_kept_while_its_row_is_in_the_input(tmp_path):
+    """Records written before ``pres`` was stored resume as they are; one whose id left the input does not."""
+    mine, c = three_rows(tmp_path, "old")
+    quiet(c, tmp_path)
+    paths = tmp_path / "old" / "paths.jsonl"
+    old = [{k: v for k, v in r.items() if k != "pres"} for r in records(tmp_path, "old")]
+    paths.write_text("".join(json.dumps(r) + "\n" for r in old))
+    mine.write_text("xxYYY, xyxYXY\nYYXyx, Yx\n")
+    s = quiet(c, tmp_path)
+    assert [r["id"] for r in records(tmp_path, "old")] == ["0", "1"] and (s["rows"], s["solved"]) == (2, 2)
+    assert all("pres" not in r for r in records(tmp_path, "old"))          # kept, not solved again
+
+
+def test_records_without_their_config_json_are_not_resumed(tmp_path):
+    """A branch switch removes the tracked config.json and keeps the ignored paths.jsonl; budget-3 records were then
+    summarized as a budget-1000 run."""
+    quiet(cfg("smoke", 'rows="0:5"', "name=nocfg", "search.budget=3"), tmp_path)
+    folder = tmp_path / "nocfg"
+    (folder / "config.json").unlink()
+    kept = (folder / "paths.jsonl").read_text()
+    with pytest.raises(SystemExit, match="paths.jsonl without its config.json"):
+        quiet(cfg("smoke", 'rows="0:5"', "name=nocfg", "search.budget=1000"), tmp_path)
+    assert (folder / "paths.jsonl").read_text() == kept and not (folder / "config.json").exists()
+    assert quiet(cfg("smoke", 'rows="0:5"', "name=nocfg", "search.budget=1000"), tmp_path, fresh=True)["rows"] == 5
+
+
+# ---- one reader of paths.jsonl: the resume, --solved-from and run.py's report agree ----------------------------
+
+def test_resume_solved_from_and_report_read_a_cut_off_paths_jsonl_the_same_way(tmp_path, capsys):
+    c = own_rows(tmp_path, AK2, AK3, "xy, y")                     # solved, unsolved, solved
+    quiet(c, tmp_path)
+    paths = tmp_path / "m" / "paths.jsonl"
+    whole = paths.read_text()
+    paths.write_text(whole[:whole.rindex('"pres"')])              # the last record cut mid-way: {"id": "2",
+    assert run.solved_ids(tmp_path / "m") == ["0"]
+    run.report(tmp_path / "m", [AK2, AK3, "xy, y"], "pops")
+    assert [line.split("  ")[2] for line in capsys.readouterr().out.splitlines()] == ["solved", "unsolved"]
+    log = []
+    runner.run(c, str(tmp_path), log=log.append)
+    assert "3 rows (2 done)" in log[0]
+    assert [(r["id"], r["solved"]) for r in records(tmp_path, "m")] == [("0", True), ("1", False), ("2", True)]
+
+
+def test_a_bad_line_before_the_last_is_refused_by_the_resume_and_by_solved_from(tmp_path):
+    c = own_rows(tmp_path, AK2, AK3, "xy, y")
+    quiet(c, tmp_path)
+    paths = tmp_path / "m" / "paths.jsonl"
+    first, _, third = paths.read_text().splitlines(keepends=True)
+    paths.write_text(first + "garbage\n" + third)
+    message = r"paths\.jsonl:2: not a record; fix or delete the line, then run again$"
+    with pytest.raises(ValueError, match=message):
+        run.solved_ids(tmp_path / "m")
+    with pytest.raises(ValueError, match=message):
+        quiet(c, tmp_path)
+    with pytest.raises(SystemExit, match=message):
+        run.main(["--config", os.path.join(ROOT, "configs", "smoke.toml"), "--solved-from", str(tmp_path / "m"),
+                  "--out", str(tmp_path / "out")])
+    assert paths.read_text() == first + "garbage\n" + third and not (tmp_path / "out").exists()
+
+
+def test_read_records_cuts_the_cut_off_line_only_when_asked(tmp_path):
+    from acx.runner.rundir import read_records
+    path = tmp_path / "paths.jsonl"
+    text = '{"id": "0", "solved": true}\n{"id": "1", "solved": false}\n{"id": "2", "so'
+    path.write_text(text)
+    assert [r["id"] for r in read_records(path)] == ["0", "1"] and path.read_text() == text
+    assert [r["id"] for r in read_records(path, repair=True)] == ["0", "1"]
+    assert path.read_text() == text[:text.rindex("\n") + 1]
+    path.write_text("")
+    assert read_records(path, repair=True) == [] and path.read_text() == ""
+
+
+# ---- every unknown key is named, by its table ----------------------------------------------------------------------
+
+@pytest.mark.parametrize("name, override, message", [
+    ("smoke", "bogus=1", "unknown config keys ['bogus']"),
+    ("smoke", "search.bogus=1", "unknown SearchConfig keys ['bogus']"),
+    ("cov", "cov.bogus=1", "unknown CoVConfig keys ['bogus']"),
+    ("ngen_sac", "ngen.bogus=1", "unknown NGenConfig keys ['bogus']"),
+    ("hybrid", "hybrid.bogus=1", "unknown HybridConfig keys ['bogus']"),
+    ("rl", "rl.beam=4", "unknown rl keys ['beam']"),
+    ("smoke", "workers=0", "workers must be an int >= 1, got 0"),
+    ("smoke", "workers=true", "workers must be an int >= 1, got True")])
+def test_config_errors_name_the_key_and_its_table(name, override, message):
+    with pytest.raises(ValueError) as error:
+        cfg(name, override)
+    assert str(error.value) == message
+
+
+def test_a_subset_run_into_a_published_folder_is_refused_in_the_sweeps_words(tmp_path):
+    """The runner and the rank-n sweep refuse a smaller run into a published folder with the same sentence."""
+    folder = published(tmp_path)
+    with pytest.raises(SystemExit) as error:
+        quiet(cfg("smoke", 'rows="0:2"'), tmp_path)
+    assert error.value.code == (f"{folder} holds a published summary of 20 rows: a run of 2 would replace it; "
+                                "pass --fresh or another name")

@@ -1,10 +1,11 @@
 """acx.core: words, canonical forms, encodings, moves, priorities, config."""
 import itertools
 import random
+import re
 
 import pytest
 
-from acx.core.config import SearchConfig, parse_override
+from acx.core.config import SearchConfig, parse_override, reject_unknown, require_bool, require_int
 from acx.core.moves import (Move, Trace, apply_raw, destabilize, elementary_step, enumerate_moves,
                             from_legacy, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
@@ -140,6 +141,35 @@ def test_config(tmp_path):
     for bad in (["nope=1"], ["cap=-1"], ["priority=recommended"], ["backend=gpu"], ["budget=0"]):
         with pytest.raises(ValueError):
             SearchConfig().with_overrides(bad)
+
+
+@pytest.mark.parametrize("value", ["False", "false", "no", "0", 0, 1, None])
+def test_search_config_refuses_a_string_for_a_bool(value):
+    """``--set cyclic=False`` is not TOML, so it arrives as the string ``"False"``, which would read as true."""
+    for name in ("capture_path", "cyclic", "trace"):
+        with pytest.raises(ValueError, match=re.escape(f"{name} must be true or false, got {value!r}")):
+            SearchConfig(**{name: value})
+
+
+def test_require_bool_returns_a_bool_as_it_is():
+    assert require_bool(True, "x") is True and require_bool(False, "x") is False
+    assert SearchConfig(cyclic=False, trace=True, capture_path=False).cyclic is False
+
+
+def test_require_int_takes_an_int_at_or_above_its_bound():
+    assert require_int(1, "n") == 1 and require_int(0, "n", low=0) == 0 and require_int(10**12, "n") == 10**12
+    for value, low in ((0, 1), (-1, 0), (True, 0), (1.0, 1), ("2", 1), (None, 1)):
+        with pytest.raises(ValueError) as error:
+            require_int(value, "n", low=low)
+        assert str(error.value) == f"n must be an int >= {low}, got {value!r}"
+
+
+def test_reject_unknown_names_the_unknown_keys_sorted():
+    reject_unknown({"a": 1}, {"a", "b"}, "x")
+    reject_unknown({}, (), "x")
+    with pytest.raises(ValueError) as error:
+        reject_unknown({"zz": 1, "a": 2, "yy": 3}, ("a",), "SearchConfig")
+    assert str(error.value) == "unknown SearchConfig keys ['yy', 'zz']"
 
 
 def test_normal_form_is_a_fixed_point():

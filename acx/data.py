@@ -14,7 +14,8 @@ case is the inverse; any number of relators and generators is read (what a metho
 A row's id is the one given, else its 0-based position among the file's presentations. A bad line raises
 ``ValueError("<file>:<line>: <what is wrong>")``, and a file that is not UTF-8 text, or a ``.gz`` file that is not
 whole gzip, ``ValueError("<file>: ...")``.
-``MS`` and ``AK`` build the Miller-Schupp and Akbulut-Kirby families.
+``select(table, "a:b")`` picks rows by slice or ids (``run.py --rows``). ``MS`` and ``AK`` build the Miller-Schupp
+and Akbulut-Kirby families.
 """
 import csv
 import gzip
@@ -54,6 +55,7 @@ SPLITS = {"ac1m_hard_holdout60": ("benchmark/splits/splits_ac1m_hard_aut.json", 
 _GENERATOR_LETTERS = set(GEN_CHARS + GEN_CHARS.upper())
 _RELATOR_COLUMN = re.compile(r"r\d+")
 _LONG_NAME = re.compile(r"[gG][1-9]\d*")          # g27, G27, ...: the generators past the 26th letters
+SLICE = re.compile(r"-?\d*:-?\d*(:-?\d*)?")     # integers around colons; anything else (``ms:1``) is an id
 
 
 def path_of(name_or_path, table=DATASETS):
@@ -190,6 +192,21 @@ def load_split(path, part="holdout"):
 _READERS = {".txt": load, ".csv": load_csv, ".jsonl": load_jsonl}
 
 
+def _reader_suffix(name):
+    """The suffix that picks a file's reader: ``MINE.TXT.GZ`` -> ``.txt`` (lower case, ``.gz`` left out)."""
+    return os.path.splitext(name.lower().removesuffix(".gz"))[1]
+
+
+def stem_of(path):
+    """The file name of ``path`` without the suffixes ``rows`` reads it by: ``mine.csv.gz`` -> ``mine``."""
+    name = os.path.basename(path)
+    if name.lower().endswith(".gz"):
+        name = name[:-len(".gz")]
+    if _reader_suffix(name) in _READERS:
+        name = os.path.splitext(name)[0]
+    return name
+
+
 def rows(spec):
     """Rows of a dataset, benchmark or split by name, or of your own ``.txt``, ``.csv`` or ``.jsonl`` file (optionally
     ``.gz``) by path (a string or a ``Path``); the formats are in the module docstring."""
@@ -200,11 +217,30 @@ def rows(spec):
         return load(spec)
     if spec in BENCHMARKS:
         return load_csv(spec)
-    reader = _READERS.get(os.path.splitext(spec.lower().removesuffix(".gz"))[1])
+    reader = _READERS.get(_reader_suffix(spec))
     if reader is None:
         names = sorted(DATASETS) + sorted(BENCHMARKS) + sorted(SPLITS)
         raise KeyError(f"unknown benchmark {spec!r}; names: {names}; or a .txt, .csv or .jsonl file, optionally .gz")
     return reader(spec)
+
+
+def select(table, spec):
+    """The rows of ``table`` sliced by ``"a:b[:c]"`` or picked by comma-separated ids (a repeated id once, first
+    place)."""
+    if spec in (None, ""):
+        return table
+    spec = str(spec).strip()
+    if SLICE.fullmatch(spec):
+        try:
+            return table[slice(*(int(t) if t else None for t in spec.split(":")))]
+        except ValueError:                                       # a step of 0
+            raise ValueError(f"bad rows slice {spec!r}: write integers as a:b or a:b:c, the step not 0") from None
+    ids = list(dict.fromkeys(i.strip() for i in spec.split(",")))
+    by_id = {r.id: r for r in table}
+    missing = [i for i in ids if i not in by_id]
+    if missing:
+        raise KeyError(f"rows not in the benchmark: {missing}")
+    return [by_id[i] for i in ids]
 
 
 def MS(n, w):

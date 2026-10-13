@@ -504,3 +504,64 @@ def test_help_names_the_module(capsys):
     with pytest.raises(SystemExit):
         sweep.main(["--help"])
     assert "usage: python -m acx.ngen.sweep" in capsys.readouterr().out
+
+
+# ------------------------------------------------------------------- the driver refuses before it writes anything
+def test_sweep_refuses_a_row_that_is_not_two_generators_two_relators(tmp_path):
+    rows = tmp_path / "rows.csv"
+    rows.write_text("id,r1,r2,r3\nok,xxYYY,xyxYXY,\nthree,xx,yy,zz\n")
+    with pytest.raises(ValueError, match="two-generator, two-relator"):
+        quiet(cfg(rows=None, benchmark=str(rows)), tmp_path / "out", fresh=True)
+    assert not (tmp_path / "out" / "t").exists()
+
+
+def published_sweep(tmp_path, rows):
+    """A sweep folder as git ships it: config.json and summary.*, no ``rows/``; its summary claims ``rows`` rows."""
+    quiet(cfg(rows="0:3", max_len=1, budget=50), tmp_path)
+    folder = tmp_path / "t"
+    shutil.rmtree(folder / "rows")
+    summary = json.loads((folder / "summary.json").read_text())
+    summary["rows"] = rows
+    (folder / "summary.json").write_text(json.dumps(summary))
+    return folder
+
+
+def test_a_smoke_run_does_not_replace_a_published_summary(tmp_path):
+    folder = published_sweep(tmp_path, 640)
+    shipped = {name: (folder / name).read_text() for name in ("summary.json", "summary.md", "config.json")}
+    with pytest.raises(SystemExit, match="published summary"):
+        quiet(cfg(rows="0:1", max_len=1, budget=50), tmp_path)
+    assert json.loads((folder / "summary.json").read_text())["rows"] == 640
+    assert {name: (folder / name).read_text() for name in shipped} == shipped and not (folder / "rows").exists()
+    assert quiet(cfg(rows="0:1", max_len=1, budget=50), tmp_path, fresh=True)["rows"] == 1
+
+
+def test_a_run_of_every_published_row_may_rewrite_the_summary(tmp_path):
+    """The rows held plus the rows asked for cover the published count: that run is the published one again."""
+    published_sweep(tmp_path, 3)
+    assert quiet(cfg(rows="0:3", max_len=1, budget=50), tmp_path)["rows"] == 3
+    assert quiet(cfg(rows="0:1", max_len=1, budget=50), tmp_path)["rows"] == 3      # rows/ now holds all three
+
+
+@pytest.mark.parametrize("damage", ["", '{"rows": 2, "ext'])
+def test_a_cut_off_summary_does_not_stop_a_resume(tmp_path, damage):
+    """A sweep stopped while writing summary.json leaves it empty or cut off; the resume rebuilds it from rows/."""
+    quiet(cfg(rows="0:2", max_len=1, budget=50), tmp_path)
+    (tmp_path / "t" / "summary.json").write_text(damage)
+    assert quiet(cfg(rows="0:2", max_len=1, budget=50), tmp_path)["rows"] == 2
+    assert json.loads((tmp_path / "t" / "summary.json").read_text())["rows"] == 2
+
+
+def test_cli_exits_with_one_line_for_a_bad_config_or_row(tmp_path):
+    """As ``run.py``: a ValueError or KeyError of the library ends ``python -m acx.ngen.sweep`` with its message."""
+    rank3 = os.path.join(ROOT, "configs", "rank3_bf.toml")
+    three = tmp_path / "rows.csv"
+    three.write_text("id,r1,r2,r3\nthree,xx,yy,zz\n")
+    for extra, message in ((["--set", "rankn.bogus=1"], "unknown rankn keys ['bogus']"),
+                           (["--rows", "nope"], "rows not in the benchmark: ['nope']"),
+                           (["--set", f'benchmark="{three}"', "--set", 'rows=""'],
+                            "rankn takes two-generator, two-relator rows; not ['three']")):
+        with pytest.raises(SystemExit) as error:
+            sweep.main(["--config", rank3, "--out", str(tmp_path / "out"), *extra])
+        assert error.value.code == message
+    assert not (tmp_path / "out").exists()

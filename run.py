@@ -10,14 +10,12 @@ missing file ends the command with its message.
 import argparse
 import json
 import os
-import re
 from pathlib import Path
 
 from acx.core.config import parse_override
-from acx.data import parse_presentation
+from acx.data import parse_presentation, stem_of
 from acx.runner import load_config, run
-
-OWN_FILE_SUFFIX = re.compile(r"(\.txt|\.csv|\.jsonl)?(\.gz)?$", re.IGNORECASE)      # the formats of acx/data.py
+from acx.runner.rundir import read_records
 
 
 def presentation(text):
@@ -36,7 +34,8 @@ def write_input(lines, run_dir, fresh):
     run_dir = Path(run_dir)
     path, text = run_dir / "input.txt", "".join(line + "\n" for line in lines)
     old = path.read_text() if path.exists() else ""
-    if (run_dir / "config.json").exists() and old != text and not fresh:
+    holds_results = (run_dir / "config.json").exists() or (run_dir / "paths.jsonl").exists()
+    if holds_results and old != text and not fresh:
         raise SystemExit(f"{run_dir} holds results for other presentations: pass --fresh or add --set name=<another name>")
     run_dir.mkdir(parents=True, exist_ok=True)
     path.write_text(text)
@@ -49,7 +48,7 @@ def report(run_dir, lines, unit):
     paths = Path(run_dir) / "paths.jsonl"
     if not paths.exists():                                          # the rank-n sweep keeps its rows in other files
         return
-    records = {rec["id"]: rec for rec in map(json.loads, paths.read_text().splitlines())}
+    records = {rec["id"]: rec for rec in read_records(paths)}
     for k, line in enumerate(lines):
         if str(k) in records:                                       # a row that --rows left out has no record
             rec = records[str(k)]
@@ -64,7 +63,7 @@ def solved_ids(run_dir):
     paths = Path(run_dir) / "paths.jsonl"
     if not paths.is_file():
         raise SystemExit(f"{paths}: no such file (--solved-from needs the paths.jsonl of a run made here)")
-    ids = [rec["id"] for rec in map(json.loads, paths.read_text().splitlines()) if rec["solved"]]
+    ids = [rec["id"] for rec in read_records(paths) if rec["solved"]]
     if not ids:
         raise SystemExit(f"{paths}: no solved rows")
     return ids
@@ -73,7 +72,7 @@ def solved_ids(run_dir):
 def own_name(config_name, input_path):
     """The run name of your own presentations: ``<config name>_<file stem>`` for ``--input`` (the file's name without
     .txt, .csv, .jsonl and .gz), ``<config name>_pres`` for ``--pres``."""
-    stem = "pres" if input_path is None else OWN_FILE_SUFFIX.sub("", Path(input_path).name)
+    stem = "pres" if input_path is None else stem_of(input_path)
     return f"{config_name}_{stem}"
 
 
@@ -91,7 +90,8 @@ def parse_args(argv):
                       help='run a presentation of your own, e.g. "xxYYY, xyxYXY"; repeat for more; the run is named '
                       '<config name>_pres')
     rows = ap.add_mutually_exclusive_group()
-    rows.add_argument("--rows", help='a slice "a:b" or ids "3,17" of the benchmark')
+    rows.add_argument("--rows", help='rows of the benchmark: a slice "a:b" or "a:b:c" (integers), or ids "3,17" (an id '
+                      'may hold a colon, "ms:1")')
     rows.add_argument("--solved-from", metavar="RUN_DIR", help="run only the rows that RUN_DIR/paths.jsonl marks "
                       "solved, e.g. to get and verify the paths of a path=false run: --set path=true")
     ap.add_argument("--out", default="results", help="results root (default: results)")
