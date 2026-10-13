@@ -5,7 +5,7 @@ import re
 
 import pytest
 
-from acx.core.config import SearchConfig, parse_override, require_bool
+from acx.core.config import SearchConfig, parse_override, require_bool, require_int
 from acx.core.moves import (Move, Trace, apply_raw, destabilize, elementary_step, enumerate_moves,
                             from_legacy, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
@@ -154,6 +154,14 @@ def test_search_config_refuses_a_string_for_a_bool(value):
 def test_require_bool_returns_a_bool_as_it_is():
     assert require_bool(True, "x") is True and require_bool(False, "x") is False
     assert SearchConfig(cyclic=False, trace=True, capture_path=False).cyclic is False
+
+
+def test_require_int_takes_an_int_at_or_above_its_bound():
+    assert require_int(1, "n") == 1 and require_int(0, "n", low=0) == 0 and require_int(10**12, "n") == 10**12
+    for value, low in ((0, 1), (-1, 0), (True, 0), (1.0, 1), ("2", 1), (None, 1)):
+        with pytest.raises(ValueError) as error:
+            require_int(value, "n", low=low)
+        assert str(error.value) == f"n must be an int >= {low}, got {value!r}"
 
 
 def test_normal_form_is_a_fixed_point():

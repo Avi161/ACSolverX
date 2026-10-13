@@ -770,3 +770,28 @@ def test_rows_ids_may_carry_spaces_and_colons():
     for spec in ("0:5:0", "::0"):
         with pytest.raises(ValueError, match=f"^bad rows slice {spec!r}"):
             runner.select(rows, spec)
+
+
+# ---- the rl numbers are checked when the config loads ------------------------------------------------------------
+
+@pytest.mark.parametrize("override, message", [
+    ("rl.width=0", "rl.width must be an int >= 1, got 0"),
+    ('rl.width="a"', "rl.width must be an int >= 1, got 'a'"),
+    ("rl.width=1.5", "rl.width must be an int >= 1, got 1.5"),
+    ("rl.width=true", "rl.width must be an int >= 1, got True"),
+    ("rl.steps=0", "rl.steps must be an int >= 1, got 0"),
+    ('rl.alpha="x"', "rl.alpha must be a number, got 'x'"),
+    ("rl.alpha=true", "rl.alpha must be a number, got True")])
+def test_rl_numbers_are_checked_when_the_config_loads(tmp_path, override, message):
+    """A bad ``rl.width``, ``steps`` or ``alpha`` raised once per row (IndexError, TypeError); now once, at load."""
+    path = tmp_path / "rl.toml"
+    path.write_text('method = "rl"\nbenchmark = "bench60"\n')
+    with pytest.raises(ValueError) as error:
+        runner.load_config(str(path), [override])
+    assert str(error.value) == message
+
+
+def test_rl_numbers_in_range_are_kept():
+    keywords = runner.method_config(cfg("rl", "rl.width=1", "rl.steps=1", "rl.alpha=1"))
+    assert (keywords["width"], keywords["steps"], keywords["alpha"]) == (1, 1, 1)
+    assert runner.method_config(cfg("rl", "rl.alpha=0.5"))["alpha"] == 0.5

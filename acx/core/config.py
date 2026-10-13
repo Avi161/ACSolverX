@@ -84,6 +84,13 @@ def require_bool(value, name):
     return value
 
 
+def require_int(value, name, low=1):
+    """``value`` if it is an int ``>= low``; a bool, a float or a string raises."""
+    if type(value) is not int or value < low:
+        raise ValueError(f"{name} must be an int >= {low}, got {value!r}")
+    return value
+
+
 def parse_override(item):
     """``'key=value'`` -> ``(key, value)``, the value read as TOML, else as a bare string."""
     key, sep, raw = item.partition("=")
