@@ -124,12 +124,21 @@ def measure_summary(s):
         return (sum(part["sum"] for part in parts) / n if n else None), n
 
     (sub, sub_n), (elem, elem_n) = path_mean("sub_moves"), path_mean("elem_moves")
-    raise_ids = set().union(*(block["raise_ids"] for block in s["caps"].values()))
+    raise_count = raise_rows(s["caps"].values())
     cpu, rows, solved = s.get("cpu_seconds"), s["rows"], s["solved"]
-    return {"rows": rows, "solved": solved, "errors": s["errors"], "raise_rows": len(raise_ids), "n": solved,
+    return {"rows": rows, "solved": solved, "errors": s["errors"], "raise_rows": raise_count, "n": solved,
             "cost": s["cost"]["on_solved"] / solved if solved else None, "median": None,
             "sub": sub, "sub_n": sub_n, "elem": elem, "elem_n": elem_n,
             "cpu_row": cpu / rows if cpu is not None and rows else None, "us": s.get("us_per_cost"), "wall": False}
+
+
+def raise_rows(blocks):
+    """The rows where some counter would pop, from ``summary.json``'s ``caps`` blocks. Each block keeps at most 100 ids,
+    so a cut list counts by its ``rows_would_pop`` (exact when one counter binds, else a lower bound)."""
+    binding = [block for block in blocks if block["rows_would_pop"]]
+    if all(len(block["raise_ids"]) == block["rows_would_pop"] for block in binding):
+        return len(set().union(*(block["raise_ids"] for block in binding)))
+    return max(block["rows_would_pop"] for block in binding)
 
 
 def solved_ids(run):
