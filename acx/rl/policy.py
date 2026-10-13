@@ -3,8 +3,10 @@
 Details that decide parity with the trained network: LayerNorm ``eps=1e-6``; tanh GELU; masking with ``-1e9``, never
 ``-inf``, and the ``1/sqrt(head_dim)`` scale after masking (a fully masked attention row stays uniform); the relator is a
 ring, so relative distances are taken modulo its TRUE length with one learned ``rel_emb[H, L, Dh]`` per head; the actor
-``Dense(128)`` over the outer product of the two rings is applied separably. ``forward(obs)`` takes ``(B, 2L)`` ints and
-returns ``(logits, value)``: logits over the ``4 L^2`` flat actions of ``acx.rl.moves``, illegal ones at ``-1e9``.
+``Dense(128)`` over the outer product of the two rings is applied separably. ``ActorCritic.forward(obs)`` takes
+``(B, 2L)`` ints and returns ``(logits, value)``: logits over the ``4 L^2`` flat actions of ``acx.rl.moves``, illegal
+ones at ``-1e9``. The module-level ``forward(model, states, chunk)`` runs a model over many states in chunks (the beam
+search and the trainer).
 """
 import math
 import os
@@ -142,6 +144,12 @@ class ActorCritic(nn.Module):
         w = self.actor0.weight                                  # Dense(128) over the two rings, applied separably
         h = gelu((x1 @ w[:, :d].t())[:, :, None] + (x2 @ w[:, d:].t())[:, None] + self.actor0.bias)
         return self.actor1(h).reshape(B, -1).masked_fill(~self.action_mask(obs), -1e9), value
+
+
+def forward(model, states, chunk):
+    """``model(states)`` in chunks of ``chunk`` rows: ``(logits, value)``."""
+    out = [model(states[lo:lo + chunk]) for lo in range(0, len(states), chunk)]
+    return torch.cat([o[0] for o in out]), torch.cat([o[1] for o in out])
 
 
 def log_prob_entropy(logits, actions):

@@ -296,7 +296,7 @@ CHECK_CASES = [
     ("smoke", ['rows="0:2"'], "acx.search.engine.replay"),
     ("aut", ['rows="0:2"'], "acx.runner.methods.replay"),
     ("cov", ['rows="0,496"'], "acx.cov.run.verify"),
-    ("hybrid", ['benchmark="ladder60"', 'rows="ac19_11987,ms_000"'], "acx.hybrid.certify.replay"),
+    ("hybrid", ['benchmark="ladder60"', 'rows="ac19_11987,ms_000"'], "acx.hybrid.elementary.replay"),
     ("ngen_sac", ['rows="0:2"'], "acx.ngen.verify"),
     pytest.param("rl", ['rows="0:2"', "rl.width=64", "rl.steps=60"], "acx.rl.solve.replay", marks=needs_torch)]
 
@@ -309,8 +309,8 @@ def no_warm_up(monkeypatch):
 
 
 def module_and_name(check):
-    """``"acx.hybrid.certify.replay"`` -> the module ``acx.hybrid.certify`` and ``"replay"``; imported, as a package
-    may export a function under its submodule's name (``acx.hybrid.certify``, ``acx.search``)."""
+    """``"acx.hybrid.elementary.replay"`` -> the module ``acx.hybrid.elementary`` and ``"replay"``; imported, as a
+    package may export a function under its submodule's name (``acx.search``)."""
     module, name = check.rsplit(".", 1)
     return importlib.import_module(module), name
 

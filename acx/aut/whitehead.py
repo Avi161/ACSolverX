@@ -6,20 +6,16 @@ Words are ``acx`` int tuples; two generators, any number of relators. The automo
 """
 from collections import namedtuple
 
+from ..core.priority import length
 from ..core.words import Presentation, canonical_rels, reduce, state_key
-from .autos import AUTOS, DESCENT, TABLES, apply_pres, apply_table, invert
+from .autos import AUTOS, DESCENT, apply_pres, image, invert
 
 AutCanon = namedtuple("AutCanon", "total rep phi")
 
 
 def _image(rels, k):
     """Every relator under ``AUTOS[k]``, cyclically reduced."""
-    return tuple(reduce(apply_table(r, TABLES[k])) for r in rels)
-
-
-def _total(rels):
-    """The total length of the relators."""
-    return sum(map(len, rels))
+    return tuple(image(r, k) for r in rels)
 
 
 def peak_reduce(rels):
@@ -29,12 +25,12 @@ def peak_reduce(rels):
     earlier one), by lengths only: no canonical form is built on this hot path.
     """
     cur = tuple(reduce(r) for r in rels)
-    total = _total(cur)
+    total = length(cur)
     phi = []
     while True:
         best_k, best_total = None, total
         for k in DESCENT:
-            t = _total(_image(cur, k))
+            t = length(_image(cur, k))
             if t < best_total:
                 best_k, best_total = k, t
         if best_k is None:
@@ -51,7 +47,7 @@ def level_min(rels, level_cap=50_000):
     ``rep`` is a complete orbit invariant; a set over ``level_cap`` raises, since a partial one gives a wrong ``rep``.
     """
     start = canonical_rels(rels)
-    level_total = _total(start)
+    level_total = length(start)
     came_from = {start: None}            # node -> (parent node, auto index); the start has no parent
     stack = [start]
     while stack:
@@ -60,7 +56,7 @@ def level_min(rels, level_cap=50_000):
         node = stack.pop()
         for k in range(len(AUTOS)):
             child = _image(node, k)
-            if _total(child) != level_total:
+            if length(child) != level_total:
                 continue
             child = canonical_rels(child)
             if child not in came_from:

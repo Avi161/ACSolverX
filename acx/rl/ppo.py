@@ -10,9 +10,8 @@ import math
 
 import torch
 
-from .beam import forward
 from .env import VecEnv
-from .policy import ActorCritic, log_prob_entropy
+from .policy import ActorCritic, forward, log_prob_entropy
 from .codec import encode
 
 DEFAULTS = dict(lr=2.5e-3, envs=2380, steps=96, epochs=3, minibatches=8, gamma=0.999, lam=0.95,

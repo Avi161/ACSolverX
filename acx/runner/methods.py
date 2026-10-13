@@ -96,8 +96,7 @@ def aut(pres, cfg):
 def hybrid(pres, cfg):
     """Hybrid solver (``acx.hybrid``)."""
     from ..core.moves import Move
-    from ..hybrid import encode_steps, solve
-    from ..hybrid.cascade import Aut
+    from ..hybrid import Aut, encode_steps, solve
     res = solve(pres, method_config(cfg))            # ``certify`` replays the elementary path
     caps = record_caps(res.stats)
     if not res.solved:

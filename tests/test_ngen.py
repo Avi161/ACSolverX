@@ -1,10 +1,14 @@
 """acx.ngen: the SAC transform, its replayable lift to elementary stable moves, n-generator search."""
+import importlib
+import inspect
 import os
+import pkgutil
 import random
 
 import pytest
 from conftest import ROOT
 
+import acx.ngen
 from acx.aut.autos import apply_table
 from acx.core.config import SearchConfig
 from acx.core.words import Presentation, canonical_word, inverse, parse, reduce
@@ -180,6 +184,14 @@ def test_cyclic_false_ngen_replays(ms640, pid, digrams):
     assert verify(ms640[pid], res, cyclic=False)[-1].is_trivial()
 
 
+def test_the_package_exports_the_result_type(ms640):
+    """``acx.ngen.NGenResult`` is the type ``solve`` returns, solved or not (``docs/ARCHITECTURE.md`` lists it)."""
+    from acx.ngen import NGenResult
+    assert "NGenResult" in acx.ngen.__all__
+    assert isinstance(solve(ms640[0], NGenConfig(FAST)), NGenResult)
+    assert isinstance(solve(ms640[64], NGenConfig(FAST.replace(budget=5))), NGenResult)
+
+
 def test_solve_unsolved_and_guard(ms640):
     res = solve(ms640[64], NGenConfig(FAST.replace(budget=5)))
     assert not res.solved and res.kind is None and res.moves is None
@@ -261,3 +273,14 @@ def test_ngen_sac_config_result_is_unchanged(tmp_path):
     assert (s["solved"], s["cost"]["total"], s["cost"]["on_solved"]) == (8, 531923, 11923)
     sc = s["path_length"]["stable_cert"]
     assert (sc["sub_moves"]["sum"], sc["elem_moves"]["sum"]) == (147, 8152)
+
+
+def test_each_module_of_the_package_is_its_attribute():
+    """``acx.ngen.<name>`` is the module ``<name>.py``: the exported functions ``lift`` and ``solve`` live in
+    ``lifting.py`` and ``solver.py``, so neither hides its module."""
+    names = {info.name for info in pkgutil.iter_modules(acx.ngen.__path__)}
+    assert {"lifting", "solver"} <= names
+    exported = dict(vars(acx.ngen))          # before the imports below bind each submodule on the package
+    for name in sorted(names):
+        module = importlib.import_module(f"acx.ngen.{name}")
+        assert inspect.ismodule(module) and exported.get(name, module) is module

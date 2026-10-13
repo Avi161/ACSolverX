@@ -7,14 +7,14 @@ import time
 from dataclasses import dataclass, field, replace
 
 from ..core.config import parse_cap
-from ..core.moves import Move
 from ..core.words import Presentation
 from ..verify.replay import abs_det
 from .capwatch import blank_records
-from .cascade import Aut, Budget, Run, cascade
-from .certify import certify
+from .cascade import cascade
+from .elementary import certify
 from .frontier import BACKENDS
 from .search import BestFirst
+from .steps import Budget, Run
 
 
 @dataclass(frozen=True)
@@ -32,6 +32,10 @@ class HybridConfig:
     certify: bool = True              # write out and replay the elementary path
 
     def __post_init__(self):
+        for name, low in (("budget", 1), ("penalty", 0), ("min_uses", 1)):
+            value = getattr(self, name)
+            if type(value) is not int or value < low:
+                raise ValueError(f"{name} must be an int >= {low}, got {value!r}")
         if self.backend not in BACKENDS:
             raise ValueError(f"backend {self.backend!r} not in {BACKENDS}")
         if isinstance(self.dyn_ratio, bool) or not isinstance(self.dyn_ratio, (int, float)) or not self.dyn_ratio >= 0:
@@ -67,7 +71,8 @@ def solve(pres, cfg=None, **overrides):
     if pres.n_gen != 2 or len(pres.rels) != 2:
         raise ValueError("the hybrid solves balanced two-generator presentations")
     start = time.perf_counter()
-    stats = blank_records(cfg)                  # the cascade has no caps; a search replaces these
+    # the cascade has no search and no caps: zero counts, nothing cut; a search replaces all of it
+    stats = dict(pops=0, dyn_pops=0, max_rank=2, dyn_rejected=0, **blank_records(cfg))
     if abs_det(pres) != 1:                      # |det| is an AC invariant: no path starts here, the cascade needs 1
         stats["seconds"] = time.perf_counter() - start
         return HybridResult(False, None, 0, (), None, stats=stats)
@@ -88,24 +93,3 @@ def solve(pres, cfg=None, **overrides):
     kind = "stable_cert" if any(isinstance(s, dict) for s in steps) else "ac_path"
     path = tuple(certify(pres, steps)) if cfg.certify else None
     return HybridResult(True, stage, units, steps, kind, path, stats)
-
-
-def encode_steps(steps):
-    """JSON form of a certificate: ``[i, j, s, k1, k2]``, ``{"aut": k}`` or the dyn dict (lists for tuples)."""
-    def js(x):
-        if isinstance(x, dict):
-            return {str(k): js(v) for k, v in x.items()}
-        return [js(v) for v in x] if isinstance(x, (tuple, list)) else x
-    return [{"aut": s.k} if isinstance(s, Aut) else js(s) if isinstance(s, dict) else list(s) for s in steps]
-
-
-def decode_steps(items):
-    """Inverse of ``encode_steps``."""
-    def tup(x):
-        return tuple(map(tup, x)) if isinstance(x, list) else x
-
-    def dyn(d):
-        ev = {k: tup(v) for k, v in d["event"].items()}
-        rl = d["relabel"] and {k: {int(g): v for g, v in m.items()} for k, m in d["relabel"].items()}
-        return {"op": "dyn", "event": ev, "relabel": rl, "after": tup(d["after"])}
-    return tuple(Move(*s) if isinstance(s, list) else Aut(s["aut"]) if "aut" in s else dyn(s) for s in items)

@@ -9,8 +9,8 @@ from ..core.moves import seam_cancels
 from ..core.words import canonical_rels, free, inverse, reduce, rotate, substitute_generator
 from ..verify.replay import replay
 from . import dynrank as D
-from .cascade import Aut, aut_child, is_terminal, move_child
 from .frame import Frame
+from .steps import Aut, aut_child, is_terminal, move_child
 
 
 def _product(fr, words, ev):
@@ -88,7 +88,6 @@ def _transvection(fr, words, ev):
     return D.normalize(D.transvection(w, i, j, s) for w in words)
 
 
-# the dyn event kinds
 EVENTS = {"product": _product, "define": _define, "eliminate": _eliminate, "nielsen": _transvection}
 
 

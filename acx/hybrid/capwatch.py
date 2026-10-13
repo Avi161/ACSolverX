@@ -12,8 +12,9 @@ import numpy as np
 
 from ..core.capcount import CapCount, blank, fields
 from . import dynrank as D
-from .cascade import Run, gate_applicable, run_gates
+from .cascade import gate_applicable, run_gates
 from .frontier import orbit, unpack
+from .steps import Run
 
 INF = float("inf")
 NAMES = ("cap", "dyn_cap", "slack")

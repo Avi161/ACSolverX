@@ -5,7 +5,10 @@ rows); the AC19 Aut-minimal census 72,779/72,779 with 2,489,726 units and 188 hi
 census (about 190 s on 4 workers) is not run here; its first 2,000 rows are.
 """
 import heapq
+import importlib
+import inspect
 import json
+import pkgutil
 import random
 import sys
 import time
@@ -15,15 +18,18 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
+import acx.hybrid
 from acx import data, runner
 from acx.aut.autos import AUTOS
 from acx.core.capcount import blank, fields
+from acx.core.moves import Move
 from acx.core.words import Presentation, parse
 from acx.hybrid import HybridConfig, capwatch, certify, decode_steps, dynrank, encode_steps, solve
 from acx.hybrid import search as hybrid_search
-from acx.hybrid.cascade import NIELSEN, Budget, Run, cascade, gate_applicable, gate_precheck_key, run_gates
+from acx.hybrid.cascade import cascade, gate_applicable, gate_precheck_key, run_gates
 from acx.hybrid.frontier import backend, orbit, over_cap, pack, unpack
-from acx.hybrid.pinch import conjugation_forms, from_syllables, syllables
+from acx.hybrid.pinch import conjugation_forms, from_syllables, pinch_preflight, syllables
+from acx.hybrid.steps import NIELSEN, Budget, Run
 from acx.verify import replay
 
 FAST = HybridConfig(certify=False)
@@ -116,6 +122,21 @@ def test_a_start_with_det_not_one_is_unsolved_not_an_assertion(rels, name):
     ``solve`` reports it unsolved at once instead of letting the cascade assert."""
     res = solve(rels, FAST, backend=name)
     assert not res.solved and res.units == 0 and res.steps == () and res.path is None
+
+
+def test_hybrid_stats_hold_the_documented_keys_when_the_cascade_solves(ms640):
+    """D7-8: a result the search never reached (a terminal pair, stages B and C, ``|det| != 1``, a cascade that spends
+    the budget) holds every documented key: no pops, rank two, nothing rejected, blank cap records."""
+    ends = {"terminal": solve(("x", "y")), "B": solve(ms640[0], FAST), "C": solve(ms640[6], FAST),
+            "det": solve(("xx", "y"), FAST), "budget": solve(ms640[0], FAST, budget=1)}
+    assert [ends[name].stage for name in ("terminal", "B", "C", "det", "budget")] == ["terminal", "B", "C", None, None]
+    for name, res in ends.items():
+        stats = dict(res.stats)
+        assert stats.pop("seconds") >= 0, name
+        assert stats == dict(pops=0, dyn_pops=0, max_rank=2, dyn_rejected=0, **capwatch.blank_records(FAST)), name
+    searched = solve(ms640[176], FAST)                         # stage H: the search fills the same keys
+    assert searched.stage == "H" and searched.stats["pops"] > 0
+    assert set(ends["B"].stats) == set(searched.stats)
 
 
 # ------------------------------------------------------------------ cap counters (acx.hybrid.capwatch)
@@ -262,6 +283,23 @@ def test_syllables_read_a_cyclic_word_and_conjugation_forms_find_the_pinch_shape
     assert conjugation_forms((1, 2, 1, 2, 1)) == ()
 
 
+def test_pinch_preflight_gives_up_past_max_rules():
+    """The dry run stops after ``max_rules`` rule uses (the cascade keeps the default 400); this pair needs two."""
+    (form,) = conjugation_forms(parse("YYXyx"))
+    companion = parse("YYxxYX")
+    assert [pinch_preflight(form, companion, max_rules=m) for m in (0, 1, 2, 400)] == [None, None, 2, 2]
+
+
+def test_relabel_canonical_raises_past_its_leaf_limit():
+    """Three one-letter relators: each of the 3! generator orders is a leaf, so a limit of 5 raises and 6 does not."""
+    words = ((1,), (2,), (3,))
+    with pytest.raises(RuntimeError, match="leaf limit"):
+        dynrank.relabel_canonical(words, limit=5)
+    canon, perm, _ = dynrank.relabel_canonical(words, limit=6)
+    assert sorted(perm.values()) == [1, 2, 3]
+    assert dynrank.relabel_canonical(words[::-1], limit=6)[0] == canon      # the order of the relators does not matter
+
+
 def test_lazy_entries_come_in_key_order_and_equal_the_eager_list(ms640):
     """The generator behind the dyn pool: every dropped state not offered, once per priority group, in key order,
     each placed between the offered neighbours it would have been pushed between."""
@@ -336,7 +374,7 @@ def zero_means_same(ms640, configs, stride):
             nonzero += 1
             for q in PREFIXES:
                 if a.stats[f"{q}_would_pop"]:
-                    c, lc = run_with_pops(p, **dict(kw, **{LIMITS[q]: a.stats[f"{q}_needed"]}))
+                    _, lc = run_with_pops(p, **dict(kw, **{LIMITS[q]: a.stats[f"{q}_needed"]}))
                     n = min(len(la), len(lc))
                     moved += la[:n] != lc[:n]
     return zero, nonzero, dropped_zero, moved
@@ -350,7 +388,7 @@ def test_zero_would_pop_means_the_run_does_not_change(ms640):
 @pytest.mark.slow
 def test_zero_would_pop_means_the_run_does_not_change_on_tight_limits(ms640):
     """Limits tight enough that many rows bind (about 4 minutes): no false zero among 108 runs."""
-    zero, nonzero, dropped_zero, moved = zero_means_same(ms640, TIGHT, 6)
+    zero, nonzero, _, moved = zero_means_same(ms640, TIGHT, 6)
     assert zero > 40 and nonzero > 20 and moved > 15
 
 
@@ -518,6 +556,16 @@ def test_encode_decode_steps_roundtrip_through_json(ms640):
         assert again == res.steps and certify(pres, again) == list(res.path)
 
 
+def test_the_steps_module_holds_the_step_types_and_their_json_form():
+    """M5: ``acx.hybrid.steps`` holds the step types and the JSON codec of a certificate; ``acx.hybrid`` exports
+    ``Aut``."""
+    from acx.hybrid import Aut, steps
+    items = encode_steps(solve(ac19_row("ac19_239"), FAST).steps)
+    assert {type(s) for s in steps.decode_steps(items)} == {Move, Aut, dict}      # every kind of step
+    assert steps.encode_steps(steps.decode_steps(items)) == items
+    assert Aut is steps.Aut
+
+
 # ------------------------------------------------------------------ inputs that are not freely reduced, a bad dyn_ratio
 UNREDUCED = [("x", "yYy"), ("XyxYY", "XyY")]
 
@@ -546,3 +594,35 @@ def test_dyn_ratio_must_be_a_number_at_least_zero(bad):
     with pytest.raises(ValueError, match="dyn_ratio"):
         HybridConfig(dyn_ratio=bad)
     assert HybridConfig(dyn_ratio=0).dyn_ratio == 0 and HybridConfig(dyn_ratio=2).dyn_ratio == 2
+
+
+@pytest.mark.parametrize("name, low", [("budget", 1), ("penalty", 0), ("min_uses", 1)])
+def test_budget_penalty_and_min_uses_must_be_ints_in_range(name, low):
+    """D7-4: ``budget=0`` or ``1.5`` gave silent unsolved rows and a string gave one TypeError per row."""
+    for bad in (low - 1, float(low), str(low), True, None):
+        with pytest.raises(ValueError, match=rf"^{name} must be an int >= {low}, got "):
+            HybridConfig(**{name: bad})
+    assert getattr(HybridConfig(**{name: low}), name) == low
+    assert getattr(FAST.replace(**{name: low + 3}), name) == low + 3
+
+
+@pytest.mark.parametrize("override", ['hybrid.budget="100"', "hybrid.budget=0", "hybrid.budget=1.5",
+                                      'hybrid.penalty="a"', "hybrid.penalty=-1", 'hybrid.min_uses="2"'])
+def test_numeric_knobs_are_checked_when_the_config_loads(tmp_path, override):
+    """D7-4 through the runner: the bad value is refused when the config loads, before any row runs."""
+    path = tmp_path / "hybrid.toml"
+    path.write_text('method = "hybrid"\nbenchmark = "bench60"\n')
+    name = override.split("=")[0].removeprefix("hybrid.")
+    with pytest.raises(ValueError, match=f"^{name} must be an int >= "):
+        runner.load_config(str(path), [override])
+
+
+def test_each_module_of_the_package_is_its_attribute():
+    """``acx.hybrid.<name>`` is the module ``<name>.py``: the exported function ``certify`` lives in
+    ``elementary.py``, so it does not hide its module."""
+    names = {info.name for info in pkgutil.iter_modules(acx.hybrid.__path__)}
+    assert "elementary" in names
+    exported = dict(vars(acx.hybrid))          # before the imports below bind each submodule on the package
+    for name in sorted(names):
+        module = importlib.import_module(f"acx.hybrid.{name}")
+        assert inspect.ismodule(module) and exported.get(name, module) is module

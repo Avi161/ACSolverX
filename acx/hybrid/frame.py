@@ -184,7 +184,6 @@ class Frame:
             raise ValueError(f"AUTOS[{k}] is not a right transvection")
         self.transvect(i, abs(w[1]), 1 if w[1] > 0 else -1)
 
-    # the tail
     def finish(self, n_gen):
         """``E`` is all unit relators: bring ``W`` to ``x_1..x_m`` and destabilise to ``n_gen`` generators."""
         m = len(self.E)

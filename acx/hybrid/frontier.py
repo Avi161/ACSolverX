@@ -10,7 +10,7 @@ import numpy as np
 
 from ..core.moves import Move
 from ..core.words import canonical_rels, inverse, reduce, rotate
-from .cascade import aut_child
+from .steps import aut_child
 
 _CODE = {-1: 1, -2: 2, 1: 3, 2: 4}
 _LETTER = (0, -1, -2, 1, 2)

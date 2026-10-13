@@ -10,6 +10,7 @@ import torch
 
 from ..core.capcount import CapCount
 from .moves import decode_action, s_move
+from .policy import forward
 
 NEVER = torch.iinfo(torch.int64).max       # sorts after every real hash: an empty slot of the visited table
 MINUS_INF = float("-inf")
@@ -19,12 +20,6 @@ def hash_vector(n, seed=0xACABDED):
     """The random int64 vector whose dot product hashes a state."""
     g = torch.Generator().manual_seed(seed)
     return torch.randint(-(2 ** 62), 2 ** 62, (n,), generator=g, dtype=torch.int64)
-
-
-def forward(model, states, chunk):
-    """``model(states)`` in chunks of ``chunk`` rows: ``(logits, value)``."""
-    out = [model(states[lo:lo + chunk]) for lo in range(0, len(states), chunk)]
-    return torch.cat([o[0] for o in out]), torch.cat([o[1] for o in out])
 
 
 class Visited:

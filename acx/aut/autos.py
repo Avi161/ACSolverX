@@ -5,7 +5,7 @@ Each automorphism is the pair ``(image of x, image of y)`` of int words (``x = 1
 automorphisms, the only ones a descent step uses (``DESCENT``). A sequence of indices into ``AUTOS`` is a ``phi``:
 the first index acts first.
 """
-from ..core.words import Presentation, inverse, parse
+from ..core.words import Presentation, inverse, parse, reduce
 
 _LETTERS = ("x", "X", "y", "Y")
 
@@ -60,6 +60,12 @@ def _inverse_index(k):
 
 INVERSE = tuple(_inverse_index(k) for k in range(len(AUTOS)))
 TABLES = tuple(map(sub_table, AUTOS))
+
+
+def image(w, k):
+    """The word ``w`` under ``AUTOS[k]``, then cyclically reduced (``apply`` only freely reduces; ``images`` gives the
+    generators' images)."""
+    return reduce(apply_table(w, TABLES[k]))
 
 
 def invert(phi):
