@@ -1,10 +1,14 @@
 """acx.ngen: the SAC transform, its replayable lift to elementary stable moves, n-generator search."""
+import importlib
+import inspect
 import os
+import pkgutil
 import random
 
 import pytest
 from conftest import ROOT
 
+import acx.ngen
 from acx.aut.autos import apply_table
 from acx.core.config import SearchConfig
 from acx.core.words import Presentation, canonical_word, inverse, parse, reduce
@@ -261,3 +265,13 @@ def test_ngen_sac_config_result_is_unchanged(tmp_path):
     assert (s["solved"], s["cost"]["total"], s["cost"]["on_solved"]) == (8, 531923, 11923)
     sc = s["path_length"]["stable_cert"]
     assert (sc["sub_moves"]["sum"], sc["elem_moves"]["sum"]) == (147, 8152)
+
+
+def test_each_module_of_the_package_is_its_attribute():
+    """``acx.ngen.<name>`` is the module ``<name>.py``: the exported functions ``lift`` and ``solve`` live in
+    ``lifting.py`` and ``solver.py``, so neither hides its module."""
+    names = {info.name for info in pkgutil.iter_modules(acx.ngen.__path__)}
+    assert {"lifting", "solver"} <= names
+    for name in sorted(names):
+        module = importlib.import_module(f"acx.ngen.{name}")
+        assert inspect.ismodule(module) and getattr(acx.ngen, name) is module

@@ -12,7 +12,7 @@ from ..core.words import Presentation
 from ..verify.replay import abs_det
 from .capwatch import blank_records
 from .cascade import Aut, Budget, Run, cascade
-from .certify import certify
+from .elementary import certify
 from .frontier import BACKENDS
 from .search import BestFirst
 

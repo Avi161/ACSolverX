@@ -5,7 +5,10 @@ rows); the AC19 Aut-minimal census 72,779/72,779 with 2,489,726 units and 188 hi
 census (about 190 s on 4 workers) is not run here; its first 2,000 rows are.
 """
 import heapq
+import importlib
+import inspect
 import json
+import pkgutil
 import random
 import sys
 import time
@@ -15,6 +18,7 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
+import acx.hybrid
 from acx import data, runner
 from acx.aut.autos import AUTOS
 from acx.core.capcount import blank, fields
@@ -546,3 +550,13 @@ def test_dyn_ratio_must_be_a_number_at_least_zero(bad):
     with pytest.raises(ValueError, match="dyn_ratio"):
         HybridConfig(dyn_ratio=bad)
     assert HybridConfig(dyn_ratio=0).dyn_ratio == 0 and HybridConfig(dyn_ratio=2).dyn_ratio == 2
+
+
+def test_each_module_of_the_package_is_its_attribute():
+    """``acx.hybrid.<name>`` is the module ``<name>.py``: the exported function ``certify`` lives in
+    ``elementary.py``, so it does not hide its module."""
+    names = {info.name for info in pkgutil.iter_modules(acx.hybrid.__path__)}
+    assert "elementary" in names
+    for name in sorted(names):
+        module = importlib.import_module(f"acx.hybrid.{name}")
+        assert inspect.ismodule(module) and getattr(acx.hybrid, name) is module

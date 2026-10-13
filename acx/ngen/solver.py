@@ -10,7 +10,7 @@ from ..core.config import SearchConfig
 from ..search import search
 from ..search.engine import Result, as_presentation
 from ..verify.replay import replay
-from .lift import lift
+from .lifting import lift
 from .sac import Sac, triangulate
 
 MAX_GENERATORS = 127     # a letter code is one byte in the fast backend and in the cap counters' state keys

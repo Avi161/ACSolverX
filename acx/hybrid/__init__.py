@@ -10,11 +10,11 @@ Modules, in the order a solve uses them:
 * ``search``: the best-first search over rank two (``frontier``, ``kernels``) and higher rank (``dynrank``);
 * ``capwatch``: the cap counters of the limits ``r2_cap``, ``dyn_cap`` and ``slack``;
 * ``solver``: ``solve``, the config and the result;
-* ``certify``, ``frame``: the certificate as elementary AC moves, replayed by ``acx.verify.replay``.
+* ``elementary``, ``frame``: the certificate as elementary AC moves, replayed by ``acx.verify.replay``.
 
 A result is an ``ac_path`` (rank two throughout) or a ``stable_cert`` (the path used higher rank).
 """
-from .certify import certify
+from .elementary import certify
 from .solver import HybridConfig, HybridResult, decode_steps, encode_steps, solve
 
 __all__ = ["HybridConfig", "HybridResult", "certify", "decode_steps", "encode_steps", "solve"]
