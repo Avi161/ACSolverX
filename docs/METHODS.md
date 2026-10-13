@@ -225,7 +225,7 @@ implicit canonicalisation, and performs no search; it costs 6 to 10 elementary m
 
 `run.py` reports every solve in both path units: `sub_moves` (S-moves of the search; for the hybrid, the S-move steps of
 its certificate) and `elem_moves` (the replayed elementary path on the row). A CoV `stable_cert` has no elementary path
-on the row (`elem_moves` is empty): its transform is a Lemma 11 chain, not AC moves.
+on the row (`elem_moves` is null): its transform is a Lemma 11 chain, not AC moves.
 
 ## 10. Hybrid solver
 
@@ -311,7 +311,7 @@ A comparison between a CoV arm and an untransformed arm is a cost comparison, no
 object, and it must hold the cap fixed (CoV rows run at a larger cap).
 
 **The default policy** (`acx.cov.run_cov`; `[search]` and `[cov]` in `configs/cov.toml`, with `total_budget`, `control`,
-`cap_headroom`, `max_len`, `until`) is one-shot: the row itself first (`control`), then the images in enumeration
+`cap_headroom`, `max_len`, `until`, `family`) is one-shot: the row itself first (`control`), then the images in enumeration
 order, each searched with at most `search.budget` pops and the images at cap `max(cap, longest written relator + 16)`,
 until `total_budget` pops are spent or one solves. There is no ranking, no abel top-3, no selection key and no beam or
 ladder (RESULTS.md, Tried). An oracle (the best candidate) is a lower bound, not a procedure; the deployable cost includes
@@ -319,8 +319,8 @@ the failed candidates (RESULTS.md section 5).
 
 ### The z-family name `subnc2pxysb`, letter by letter
 
-The tag names the *rule that decides which `w` and which branches are tried*; `acx` ships this one family only
-(`acx.cov.family.FAMILY_TAG`; the rules are in `acx/cov/family.py`, the word operations in `acx/cov/substitution.py`):
+The tag names the *rule that decides which `w` and which branches are tried*. It is the default of `[cov] family`
+(the rules are in `acx/cov/family.py`, the word operations in `acx/cov/substitution.py`):
 
 | letters | meaning |
 |---|---|
@@ -331,12 +331,24 @@ The tag names the *rule that decides which `w` and which branches are tried*; `a
 | `s` | cyclic-**s**eam matches count in the substitution; the earlier family missed an occurrence that straddles the wrap-around |
 | `b` | every isolating **b**ranch is its own row: when both `r1'` and `r2'` isolate the generator they are two different coordinate changes, kept apart by `iso_index` (the earlier files kept only the first) |
 
-Outputs that land on the same pair are searched once. Two other families were tried on research branches and are not
-shipped. `zf3` is every reduced word of length 2 to 4, tried in order with the first valid transform winning; it does
-not depend on the presentation. `suballpxyb8` (the exhaustive sweep) restricts `w` to proper cyclic subwords (`2 <= |w| <= |r| - 1`),
-substitutes every set of non-overlapping occurrences (partial substitution included), drops the no-collapse gate, and
-quotients the outputs by relator order, rotation, inversion and the 8 signed permutations; on MS640 at budget 100 it
-solves nothing the default family does not (RESULTS.md section 5).
+Outputs that land on the same pair are searched once. The default family reads the relators cyclically reduced and
+substitutes in one pass over each relator in its written rotation: a conjugate of a relator gives the same images, a
+rotation of it can give others.
+
+`family = "suballpxyb8"` is the exhaustive family of the MS640 sweep (`cov/all-subsets-sweep`, stored in
+[results/stable_ac/cov_all/](../results/stable_ac/cov_all/README.md)): `w` is any proper cyclic subword
+(`2 <= |w| <= |r| - 1`, no `nc2` gate), **all** sets of non-overlapping occurrences in the cyclically reduced relators
+are substituted (partial substitution included; the seam is an ordinary position), and one image is kept per class
+under relator order, rotation, inversion and the **8** signed permutations, the row's own class left out
+(`acx.cov.images.class_key`). It does not depend on how a relator is rotated. On MS640 it gives the sweep's 114,042
+starts (the default family's images fall in 13,727 of those classes), and the best start of either family solves the
+same presentations at 100, 1,000, 10,000 and 100,000 nodes (RESULTS.md section 5). Under the one-shot policy above its
+order is worse: all patterns of the shortest `w` come first. `zf3` (every reduced word of length 2 to 4, first valid
+transform wins) was tried on research branches and is not shipped.
+
+**One image per class in the default family: measured, not applied.** Searching each `class_key` class of the default
+family once, as `suballpxyb8` does, would solve bench60 40 and MS640 586 under the shipped policy, against 39 and 584.
+The default family keeps its exact-pair dedup, so the published numbers stand.
 
 ## 12. n-generator search and short-relator forms
 

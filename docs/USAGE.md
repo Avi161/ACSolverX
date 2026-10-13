@@ -58,6 +58,8 @@ and a `.gz` file that is not whole gzip with `<file>: not a whole gzip file ...`
 What the methods take: `greedy` with the `length` priority and `ngen` take any number of generators; `s20_mk2`, `aut`,
 `cov`, `hybrid` and `rl` take two generators and two relators (`rl` also at most 24 letters each). A row a method
 cannot take, or with `|det| != 1` (never AC-trivial), is written as unsolved with an `error`, and the run goes on.
+`rankn` also takes two generators and two relators, but refuses the whole run, before anything is written, if one row
+has another shape.
 
 ## Run names, resume and `--fresh`
 
@@ -67,23 +69,28 @@ A run writes `<out>/<name>/`. The name is the config's `name` key, else the conf
 
 - **Resume.** Rows already in `paths.jsonl` are skipped, so an interrupted run continues where it stopped, and running
   again with other `--rows` adds those rows to the same folder. A record counts only for the presentation in its `pres`:
-  if a line of your file changed (or two lines swapped), that row is solved again and its old record dropped; records
-  written before `pres` existed count as done. `summary.json` is rewritten each time and covers every record in the
-  folder. A row recorded with an `error` is not retried. A cut-off last line of `paths.jsonl` (an interrupted write)
+  if a line of your file changed (or two lines swapped), that row is solved again and its old record dropped, and the
+  record of a row that is no longer in the file is dropped too, whichever rows `--rows` selects; records written before
+  `pres` existed count as done. `summary.json` is rewritten each time and covers every record in the folder. A row recorded with an `error` is not retried. A cut-off last line of `paths.jsonl` (an interrupted write)
   is dropped; a bad line before others stops the run with `<file>:<line>: not a record ...`.
 - **Another config under the same name is refused** (`holds a run with another config: pass --fresh or another
   name`): `config.json` must match, `rows` and `workers` aside. `--pres` with other presentations is refused the same
-  way.
+  way, and so is a `paths.jsonl` without its `config.json` (`holds paths.jsonl without its config.json`), whose config
+  is unknown.
 - **`--fresh`** deletes that name's `paths.jsonl`, `config.json` and `summary.json` before the run. The folders shipped
   in `results/` hold the published numbers: never `--fresh` them. Pick a new name (`--set name=mine`) or another
   `--out`. A run of fewer rows into such a folder (a `summary.json` and no `paths.jsonl`) is refused, as it would
-  replace the published summary; a rerun of all its rows reproduces it.
+  replace the published summary; a rerun of all its rows reproduces it. The rank-n sweep refuses the same way a run
+  whose rows, with the row files already there, are fewer than the published summary's (`holds a published summary of
+  N rows`).
 
 ## The config
 
 A TOML file: top-level keys, then one section per part of the method. [`configs/template.toml`](../configs/template.toml)
 lists every key with its default and a comment. An unknown key, a section the method does not read or an invalid
-value is an error before anything is written.
+value is an error before anything is written. Types are checked too: a switch is the TOML `true` or `false`
+(`--set path=False` is the string `"False"`, an error); `name` and `benchmark` are strings (`--set name=123` is an int:
+write `--set 'name="123"'`); a section is a table, set key by key (`--set search.budget=1000`).
 
 | top-level key | default | meaning |
 |---|---|---|
@@ -98,8 +105,13 @@ value is an error before anything is written.
 
 - `[search]` (greedy, aut, cov, ngen, rankn): the best-first search: `priority` (`length` or `s20_mk2`), `cap` (24,
   or `"none"`), `budget` (pops, 10,000), `backend` (`fast`, numba, by default in a run; `spec` is the pure-Python
-  reference, the same steps 27x slower, which only `baseline_spec.toml` sets), `cyclic`.
-- `[cov]`: the change of variables: pops per row over all its searches, and which images are searched.
+  reference, which only `baseline_spec.toml` sets: the same steps, at 32x the CPU time of `fast` over the MS640 LENGTH
+  run, [RESULTS.md](RESULTS.md) section 0), `cyclic`.
+- `[cov]`: the change of variables: pops per row over all its searches, and which images are searched. `family` is
+  `"subnc2pxysb"` (the default, used by every published run) or `"suballpxyb8"`, the exhaustive family of the MS640
+  sweep with one image per class ([METHODS.md](METHODS.md) section 11). Either family runs the same one-shot policy
+  within `total_budget`; `suballpxyb8` does not repeat the sweep, which searched every start with a full budget of its
+  own ([results/stable_ac/cov_all/](../results/stable_ac/cov_all/README.md)).
 - `[ngen]`: `sac`, the transform to relators of length at most 3 before the search.
 - `[hybrid]`: `budget` in work units, the three limits `r2_cap`, `dyn_cap`, `slack` (each an int or `"none"`;
   `r2_cap` also `"parent"`), the queue knobs and `backend` (`fast` by default).
