@@ -8,8 +8,8 @@ from multiprocessing import Pool
 from .. import data
 from ..verify.replay import ReplayError, abs_det
 from .methods import SOLVERS, record
-from .output import shape
-from .rundir import drop_changed, prepare, pres_text, read_records
+from .output import shape, without_certificate
+from .rundir import drop_changed, iter_records, prepare, pres_text
 from .summary import summarize
 from .storage import run_directory, write_json
 
@@ -51,7 +51,7 @@ def warm_up(cfg):
 
 def _solve_rows(cfg, todo, done, paths_file, log):
     """Solve ``todo`` (in ``cfg["workers"]`` processes, each warmed up first), appending each record to
-    ``paths_file`` and ``done``."""
+    ``paths_file``, and to ``done`` without its certificate."""
     workers = cfg.get("workers", 1)
     jobs = [(cfg, row) for row in todo]
     if workers == 1:
@@ -60,7 +60,7 @@ def _solve_rows(cfg, todo, done, paths_file, log):
     pool = Pool(workers, initializer=warm_up, initargs=(cfg,)) if workers > 1 else nullcontext()
     with open(paths_file, "a") as f, pool:
         for n, rec in enumerate(pool.imap(_solve_row, jobs) if workers > 1 else map(_solve_row, jobs), 1):
-            done[rec["id"]] = rec
+            done[rec["id"]] = without_certificate(rec)
             f.write(json.dumps(rec) + "\n")
             f.flush()
             solved += rec["solved"]
@@ -92,7 +92,7 @@ def run(cfg, out="results", fresh=False, log=print):
     paths_file = prepare(run_dir, cfg, fresh, len(rows))
     done = {}
     if os.path.exists(paths_file):
-        done = {rec["id"]: rec for rec in read_records(paths_file, repair=True)}
+        done = {rec["id"]: without_certificate(rec) for rec in iter_records(paths_file, repair=True)}
     drop_changed(done, every_row, paths_file)
     todo = [r for r in rows if r.id not in done]
     log(f"{cfg['name']}: {cfg['method']} on {cfg['benchmark']}, {len(rows)} rows ({len(rows) - len(todo)} done)")

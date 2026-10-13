@@ -840,6 +840,38 @@ def test_a_record_without_pres_is_kept_while_its_row_is_in_the_input(tmp_path):
     assert all("pres" not in r for r in records(tmp_path, "old"))          # kept, not solved again
 
 
+def test_dropping_a_changed_row_keeps_the_certificates_of_the_others(tmp_path):
+    """The records of the rows that stay are rewritten as they were, paths included."""
+    mine, c = three_rows(tmp_path, "keep")
+    quiet(c, tmp_path)
+    before = records(tmp_path, "keep")
+    assert all(r["path"] for r in before)
+    mine.write_text("xxYYY, xyxYXY\nYYXyx, Yx\nxx, yyy\n")        # row 2 is now not AC-trivial
+    quiet({**c, "rows": "0:2"}, tmp_path)
+    assert records(tmp_path, "keep") == before[:2]
+
+
+def test_the_runner_holds_no_certificate_in_memory(tmp_path, monkeypatch):
+    """A run keeps of each row only what its summary reads, so a million-row run (AC1M, 3 GB of paths) fits in
+    memory; the summary is that of the records on disk, on a fresh run and on a resume."""
+    from acx.runner import execute
+    seen = []
+
+    def summarize(c, recs, wall):
+        seen.append(recs)
+        return execute_summarize(c, recs, wall)
+
+    execute_summarize = execute.summarize
+    monkeypatch.setattr(execute, "summarize", summarize)
+    c = cfg("hybrid", 'benchmark="ladder60"', 'rows="ac19_11987,ms_000,ac19_54765"', "name=lean")
+    for _ in range(2):                                            # solve, then resume with every row done
+        s = quiet(c, tmp_path)
+        assert s == execute_summarize(c, records(tmp_path, "lean"), s["wall_seconds"])
+    on_disk = records(tmp_path, "lean")
+    assert {"elementary", "steps"} <= set(on_disk[0]) and all(r["elementary"] for r in on_disk)
+    assert all(not {"path", "elementary", "steps"} & set(r) for recs in seen for r in recs)
+
+
 def test_records_without_their_config_json_are_not_resumed(tmp_path):
     """A branch switch removes the tracked config.json and keeps the ignored paths.jsonl; budget-3 records were then
     summarized as a budget-1000 run."""

@@ -19,6 +19,7 @@ PUBLISHED = {
     "ms640_s20_mk2_fast": (626, 640, None),
     "ms640_hybrid": (640, 640, 25_064),
     "ac19_hybrid": (72_779, 72_779, 2_489_726),
+    "ac1m_raw_hybrid": (1_136_135, 1_136_154, 47_236_671),
     "bench60_length": (40, 60, None),
     "bench60_s20_mk2": (52, 60, None),
     "bench60_cov": (39, 60, None),
