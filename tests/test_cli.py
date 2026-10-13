@@ -374,7 +374,8 @@ def test_an_unknown_row_id_among_your_presentations_exits_the_same_way(tmp_path)
     (("--set", "method=beam"), "method 'beam' not in"),
     (("--set", "path=1"), "path must be true or false"),
     (("--set", "search"), "'search' is not key=value"),
-    (("--set", "search.cyclic=False"), "cyclic must be true or false, got 'False'")])
+    (("--set", "search.cyclic=False"), "cyclic must be true or false, got 'False'"),
+    (("--set", "name.x=1"), "name.x: name is not a section")])
 def test_a_bad_config_exits_with_one_line_naming_the_problem(tmp_path, args, message):
     with pytest.raises(SystemExit) as e:
         run_cli(tmp_path / "out", *args)
@@ -398,6 +399,16 @@ def test_set_cyclic_False_is_refused_at_load():
 def test_a_wrongly_typed_top_level_value_is_a_valueerror_at_load(item, message):
     with pytest.raises(ValueError, match=f"^{message}"):
         load_config(SMOKE, [item])
+
+
+@pytest.mark.parametrize("items, message", [
+    (["name.x=1"], "name.x: name is not a section"),
+    (["search=5", "search.budget=1"], "search.budget: search is not a section"),
+    (["search.budget.x=1"], "search.budget.x: budget is not a section")])
+def test_a_dotted_key_through_a_value_is_a_valueerror(items, message):
+    with pytest.raises(ValueError) as error:
+        load_config(SMOKE, items)
+    assert str(error.value) == message
 
 
 def test_run_py_exits_with_one_line_for_a_date_name(tmp_path):
