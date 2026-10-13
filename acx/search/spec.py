@@ -24,17 +24,13 @@ from heapq import heappop, heappush
 
 from ..core.capcount import CapCount
 from ..core.moves import enumerate_moves, source_word
-from ..core.priority import get as get_priority
+from ..core.priority import get as get_priority, length
 from ..core.words import Presentation, canonical_word, fmt, reduce, rotate, sort_rels, state_bytes, state_key
 from .engine import Result
 
 
 def _strs(rels):
     return tuple(map(fmt, rels))
-
-
-def _total(rels):
-    return sum(map(len, rels))
 
 
 def _is_trivial(rels):
@@ -74,7 +70,7 @@ def run(start, cfg):
     # A dropped child equal to the start is no new state.
     cap_count = CapCount(cfg.cap, known=(state_bytes(start.rels, n_gen),))
 
-    min_total = max_total = max_expanded_total = _total(start.rels)
+    min_total = max_total = max_expanded_total = length(start.rels)
     max_expanded = start.rels
     pops = 0
     trace = [] if cfg.trace else None
@@ -85,8 +81,8 @@ def run(start, cfg):
         pops += 1
         rels = states[key]
         cap_count.pop((prio, depth, state_bytes(rels, n_gen)))    # the bar: before this pop's own drops
-        if _total(rels) > max_expanded_total:                     # strict: the first such pop wins
-            max_expanded_total, max_expanded = _total(rels), rels
+        if length(rels) > max_expanded_total:                     # strict: the first such pop wins
+            max_expanded_total, max_expanded = length(rels), rels
         if trace is not None:
             trace.append(_strs(rels))
         if _is_trivial(rels):
@@ -96,7 +92,7 @@ def run(start, cfg):
         for move, child, over_cap in _children(rels, cfg):
             if over_cap:
                 child_bytes = state_bytes(child, n_gen)
-                cap_count.drop((priority(child), depth + 1, child_bytes), _total(child), max(map(len, child)),
+                cap_count.drop((priority(child), depth + 1, child_bytes), length(child), max(map(len, child)),
                                ident=child_bytes)
                 continue
             child_key = state_key(child, n_gen)
@@ -104,8 +100,8 @@ def run(start, cfg):
                 continue
             parent[child_key] = (key, move)
             states[child_key] = child
-            min_total = min(min_total, _total(child))
-            max_total = max(max_total, _total(child))
+            min_total = min(min_total, length(child))
+            max_total = max(max_total, length(child))
             heappush(heap, (priority(child), depth + 1, child_key))
 
     queue_ran_dry = solved_key is None and not heap and pops < cfg.budget

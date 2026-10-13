@@ -5,10 +5,10 @@ The pieces: ``arrays.Arrays`` (the state arena and its growth), ``heap`` (the or
 kernels in ``kernels`` (children, scores). This module is the pop loop and the Python wrapper that sizes the arrays
 and builds the ``Result``. Uncapped searches skip the cap counters.
 
-``_run`` pops until solved, empty or out of budget, and returns early (before popping) when the next pop's children
-might not fit: ``NEED_CAPACITY`` (the arrays and table are doubled and rehashed) or, uncapped only, ``NEED_WIDTH``
-(the arena is re-laid at a wider row). With a cap the row width is ``max(cap, longest start relator)`` and never
-changes.
+``_run`` pops until solved, empty or out of budget, and returns early (before popping) when the next pop might not fit
+(its children, or its record in the cap counters): ``NEED_CAPACITY`` (the arrays and table are doubled and rehashed),
+``NEED_POPS`` (capped only: the per-pop arrays of the cap counters are doubled) or, uncapped only, ``NEED_WIDTH`` (the
+arena is re-laid at a wider row). With a cap the row width is ``max(cap, longest start relator)`` and never changes.
 """
 import numpy as np
 from numba import njit
@@ -20,10 +20,13 @@ from ..engine import Result
 from .arrays import Arrays
 from .cap_stats import cap_counts
 from .counters import (COUNTER_SIZE, DMIN_T, DROPPED, EXP_ID, EXP_T, HEAP_LEN, MAX_T, MIN_T, N_DISC, NEED_CAPACITY,
-                       NEED_WIDTH, NODES, OK, SOLVED, SOLVED_ID)
+                       NEED_POPS, NEED_WIDTH, NODES, OK, SOLVED, SOLVED_ID)
 from .dedup import find_slot, hash_state, rehash
 from .heap import heap_pop, heap_push
 from .kernels import child_width, decode, encode, expand_drops, max_children, priority_id, score
+
+# The pops the arrays are first sized for (fewer if the budget is smaller); they double when a search outgrows them.
+FIRST_POPS = 1 << 16
 
 
 @njit(inline="always")
@@ -46,7 +49,8 @@ def _run(arena, lens, depth, prio, parent, pmove, heap, table, trace, st,
 
     The heap orders state ids by ``(prio, depth, relators by key_code with a proper prefix first)``, which is
     spec's ``state_key`` order. When counting the cap (``len(popped) > 0``) it records per pop the popped id and the
-    least score ``dmin`` of the children the cap dropped, for ``cap_stats`` (stage 1: the drops are scored, not built).
+    least score ``dmin`` of the children the cap dropped, for ``cap_stats`` (stage 1: the drops are scored, not built),
+    and returns ``NEED_POPS`` before the pop that would not fit in ``popped``.
     """
     counting = len(popped) > 0
     dout = np.empty((0, 1, 1), dtype=np.uint8)               # no drop is built in stage 1
@@ -55,6 +59,8 @@ def _run(arena, lens, depth, prio, parent, pmove, heap, table, trace, st,
     while st[NODES] < budget:
         if st[HEAP_LEN] == 0:
             return OK
+        if counting and st[NODES] == len(popped):
+            return NEED_POPS
         top = heap[0]
         max_new = max_children(lens[top])
         if st[N_DISC] + max_new > len(depth) or 2 * (st[N_DISC] + max_new) > len(table):
@@ -66,7 +72,6 @@ def _run(arena, lens, depth, prio, parent, pmove, heap, table, trace, st,
             out_len = np.empty((2 * max_new, out.shape[1]), dtype=np.int32)
             out_mv = np.empty((2 * max_new, 5), dtype=np.int32)
 
-        # Pop.
         st[HEAP_LEN] = heap_pop(heap, st[HEAP_LEN], prio, depth, arena, lens, n_gen)
         pop_no = st[NODES]
         st[NODES] += 1
@@ -120,7 +125,7 @@ def _initial_arrays(start, cfg, pid):
     """Arrays holding the start as state 0 (and the heap), and the counters array ``st``."""
     n_gen, R = start.n_gen, len(start.rels)
     syms, lens = encode(start.rels, n_gen, width=cfg.cap)     # uncapped: the start, widened on demand
-    room = max(1024, min(cfg.budget, 1 << 16) * 8) + int(max_children(lens))
+    room = max(1024, min(cfg.budget, FIRST_POPS) * 8) + int(max_children(lens))
     arrays = Arrays(room, R, syms.shape[1], cfg.capture_path)
     arrays.arena[0], arrays.lens[0], arrays.depth[0], arrays.heap[0] = syms, lens, 0, 0
     arrays.prio[0] = score(syms, lens, n_gen, pid)
@@ -176,14 +181,18 @@ def run(start, cfg):
     out_len = np.empty((rows, R), dtype=np.int32)
     out_mv = np.empty((rows, 5), dtype=np.int32)
     counting = cfg.cap is not None
-    popped = np.empty(cfg.budget if counting else 0, dtype=np.int32)
-    dmin = np.empty(cfg.budget if counting else 0, dtype=np.float64)
+    pop_room = min(cfg.budget, FIRST_POPS) if counting else 0
+    popped = np.empty(pop_room, dtype=np.int32)
+    dmin = np.empty(pop_room, dtype=np.float64)
     while True:
         status = _run(arrays.arena, arrays.lens, arrays.depth, arrays.prio, arrays.parent, arrays.pmove,
                       arrays.heap, arrays.table, trace, st, cfg.budget, n_gen, cap, cfg.cyclic, pid,
                       cfg.capture_path, out, out_len, out_mv, popped, dmin)
         if status == NEED_CAPACITY:
             arrays = arrays.grow(2 * arrays.capacity, width, int(st[N_DISC]), int(st[HEAP_LEN]))
+        elif status == NEED_POPS:
+            popped = np.concatenate((popped, np.empty_like(popped)))
+            dmin = np.concatenate((dmin, np.empty_like(dmin)))
         elif status == NEED_WIDTH:
             width = max(2 * width, int(child_width(arrays.lens[arrays.heap[0]])))
             arrays = arrays.grow(arrays.capacity, width, int(st[N_DISC]), int(st[HEAP_LEN]))

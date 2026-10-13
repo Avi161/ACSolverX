@@ -13,6 +13,7 @@ from conftest import ROOT
 
 import compare
 from acx import report, runner
+from acx.core import capcount
 
 
 def rec(id, solved, cost, seconds, **extra):
@@ -335,6 +336,59 @@ def test_a_summary_only_run_reads_like_its_paths_jsonl(tmp_path):
         assert only.pop(key) == pytest.approx(full.pop(key), rel=1e-3)
     assert only.pop("cpu_row") == pytest.approx(full.pop("cpu_row"), abs=1e-3)
     assert only == full and full["raise_rows"] == 2
+
+
+def binding_records(first, count, prefix="cap", would_pop=1):
+    """``count`` records from id ``first`` on; the counter ``prefix`` dropped a child in each and ``would_pop`` of them
+    would have been popped."""
+    key = capcount.fields(prefix)
+    return [{"id": str(i), key.cap: 24, key.dropped: 1, key.min_total: 30, key.would_pop: would_pop,
+             key.first_bind: 2, key.needed: 25} for i in range(first, first + count)]
+
+
+def summary_with_caps(**blocks):
+    """A summary.json holding only what ``measure_summary`` reads, with one ``caps`` block per counter name."""
+    return {"rows": 400, "solved": 0, "errors": 0, "cost": {"on_solved": 0}, "path_length": {}, "caps": blocks}
+
+
+def test_summary_only_raise_rows_is_the_counted_rows_not_the_kept_ids():
+    """ac19_hybrid's summary counts 344 rows that would pop but keeps only 100 ids of them."""
+    with open(os.path.join(ROOT, "results", "ac19_hybrid", "summary.json")) as f:
+        summary = json.load(f)
+    assert summary["caps"]["dyn_cap"]["rows_would_pop"] == 344
+    assert report.measure_summary(summary)["raise_rows"] == 344
+
+
+def test_summary_only_raise_rows_with_one_counter_past_keep():
+    block = capcount.summarize(binding_records(0, 150), "cap")
+    assert len(block["raise_ids"]) == 100 and block["rows_would_pop"] == 150
+    assert report.measure_summary(summary_with_caps(cap=block))["raise_rows"] == 150
+
+
+def test_summary_only_raise_rows_with_no_binding_counter_is_zero():
+    quiet = capcount.summarize(binding_records(0, 3, would_pop=0), "cap")
+    assert report.measure_summary(summary_with_caps(cap=quiet))["raise_rows"] == 0
+    assert report.measure_summary(summary_with_caps())["raise_rows"] == 0
+
+
+def test_summary_only_raise_rows_counts_a_row_once_when_two_counters_bind_on_it():
+    first = capcount.summarize(binding_records(0, 5), "cap")
+    second = capcount.summarize(binding_records(3, 5, "dyn_cap"), "dyn_cap")              # rows 3 and 4 bind on both
+    assert report.measure_summary(summary_with_caps(cap=first, dyn_cap=second))["raise_rows"] == 8
+
+
+def test_summary_only_raise_rows_of_two_cut_lists_is_a_lower_bound():
+    """Two counters cut at 100 ids each (150 and 120 binding rows, 270 in all): the union is unknowable, so the count is
+    the larger of the pooled kept ids (200) and the biggest counter (150)."""
+    first = capcount.summarize(binding_records(0, 150), "cap")
+    second = capcount.summarize(binding_records(150, 120, "dyn_cap"), "dyn_cap")
+    assert report.measure_summary(summary_with_caps(cap=first, dyn_cap=second))["raise_rows"] == 200
+
+
+def test_summary_only_raise_rows_of_two_cut_lists_never_falls_below_the_biggest_counter():
+    first = capcount.summarize(binding_records(0, 300), "cap")                 # 300 rows, 100 kept
+    second = capcount.summarize(binding_records(0, 120, "dyn_cap"), "dyn_cap")   # 120 rows, the same 100 kept
+    assert report.measure_summary(summary_with_caps(cap=first, dyn_cap=second))["raise_rows"] == 300
 
 
 def test_common_and_head_to_head_need_paths_jsonl(capsys, shipped):

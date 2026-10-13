@@ -3,7 +3,7 @@
 Parity means the same ``solved``, ``pops``, ``path``, ``end``, ``depth``, popped-state
 ``trace`` and ``PARITY_STATS``. ``PARITY_ROWS`` are 40 MS640 rows at budget
 10,000 under both presets (about 70 s, nearly all of it spec; the four heavy
-rows are marked ``slow``); the ``slow`` set adds every 16th MS640 row (40 rows,
+rows are marked ``slow``); the ``slow`` set adds every 16th MS640 row (35 rows,
 about 56,000 spec pops, a few minutes).
 """
 import random
@@ -17,7 +17,7 @@ from acx.core.moves import Move, enumerate_moves, source_word, step
 from acx.core.priority import get as get_priority
 from acx.core.words import Presentation, canonical_word, reduce, rotate, sort_rels, state_bytes, state_key
 from acx.search import PARITY_STATS, search
-from acx.search.fast import children, decode, encode
+from acx.search.fast import best_first, children, decode, encode
 from acx.search.fast.arrays import Arrays
 from acx.search.fast.dedup import find_slot, hash_state, rehash
 from acx.search.fast.heap import heap_pop, heap_push
@@ -28,7 +28,7 @@ from acx.search.fast.kernels import PRIORITY_IDS, canon_buf, reduce_buf, rel_les
 PARITY_ROWS = [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255,
                270, 285, 300, 315, 330, 345, 360, 375, 390, 405, 420, 435, 450, 467, 482, 497, 512,
                528] + [pytest.param(p, marks=pytest.mark.slow) for p in (464, 547, 565, 577)]
-FULL_ROWS = list(range(0, 640, 16))
+FULL_ROWS = [p for p in range(0, 640, 16) if p not in (0, 240, 464, 512, 528)]     # those run in PARITY_ROWS
 
 
 def parity(pres, **kw):
@@ -60,6 +60,33 @@ def test_caps(ms640, pid, cap, priority):
     r = parity(ms640[pid], priority=priority, cap=cap, budget=400)
     if cap is None:
         assert r.stats["cap_dropped"] == 0
+
+
+def test_a_cap_does_not_size_the_counter_arrays_by_the_budget():
+    """The cap counters' per-pop arrays grow with the pops: sized by this budget they would need 30 GiB."""
+    start = ("xxYYY", "xyxYXY")
+    fast = search(start, SearchConfig(backend="fast", cap=24, budget=4 * 10**9))
+    assert (fast.solved, fast.pops) == (True, 22)
+    assert fast.pops == search(start, SearchConfig(backend="spec", cap=24, budget=4 * 10**9)).pops
+
+
+@pytest.mark.parametrize("pid, priority, cap, budget", [(322, "length", 12, 400), (559, "length", 14, 300),
+                                                        (630, "s20_mk2", 20, 1_000)])
+def test_cap_counter_arrays_double_when_the_pops_outgrow_them(ms640, monkeypatch, pid, priority, cap, budget):
+    """Sized for 64 pops at first, the per-pop arrays double on the way, and the result is still spec's. The rows
+    are one solved and two out of budget."""
+    monkeypatch.setattr(best_first, "FIRST_POPS", 64)
+    r = parity(ms640[pid], priority=priority, cap=cap, budget=budget)
+    assert r.pops > 2 * 64 and r.stats["cap_dropped"] > 0 and r.stats["cap_would_pop"] > 0
+
+
+@pytest.mark.slow
+def test_cap_counters_past_65536_pops(ms640):
+    """MS640 row 639 at cap 18 runs dry after 174,192 pops, so the per-pop arrays double twice from their first size;
+    these are the counters it gave when they were sized by the budget."""
+    r = search(ms640[639], SearchConfig(backend="fast", priority="length", cap=18, budget=200_000))
+    assert not r.solved and r.pops == 174_192
+    assert (r.stats["cap_dropped"], r.stats["cap_would_pop"]) == (35_902_544, 2_280_795)
 
 
 @pytest.mark.parametrize("priority", ["length", "s20_mk2"])
