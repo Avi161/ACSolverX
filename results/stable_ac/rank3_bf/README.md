@@ -480,7 +480,7 @@ gives the run a new name.
 | `--budget 10000 --max-len 7` | `--set search.budget=10000 --set rankn.max_len=7 --set name=rank3_bf_b10000` (a budget up to 65,535: pops are stored as uint16) |
 | `--cap 32` | `--set search.cap=32 --set name=rank3_bf_cap32` |
 | `rankn_bf.py OUT N` (ranks 4 and 5) | `python run.py --config configs/rank4_bf.toml --set name=rank4_bf_full`, `configs/rank5_bf.toml` likewise |
-| `verify_rank3_bf --recheck 30` | `python -m acx.ngen.sweep --config configs/rank3_bf.toml --set name=rank3_bf_check --verify 30` (runs the config first; the control is the empty-word start; paths replayed; 30 cells re-run on the other backend; no CoV-control comparison) |
+| `verify_rank3_bf --recheck 30` | `python -m acx.ngen.sweep --config configs/rank3_bf.toml --set name=rank3_bf_check --verify 30` (runs the config first; the control is the empty-word start; paths replayed; 30 cells re-run on both backends; no CoV-control comparison) |
 | `summarize_rank3_bf`, `plot_rankn_vs_control`, `class_view`, `cap_exhaustion`, `cap_compare`, `indep_*.py` | no acx equivalent: the tables, graphs and logs in this folder are their output |
 
 What acx does not port: the relator-subword arm, the block shards of the long lengths, the shortlex price, the
