@@ -489,3 +489,12 @@ def test_select_picks_rows_of_a_benchmark_by_slice_or_id():
     assert data.select(rows, "1:7:2") == rows[1:7:2] and data.select(rows, None) == data.select(rows, "") == rows
     ids = [rows[3].id, rows[0].id, rows[3].id]
     assert data.select(rows, ", ".join(ids)) == [rows[3], rows[0]]
+
+
+@pytest.mark.parametrize("path, stem", [
+    ("mine.txt", "mine"), ("mine.csv.gz", "mine"), ("MINE.TXT", "MINE"), ("two.v2.jsonl", "two.v2"), ("a.TXT.GZ", "a"),
+    ("mine.gz", "mine"), ("mine.dat", "mine.dat"), ("mine.txt.bak", "mine.txt.bak"), ("mine.json", "mine.json"),
+    ("mine.csv.txt", "mine.csv"), (os.path.join("dir", "x.jsonl.gz"), "x")])
+def test_stem_of_drops_the_suffixes_rows_reads_a_file_by(path, stem):
+    """``run.py --input`` names its run ``<config name>_<stem>``; the suffixes are those of ``rows``."""
+    assert data.stem_of(path) == stem

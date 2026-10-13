@@ -10,15 +10,12 @@ missing file ends the command with its message.
 import argparse
 import json
 import os
-import re
 from pathlib import Path
 
 from acx.core.config import parse_override
-from acx.data import parse_presentation
+from acx.data import parse_presentation, stem_of
 from acx.runner import load_config, run
 from acx.runner.rundir import read_records
-
-OWN_FILE_SUFFIX = re.compile(r"(\.txt|\.csv|\.jsonl)?(\.gz)?$", re.IGNORECASE)      # the formats of acx/data.py
 
 
 def presentation(text):
@@ -74,7 +71,7 @@ def solved_ids(run_dir):
 def own_name(config_name, input_path):
     """The run name of your own presentations: ``<config name>_<file stem>`` for ``--input`` (the file's name without
     .txt, .csv, .jsonl and .gz), ``<config name>_pres`` for ``--pres``."""
-    stem = "pres" if input_path is None else OWN_FILE_SUFFIX.sub("", Path(input_path).name)
+    stem = "pres" if input_path is None else stem_of(input_path)
     return f"{config_name}_{stem}"
 
 

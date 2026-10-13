@@ -192,6 +192,21 @@ def load_split(path, part="holdout"):
 _READERS = {".txt": load, ".csv": load_csv, ".jsonl": load_jsonl}
 
 
+def _format(name):
+    """The suffix that picks a file's reader: ``MINE.TXT.GZ`` -> ``.txt`` (lower case, ``.gz`` left out)."""
+    return os.path.splitext(name.lower().removesuffix(".gz"))[1]
+
+
+def stem_of(path):
+    """The file name of ``path`` without the suffixes ``rows`` reads it by: ``mine.csv.gz`` -> ``mine``."""
+    name = os.path.basename(path)
+    if name.lower().endswith(".gz"):
+        name = name[:-len(".gz")]
+    if _format(name) in _READERS:
+        name = os.path.splitext(name)[0]
+    return name
+
+
 def rows(spec):
     """Rows of a dataset, benchmark or split by name, or of your own ``.txt``, ``.csv`` or ``.jsonl`` file (optionally
     ``.gz``) by path (a string or a ``Path``); the formats are in the module docstring."""
@@ -202,7 +217,7 @@ def rows(spec):
         return load(spec)
     if spec in BENCHMARKS:
         return load_csv(spec)
-    reader = _READERS.get(os.path.splitext(spec.lower().removesuffix(".gz"))[1])
+    reader = _READERS.get(_format(spec))
     if reader is None:
         names = sorted(DATASETS) + sorted(BENCHMARKS) + sorted(SPLITS)
         raise KeyError(f"unknown benchmark {spec!r}; names: {names}; or a .txt, .csv or .jsonl file, optionally .gz")
