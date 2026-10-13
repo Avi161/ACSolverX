@@ -96,9 +96,11 @@ def _load_done(paths_file):
 
 
 def _drop_changed(done, rows, paths_file):
-    """Forget the records of rows that now hold another presentation (the input file changed), in ``done`` and in
-    ``paths_file``, so that those rows are solved again. A record written before ``pres`` was stored is kept."""
-    changed = [r.id for r in rows if r.id in done and done[r.id].get("pres", pres_text(r.pres)) != pres_text(r.pres)]
+    """Forget the records of rows that left the benchmark or now hold another presentation (the input file changed),
+    in ``done`` and in ``paths_file``; ``rows`` is every row, selected or not. A record without ``pres`` is kept."""
+    by_id = {r.id: r.pres for r in rows}
+    changed = [i for i, rec in done.items()
+               if i not in by_id or rec.get("pres", pres_text(by_id[i])) != pres_text(by_id[i])]
     if changed:
         for row_id in changed:
             del done[row_id]
@@ -109,8 +111,9 @@ def _drop_changed(done, rows, paths_file):
 def _prepare_run_dir(run_dir, cfg, fresh, n_rows):
     """Create ``run_dir`` and write its ``config.json``; return the ``paths.jsonl`` path.
 
-    ``fresh`` clears the earlier results. Otherwise a folder holding a run under another config is refused, and so is
-    a run of fewer rows into a published folder (``summary.json`` without ``paths.jsonl``), which it would replace.
+    ``fresh`` clears the earlier results. Otherwise these are refused: a folder holding a run under another config, a
+    ``paths.jsonl`` without its ``config.json`` (its config is unknown), and a run of fewer rows into a published
+    folder (``summary.json`` without ``paths.jsonl``), which it would replace.
     """
     os.makedirs(run_dir, exist_ok=True)
     paths_file = os.path.join(run_dir, "paths.jsonl")
@@ -126,6 +129,9 @@ def _prepare_run_dir(run_dir, cfg, fresh, n_rows):
         if n_rows < published:
             raise SystemExit(f"{run_dir} holds published results of {published} rows: a run of {n_rows} would replace "
                              "them; pass --fresh or another name")
+    if os.path.exists(paths_file) and not os.path.exists(config_file):
+        raise SystemExit(f"{run_dir} holds paths.jsonl without its config.json, so its records may be of another "
+                         "config: pass --fresh or another name")
     config = run_config(cfg)
     if os.path.exists(config_file):
         with open(config_file) as f:
@@ -172,11 +178,12 @@ def run(cfg, out="results", fresh=False, log=print):
     if cfg["method"] == "rankn":
         from ..ngen.sweep import run as run_rankn
         return run_rankn(cfg, out, fresh, log)
-    rows = select(data.rows(cfg["benchmark"]), cfg.get("rows"))
+    every_row = data.rows(cfg["benchmark"])
+    rows = select(every_row, cfg.get("rows"))
     run_dir = os.path.join(out, cfg["name"])
     paths_file = _prepare_run_dir(run_dir, cfg, fresh, len(rows))
     done = _load_done(paths_file) if os.path.exists(paths_file) else {}
-    _drop_changed(done, rows, paths_file)
+    _drop_changed(done, every_row, paths_file)
     todo = [r for r in rows if r.id not in done]
     log(f"{cfg['name']}: {cfg['method']} on {cfg['benchmark']}, {len(rows)} rows ({len(rows) - len(todo)} done)")
     start = time.perf_counter()

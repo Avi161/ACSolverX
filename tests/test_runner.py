@@ -795,3 +795,59 @@ def test_rl_numbers_in_range_are_kept():
     keywords = runner.method_config(cfg("rl", "rl.width=1", "rl.steps=1", "rl.alpha=1"))
     assert (keywords["width"], keywords["steps"], keywords["alpha"]) == (1, 1, 1)
     assert runner.method_config(cfg("rl", "rl.alpha=0.5"))["alpha"] == 0.5
+
+
+# ---- resume keeps only the records of rows the input still holds, under their own config -------------------------
+
+THREE_ROWS = "xxYYY, xyxYXY\nYYXyx, Yx\nYYXyx, YX\n"          # all three solved by the length search below
+
+
+def three_rows(tmp_path, name):
+    """A length search over ``mine.txt`` (written with ``THREE_ROWS``), every row, run name ``name``."""
+    mine = tmp_path / "mine.txt"
+    mine.write_text(THREE_ROWS)
+    return mine, cfg("smoke", f'benchmark="{mine}"', 'rows=""', f"name={name}", "search.priority=length")
+
+
+def test_rows_removed_from_the_input_leave_the_summary(tmp_path):
+    mine, c = three_rows(tmp_path, "shrink")
+    assert quiet(c, tmp_path)["rows"] == 3
+    mine.write_text("xx, yyy\n")                                  # one row now, |det| = 6
+    s = quiet(c, tmp_path)
+    assert (s["rows"], s["solved"]) == (1, 0)                     # was (3, 2): ids 1 and 2 stayed, solved
+    assert [(r["id"], r["pres"]) for r in records(tmp_path, "shrink")] == [("0", "xx, yyy")]
+
+
+def test_a_changed_row_outside_the_selection_is_not_summarized_as_solved(tmp_path):
+    mine, c = three_rows(tmp_path, "edit")
+    assert quiet(c, tmp_path)["solved"] == 3
+    mine.write_text("xxYYY, xyxYXY\nYYXyx, Yx\nxx, yyy\n")        # row 2 is now not AC-trivial
+    s = quiet({**c, "rows": "0:1"}, tmp_path)
+    assert [r["id"] for r in records(tmp_path, "edit")] == ["0", "1"]      # row 2's old record is gone
+    assert (s["rows"], s["solved"]) == (2, 2)                     # was (3, 3)
+
+
+def test_a_record_without_pres_is_kept_while_its_row_is_in_the_input(tmp_path):
+    """Records written before ``pres`` was stored resume as they are; one whose id left the input does not."""
+    mine, c = three_rows(tmp_path, "old")
+    quiet(c, tmp_path)
+    paths = tmp_path / "old" / "paths.jsonl"
+    old = [{k: v for k, v in r.items() if k != "pres"} for r in records(tmp_path, "old")]
+    paths.write_text("".join(json.dumps(r) + "\n" for r in old))
+    mine.write_text("xxYYY, xyxYXY\nYYXyx, Yx\n")
+    s = quiet(c, tmp_path)
+    assert [r["id"] for r in records(tmp_path, "old")] == ["0", "1"] and (s["rows"], s["solved"]) == (2, 2)
+    assert all("pres" not in r for r in records(tmp_path, "old"))          # kept, not solved again
+
+
+def test_records_without_their_config_json_are_not_resumed(tmp_path):
+    """A branch switch removes the tracked config.json and keeps the ignored paths.jsonl; budget-3 records were then
+    summarized as a budget-1000 run."""
+    quiet(cfg("smoke", 'rows="0:5"', "name=nocfg", "search.budget=3"), tmp_path)
+    folder = tmp_path / "nocfg"
+    (folder / "config.json").unlink()
+    kept = (folder / "paths.jsonl").read_text()
+    with pytest.raises(SystemExit, match="paths.jsonl without its config.json"):
+        quiet(cfg("smoke", 'rows="0:5"', "name=nocfg", "search.budget=1000"), tmp_path)
+    assert (folder / "paths.jsonl").read_text() == kept and not (folder / "config.json").exists()
+    assert quiet(cfg("smoke", 'rows="0:5"', "name=nocfg", "search.budget=1000"), tmp_path, fresh=True)["rows"] == 5
