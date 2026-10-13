@@ -119,4 +119,3 @@ def legend(runs):
         return ""
     keys = " ".join(f'<span><i class="s{SLOT.get(unit, 0)}"></i> {escape(unit)}</span>' for unit in units)
     return f'<p class="legend">Bar color is the unit the run counts its cost in: {keys}</p>'
-
