@@ -26,9 +26,11 @@ distinct change-of-variables class of `cov/all-subsets-sweep:experiments/stable_
 - **How acx reproduces it**: `acx.cov` enumerates exactly this family's 114,042 MS640 starts
   (`enumerate_images(pres, family="suballpxyb8")`, or `--set cov.family=suballpxyb8` in
   `configs/cov.toml`; pinned by `tests/test_cov.py`). `acx.search` (`priority = "length"`, the row's
-  own cap and budget) then reproduces a row's `nodes_explored` and `path_length`, and `acx.cov` and
-  `acx.verify` check the stored certificates and paths ([Verify with acx](#reproduce-and-verify-with-acx)).
-  `tests/test_cov_all_study.py` pins every number below that this folder holds.
+  own cap and budget) then gives a row's `nodes_explored` and `path_length` again (checked on 100 random
+  rows), and `acx.cov` and `acx.verify` check the stored certificates and paths
+  ([Verify with acx](#reproduce-and-verify-with-acx)).
+  `tests/test_cov_all_study.py` pins the headline numbers per budget, the csv sums, the file counts, the
+  best-start split by kind and the caps.
 - **No acx command**: the per-start sweep driver (`run_cov_all.py`), the `--counts` checks of
   `verify_cov_all.py`, and the summarize, table and plot scripts. Their output is the files here.
   They are on `cov/all-subsets-sweep` (listed under [The code](#the-code-on-the-source-branch)). The
@@ -96,8 +98,8 @@ print(dict(checked))                              # {'cov': 2251, 'control': 12}
 
 The slow tests of `tests/test_cov_all_study.py` go further: `acx.cov.apply_steps` rebuilds `r1`, `r2` from the
 transform of all 114,042 CoV rows, and `acx.search` (LENGTH, fast backend, the row's cap and budget) pops as many
-states and finds as long a path as the sweep did on 100 random rows. The search path of the 98% of rows without
-`path_moves` is regenerated that way.
+states and finds as long a path as the sweep did on 100 random solved rows (at most 20,000 pops each). The
+search path of the 98% of rows without `path_moves` can be regenerated that way.
 
 | source branch | acx |
 |---|---|
@@ -131,6 +133,8 @@ Reproduce / check there (repo root, `PYTHONPATH=.`, gunzip first):
 The budget 100,000 run was one autonomous AWS box per attempt, started from
 `experiments/stable_ac/cov/run/aws_cov_all_box.sh` as EC2 user-data (settings and the launch
 command are at the top of that file).
+
+The checks below were run on the source branch; their logs are the `*.log` files here (the box logs are in S3).
 
 Budget 100 check: 114,682 rows, 14,051 one-pattern, 90,234 solved, 90,234 paths replayed through
 `greedy_tests/spec` to the trivial presentation, 0 failures.

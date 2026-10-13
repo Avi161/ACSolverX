@@ -19,7 +19,6 @@ import pytest
 from conftest import ROOT
 
 from acx.core.config import SearchConfig
-from acx.core.moves import decode_path
 from acx.core.words import Presentation, parse
 from acx.cov import apply_steps
 from acx.search import search
@@ -56,6 +55,11 @@ def load_json(name):
         return json.load(f)
 
 
+def summary(run=100_000):
+    """The statistics file of the run at ``run`` nodes (the 100,000 file holds the figures of every smaller budget)."""
+    return load_json(f"{STEM}b{run}_summary.json")
+
+
 def sha256_and_size(stream):
     """The sha256 (hex) and the byte count of what ``stream`` yields."""
     digest, size = hashlib.sha256(), 0
@@ -84,9 +88,14 @@ class Start(NamedTuple):
     longest: int        # the longer relator of the start, as written
 
 
+class Scan(NamedTuple):
+    starts: list        # every row of the file as a ``Start``
+    with_path: list     # the rows that keep their ``path_moves`` (a 2% sample), whole
+
+
 @pytest.fixture(scope="module")
 def scan():
-    """One pass over the file: every row as a ``Start``, and the rows that keep their path (a 2% sample)."""
+    """One pass over the file."""
     starts, with_path = [], []
     for row in read_rows():
         starts.append(Start(row["pres_id"], row["is_control"], row["solved"], row["nodes_explored"],
@@ -94,7 +103,7 @@ def scan():
                             row["max_relator_length_cap"], max(len(row["r1"]), len(row["r2"]))))
         if "path_moves" in row:
             with_path.append(row)
-    return starts, with_path
+    return Scan(starts, with_path)
 
 
 def solving_starts(starts, budget):
@@ -106,12 +115,19 @@ def solving_starts(starts, budget):
     return solving
 
 
+def kind(start):
+    """How a solve is typed: the control, a start in the row's Aut(F2) orbit, or one outside it."""
+    if start.is_control:
+        return "control"
+    return "in orbit" if start.in_orbit else "outside"
+
+
 # ---- the stored numbers --------------------------------------------------------------------------------------------
 
 
 @pytest.mark.parametrize("budget", BUDGETS)
 def test_headline_numbers_per_budget(budget):
-    per_budget = load_json(STEM + "b100000_summary.json")["per_budget"][str(budget)]
+    per_budget = summary()["per_budget"][str(budget)]
     control, oracle = HEADLINE[budget]
     assert per_budget["control"]["solved"] == control
     assert per_budget["oracle_all"]["solved"] == oracle
@@ -121,10 +137,16 @@ def test_headline_numbers_per_budget(budget):
 
 @pytest.mark.parametrize("budget", BUDGETS)
 def test_a_random_start_against_the_control(budget):
-    per_budget = load_json(STEM + "b100000_summary.json")["per_budget"][str(budget)]
-    shares = per_budget["random_start_vs_control_mean_fraction"]
+    shares = summary()["per_budget"][str(budget)]["random_start_vs_control_mean_fraction"]
     got = [100 * shares[k] for k in ("cheaper", "equal", "dearer", "fail")]
     assert got == pytest.approx(RANDOM_START[budget], abs=0.06)       # the table prints one decimal
+
+
+@pytest.mark.parametrize("run", COST)
+def test_what_each_run_cost(run):
+    cpu_hours, mean_nodes = COST[run]
+    assert summary(run)["cpu_hours"] == cpu_hours
+    assert summary(run)["total_cov_nodes_per_presentation"]["mean"] == mean_nodes
 
 
 def per_presentation():
@@ -132,39 +154,34 @@ def per_presentation():
         return list(csv.DictReader(f))
 
 
-@pytest.mark.parametrize("budget", COST)
-def test_what_each_run_cost(budget):
-    summary = load_json(STEM + f"b{budget}_summary.json")
-    assert (summary["cpu_hours"], summary["total_cov_nodes_per_presentation"]["mean"]) == COST[budget]
-
-
 def test_per_presentation_table_sums():
     table = per_presentation()
-    column = lambda name: [int(row[name]) for row in table]            # noqa: E731
+    starts = [int(row["cov_starts"]) for row in table]
     assert len(table) == 640
-    assert sum(column("control_solved")) == 634
-    assert sum(column("cov_starts")) == 114_042
-    assert sum(column("cov_solved_starts")) == 111_244
-    assert (min(column("cov_starts")), max(column("cov_starts"))) == (5, 10_740)
+    assert sum(int(row["control_solved"]) for row in table) == 634
+    assert sum(starts) == 114_042
+    assert sum(int(row["cov_solved_starts"]) for row in table) == 111_244
+    assert (min(starts), max(starts)) == (5, 10_740)
 
 
 def test_the_100_000_file_holds_every_search_and_a_sample_of_the_paths(scan):
-    starts, with_path = scan
-    assert len(starts) == 114_682
-    assert sum(s.is_control for s in starts) == 640
-    assert sum(s.one_pattern for s in starts) == 14_051
-    assert sum(s.solved for s in starts) == 111_878
-    assert len(with_path) == 2_263
-    assert all(row["solved"] for row in with_path)
+    controls = [s for s in scan.starts if s.is_control]
+    unsolved = [s for s in scan.starts if not s.solved]
+    assert len(scan.starts) == 114_682
+    assert (len(controls), sum(s.solved for s in controls)) == (640, 634)
+    assert sum(s.one_pattern for s in scan.starts) == 14_051
+    assert (len(unsolved), len({s.pres_id for s in unsolved})) == (2_804, 140)      # searches, presentations
+    assert len(scan.with_path) == 2_263
+    assert all(row["solved"] for row in scan.with_path)
 
 
 @pytest.mark.parametrize("budget", BUDGETS)
 def test_searches_solved_per_budget(scan, budget):
-    assert sum(s.solved and s.nodes <= budget for s in scan[0]) == ROWS_SOLVED[budget]
+    assert sum(s.solved and s.nodes <= budget for s in scan.starts) == ROWS_SOLVED[budget]
 
 
 def test_starts_in_the_orbit(scan):
-    cov = [s for s in scan[0] if not s.is_control]
+    cov = [s for s in scan.starts if not s.is_control]
     assert sum(s.in_orbit for s in cov) == 7_206
     assert sum(s.in_orbit for s in cov if s.solved) == 6_856
     assert sum(not s.in_orbit for s in cov if s.solved) == 104_388
@@ -172,9 +189,8 @@ def test_starts_in_the_orbit(scan):
 
 def test_the_caps_the_searches_ran_at(scan):
     """The control ran at cap 24; a start at its longer relator plus 16 (at least 24), so 24 to 91."""
-    controls = [s for s in scan[0] if s.is_control]
-    cov = [s for s in scan[0] if not s.is_control]
-    assert {s.cap for s in controls} == {24}
+    cov = [s for s in scan.starts if not s.is_control]
+    assert {s.cap for s in scan.starts if s.is_control} == {24}
     assert all(s.cap == max(24, s.longest + 16) for s in cov)
     assert (min(s.cap for s in cov), max(s.cap for s in cov)) == (24, 91)
     assert sum(s.cap > 24 for s in cov) == 109_336
@@ -184,7 +200,7 @@ def test_the_caps_the_searches_ran_at(scan):
 def test_subset_60_is_bench60(scan, budget):
     with open(os.path.join(ROOT, "benchmark", "subsets", "benchmark_subset_60.csv")) as f:
         subset = {int(row["pres_id"]) for row in csv.DictReader(f)}
-    solving = {pid: group for pid, group in solving_starts(scan[0], budget).items() if pid in subset}
+    solving = {pid: group for pid, group in solving_starts(scan.starts, budget).items() if pid in subset}
     control = sum(any(s.is_control for s in group) for group in solving.values())
     assert (control, len(solving)) == SUBSET_60[budget]
 
@@ -192,17 +208,16 @@ def test_subset_60_is_bench60(scan, budget):
 @pytest.mark.parametrize("budget", BUDGETS)
 def test_the_best_start_of_each_presentation_by_kind(scan, budget):
     """The cheapest search that solved a presentation (the control wins a tie), by acx's typing of its solve."""
-    kinds = Counter()
-    for group in solving_starts(scan[0], budget).values():
-        best = min(group, key=lambda s: (s.nodes, not s.is_control))
-        kinds["control" if best.is_control else "in orbit" if best.in_orbit else "outside"] += 1
-    unsolved = 640 - sum(kinds.values())
+    solving = solving_starts(scan.starts, budget)
+    kinds = Counter(kind(min(group, key=lambda s: (s.nodes, not s.is_control))) for group in solving.values())
+    unsolved = 640 - len(solving)
     assert (kinds["control"], kinds["in orbit"], kinds["outside"], unsolved) == BEST_START[budget]
 
 
 @pytest.mark.parametrize("budget", BUDGETS)
 def test_a_row_the_control_fails_has_a_solving_start_in_its_orbit(scan, budget):
-    rescued = [group for group in solving_starts(scan[0], budget).values() if not any(s.is_control for s in group)]
+    solving = solving_starts(scan.starts, budget).values()
+    rescued = [group for group in solving if not any(s.is_control for s in group)]
     assert len(rescued) == RESCUED[budget]
     assert all(any(s.in_orbit for s in group) for group in rescued)
 
@@ -210,8 +225,15 @@ def test_a_row_the_control_fails_has_a_solving_start_in_its_orbit(scan, budget):
 # ---- the manifest --------------------------------------------------------------------------------------------------
 
 RAW_SUFFIXES = (".jsonl", ".jsonl.gz", ".npz")
-RAW_FILES = {STEM + f"b{b}{suffix}": suffix == ".jsonl.gz" and b == 100_000
-             for b in (100, 10_000, 100_000) for suffix in (".jsonl.gz", ".jsonl")}
+# every raw file of the sweep -> is it in this checkout? Only the 100,000 file is.
+RAW_FILES = {
+    STEM + "b100.jsonl.gz": False,
+    STEM + "b100.jsonl": False,
+    STEM + "b10000.jsonl.gz": False,
+    STEM + "b10000.jsonl": False,
+    STEM + "b100000.jsonl.gz": True,
+    STEM + "b100000.jsonl": False,
+}
 
 
 def manifest_files():
@@ -224,8 +246,7 @@ def test_the_manifest_names_the_source_and_every_raw_file():
     assert manifest["source"]["commit"].startswith("fb84a588") and len(manifest["source"]["commit"]) == 40
     assert manifest["source"]["dir"] == "results/stable_ac/cov_all"
     assert manifest["s3"] == "s3://acsolver-u124-205558941715/cov_all/b<budget>/results/"
-    files = manifest_files()
-    assert {path: entry["in_repo"] for path, entry in files.items()} == RAW_FILES
+    assert {entry["path"]: entry["in_repo"] for entry in manifest["files"]} == RAW_FILES
 
 
 def test_the_raw_files_that_are_here_are_the_listed_ones():
@@ -290,7 +311,7 @@ def test_every_transform_rebuilds_the_start_it_searched():
 def test_rows_searched_again_with_acx_reproduce_the_stored_search(scan):
     """100 random solved rows (the control and CoV starts) of at most 20,000 pops, searched with the row's own cap:
     ``acx.search`` pops as many states and finds as long a path as the sweep did."""
-    cheap = [i for i, s in enumerate(scan[0]) if s.solved and s.nodes <= 20_000]
+    cheap = [i for i, s in enumerate(scan.starts) if s.solved and s.nodes <= 20_000]
     chosen = set(random.Random(0).sample(cheap, 100))
     for i, row in enumerate(read_rows()):
         if i in chosen:
