@@ -3,6 +3,7 @@
 The bench60 numbers are a golden regression (fast backend, so the test is skipped without it); the same numbers on
 spec follow from the spec/fast parity of ``tests/test_fast.py``.
 """
+import hashlib
 import json
 
 import pytest
@@ -13,9 +14,10 @@ from acx.core.config import SearchConfig
 from acx.core.moves import decode_path, encode_path
 from acx.core.words import Presentation, fmt, inverse, parse, renumber, substitute_generator
 from acx.cov import CoVConfig, ReplayError, apply_steps, check_cert, enumerate_images, verify
-from acx.cov.family import subwords
+from acx.cov.cov import class_key
+from acx.cov.family import FAMILIES, proper_subwords, subwords
 from acx.cov.run import run
-from acx.cov.substitution import Z, isolate, substitute
+from acx.cov.substitution import Z, isolate, occurrences, patterns, substitute, substitute_pattern
 from acx.search import BackendUnavailable, search
 from acx.search.engine import backend as load_backend
 from acx.verify import replay
@@ -345,3 +347,85 @@ def test_row_with_no_binding_leg_is_the_same_row_at_any_larger_cap():
                 b = run(rows[pid].pres, cfg.replace(search=cfg.search.replace(cap=bigger)))
                 assert a.pops == b.pops and [(o.kind, o.path) for o in a.outcomes] == [(o.kind, o.path) for o in b.outcomes]
     assert zero >= 6 and nonzero >= 3
+
+
+# The family suballpxyb8 (``CoVConfig.family``): every pattern of every proper cyclic subword, one image per class.
+SWEEP_MS640_SHA256 = "1e10f931608808511df10ae319e84622b99256d684942e14344066307b5c1ae4"
+SWEEP_PRES0 = {("XXy", "YXyxx"), ("XyXX", "YxyXX"), ("Xyx", "YXyxYx"), ("Xyx", "YXyxx"), ("xYx", "YxyXyX")}
+
+
+def test_all_subsets_reads_the_cyclically_reduced_relators():
+    """suballpxyb8: a row written as a conjugate or rotated has the classes of its cyclically reduced form.
+    The default family substitutes in the relators as written, as its source does (PLANTED is not reduced)."""
+    for conj in (Presentation.parse("xxyxYXYX", "xxxYYYY"), Presentation.parse("yxxxYYYYY", "xyxYXY")):
+        assert enumerate_images(conj, family="suballpxyb8") == enumerate_images(conj.reduced(), family="suballpxyb8")
+    row = data.rows("ms640")[20].pres                                          # YYYYYx, YYXyx
+    rotated = Presentation.parse("YYxYYY", "YYXyx")
+    classes = lambda p, family: {class_key(i.pres) for i in enumerate_images(p, family=family)}  # noqa: E731
+    assert classes(rotated, "suballpxyb8") == classes(row, "suballpxyb8")
+    assert classes(rotated, "subnc2pxysb") != classes(row, "subnc2pxysb")
+
+
+def test_all_subsets_words_are_the_proper_cyclic_subwords():
+    """Lengths 2 to |r| - 1, the seam included; a whole relator is dropped even when it sits inside the other one."""
+    r1, r2 = parse("xyxxy"), parse("yxxy")
+    words = proper_subwords(r1, r2)
+    assert {len(w) for w in words} == {2, 3, 4} and parse("yxxy") not in words
+    assert words == sorted(set(words), key=lambda w: (len(w), w)) and not any(inverse(w) in words for w in words)
+    assert set(subwords(r1, r2)) <= set(words)
+    assert "xyx" in {fmt(w) for w in proper_subwords(parse("xyxY"), parse("yy"))}                  # no nc2 gate
+
+
+def test_patterns_are_every_non_overlapping_set_of_occurrences():
+    """The seam is an ordinary position; partial substitution counts; the order is the sweep's."""
+    cyc = parse("xxxxy")
+    occs = occurrences(cyc, parse("xx"))
+    assert occs == ((0, Z), (1, Z), (2, Z))
+    assert [tuple(s for s, _ in p) for p in patterns(occs, 5, 2)] == [(), (2,), (1,), (0,), (0, 2)]
+    assert substitute_pattern(cyc, ((1, Z),), 2) == (Z, 1, 2, 1)
+    seam = occurrences(parse("yxxxy"), parse("yy"))
+    assert seam == ((4, Z),) and substitute_pattern(parse("yxxxy"), seam, 2) == (Z, 1, 1, 1)
+    shadowed = occurrences(parse("xxyx"), parse("xx"))                         # substitute takes position 0 only
+    assert [fmt(substitute_pattern(parse("xxyx"), p, 2)) for p in patterns(shadowed, 4, 2)[1:]] == ["zxy", "zyx"]
+
+
+def test_all_subsets_is_one_image_per_class_and_contains_the_default_family():
+    for pres in [AK3, PLANTED.reduced()] + [r.pres for r in data.rows("ms640")[::80]]:
+        own = class_key(pres)
+        images = enumerate_images(pres, family="suballpxyb8")
+        keys = [class_key(i.pres) for i in images]
+        assert len(set(keys)) == len(keys) and own not in keys
+        assert {class_key(i.pres) for i in enumerate_images(pres)} - {own} <= set(keys)
+        assert all(apply_steps(pres, i.steps) == i.pres for i in images)
+
+
+def test_all_subsets_matches_the_sweep():
+    """The sweep's class counts and, for MS640 row 0, its five starts as written (budget-100 file of the branch)."""
+    rows = data.rows("ms640")
+    counts = {pid: len(enumerate_images(rows[pid].pres, family="suballpxyb8")) for pid in (0, 155, 580, 634)}
+    assert len(enumerate_images(AK3, family="suballpxyb8")) == 12 and counts == {0: 5, 155: 24, 580: 236, 634: 566}
+    assert {i.pres.strs for i in enumerate_images(rows[0].pres, family="suballpxyb8")} == SWEEP_PRES0
+
+
+@pytest.mark.slow
+def test_all_subsets_is_the_sweep_on_ms640():
+    """The sweep's 114,042 MS640 starts, each as written with its w, eliminated generator, isolating relator, number
+    of substitutions and cap (sha256 of the sorted rows of the branch's budget-100 file)."""
+    lines = sorted(f"{r.id},{i.pres.strs[0]},{i.pres.strs[1]},{fmt(i.w)},{'xy'[i.gen - 1]},{i.iso_index},{i.n_subs},"
+                   f"{max(24, max(map(len, i.pres.rels)) + 16)}"
+                   for r in data.rows("ms640") for i in enumerate_images(r.pres, family="suballpxyb8"))
+    assert len(lines) == 114_042
+    assert hashlib.sha256("\n".join(lines).encode()).hexdigest() == SWEEP_MS640_SHA256
+
+
+def test_family_is_a_config_choice():
+    assert CoVConfig().family == "subnc2pxysb"
+    assert CoVConfig.from_dict({"family": "suballpxyb8"}).family == "suballpxyb8"
+    with pytest.raises(ValueError, match="family"):
+        CoVConfig(family="zf3")
+    with pytest.raises(ValueError, match="family"):
+        enumerate_images(AK3, family="zf3")
+    out = run(PLANTED, CoVConfig(total_budget=2000, control=False, family="suballpxyb8"))
+    assert out.solved and out.stats["images"] == len(enumerate_images(PLANTED, family="suballpxyb8"))
+    for o in out.outcomes:
+        verify(PLANTED, o)

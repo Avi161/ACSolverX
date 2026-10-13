@@ -5,10 +5,12 @@ of the Two-Hump paper). Lemma 11 is stable AC and gives no path, so a solve of a
 The word operations are in ``substitution``, the choice of ``w`` in ``family``, the checker in ``certificate``.
 """
 from dataclasses import dataclass
+from itertools import product
 
+from ..aut.autos import apply_pres
 from ..core.words import Presentation, fmt, renumber, substitute_generator
-from .family import MAX_LEN, subwords
-from .substitution import X, Y, Z, isolate, substitute
+from .family import FAMILIES, MAX_LEN, proper_subwords, subwords
+from .substitution import X, Y, Z, isolate, occurrences, patterns, substitute, substitute_pattern
 
 
 @dataclass(frozen=True)
@@ -35,12 +37,27 @@ class CoVImage:
         return f"{fmt(self.w)}/{'xy'[self.gen - 1]}/{self.iso_index}"
 
 
-def branches(r1, r2, w, gen, max_len=MAX_LEN):
-    """Every valid CoV of ``(r1, r2)`` for one ``w`` and one eliminated ``gen``: one per isolating relator (rule b)."""
-    r1_sub, n1 = substitute(r1, w)
-    r2_sub, n2 = substitute(r2, w)
-    if n1 + n2 == 0:
+def class_key(pres):
+    """``pres`` up to relator order, rotation, inversion, cyclic reduction and the 8 signed permutations of x, y."""
+    return min(apply_pres(pres, (k,)).reduced().canonical().rels for k in range(8))     # AUTOS[0:8]
+
+
+def substitutions(r1, r2, w, exhaustive):
+    """``(r1', r2', n_subs)`` for each way of putting ``z`` for ``w``: the one pass of ``substitute`` (rule s), or if
+    ``exhaustive`` every pattern of non-overlapping occurrences with at least one taken (``suballpxyb8``)."""
+    if not exhaustive:
+        (r1_sub, n1), (r2_sub, n2) = substitute(r1, w), substitute(r2, w)
+        if n1 + n2:
+            yield r1_sub, r2_sub, n1 + n2
         return
+    m = len(w)
+    for c1, c2 in product(patterns(occurrences(r1, w), len(r1), m), patterns(occurrences(r2, w), len(r2), m)):
+        if c1 or c2:
+            yield substitute_pattern(r1, c1, m), substitute_pattern(r2, c2, m), len(c1) + len(c2)
+
+
+def branches(r1_sub, r2_sub, n_subs, w, gen, max_len=MAX_LEN):
+    """Every valid CoV of one substituted pair, eliminating ``gen``: one per isolating relator (rule b)."""
     definition = (-Z,) + w                                   # the relator Z w
     for iso_index, (isolating, other) in enumerate(((r1_sub, r2_sub), (r2_sub, r1_sub))):
         expr = isolate(isolating, gen)
@@ -48,13 +65,14 @@ def branches(r1, r2, w, gen, max_len=MAX_LEN):
             continue
         image_rels = tuple(renumber(substitute_generator(r, gen, expr), gen) for r in (other, definition))
         if all(image_rels) and (max_len is None or max(map(len, image_rels)) <= max_len):
-            yield CoVImage(Presentation(2, image_rels), w, gen, iso_index, expr, (r1_sub, r2_sub), n1 + n2)
+            yield CoVImage(Presentation(2, image_rels), w, gen, iso_index, expr, (r1_sub, r2_sub), n_subs)
 
 
-def enumerate_images(pres, max_len=MAX_LEN):
-    """All CoV images of the 2-generator, 2-relator ``pres`` as it is written (the order of the relators and their
-    rotation matter), without repeats and without ranking: ``w`` by (length, word), then eliminate x before y,
-    then relator 1 before relator 2.
+def enumerate_images(pres, max_len=MAX_LEN, family="subnc2pxysb"):
+    """All CoV images of the 2-generator, 2-relator ``pres`` in the ``family`` (``acx.cov.family``), without ranking:
+    ``w`` by (length, word), then each substitution of ``w``, then eliminate x before y, then relator 1 before
+    relator 2. ``subnc2pxysb`` reads the relators as written (their rotation matters) and drops repeated images;
+    ``suballpxyb8`` reads them cyclically reduced and keeps the first image of each ``class_key``, not the row's own.
 
     Per image: **define** ``z = w`` (a relator ``Z w``), **substitute** ``z`` for ``w`` / ``w^-1`` in ``r1, r2``,
     **isolate** ``g^+-1`` in one relator (``g = expr(other, z)``), **destabilise** (put ``expr`` for ``g`` in the
@@ -62,12 +80,19 @@ def enumerate_images(pres, max_len=MAX_LEN):
     """
     if pres.n_gen != 2 or len(pres.rels) != 2:
         raise ValueError(f"CoV needs a 2-generator, 2-relator presentation, got {pres}")
-    r1, r2 = pres.rels
-    seen, images = set(), []
-    for w in subwords(r1, r2):
-        for gen in (X, Y):
-            for image in branches(r1, r2, w, gen, max_len):
-                if image.pres.rels not in seen:
-                    seen.add(image.pres.rels)
-                    images.append(image)
+    if family not in FAMILIES:
+        raise ValueError(f"family {family!r} not in {FAMILIES}")
+    exhaustive = family == "suballpxyb8"
+    r1, r2 = pres.reduced().rels if exhaustive else pres.rels
+    words = proper_subwords(r1, r2) if exhaustive else subwords(r1, r2)
+    seen = {class_key(pres)} if exhaustive else set()
+    images = []
+    for w in words:
+        for r1_sub, r2_sub, n_subs in substitutions(r1, r2, w, exhaustive):
+            for gen in (X, Y):
+                for image in branches(r1_sub, r2_sub, n_subs, w, gen, max_len):
+                    key = class_key(image.pres) if exhaustive else image.pres.rels
+                    if key not in seen:
+                        seen.add(key)
+                        images.append(image)
     return tuple(images)

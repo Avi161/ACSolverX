@@ -1,6 +1,6 @@
-"""The family ``subnc2pxysb``: which words ``w`` may define ``z = w(x, y)``, and the limits on an image.
+"""The families: which words ``w`` may define ``z = w(x, y)``, and the limits on an image.
 
-The tag names the rules, and changing one is a different experiment:
+The tag names the rules, and changing one is a different experiment. The default ``subnc2pxysb``:
 
     sub   ``w`` is a cyclic subword of a relator, the seam included, of length >= 2 (``subwords``)
     nc2   ``w`` is dropped when substituting it brings a relator it occurs in below 3 letters (``subwords``)
@@ -8,10 +8,17 @@ The tag names the rules, and changing one is a different experiment:
     xy    both generators are tried as the one to eliminate (``cov.enumerate_images``)
     s     ``substitute`` also matches ``w`` across the seam of the written relator (``substitution.substitute``)
     b     every relator that isolates the generator gives its own image (``cov.branches``)
+
+The exhaustive sweep's ``suballpxyb8`` keeps ``p``, ``xy`` and ``b`` and replaces the rest:
+
+    sub   ``w`` is a cyclic subword of length 2 to |r| - 1 and not a whole relator; no nc2 gate (``proper_subwords``)
+    all   every set of non-overlapping occurrences is substituted, the seam an ordinary place (``substitution.patterns``)
+    8     one image per class under relator order, rotation, inversion and the 8 signed permutations (``cov.class_key``)
 """
 from ..core.words import inverse, reduce
 from .substitution import substitute
 
+FAMILIES = ("subnc2pxysb", "suballpxyb8")    # the default first
 MIN_W_LEN = 2          # |w| < 2 would be a rename
 MIN_TRANSFORMED = 3    # nc2: a relator shorter than this after substituting is a collapse
 MAX_LEN = 239          # an image with a longer relator is not in the family; None = no limit
@@ -35,6 +42,17 @@ def _collapses(w, rels):
 
 
 def subwords(r1, r2):
-    """The words ``w`` of the family for ``(r1, r2)``, ordered by (length, word)."""
+    """The words ``w`` of ``subnc2pxysb`` for ``(r1, r2)``, ordered by (length, word)."""
     found = _cyclic_subwords(r1) | _cyclic_subwords(r2)
     return sorted((w for w in found if not _collapses(w, (r1, r2))), key=lambda w: (len(w), w))
+
+
+def proper_subwords(r1, r2):
+    """The words ``w`` of ``suballpxyb8`` for ``(r1, r2)``: the cyclic subwords without the whole relators (a rotation
+    of either relator or its inverse, even inside the other relator), ordered by (length, word)."""
+    found, whole = set(), set()
+    for rel in (r1, r2):
+        words = _cyclic_subwords(rel)
+        found |= words
+        whole |= {w for w in words if len(w) == len(reduce(rel))}
+    return sorted(found - whole, key=lambda w: (len(w), w))
