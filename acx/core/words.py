@@ -227,3 +227,10 @@ class Presentation:
 
     def __str__(self):
         return "<" + ", ".join(map(to_char, range(1, self.n_gen + 1))) + " | " + ", ".join(self.strs) + ">"
+
+
+def as_presentation(pres):
+    """``pres`` as a ``Presentation``: relator strings (``("xxYXY", "xyyXY")``) are parsed."""
+    if isinstance(pres, Presentation):
+        return pres
+    return Presentation.parse(*pres)

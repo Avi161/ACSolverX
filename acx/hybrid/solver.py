@@ -7,7 +7,7 @@ import time
 from dataclasses import dataclass, field, replace
 
 from ..core.config import BACKENDS, is_number, parse_cap, require_bool, require_int
-from ..core.words import Presentation
+from ..core.words import as_presentation
 from ..verify.replay import abs_det
 from .capwatch import blank_records
 from .cascade import cascade
@@ -64,8 +64,7 @@ class HybridResult:
 def solve(pres, cfg=None, **overrides):
     """Solve ``pres`` (a ``Presentation`` or two relator strings), with ``cfg`` and ``overrides`` of its fields."""
     cfg = (cfg or HybridConfig()).replace(**overrides)
-    if not isinstance(pres, Presentation):
-        pres = Presentation.parse(*pres)
+    pres = as_presentation(pres)
     if pres.n_gen != 2 or len(pres.rels) != 2:
         raise ValueError("the hybrid solves balanced two-generator presentations")
     start = time.perf_counter()

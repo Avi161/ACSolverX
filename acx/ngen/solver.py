@@ -7,8 +7,8 @@ root is searched and a solve is lifted to elementary stable AC moves (``acx.ngen
 from dataclasses import dataclass, field
 
 from ..core.config import SearchConfig, require_bool
-from ..search import search
-from ..search.engine import Result, as_presentation
+from ..core.words import as_presentation
+from ..search import Result, search
 from ..verify.replay import replay
 from .lifting import lift
 from .sac import Sac, triangulate

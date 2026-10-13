@@ -9,8 +9,8 @@ from dataclasses import dataclass, field, replace
 from ..aut import automorphism, transport
 from ..core.capcount import blank, combine
 from ..core.config import SearchConfig, parse_cap, require_bool, require_int
+from ..core.words import as_presentation
 from ..search import Result, search
-from ..search.engine import as_presentation
 from ..verify.replay import replay
 from .certificate import check_cert
 from .family import FAMILIES, MAX_LEN

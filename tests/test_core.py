@@ -9,7 +9,7 @@ from acx.core.config import SearchConfig, is_number, parse_override, reject_unkn
 from acx.core.moves import (Move, Trace, apply_raw, destabilize, elementary_step, enumerate_moves,
                             from_legacy, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
-from acx.core.words import (Presentation, canonical_rels, canonical_word, fmt, inverse,
+from acx.core.words import (Presentation, as_presentation, canonical_rels, canonical_word, fmt, inverse,
                             parse, reduce, rotate, state_key)
 
 RNG = random.Random(7)
@@ -27,6 +27,13 @@ def test_parse_format_roundtrip():
     assert parse("xYyX") == (1, -2, 2, -1)
     assert fmt((1, -2, 3, -3)) == "xYzZ"
     assert inverse(parse("xyY")) == parse("yYX")
+
+
+def test_as_presentation_takes_a_presentation_or_relator_strings():
+    pres = Presentation.parse("xxYXY", "xyyXY")
+    assert as_presentation(pres) is pres
+    assert as_presentation(("xxYXY", "xyyXY")) == as_presentation(["xxYXY", "xyyXY"]) == pres
+    assert as_presentation(("xy", "yz", "zx")).n_gen == 3
 
 
 def test_rotate_rolls_right():

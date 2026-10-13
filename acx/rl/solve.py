@@ -9,8 +9,8 @@ import time
 
 from ..core.capcount import blank
 from ..core.config import require_int
-from ..core.words import reduce
-from ..search.engine import Result, as_presentation
+from ..core.words import as_presentation, reduce
+from ..search.engine import Result
 from ..verify.replay import replay
 from . import L
 from .beam import beam_search
