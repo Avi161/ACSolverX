@@ -6,6 +6,7 @@ import re
 import pytest
 
 from acx.core.config import SearchConfig, is_number, parse_override, reject_unknown, require_bool, require_int
+from acx.core.digrams import digram, digram_counts, tokenize
 from acx.core.moves import (Move, Trace, apply_raw, destabilize, elementary_step, enumerate_moves,
                             from_legacy, s_step, seam_cancels, stabilize)
 from acx.core.priority import features, length, s20_mk2
@@ -230,3 +231,23 @@ def test_trace_conjugated_multiply(s):
     src = p.rels[1] if s == 1 else inverse(p.rels[1])
     want = reduce(p.rels[0] + reduce(inverse(c) + src + c, cyclic=False), cyclic=False)
     assert tr.pres.rels == (want, p.rels[1]) and all(m["op"] in ("invert", "conjugate", "multiply") for m in tr.moves)
+
+
+def test_digram_is_the_cyclic_pair_in_the_orientation_it_shares_with_its_inverse():
+    w = parse("xyXY")
+    assert [digram(w, k) for k in range(4)] == [parse("YX"), parse("xY"), parse("XY"), parse("Yx")]
+    assert digram(parse("YX"), 0) == digram(parse("xy"), 0) == parse("YX")
+
+
+def test_digram_counts_tallies_each_cyclic_digram_once_with_its_inverse():
+    counts = digram_counts([parse("xyXY"), parse("xx"), parse("y"), ()])
+    assert counts == {parse("YX"): 1, parse("xY"): 1, parse("XY"): 1, parse("Yx"): 1, parse("XX"): 2}
+    assert list(digram_counts([parse("xx"), parse("xy")])) == [parse("XX"), parse("YX"), parse("XY")]   # as they occur
+
+
+def test_tokenize_is_the_shortest_rewriting_ties_to_the_smaller_word():
+    xy = parse("xy")
+    assert tokenize(parse("xyxy"), xy, 3) == (3, 3)
+    assert tokenize(parse("YXxy"), xy, 3) == (-3, 3)                # d^-1 becomes h^-1
+    assert tokenize(parse("yx"), xy, 3) == parse("yx")              # linear: no match across the end
+    assert tokenize(parse("xxx"), parse("xx"), 3) == (1, 3)         # (1, 3) and (3, 1) tie: the smaller

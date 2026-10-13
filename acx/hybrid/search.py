@@ -8,6 +8,7 @@ from operator import itemgetter
 
 import numpy as np
 
+from ..core.digrams import digram_counts
 from ..core.priority import length
 from ..core.words import canonical_rels
 from . import dynrank as D
@@ -120,7 +121,7 @@ class BestFirst:
             self.offer((child, node, (move,), R2), depth, base + j + (shift[j] if shift else 0))
         for k in NIELSEN:
             self.offer((self.transform(rep, k), node, (Aut(k),), R2), depth, self.tick())
-        lower = float(len(rep) - 1 - max(D.digram_counts(state).values(), default=0) + 3 + cfg.penalty)
+        lower = float(len(rep) - 1 - max(digram_counts(state).values(), default=0) + 3 + cfg.penalty)
         heapq.heappush(self.dheap, (lower, depth, self.tick(), (None, node, state, DEFS)))
 
     def offer_children(self, words, kept, drops, parent, depth):
