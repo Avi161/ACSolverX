@@ -213,6 +213,7 @@ reason; results always jsonl). [[WORKS]](lessons/colab-notebook-pattern.md)
 **`stable_ac/rank3/aws_rank3_*_box.sh`** — EC2 user-data, one box per script.
 - The instance type is a choice, not a default: benchmark with `aws_rank3_bench_box.sh` and take the most nodes per dollar whose digest matches (Graviton4 spot as of 12 Oct 2026). [the measurement and the process](lessons/pick-the-cpu-by-nodes-per-dollar.md)
 - One length with long and short tasks, two boxes: `aws_rank3_arm_main_box.sh` on demand from the slow end (it merges), `aws_rank3_arm_helper_box.sh` on spot from the fast end (`run_rank3_bf.py --reverse --no-merge`, shards only); each copies the other's shards from S3 and skips those tasks. Same lesson.
+- More than one helper: `aws_rank3_split_helpers.py` gives each its own presentations (`--pres`, with `--path-sample-target` scaled so the sample fraction is unchanged); two helpers on the same task order run each other's tasks. `aws_rank3_supervise.zsh` relaunches a reclaimed box. [why](lessons/relaunch-spot-boxes-automatically.md)
 
 ## Adding a lesson
 

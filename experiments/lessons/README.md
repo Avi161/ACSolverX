@@ -90,6 +90,7 @@ Open a file here only when you need the evidence behind a rule you have already 
 | | lesson |
 |---|---|
 | `WORKS` | [Pick the machine by measured nodes per second per dollar; ARM Graviton4 spot won](pick-the-cpu-by-nodes-per-dollar.md) |
+| `TRAP` | [A spot box needs an automatic relaunch from the minute it starts; several small boxes in different zones beat one big one](relaunch-spot-boxes-automatically.md) |
 
 ---
 
