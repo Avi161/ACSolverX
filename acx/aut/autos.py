@@ -63,7 +63,8 @@ TABLES = tuple(map(sub_table, AUTOS))
 
 
 def image(w, k):
-    """``AUTOS[k](w)``, cyclically reduced."""
+    """The word ``w`` under ``AUTOS[k]``, then cyclically reduced (``apply`` only freely reduces; ``images`` gives the
+    generators' images)."""
     return reduce(apply_table(w, TABLES[k]))
 
 

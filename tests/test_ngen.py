@@ -280,6 +280,7 @@ def test_each_module_of_the_package_is_its_attribute():
     ``lifting.py`` and ``solver.py``, so neither hides its module."""
     names = {info.name for info in pkgutil.iter_modules(acx.ngen.__path__)}
     assert {"lifting", "solver"} <= names
+    exported = dict(vars(acx.ngen))          # before the imports below bind each submodule on the package
     for name in sorted(names):
         module = importlib.import_module(f"acx.ngen.{name}")
-        assert inspect.ismodule(module) and getattr(acx.ngen, name) is module
+        assert inspect.ismodule(module) and exported.get(name, module) is module

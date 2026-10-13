@@ -296,7 +296,8 @@ def test_relabel_canonical_raises_past_its_leaf_limit():
     with pytest.raises(RuntimeError, match="leaf limit"):
         dynrank.relabel_canonical(words, limit=5)
     canon, perm, _ = dynrank.relabel_canonical(words, limit=6)
-    assert sorted(perm.values()) == [1, 2, 3] and dynrank.relabel_canonical(words[::-1], limit=6)[0] == canon
+    assert sorted(perm.values()) == [1, 2, 3]
+    assert dynrank.relabel_canonical(words[::-1], limit=6)[0] == canon      # the order of the relators does not matter
 
 
 def test_lazy_entries_come_in_key_order_and_equal_the_eager_list(ms640):
@@ -621,6 +622,7 @@ def test_each_module_of_the_package_is_its_attribute():
     ``elementary.py``, so it does not hide its module."""
     names = {info.name for info in pkgutil.iter_modules(acx.hybrid.__path__)}
     assert "elementary" in names
+    exported = dict(vars(acx.hybrid))          # before the imports below bind each submodule on the package
     for name in sorted(names):
         module = importlib.import_module(f"acx.hybrid.{name}")
-        assert inspect.ismodule(module) and getattr(acx.hybrid, name) is module
+        assert inspect.ismodule(module) and exported.get(name, module) is module
