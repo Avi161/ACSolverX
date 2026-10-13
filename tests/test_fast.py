@@ -3,7 +3,7 @@
 Parity means the same ``solved``, ``pops``, ``path``, ``end``, ``depth``, popped-state
 ``trace`` and ``PARITY_STATS``. ``PARITY_ROWS`` are 40 MS640 rows at budget
 10,000 under both presets (about 70 s, nearly all of it spec; the four heavy
-rows are marked ``slow``); the ``slow`` set adds every 16th MS640 row (40 rows,
+rows are marked ``slow``); the ``slow`` set adds every 16th MS640 row (35 rows,
 about 56,000 spec pops, a few minutes).
 """
 import random
@@ -28,7 +28,7 @@ from acx.search.fast.kernels import PRIORITY_IDS, canon_buf, reduce_buf, rel_les
 PARITY_ROWS = [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255,
                270, 285, 300, 315, 330, 345, 360, 375, 390, 405, 420, 435, 450, 467, 482, 497, 512,
                528] + [pytest.param(p, marks=pytest.mark.slow) for p in (464, 547, 565, 577)]
-FULL_ROWS = list(range(0, 640, 16))
+FULL_ROWS = [p for p in range(0, 640, 16) if p not in (0, 240, 464, 512, 528)]     # those run in PARITY_ROWS
 
 
 def parity(pres, **kw):
