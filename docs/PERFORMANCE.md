@@ -3,6 +3,11 @@
 What a setting costs in CPU time and memory, measured with `run.py` on MS640: the relator cap, recording the path, and
 (last section) the methods side by side.
 
+**After the replay fix.** Commit `0712d76a` makes the runner replay each solve once instead of twice and warm up before
+the timed rows, which changes CPU only: solved counts, pops, units and paths are identical. Only the two hybrid rows of
+"Recording the path" (MS640, path on and off, one run each) and the LENGTH, S20_MK2 and hybrid runs of "Methods side by
+side" were measured again; every other CPU number, ratio and microsecond in this file was measured before the fix.
+
 **How it was measured.** A 4-vCPU VM (Intel Xeon, 2.8 GHz, 16 GB) that other jobs share; Python 3.12.3, numba 0.63.1,
 numpy 2.1.3. Each run is one process (`workers = 1`, `NUMBA_NUM_THREADS=1`). The cost is **CPU time**, never wall time:
 `cpu_seconds` of `summary.json` (every row, replay and decoding included) and `us_per_cost`, its microseconds per pop
@@ -126,7 +131,7 @@ large fixed cap (it is no slower, at about the same memory), and keep 24 when a 
 `path = true` (the default) keeps each solve's S-move path, replays it on the row, and (`decode = true`) decodes it to
 elementary AC moves; the record is then `verified`. `path = false` skips all three: the search stores no parent and move
 per state, nothing is replayed, and `path`, `elementary` and `verified` are empty. `--set decode=false` keeps the replay
-and skips only the decoding. MS640, 10,000 pops (hybrid: 1,000 units per row):
+and skips only the decoding. MS640, 10,000 pops (hybrid: 1,000 units per row; only the hybrid rows are after the fix):
 
 | run | `path` | CPU s | x path on | us/cost | peak MB | load |
 |---|---|---:|---:|---:|---:|---:|
@@ -139,12 +144,12 @@ and skips only the decoding. MS640, 10,000 pops (hybrid: 1,000 units per row):
 | S20_MK2, cap 24 | false | 34.8 | 0.56 | 91.0 | 234 | 1.5 |
 | S20_MK2, no cap | true | 91.3 | 1.00 | 238.4 | 447 | 1.8 |
 | S20_MK2, no cap | false | 62.6 | 0.69 | 163.5 | 390 | 1.9 |
-| hybrid | true | 15.0 | 1.00 | 596.8 | 176 | 1.2 |
-| hybrid | false | 3.2 | 0.21 | 127.6 | 155 | 1.4 |
+| hybrid | true | 10.5 | 1.00 | 420.8 | 175 | 1.0 |
+| hybrid | false | 2.9 | 0.28 | 117.4 | 156 | 1.0 |
 
 For LENGTH at cap 24 the default run spends 28% of its CPU beyond the search: 21% decoding to elementary moves (83.0 to
 65.9 s) and 7% on replay and storing the path (to 60.0 s). With S20_MK2, whose paths are longer (168,702 elementary moves
-against 114,828), recording the path is 44% of the run, and with the hybrid 79% (15.0 s to 3.2 s): its certificate is the
+against 114,828), recording the path is 44% of the run, and with the hybrid 72% (10.5 s to 2.9 s): its certificate is the
 expensive part. `path = false` is for counting solves or comparing settings quickly; a result to quote needs `path = true`,
 since only then is the solve replayed on its row.
 
@@ -159,7 +164,9 @@ looks cheaper. CPU **covers every row**, misses included (a greedy miss spends i
 replaying each certificate; CPU µs per pop/unit is that total over the total cost. *raise-cap rows* counts the rows where
 a larger relator cap would change the search ([CAP.md](CAP.md)). CPU is `time.process_time` of single-threaded runs,
 one at a time, on a 4-core 2.8 GHz VM; identical runs differ by 4 to 11% in total CPU, so trust ratios more than
-milliseconds.
+milliseconds. The LENGTH, S20_MK2 and hybrid runs are after the replay fix (one run each); **the CoV, aut and RL runs
+were not repeated, so their CPU columns were measured before the replay fix** (their solved counts and costs do not
+depend on it).
 
 ### bench60
 
@@ -167,11 +174,13 @@ milliseconds.
 
 | run | method | benchmark | rows | solved | mean cost (solved) | median cost (solved) | mean sub_moves | mean elem_moves | CPU s/row | CPU µs per pop/unit | raise-cap rows | errors |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| bench60_length | greedy | bench60 | 60 | 40 (66.7%) | 1,205.7 pops | 197.0 pops | 36.9 | 375.7 | 0.538 | 130.1/pop | 0 | 0 |
-| bench60_s20_mk2 | greedy | bench60 | 60 | 52 (86.7%) | 1,187.3 pops | 190.0 pops | 62.2 | 657.2 | 0.336 | 142.2/pop | 10 | 0 |
-| bench60_hybrid | hybrid | bench60 | 60 | 60 (100.0%) | 79.7 units | 43.0 units | 56.4 | 460.7 | 0.110 | 1,380.7/unit | 0 | 0 |
+| bench60_length | greedy | bench60 | 60 | 40 (66.7%) | 1,205.7 pops | 197.0 pops | 36.9 | 375.7 | 0.512 | 123.7/pop | 0 | 0 |
+| bench60_s20_mk2 | greedy | bench60 | 60 | 52 (86.7%) | 1,187.3 pops | 190.0 pops | 62.2 | 657.2 | 0.338 | 143.0/pop | 10 | 0 |
+| bench60_hybrid | hybrid | bench60 | 60 | 60 (100.0%) | 79.7 units | 43.0 units | 56.4 | 460.7 | 0.076 | 949.9/unit | 0 | 0 |
 | bench60_cov | cov | bench60 | 60 | 39 (65.0%) | 942.2 pops | 121.0 pops | 26.7 | 171.4 (n=29) | 0.553 | 134.4/pop | 0 | 0 |
 | bench60_aut | aut | bench60 | 60 | 52 (86.7%) | 1,303.2 pops | 180.5 pops | 61.8 | 3,401.1 | 0.498 | 202.2/pop | 10 | 0 |
+
+CPU of `bench60_cov` and `bench60_aut`: measured before the replay fix.
 
 ### ladder200
 
@@ -180,11 +189,13 @@ only levels 1 and 2.
 
 | run | method | benchmark | rows | solved | mean cost (solved) | median cost (solved) | mean sub_moves | mean elem_moves | CPU s/row | CPU µs per pop/unit | raise-cap rows | errors |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| ladder200_length | greedy | ladder200 | 188 | 40 (21.3%) | 1,779.9 pops | 999.5 pops | 49.8 | 527.7 | 0.834 | 101.0/pop | 3 | 0 |
-| ladder200_s20_mk2 | greedy | ladder200 | 188 | 116 (61.7%) | 2,962.9 pops | 2,372.5 pops | 66.4 | 742.9 | 0.586 | 103.6/pop | 77 | 0 |
-| ladder200_hybrid | hybrid | ladder200 | 188 | 188 (100.0%) | 118.7 units | 65.5 units | 41.1 | 462.4 | 0.253 | 2,129.0/unit | 21 | 0 |
+| ladder200_length | greedy | ladder200 | 188 | 40 (21.3%) | 1,779.9 pops | 999.5 pops | 49.8 | 527.7 | 0.846 | 102.6/pop | 3 | 0 |
+| ladder200_s20_mk2 | greedy | ladder200 | 188 | 116 (61.7%) | 2,962.9 pops | 2,372.5 pops | 66.4 | 742.9 | 0.597 | 105.5/pop | 77 | 0 |
+| ladder200_hybrid | hybrid | ladder200 | 188 | 188 (100.0%) | 118.7 units | 65.5 units | 41.1 | 462.4 | 0.237 | 1,999.5/unit | 21 | 0 |
 | ladder200_cov | cov | ladder200 | 188 | 92 (48.9%) | 4,315.5 pops | 4,819.0 pops | 35.8 | 1,370.9 (n=44) | 0.971 | 134.6/pop | 0 | 0 |
 | ladder200_aut | aut | ladder200 | 188 | 116 (61.7%) | 3,025.7 pops | 2,376.0 pops | 67.7 | 2,214.9 | 0.684 | 120.1/pop | 77 | 0 |
+
+CPU of `ladder200_cov` and `ladder200_aut`: measured before the replay fix.
 
 ### MS640
 
@@ -192,15 +203,17 @@ All 640 Miller-Schupp rows, each solved by the baseline within a million pops.
 
 | run | method | benchmark | rows | solved | mean cost (solved) | median cost (solved) | mean sub_moves | mean elem_moves | CPU s/row | CPU µs per pop/unit | raise-cap rows | errors |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| ms640_length | greedy | ms640 | 640 | 606 (94.7%) | 389.5 pops | 10.0 pops | 20.0 | 189.5 | 0.129 | 143.3/pop | 0 | 0 |
-| ms640_s20_mk2 | greedy | ms640 | 640 | 626 (97.8%) | 387.7 pops | 10.5 pops | 27.0 | 269.5 | 0.100 | 166.7/pop | 20 | 0 |
-| ms640_hybrid | hybrid | ms640 | 640 | 640 (100.0%) | 39.2 units | 29.0 units | 19.3 | 139.1 | 0.022 | 561.7/unit | 0 | 0 |
+| ms640_length | greedy | ms640 | 640 | 606 (94.7%) | 389.5 pops | 10.0 pops | 20.0 | 189.5 | 0.126 | 139.8/pop | 0 | 0 |
+| ms640_s20_mk2 | greedy | ms640 | 640 | 626 (97.8%) | 387.7 pops | 10.5 pops | 27.0 | 269.5 | 0.094 | 158.0/pop | 20 | 0 |
+| ms640_hybrid | hybrid | ms640 | 640 | 640 (100.0%) | 39.2 units | 29.0 units | 19.3 | 139.1 | 0.017 | 421.7/unit | 0 | 0 |
 | ms640_cov | cov | ms640 | 640 | 584 (91.2%) | 228.0 pops | 9.0 pops | 14.3 | 99.2 (n=554) | 0.138 | 127.0/pop | 0 | 0 |
 | ms640_aut | aut | ms640 | 640 | 626 (97.8%) | 428.4 pops | 10.0 pops | 27.2 | 1,258.4 | 0.161 | 252.1/pop | 20 | 0 |
 | ms640_rl30 | rl | ms640 | 30 | 30 (100.0%) | 321.7 evaluations | 259.5 evaluations | 4.4 | 28.2 | 0.871 | 2,706.5/evaluation | 5 | 0 |
 
+CPU of `ms640_cov`, `ms640_aut` and `ms640_rl30`: measured before the replay fix.
+
 RL ran only the first 30 rows, so its line is not comparable with the others'. On those 30 rows (`--common` over all six
-runs; every run solves them all) the five searches need 4.8 to 20.1 pops or units at 3 to 16 ms of CPU per row, RL
+runs; every run solves them all) the five searches need 4.8 to 20.1 pops or units at 1 to 16 ms of CPU per row, RL
 321.7 evaluations at 871 ms.
 
 ### Head to head: LENGTH, S20_MK2, hybrid
@@ -212,15 +225,15 @@ the rows LENGTH solved, and the table averages those:
 
 | run | rows all three solved | mean cost (solved) | median cost (solved) | CPU s/row | CPU µs per pop/unit |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| bench60_length | 40 of 60 | 1,205.7 pops | 197.0 pops | 0.240 | 198.7/pop |
-| bench60_s20_mk2 | 40 of 60 | 280.1 pops | 86.0 pops | 0.083 | 296.9/pop |
-| bench60_hybrid | 40 of 60 | 38.8 units | 33.5 units | 0.029 | 747.4/unit |
-| ladder200_length | 40 of 188 | 1,779.9 pops | 999.5 pops | 0.258 | 145.0/pop |
-| ladder200_s20_mk2 | 40 of 188 | 594.4 pops | 256.5 pops | 0.144 | 242.1/pop |
-| ladder200_hybrid | 40 of 188 | 46.6 units | 42.0 units | 0.031 | 655.8/unit |
-| ms640_length | 606 of 640 | 389.5 pops | 10.0 pops | 0.067 | 173.2/pop |
-| ms640_s20_mk2 | 606 of 640 | 237.2 pops | 9.5 pops | 0.054 | 229.7/pop |
-| ms640_hybrid | 606 of 640 | 32.1 units | 28.0 units | 0.010 | 312.4/unit |
+| bench60_length | 40 of 60 | 1,205.7 pops | 197.0 pops | 0.230 | 191.0/pop |
+| bench60_s20_mk2 | 40 of 60 | 280.1 pops | 86.0 pops | 0.072 | 257.7/pop |
+| bench60_hybrid | 40 of 60 | 38.8 units | 33.5 units | 0.021 | 531.4/unit |
+| ladder200_length | 40 of 188 | 1,779.9 pops | 999.5 pops | 0.255 | 143.5/pop |
+| ladder200_s20_mk2 | 40 of 188 | 594.4 pops | 256.5 pops | 0.137 | 231.3/pop |
+| ladder200_hybrid | 40 of 188 | 46.6 units | 42.0 units | 0.019 | 405.7/unit |
+| ms640_length | 606 of 640 | 389.5 pops | 10.0 pops | 0.066 | 169.9/pop |
+| ms640_s20_mk2 | 606 of 640 | 237.2 pops | 9.5 pops | 0.050 | 212.2/pop |
+| ms640_hybrid | 606 of 640 | 32.1 units | 28.0 units | 0.008 | 245.0/unit |
 
 ### What it shows
 
@@ -230,14 +243,14 @@ the rows LENGTH solved, and the table averages those:
    S20_MK2 explores 280, 594 and 237 pops and LENGTH 1,206, 1,780 and 390. Over all rows the totals are 4,783, 22,319
    and 25,064 units against 141,740, 1,063,702 and 382,718 pops for S20_MK2: each greedy miss alone costs 10,000 pops,
    and no hybrid row needs more than 742 of its 1,000 units.
-3. It is also quicker in CPU, although a unit costs more than a pop (0.56 to 2.1 ms against 0.10 to 0.17 ms for a
-   greedy pop): the hybrid takes 110, 253 and 22 ms per row against 336, 586 and 100 ms for S20_MK2 and 538, 834 and
-   129 ms for LENGTH, while solving more rows.
+3. It is also quicker in CPU, although a unit costs more than a pop (0.42 to 2.0 ms against 0.10 to 0.16 ms for a
+   greedy pop): the hybrid takes 76, 237 and 17 ms per row against 338, 597 and 94 ms for S20_MK2 and 512, 846 and
+   126 ms for LENGTH, while solving more rows.
 4. The gain is in the hard rows, not the typical one: on MS640, where most rows are easy, the median hybrid row costs 29
    units against 10 pops for greedy, and the hybrid's mean is lower because greedy's hard rows run to thousands of pops.
-5. Of the other kinds, aut solves exactly the rows S20_MK2 solves at 1.2 to 1.6 times its CPU per row, CoV solves fewer
-   rows than S20_MK2 (39, 92 and 584) at 1.4 to 1.7 times its CPU, and RL solves the 30 rows it ran at 871 ms of CPU per
-   row against 3 to 16 ms for the searches.
+5. Of the other kinds, aut solves exactly the rows S20_MK2 solves at 1.1 to 1.7 times its CPU per row, CoV solves fewer
+   rows than S20_MK2 (39, 92 and 584) at 1.5 to 1.6 times its CPU, and RL solves the 30 rows it ran at 871 ms of CPU per
+   row against 1 to 16 ms for the searches (CPU of aut, CoV and RL from before the replay fix).
 
 ### Reproduce
 
@@ -264,4 +277,5 @@ python compare.py $OUT/{bench60,ladder200,ms640}_{length,s20_mk2,hybrid,cov,aut}
 The shipped budgets apply (10,000 pops for LENGTH, S20_MK2 and aut, 10,000 in total for CoV, 1,000 units for the
 hybrid), and the 16 runs take about 19 CPU minutes (bench60 2, ladder200 10, MS640 6). With exactly two runs,
 `compare.py` also prints their head-to-head line of solved rows. Your own presentations: replace `--set benchmark=$b`
-by `--input mine.txt` (formats in `acx/data.py`). Measured at `b745f0f8` (Python 3.12.3, numba 0.63.1, numpy 2.1.3).
+by `--input mine.txt` (formats in `acx/data.py`). The LENGTH, S20_MK2 and hybrid runs were measured at `0712d76a`, the CoV, aut and RL runs at `b745f0f8` (Python 3.12.3,
+numba 0.63.1, numpy 2.1.3).
