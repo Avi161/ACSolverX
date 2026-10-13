@@ -156,12 +156,14 @@ Both backends run the search of section 5 (`acx.search.search(pres, cfg)`); the 
 
 - **spec** (`acx.search.spec`) is pure Python: a heap and a dict, one move generator, written to be read. It is the
   reference and the slow baseline.
-- **fast** (`acx.search.fast`) is numba: states are rows of Booth symbols (one byte each; integer order is the Booth
-  order and `b ^ 1` is the inverse) in a flat arena with an int32 heap and an FNV-1a dedup table; a path is stored as
-  `(parent, move)`. The expansion kernel skips a child that is a cyclic *cut shift* of the previous child of the same
-  block (the raw words are conjugate, so they reduce to the same cyclic word) and still counts every dropped move,
-  including a whole block whose untouched relator is over the cap. Canonicalisation is a general two-pointer
-  least-rotation scan, so the kernels run at any number of generators and relators.
+- **fast** (`acx.search.fast`) is numba: states are rows of Booth symbols (integer order is the Booth order and `b ^ 1`
+  is the inverse), stored packed in a flat arena (2 bits a symbol at two generators) with an int32 heap and an FNV-1a
+  dedup table; a path is stored as `(parent, move)`. The expansion kernel skips a child that is a cyclic *cut shift* of
+  the previous child of the same block (the raw words are conjugate, so they reduce to the same cyclic word) and still
+  counts every dropped move, including a whole block whose untouched relator is over the cap. A relator's canonical
+  form is the least of its rotations and its inverse's read as integers (`b` bits a symbol in one 64-bit word: up to 32
+  letters at two generators), or, for a longer word, a two-pointer least-rotation scan; either way the kernels run at
+  any number of generators and relators.
 
 **The contract** is step for step, not "same answer": for the same start, priority, cap and budget, `fast` pops the same
 states in the same order. `tests/test_fast.py` compares `solved`, `pops`, the path, the end state, the full popped-state

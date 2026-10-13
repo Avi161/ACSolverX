@@ -428,10 +428,13 @@ All on `codex/ac-elementary-decoder` (none is in this repository): the `perf_lab
 - **Superseded.** The 2.78x "heavy solver" (177 vs 492 us/node, 400 runs, 0 mismatches) on `test/greedy-test-suite` is
   replaced by the engine above; keep its parity runs as a test.
 - **Path capture.** `hcompact` returns no path unless `track_path=True` (8 B/state, about 8% on top of the arena).
-- **`acx.search.fast` (this branch)** ports the expansion kernel and the arena/heap/dedup design but not the 2-bit
-  packing (it worked at two generators only): one byte per symbol, about 100 to 120 B per state at cap 24 with path
-  capture, against 52 to 68 B in `hcompact`. Fine to about 1M pops a row; a 10M-pop campaign wants the packing back
-  (open). Speed against `spec`: 32x the CPU over the whole MS640 LENGTH run (section 0).
+- **`acx.search.fast` (this branch)** ports the expansion kernel, the arena/heap/dedup design, the packed rows and the
+  packed canonicalisation, at any number of generators: rows are 2 bits a symbol at two generators (4 at three to
+  eight, 8 beyond), and a word whose symbols fit `b` bits with `b * length <= 64` is canonicalised as integers (longer
+  words by the two-pointer scan). About 68 to 76 B per state at cap 24 with path capture (the int32
+  `(i, j, s, k1, k2)` move is 20 of them), against 104 to 112 B with one byte a symbol and 52 to 68 B in `hcompact`.
+  Speed and memory against the unpacked engine: [PERFORMANCE.md](PERFORMANCE.md), "Packed words"; against `spec`, 32x
+  the CPU over the whole MS640 LENGTH run (section 0, measured before the packing).
 
 ## 4. Hybrid solver ("solve everything")
 
