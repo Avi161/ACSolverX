@@ -14,7 +14,7 @@ path = true                                # false: faster; no path, no replay, 
 priority = "length"        # "length" (total relator length) or "s20_mk2" (two generators only)
 cap = 24                   # longest relator a child may have; "none" = every child, slower (docs/CAP.md)
 budget = 10000             # pops per row; a row that runs out is unsolved
-backend = "fast"           # "fast" (numba) takes the same steps as "spec" (pure Python, 27x slower)
+backend = "fast"           # "fast" (numba) takes the same steps as "spec" (pure Python; 32x the CPU, docs/RESULTS.md)
 cyclic = true              # cyclic reduction of children
 trace = false              # keep every popped state (parity tests only; memory grows)
 # capture_path = true      # not written: the top-level path sets it; setting it here is an error

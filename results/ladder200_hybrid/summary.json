@@ -14,6 +14,9 @@
   "total": 22319,
   "on_solved": 22319
  },
+ "cost_unit": "units",
+ "cost_mean": 118.72,
+ "cost_median": 65.5,
  "path_length": {
   "ac_path": {
    "sub_moves": {
@@ -107,7 +110,7 @@
     "ac19_51034"
    ],
    "dropped": 606830,
-   "would_pop": 559,
+   "would_pop": 507,
    "dropped_min_total": 14,
    "first_bind_min": 14,
    "needed_min": 9,
@@ -127,15 +130,16 @@
    "needed_max": null
   }
  },
- "wall_seconds": 83.21,
- "row_seconds": 163.8,
+ "wall_seconds": 15.9,
+ "row_seconds": 30.46,
+ "cpu_seconds": 30.114,
+ "us_per_cost": 1349.269,
  "config": {
   "method": "hybrid",
   "benchmark": "ladder200",
+  "name": "ladder200_hybrid",
   "hybrid": {
    "budget": 1000
-  },
-  "name": "ladder200_hybrid",
-  "workers": 2
+  }
  }
 }

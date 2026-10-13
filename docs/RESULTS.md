@@ -17,13 +17,16 @@ deterministic, and section 0 matches them exactly.
 `--fresh` after the cap counters were added, so each record carries the cap fields and each `summary.json` the `caps`
 block (section "Relator-length cap"). The summaries were written before the timing and cost keys were added: they have
 no `cpu_seconds`, `us_per_cost`, `cost_unit`, `cost_mean` or `cost_median`, and their `config` block still holds
-`workers`. The same command today writes those keys. Fast backend unless stated, cap 24 unless stated, one core
-per worker on a shared 4-core 2.8 GHz VM. Each record was written only after its certificate replayed on the row, and
-after the reruns the stored paths of the solved records were replayed again from the files by a separate script (77,723
-records of every run but `ac1m_hybrid`, 0 failures; the 103 CoV `stable_cert`s are checked by `acx.cov.verify` when written). Path lengths are totals over
-solved rows (median per row): the S-move and elementary columns count AC paths (`ac_path`, aut-assisted included); the
-**stable** columns count `stable_cert`s (S-moves of the search leg / elementary plus AC4/AC5 moves; a CoV `stable_cert`
-has no elementary path). "aut" is an aut-assisted `ac_path`. CPU s is the sum of per-row seconds.
+`workers` (and `rows` in `smoke` and `ms640_rl30`). The same command today writes those keys and leaves `workers` and
+`rows` out. `ladder200_hybrid` alone was written again by the current code, whose `dyn_cap` counter finds 507 would-pop
+states there; every other count is unchanged. Fast backend unless stated, cap 24 unless stated, one core per worker on a
+shared 4-core 2.8 GHz VM. Each record was written only after its certificate replayed on the row, and after the reruns
+the stored paths of the solved records were replayed again from the files by a separate script (77,723 records of every
+run but `ac1m_hybrid`, 0 failures; the 103 CoV `stable_cert`s are checked by `acx.cov.verify` when written). Path
+lengths are totals over solved rows (median per row): the S-move and elementary columns count AC paths (`ac_path`,
+aut-assisted included); the **stable** columns count `stable_cert`s (S-moves of the search leg / elementary plus AC4/AC5
+moves; a CoV `stable_cert` has no elementary path). "aut" is an aut-assisted `ac_path`. CPU s is the sum of per-row
+seconds.
 
 | run | config, overrides | solved | ac_path / aut / stable | cost | S-moves | elementary | stable S / elem | CPU s |
 |---|---|---:|---|---:|---:|---:|---:|---:|
@@ -205,11 +208,7 @@ Its three limits (`r2_cap`, `dyn_cap`, `slack`; [CAP.md](CAP.md)) are counted se
 | `holdout60_hybrid` | 60 / 60 | 0 | 0 / 0 | 0 / 0 | - | - | 0 / 0 | 0 |
 | `u124_hybrid` | 0 / 124 | 0 | 123 / 118 | 18,884,638 / 84,093 | 9-15 | 3 | 103 / 0 | 26,807 |
 | `ladder60_hybrid` | 60 / 60 | 0 | 7 / 7 | 273,121 / 192 | 9-13 | 54 | 0 / 0 | 0 |
-| `ladder200_hybrid` | 188 / 188 | 0 | 23 / 21 | 606,830 / 559 | 9-13 | 14 | 1 / 0 | 8 |
-
-The `ladder200_hybrid` summary was written before the last change to the hybrid's limit counters: run again on the
-current code it counts 507 `dyn_cap` would-pop states where the stored file has 559, with every other field equal
-(solved, units, the other counters).
+| `ladder200_hybrid` | 188 / 188 | 0 | 23 / 21 | 606,830 / 507 | 9-13 | 14 | 1 / 0 | 8 |
 
 - **Reading the hybrid columns.** A hybrid `*_dropped` counts classes of dropped children (plus the tail moves of the
   solving pop), not moves, and `*_would_pop` counts distinct canonical pairs; a zero still means that a larger limit
