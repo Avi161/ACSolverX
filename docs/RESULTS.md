@@ -33,7 +33,8 @@ gitignored) regenerate with the same command, and `tests/test_published.py` pins
 unless stated; one core per worker on a shared 4-core 2.8 GHz VM. Every record was written only after its certificate
 replayed on the row, and the stored paths of all runs but `ac1m_hybrid` were replayed again from the files by a
 separate script (77,723 records, 0 failures; the 103 CoV `stable_cert`s are checked by `acx.cov.verify` when
-written).
+written). The 1,136,135 paths of `ac1m_raw_hybrid` were replayed the same way, each from its own AC1M line (0
+failures).
 
 **Budget a row**: greedy, aut and ngen 10,000 pops; CoV 1,000 pops an image and 10,000 a row; hybrid 1,000 work
 units; rl a beam of width 256 for 150 steps. Path columns are totals over solved rows (median per row in brackets):
@@ -74,6 +75,7 @@ xychart-beta
 | `ms640_rl30` | `rl` (rows 0:30) | beam 256 x 150 | 30 / 30 | 30 / 0 / 0 | 9,650 evaluations | 133 (4) | 845 (25.5) | | 20 |
 | `ac19_hybrid` | `hybrid`, `benchmark=ac19_autmin` (266 s wall) | 1,000 units | 72,779 / 72,779 | 36,811 / 35,780 / 188 | 2,489,726 units | 1,232,877 (11) | 7,341,111 (71) | 2,722 / 93,692 | 987 |
 | `ac1m_hybrid` | `hybrid`, `benchmark=ac1m_autmin` (255 s wall) | 1,000 units | 71,281 / 71,283 | 34,649 / 36,508 / 124 | 2,384,509 units | 1,136,288 (11) | 7,239,114 (71) | 1,662 / 62,312 | 951 |
+| `ac1m_raw_hybrid` | `hybrid`, `benchmark=ac1m` (4,360 s wall) | 1,000 units | 1,136,135 / 1,136,154 | 28,352 / 1,106,255 / 1,528 | 47,236,671 units | 17,023,238 (11) | 147,405,513 (96) | 20,308 / 1,001,262 | 14,226 |
 | `bench60_length` | `greedy_fast`, `benchmark=bench60` | 10,000 pops | 40 / 60 | 40 / 0 / 0 | 248,227 pops | 1,475 (24) | 15,028 (217) | | 27 |
 | `bench60_s20_mk2` | `s20_mk2_fast`, `benchmark=bench60` | 10,000 pops | 52 / 60 | 52 / 0 / 0 | 141,740 pops | 3,237 (31.5) | 34,173 (281) | | 19 |
 | `bench60_aut` | `aut` | 10,000 pops | 52 / 60 | 0 / 52 / 0 | 147,767 pops | 3,214 (30.5) | 176,856 (1,035.5) | | 24 |
@@ -132,14 +134,20 @@ levels are defined. Greedy at 10,000 pops, hybrid at 1,000 units a row.*
   equals the earlier run except the 11 plain `ac_path` rows of `ms640_aut`, which now store the shorter decoded path
   of the same S-moves. The CPU s column keeps the earlier runs' idle
   timings. Runs split into row slices to stay under 15 minutes (`ms640_length_spec`, `u124_hybrid`, `ac19_hybrid`,
-  `ac1m_hybrid`, `rank3_bf`) have a `wall_seconds` that sums the slices.
+  `ac1m_hybrid`, `rank3_bf`) have a `wall_seconds` that sums the slices. `ac1m_raw_hybrid` is newer and has the
+  timing keys. It ran in two parts, because the first ran out of memory at row 451,977, before the runner stopped
+  holding paths in memory. Its `wall_seconds` (2,483) covers the second part only; the two parts together took
+  4,360 s.
 - **Parity with the original code.** `spec` and `fast` give identical records (solved, pops, both paths, the six cap
   fields) on all 640 MS640 rows, and the per-row pops and path lengths equal the original `greedy_baseline` /
   `heuristics` reruns (0 mismatches over 1,280 rows). The hybrid's per-row stage and units equal the original
   `hfhybrid` on all 640 rows (stages B / C / H = 98 / 328 / 214; the reference's 4,759 stage-H steps are 3,258 S-moves
   plus 1,501 automorphism steps here); on AC19 Aut-min it reproduces the source's 2,489,726 units and its 72,591
   rank-two / 188 stable split (72,591 = 36,811 + 35,780). On AC1M Aut-min it solves 71,281 of 71,283, as the source
-  (misses `ac1m_54083`, `ac1m_68740`).
+  (misses `ac1m_54083`, `ac1m_68740`). On raw AC1M (`ac1m_raw_hybrid`), starting from each presentation as given,
+  it solves 1,136,135 of 1,136,154 in one pass, again the source's count. The 19 misses are the 9 and 10 members of
+  those two orbits. Run again with `--rows <the 19 ids> --set hybrid.budget=10000`, all 19 solve, using 1,040 to 1,153
+  units, as in the source.
 - **`fast` against `spec`**: 32x less CPU over the whole MS640 LENGTH run (64 against 2,023 CPU s: search, decoding and
   replay). On search alone the ratio depends on load; `tests/test_fast.py::test_speed` (slow; rows 322 and 466, 2,000
   pops under each priority) prints it and asserts more than 5x.
@@ -237,6 +245,7 @@ Defaults `r2_cap = "parent"`, `dyn_cap` 8, `slack` 8 ([CAP.md](CAP.md)).
 | `ms640_hybrid` | 640 / 640 | 0 | 2 / 0 | 766 / 0 | - | - | 0 / 0 | 0 |
 | `ac19_hybrid` | 72,779 / 72,779 | 0 | 409 / 344 | 4,704,033 / 8,010 | 9-13 | 3 | 11 / 0 | 33 |
 | `ac1m_hybrid` | 71,281 / 71,283 | 0 | 290 / 238 | 3,540,728 / 5,807 | 9-23 | 4 | 19 / 0 | 81 |
+| `ac1m_raw_hybrid` | 1,136,135 / 1,136,154 | 0 | 3,425 / 2,736 | 40,451,692 / 54,381 | 9-23 | 4 | 206 / 0 | 860 |
 | `bench60_hybrid` | 60 / 60 | 0 | 1 / 0 | 383 / 0 | - | - | 0 / 0 | 0 |
 | `holdout60_hybrid` | 60 / 60 | 0 | 0 / 0 | 0 / 0 | - | - | 0 / 0 | 0 |
 | `u124_hybrid` | 0 / 124 | 0 | 123 / 118 | 18,884,638 / 84,093 | 9-15 | 3 | 103 / 0 | 26,807 |
@@ -434,7 +443,7 @@ unless stated. `claude/vigilant-babbage-nnbuj0:research/ac_hashfree_cascade_2026
 | the 9 rows no fixed-basis arm solves at 10M nodes | 9 | 9 | rank two alone solves all 9 (7 at 318 units or fewer, 2 need permutation canonicalisation, 440 to 545) |
 | `AC19_extended.txt`, original spelling | 156,762 | **156,762** | 177 s; 156,435 rank-two plus **327 stable** |
 | AC1M Aut-min | 71,283 | 71,281 | the 2 misses solve at 1,035 and 1,138 units |
-| AC1M raw | 1,136,154 | **1,136,135** | 1,056,376 rows run in the final pass (1,056,357 solved) plus 79,778 carried over; the 19 misses are in the same 2 orbits and solve at 1,040 to 1,153 units |
+| AC1M raw | 1,136,154 | **1,136,135** | 1,056,376 rows run in the final pass (1,056,357 solved) plus 79,778 carried over; the 19 misses are in the same 2 orbits and solve at 1,040 to 1,153 units. acx gets the same count in one pass (`ac1m_raw_hybrid`, section 0) |
 
 - **MS640 [rerun]** (1,000 units, penalty 5, `dyn_ratio` 0.5): 640/640 solved and replayed by the branch's verifier,
   every certificate rank two. 25,064 units, at most 283 a row. Finishing stage: relator descent 98, pinch cascade 328,

@@ -70,7 +70,8 @@ replayed. A row that misses spends its whole **budget**; cost covers every row. 
 
 A hybrid unit is not a pop: compare the two by CPU ([docs/PERFORMANCE.md](docs/PERFORMANCE.md#methods-side-by-side)).
 [docs/RESULTS.md](docs/RESULTS.md) has every published run and its command, among them bench60, ladder200 and the
-hybrid on all 72,779 AC19 Aut(F2) orbits (72,779 solved, 188 as `stable_cert`).
+hybrid on all 72,779 AC19 Aut(F2) orbits (72,779 solved, 188 as `stable_cert`) and on all 1,136,154 raw AC1M
+presentations (1,136,135 solved).
 
 ### Two stored studies
 
