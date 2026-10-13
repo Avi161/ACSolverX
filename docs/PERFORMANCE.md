@@ -14,11 +14,11 @@ numpy 2.1.3. Each run is one process (`workers = 1`, `NUMBA_NUM_THREADS=1`). The
 (per unit for the hybrid). Memory is the peak resident size of the process, of which about 150 MB is Python and numba.
 Each run started after a warm-up run (numba loads its compiled kernels). **Repetitions:** the LENGTH and S20_MK2 runs at
 cap 24 and `none`, the `decode = false` run, the hybrid and CoV were run twice, alternating the settings between
-repetitions, and the tables give the faster run (the two agreed within 3% for the fast backend and 9%
-for the 15-second hybrid runs, so differences of a few percent there are noise). Everything else (caps 32 and 48, the
-100,000-pop runs, the spec backend) is **one run**. The VM is shared, so each row also gives the **load**: the 1-minute
-load average read when the run ended. A lone run reads 1.0; these read 1.1 to 2.0, because short jobs of
-other sessions ran beside them.
+repetitions, and the tables give the faster run (the two agreed within 3% for the fast backend and 9% for the 15-second
+hybrid runs, so differences of a few percent there are noise). Everything else (caps 32 and 48, the 100,000-pop runs,
+the spec backend) is **one run**; the 100,000-pop runs are not stored in `results/`. The VM is shared, so each row also
+gives the **load**: the 1-minute load average read when the run ended. A lone run reads 1.0; these read 1.1 to 2.0,
+because short jobs of other sessions ran beside them.
 
 To reproduce a row, run the config with the `--set` lines named above its table and read the summary:
 
@@ -195,7 +195,8 @@ only levels 1 and 2.
 | ladder200_cov | cov | ladder200 | 188 | 92 (48.9%) | 4,315.5 pops | 4,819.0 pops | 35.8 | 1,370.9 (n=44) | 0.971 | 134.6/pop | 0 | 0 |
 | ladder200_aut | aut | ladder200 | 188 | 116 (61.7%) | 3,025.7 pops | 2,376.0 pops | 67.7 | 2,214.9 | 0.684 | 120.1/pop | 77 | 0 |
 
-CPU of `ladder200_cov` and `ladder200_aut`: measured before the replay fix.
+CPU of `ladder200_cov` and `ladder200_aut`: measured before the replay fix. `ladder200_aut` has no folder in `results/`
+(the ladder runs stored there are length, S20_MK2, CoV and the hybrid).
 
 ### MS640
 

@@ -94,24 +94,26 @@ to the ladder, same columns, `level = unsolved`, `solved_by = none`:
   (`msrep_<name>`) and the 550 raw unsolved MS cells (`msraw_<line>`), 1,059 rows with
   `form` set, for anyone who wants a different starting representation.
 
-The evidence for "unsolved by everything": 0/261 reps at 1M greedy (cap 48), 0/124 at
-10M S20_MK2 (cap 64, `research/residual_20260909/u124/`), 0/124 by every cascade probe
-at 10,000 units, and 0/124 from any automorphic image within two Whitehead moves at 20k
-(`research/autchoice_20260910/applied/`). Run them like any panel:
-`--input benchmark/ladder/unsolved_124.csv` (or `unsolved_all_forms.csv`).
+The evidence for "unsolved by everything": 0/261 reps at 1M greedy (cap 48), 0/124 at 10M
+S20_MK2 (cap 64, `claude/ac19-theorem-strength-8v1wp6:research/residual_20260909/u124/`),
+0/124 by every cascade probe at 10,000 units, and 0/124 from any automorphic image within
+two Whitehead moves at 20k
+(`claude/ac19-theorem-strength-8v1wp6:research/autchoice_20260910/applied/`). Run them
+like any panel: `--input benchmark/ladder/unsolved_124.csv` (or `unsolved_all_forms.csv`).
 
 ## The originals: same orbit, different start (in the pool, off the panels)
 
-45 rows have `form = original`: the pre-Aut-min dataset presentations
-(`ac19x_<row>` = line of `data/AC19_extended.txt`). They are graded by **their own**
-greedy cost and land in levels 1–4 (509–52,143 pops, median 5,084), while their
-aut-min representatives sit in levels 9–10 (40 of them, greedy-unsolved at 10M) or
-level 8 (the 5 open-8 reps, 2.3M–5M pops). That split is the finding
-of `ORIGINALS_AT_10M.md` on the record — Aut-minimising a presentation can
-make it dramatically harder to search — and the reason for a second study
-(`research/autchoice_20260910/`). [`ladder_pairs.csv`](ladder_pairs.csv) lists
-every pair side by side; `pair_id` links the rows in every CSV. Three of the
-`ac19_orig_cascade` originals are also among the 40 and are graded by the 10M run.
+45 rows have `form = original`: the pre-Aut-min dataset presentations (`ac19x_<row>` =
+line of `data/AC19_extended.txt`). They are graded by **their own** greedy cost and land
+in levels 1–4 (509–52,143 pops, median 5,084), while their aut-min representatives sit in
+levels 9–10 (40 of them, greedy-unsolved at 10M) or level 8 (the 5 open-8 reps, 2.3M–5M
+pops). That split is the finding of
+`claude/ac19-leftover-solver-notebook-6yan6d:results/heuristic_search/ac19_autmin_screen/ORIGINALS_AT_10M.md`
+— Aut-minimising a presentation can make it dramatically harder to search — and the reason
+for a second study (`claude/ac19-theorem-strength-8v1wp6:research/autchoice_20260910/`).
+[`ladder_pairs.csv`](ladder_pairs.csv) lists every pair side by side; `pair_id` links the
+rows in every CSV. Three of the `ac19_orig_cascade` originals are also among the 40 and
+are graded by the 10M run.
 
 **How they were obtained, and why they are not a stratum.** They are not a sample of
 `data/AC19_extended.txt`: that file holds 156,762 presentations, of which these 45 are
