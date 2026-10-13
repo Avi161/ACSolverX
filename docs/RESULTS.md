@@ -17,15 +17,16 @@ deterministic, and section 0 matches them exactly.
 `--fresh` after the cap counters were added, so each record carries the cap fields and each `summary.json` the `caps`
 block (section "Relator-length cap"). The summaries were written before the timing and cost keys were added: they have
 no `cpu_seconds`, `us_per_cost`, `cost_unit`, `cost_mean` or `cost_median`, and their `config` block still holds
-`workers`. The same command today writes those keys and leaves `workers` out. `ladder200_hybrid` alone was written
-again by the current code, whose `dyn_cap` counter finds 507 would-pop states there; every other count is unchanged.
-Fast backend unless stated, cap 24 unless stated, one core per worker on a shared 4-core 2.8 GHz VM. Each record was
-written only after its certificate replayed on the row, and after the reruns the stored paths of the solved records were
-replayed again from the files by a separate script (77,723 records of every run but `ac1m_hybrid`, 0 failures; the 103
-CoV `stable_cert`s are checked by `acx.cov.verify` when written). Path lengths are totals over solved rows (median per
-row): the S-move and elementary columns count AC paths (`ac_path`, aut-assisted included); the **stable** columns count
-`stable_cert`s (S-moves of the search leg / elementary plus AC4/AC5 moves; a CoV `stable_cert` has no elementary path).
-"aut" is an aut-assisted `ac_path`. CPU s is the sum of per-row seconds.
+`workers` (and `rows` in `smoke` and `ms640_rl30`). The same command today writes those keys and leaves `workers` and
+`rows` out. `ladder200_hybrid` alone was written again by the current code, whose `dyn_cap` counter finds 507 would-pop
+states there; every other count is unchanged. Fast backend unless stated, cap 24 unless stated, one core per worker on a
+shared 4-core 2.8 GHz VM. Each record was written only after its certificate replayed on the row, and after the reruns
+the stored paths of the solved records were replayed again from the files by a separate script (77,723 records of every
+run but `ac1m_hybrid`, 0 failures; the 103 CoV `stable_cert`s are checked by `acx.cov.verify` when written). Path
+lengths are totals over solved rows (median per row): the S-move and elementary columns count AC paths (`ac_path`,
+aut-assisted included); the **stable** columns count `stable_cert`s (S-moves of the search leg / elementary plus AC4/AC5
+moves; a CoV `stable_cert` has no elementary path). "aut" is an aut-assisted `ac_path`. CPU s is the sum of per-row
+seconds.
 
 | run | config, overrides | solved | ac_path / aut / stable | cost | S-moves | elementary | stable S / elem | CPU s |
 |---|---|---:|---|---:|---:|---:|---:|---:|
