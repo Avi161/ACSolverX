@@ -12,6 +12,8 @@ RECORD_KEYS = frozenset(COMMON_KEYS + EXTRA_KEYS + CAP_KEYS)
 # Kept whatever ``fields`` says: resume compares ``pres`` with the row, and a failed row must say so.
 ALWAYS_KEPT = ("id", "pres", "solved", "error")
 PATH_SWITCHES = (("search", "capture_path"), ("hybrid", "certify"), ("ngen", "lift"))      # set from ``path``
+# A record's certificate: what ``path = false`` leaves out, and what the runner does not hold in memory.
+CERTIFICATE = ("path", "elementary", "steps")
 
 
 def keeps_path(cfg):
@@ -49,3 +51,9 @@ def shape(rec, cfg):
     if "fields" in cfg:
         rec = {key: value for key, value in rec.items() if key in ALWAYS_KEPT or key in cfg["fields"]}
     return rec
+
+
+def without_certificate(rec):
+    """``rec`` less its certificate: what the runner holds of each row for the summary, so that its memory does not
+    grow with the paths (AC1M's 1,136,154 rows hold about 3 GB of them)."""
+    return {key: value for key, value in rec.items() if key not in CERTIFICATE}

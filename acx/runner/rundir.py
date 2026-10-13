@@ -108,7 +108,8 @@ def read_records(path, repair=False):
 
 def drop_changed(done, rows, paths_file):
     """Forget, in ``done`` (records by id) and in ``paths_file``, the records whose row left ``rows`` (every row,
-    selected or not) or now holds another presentation. A record without ``pres`` is kept while its row is there."""
+    selected or not) or now holds another presentation. A record without ``pres`` is kept while its row is there.
+    The file keeps the other records as they are: ``done`` may hold them without their certificates."""
     pres_of = {r.id: r.pres for r in rows}
 
     def is_stale(row_id, rec):
@@ -116,8 +117,9 @@ def drop_changed(done, rows, paths_file):
             return True                                     # the row left the input
         return "pres" in rec and rec["pres"] != pres_text(pres_of[row_id])
 
-    stale = [row_id for row_id, rec in done.items() if is_stale(row_id, rec)]
+    stale = {row_id for row_id, rec in done.items() if is_stale(row_id, rec)}
     if stale:
         for row_id in stale:
             del done[row_id]
-        atomic_write(paths_file, "".join(json.dumps(rec) + "\n" for rec in done.values()))
+        kept = (json.dumps(rec) + "\n" for rec in iter_records(paths_file) if rec["id"] not in stale)
+        atomic_write(paths_file, "".join(kept))
