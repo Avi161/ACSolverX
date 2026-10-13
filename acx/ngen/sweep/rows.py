@@ -23,6 +23,14 @@ def outcome(record):
     return record["solved"], record["pops"], record["path_len"]
 
 
+def check_two_relators(rows):
+    """Refuse rows (``acx.data`` rows) that are not two-generator, two-relator presentations: the control and every
+    start are built from exactly two relators."""
+    odd = [row.id for row in rows if row.pres.n_gen != 2 or len(row.pres.rels) != 2]
+    if odd:
+        raise ValueError(f"rankn takes two-generator, two-relator rows; not {odd[:5]}")
+
+
 def search_control_and_null(r1, r2, sc, row_id):
     """The 2-generator control and the null stabilisation of a row, as records; they must agree."""
     control_result = search(Presentation(2, (r1, r2)), sc.search)

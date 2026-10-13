@@ -68,19 +68,14 @@ class BucketTally:
         self.faster += some and control_solved and int(pops[bucket.upto][oracle].min()) < control_pops
 
     def table(self, bucket, n_rows, n_control_solved):
-        """The bucket's entry of ``summary.json``."""
+        """The bucket's entry of ``summary.json``; a share of no presentation is ``None``."""
         n_control_unsolved = n_rows - n_control_solved
-
-        def per_control_solved(total):
-            return _fraction(total / n_control_solved) if n_control_solved else None
-
         return dict(
-            starts=int(bucket.members.sum()), solved=_fraction(self.solved / n_rows),
-            solved_on_control_solved=per_control_solved(self.solved_control_solved),
-            solved_on_control_unsolved=_fraction(self.solved_control_unsolved / n_control_unsolved)
-            if n_control_unsolved else None,
-            fewer=per_control_solved(self.fewer), same=per_control_solved(self.same),
-            more=per_control_solved(self.more), lost=per_control_solved(self.lost),
+            starts=int(bucket.members.sum()), solved=_share(self.solved, n_rows),
+            solved_on_control_solved=_share(self.solved_control_solved, n_control_solved),
+            solved_on_control_unsolved=_share(self.solved_control_unsolved, n_control_unsolved),
+            fewer=_share(self.fewer, n_control_solved), same=_share(self.same, n_control_solved),
+            more=_share(self.more, n_control_solved), lost=_share(self.lost, n_control_solved),
             oracle=dict(solved_by_some=self.solved_by_some, gained_over_control=self.gained,
                         control_solved_lost_by_every=self.lost_by_every, some_faster_than_control=self.faster))
 
@@ -107,6 +102,11 @@ class CapTally:
 def _fraction(x):
     """Six places, so the markdown's one-decimal percent is the exact value's rounding (0.806458 prints 80.6%)."""
     return round(float(x), 6)
+
+
+def _share(total, count):
+    """The mean of ``total`` over ``count`` presentations, rounded; ``None`` when there are none."""
+    return _fraction(total / count) if count else None
 
 
 def summarize(result_dir, wall=None):

@@ -45,12 +45,15 @@ class SweepConfig:
 
     @classmethod
     def from_cfg(cls, cfg):
-        """From a runner-style dict with sections ``search`` and ``rankn``; unknown keys are errors."""
+        """From a runner-style dict with sections ``search`` and ``rankn``; unknown keys are errors.
+
+        As for every method of the runner, the backend defaults to ``fast`` (``SearchConfig`` alone says ``spec``).
+        """
         rankn = dict(cfg.get("rankn", {}))
         unknown = set(rankn) - {f.name for f in fields(cls) if f.name != "search"}
         if unknown:
             raise ValueError(f"unknown rankn keys {sorted(unknown)}")
-        search = SearchConfig.from_dict({**cfg.get("search", {}), "capture_path": True})
+        search = SearchConfig.from_dict({"backend": "fast", **cfg.get("search", {}), "capture_path": True})
         return cls(search=search, **rankn)
 
     @classmethod

@@ -34,6 +34,19 @@ def quiet(c, out, **kw):
     return sweep.run(c, str(out), log=lambda *a: None, **kw)
 
 
+def spy_on_backends(monkeypatch, module):
+    """The list that collects the backend of every ``search`` call ``module`` makes from now on."""
+    used = []
+    real = module.search
+
+    def spy(pres, search_config):
+        used.append(search_config.backend)
+        return real(pres, search_config)
+
+    monkeypatch.setattr(module, "search", spy)
+    return used
+
+
 # ------------------------------------------------------------------------------------------------- words
 def test_reduced_words():
     assert [len(reduced_words(n)) for n in range(1, 8)] == [2 * 3 ** (n - 1) for n in range(1, 8)]
@@ -256,6 +269,15 @@ def test_summary_percent_is_rounded_once():
     assert _percent(_fraction(0.8064580826313679)) == "80.6%"
 
 
+def test_a_sweep_over_no_row_writes_an_empty_summary(tmp_path):
+    """A selector that matches nothing is no crash: no row, no searches, and every share is undefined (null, "-")."""
+    s = quiet(cfg(rows="5:5"), tmp_path)
+    assert (s["rows"], s["searches"], s["control_solved"]) == (0, 0, 0)
+    assert all(t["solved"] is None and t["fewer"] is None and t["lost"] is None for t in s["buckets"].values())
+    assert "| L1 | 2 | - | - |" in (tmp_path / "t" / "summary.md").read_text()
+    assert sweep.verify(str(tmp_path / "t"), log=lambda *a: None) == []
+
+
 @pytest.mark.parametrize("extra,max_len", [(2, 1), (3, 1)])
 def test_rank_4_and_5_run(tmp_path, extra, max_len):
     s = quiet(cfg(extra=extra, max_len=max_len, rows="0:3", budget=200), tmp_path)
@@ -307,6 +329,14 @@ def test_verify_passes_and_rejects_tampering(tmp_path):
     with open(os.path.join(d, "config.json"), "w") as f:
         json.dump(key, f)
     assert any("ident differs" in m for m in quiet_v())
+
+
+def test_recheck_runs_every_cell_on_both_backends(tmp_path, monkeypatch):
+    """The stored config does not say which backend wrote the rows, so each cell runs on both: one is the other."""
+    quiet(cfg(rows="0:3"), tmp_path)
+    used = spy_on_backends(monkeypatch, sweep.check)
+    assert sweep.verify(str(tmp_path / "t"), recheck=6, log=lambda *a: None) == []
+    assert sorted(used) == ["fast"] * 6 + ["spec"] * 6
 
 
 def test_verify_names_the_row_each_failure_belongs_to(tmp_path):
@@ -423,6 +453,25 @@ def test_ms640_lengths_1_and_2_reproduce_the_baseline(tmp_path):
         assert got + (t["oracle"]["some_faster_than_control"],) == cells
     assert sweep.verify(str(tmp_path / "t"), recheck=40, log=lambda *a: None) == []
     shutil.rmtree(tmp_path)
+
+
+def test_rows_that_are_not_two_generator_two_relator_are_refused(tmp_path):
+    """The control and every start assume two generators and two relators; name the rows that break it."""
+    path = tmp_path / "rows.csv"
+    path.write_text("id,r1,r2,r3\nok,xxYYY,xyxYXY,\nthree,xx,yy,zz\n")
+    all_rows = data.rows(str(path))
+    sweep.rows.check_two_relators(all_rows[:1])
+    with pytest.raises(ValueError, match=r"two-generator, two-relator.*\['three'\]"):
+        sweep.rows.check_two_relators(all_rows)
+
+
+def test_a_config_without_a_backend_runs_on_fast(tmp_path, monkeypatch):
+    """Every other method defaults to the numba backend; ``SearchConfig`` alone would say ``spec``."""
+    c = cfg(rows="0:2", max_len=1, budget=50)
+    del c["search"]["backend"]
+    used = spy_on_backends(monkeypatch, sweep.rows)
+    quiet(c, tmp_path)
+    assert set(used) == {"fast"}
 
 
 def test_help_names_the_module(capsys):
