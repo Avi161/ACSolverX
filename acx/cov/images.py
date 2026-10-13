@@ -71,8 +71,9 @@ def branches(r1_sub, r2_sub, n_subs, w, gen, max_len=MAX_LEN):
 def enumerate_images(pres, max_len=MAX_LEN, family="subnc2pxysb"):
     """All CoV images of the 2-generator, 2-relator ``pres`` in the ``family`` (``acx.cov.family``), without ranking:
     ``w`` by (length, word), then each substitution of ``w``, then eliminate x before y, then relator 1 before
-    relator 2. ``subnc2pxysb`` reads the relators as written (their rotation matters) and drops repeated images;
-    ``suballpxyb8`` reads them cyclically reduced and keeps the first image of each ``class_key``, not the row's own.
+    relator 2. Both families read the relators cyclically reduced. ``subnc2pxysb`` substitutes in one pass over each
+    relator in its written rotation and drops repeated images; ``suballpxyb8`` keeps the first image of each
+    ``class_key``, not the row's own.
 
     Per image: **define** ``z = w`` (a relator ``Z w``), **substitute** ``z`` for ``w`` / ``w^-1`` in ``r1, r2``,
     **isolate** ``g^+-1`` in one relator (``g = expr(other, z)``), **destabilise** (put ``expr`` for ``g`` in the
@@ -83,7 +84,7 @@ def enumerate_images(pres, max_len=MAX_LEN, family="subnc2pxysb"):
     if family not in FAMILIES:
         raise ValueError(f"family {family!r} not in {FAMILIES}")
     exhaustive = family == "suballpxyb8"
-    r1, r2 = pres.reduced().rels if exhaustive else pres.rels
+    r1, r2 = pres.reduced().rels
     words = proper_subwords(r1, r2) if exhaustive else subwords(r1, r2)
     seen = {class_key(pres)} if exhaustive else set()
     images = []
