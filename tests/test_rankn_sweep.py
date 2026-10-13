@@ -273,6 +273,25 @@ def test_summary_percent_is_rounded_once():
     assert _percent(_fraction(0.8064580826313679)) == "80.6%"
 
 
+def test_shipped_rank3_comparison_cells_hold():
+    """The shipped rank-3 summary's comparison cells (the baseline's table at budget 1,000) do not move: per length,
+    fewer / same / more / lost (shares of the control-solved rows) and the "some faster" count, then L3's share."""
+    with open(os.path.join(ROOT, "results", "rank3_bf", "summary.json")) as f:
+        buckets = json.load(f)["buckets"]
+    cells = {}
+    for length in (1, 2, 3, 4):
+        bucket = buckets[f"L{length}"]
+        cells[length] = (bucket["fewer"], bucket["same"], bucket["more"], bucket["lost"],
+                         bucket["oracle"]["some_faster_than_control"])
+    assert cells == {
+        1: (0.0, 0.0, 0.694043, 0.305957, 0),
+        2: (0.012936, 0.000602, 0.776775, 0.209687, 35),
+        3: (0.006518, 0.000201, 0.799739, 0.193542, 60),
+        4: (0.012435, 0.000201, 0.779182, 0.208183, 130),
+    }
+    assert round(buckets["L3"]["solved_on_control_solved"], 3) == 0.806
+
+
 def test_a_sweep_over_no_row_writes_an_empty_summary(tmp_path):
     """A selector that matches nothing is no crash: no row, no searches, and every share is undefined (null, "-")."""
     s = quiet(cfg(rows="5:5"), tmp_path)
