@@ -1,0 +1,8 @@
+{
+ "method": "hybrid",
+ "benchmark": "u124",
+ "hybrid": {
+  "budget": 1000
+ },
+ "name": "u124_hybrid"
+}

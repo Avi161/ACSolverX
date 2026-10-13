@@ -1,0 +1,76 @@
+{
+ "name": "bench60_cov",
+ "method": "cov",
+ "benchmark": "bench60",
+ "rows": 60,
+ "solved": 39,
+ "ac_path": 29,
+ "aut_assisted": 0,
+ "stable_cert": 10,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 246744,
+  "on_solved": 36744
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 29,
+    "sum": 557,
+    "mean": 19.21,
+    "median": 16,
+    "max": 47
+   },
+   "elem_moves": {
+    "n": 29,
+    "sum": 4972,
+    "mean": 171.45,
+    "median": 119,
+    "max": 535
+   }
+  },
+  "stable_cert": {
+   "sub_moves": {
+    "n": 10,
+    "sum": 485,
+    "mean": 48.5,
+    "median": 45.5,
+    "max": 69
+   },
+   "elem_moves": null
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 60,
+   "rows_dropped": 12,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 727750,
+   "would_pop": 0,
+   "dropped_min_total": 33,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null,
+   "cap_legs_bound": 0
+  }
+ },
+ "wall_seconds": 34.44,
+ "row_seconds": 34.42,
+ "config": {
+  "method": "cov",
+  "benchmark": "bench60",
+  "search": {
+   "backend": "fast",
+   "budget": 1000
+  },
+  "cov": {
+   "total_budget": 10000
+  },
+  "name": "bench60_cov",
+  "workers": 1
+ }
+}

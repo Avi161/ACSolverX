@@ -1,0 +1,69 @@
+{
+ "name": "ms640_rl30",
+ "method": "rl",
+ "benchmark": "ms640",
+ "rows": 30,
+ "solved": 30,
+ "ac_path": 30,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "evaluations",
+  "total": 9650,
+  "on_solved": 9650
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 30,
+    "sum": 133,
+    "mean": 4.43,
+    "median": 4.0,
+    "max": 10
+   },
+   "elem_moves": {
+    "n": 30,
+    "sum": 845,
+    "mean": 28.17,
+    "median": 25.5,
+    "max": 68
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 30,
+   "rows_dropped": 5,
+   "rows_would_pop": 5,
+   "raise_ids": [
+    "6",
+    "13",
+    "18",
+    "26",
+    "28"
+   ],
+   "dropped": 23,
+   "would_pop": 23,
+   "dropped_min_total": 35,
+   "first_bind_min": 5,
+   "needed_min": 25,
+   "needed_max": 27
+  }
+ },
+ "wall_seconds": 18.6,
+ "row_seconds": 18.59,
+ "config": {
+  "method": "rl",
+  "benchmark": "ms640",
+  "rows": "0:30",
+  "rl": {
+   "width": 256,
+   "steps": 150
+  },
+  "name": "ms640_rl30",
+  "workers": 1
+ }
+}

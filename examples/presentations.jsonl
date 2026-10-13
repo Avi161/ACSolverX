@@ -1,0 +1,8 @@
+{"id": "ak2", "relators": ["xxYYY", "xyxYXY"], "note": "Akbulut-Kirby AK(2)"}
+{"id": "ak3", "relators": ["xxxYYYY", "xyxYXY"], "note": "Akbulut-Kirby AK(3)"}
+{"id": "ms0", "relators": ["YYXyx", "Yx"], "note": "MS640 row 0"}
+{"id": "ms1", "relators": ["YYXyx", "YX"], "note": "MS640 row 1"}
+{"id": "ms2", "relators": ["YYXyx", "YYx"], "note": "MS640 row 2"}
+{"id": "ms3", "relators": ["YYX", "YYXyx"], "note": "MS640 row 3"}
+{"id": "gen3", "relators": ["xy", "yz", "z"], "note": "three generators"}
+{"id": "ms623", "relators": ["YYYYYYYYXyyyyyyyx", "YYXyxYX"], "note": "MS640 row 623 (hybrid example)"}

@@ -1,0 +1,95 @@
+{
+ "name": "ladder60_s20_mk2",
+ "method": "greedy",
+ "benchmark": "ladder60",
+ "rows": 60,
+ "solved": 33,
+ "ac_path": 33,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 365386,
+  "on_solved": 95386
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 33,
+    "sum": 2180,
+    "mean": 66.06,
+    "median": 64,
+    "max": 375
+   },
+   "elem_moves": {
+    "n": 33,
+    "sum": 24343,
+    "mean": 737.67,
+    "median": 713,
+    "max": 4618
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 60,
+   "rows_dropped": 49,
+   "rows_would_pop": 31,
+   "raise_ids": [
+    "ms_618",
+    "ms_630",
+    "ac19_39855",
+    "ms_633",
+    "ac19_58079",
+    "ms_624",
+    "ac19_39344",
+    "ms_622",
+    "ms_636",
+    "ac19_55217",
+    "ms_638",
+    "ms_639",
+    "ac19_57517",
+    "ac19_26841",
+    "ac19_54765",
+    "ac19_45978",
+    "ac19_15866",
+    "ac19_33435",
+    "ac19_10775",
+    "ac19_39288",
+    "ac19_20270",
+    "ac19_15507",
+    "ac19_67987",
+    "ac19_55019",
+    "ac19_50892",
+    "ac19_28131",
+    "ac19_65753",
+    "ac19_44381",
+    "ac19_59576",
+    "ac19_51034",
+    "ac19_16286"
+   ],
+   "dropped": 29109358,
+   "would_pop": 14692,
+   "dropped_min_total": 30,
+   "first_bind_min": 335,
+   "needed_min": 25,
+   "needed_max": 26
+  }
+ },
+ "wall_seconds": 27.24,
+ "row_seconds": 53.84,
+ "config": {
+  "method": "greedy",
+  "benchmark": "ladder60",
+  "workers": 2,
+  "search": {
+   "backend": "fast",
+   "priority": "s20_mk2",
+   "budget": 10000
+  },
+  "name": "ladder60_s20_mk2"
+ }
+}

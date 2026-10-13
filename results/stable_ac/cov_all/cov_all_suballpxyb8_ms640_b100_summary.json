@@ -1,0 +1,85 @@
+{
+ "file": "cov_all_suballpxyb8_ms640_b100.jsonl",
+ "node_budget": 100,
+ "presentations": 640,
+ "cov_starts": 114042,
+ "cpu_hours": 1.086,
+ "per_budget": {
+  "100": {
+   "control": {
+    "solved": 455,
+    "nodes_mean_median_on_own_solved": [
+     15.76,
+     8
+    ],
+    "path_mean_median_on_own_solved": [
+     7.62,
+     7
+    ],
+    "nodes_mean_median_on_shared": [
+     15.76,
+     8
+    ],
+    "path_mean_median_on_shared": [
+     7.62,
+     7
+    ]
+   },
+   "oracle_all": {
+    "solved": 555,
+    "nodes_mean_median_on_own_solved": [
+     9.63,
+     5
+    ],
+    "path_mean_median_on_own_solved": [
+     6.22,
+     4
+    ],
+    "nodes_mean_median_on_shared": [
+     5.71,
+     4
+    ],
+    "path_mean_median_on_shared": [
+     4.3,
+     3
+    ]
+   },
+   "oracle_one": {
+    "solved": 555,
+    "nodes_mean_median_on_own_solved": [
+     9.66,
+     5
+    ],
+    "path_mean_median_on_own_solved": [
+     6.26,
+     4
+    ],
+    "nodes_mean_median_on_shared": [
+     5.76,
+     4
+    ],
+    "path_mean_median_on_shared": [
+     4.35,
+     3
+    ]
+   },
+   "shared_solved_set": 455,
+   "random_start_vs_control_mean_fraction": {
+    "cheaper": 0.2618,
+    "equal": 0.0952,
+    "dearer": 0.3162,
+    "fail": 0.3269
+   },
+   "solved_only_via_non_one_pattern_start": {
+    "count": 0,
+    "pres_ids": []
+   },
+   "oracle_all_beats_oracle_one_in_nodes_or_solves": 19
+  }
+ },
+ "total_cov_nodes_per_presentation": {
+  "mean": 5328.4,
+  "median": 1371.5,
+  "max": 173997
+ }
+}

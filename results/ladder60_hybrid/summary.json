@@ -1,0 +1,127 @@
+{
+ "name": "ladder60_hybrid",
+ "method": "hybrid",
+ "benchmark": "ladder60",
+ "rows": 60,
+ "solved": 60,
+ "ac_path": 1,
+ "aut_assisted": 57,
+ "stable_cert": 2,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "units",
+  "total": 8077,
+  "on_solved": 8077
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 1,
+    "sum": 1,
+    "mean": 1.0,
+    "median": 1,
+    "max": 1
+   },
+   "elem_moves": {
+    "n": 1,
+    "sum": 8,
+    "mean": 8.0,
+    "median": 8,
+    "max": 8
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 57,
+    "sum": 2881,
+    "mean": 50.54,
+    "median": 22,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 57,
+    "sum": 30786,
+    "mean": 540.11,
+    "median": 294,
+    "max": 2783
+   }
+  },
+  "stable_cert": {
+   "sub_moves": {
+    "n": 2,
+    "sum": 30,
+    "mean": 15.0,
+    "median": 15.0,
+    "max": 15
+   },
+   "elem_moves": {
+    "n": 2,
+    "sum": 1726,
+    "mean": 863.0,
+    "median": 863.0,
+    "max": 869
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": "parent",
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "dyn_cap": {
+   "dyn_cap": 8,
+   "rows": 60,
+   "rows_dropped": 7,
+   "rows_would_pop": 7,
+   "raise_ids": [
+    "ac19_54765",
+    "ac19_39288",
+    "ac19_20270",
+    "ac19_15507",
+    "ac19_67987",
+    "ac19_65753",
+    "ac19_51034"
+   ],
+   "dropped": 273121,
+   "would_pop": 192,
+   "dropped_min_total": 15,
+   "first_bind_min": 54,
+   "needed_min": 9,
+   "needed_max": 13
+  },
+  "slack": {
+   "slack": 8,
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 36.74,
+ "row_seconds": 71.34,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "ladder60",
+  "hybrid": {
+   "budget": 1000
+  },
+  "name": "ladder60_hybrid",
+  "workers": 2
+ }
+}

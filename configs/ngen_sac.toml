@@ -1,0 +1,10 @@
+# SAC triangulation, search of the triangle root, lift to a stable AC path, on bench60 (budget 10,000).
+method = "ngen"
+benchmark = "bench60"
+
+[search]
+backend = "fast"
+budget = 10000
+
+[ngen]
+sac = true

@@ -1,0 +1,11 @@
+{
+ "method": "greedy",
+ "benchmark": "ms640",
+ "search": {
+  "backend": "spec",
+  "priority": "length",
+  "budget": 10000,
+  "cap": 24
+ },
+ "name": "ms640_length_spec"
+}

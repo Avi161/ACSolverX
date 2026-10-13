@@ -1,0 +1,18 @@
+# Rank-5 brute force on MS640: three added generators, every multiset of words of length 1-2, with control.
+method = "rankn"
+benchmark = "ms640"
+workers = 4
+
+[search]
+priority = "length"
+cap = 24
+budget = 1000
+backend = "fast"
+cyclic = true
+
+[rankn]
+extra = 3
+min_len = 1
+max_len = 2
+inverse = false
+sample = 0.002

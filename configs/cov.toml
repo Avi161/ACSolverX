@@ -1,0 +1,10 @@
+# Change of variables (family subnc2pxysb): the row, then its images, 10,000 pops in total, on bench60.
+method = "cov"
+benchmark = "bench60"
+
+[search]
+backend = "fast"
+budget = 1000
+
+[cov]
+total_budget = 10000

@@ -1,0 +1,10 @@
+{
+ "method": "greedy",
+ "benchmark": "ms640",
+ "search": {
+  "backend": "fast",
+  "priority": "s20_mk2",
+  "budget": 1000
+ },
+ "name": "smoke"
+}

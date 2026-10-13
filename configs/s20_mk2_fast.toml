@@ -1,0 +1,9 @@
+# Greedy at S20_MK2 with cap 24 on MS640, numba backend.
+method = "greedy"
+benchmark = "ms640"
+
+[search]
+backend = "fast"
+priority = "s20_mk2"
+budget = 10000
+cap = 24

@@ -1,0 +1,43 @@
+replay_ends_trivial: compared=123894 mismatches=0 -> pass
+no_relator_over_24_on_path: compared=123894 mismatches=0 -> pass
+row_r1_r2_equal_dataset: compared=291170 mismatches=0 -> pass
+n_moves_eq_jsonl_path_length: compared=120389 mismatches=0 -> pass
+n_moves_eq_npz_path_len: compared=34654 mismatches=0 -> pass
+jsonl_nodes_eq_npz_nodes: compared=34654 mismatches=0 -> pass
+solved_rows_have_path_row: compared=120389 mismatches=0 -> pass
+moves_wellformed_for_search: compared=123894 mismatches=0 -> pass
+sample_path_length_eq_npz_path_len: compared=31149 mismatches=0 -> pass
+sample_word_index_eq_npz_word: compared=31149 mismatches=0 -> pass
+rankn_row_matches_npz_combo: compared=3505 mismatches=0 -> pass
+row_name_zword_zrelator_consistent: compared=291170 mismatches=0 -> pass
+jsonl_rows_parse_unique: compared=294675 mismatches=0 -> pass
+path_file_has_rows: compared=27 mismatches=0 -> pass
+companion_files_present: compared=77 mismatches=0 -> pass
+FILE rank3_bf_ms640_b10000_cap24_L1_sample_paths.jsonl: path rows=915 replayed=915 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b10000_cap24_L2_sample_paths.jsonl: path rows=1569 replayed=1569 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b10000_cap24_L3_sample_paths.jsonl: path rows=1600 replayed=1600 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b10000_cap24_L4_sample_paths.jsonl: path rows=1694 replayed=1694 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b10000_cap24_L5_sample_paths.jsonl: path rows=1653 replayed=1653 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b10000_cap24_L6_sample_paths.jsonl: path rows=1670 replayed=1670 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b10000_cap24_L7_sample_paths.jsonl: path rows=1599 replayed=1599 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b10000_cap24_relsub_paths.jsonl: path rows=49272 replayed=49272 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L10_sample_paths.jsonl: path rows=1256 replayed=1256 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L1_inv_sample_paths.jsonl: path rows=769 replayed=769 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L1_sample_paths.jsonl: path rows=769 replayed=769 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L2_inv_sample_paths.jsonl: path rows=1360 replayed=1360 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L2_sample_paths.jsonl: path rows=1342 replayed=1342 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L3_inv_sample_paths.jsonl: path rows=1366 replayed=1366 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L3_sample_paths.jsonl: path rows=1394 replayed=1394 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L4_inv_sample_paths.jsonl: path rows=1397 replayed=1397 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L4_sample_paths.jsonl: path rows=1396 replayed=1396 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L5_inv_sample_paths.jsonl: path rows=1289 replayed=1289 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L5_sample_paths.jsonl: path rows=1380 replayed=1380 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L6_inv_sample_paths.jsonl: path rows=1342 replayed=1342 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L6_sample_paths.jsonl: path rows=1370 replayed=1370 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L7_sample_paths.jsonl: path rows=1335 replayed=1335 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L8_sample_paths.jsonl: path rows=1388 replayed=1388 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_L9_sample_paths.jsonl: path rows=1296 replayed=1296 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rank3_bf_ms640_b1000_cap24_relsub_paths.jsonl: path rows=39968 replayed=39968 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rankn_bf_ms640_b1000_cap24_r4_sample_paths.jsonl: path rows=2693 replayed=2693 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+FILE rankn_bf_ms640_b1000_cap24_r5_sample_paths.jsonl: path rows=812 replayed=812 start not built=0 not replayed (time)=0 replay failures=0 rows with any failure=0
+TOTAL mismatches=0 checks_with_no_data=0 skipped=27 internal_errors=0 seconds=8

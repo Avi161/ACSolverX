@@ -1,0 +1,8 @@
+# RL beam search (PPO policy, step 1000, width 256) on 30 MS640 rows; needs the optional torch install.
+method = "rl"
+benchmark = "ms640"
+rows = "0:30"
+
+[rl]
+width = 256
+steps = 150

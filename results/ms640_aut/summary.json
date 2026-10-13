@@ -1,0 +1,100 @@
+{
+ "name": "ms640_aut",
+ "method": "aut",
+ "benchmark": "ms640",
+ "rows": 640,
+ "solved": 626,
+ "ac_path": 11,
+ "aut_assisted": 615,
+ "stable_cert": 0,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 408174,
+  "on_solved": 268174
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 11,
+    "sum": 725,
+    "mean": 65.91,
+    "median": 14,
+    "max": 379
+   },
+   "elem_moves": {
+    "n": 11,
+    "sum": 7899,
+    "mean": 718.09,
+    "median": 146,
+    "max": 4454
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 615,
+    "sum": 16273,
+    "mean": 26.46,
+    "median": 9,
+    "max": 379
+   },
+   "elem_moves": {
+    "n": 615,
+    "sum": 779845,
+    "mean": 1268.04,
+    "median": 250,
+    "max": 32387
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 640,
+   "rows_dropped": 76,
+   "rows_would_pop": 20,
+   "raise_ids": [
+    "527",
+    "529",
+    "616",
+    "617",
+    "618",
+    "619",
+    "620",
+    "621",
+    "622",
+    "623",
+    "624",
+    "625",
+    "628",
+    "629",
+    "630",
+    "633",
+    "636",
+    "637",
+    "638",
+    "639"
+   ],
+   "dropped": 12013436,
+   "would_pop": 1224,
+   "dropped_min_total": 30,
+   "first_bind_min": 766,
+   "needed_min": 25,
+   "needed_max": 25
+  }
+ },
+ "wall_seconds": 106.87,
+ "row_seconds": 106.26,
+ "config": {
+  "method": "aut",
+  "benchmark": "ms640",
+  "search": {
+   "backend": "fast",
+   "priority": "s20_mk2",
+   "budget": 10000
+  },
+  "name": "ms640_aut",
+  "workers": 1
+ }
+}

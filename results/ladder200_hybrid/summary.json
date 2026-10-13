@@ -1,0 +1,145 @@
+{
+ "name": "ladder200_hybrid",
+ "method": "hybrid",
+ "benchmark": "ladder200",
+ "rows": 188,
+ "solved": 188,
+ "ac_path": 8,
+ "aut_assisted": 173,
+ "stable_cert": 7,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "units",
+  "total": 22319,
+  "on_solved": 22319
+ },
+ "cost_unit": "units",
+ "cost_mean": 118.72,
+ "cost_median": 65.5,
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 8,
+    "sum": 435,
+    "mean": 54.38,
+    "median": 9.0,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 8,
+    "sum": 1407,
+    "mean": 175.88,
+    "median": 46.0,
+    "max": 679
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 173,
+    "sum": 7177,
+    "mean": 41.49,
+    "median": 20,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 173,
+    "sum": 79471,
+    "mean": 459.37,
+    "median": 308,
+    "max": 2783
+   }
+  },
+  "stable_cert": {
+   "sub_moves": {
+    "n": 7,
+    "sum": 117,
+    "mean": 16.71,
+    "median": 15,
+    "max": 20
+   },
+   "elem_moves": {
+    "n": 7,
+    "sum": 6051,
+    "mean": 864.43,
+    "median": 857,
+    "max": 1351
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": "parent",
+   "rows": 188,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "dyn_cap": {
+   "dyn_cap": 8,
+   "rows": 188,
+   "rows_dropped": 23,
+   "rows_would_pop": 21,
+   "raise_ids": [
+    "ac19_58570",
+    "ac19_70845",
+    "ac19_57917",
+    "ac19_66134",
+    "ac19_24836",
+    "ac19_64974",
+    "ac19_66724",
+    "ac19_54765",
+    "ac19_39288",
+    "ac19_20270",
+    "ac19_15507",
+    "ac19_67987",
+    "ac19_28510",
+    "ac19_36350",
+    "ac19_61253",
+    "ac19_56970",
+    "ac19_23156",
+    "ac19_65206",
+    "ac19_57992",
+    "ac19_65753",
+    "ac19_51034"
+   ],
+   "dropped": 606830,
+   "would_pop": 507,
+   "dropped_min_total": 14,
+   "first_bind_min": 14,
+   "needed_min": 9,
+   "needed_max": 13
+  },
+  "slack": {
+   "slack": 8,
+   "rows": 188,
+   "rows_dropped": 1,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 8,
+   "would_pop": 0,
+   "dropped_min_total": 28,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 15.9,
+ "row_seconds": 30.46,
+ "cpu_seconds": 30.114,
+ "us_per_cost": 1349.269,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "ladder200",
+  "name": "ladder200_hybrid",
+  "hybrid": {
+   "budget": 1000
+  }
+ }
+}

@@ -1,0 +1,64 @@
+{
+ "name": "bench60_length",
+ "method": "greedy",
+ "benchmark": "bench60",
+ "rows": 60,
+ "solved": 40,
+ "ac_path": 40,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 248227,
+  "on_solved": 48227
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 40,
+    "sum": 1475,
+    "mean": 36.88,
+    "median": 24.0,
+    "max": 153
+   },
+   "elem_moves": {
+    "n": 40,
+    "sum": 15028,
+    "mean": 375.7,
+    "median": 217.0,
+    "max": 1996
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 60,
+   "rows_dropped": 17,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 8478448,
+   "would_pop": 0,
+   "dropped_min_total": 32,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 29.37,
+ "row_seconds": 29.36,
+ "config": {
+  "method": "greedy",
+  "benchmark": "bench60",
+  "search": {
+   "backend": "fast",
+   "priority": "length",
+   "budget": 10000,
+   "cap": 24
+  },
+  "name": "bench60_length",
+  "workers": 1
+ }
+}

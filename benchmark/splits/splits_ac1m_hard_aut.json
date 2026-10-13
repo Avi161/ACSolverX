@@ -1,0 +1,2723 @@
+{
+  "seed": 20260729,
+  "kind": "ac1m_hard_aut_disjoint",
+  "created": "2026-07-29T17:26:40.575540+00:00",
+  "n_train": 120,
+  "n_holdout": 60,
+  "train_idxs": [
+    996521,
+    288936,
+    791977,
+    963809,
+    637723,
+    362773,
+    315726,
+    538083,
+    294623,
+    909665,
+    605105,
+    1095268,
+    299840,
+    281557,
+    560925,
+    1037693,
+    1122199,
+    865673,
+    855286,
+    414191,
+    1029186,
+    489720,
+    375792,
+    481166,
+    444553,
+    896599,
+    970248,
+    667145,
+    913848,
+    402018,
+    755035,
+    725096,
+    697272,
+    1083048,
+    715461,
+    967804,
+    598995,
+    881277,
+    529388,
+    1134419,
+    643034,
+    583955,
+    552324,
+    476372,
+    490378,
+    747985,
+    1070405,
+    1093435,
+    787371,
+    1101237,
+    491741,
+    1134560,
+    448172,
+    725707,
+    578174,
+    930298,
+    326724,
+    1127886,
+    682937,
+    992244,
+    1011232,
+    486430,
+    332599,
+    510400,
+    1026131,
+    354031,
+    587668,
+    888186,
+    1050148,
+    309099,
+    336077,
+    256459,
+    447091,
+    657322,
+    978755,
+    395438,
+    581605,
+    375087,
+    488686,
+    660800,
+    559891,
+    528965,
+    1126758,
+    580430,
+    500389,
+    443425,
+    1111483,
+    767067,
+    819848,
+    999435,
+    336171,
+    921321,
+    810119,
+    272674,
+    995581,
+    722088,
+    466596,
+    814020,
+    653327,
+    700891,
+    534370,
+    989471,
+    1023358,
+    721242,
+    246354,
+    1113880,
+    685334,
+    799732,
+    492728,
+    845416,
+    910981,
+    484174,
+    933165,
+    447138,
+    311026,
+    991727,
+    380304,
+    938194,
+    621696,
+    716495
+  ],
+  "holdout_idxs": [
+    893826,
+    417434,
+    628088,
+    779381,
+    387965,
+    275353,
+    519377,
+    932883,
+    413204,
+    846967,
+    347404,
+    591851,
+    450616,
+    383124,
+    330484,
+    331941,
+    316948,
+    512985,
+    298148,
+    539399,
+    569291,
+    372925,
+    1029092,
+    682984,
+    397929,
+    925222,
+    877376,
+    798886,
+    878222,
+    253028,
+    347216,
+    315679,
+    683360,
+    664184,
+    919300,
+    268068,
+    419972,
+    1049443,
+    979836,
+    1007895,
+    361598,
+    872770,
+    544475,
+    1100344,
+    982374,
+    879914,
+    540574,
+    849740,
+    402723,
+    380398,
+    431252,
+    1070969,
+    439242,
+    872018,
+    508426,
+    971329,
+    991445,
+    1052545,
+    969590,
+    456115
+  ],
+  "train_reps": [
+    [
+      "YYXXYx",
+      "YYXYYxyXXyx"
+    ],
+    [
+      "YXXyx",
+      "YYXYXYxyyXXyX"
+    ],
+    [
+      "YYXXYx",
+      "YYXXXYYxyXYYx"
+    ],
+    [
+      "YXYXXYx",
+      "YYYxYXXyXYYX"
+    ],
+    [
+      "YXYXYx",
+      "YYYYXYXXXyxxx"
+    ],
+    [
+      "YXYXyx",
+      "YYYYXyXXX"
+    ],
+    [
+      "YXyXXyx",
+      "YYXyyxxxxYXX"
+    ],
+    [
+      "YXXyx",
+      "YYYYXyyXyyXXYx"
+    ],
+    [
+      "YXXyXYx",
+      "YYxyxyXYXyX"
+    ],
+    [
+      "YYXXX",
+      "YYYXyXyXyXYxxx"
+    ],
+    [
+      "YXyXXXyx",
+      "YYxxyxyXX"
+    ],
+    [
+      "YXYXYx",
+      "YYYxyXXyxYXyx"
+    ],
+    [
+      "YXXyXYx",
+      "YYXXYXXXXyx"
+    ],
+    [
+      "YXyXYxx",
+      "YYYYYXyxx"
+    ],
+    [
+      "YXXyXyx",
+      "YYxxxyxYX"
+    ],
+    [
+      "YXXyXyx",
+      "YYYxxxxx"
+    ],
+    [
+      "YYXXYx",
+      "YYYYXYYxYYXyX"
+    ],
+    [
+      "YXyXXXyx",
+      "YYxyxyXyxYX"
+    ],
+    [
+      "YXyXXyx",
+      "YYXYYxyxyxx"
+    ],
+    [
+      "YYYXXXyxx",
+      "YYYxxyyXX"
+    ],
+    [
+      "YXXYx",
+      "YYYYXYYXyXXYYx"
+    ],
+    [
+      "YXXYx",
+      "YYYXYYXXYYYxyX"
+    ],
+    [
+      "YXYxyx",
+      "YYxYXyxyxYYxx"
+    ],
+    [
+      "YXXYx",
+      "YYYxyXXYXYXyx"
+    ],
+    [
+      "YYXXyx",
+      "YYYXXYXXXYXYx"
+    ],
+    [
+      "YXXyx",
+      "YYYXyXyyXXYxx"
+    ],
+    [
+      "YXYXYx",
+      "YXyXXYxxxYxyX"
+    ],
+    [
+      "YYXXYx",
+      "YYxyXYxyXyxYX"
+    ],
+    [
+      "YXXXXYx",
+      "YYxxyxyXXyx"
+    ],
+    [
+      "YXYXXYx",
+      "YYYxYYXXXX"
+    ],
+    [
+      "YYXXXYx",
+      "YXYXXyxYx"
+    ],
+    [
+      "YXXYx",
+      "YYYxyXXyx"
+    ],
+    [
+      "YXXXyXYx",
+      "YYXYXXyyx"
+    ],
+    [
+      "YYXXXXX",
+      "YXXyXXYx"
+    ],
+    [
+      "YXXyx",
+      "YYYXyxxyyyX"
+    ],
+    [
+      "YXyXXyx",
+      "YYYYYxyxyxxx"
+    ],
+    [
+      "YXXXyXyX",
+      "YYYxxxyxxyX"
+    ],
+    [
+      "YXYXyx",
+      "YYYYYxYXyXyXX"
+    ],
+    [
+      "YXXYx",
+      "YYYXXyyxxyXyx"
+    ],
+    [
+      "YXyXXXyx",
+      "YYXYxxyXyyX"
+    ],
+    [
+      "YXXyx",
+      "YYYYYXyxyyyxx"
+    ],
+    [
+      "YXXYxxyX",
+      "YYXXyyXYxyx"
+    ],
+    [
+      "YYXXX",
+      "YYYXXyxyXyXYx"
+    ],
+    [
+      "YXXYx",
+      "YYYXyyXYYXYYx"
+    ],
+    [
+      "YYXXX",
+      "YYXYxYXYXyXyX"
+    ],
+    [
+      "YXXYXXyx",
+      "YYxyXYXyX"
+    ],
+    [
+      "YXXYx",
+      "YYYXXyXYxx"
+    ],
+    [
+      "YYXXyx",
+      "YXYxyXXYx"
+    ],
+    [
+      "YXYXyx",
+      "YYXXyXXYxYXYx"
+    ],
+    [
+      "YXXyx",
+      "YYYXyxxxyyxYx"
+    ],
+    [
+      "YXXYxxyx",
+      "YYXXXXyyxyx"
+    ],
+    [
+      "YXyXYxx",
+      "YYYYYXYxyX"
+    ],
+    [
+      "YYXXyxx",
+      "YYXYxxYXyx"
+    ],
+    [
+      "YXXXYxx",
+      "YYYXXyyx"
+    ],
+    [
+      "YXXYx",
+      "YYXyxYXXyXYxyx"
+    ],
+    [
+      "YXXYx",
+      "YYXYYXXXyXYYxx"
+    ],
+    [
+      "YYXXXXYX",
+      "YYXyXXyxxYX"
+    ],
+    [
+      "YXyXXyx",
+      "YYxxyxxxxYX"
+    ],
+    [
+      "YXXyx",
+      "YYYXyXyxyXyX"
+    ],
+    [
+      "YXXYx",
+      "YYXXyxYXYxxyyX"
+    ],
+    [
+      "YXX",
+      "YYxyXyx"
+    ],
+    [
+      "YXYxyx",
+      "YYYXyxYxYxx"
+    ],
+    [
+      "YYXXyx",
+      "YYXYxYXXX"
+    ],
+    [
+      "YYXXyx",
+      "YXyXYXXYx"
+    ],
+    [
+      "YXXXyxx",
+      "YYXyXXXXX"
+    ],
+    [
+      "YXYXXYx",
+      "YYYxyXyXXYx"
+    ],
+    [
+      "YYXXXyyxx",
+      "YYXyxxxyyX"
+    ],
+    [
+      "YYXXXyxx",
+      "YYxyXXYXX"
+    ],
+    [
+      "YXXYx",
+      "YYYXyXyxYYYxyX"
+    ],
+    [
+      "YXXyXyx",
+      "YYxxxxyxYXX"
+    ],
+    [
+      "YXYXyx",
+      "YYYYxyyXyXX"
+    ],
+    [
+      "YXXyXyx",
+      "YYXyxxYXyyx"
+    ],
+    [
+      "YYXXyx",
+      "YYXYxxYYXXXXX"
+    ],
+    [
+      "YYXXYXXyx",
+      "YYXYxyXXyx"
+    ],
+    [
+      "YXXyx",
+      "YYYYXyxyxxyyyx"
+    ],
+    [
+      "YXYXyx",
+      "YYYYxyXyXXX"
+    ],
+    [
+      "YXXYx",
+      "YYXXXXYYxyx"
+    ],
+    [
+      "YXYXXYx",
+      "YXyXXyxxxx"
+    ],
+    [
+      "YYXXyx",
+      "YXyXyxxyx"
+    ],
+    [
+      "YXXYXXyx",
+      "YYXyXYYXXyX"
+    ],
+    [
+      "YXXyXyXX",
+      "YYXXyxxyx"
+    ],
+    [
+      "YYXXYx",
+      "YYXXyxYxyXyyx"
+    ],
+    [
+      "YXYXYx",
+      "YYYXyXXyxYYYx"
+    ],
+    [
+      "YXXYxxyX",
+      "YYxxyxyXXyx"
+    ],
+    [
+      "YYXXyx",
+      "YYXyXXXyxYXYx"
+    ],
+    [
+      "YYXXX",
+      "YXXyXYxxYxxyXX"
+    ],
+    [
+      "YXXYx",
+      "YYYXXXyXYYxyxx"
+    ],
+    [
+      "YXYXyx",
+      "YYXYYxYxyXXyX"
+    ],
+    [
+      "YXYXXYXyX",
+      "YYxYXyXXyX"
+    ],
+    [
+      "YXXYx",
+      "YYYXYYXXyxyx"
+    ],
+    [
+      "YXXyXyx",
+      "YYYxyxYxxyyX"
+    ],
+    [
+      "YXXYx",
+      "YYXXXYxxYXyx"
+    ],
+    [
+      "YYXXyx",
+      "YYYXXXXYXYx"
+    ],
+    [
+      "YXXyxYx",
+      "YYYXYxyx"
+    ],
+    [
+      "YXXYxxyx",
+      "YYXyxYxYXyx"
+    ],
+    [
+      "YYXXXXX",
+      "YYXXyXXyxYx"
+    ],
+    [
+      "YXXYx",
+      "YYYXYYYXXyxYYX"
+    ],
+    [
+      "YXXyx",
+      "YYYXyxyyXXyX"
+    ],
+    [
+      "YXYXyx",
+      "YYYYXyyyXXyxx"
+    ],
+    [
+      "YXyXXyx",
+      "YYYXXyyyxxYx"
+    ],
+    [
+      "YXYXyXYxx",
+      "YYxyXYXXyx"
+    ],
+    [
+      "YYXXYx",
+      "YYYxyXYxxyyXX"
+    ],
+    [
+      "YXXyx",
+      "YYYXyyyXXXyX"
+    ],
+    [
+      "YYXXyx",
+      "YYYXyxyyXXYxx"
+    ],
+    [
+      "YXXyx",
+      "YYYYXyXyyyxyx"
+    ],
+    [
+      "YYXXyx",
+      "YYXyXYxyyXXYx"
+    ],
+    [
+      "YYXXX",
+      "YYYXyxxyxyXyx"
+    ],
+    [
+      "YXXXyXyx",
+      "YYYxxxxyx"
+    ],
+    [
+      "YYXXX",
+      "YXyXyxYxYXX"
+    ],
+    [
+      "YXYxyx",
+      "YYXXyxyXXyyxx"
+    ],
+    [
+      "YXXXyXyx",
+      "YYxyxxYXXyx"
+    ],
+    [
+      "YYXXX",
+      "YYYXXyyXXyxYx"
+    ],
+    [
+      "YYXXXyX",
+      "YYxyxxxyXXX"
+    ],
+    [
+      "YXXYx",
+      "YYYXYXyyXYYxyx"
+    ],
+    [
+      "YYXXYx",
+      "YYYYYYXXXyyxx"
+    ],
+    [
+      "YXXyxYx",
+      "YYYYXXyxxYYx"
+    ],
+    [
+      "YXyXXyx",
+      "YYXyxxyXX"
+    ],
+    [
+      "YXYXXYx",
+      "YXyXXYXyxxYx"
+    ],
+    [
+      "YXXXyxx",
+      "YYXyXYXyXX"
+    ],
+    [
+      "YXXyx",
+      "YYYXYYxyyXyyXX"
+    ]
+  ],
+  "holdout_reps": [
+    [
+      "YXXYx",
+      "YYXXyyxyxxxyyX"
+    ],
+    [
+      "YXXYx",
+      "YYXYYXyXYxyx"
+    ],
+    [
+      "YXXYx",
+      "YYXXyxYxyX"
+    ],
+    [
+      "YXYXXYx",
+      "YYxxYXXyX"
+    ],
+    [
+      "YXXyx",
+      "YYXYxyyXyxyX"
+    ],
+    [
+      "YYXYxxxyX",
+      "YYXyxYXyx"
+    ],
+    [
+      "YXXyXyxx",
+      "YYxyXYxxxYX"
+    ],
+    [
+      "YXXYx",
+      "YYYYYXXYYXyxYX"
+    ],
+    [
+      "YXXyx",
+      "YYYXyyxyyXYYXX"
+    ],
+    [
+      "YYXXyx",
+      "YYXyxyXXyxxYx"
+    ],
+    [
+      "YXXYx",
+      "YYYXXyyXYxxYX"
+    ],
+    [
+      "YXXYx",
+      "YYYXXYYxyXXyxx"
+    ],
+    [
+      "YXXYx",
+      "YYxyXYXyx"
+    ],
+    [
+      "YYXXXYx",
+      "YYYxyXYYXXX"
+    ],
+    [
+      "YXXyXYx",
+      "YYXXXXyxxx"
+    ],
+    [
+      "YXXYx",
+      "YYXXYxYXyxYxyX"
+    ],
+    [
+      "YXYXXYx",
+      "YYxYXyXYXyx"
+    ],
+    [
+      "YXYxyx",
+      "YYXyxYxxx"
+    ],
+    [
+      "YXXyx",
+      "YYYYXyyyyXXYX"
+    ],
+    [
+      "YXXyXyx",
+      "YYxyxxYXyx"
+    ],
+    [
+      "YXyXXXyx",
+      "YYxyxyXyXXX"
+    ],
+    [
+      "YXXyXyx",
+      "YYxyXyxyxYX"
+    ],
+    [
+      "YXXyx",
+      "YYYYXyyXyyyxxx"
+    ],
+    [
+      "YXXYx",
+      "YYXyyXYxxYXyx"
+    ],
+    [
+      "YXYXyx",
+      "YYYYYxyXyXX"
+    ],
+    [
+      "YYXXXyxxx",
+      "YYxYxYxYXX"
+    ],
+    [
+      "YXYXYx",
+      "YYXXXyxYxyx"
+    ],
+    [
+      "YXYXXYx",
+      "YYXyxxyXyyx"
+    ],
+    [
+      "YXXyxYx",
+      "YYYxxxYXXXyX"
+    ],
+    [
+      "YXXYx",
+      "YYXyxYXXYxyyx"
+    ],
+    [
+      "YXyXXyx",
+      "YYxxxxxyxYX"
+    ],
+    [
+      "YXXYx",
+      "YYYXyyyXYYYx"
+    ],
+    [
+      "YXXyXYx",
+      "YYxYXyyXXYX"
+    ],
+    [
+      "YXXyx",
+      "YYYXyyXXyyXYYx"
+    ],
+    [
+      "YXXYx",
+      "YYYXyXYXYYXYYx"
+    ],
+    [
+      "YXYXyx",
+      "YYYYYXyXXyX"
+    ],
+    [
+      "YXXYx",
+      "YYXYXyXXyxYYx"
+    ],
+    [
+      "YYXXXXyxx",
+      "YYXyyxyxxx"
+    ],
+    [
+      "YXXYx",
+      "YYYYXXyxxyXyx"
+    ],
+    [
+      "YYYXXyX",
+      "YYxyXXX"
+    ],
+    [
+      "YYXXX",
+      "YXXYxxYXXyXyx"
+    ],
+    [
+      "YXXyXyxx",
+      "YYXyyxxxyXX"
+    ],
+    [
+      "YXXYx",
+      "YYXXyyxYXyxxYX"
+    ],
+    [
+      "YXXYx",
+      "YYYXYxxYXyyX"
+    ],
+    [
+      "YYXXX",
+      "YYYXyxYXyXXyx"
+    ],
+    [
+      "YXyXXXyx",
+      "YYXyyXyXX"
+    ],
+    [
+      "YXYXyx",
+      "YYXyXXXXYxxYx"
+    ],
+    [
+      "YXyXXyx",
+      "YYYXyxxyxyX"
+    ],
+    [
+      "YXXyXyx",
+      "YYxyxYXyxyX"
+    ],
+    [
+      "YXYXyx",
+      "YYXXXXyXYXYYx"
+    ],
+    [
+      "YYXXXyyxx",
+      "YYxyXXyyx"
+    ],
+    [
+      "YXXYx",
+      "YYXyyxYYXXyxx"
+    ],
+    [
+      "YXXYxxyX",
+      "YYxxyxyXXyX"
+    ],
+    [
+      "YXXYx",
+      "YYXYxyxYXXXyyx"
+    ],
+    [
+      "YXyXXXXyx",
+      "YYxxyxyXYx"
+    ],
+    [
+      "YXYXyx",
+      "YYXXXXyXYxYxx"
+    ],
+    [
+      "YYXXYYx",
+      "YYYYYYXXyyyx"
+    ],
+    [
+      "YXYxyx",
+      "YYXXYxxyyXyyx"
+    ],
+    [
+      "YYXXX",
+      "YXyXYx"
+    ],
+    [
+      "YXXYx",
+      "YYYYXYXXyxyx"
+    ]
+  ],
+  "train_rows": [
+    {
+      "idx": 996521,
+      "r1": "xyxxyXYYXyxxyxx",
+      "r2": "xyxxyxyxxx",
+      "L": 25,
+      "mu": 17,
+      "aut_rep_r1": "YYXXYx",
+      "aut_rep_r2": "YYXYYxyXXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 288936,
+      "r1": "YXyXXyXXXyXXXyXXyxY",
+      "r2": "XXyXYxyX",
+      "L": 27,
+      "mu": 18,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYXYXYxyyXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 791977,
+      "r1": "xxyxyyxyxYXyxyxxyxxy",
+      "r2": "xxyxyyxxy",
+      "L": 29,
+      "mu": 19,
+      "aut_rep_r1": "YYXXYx",
+      "aut_rep_r2": "YYXXXYYxyXYYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 963809,
+      "r1": "xxyxxyyx",
+      "r2": "xxyyxyxyxxyxyxY",
+      "L": 23,
+      "mu": 19,
+      "aut_rep_r1": "YXYXXYx",
+      "aut_rep_r2": "YYYxYXXyXYYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 637723,
+      "r1": "xyxyxyxyyxyyyXYYY",
+      "r2": "xyyxyyx",
+      "L": 24,
+      "mu": 19,
+      "aut_rep_r1": "YXYXYx",
+      "aut_rep_r2": "YYYYXYXXXyxxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 362773,
+      "r1": "xyxyyxYXy",
+      "r2": "xyxyxyyxyyxyyxyyx",
+      "L": 26,
+      "mu": 15,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYYYXyXXX",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 315726,
+      "r1": "yXyxYX",
+      "r2": "yxyyyyXYYYXYXYx",
+      "L": 21,
+      "mu": 19,
+      "aut_rep_r1": "YXyXXyx",
+      "aut_rep_r2": "YYXyyxxxxYXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 538083,
+      "r1": "YxYxYxYYxxYxyyx",
+      "r2": "YxxYXyx",
+      "L": 22,
+      "mu": 19,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYYXyyXyyXXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 294623,
+      "r1": "YYXyyXyxYYxx",
+      "r2": "xYXYxYx",
+      "L": 19,
+      "mu": 18,
+      "aut_rep_r1": "YXXyXYx",
+      "aut_rep_r2": "YYxyxyXYXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 909665,
+      "r1": "xyxxyxYXXXXXYXYXY",
+      "r2": "yxxyxxyxxyxyx",
+      "L": 30,
+      "mu": 19,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YYYXyXyXyXYxxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 605105,
+      "r1": "XyxyyxyyyxY",
+      "r2": "yxyyxyXYYXYXYYXYx",
+      "L": 28,
+      "mu": 17,
+      "aut_rep_r1": "YXyXXXyx",
+      "aut_rep_r2": "YYxxyxyXX",
+      "n_screen_dupes": 3
+    },
+    {
+      "idx": 1095268,
+      "r1": "xyXyyXy",
+      "r2": "xyyxYXyxYXyXY",
+      "L": 20,
+      "mu": 19,
+      "aut_rep_r1": "YXYXYx",
+      "aut_rep_r2": "YYYxyXXyxYXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 299840,
+      "r1": "xxxxyXYYxxY",
+      "r2": "xxyxYXY",
+      "L": 18,
+      "mu": 18,
+      "aut_rep_r1": "YXXyXYx",
+      "aut_rep_r2": "YYXXYXXXXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 281557,
+      "r1": "yxyXXXXXYx",
+      "r2": "XyxyXYY",
+      "L": 17,
+      "mu": 16,
+      "aut_rep_r1": "YXyXYxx",
+      "aut_rep_r2": "YYYYYXyxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 560925,
+      "r1": "xyyXYxy",
+      "r2": "xxyyyXyxY",
+      "L": 16,
+      "mu": 16,
+      "aut_rep_r1": "YXXyXyx",
+      "aut_rep_r2": "YYxxxyxYX",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 1037693,
+      "r1": "xxxxxyyy",
+      "r2": "xxyxyXY",
+      "L": 15,
+      "mu": 15,
+      "aut_rep_r1": "YXXyXyx",
+      "aut_rep_r2": "YYYxxxxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1122199,
+      "r1": "YxYxYxYXyXYxYxxYxY",
+      "r2": "YxYxxYX",
+      "L": 25,
+      "mu": 19,
+      "aut_rep_r1": "YYXXYx",
+      "aut_rep_r2": "YYYYXYYxYYXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 865673,
+      "r1": "XyXyXXyxYXyXy",
+      "r2": "XYxxYxxxYXyXyX",
+      "L": 27,
+      "mu": 19,
+      "aut_rep_r1": "YXyXXXyx",
+      "aut_rep_r2": "YYxyxyXyxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 855286,
+      "r1": "xxxxxyxYXy",
+      "r2": "xxyxxxyxxyxxxyxYXXY",
+      "L": 29,
+      "mu": 18,
+      "aut_rep_r1": "YXyXXyx",
+      "aut_rep_r2": "YYXYYxyxyxx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 414191,
+      "r1": "xyXyXyXXYxYx",
+      "r2": "xxyXXYxYxYx",
+      "L": 23,
+      "mu": 18,
+      "aut_rep_r1": "YYYXXXyxx",
+      "aut_rep_r2": "YYYxxyyXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1029186,
+      "r1": "xxyyx",
+      "r2": "xxyxyyxyxyxyxxyxyxY",
+      "L": 24,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYYXYYXyXXYYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 489720,
+      "r1": "XYXYxyXYXYXYXXYXYXXXY",
+      "r2": "xyyxx",
+      "L": 26,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXYYXXYYYxyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 375792,
+      "r1": "xxYXY",
+      "r2": "xYxYYxyXXYxYxYYY",
+      "L": 21,
+      "mu": 19,
+      "aut_rep_r1": "YXYxyx",
+      "aut_rep_r2": "YYxYXyxyxYYxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 481166,
+      "r1": "yyXYxYYxYYxYXyxYx",
+      "r2": "yyXXy",
+      "L": 22,
+      "mu": 18,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYxyXXYXYXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 444553,
+      "r1": "YxxyXY",
+      "r2": "YxxxyxYxYYYxY",
+      "L": 19,
+      "mu": 19,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YYYXXYXXXYXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 896599,
+      "r1": "xyxxyxxyxyyxxyxyxYXXY",
+      "r2": "xyxyxxyXY",
+      "L": 30,
+      "mu": 18,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYXyXyyXXYxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 970248,
+      "r1": "yXYYxyXXyyX",
+      "r2": "yXXyXyXyXXyXXyXyX",
+      "L": 28,
+      "mu": 19,
+      "aut_rep_r1": "YXYXYx",
+      "aut_rep_r2": "YXyXXYxxxYxyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 667145,
+      "r1": "xxyxYXY",
+      "r2": "xxYxyXYXyxYXy",
+      "L": 20,
+      "mu": 19,
+      "aut_rep_r1": "YYXXYx",
+      "aut_rep_r2": "YYxyXYxyXyxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 913848,
+      "r1": "xxYXyyXXYXY",
+      "r2": "xxxyXyx",
+      "L": 18,
+      "mu": 18,
+      "aut_rep_r1": "YXXXXYx",
+      "aut_rep_r2": "YYxxyxyXXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 402018,
+      "r1": "xyyyyxxxYx",
+      "r2": "xyxyyxY",
+      "L": 17,
+      "mu": 17,
+      "aut_rep_r1": "YXYXXYx",
+      "aut_rep_r2": "YYYxYYXXXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 755035,
+      "r1": "xxyyyxY",
+      "r2": "xyyXYxYxy",
+      "L": 16,
+      "mu": 16,
+      "aut_rep_r1": "YYXXXYx",
+      "aut_rep_r2": "YXYXXyxYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 725096,
+      "r1": "xyyyx",
+      "r2": "YXyXYxyxyx",
+      "L": 15,
+      "mu": 14,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYxyXXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 697272,
+      "r1": "xyyxyyXYYxy",
+      "r2": "xyyxyyxyyyxYXY",
+      "L": 25,
+      "mu": 17,
+      "aut_rep_r1": "YXXXyXYx",
+      "aut_rep_r2": "YYXYXXyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1083048,
+      "r1": "xyxxyXYXyxxyxx",
+      "r2": "xyxxyxxyxxyyx",
+      "L": 27,
+      "mu": 15,
+      "aut_rep_r1": "YYXXXXX",
+      "aut_rep_r2": "YXXyXXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 715461,
+      "r1": "XYxyxxyxxyyxYXXYX",
+      "r2": "xyxxyxyxYXyx",
+      "L": 29,
+      "mu": 16,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYXyxxyyyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 967804,
+      "r1": "XyyyXyxY",
+      "r2": "yyyXyXyXyXyXyxx",
+      "L": 23,
+      "mu": 19,
+      "aut_rep_r1": "YXyXXyx",
+      "aut_rep_r2": "YYYYYxyxyxxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 598995,
+      "r1": "YxYxYxxxyXYxY",
+      "r2": "YxYxYxxYxxY",
+      "L": 24,
+      "mu": 19,
+      "aut_rep_r1": "YXXXyXyX",
+      "aut_rep_r2": "YYYxxxyxxyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 881277,
+      "r1": "xyxyxyxyxyyxyyyyx",
+      "r2": "yxyxyyxYX",
+      "L": 26,
+      "mu": 19,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYYYYxYXyXyXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 529388,
+      "r1": "xxyyxYXYXYXXyxyx",
+      "r2": "xxyyx",
+      "L": 21,
+      "mu": 18,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXXyyxxyXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1134419,
+      "r1": "xxxyxYXyx",
+      "r2": "xYXXYXYXyxyyx",
+      "L": 22,
+      "mu": 19,
+      "aut_rep_r1": "YXyXXXyx",
+      "aut_rep_r2": "YYXYxxyXyyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 643034,
+      "r1": "xyxYYxYXyyyyy",
+      "r2": "xyxyXY",
+      "L": 19,
+      "mu": 18,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYYYXyxyyyxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 583955,
+      "r1": "yyxyyyxYX",
+      "r2": "xyyyyyxyXyxYXYYYYYXYY",
+      "L": 30,
+      "mu": 19,
+      "aut_rep_r1": "YXXYxxyX",
+      "aut_rep_r2": "YYXXyyXYxyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 552324,
+      "r1": "xxxxyxxyx",
+      "r2": "xxyxxyxxyxyxYXYXXXY",
+      "L": 28,
+      "mu": 18,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YYYXXyxyXyXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 476372,
+      "r1": "xyxxyxY",
+      "r2": "xxxxyxxYxxxyy",
+      "L": 20,
+      "mu": 18,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXyyXYYXYYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 490378,
+      "r1": "xYxyyxyXyxyxY",
+      "r2": "yxxxy",
+      "L": 18,
+      "mu": 18,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YYXYxYXYXyXyX",
+      "n_screen_dupes": 3
+    },
+    {
+      "idx": 747985,
+      "r1": "xyXYxYx",
+      "r2": "yxyXYXyXYx",
+      "L": 17,
+      "mu": 17,
+      "aut_rep_r1": "YXXYXXyx",
+      "aut_rep_r2": "YYxyXYXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1070405,
+      "r1": "xxxyy",
+      "r2": "xxyxyxyXyxY",
+      "L": 16,
+      "mu": 15,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXXyXYxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1093435,
+      "r1": "yXyxYXXyx",
+      "r2": "yyXXYx",
+      "L": 15,
+      "mu": 15,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YXYxyXXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 787371,
+      "r1": "xyyyxyXY",
+      "r2": "xyyxyyXyxyXyxyyxy",
+      "L": 25,
+      "mu": 19,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYXXyXXYxYXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1101237,
+      "r1": "yXYXYx",
+      "r2": "XYxyxYXXYXYXXYXXYXyxY",
+      "L": 27,
+      "mu": 18,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYXyxxxyyxYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 491741,
+      "r1": "xYxxYxxYxyXyXXYxYx",
+      "r2": "xYxxxYXyXYx",
+      "L": 29,
+      "mu": 19,
+      "aut_rep_r1": "YXXYxxyx",
+      "aut_rep_r2": "YYXXXXyyxyx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 1134560,
+      "r1": "xyxyxYXXYXXY",
+      "r2": "yxyxyxyyxYX",
+      "L": 23,
+      "mu": 17,
+      "aut_rep_r1": "YXyXYxx",
+      "aut_rep_r2": "YYYYYXYxyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 448172,
+      "r1": "XYxyXYxYYxYxY",
+      "r2": "yXYxYYxYxyX",
+      "L": 24,
+      "mu": 17,
+      "aut_rep_r1": "YYXXyxx",
+      "aut_rep_r2": "YYXYxxYXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 725707,
+      "r1": "YxyxxyxyxyXYX",
+      "r2": "xxyxxyxxyXYXy",
+      "L": 26,
+      "mu": 15,
+      "aut_rep_r1": "YXXXYxx",
+      "aut_rep_r2": "YYYXXyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 578174,
+      "r1": "xyyyx",
+      "r2": "YYxyXYxyyxyXyxYX",
+      "L": 21,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXyxYXXyXYxyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 930298,
+      "r1": "xxxyxyxxyxyXyxyxY",
+      "r2": "xxxyy",
+      "L": 22,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXYYXXXyXYYxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 326724,
+      "r1": "xYYYYxYx",
+      "r2": "YYxyyxyXXyX",
+      "L": 19,
+      "mu": 19,
+      "aut_rep_r1": "YYXXXXYX",
+      "aut_rep_r2": "YYXyXXyxxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1127886,
+      "r1": "xyxyxxyXY",
+      "r2": "yxxyxxyxxyxxxyxxyXXYX",
+      "L": 30,
+      "mu": 18,
+      "aut_rep_r1": "YXyXXyx",
+      "aut_rep_r2": "YYxxyxxxxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 682937,
+      "r1": "YxYxYYxyX",
+      "r2": "YxYxYxYYxxYYxYxYxYX",
+      "L": 28,
+      "mu": 17,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYXyXyxyXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 992244,
+      "r1": "YYxyxYXYXyyxxyX",
+      "r2": "xYxyy",
+      "L": 20,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXXyxYXYxxyyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1011232,
+      "r1": "xxyxxyxyxxyxy",
+      "r2": "xxxyy",
+      "L": 18,
+      "mu": 10,
+      "aut_rep_r1": "YXX",
+      "aut_rep_r2": "YYxyXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 486430,
+      "r1": "xxxyXYxYxYY",
+      "r2": "xyXYXy",
+      "L": 17,
+      "mu": 17,
+      "aut_rep_r1": "YXYxyx",
+      "aut_rep_r2": "YYYXyxYxYxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 332599,
+      "r1": "xyyxxyXXy",
+      "r2": "xyxyXXY",
+      "L": 16,
+      "mu": 15,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YYXYxYXXX",
+      "n_screen_dupes": 4
+    },
+    {
+      "idx": 510400,
+      "r1": "XYxYXXYXy",
+      "r2": "yxxYXy",
+      "L": 15,
+      "mu": 15,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YXyXYXXYx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 1026131,
+      "r1": "xYxYxYxYxYYxyXy",
+      "r2": "xYxYxyXyXY",
+      "L": 25,
+      "mu": 16,
+      "aut_rep_r1": "YXXXyxx",
+      "aut_rep_r2": "YYXyXXXXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 354031,
+      "r1": "xYxYXXyxYxxYxx",
+      "r2": "xYxYxYxxYxYxx",
+      "L": 27,
+      "mu": 18,
+      "aut_rep_r1": "YXYXXYx",
+      "aut_rep_r2": "YYYxyXyXXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 587668,
+      "r1": "xxxyxxyXXYXXY",
+      "r2": "xxxyxxyXYXXYXyxx",
+      "L": 29,
+      "mu": 19,
+      "aut_rep_r1": "YYXXXyyxx",
+      "aut_rep_r2": "YYXyxxxyyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 888186,
+      "r1": "yxyxxyxyxxYX",
+      "r2": "yxyxyXYXYxx",
+      "L": 23,
+      "mu": 17,
+      "aut_rep_r1": "YYXXXyxx",
+      "aut_rep_r2": "YYxyXXYXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1050148,
+      "r1": "xyyxyyx",
+      "r2": "xyxyxyxyXYxyxYXyy",
+      "L": 24,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXyXyxYYYxyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 309099,
+      "r1": "xxxxyxxxxyxxyxY",
+      "r2": "xxyxxxxxyXY",
+      "L": 26,
+      "mu": 18,
+      "aut_rep_r1": "YXXyXyx",
+      "aut_rep_r2": "YYxxxxyxYXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 336077,
+      "r1": "xYYYYXyyxyyyxyy",
+      "r2": "YxyxyX",
+      "L": 21,
+      "mu": 17,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYYYxyyXyXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 256459,
+      "r1": "YxYxxYxyX",
+      "r2": "YxxYXyxxYXXyx",
+      "L": 22,
+      "mu": 18,
+      "aut_rep_r1": "YXXyXyx",
+      "aut_rep_r2": "YYXyxxYXyyx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 447091,
+      "r1": "YYxyXX",
+      "r2": "YYYYYXXYXyyXX",
+      "L": 19,
+      "mu": 19,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YYXYxxYYXXXXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 657322,
+      "r1": "xyxYXyxxyxyXY",
+      "r2": "xyxxyxyxxyxxyxyXY",
+      "L": 30,
+      "mu": 19,
+      "aut_rep_r1": "YYXXYXXyx",
+      "aut_rep_r2": "YYXYxyXXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 978755,
+      "r1": "XyXyXyXyxYXyXXyXyXY",
+      "r2": "yXXyXyXYx",
+      "L": 28,
+      "mu": 19,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYYXyxyxxyyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 395438,
+      "r1": "xYxxYXy",
+      "r2": "xYxYxYxxxyyXY",
+      "L": 20,
+      "mu": 17,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYYYxyXyXXX",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 581605,
+      "r1": "xxyXXyXYXyXXy",
+      "r2": "yXXXy",
+      "L": 18,
+      "mu": 16,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXXXXYYxyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 375087,
+      "r1": "xyxYYx",
+      "r2": "yXyyyXYYYYx",
+      "L": 17,
+      "mu": 17,
+      "aut_rep_r1": "YXYXXYx",
+      "aut_rep_r2": "YXyXXyxxxx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 488686,
+      "r1": "xxyxyXY",
+      "r2": "YxyXYXXXY",
+      "L": 16,
+      "mu": 15,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YXyXyxxyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 660800,
+      "r1": "yyxxxyyxxxyxx",
+      "r2": "yxyxxyXYxyxx",
+      "L": 25,
+      "mu": 19,
+      "aut_rep_r1": "YXXYXXyx",
+      "aut_rep_r2": "YYXyXYYXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 559891,
+      "r1": "xyxyxyyxyxxyxyy",
+      "r2": "xyxyyxYYXYXy",
+      "L": 27,
+      "mu": 17,
+      "aut_rep_r1": "YXXyXyXX",
+      "aut_rep_r2": "YYXXyxxyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 528965,
+      "r1": "xYXYYYYXYY",
+      "r2": "xyyXyxyyyxyXYYYYXYY",
+      "L": 29,
+      "mu": 19,
+      "aut_rep_r1": "YYXXYx",
+      "aut_rep_r2": "YYXXyxYxyXyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1126758,
+      "r1": "xxxxyxYxy",
+      "r2": "xxxyxxyxxxyXYY",
+      "L": 23,
+      "mu": 19,
+      "aut_rep_r1": "YXYXYx",
+      "aut_rep_r2": "YYYXyXXyxYYYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 580430,
+      "r1": "xYxyXYXyXyyXy",
+      "r2": "YxYxyXyXyyX",
+      "L": 24,
+      "mu": 19,
+      "aut_rep_r1": "YXXYxxyX",
+      "aut_rep_r2": "YYxxyxyXXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 500389,
+      "r1": "yXYxxxxYxxYxxxYxy",
+      "r2": "yXYxxxYxx",
+      "L": 26,
+      "mu": 19,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YYXyXXXyxYXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 443425,
+      "r1": "xxxxxyxxy",
+      "r2": "xxyxxYxyyXXY",
+      "L": 21,
+      "mu": 19,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YXXyXYxxYxxyXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1111483,
+      "r1": "XyyyX",
+      "r2": "yyyXyXyXYYxYXyXyx",
+      "L": 22,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXXXyXYYxyxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 767067,
+      "r1": "xxyxxYxYXyyXy",
+      "r2": "xyxyXY",
+      "L": 19,
+      "mu": 19,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYXYYxYxyXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 819848,
+      "r1": "xxYxxYxYxyXXyXyxYxY",
+      "r2": "xxYxxxxYxYx",
+      "L": 30,
+      "mu": 19,
+      "aut_rep_r1": "YXYXXYXyX",
+      "aut_rep_r2": "YYxYXyXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 999435,
+      "r1": "XyXXyXY",
+      "r2": "yXXyXXYxxxYxxxYxxxxYx",
+      "L": 28,
+      "mu": 17,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXYYXXyxyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 336171,
+      "r1": "xYxxyXY",
+      "r2": "xYxxYYxyyyXYY",
+      "L": 20,
+      "mu": 19,
+      "aut_rep_r1": "YXXyXyx",
+      "aut_rep_r2": "YYYxyxYxxyyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 921321,
+      "r1": "xxxyy",
+      "r2": "xxxxyxyXYxyXy",
+      "L": 18,
+      "mu": 17,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXXXYxxYXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 810119,
+      "r1": "xxyyXY",
+      "r2": "xxxyyyXyxyx",
+      "L": 17,
+      "mu": 17,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YYYXXXXYXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 272674,
+      "r1": "XYxYxyXXy",
+      "r2": "XXXYXyy",
+      "L": 16,
+      "mu": 15,
+      "aut_rep_r1": "YXXyxYx",
+      "aut_rep_r2": "YYYXYxyx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 995581,
+      "r1": "xyxxyxyxYXXY",
+      "r2": "xyXYXXXYxyXXY",
+      "L": 25,
+      "mu": 19,
+      "aut_rep_r1": "YXXYxxyx",
+      "aut_rep_r2": "YYXyxYxYXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 722088,
+      "r1": "YxYxxYxxyXY",
+      "r2": "YxxYxYxYxYxYxYxx",
+      "L": 27,
+      "mu": 18,
+      "aut_rep_r1": "YYXXXXX",
+      "aut_rep_r2": "YYXXyXXyxYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 466596,
+      "r1": "xyXyXy",
+      "r2": "xYxYXyyXyyyXyyXyyyXyyXy",
+      "L": 29,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXYYYXXyxYYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 814020,
+      "r1": "xyyyxyXY",
+      "r2": "yxyyyxyyyyxxyXy",
+      "L": 23,
+      "mu": 17,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYXyxyyXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 653327,
+      "r1": "xxYxyXY",
+      "r2": "xYxYxYxyXyXyxyXXY",
+      "L": 24,
+      "mu": 19,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYYYXyyyXXyxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 700891,
+      "r1": "xYxyyXyyXyyXyXYxYYxYY",
+      "r2": "xxYXy",
+      "L": 26,
+      "mu": 19,
+      "aut_rep_r1": "YXyXXyx",
+      "aut_rep_r2": "YYYXXyyyxxYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 534370,
+      "r1": "xyxxyXYYYXy",
+      "r2": "xyxyXXYYXy",
+      "L": 21,
+      "mu": 19,
+      "aut_rep_r1": "YXYXyXYxx",
+      "aut_rep_r2": "YYxyXYXXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 989471,
+      "r1": "xxyxYxY",
+      "r2": "yxxxYxYXXyXyxYX",
+      "L": 22,
+      "mu": 19,
+      "aut_rep_r1": "YYXXYx",
+      "aut_rep_r2": "YYYxyXYxxyyXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1023358,
+      "r1": "xxxxyXXyxyxyy",
+      "r2": "YxyxyX",
+      "L": 19,
+      "mu": 17,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYXyyyXXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 721242,
+      "r1": "YxxYxxYxyxYxYXyXXyXyX",
+      "r2": "xYxxYxyXY",
+      "L": 30,
+      "mu": 19,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YYYXyxyyXXYxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 246354,
+      "r1": "xyyyyyxyyyXYYYXYYYY",
+      "r2": "xyyyyxyXY",
+      "L": 28,
+      "mu": 18,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYYXyXyyyxyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1113880,
+      "r1": "xyXYxYx",
+      "r2": "xyxYxYXXyxYYx",
+      "L": 20,
+      "mu": 19,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YYXyXYxyyXXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 685334,
+      "r1": "xYXyyyxYXYxYx",
+      "r2": "xxYYx",
+      "L": 18,
+      "mu": 18,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YYYXyxxyxyXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 799732,
+      "r1": "yyyyXXXyx",
+      "r2": "yyyXyXYx",
+      "L": 17,
+      "mu": 17,
+      "aut_rep_r1": "YXXXyXyx",
+      "aut_rep_r2": "YYYxxxxyx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 492728,
+      "r1": "xYxyxxyXyXY",
+      "r2": "xxyyx",
+      "L": 16,
+      "mu": 16,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YXyXyxYxYXX",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 845416,
+      "r1": "YxYXYx",
+      "r2": "YYxyyXyyXyxyXyyXYYx",
+      "L": 25,
+      "mu": 19,
+      "aut_rep_r1": "YXYxyx",
+      "aut_rep_r2": "YYXXyxyXXyyxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 910981,
+      "r1": "xxYxxYxxyXY",
+      "r2": "xxYxyXYXyXyXXyXY",
+      "L": 27,
+      "mu": 19,
+      "aut_rep_r1": "YXXXyXyx",
+      "aut_rep_r2": "YYxyxxYXXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 484174,
+      "r1": "xyxyyxyyxyyXYxYXY",
+      "r2": "yxyxyxyxyyxy",
+      "L": 29,
+      "mu": 18,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YYYXXyyXXyxYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 933165,
+      "r1": "Yxyxyxyyx",
+      "r2": "xyxyxYYXXYXYXy",
+      "L": 23,
+      "mu": 18,
+      "aut_rep_r1": "YYXXXyX",
+      "aut_rep_r2": "YYxyxxxyXXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 447138,
+      "r1": "xYxyXyXYxYXyXyXyyXy",
+      "r2": "xYYYx",
+      "L": 24,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXYXyyXYYxyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 311026,
+      "r1": "XYxYxYxYxYxYxxyXyXX",
+      "r2": "XYxYxxY",
+      "L": 26,
+      "mu": 19,
+      "aut_rep_r1": "YYXXYx",
+      "aut_rep_r2": "YYYYYYXXXyyxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 991727,
+      "r1": "YxyyXX",
+      "r2": "YxyyXyXyXyXXyXY",
+      "L": 21,
+      "mu": 19,
+      "aut_rep_r1": "YXXyxYx",
+      "aut_rep_r2": "YYYYXXyxxYYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 380304,
+      "r1": "xxxyxxyxYXy",
+      "r2": "YxyxxyyxYXX",
+      "L": 22,
+      "mu": 16,
+      "aut_rep_r1": "YXyXXyx",
+      "aut_rep_r2": "YYXyxxyXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 938194,
+      "r1": "xxYxyXyXXYxy",
+      "r2": "xxyxyXy",
+      "L": 19,
+      "mu": 19,
+      "aut_rep_r1": "YXYXXYx",
+      "aut_rep_r2": "YXyXXYXyxxYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 621696,
+      "r1": "YYxYYxyXyyXYx",
+      "r2": "xYYxYYYxYxYYYxyXy",
+      "L": 30,
+      "mu": 17,
+      "aut_rep_r1": "YXXXyxx",
+      "aut_rep_r2": "YYXyXYXyXX",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 716495,
+      "r1": "xYxyXYx",
+      "r2": "xYxxYxYxYxxYxYXyXyyXy",
+      "L": 28,
+      "mu": 19,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYXYYxyyXyyXX",
+      "n_screen_dupes": 1
+    }
+  ],
+  "holdout_rows": [
+    {
+      "idx": 893826,
+      "r1": "xyXXy",
+      "r2": "xxyyXyXXYxYXyXy",
+      "L": 20,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXXyyxyxxxyyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 417434,
+      "r1": "yxYYx",
+      "r2": "yXyxYxxYxYXYx",
+      "L": 18,
+      "mu": 17,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXYYXyXYxyx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 628088,
+      "r1": "xYxyXYxxYXXy",
+      "r2": "YxxxY",
+      "L": 17,
+      "mu": 15,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXXyxYxyX",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 779381,
+      "r1": "xxyxyXy",
+      "r2": "YxxyXXyyx",
+      "L": 16,
+      "mu": 16,
+      "aut_rep_r1": "YXYXXYx",
+      "aut_rep_r2": "YYxxYXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 387965,
+      "r1": "xxYxxxYxYxxyXY",
+      "r2": "yxYxxYxxxYX",
+      "L": 25,
+      "mu": 17,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYXYxyyXyxyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 275353,
+      "r1": "yxxyXYxyxxxxyxx",
+      "r2": "yXYXXXYxyXYx",
+      "L": 27,
+      "mu": 18,
+      "aut_rep_r1": "YYXYxxxyX",
+      "aut_rep_r2": "YYXyxYXyx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 519377,
+      "r1": "xyyxyXYYXYY",
+      "r2": "yyyxyyxyXYYXyxYXyx",
+      "L": 29,
+      "mu": 19,
+      "aut_rep_r1": "YXXyXyxx",
+      "aut_rep_r2": "YYxyXYxxxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 932883,
+      "r1": "YxYxyx",
+      "r2": "xYxYxxxYXyxYxxxxx",
+      "L": 23,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYYYXXYYXyxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 413204,
+      "r1": "yxyxyyxYX",
+      "r2": "yxyxyXyxyxxyxyy",
+      "L": 24,
+      "mu": 19,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYXyyxyyXYYXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 846967,
+      "r1": "YxYxyyXyyXYxYXyyX",
+      "r2": "YxYYxYxyX",
+      "L": 26,
+      "mu": 19,
+      "aut_rep_r1": "YYXXyx",
+      "aut_rep_r2": "YYXyxyXXyxxYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 347404,
+      "r1": "YxxyxyxyxxyXyxYX",
+      "r2": "xxxyy",
+      "L": 21,
+      "mu": 18,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXXyyXYxxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 591851,
+      "r1": "xxyyx",
+      "r2": "xxyXyxYXYXXXYXYXY",
+      "L": 22,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXXYYxyXXyxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 450616,
+      "r1": "yxyyyxyXYxYX",
+      "r2": "yyxyxyy",
+      "L": 19,
+      "mu": 14,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYxyXYXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 383124,
+      "r1": "xxxxyxyxxyx",
+      "r2": "xxxxyxxyxxyXYxyxxyx",
+      "L": 30,
+      "mu": 18,
+      "aut_rep_r1": "YYXXXYx",
+      "aut_rep_r2": "YYYxyXYYXXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 330484,
+      "r1": "xyxyxyxyXYXYXYYXY",
+      "r2": "xyxyyxYXYXY",
+      "L": 28,
+      "mu": 17,
+      "aut_rep_r1": "YXXyXYx",
+      "aut_rep_r2": "YYXXXXyxxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 331941,
+      "r1": "xxyyxYXyXYxyxyx",
+      "r2": "xxyyx",
+      "L": 20,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXXYxYXyxYxyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 316948,
+      "r1": "xxyxyXy",
+      "r2": "YxyxYxyXyyX",
+      "L": 18,
+      "mu": 18,
+      "aut_rep_r1": "YXYXXYx",
+      "aut_rep_r2": "YYxYXyXYXyx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 512985,
+      "r1": "yXYxxYxYxYxx",
+      "r2": "yXYXy",
+      "L": 17,
+      "mu": 15,
+      "aut_rep_r1": "YXYxyx",
+      "aut_rep_r2": "YYXyxYxxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 298148,
+      "r1": "YxyXY",
+      "r2": "xYYXYYXYXYXYXYxyxyxy",
+      "L": 25,
+      "mu": 18,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYYXyyyyXXYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 539399,
+      "r1": "xyyxyxyyxYXyxxyy",
+      "r2": "xyxyyxyxyXY",
+      "L": 27,
+      "mu": 17,
+      "aut_rep_r1": "YXXyXyx",
+      "aut_rep_r2": "YYxyxxYXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 569291,
+      "r1": "YYXYYYXyxYX",
+      "r2": "YYXYYXYYxyyxyxyXYX",
+      "L": 29,
+      "mu": 19,
+      "aut_rep_r1": "YXyXXXyx",
+      "aut_rep_r2": "YYxyxyXyXXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 372925,
+      "r1": "yXXyXyXYxxYxYXy",
+      "r2": "YxxYxxyX",
+      "L": 23,
+      "mu": 18,
+      "aut_rep_r1": "YXXyXyx",
+      "aut_rep_r2": "YYxyXyxyxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1029092,
+      "r1": "xyXYx",
+      "r2": "xxxYxYxYYxYXyXyXyXy",
+      "L": 24,
+      "mu": 19,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYYXyyXyyyxxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 682984,
+      "r1": "yxyyxyxyyyx",
+      "r2": "xyyxYXyxYXYYXXY",
+      "L": 26,
+      "mu": 18,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXyyXYxxYXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 397929,
+      "r1": "xYxYXy",
+      "r2": "XXXXYxxYxxxYxyX",
+      "L": 21,
+      "mu": 17,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYYYYxyXyXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 925222,
+      "r1": "xyxyxyXYXYXYY",
+      "r2": "yxyxyyXXX",
+      "L": 22,
+      "mu": 19,
+      "aut_rep_r1": "YYXXXyxxx",
+      "aut_rep_r2": "YYxYxYxYXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 877376,
+      "r1": "xyxyyyXYxYXY",
+      "r2": "xyyxyyx",
+      "L": 19,
+      "mu": 17,
+      "aut_rep_r1": "YXYXYx",
+      "aut_rep_r2": "YYXXXyxYxyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 798886,
+      "r1": "YXyxxyxyxYXXYXYXXYXXY",
+      "r2": "XYYXXYXXY",
+      "L": 30,
+      "mu": 18,
+      "aut_rep_r1": "YXYXXYx",
+      "aut_rep_r2": "YYXyxxyXyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 878222,
+      "r1": "YxYxyXYxY",
+      "r2": "YxYxYxxYYxYxYYxYxYX",
+      "L": 28,
+      "mu": 19,
+      "aut_rep_r1": "YXXyxYx",
+      "aut_rep_r2": "YYYxxxYXXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 253028,
+      "r1": "xxxyy",
+      "r2": "xyxxyXYxyyxYXXY",
+      "L": 20,
+      "mu": 18,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXyxYXXYxyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 347216,
+      "r1": "xYYxYXy",
+      "r2": "xYYYYYXYxyx",
+      "L": 18,
+      "mu": 18,
+      "aut_rep_r1": "YXyXXyx",
+      "aut_rep_r2": "YYxxxxxyxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 315679,
+      "r1": "xxyyxxxYx",
+      "r2": "xxxyxYxy",
+      "L": 17,
+      "mu": 17,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXyyyXYYYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 683360,
+      "r1": "xxYYYxY",
+      "r2": "xYYxYxYYxYYYxyXyxY",
+      "L": 25,
+      "mu": 18,
+      "aut_rep_r1": "YXXyXYx",
+      "aut_rep_r2": "YYxYXyyXXYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 664184,
+      "r1": "xxxxyxYXy",
+      "r2": "xxxYxxyxxyxxxxyxxy",
+      "L": 27,
+      "mu": 19,
+      "aut_rep_r1": "YXXyx",
+      "aut_rep_r2": "YYYXyyXXyyXYYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 919300,
+      "r1": "xyXyXy",
+      "r2": "xyyXyyyXyyXyXyyXyyXyxYY",
+      "L": 29,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXyXYXYYXYYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 268068,
+      "r1": "xxyxYXyx",
+      "r2": "xxxxxxyxyxxyxyx",
+      "L": 23,
+      "mu": 17,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYYYYXyXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 419972,
+      "r1": "xYxxYxxxYxyyXYxxY",
+      "r2": "xYxxxxY",
+      "L": 24,
+      "mu": 18,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXYXyXXyxYYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1049443,
+      "r1": "yxyxyxyXYXYxx",
+      "r2": "yxyxyxxyxxYXX",
+      "L": 26,
+      "mu": 19,
+      "aut_rep_r1": "YYXXXXyxx",
+      "aut_rep_r2": "YYXyyxyxxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 979836,
+      "r1": "xxyXXYXYXYXYxyyx",
+      "r2": "xxyyx",
+      "L": 21,
+      "mu": 18,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYYXXyxxyXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1007895,
+      "r1": "xYXyxxyxxyx",
+      "r2": "xxxxyxxyxyx",
+      "L": 22,
+      "mu": 14,
+      "aut_rep_r1": "YYYXXyX",
+      "aut_rep_r2": "YYxyXXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 361598,
+      "r1": "xxxyxyx",
+      "r2": "xxyXyxxxyXYY",
+      "L": 19,
+      "mu": 18,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YXXYxxYXXyXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 872770,
+      "r1": "YxYxYxYYxYXyyXyyXyXYx",
+      "r2": "YxyyXyXYx",
+      "L": 30,
+      "mu": 19,
+      "aut_rep_r1": "YXXyXyxx",
+      "aut_rep_r2": "YYXyyxxxyXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 544475,
+      "r1": "yXXXXyX",
+      "r2": "yXYxyXXXyXXYxxxYxxYxx",
+      "L": 28,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXXyyxYXyxxYX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1100344,
+      "r1": "xyXXy",
+      "r2": "xxYXyXyXYxYxYYx",
+      "L": 20,
+      "mu": 17,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYXYxxYXyyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 982374,
+      "r1": "YxxYxyXYxyyyX",
+      "r2": "xxxyy",
+      "L": 18,
+      "mu": 18,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YYYXyxYXyXXyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 879914,
+      "r1": "YxxyxyyxY",
+      "r2": "xxxyxYXy",
+      "L": 17,
+      "mu": 17,
+      "aut_rep_r1": "YXyXXXyx",
+      "aut_rep_r2": "YYXyyXyXX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 540574,
+      "r1": "xyxxxxyXY",
+      "r2": "xxxxYxyxxxyxxyxy",
+      "L": 25,
+      "mu": 19,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYXyXXXXYxxYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 849740,
+      "r1": "xYxxxxxYXy",
+      "r2": "YxxxYxxxYXyXXyXyX",
+      "L": 27,
+      "mu": 18,
+      "aut_rep_r1": "YXyXXyx",
+      "aut_rep_r2": "YYYXyxxyxyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 402723,
+      "r1": "YxyyxyyxYXYXYYXX",
+      "r2": "YxyxyyxyxyxyX",
+      "L": 29,
+      "mu": 18,
+      "aut_rep_r1": "YXXyXyx",
+      "aut_rep_r2": "YYxyxYXyxyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 380398,
+      "r1": "xyxyxyxyyXyyxyyx",
+      "r2": "xyyxyXY",
+      "L": 23,
+      "mu": 19,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYXXXXyXYXYYx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 431252,
+      "r1": "xxyXXyXXYxxYx",
+      "r2": "yXXyXYxxYXy",
+      "L": 24,
+      "mu": 18,
+      "aut_rep_r1": "YYXXXyyxx",
+      "aut_rep_r2": "YYxyXXyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1070969,
+      "r1": "xxxyxyx",
+      "r2": "xxyXXYXXYxyxxyXYXXY",
+      "L": 26,
+      "mu": 18,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXyyxYYXXyxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 439242,
+      "r1": "xxxyxYXXYXXyxyx",
+      "r2": "xxyyXY",
+      "L": 21,
+      "mu": 19,
+      "aut_rep_r1": "YXXYxxyX",
+      "aut_rep_r2": "YYxxyxyXXyX",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 872018,
+      "r1": "xxyyx",
+      "r2": "xxxyXYXyxxyxyXYXY",
+      "L": 22,
+      "mu": 19,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYXYxyxYXXXyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 508426,
+      "r1": "yyyXyxYXy",
+      "r2": "yxyxYXyXXy",
+      "L": 19,
+      "mu": 19,
+      "aut_rep_r1": "YXyXXXXyx",
+      "aut_rep_r2": "YYxxyxyXYx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 971329,
+      "r1": "xyxyxyyxYXy",
+      "r2": "xyxyxyxxyyxyyyxyxyy",
+      "L": 30,
+      "mu": 19,
+      "aut_rep_r1": "YXYXyx",
+      "aut_rep_r2": "YYXXXXyXYxYxx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 991445,
+      "r1": "YxYxYxYxYxYxyXyXyXX",
+      "r2": "YxYxxYxYX",
+      "L": 28,
+      "mu": 19,
+      "aut_rep_r1": "YYXXYYx",
+      "aut_rep_r2": "YYYYYYXXyyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 1052545,
+      "r1": "yxYxy",
+      "r2": "XYXYxxyxxYXXyxy",
+      "L": 20,
+      "mu": 19,
+      "aut_rep_r1": "YXYxyx",
+      "aut_rep_r2": "YYXXYxxyyXyyx",
+      "n_screen_dupes": 1
+    },
+    {
+      "idx": 969590,
+      "r1": "XyyyX",
+      "r2": "XyyXyyXyXyXyy",
+      "L": 18,
+      "mu": 11,
+      "aut_rep_r1": "YYXXX",
+      "aut_rep_r2": "YXyXYx",
+      "n_screen_dupes": 2
+    },
+    {
+      "idx": 456115,
+      "r1": "xxyxyyyyXYXY",
+      "r2": "xxyXy",
+      "L": 17,
+      "mu": 17,
+      "aut_rep_r1": "YXXYx",
+      "aut_rep_r2": "YYYYXYXXyxyx",
+      "n_screen_dupes": 1
+    }
+  ],
+  "excluded_prior_selection_orbits": 904,
+  "selected_on": "train_idxs only",
+  "evaluated_on": "holdout_idxs only \u2014 one read after winner frozen",
+  "note": "Aut-deduped AC1M length-hard; 2:1 train:holdout stratified by L; zero Aut overlap; prior s_grid/fresh_hard/l_stratified orbits excluded."
+}

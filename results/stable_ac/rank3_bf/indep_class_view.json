@@ -1,0 +1,2198 @@
+{
+ "script": "indep_class_view.py",
+ "checks": [
+  {
+   "name": "rank3_bf_ms640_b1000_cap24:inputs",
+   "compared": 1950,
+   "mismatches": 0,
+   "detail": {
+    "length_files_used": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24:classes",
+   "compared": 10,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24:classes.class_of",
+   "compared": 640,
+   "mismatches": 0,
+   "detail": {
+    "committed_distinct_labels": 319,
+    "recomputed_classes": 319
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24:noise_threshold",
+   "compared": 1,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24:noise.control",
+   "compared": 7,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24:noise.starts",
+   "compared": 70,
+   "mismatches": 0,
+   "detail": {
+    "lengths_recomputed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24:rows",
+   "compared": 170,
+   "mismatches": 0,
+   "detail": {
+    "rows_recomputed": [
+     "words up to length 1",
+     "words up to length 2",
+     "words up to length 3",
+     "words up to length 4",
+     "words up to length 5",
+     "words up to length 6",
+     "words up to length 7",
+     "words up to length 8",
+     "words up to length 9",
+     "words up to length 10"
+    ]
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b1000_cap24:boundary_17pct(report only)",
+   "compared": 5225,
+   "mismatches": 0,
+   "detail": {
+    "by_row": {
+     "words up to length 1": {
+      "examined_control_and_some_start_solve": 403,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 0,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 0
+     },
+     "words up to length 2": {
+      "examined_control_and_some_start_solve": 472,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 26,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 26
+     },
+     "words up to length 3": {
+      "examined_control_and_some_start_solve": 516,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 46,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 46
+     },
+     "words up to length 4": {
+      "examined_control_and_some_start_solve": 536,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 115,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 115
+     },
+     "words up to length 5": {
+      "examined_control_and_some_start_solve": 538,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 142,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 142
+     },
+     "words up to length 6": {
+      "examined_control_and_some_start_solve": 546,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 163,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 163
+     },
+     "words up to length 7": {
+      "examined_control_and_some_start_solve": 552,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 174,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 174
+     },
+     "words up to length 8": {
+      "examined_control_and_some_start_solve": 554,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 177,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 177
+     },
+     "words up to length 9": {
+      "examined_control_and_some_start_solve": 554,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 187,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 187
+     },
+     "words up to length 10": {
+      "examined_control_and_some_start_solve": 554,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 191,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 191
+     }
+    },
+    "note": "report only, not a comparison: presentations with 100*best == 83*control_nodes among those where the control and some start both solve",
+    "file_value_last_row": {
+     "row": "words up to length 10",
+     "on_boundary": 0
+    }
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24:inputs",
+   "compared": 1941,
+   "mismatches": 0,
+   "detail": {
+    "length_files_used": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24:classes",
+   "compared": 10,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24:classes.class_of",
+   "compared": 640,
+   "mismatches": 0,
+   "detail": {
+    "committed_distinct_labels": 319,
+    "recomputed_classes": 319
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24:noise_threshold",
+   "compared": 1,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24:noise.control",
+   "compared": 7,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24:noise.starts",
+   "compared": 49,
+   "mismatches": 0,
+   "detail": {
+    "lengths_recomputed": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ]
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24:rows",
+   "compared": 119,
+   "mismatches": 0,
+   "detail": {
+    "rows_recomputed": [
+     "words up to length 1",
+     "words up to length 2",
+     "words up to length 3",
+     "words up to length 4",
+     "words up to length 5",
+     "words up to length 6",
+     "words up to length 7"
+    ]
+   }
+  },
+  {
+   "name": "rank3_bf_ms640_b10000_cap24:boundary_17pct(report only)",
+   "compared": 3973,
+   "mismatches": 0,
+   "detail": {
+    "by_row": {
+     "words up to length 1": {
+      "examined_control_and_some_start_solve": 471,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 0,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 0
+     },
+     "words up to length 2": {
+      "examined_control_and_some_start_solve": 552,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 26,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 26
+     },
+     "words up to length 3": {
+      "examined_control_and_some_start_solve": 572,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 46,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 46
+     },
+     "words up to length 4": {
+      "examined_control_and_some_start_solve": 588,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 129,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 129
+     },
+     "words up to length 5": {
+      "examined_control_and_some_start_solve": 592,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 154,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 154
+     },
+     "words up to length 6": {
+      "examined_control_and_some_start_solve": 596,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 169,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 169
+     },
+     "words up to length 7": {
+      "examined_control_and_some_start_solve": 602,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 182,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 182
+     }
+    },
+    "note": "report only, not a comparison: presentations with 100*best == 83*control_nodes among those where the control and some start both solve",
+    "file_value_last_row": {
+     "row": "words up to length 7",
+     "on_boundary": 0
+    }
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4:inputs",
+   "compared": 6,
+   "mismatches": 0,
+   "detail": {
+    "pres_ids_is_0_to_639_in_order": true
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4:classes",
+   "compared": 10,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4:classes.class_of",
+   "compared": 640,
+   "mismatches": 0,
+   "detail": {
+    "committed_distinct_labels": 319,
+    "recomputed_classes": 319
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4:noise_threshold",
+   "compared": 1,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4:noise.control",
+   "compared": 7,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4:noise.starts",
+   "compared": 1,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4:rows",
+   "compared": 18,
+   "mismatches": 0,
+   "detail": {
+    "committed_name": "every 2 words up to length 3 (rank 4)"
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r4:boundary_17pct(report only)",
+   "compared": 506,
+   "mismatches": 0,
+   "detail": {
+    "by_row": {
+     "all columns": {
+      "examined_control_and_some_start_solve": 506,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 28,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 28
+     }
+    },
+    "note": "report only, not a comparison: presentations with 100*best == 83*control_nodes among those where the control and some start both solve",
+    "file_value_last_row": {
+     "row": "all columns",
+     "on_boundary": 0
+    }
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5:inputs",
+   "compared": 6,
+   "mismatches": 0,
+   "detail": {
+    "pres_ids_is_0_to_639_in_order": true
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5:classes",
+   "compared": 10,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5:classes.class_of",
+   "compared": 640,
+   "mismatches": 0,
+   "detail": {
+    "committed_distinct_labels": 319,
+    "recomputed_classes": 319
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5:noise_threshold",
+   "compared": 1,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5:noise.control",
+   "compared": 7,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5:noise.starts",
+   "compared": 1,
+   "mismatches": 0,
+   "detail": {}
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5:rows",
+   "compared": 18,
+   "mismatches": 0,
+   "detail": {
+    "committed_name": "every 3 words up to length 2 (rank 5)"
+   }
+  },
+  {
+   "name": "rankn_bf_ms640_b1000_cap24_r5:boundary_17pct(report only)",
+   "compared": 416,
+   "mismatches": 0,
+   "detail": {
+    "by_row": {
+     "all columns": {
+      "examined_control_and_some_start_solve": 416,
+      "on_boundary_100best_eq_83control": 0,
+      "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+      "float_test_differs_from_exact_100best_lt_83control": 0,
+      "cheaper_beyond_noise_by_the_float_test_of_the_task": 3,
+      "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 3
+     }
+    },
+    "note": "report only, not a comparison: presentations with 100*best == 83*control_nodes among those where the control and some start both solve",
+    "file_value_last_row": {
+     "row": "all columns",
+     "on_boundary": 0
+    }
+   }
+  }
+ ],
+ "mismatches": 0,
+ "skipped": [
+  "rank3_bf_ms640_b10000_cap24_L8.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L9.npz: absent",
+  "rank3_bf_ms640_b10000_cap24_L10.npz: absent"
+ ],
+ "first_mismatches": [],
+ "compared_total": 3078,
+ "input_items_checked": 3903,
+ "nothing_compared": false,
+ "checks_that_compared_0": [],
+ "comparison_checks_that_compared_0_(exit_3)": [],
+ "errors": [],
+ "info": {
+  "dataset": {
+   "lines": 640,
+   "relators_with_a_zero_before_a_letter": 0
+  },
+  "classes": {
+   "relators_not_freely_reduced": 0,
+   "relators_not_cyclically_reduced": 0,
+   "same_classes_if_relators_are_cyclically_reduced_first": true
+  },
+  "rank3_bf_ms640_b1000_cap24": {
+   "boundary_17pct": {
+    "words up to length 1": {
+     "examined_control_and_some_start_solve": 403,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 0,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 0
+    },
+    "words up to length 2": {
+     "examined_control_and_some_start_solve": 472,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 26,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 26
+    },
+    "words up to length 3": {
+     "examined_control_and_some_start_solve": 516,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 46,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 46
+    },
+    "words up to length 4": {
+     "examined_control_and_some_start_solve": 536,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 115,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 115
+    },
+    "words up to length 5": {
+     "examined_control_and_some_start_solve": 538,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 142,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 142
+    },
+    "words up to length 6": {
+     "examined_control_and_some_start_solve": 546,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 163,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 163
+    },
+    "words up to length 7": {
+     "examined_control_and_some_start_solve": 552,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 174,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 174
+    },
+    "words up to length 8": {
+     "examined_control_and_some_start_solve": 554,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 177,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 177
+    },
+    "words up to length 9": {
+     "examined_control_and_some_start_solve": 554,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 187,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 187
+    },
+    "words up to length 10": {
+     "examined_control_and_some_start_solve": 554,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 191,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 191
+    }
+   }
+  },
+  "rank3_bf_ms640_b10000_cap24": {
+   "boundary_17pct": {
+    "words up to length 1": {
+     "examined_control_and_some_start_solve": 471,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 0,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 0
+    },
+    "words up to length 2": {
+     "examined_control_and_some_start_solve": 552,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 26,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 26
+    },
+    "words up to length 3": {
+     "examined_control_and_some_start_solve": 572,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 46,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 46
+    },
+    "words up to length 4": {
+     "examined_control_and_some_start_solve": 588,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 129,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 129
+    },
+    "words up to length 5": {
+     "examined_control_and_some_start_solve": 592,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 154,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 154
+    },
+    "words up to length 6": {
+     "examined_control_and_some_start_solve": 596,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 169,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 169
+    },
+    "words up to length 7": {
+     "examined_control_and_some_start_solve": 602,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 182,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 182
+    }
+   }
+  },
+  "rankn_bf_ms640_b1000_cap24_r4": {
+   "boundary_17pct": {
+    "all columns": {
+     "examined_control_and_some_start_solve": 506,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 28,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 28
+    }
+   }
+  },
+  "rankn_bf_ms640_b1000_cap24_r5": {
+   "boundary_17pct": {
+    "all columns": {
+     "examined_control_and_some_start_solve": 416,
+     "on_boundary_100best_eq_83control": 0,
+     "on_boundary_counted_as_beyond_noise_by_the_float_test": 0,
+     "float_test_differs_from_exact_100best_lt_83control": 0,
+     "cheaper_beyond_noise_by_the_float_test_of_the_task": 3,
+     "cheaper_beyond_noise_by_the_exact_test_100best_lt_83control": 3
+    }
+   }
+  }
+ },
+ "report_only": {
+  "classes": {
+   "twin_pairs_by_number_of_relabelings_that_map_a_onto_b": {
+    "1": 323,
+    "2": 1
+   },
+   "twin_pairs_whose_relabeling_is_not_its_own_inverse": [
+    [
+     31,
+     179,
+     "x->y,y->X"
+    ],
+    [
+     57,
+     177,
+     "x->Y,y->x"
+    ]
+   ],
+   "twin_relabelings_if_the_relabeling_is_the_first_that_maps_b_onto_a": {
+    "x->x,y->Y": 320,
+    "x->Y,y->X": 1,
+    "x->Y,y->x": 1,
+    "x->y,y->X": 1,
+    "x->y,y->x": 1
+   }
+  },
+  "rank3_bf_ms640_b1000_cap24": {
+   "noise.starts_if_the_twin_relabeling_is_the_first_that_maps_b_onto_a": {
+    "1": {
+     "pairs": 324,
+     "solved_flag_differs": 5,
+     "both_solved": 203,
+     "same_nodes": 0.8719211822660099,
+     "gap_median": 0.0,
+     "gap_p90": 0.011158686908005751,
+     "gap_p99": 0.42066957787481807,
+     "identical_to_the_compared_reading": true
+    },
+    "2": {
+     "pairs": 332,
+     "solved_flag_differs": 0,
+     "both_solved": 218,
+     "same_nodes": 0.7477064220183486,
+     "gap_median": 0.0,
+     "gap_p90": 0.1433333333333337,
+     "gap_p99": 0.5553228461679164,
+     "identical_to_the_compared_reading": true
+    },
+    "3": {
+     "pairs": 1636,
+     "solved_flag_differs": 10,
+     "both_solved": 1145,
+     "same_nodes": 0.5781659388646289,
+     "gap_median": 0.0,
+     "gap_p90": 0.12003179650238528,
+     "gap_p99": 0.43158636897767294,
+     "identical_to_the_compared_reading": false
+    },
+    "4": {
+     "pairs": 2988,
+     "solved_flag_differs": 28,
+     "both_solved": 1959,
+     "same_nodes": 0.5952016334864727,
+     "gap_median": 0.0,
+     "gap_p90": 0.1875,
+     "gap_p99": 0.7573770491803284,
+     "identical_to_the_compared_reading": false
+    },
+    "5": {
+     "pairs": 10884,
+     "solved_flag_differs": 74,
+     "both_solved": 7262,
+     "same_nodes": 0.5601762599834756,
+     "gap_median": 0.0,
+     "gap_p90": 0.14285714285714285,
+     "gap_p99": 0.7648286413708705,
+     "identical_to_the_compared_reading": false
+    },
+    "6": {
+     "pairs": 26892,
+     "solved_flag_differs": 289,
+     "both_solved": 17579,
+     "same_nodes": 0.5145912736788213,
+     "gap_median": 0.0,
+     "gap_p90": 0.2,
+     "gap_p99": 0.8309730848861286,
+     "identical_to_the_compared_reading": false
+    },
+    "7": {
+     "pairs": 86436,
+     "solved_flag_differs": 1103,
+     "both_solved": 56678,
+     "same_nodes": 0.534351953138784,
+     "gap_median": 0.0,
+     "gap_p90": 0.1875,
+     "gap_p99": 0.7589316729977644,
+     "identical_to_the_compared_reading": false
+    },
+    "8": {
+     "pairs": 242028,
+     "solved_flag_differs": 3522,
+     "both_solved": 157618,
+     "same_nodes": 0.5130505399129541,
+     "gap_median": 0.0,
+     "gap_p90": 0.2,
+     "gap_p99": 0.8028169014084507,
+     "identical_to_the_compared_reading": false
+    },
+    "9": {
+     "pairs": 743364,
+     "solved_flag_differs": 12385,
+     "both_solved": 484629,
+     "same_nodes": 0.49768173179896374,
+     "gap_median": 0.002652519893899204,
+     "gap_p90": 0.2222222222222222,
+     "gap_p99": 0.8187203791469194,
+     "identical_to_the_compared_reading": false
+    },
+    "10": {
+     "pairs": 2178252,
+     "solved_flag_differs": 38722,
+     "both_solved": 1416277,
+     "same_nodes": 0.48123778046243776,
+     "gap_median": 0.010126582278481013,
+     "gap_p90": 0.21739130434782608,
+     "gap_p99": 0.8142857142857143,
+     "identical_to_the_compared_reading": false
+    }
+   },
+   "rows_from_the_available_lengths_when_a_lower_length_is_missing": {}
+  },
+  "rank3_bf_ms640_b10000_cap24": {
+   "noise.starts_if_the_twin_relabeling_is_the_first_that_maps_b_onto_a": {
+    "1": {
+     "pairs": 324,
+     "solved_flag_differs": 5,
+     "both_solved": 237,
+     "same_nodes": 0.7510548523206751,
+     "gap_median": 0.0,
+     "gap_p90": 0.19147833298776729,
+     "gap_p99": 0.6472940326732597,
+     "identical_to_the_compared_reading": true
+    },
+    "2": {
+     "pairs": 332,
+     "solved_flag_differs": 0,
+     "both_solved": 258,
+     "same_nodes": 0.6356589147286822,
+     "gap_median": 0.0,
+     "gap_p90": 0.2899534265820932,
+     "gap_p99": 0.5573440643863179,
+     "identical_to_the_compared_reading": false
+    },
+    "3": {
+     "pairs": 1636,
+     "solved_flag_differs": 6,
+     "both_solved": 1296,
+     "same_nodes": 0.5131172839506173,
+     "gap_median": 0.0,
+     "gap_p90": 0.12376482213438736,
+     "gap_p99": 0.5147467217906937,
+     "identical_to_the_compared_reading": false
+    },
+    "4": {
+     "pairs": 2988,
+     "solved_flag_differs": 18,
+     "both_solved": 2346,
+     "same_nodes": 0.4978687127024723,
+     "gap_median": 0.0011791092334485203,
+     "gap_p90": 0.2160928887684106,
+     "gap_p99": 0.8521653634031349,
+     "identical_to_the_compared_reading": false
+    },
+    "5": {
+     "pairs": 10884,
+     "solved_flag_differs": 56,
+     "both_solved": 8764,
+     "same_nodes": 0.46679598356914653,
+     "gap_median": 0.004349281182701822,
+     "gap_p90": 0.16313215072950552,
+     "gap_p99": 0.772200786617547,
+     "identical_to_the_compared_reading": false
+    },
+    "6": {
+     "pairs": 26892,
+     "solved_flag_differs": 147,
+     "both_solved": 21410,
+     "same_nodes": 0.4242410088743578,
+     "gap_median": 0.01032889448424238,
+     "gap_p90": 0.22631578947368422,
+     "gap_p99": 0.8653937078329963,
+     "identical_to_the_compared_reading": false
+    },
+    "7": {
+     "pairs": 86436,
+     "solved_flag_differs": 486,
+     "both_solved": 69204,
+     "same_nodes": 0.4399601179122594,
+     "gap_median": 0.008230453061000845,
+     "gap_p90": 0.22363922610219764,
+     "gap_p99": 0.8381859560894974,
+     "identical_to_the_compared_reading": false
+    }
+   },
+   "rows_from_the_available_lengths_when_a_lower_length_is_missing": {}
+  },
+  "rankn_bf_ms640_b1000_cap24_r4": {},
+  "rankn_bf_ms640_b1000_cap24_r5": {}
+ },
+ "recomputed": {
+  "classes": {
+   "presentations": 640,
+   "n": 319,
+   "sizes": {
+    "2": 318,
+    "4": 1
+   },
+   "twin_pairs": 324,
+   "twin_relabelings": {
+    "x->x,y->Y": 320,
+    "x->Y,y->X": 1,
+    "x->y,y->X": 1,
+    "x->Y,y->x": 1,
+    "x->y,y->x": 1
+   },
+   "class_of": {
+    "0": 0,
+    "1": 0,
+    "2": 1,
+    "3": 1,
+    "4": 2,
+    "5": 2,
+    "6": 3,
+    "7": 4,
+    "8": 5,
+    "9": 4,
+    "10": 3,
+    "11": 5,
+    "12": 6,
+    "13": 7,
+    "14": 8,
+    "15": 9,
+    "16": 10,
+    "17": 11,
+    "18": 12,
+    "19": 13,
+    "20": 14,
+    "21": 10,
+    "22": 8,
+    "23": 11,
+    "24": 6,
+    "25": 13,
+    "26": 12,
+    "27": 9,
+    "28": 7,
+    "29": 14,
+    "30": 15,
+    "31": 16,
+    "32": 17,
+    "33": 18,
+    "34": 19,
+    "35": 20,
+    "36": 21,
+    "37": 22,
+    "38": 23,
+    "39": 24,
+    "40": 25,
+    "41": 26,
+    "42": 27,
+    "43": 28,
+    "44": 29,
+    "45": 30,
+    "46": 31,
+    "47": 32,
+    "48": 33,
+    "49": 34,
+    "50": 35,
+    "51": 23,
+    "52": 21,
+    "53": 25,
+    "54": 19,
+    "55": 31,
+    "56": 29,
+    "57": 16,
+    "58": 15,
+    "59": 26,
+    "60": 17,
+    "61": 32,
+    "62": 27,
+    "63": 34,
+    "64": 33,
+    "65": 24,
+    "66": 22,
+    "67": 20,
+    "68": 18,
+    "69": 30,
+    "70": 28,
+    "71": 35,
+    "72": 36,
+    "73": 37,
+    "74": 38,
+    "75": 39,
+    "76": 40,
+    "77": 41,
+    "78": 42,
+    "79": 43,
+    "80": 44,
+    "81": 45,
+    "82": 46,
+    "83": 47,
+    "84": 48,
+    "85": 49,
+    "86": 50,
+    "87": 51,
+    "88": 52,
+    "89": 53,
+    "90": 54,
+    "91": 55,
+    "92": 56,
+    "93": 57,
+    "94": 58,
+    "95": 59,
+    "96": 60,
+    "97": 61,
+    "98": 62,
+    "99": 63,
+    "100": 64,
+    "101": 65,
+    "102": 66,
+    "103": 67,
+    "104": 68,
+    "105": 69,
+    "106": 70,
+    "107": 71,
+    "108": 72,
+    "109": 73,
+    "110": 74,
+    "111": 75,
+    "112": 76,
+    "113": 77,
+    "114": 78,
+    "115": 79,
+    "116": 80,
+    "117": 81,
+    "118": 82,
+    "119": 83,
+    "120": 84,
+    "121": 58,
+    "122": 54,
+    "123": 60,
+    "124": 52,
+    "125": 72,
+    "126": 70,
+    "127": 44,
+    "128": 40,
+    "129": 43,
+    "130": 39,
+    "131": 62,
+    "132": 50,
+    "133": 74,
+    "134": 68,
+    "135": 80,
+    "136": 78,
+    "137": 45,
+    "138": 36,
+    "139": 56,
+    "140": 55,
+    "141": 47,
+    "142": 46,
+    "143": 65,
+    "144": 64,
+    "145": 41,
+    "146": 37,
+    "147": 63,
+    "148": 48,
+    "149": 42,
+    "150": 38,
+    "151": 75,
+    "152": 66,
+    "153": 81,
+    "154": 76,
+    "155": 83,
+    "156": 82,
+    "157": 61,
+    "158": 59,
+    "159": 57,
+    "160": 53,
+    "161": 51,
+    "162": 49,
+    "163": 73,
+    "164": 67,
+    "165": 79,
+    "166": 77,
+    "167": 71,
+    "168": 69,
+    "169": 84,
+    "170": 85,
+    "171": 85,
+    "172": 86,
+    "173": 86,
+    "174": 87,
+    "175": 87,
+    "176": 88,
+    "177": 16,
+    "178": 89,
+    "179": 16,
+    "180": 88,
+    "181": 89,
+    "182": 90,
+    "183": 91,
+    "184": 92,
+    "185": 93,
+    "186": 94,
+    "187": 95,
+    "188": 96,
+    "189": 97,
+    "190": 98,
+    "191": 94,
+    "192": 92,
+    "193": 95,
+    "194": 90,
+    "195": 97,
+    "196": 96,
+    "197": 93,
+    "198": 91,
+    "199": 98,
+    "200": 99,
+    "201": 100,
+    "202": 101,
+    "203": 102,
+    "204": 103,
+    "205": 104,
+    "206": 105,
+    "207": 106,
+    "208": 107,
+    "209": 108,
+    "210": 109,
+    "211": 110,
+    "212": 111,
+    "213": 112,
+    "214": 113,
+    "215": 114,
+    "216": 115,
+    "217": 116,
+    "218": 117,
+    "219": 105,
+    "220": 103,
+    "221": 107,
+    "222": 101,
+    "223": 113,
+    "224": 111,
+    "225": 108,
+    "226": 99,
+    "227": 114,
+    "228": 109,
+    "229": 116,
+    "230": 115,
+    "231": 106,
+    "232": 104,
+    "233": 102,
+    "234": 100,
+    "235": 112,
+    "236": 110,
+    "237": 117,
+    "238": 118,
+    "239": 119,
+    "240": 120,
+    "241": 121,
+    "242": 122,
+    "243": 123,
+    "244": 124,
+    "245": 125,
+    "246": 126,
+    "247": 127,
+    "248": 128,
+    "249": 129,
+    "250": 130,
+    "251": 131,
+    "252": 132,
+    "253": 133,
+    "254": 134,
+    "255": 135,
+    "256": 136,
+    "257": 137,
+    "258": 138,
+    "259": 139,
+    "260": 140,
+    "261": 141,
+    "262": 142,
+    "263": 143,
+    "264": 144,
+    "265": 145,
+    "266": 146,
+    "267": 147,
+    "268": 148,
+    "269": 149,
+    "270": 150,
+    "271": 151,
+    "272": 152,
+    "273": 126,
+    "274": 124,
+    "275": 128,
+    "276": 122,
+    "277": 140,
+    "278": 138,
+    "279": 130,
+    "280": 120,
+    "281": 142,
+    "282": 136,
+    "283": 148,
+    "284": 146,
+    "285": 133,
+    "286": 132,
+    "287": 131,
+    "288": 118,
+    "289": 143,
+    "290": 134,
+    "291": 149,
+    "292": 144,
+    "293": 151,
+    "294": 150,
+    "295": 129,
+    "296": 127,
+    "297": 125,
+    "298": 123,
+    "299": 121,
+    "300": 119,
+    "301": 141,
+    "302": 135,
+    "303": 147,
+    "304": 145,
+    "305": 139,
+    "306": 137,
+    "307": 152,
+    "308": 153,
+    "309": 153,
+    "310": 154,
+    "311": 154,
+    "312": 155,
+    "313": 155,
+    "314": 156,
+    "315": 157,
+    "316": 156,
+    "317": 157,
+    "318": 158,
+    "319": 159,
+    "320": 160,
+    "321": 161,
+    "322": 162,
+    "323": 163,
+    "324": 160,
+    "325": 161,
+    "326": 158,
+    "327": 162,
+    "328": 159,
+    "329": 163,
+    "330": 164,
+    "331": 165,
+    "332": 166,
+    "333": 167,
+    "334": 168,
+    "335": 169,
+    "336": 170,
+    "337": 171,
+    "338": 172,
+    "339": 173,
+    "340": 174,
+    "341": 175,
+    "342": 176,
+    "343": 177,
+    "344": 168,
+    "345": 170,
+    "346": 166,
+    "347": 173,
+    "348": 164,
+    "349": 174,
+    "350": 171,
+    "351": 176,
+    "352": 175,
+    "353": 169,
+    "354": 167,
+    "355": 165,
+    "356": 172,
+    "357": 177,
+    "358": 178,
+    "359": 179,
+    "360": 180,
+    "361": 181,
+    "362": 182,
+    "363": 183,
+    "364": 184,
+    "365": 185,
+    "366": 186,
+    "367": 187,
+    "368": 188,
+    "369": 189,
+    "370": 190,
+    "371": 191,
+    "372": 192,
+    "373": 193,
+    "374": 194,
+    "375": 195,
+    "376": 196,
+    "377": 197,
+    "378": 198,
+    "379": 199,
+    "380": 200,
+    "381": 201,
+    "382": 183,
+    "383": 185,
+    "384": 181,
+    "385": 190,
+    "386": 179,
+    "387": 192,
+    "388": 188,
+    "389": 198,
+    "390": 196,
+    "391": 186,
+    "392": 178,
+    "393": 193,
+    "394": 199,
+    "395": 194,
+    "396": 200,
+    "397": 184,
+    "398": 182,
+    "399": 180,
+    "400": 191,
+    "401": 187,
+    "402": 197,
+    "403": 195,
+    "404": 189,
+    "405": 201,
+    "406": 202,
+    "407": 202,
+    "408": 203,
+    "409": 203,
+    "410": 204,
+    "411": 204,
+    "412": 205,
+    "413": 206,
+    "414": 205,
+    "415": 206,
+    "416": 207,
+    "417": 208,
+    "418": 209,
+    "419": 210,
+    "420": 208,
+    "421": 209,
+    "422": 207,
+    "423": 210,
+    "424": 211,
+    "425": 212,
+    "426": 213,
+    "427": 214,
+    "428": 215,
+    "429": 216,
+    "430": 217,
+    "431": 211,
+    "432": 215,
+    "433": 213,
+    "434": 216,
+    "435": 212,
+    "436": 214,
+    "437": 217,
+    "438": 218,
+    "439": 219,
+    "440": 220,
+    "441": 221,
+    "442": 222,
+    "443": 223,
+    "444": 224,
+    "445": 225,
+    "446": 226,
+    "447": 227,
+    "448": 221,
+    "449": 220,
+    "450": 223,
+    "451": 219,
+    "452": 224,
+    "453": 218,
+    "454": 226,
+    "455": 225,
+    "456": 222,
+    "457": 227,
+    "458": 228,
+    "459": 228,
+    "460": 229,
+    "461": 229,
+    "462": 230,
+    "463": 230,
+    "464": 231,
+    "465": 232,
+    "466": 231,
+    "467": 232,
+    "468": 233,
+    "469": 233,
+    "470": 234,
+    "471": 235,
+    "472": 236,
+    "473": 237,
+    "474": 235,
+    "475": 234,
+    "476": 236,
+    "477": 237,
+    "478": 238,
+    "479": 239,
+    "480": 240,
+    "481": 241,
+    "482": 242,
+    "483": 243,
+    "484": 244,
+    "485": 240,
+    "486": 238,
+    "487": 242,
+    "488": 243,
+    "489": 245,
+    "490": 239,
+    "491": 241,
+    "492": 244,
+    "493": 246,
+    "494": 246,
+    "495": 247,
+    "496": 247,
+    "497": 248,
+    "498": 248,
+    "499": 249,
+    "500": 249,
+    "501": 250,
+    "502": 250,
+    "503": 251,
+    "504": 252,
+    "505": 251,
+    "506": 252,
+    "507": 253,
+    "508": 254,
+    "509": 255,
+    "510": 256,
+    "511": 257,
+    "512": 254,
+    "513": 255,
+    "514": 256,
+    "515": 253,
+    "516": 257,
+    "517": 258,
+    "518": 258,
+    "519": 259,
+    "520": 259,
+    "521": 260,
+    "522": 260,
+    "523": 261,
+    "524": 261,
+    "525": 262,
+    "526": 262,
+    "527": 263,
+    "528": 264,
+    "529": 263,
+    "530": 264,
+    "531": 265,
+    "532": 265,
+    "533": 266,
+    "534": 266,
+    "535": 267,
+    "536": 267,
+    "537": 268,
+    "538": 269,
+    "539": 270,
+    "540": 270,
+    "541": 268,
+    "542": 269,
+    "543": 271,
+    "544": 272,
+    "545": 273,
+    "546": 274,
+    "547": 275,
+    "548": 276,
+    "549": 277,
+    "550": 278,
+    "551": 273,
+    "552": 278,
+    "553": 271,
+    "554": 272,
+    "555": 274,
+    "556": 277,
+    "557": 276,
+    "558": 275,
+    "559": 279,
+    "560": 280,
+    "561": 281,
+    "562": 280,
+    "563": 281,
+    "564": 279,
+    "565": 282,
+    "566": 283,
+    "567": 284,
+    "568": 285,
+    "569": 283,
+    "570": 285,
+    "571": 284,
+    "572": 282,
+    "573": 286,
+    "574": 287,
+    "575": 288,
+    "576": 289,
+    "577": 290,
+    "578": 291,
+    "579": 245,
+    "580": 292,
+    "581": 293,
+    "582": 289,
+    "583": 291,
+    "584": 286,
+    "585": 292,
+    "586": 293,
+    "587": 290,
+    "588": 288,
+    "589": 287,
+    "590": 294,
+    "591": 294,
+    "592": 295,
+    "593": 296,
+    "594": 296,
+    "595": 295,
+    "596": 297,
+    "597": 298,
+    "598": 299,
+    "599": 300,
+    "600": 298,
+    "601": 300,
+    "602": 299,
+    "603": 297,
+    "604": 301,
+    "605": 302,
+    "606": 303,
+    "607": 304,
+    "608": 305,
+    "609": 306,
+    "610": 302,
+    "611": 305,
+    "612": 303,
+    "613": 301,
+    "614": 306,
+    "615": 304,
+    "616": 307,
+    "617": 307,
+    "618": 308,
+    "619": 309,
+    "620": 309,
+    "621": 308,
+    "622": 310,
+    "623": 311,
+    "624": 311,
+    "625": 310,
+    "626": 312,
+    "627": 313,
+    "628": 314,
+    "629": 315,
+    "630": 315,
+    "631": 313,
+    "632": 312,
+    "633": 314,
+    "634": 316,
+    "635": 316,
+    "636": 317,
+    "637": 318,
+    "638": 317,
+    "639": 318
+   }
+  },
+  "rank3_bf_ms640_b1000_cap24": {
+   "noise": {
+    "control": {
+     "pairs": 324,
+     "solved_flag_differs": 0,
+     "both_solved": 281,
+     "same_nodes": 0.6583629893238434,
+     "gap_median": 0.0,
+     "gap_p90": 0.15384615384615385,
+     "gap_p99": 0.3039466265739511
+    },
+    "starts": {
+     "1": {
+      "pairs": 324,
+      "solved_flag_differs": 5,
+      "both_solved": 203,
+      "same_nodes": 0.8719211822660099,
+      "gap_median": 0.0,
+      "gap_p90": 0.011158686908005751,
+      "gap_p99": 0.42066957787481807
+     },
+     "2": {
+      "pairs": 332,
+      "solved_flag_differs": 0,
+      "both_solved": 218,
+      "same_nodes": 0.7477064220183486,
+      "gap_median": 0.0,
+      "gap_p90": 0.1433333333333337,
+      "gap_p99": 0.5553228461679164
+     },
+     "3": {
+      "pairs": 1636,
+      "solved_flag_differs": 10,
+      "both_solved": 1145,
+      "same_nodes": 0.5790393013100437,
+      "gap_median": 0.0,
+      "gap_p90": 0.11713368983957237,
+      "gap_p99": 0.43158636897767294
+     },
+     "4": {
+      "pairs": 2988,
+      "solved_flag_differs": 28,
+      "both_solved": 1959,
+      "same_nodes": 0.5962225625319041,
+      "gap_median": 0.0,
+      "gap_p90": 0.16513409961685832,
+      "gap_p99": 0.7573770491803284
+     },
+     "5": {
+      "pairs": 10884,
+      "solved_flag_differs": 74,
+      "both_solved": 7262,
+      "same_nodes": 0.5612778848801983,
+      "gap_median": 0.0,
+      "gap_p90": 0.14285714285714285,
+      "gap_p99": 0.7430457969102211
+     },
+     "6": {
+      "pairs": 26892,
+      "solved_flag_differs": 289,
+      "both_solved": 17579,
+      "same_nodes": 0.5139655270493202,
+      "gap_median": 0.0,
+      "gap_p90": 0.18181818181818182,
+      "gap_p99": 0.8309730848861286
+     },
+     "7": {
+      "pairs": 86436,
+      "solved_flag_differs": 1103,
+      "both_solved": 56678,
+      "same_nodes": 0.5340696566569039,
+      "gap_median": 0.0,
+      "gap_p90": 0.18181818181818182,
+      "gap_p99": 0.7554931062449307
+     },
+     "8": {
+      "pairs": 242028,
+      "solved_flag_differs": 3522,
+      "both_solved": 157618,
+      "same_nodes": 0.5131266733494906,
+      "gap_median": 0.0,
+      "gap_p90": 0.1875,
+      "gap_p99": 0.7950957259158737
+     },
+     "9": {
+      "pairs": 743364,
+      "solved_flag_differs": 12385,
+      "both_solved": 484629,
+      "same_nodes": 0.49768173179896374,
+      "gap_median": 0.002652519893899204,
+      "gap_p90": 0.2,
+      "gap_p99": 0.8189655172413793
+     },
+     "10": {
+      "pairs": 2178252,
+      "solved_flag_differs": 38722,
+      "both_solved": 1416277,
+      "same_nodes": 0.48107820715862787,
+      "gap_median": 0.01020408163265306,
+      "gap_p90": 0.20454545454545456,
+      "gap_p99": 0.8127712102410024
+     }
+    }
+   },
+   "noise_threshold": 0.17,
+   "rows": [
+    {
+     "name": "words up to length 1",
+     "starts": 2,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 403,
+      "gained": 0,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 151,
+      "cheaper": 0,
+      "cheaper_beyond_noise": 0,
+      "cheaper_than_every_copy_of_control": 0
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 203,
+      "gained": 0,
+      "lost": 73,
+      "cheaper": 0
+     }
+    },
+    {
+     "name": "words up to length 2",
+     "starts": 8,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 472,
+      "gained": 0,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 82,
+      "cheaper": 35,
+      "cheaper_beyond_noise": 26,
+      "cheaper_than_every_copy_of_control": 35
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 235,
+      "gained": 0,
+      "lost": 41,
+      "cheaper": 19
+     }
+    },
+    {
+     "name": "words up to length 3",
+     "starts": 26,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 516,
+      "gained": 0,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 38,
+      "cheaper": 60,
+      "cheaper_beyond_noise": 46,
+      "cheaper_than_every_copy_of_control": 54
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 258,
+      "gained": 0,
+      "lost": 18,
+      "cheaper": 28
+     }
+    },
+    {
+     "name": "words up to length 4",
+     "starts": 80,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 540,
+      "gained": 4,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 18,
+      "cheaper": 134,
+      "cheaper_beyond_noise": 115,
+      "cheaper_than_every_copy_of_control": 129
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 269,
+      "gained": 2,
+      "lost": 9,
+      "cheaper": 68
+     }
+    },
+    {
+     "name": "words up to length 5",
+     "starts": 242,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 546,
+      "gained": 8,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 16,
+      "cheaper": 156,
+      "cheaper_beyond_noise": 142,
+      "cheaper_than_every_copy_of_control": 155
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 272,
+      "gained": 4,
+      "lost": 8,
+      "cheaper": 79
+     }
+    },
+    {
+     "name": "words up to length 6",
+     "starts": 728,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 562,
+      "gained": 16,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 8,
+      "cheaper": 180,
+      "cheaper_beyond_noise": 163,
+      "cheaper_than_every_copy_of_control": 179
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 280,
+      "gained": 8,
+      "lost": 4,
+      "cheaper": 91
+     }
+    },
+    {
+     "name": "words up to length 7",
+     "starts": 2186,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 572,
+      "gained": 20,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 2,
+      "cheaper": 188,
+      "cheaper_beyond_noise": 174,
+      "cheaper_than_every_copy_of_control": 185
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 285,
+      "gained": 10,
+      "lost": 1,
+      "cheaper": 94
+     }
+    },
+    {
+     "name": "words up to length 8",
+     "starts": 6560,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 576,
+      "gained": 22,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 0,
+      "cheaper": 193,
+      "cheaper_beyond_noise": 177,
+      "cheaper_than_every_copy_of_control": 190
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 287,
+      "gained": 11,
+      "lost": 0,
+      "cheaper": 97
+     }
+    },
+    {
+     "name": "words up to length 9",
+     "starts": 19682,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 576,
+      "gained": 22,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 0,
+      "cheaper": 198,
+      "cheaper_beyond_noise": 187,
+      "cheaper_than_every_copy_of_control": 198
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 287,
+      "gained": 11,
+      "lost": 0,
+      "cheaper": 102
+     }
+    },
+    {
+     "name": "words up to length 10",
+     "starts": 59048,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 578,
+      "gained": 24,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 0,
+      "cheaper": 201,
+      "cheaper_beyond_noise": 191,
+      "cheaper_than_every_copy_of_control": 201
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 288,
+      "gained": 12,
+      "lost": 0,
+      "cheaper": 103
+     }
+    }
+   ]
+  },
+  "rank3_bf_ms640_b10000_cap24": {
+   "noise": {
+    "control": {
+     "pairs": 324,
+     "solved_flag_differs": 0,
+     "both_solved": 307,
+     "same_nodes": 0.6058631921824105,
+     "gap_median": 0.0,
+     "gap_p90": 0.15384615384615385,
+     "gap_p99": 0.31923845755315394
+    },
+    "starts": {
+     "1": {
+      "pairs": 324,
+      "solved_flag_differs": 5,
+      "both_solved": 237,
+      "same_nodes": 0.7510548523206751,
+      "gap_median": 0.0,
+      "gap_p90": 0.19147833298776729,
+      "gap_p99": 0.6472940326732597
+     },
+     "2": {
+      "pairs": 332,
+      "solved_flag_differs": 0,
+      "both_solved": 258,
+      "same_nodes": 0.6356589147286822,
+      "gap_median": 0.0,
+      "gap_p90": 0.2857142857142857,
+      "gap_p99": 0.5573440643863179
+     },
+     "3": {
+      "pairs": 1636,
+      "solved_flag_differs": 6,
+      "both_solved": 1296,
+      "same_nodes": 0.5138888888888888,
+      "gap_median": 0.0,
+      "gap_p90": 0.11813501842047477,
+      "gap_p99": 0.5147467217906937
+     },
+     "4": {
+      "pairs": 2988,
+      "solved_flag_differs": 18,
+      "both_solved": 2346,
+      "same_nodes": 0.49872122762148335,
+      "gap_median": 0.0007057492596056426,
+      "gap_p90": 0.19139194139194138,
+      "gap_p99": 0.8521653634031349
+     },
+     "5": {
+      "pairs": 10884,
+      "solved_flag_differs": 56,
+      "both_solved": 8764,
+      "same_nodes": 0.4677088087631219,
+      "gap_median": 0.004228700925432526,
+      "gap_p90": 0.15384615384615385,
+      "gap_p99": 0.7677114297371341
+     },
+     "6": {
+      "pairs": 26892,
+      "solved_flag_differs": 147,
+      "both_solved": 21410,
+      "same_nodes": 0.4237272302662307,
+      "gap_median": 0.01052143194360786,
+      "gap_p90": 0.20316040109478786,
+      "gap_p99": 0.8653937078329963
+     },
+     "7": {
+      "pairs": 86436,
+      "solved_flag_differs": 486,
+      "both_solved": 69204,
+      "same_nodes": 0.4397289174036183,
+      "gap_median": 0.008264462809917356,
+      "gap_p90": 0.21908918488224746,
+      "gap_p99": 0.8381859560894974
+     }
+    }
+   },
+   "noise_threshold": 0.17,
+   "rows": [
+    {
+     "name": "words up to length 1",
+     "starts": 2,
+     "presentations": {
+      "n": 640,
+      "control": 606,
+      "some_start": 471,
+      "gained": 0,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 135,
+      "cheaper": 0,
+      "cheaper_beyond_noise": 0,
+      "cheaper_than_every_copy_of_control": 0
+     },
+     "classes": {
+      "n": 319,
+      "control": 302,
+      "some_start": 237,
+      "gained": 0,
+      "lost": 65,
+      "cheaper": 0
+     }
+    },
+    {
+     "name": "words up to length 2",
+     "starts": 8,
+     "presentations": {
+      "n": 640,
+      "control": 606,
+      "some_start": 552,
+      "gained": 0,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 54,
+      "cheaper": 35,
+      "cheaper_beyond_noise": 26,
+      "cheaper_than_every_copy_of_control": 35
+     },
+     "classes": {
+      "n": 319,
+      "control": 302,
+      "some_start": 275,
+      "gained": 0,
+      "lost": 27,
+      "cheaper": 19
+     }
+    },
+    {
+     "name": "words up to length 3",
+     "starts": 26,
+     "presentations": {
+      "n": 640,
+      "control": 606,
+      "some_start": 572,
+      "gained": 0,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 34,
+      "cheaper": 61,
+      "cheaper_beyond_noise": 46,
+      "cheaper_than_every_copy_of_control": 54
+     },
+     "classes": {
+      "n": 319,
+      "control": 302,
+      "some_start": 285,
+      "gained": 0,
+      "lost": 17,
+      "cheaper": 28
+     }
+    },
+    {
+     "name": "words up to length 4",
+     "starts": 80,
+     "presentations": {
+      "n": 640,
+      "control": 606,
+      "some_start": 592,
+      "gained": 4,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 18,
+      "cheaper": 148,
+      "cheaper_beyond_noise": 129,
+      "cheaper_than_every_copy_of_control": 143
+     },
+     "classes": {
+      "n": 319,
+      "control": 302,
+      "some_start": 295,
+      "gained": 2,
+      "lost": 9,
+      "cheaper": 75
+     }
+    },
+    {
+     "name": "words up to length 5",
+     "starts": 242,
+     "presentations": {
+      "n": 640,
+      "control": 606,
+      "some_start": 596,
+      "gained": 4,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 14,
+      "cheaper": 168,
+      "cheaper_beyond_noise": 154,
+      "cheaper_than_every_copy_of_control": 167
+     },
+     "classes": {
+      "n": 319,
+      "control": 302,
+      "some_start": 297,
+      "gained": 2,
+      "lost": 7,
+      "cheaper": 85
+     }
+    },
+    {
+     "name": "words up to length 6",
+     "starts": 728,
+     "presentations": {
+      "n": 640,
+      "control": 606,
+      "some_start": 600,
+      "gained": 4,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 10,
+      "cheaper": 186,
+      "cheaper_beyond_noise": 169,
+      "cheaper_than_every_copy_of_control": 185
+     },
+     "classes": {
+      "n": 319,
+      "control": 302,
+      "some_start": 299,
+      "gained": 2,
+      "lost": 5,
+      "cheaper": 94
+     }
+    },
+    {
+     "name": "words up to length 7",
+     "starts": 2186,
+     "presentations": {
+      "n": 640,
+      "control": 606,
+      "some_start": 608,
+      "gained": 6,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 4,
+      "cheaper": 196,
+      "cheaper_beyond_noise": 182,
+      "cheaper_than_every_copy_of_control": 193
+     },
+     "classes": {
+      "n": 319,
+      "control": 302,
+      "some_start": 303,
+      "gained": 3,
+      "lost": 2,
+      "cheaper": 98
+     }
+    }
+   ]
+  },
+  "rankn_bf_ms640_b1000_cap24_r4": {
+   "noise": {
+    "control": {
+     "pairs": 324,
+     "solved_flag_differs": 0,
+     "both_solved": 281,
+     "same_nodes": 0.6583629893238434,
+     "gap_median": 0.0,
+     "gap_p90": 0.15384615384615385,
+     "gap_p99": 0.3039466265739511
+    },
+    "starts": {}
+   },
+   "noise_threshold": 0.17,
+   "rows": [
+    {
+     "starts": 351,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 506,
+      "gained": 0,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 48,
+      "cheaper": 49,
+      "cheaper_beyond_noise": 28,
+      "cheaper_than_every_copy_of_control": 43
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 253,
+      "gained": 0,
+      "lost": 23,
+      "cheaper": 24
+     }
+    }
+   ]
+  },
+  "rankn_bf_ms640_b1000_cap24_r5": {
+   "noise": {
+    "control": {
+     "pairs": 324,
+     "solved_flag_differs": 0,
+     "both_solved": 281,
+     "same_nodes": 0.6583629893238434,
+     "gap_median": 0.0,
+     "gap_p90": 0.15384615384615385,
+     "gap_p99": 0.3039466265739511
+    },
+    "starts": {}
+   },
+   "noise_threshold": 0.17,
+   "rows": [
+    {
+     "starts": 120,
+     "presentations": {
+      "n": 640,
+      "control": 554,
+      "some_start": 416,
+      "gained": 0,
+      "gained_but_control_solves_a_copy": 0,
+      "lost": 138,
+      "cheaper": 12,
+      "cheaper_beyond_noise": 3,
+      "cheaper_than_every_copy_of_control": 9
+     },
+     "classes": {
+      "n": 319,
+      "control": 276,
+      "some_start": 209,
+      "gained": 0,
+      "lost": 67,
+      "cheaper": 8
+     }
+    }
+   ]
+  }
+ },
+ "args": {
+  "results_dir": "results/stable_ac/rank3_bf",
+  "dataset": "data/ms640_solved.txt",
+  "out_json": "results/stable_ac/rank3_bf/indep_class_view.json",
+  "workers": 8,
+  "minutes": 40.0,
+  "numpy": "2.1.3"
+ },
+ "seconds": 1.207
+}

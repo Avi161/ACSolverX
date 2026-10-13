@@ -1,0 +1,6 @@
+# Cascade, then one best-first search over every rank (1,000 work units per row) on MS640.
+method = "hybrid"
+benchmark = "ms640"
+
+[hybrid]
+budget = 1000

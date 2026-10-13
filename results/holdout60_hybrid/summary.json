@@ -1,0 +1,87 @@
+{
+ "name": "holdout60_hybrid",
+ "method": "hybrid",
+ "benchmark": "ac1m_hard_holdout60",
+ "rows": 60,
+ "solved": 60,
+ "ac_path": 0,
+ "aut_assisted": 60,
+ "stable_cert": 0,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "units",
+  "total": 3770,
+  "on_solved": 3770
+ },
+ "path_length": {
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 60,
+    "sum": 1697,
+    "mean": 28.28,
+    "median": 16.0,
+    "max": 144
+   },
+   "elem_moves": {
+    "n": 60,
+    "sum": 17593,
+    "mean": 293.22,
+    "median": 223.5,
+    "max": 1872
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": "parent",
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "dyn_cap": {
+   "dyn_cap": 8,
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "slack": {
+   "slack": 8,
+   "rows": 60,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 6.14,
+ "row_seconds": 11.63,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "ac1m_hard_holdout60",
+  "hybrid": {
+   "budget": 1000
+  },
+  "name": "holdout60_hybrid",
+  "workers": 2
+ }
+}

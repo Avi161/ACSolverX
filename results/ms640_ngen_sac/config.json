@@ -1,0 +1,12 @@
+{
+ "method": "ngen",
+ "benchmark": "ms640",
+ "search": {
+  "backend": "fast",
+  "budget": 10000
+ },
+ "ngen": {
+  "sac": true
+ },
+ "name": "ms640_ngen_sac"
+}

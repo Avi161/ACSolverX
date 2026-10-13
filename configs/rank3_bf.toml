@@ -1,0 +1,18 @@
+# Rank-3 brute force on MS640: z.w for every word w of length 1-4 (cap 24, budget 1,000), with control.
+method = "rankn"
+benchmark = "ms640"
+workers = 4
+
+[search]
+priority = "length"
+cap = 24
+budget = 1000
+backend = "fast"
+cyclic = true
+
+[rankn]
+extra = 1
+min_len = 1
+max_len = 4
+inverse = false
+sample = 0.002

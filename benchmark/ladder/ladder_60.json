@@ -1,0 +1,314 @@
+{
+ "size": 60,
+ "requested_size": 60,
+ "per_level": 6,
+ "per_level_actual": {
+  "1": 6,
+  "2": 6,
+  "3": 6,
+  "4": 6,
+  "5": 6,
+  "6": 6,
+  "7": 6,
+  "8": 6,
+  "9": 6,
+  "10": 6
+ },
+ "n_levels": 10,
+ "difficulty_variable": "plain length-ordered greedy node count g on record (see greedy_run/greedy_cap per row)",
+ "levels": [
+  {
+   "level": 1,
+   "lo_nodes": 0,
+   "hi_nodes": 1000,
+   "rule": "0 <= g < 1,000"
+  },
+  {
+   "level": 2,
+   "lo_nodes": 1000,
+   "hi_nodes": 10000,
+   "rule": "1,000 <= g < 10,000"
+  },
+  {
+   "level": 3,
+   "lo_nodes": 10000,
+   "hi_nodes": 31623,
+   "rule": "10,000 <= g < 31,623"
+  },
+  {
+   "level": 4,
+   "lo_nodes": 31623,
+   "hi_nodes": 100000,
+   "rule": "31,623 <= g < 100,000"
+  },
+  {
+   "level": 5,
+   "lo_nodes": 100000,
+   "hi_nodes": 316228,
+   "rule": "100,000 <= g < 316,228"
+  },
+  {
+   "level": 6,
+   "lo_nodes": 316228,
+   "hi_nodes": 1000000,
+   "rule": "316,228 <= g < 1,000,000"
+  },
+  {
+   "level": 7,
+   "lo_nodes": 1000000,
+   "hi_nodes": 2253802,
+   "rule": "1,000,000 <= g < 2,253,802"
+  },
+  {
+   "level": 8,
+   "lo_nodes": 2253802,
+   "hi_nodes": 10000000,
+   "rule": "2,253,802 <= g <= 10,000,000"
+  },
+  {
+   "level": 9,
+   "lo_nodes": null,
+   "hi_nodes": null,
+   "rule": "plain greedy unsolved at 10,000,000 nodes; S20_MK2 solves it"
+  },
+  {
+   "level": 10,
+   "lo_nodes": null,
+   "hi_nodes": null,
+   "rule": "plain greedy and S20_MK2 both unsolved at 10,000,000 nodes; only the cascades solve it"
+  }
+ ],
+ "E": 2253802,
+ "nested": true,
+ "strata_order": [
+  "ac19/autmin",
+  "ms640/ms_raw"
+ ],
+ "within_level_selection": "rows solved at the root pop excluded; NO Aut(F2)-class dedup (automorphic presentations are different search problems); round-robin over strata; farthest-point order (median, endpoints, then bisect the largest gap) over (log10 g, climb, name) inside a stratum (level 9: S20_MK2 pops; level 10: climb, then start length)",
+ "sources": {
+  "autmin": {
+   "path": "data/AC19_extended_aut_min.csv",
+   "commit": null,
+   "sha256": "7e220253bd0d950378d6ca6944be46ff4b77e49f30067b9ff6c6c6da82f64ae2",
+   "bytes": 3489182
+  },
+  "unescalated_greedy": {
+   "path": "benchmark/ladder/sources/unescalated_greedy_mrl48.jsonl",
+   "commit": null,
+   "sha256": "2451ca2af684c9ca140ec1c3f6554d42e49e99029f9faa0f07aaa04d1af1d4c7",
+   "bytes": 45808
+  },
+  "greedy10k": {
+   "path": "results/heuristic_search/ac19_autmin_10k/ac19_autmin_10k_greedy_b10000_mrl48.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "1ee8bc1e1712a6faabf3eaacbbd11b7db62fc5862ae21f2b5196fd479f76eba9",
+   "bytes": 18632517
+  },
+  "greedy100k": {
+   "path": "results/heuristic_search/hsearch_ac19_hard100k/ac19_unsolved10k_baseline_b100000_mrl48.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "66ae0f4e0b5cec52bca815380cb39dd1e1d14e9c38dccb9e040797d2e41c86f9",
+   "bytes": 1090194
+  },
+  "greedy1m": {
+   "path": "results/heuristic_search/leftovers_1m/leftovers_1m_greedy_b1000000_mrl48.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "2b5f31757cd300f217a89b55b8b969a6875521caadc6051d09457acf1fc6ea92",
+   "bytes": 59358
+  },
+  "greedy5m": {
+   "path": "results/heuristic_search/leftovers_5m/leftovers_5m_greedy_b5000000_mrl64.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "42e01894e40da29270226e1d4bc66770cdd84b22ca1570cd1178d249c5bacd96",
+   "bytes": 213242
+  },
+  "greedy10m": {
+   "path": "results/heuristic_search/ac19_10m/ac19_10m_greedy_b10000000_mrl64.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "c8bffd874762062809b1a81853ecae896035aa73515477e99ccf2a28325af4b5",
+   "bytes": 26127
+  },
+  "unescalated_s20": {
+   "path": "benchmark/ladder/sources/unescalated_s20_mrl48.jsonl",
+   "commit": null,
+   "sha256": "1213bbbbf1e5034af42e9f95924f8c25d8a0ab33731ea8920874f459fc8b7b0e",
+   "bytes": 3139
+  },
+  "s20_10k": {
+   "path": "results/heuristic_search/ac19_autmin_10k/ac19_autmin_10k_s20_mk2_b10000_mrl48.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "1f585a6cc131cf1befc76b080ec4bf774935da269eae34b7e48647d892bbde41",
+   "bytes": 18702323
+  },
+  "s20_100k": {
+   "path": "results/heuristic_search/hsearch_ac19_hard100k/ac19_unsolved10k_s20_mk2_b100000_mrl48.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "81a8cff90d915d740c6e977e1313615cee0072d43a6c70a0dab9278b0bf96e2d",
+   "bytes": 650951
+  },
+  "s20_1m": {
+   "path": "results/heuristic_search/leftovers_1m/leftovers_1m_s20_mk2_b1000000_mrl48.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "d96f400b04868817e8c98f47e288ee4709d2b734c63a7d77fbfb2d7a70cbd70c",
+   "bytes": 10485
+  },
+  "s20_5m": {
+   "path": "results/heuristic_search/leftovers_5m/leftovers_5m_s20_mk2_b5000000_mrl64.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "f3019a037e4cfeb84834ce102ccf8ee5ced5464e84385a204515b8336ed95163",
+   "bytes": 22448
+  },
+  "s20_10m": {
+   "path": "results/heuristic_search/ac19_10m/ac19_10m_s20_mk2_b10000000_mrl64.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "cc6c9ab006e7a488f70823feda3f0249ca0382ded045f163f567fb9c6add4dac",
+   "bytes": 4295
+  },
+  "notable_unsolved": {
+   "path": "results/heuristic_search/ac19_K3p_notable_full_1k/unsolved.csv",
+   "commit": null,
+   "sha256": "5a521082550269af43cab1ff87daac9b3b426c7618e892a5d43e60ee6e2773ac",
+   "bytes": 13590
+  },
+  "final_unsolved": {
+   "path": "results/heuristic_search/ac19_final_policy_full_1k/unsolved.csv",
+   "commit": null,
+   "sha256": "a1860f50a9bbfd09fd3087d49b4f46089c683aeb62f10512b6a5625a85b34913",
+   "bytes": 44479
+  },
+  "pairs40": {
+   "path": "results/heuristic_search/ac19_autmin_screen/unsolved_10m_orig_baseline.csv",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "2b4e6debe916a4a769f2798382c59df6fcc3fc7a4a4f9a58e902ed53bc9453de",
+   "bytes": 3134
+  },
+  "orig10m": {
+   "path": "results/heuristic_search/ac19_orig_10m/ac19_orig_10m_greedy_b10000000_mrl64.jsonl",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "4e40d3d60ff14fb50ff4a5a057b029852c3db8e13f459e5f148ec75dd67c065e",
+   "bytes": 110605
+  },
+  "open8_orig": {
+   "path": "results/heuristic_search/ac19_orig_cascade/orig_of_cascade_open8.csv",
+   "commit": "dab82a8412b007f23cffd35bee2727d977510de0",
+   "sha256": "7410cc2b17be79420639699067aa48ef97a7c7675a549b0645641ce20186b3c0",
+   "bytes": 496
+  },
+  "open8_greedy": {
+   "path": "benchmark/ladder/sources/open8_greedy_mrl64.jsonl",
+   "commit": null,
+   "sha256": "9adcc66eea70884b7de3f836f85227808e7ebbb10f4b26042fd83b6e6c6af414",
+   "bytes": 21929
+  },
+  "ms640_txt": {
+   "path": "data/ms640_solved.txt",
+   "commit": null,
+   "sha256": "fbf976f78ce2ebba33e5a66940987047dff585a537a72725977b5dfcb0132a43",
+   "bytes": 99108
+  },
+  "ms640_bins": {
+   "path": "benchmark/difficulty_bins.csv",
+   "commit": "9033f13efd06241762b66210c72be3d09b842b6e",
+   "sha256": "99745ebcecc4b0c473241ab567c77fa23b98c4b4b838a9e5e90b4f6cc19192c3",
+   "bytes": 58983
+  },
+  "ms640_1m": {
+   "path": "results/greedy_baseline/greedy_1000000_640_mrl24_cyc_all_07_11_26.jsonl",
+   "commit": "525050dd9ed9b9e1ee06cde2d739ad05940c8172",
+   "sha256": "458fb15f1db97fc8c9cef1ab411ef91b04e0bc237a58e970f9ca50ea82eda1ec",
+   "bytes": 271879
+  },
+  "s20_ms640_orig": {
+   "path": "benchmark/ladder/sources/s20_ms640_originals_b100000_c48.jsonl",
+   "commit": null,
+   "sha256": "dc267ed962cc83348ae05de455eb6557cc9de67555f5e46701cc359d3ea469fd",
+   "bytes": 656950
+  },
+  "aca_initial": {
+   "path": "data/ms_unsolved_reps/aca_124_initial.csv",
+   "commit": null,
+   "sha256": "614bce2d3250a1acca81ec9de0fc0deb097eb74c4d56e6a9718985a150bb1d2c",
+   "bytes": 5447
+  },
+  "aca_best": {
+   "path": "data/ms_unsolved_reps/aca_124_best.csv",
+   "commit": null,
+   "sha256": "8df25b3fc585553f80886934707b147c99252dcedf4b827a9a220fe99ebb58a3",
+   "bytes": 5357
+  },
+  "ms_reps261": {
+   "path": "data/ms_unsolved_reps/ms_reps_unsolved.csv",
+   "commit": null,
+   "sha256": "a1d2ef0adb4008e2762fbae72f64da726efbf239e35ea0f830f08cf8fc64212e",
+   "bytes": 7466
+  },
+  "ms1190_txt": {
+   "path": "data/1190MS.txt",
+   "commit": null,
+   "sha256": "81323166e956b35e3c816fccdcad3507e7978d6291da13bfda6a45de5763cdf2",
+   "bytes": 185423
+  }
+ },
+ "subset": [
+  "ac19_6582",
+  "ms_335",
+  "ac19_11987",
+  "ms_000",
+  "ac19_29680",
+  "ms_551",
+  "ac19_21100",
+  "ms_542",
+  "ac19_12785",
+  "ms_552",
+  "ac19_34742",
+  "ms_581",
+  "ac19_20653",
+  "ms_618",
+  "ac19_28227",
+  "ms_630",
+  "ac19_39855",
+  "ms_633",
+  "ac19_58079",
+  "ms_624",
+  "ac19_13642",
+  "ms_613",
+  "ac19_39344",
+  "ms_622",
+  "ac19_30155",
+  "ms_636",
+  "ac19_55217",
+  "ms_638",
+  "ac19_31653",
+  "ms_639",
+  "ac19_24379",
+  "ms_634",
+  "ac19_69081",
+  "ms_635",
+  "ac19_30096",
+  "ac19_67077",
+  "ac19_50910",
+  "ac19_28930",
+  "ac19_20832",
+  "ac19_57517",
+  "ac19_26841",
+  "ac19_24642",
+  "ac19_54765",
+  "ac19_45978",
+  "ac19_15866",
+  "ac19_33435",
+  "ac19_10775",
+  "ac19_39288",
+  "ac19_20270",
+  "ac19_15507",
+  "ac19_31298",
+  "ac19_67987",
+  "ac19_55019",
+  "ac19_50892",
+  "ac19_28131",
+  "ac19_65753",
+  "ac19_44381",
+  "ac19_59576",
+  "ac19_51034",
+  "ac19_16286"
+ ]
+}

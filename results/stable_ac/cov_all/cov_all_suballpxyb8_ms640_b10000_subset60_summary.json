@@ -1,0 +1,227 @@
+{
+ "file": "cov_all_suballpxyb8_ms640_b10000_subset60.jsonl",
+ "node_budget": 10000,
+ "presentations": 60,
+ "cov_starts": 9105,
+ "cpu_hours": 19.751,
+ "per_budget": {
+  "100": {
+   "control": {
+    "solved": 17,
+    "nodes_mean_median_on_own_solved": [
+     28.47,
+     13
+    ],
+    "path_mean_median_on_own_solved": [
+     10.94,
+     9
+    ],
+    "nodes_mean_median_on_shared": [
+     28.47,
+     13
+    ],
+    "path_mean_median_on_shared": [
+     10.94,
+     9
+    ]
+   },
+   "oracle_all": {
+    "solved": 34,
+    "nodes_mean_median_on_own_solved": [
+     16.12,
+     12.5
+    ],
+    "path_mean_median_on_own_solved": [
+     10.12,
+     9.5
+    ],
+    "nodes_mean_median_on_shared": [
+     7.88,
+     8
+    ],
+    "path_mean_median_on_shared": [
+     5.88,
+     7
+    ]
+   },
+   "oracle_one": {
+    "solved": 34,
+    "nodes_mean_median_on_own_solved": [
+     16.15,
+     12.5
+    ],
+    "path_mean_median_on_own_solved": [
+     10.15,
+     9.5
+    ],
+    "nodes_mean_median_on_shared": [
+     7.94,
+     8
+    ],
+    "path_mean_median_on_shared": [
+     5.94,
+     7
+    ]
+   },
+   "shared_solved_set": 17,
+   "random_start_vs_control_mean_fraction": {
+    "cheaper": 0.1349,
+    "equal": 0.0215,
+    "dearer": 0.124,
+    "fail": 0.7196
+   },
+   "solved_only_via_non_one_pattern_start": {
+    "count": 0,
+    "pres_ids": []
+   },
+   "oracle_all_beats_oracle_one_in_nodes_or_solves": 1
+  },
+  "1000": {
+   "control": {
+    "solved": 29,
+    "nodes_mean_median_on_own_solved": [
+     175.52,
+     61
+    ],
+    "path_mean_median_on_own_solved": [
+     19.21,
+     16
+    ],
+    "nodes_mean_median_on_shared": [
+     175.52,
+     61
+    ],
+    "path_mean_median_on_shared": [
+     19.21,
+     16
+    ]
+   },
+   "oracle_all": {
+    "solved": 45,
+    "nodes_mean_median_on_own_solved": [
+     103.62,
+     17
+    ],
+    "path_mean_median_on_own_solved": [
+     23.2,
+     12
+    ],
+    "nodes_mean_median_on_shared": [
+     13.97,
+     10
+    ],
+    "path_mean_median_on_shared": [
+     8.69,
+     8
+    ]
+   },
+   "oracle_one": {
+    "solved": 45,
+    "nodes_mean_median_on_own_solved": [
+     103.64,
+     17
+    ],
+    "path_mean_median_on_own_solved": [
+     23.22,
+     12
+    ],
+    "nodes_mean_median_on_shared": [
+     14,
+     10
+    ],
+    "path_mean_median_on_shared": [
+     8.72,
+     8
+    ]
+   },
+   "shared_solved_set": 29,
+   "random_start_vs_control_mean_fraction": {
+    "cheaper": 0.2547,
+    "equal": 0.0221,
+    "dearer": 0.1843,
+    "fail": 0.5389
+   },
+   "solved_only_via_non_one_pattern_start": {
+    "count": 0,
+    "pres_ids": []
+   },
+   "oracle_all_beats_oracle_one_in_nodes_or_solves": 1
+  },
+  "10000": {
+   "control": {
+    "solved": 40,
+    "nodes_mean_median_on_own_solved": [
+     1205.67,
+     197.0
+    ],
+    "path_mean_median_on_own_solved": [
+     36.88,
+     24.0
+    ],
+    "nodes_mean_median_on_shared": [
+     1205.67,
+     197.0
+    ],
+    "path_mean_median_on_shared": [
+     36.88,
+     24.0
+    ]
+   },
+   "oracle_all": {
+    "solved": 52,
+    "nodes_mean_median_on_own_solved": [
+     543.35,
+     25.0
+    ],
+    "path_mean_median_on_own_solved": [
+     36.5,
+     14.5
+    ],
+    "nodes_mean_median_on_shared": [
+     72.17,
+     14.0
+    ],
+    "path_mean_median_on_shared": [
+     19.32,
+     11.0
+    ]
+   },
+   "oracle_one": {
+    "solved": 52,
+    "nodes_mean_median_on_own_solved": [
+     543.37,
+     25.0
+    ],
+    "path_mean_median_on_own_solved": [
+     36.52,
+     14.5
+    ],
+    "nodes_mean_median_on_shared": [
+     72.2,
+     14.0
+    ],
+    "path_mean_median_on_shared": [
+     19.35,
+     11.0
+    ]
+   },
+   "shared_solved_set": 40,
+   "random_start_vs_control_mean_fraction": {
+    "cheaper": 0.3395,
+    "equal": 0.0221,
+    "dearer": 0.2675,
+    "fail": 0.371
+   },
+   "solved_only_via_non_one_pattern_start": {
+    "count": 0,
+    "pres_ids": []
+   },
+   "oracle_all_beats_oracle_one_in_nodes_or_solves": 1
+  }
+ },
+ "total_cov_nodes_per_presentation": {
+  "mean": 705835.3,
+  "median": 146384.0,
+  "max": 7847894
+ }
+}

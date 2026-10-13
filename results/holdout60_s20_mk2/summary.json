@@ -1,0 +1,71 @@
+{
+ "name": "holdout60_s20_mk2",
+ "method": "greedy",
+ "benchmark": "ac1m_hard_holdout60",
+ "rows": 60,
+ "solved": 50,
+ "ac_path": 50,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 165049,
+  "on_solved": 65049
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 50,
+    "sum": 3069,
+    "mean": 61.38,
+    "median": 44.5,
+    "max": 235
+   },
+   "elem_moves": {
+    "n": 50,
+    "sum": 33345,
+    "mean": 666.9,
+    "median": 457.5,
+    "max": 2898
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 60,
+   "rows_dropped": 38,
+   "rows_would_pop": 6,
+   "raise_ids": [
+    "275353",
+    "519377",
+    "569291",
+    "878222",
+    "1049443",
+    "508426"
+   ],
+   "dropped": 9041088,
+   "would_pop": 687,
+   "dropped_min_total": 31,
+   "first_bind_min": 221,
+   "needed_min": 25,
+   "needed_max": 25
+  }
+ },
+ "wall_seconds": 20.64,
+ "row_seconds": 20.62,
+ "config": {
+  "method": "greedy",
+  "benchmark": "ac1m_hard_holdout60",
+  "search": {
+   "backend": "fast",
+   "priority": "s20_mk2",
+   "budget": 10000,
+   "cap": 24
+  },
+  "name": "holdout60_s20_mk2",
+  "workers": 1
+ }
+}

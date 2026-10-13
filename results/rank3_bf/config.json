@@ -1,0 +1,17 @@
+{
+ "benchmark": "ms640",
+ "method": "rankn",
+ "sweep": {
+  "search": {
+   "priority": "length",
+   "cap": 24,
+   "budget": 1000,
+   "cyclic": true
+  },
+  "extra": 1,
+  "min_len": 1,
+  "max_len": 4,
+  "inverse": false,
+  "sample": 0.002
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "method": "greedy",
+ "benchmark": "ladder200",
+ "search": {
+  "backend": "fast",
+  "priority": "length",
+  "budget": 10000
+ },
+ "name": "ladder200_length"
+}

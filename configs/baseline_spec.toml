@@ -1,0 +1,10 @@
+# The slow reference: pure-Python LENGTH greedy with cap 24 on MS640 (main's GreedyBaselineSolver).
+method = "greedy"
+benchmark = "ms640"
+workers = 4
+
+[search]
+backend = "spec"
+priority = "length"
+budget = 10000
+cap = 24

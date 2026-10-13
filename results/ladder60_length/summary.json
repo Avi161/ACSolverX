@@ -1,0 +1,65 @@
+{
+ "name": "ladder60_length",
+ "method": "greedy",
+ "benchmark": "ladder60",
+ "rows": 60,
+ "solved": 12,
+ "ac_path": 12,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 508744,
+  "on_solved": 28744
+ },
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 12,
+    "sum": 644,
+    "mean": 53.67,
+    "median": 60.5,
+    "max": 153
+   },
+   "elem_moves": {
+    "n": 12,
+    "sum": 6807,
+    "mean": 567.25,
+    "median": 604.0,
+    "max": 1588
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": 24,
+   "rows": 60,
+   "rows_dropped": 35,
+   "rows_would_pop": 1,
+   "raise_ids": [
+    "ac19_50892"
+   ],
+   "dropped": 25777196,
+   "would_pop": 7647,
+   "dropped_min_total": 32,
+   "first_bind_min": 9214,
+   "needed_min": 25,
+   "needed_max": 25
+  }
+ },
+ "wall_seconds": 55.93,
+ "row_seconds": 111.21,
+ "config": {
+  "method": "greedy",
+  "benchmark": "ladder60",
+  "workers": 2,
+  "search": {
+   "backend": "fast",
+   "priority": "length",
+   "budget": 10000
+  },
+  "name": "ladder60_length"
+ }
+}

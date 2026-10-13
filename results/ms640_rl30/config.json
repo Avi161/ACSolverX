@@ -1,0 +1,9 @@
+{
+ "method": "rl",
+ "benchmark": "ms640",
+ "rl": {
+  "width": 256,
+  "steps": 150
+ },
+ "name": "ms640_rl30"
+}

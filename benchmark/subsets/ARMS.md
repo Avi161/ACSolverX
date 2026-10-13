@@ -2,11 +2,11 @@
 
 `benchmark_subset_{10,20,40,60}_arms.{csv,json}` give one row per presentation: what each technique costs to solve it, in **nodes explored** and the **path length** that came with those nodes. The frozen `benchmark_subset_{N}.{csv,json}` are untouched.
 
-These are run outputs, generated on the research branch by `experiments/analysis/benchmark_arms.py` from search logs that are not part of this repo. They ship here as data; nothing on `main` regenerates them.
+These are run outputs, generated on the research branch by `experiments/analysis/benchmark_arms.py` from search logs that are not part of this repo. They ship here as data; nothing in this repository regenerates them.
 
 ## Not every row has been tested
 
-The four subsets are *not* nested (`nested: false` in each file), and both the CoV sweep and the heuristic campaign were run against **subset-60's** row list. So the smaller subsets contain presentations no transformed arm has ever run on:
+The four subsets are *not* nested (`nested: false` in each `benchmark_subset_<N>.json`), and both the CoV sweep and the heuristic sweep were run against **subset-60's** row list. So the smaller subsets contain presentations no transformed arm has ever run on:
 
 | subset | rows | tested | not tested |
 |---|---|---|---|
@@ -37,7 +37,7 @@ priority(r1, r2) = L + 2.53*K + 6.418*MK + 8.458*S + 3.292*xyimb   (one segment,
 
 Lower is popped first. Every term is a pure function of the state and rotation-invariant — a priority reading `depth` or the parent would make pop order depend on discovery order and stop being reproducible. It is a **single segment with no length threshold**: the earlier phased form is unnecessary here, because `S` and `MK` both fall as a pair approaches the trivial state, so the climb self-regulates.
 
-Shipped as `RECOMMENDED` in [`experiments/search/heuristics.py`](../../experiments/search/heuristics.py), documented in [`HEURISTICS.md`](../../experiments/search/HEURISTICS.md), and pinned by `test_recommended_is_the_formula_the_docs_publish` in [`tests/test_greedy_heuristic.py`](../../tests/test_greedy_heuristic.py) — the weights above and the code cannot drift apart.
+`RECOMMENDED` was shipped with the original code (`experiments/search/heuristics.py`) and is **withdrawn as overfit** here: no code, see [docs/RESULTS.md](../../docs/RESULTS.md) (Tried). Its numbers below are kept as recorded.
 
 ## Columns
 

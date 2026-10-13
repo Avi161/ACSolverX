@@ -1,0 +1,12 @@
+{
+ "method": "cov",
+ "benchmark": "ladder200",
+ "search": {
+  "backend": "fast",
+  "budget": 1000
+ },
+ "cov": {
+  "total_budget": 10000
+ },
+ "name": "ladder200_cov"
+}

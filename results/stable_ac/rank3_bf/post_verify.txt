@@ -1,0 +1,55 @@
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b10000_cap24_control.jsonl: 640 presentations, 606 solved; 3-way agreement checked
+  matches the cov_all control on 640 presentations
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_control.jsonl: 640 presentations, 554 solved; 3-way agreement checked
+  matches the cov_all control on 640 presentations
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b10000_cap24_L1.npz: 1280 searches, 915 solved
+  915 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b10000_cap24_L2.npz: 3840 searches, 3080 solved
+  1569 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b10000_cap24_L3.npz: 11520 searches, 9297 solved
+  1600 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b10000_cap24_L4.npz: 34560 searches, 28267 solved
+  1694 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b10000_cap24_L5.npz: 103680 searches, 84394 solved
+  1653 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b10000_cap24_L6.npz: 311040 searches, 251825 solved
+  1670 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b10000_cap24_L7.npz: 933120 searches, 753403 solved
+  1599 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L1.npz: 1280 searches, 769 solved
+  769 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L10.npz: 25194240 searches, 16550697 solved
+  1256 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L1_inv.npz: 1280 searches, 769 solved
+  769 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L2.npz: 3840 searches, 2627 solved
+  1342 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L2_inv.npz: 3840 searches, 2633 solved
+  1360 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L3.npz: 11520 searches, 8042 solved
+  1394 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L3_inv.npz: 11520 searches, 8047 solved
+  1366 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L4.npz: 34560 searches, 23696 solved
+  1396 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L4_inv.npz: 34560 searches, 23701 solved
+  1397 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L5.npz: 103680 searches, 69811 solved
+  1380 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L5_inv.npz: 103680 searches, 69835 solved
+  1289 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L6.npz: 311040 searches, 207888 solved
+  1370 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L6_inv.npz: 311040 searches, 208040 solved
+  1342 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L7.npz: 933120 searches, 620640 solved
+  1335 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L8.npz: 2799360 searches, 1853314 solved
+  1388 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_L9.npz: 8398080 searches, 5535501 solved
+  1296 sampled certificates replayed through the spec
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b10000_cap24_relsub.jsonl: 69816 rows, 49272 solved, 0 failed to replay
+/opt/r3/acsx/results/stable_ac/rank3_bf/rank3_bf_ms640_b1000_cap24_relsub.jsonl: 69816 rows, 39968 solved, 0 failed to replay
+recheck: 690 entries re-run with the reference solvern.search_n
+
+OK: 23 npz files, 120389 certificates replayed, 0 failures
