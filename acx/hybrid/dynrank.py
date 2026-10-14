@@ -12,8 +12,8 @@ the least of its rotations and those of its inverse in int order (``-2 < -1 < 1 
 
 ``relabel_canonical`` quotients states by permutations of the generators; the permutation is part of the step.
 
-This module is the reference (backend ``"spec"``); ``acx.highspeedup.dynkernels`` compiles the same moves with numba
-(backend ``"fast"``), same output bit for bit. ``backend(name)`` gives the moves the search calls.
+This module is the reference (backend ``"spec"``); ``acx.hybrid_highspeedup.dynkernels`` compiles the same moves with
+numba (backend ``"fast"``), same output bit for bit. ``backend(name)`` gives the moves the search calls.
 """
 from collections import Counter, namedtuple
 
@@ -257,6 +257,6 @@ def backend(name):
         return SPEC
     if name != "fast":
         raise ValueError(f"backend {name!r} not in {BACKENDS}")
-    from ..highspeedup import dynkernels as K
+    from ..hybrid_highspeedup import dynkernels as K
     K.warm()
     return Moves(K.children, K.defines, K.normalize, K.make_key, K.dcanon, K.make_keys, K.children_lazy, K.most_uses)

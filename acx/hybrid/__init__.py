@@ -9,7 +9,7 @@ Modules, in the order a solve uses them:
 * ``steps``: the step types, the ``Run`` that applies them to the canonical pair, and their JSON form;
 * ``cascade``, ``pinch``: stages A-C on the canonical pair and the finishing gates;
 * ``search``: the best-first search over rank two (``frontier``, ``kernels``) and higher rank (``dynrank``), on
-  backend ``fast`` with the compiled moves of ``acx.highspeedup``;
+  backend ``fast`` with the compiled moves of ``acx.hybrid_highspeedup``;
 * ``capwatch``: the cap counters of the limits ``r2_cap``, ``dyn_cap`` and ``slack``;
 * ``solver``: ``solve``, the config and the result;
 * ``elementary``, ``frame``: the certificate as elementary AC moves, replayed by ``acx.verify.replay``.

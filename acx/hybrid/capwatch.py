@@ -58,8 +58,8 @@ def lazy_entries(depth, base, penalty, offset, words, offered, items, dcanon=D.d
 
 
 def lazy_cut_entries(depth, base, penalty, offset, words, offered, cuts, dcanon=D.dcanon):
-    """``lazy_entries`` of ``cuts`` (a ``highspeedup.dynkernels.Cuts`` of items of rank above two, the list it stands
-    for): the same entries, in the same order, an item built only when a bar reaches its priority group."""
+    """``lazy_entries`` of ``cuts`` (a ``hybrid_highspeedup.dynkernels.Cuts`` of items of rank above two, the list it
+    stands for): the same entries, in the same order, an item built only when a bar reaches its priority group."""
     last = cuts.min_total() + penalty
     yield (float(last), depth, base), 0, 0, None
     prios = np.concatenate((cuts.total + penalty * (cuts.rank - 2),

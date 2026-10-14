@@ -172,7 +172,7 @@ class BestFirst:
                 watch.moved(name, len(items), min(map(itemgetter(0), items)))
                 lazy.append((name, offset, [t for t in items if t[2] > 2]))
                 short += [(t[3], (name, t[1] - offset)) for t in items if t[2] == 2]
-            else:                                       # ``highspeedup.dynkernels.Cuts``: the same items, the products as arrays
+            else:                                       # a ``Cuts`` (``hybrid_highspeedup.dynkernels``): the same items
                 watch.moved(name, len(items), items.min_total())
                 lazy.append((name, offset, items.above(2)))
                 short += [(t[3], (name, t[1] - offset)) for t in items.elims if t[2] == 2]

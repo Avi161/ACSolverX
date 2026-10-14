@@ -106,7 +106,7 @@ def grouped(name):
         return spec_expand_groups
     if name != "fast":
         raise ValueError(f"backend {name!r} not in {BACKENDS}")
-    from ..highspeedup.r2kernels import fast_expand_groups
+    from ..hybrid_highspeedup.r2kernels import fast_expand_groups
     return fast_expand_groups
 
 
@@ -118,7 +118,7 @@ def orbit(key, transform):
 def orbits(name):
     """``orbit`` on backend ``name`` as a function of the key (``fast``: one numba call for the seven images)."""
     if name == "fast":
-        from ..highspeedup.r2kernels import fast_orbit
+        from ..hybrid_highspeedup.r2kernels import fast_orbit
         return fast_orbit
     transform = backend(name)[2]
     return lambda key: orbit(key, transform)

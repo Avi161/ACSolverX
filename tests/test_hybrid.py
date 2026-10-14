@@ -450,7 +450,7 @@ def outcome(f, *args):
 def assert_moves_agree(words, caps=(None, 3, 8), ceilings=(30, float("inf"))):
     """Every higher-rank move of ``dynrank`` and of ``dynkernels`` (the ``fast`` backend) gives the same on ``words``,
     in the same order, or raises alike; the search's batched forms (``make_keys``, ``children_lazy``) too."""
-    from acx.highspeedup import dynkernels as K
+    from acx.hybrid_highspeedup import dynkernels as K
     spec, fast = dynrank.SPEC, dynrank.backend("fast")
     for w in words:
         assert K.dcanon(w) == dynrank.dcanon(w), w
@@ -510,7 +510,7 @@ HARD_ROW = data.rows("u124")[101].pres        # aca_101: unsolved by every metho
 def test_compiled_moves_equal_the_spec_on_search_states(monkeypatch):
     """The same on the states four searches expand (rank two to four), at several limits; and the lazy cut list
     gives the counters' pool the entries ``lazy_entries`` gives from the spec's list."""
-    from acx.highspeedup import dynkernels as K
+    from acx.hybrid_highspeedup import dynkernels as K
     rows = [(ac19_row(r), 1000) for r in ("ac19_239", "ac19_714", "ac19_1286")] + [(HARD_ROW, 1000)]
     states = search_states(monkeypatch, rows)
     assert {len(s) for s in states} == {2, 3, 4} and len(states) > 250

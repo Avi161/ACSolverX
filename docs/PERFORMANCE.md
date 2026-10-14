@@ -13,6 +13,7 @@ Every pull request is timed against `main` in CI (below), so these numbers shoul
 | `path = false` | `path = true` | **1.3x to 4.1x** | greedy, aut, hybrid (CoV, SAC, RL: about 1x) |
 | `cap = 24` | `cap = "none"` | **1.3x**; **3.3x** | MS640 at 10,000 pops; rows the cap binds on at 100,000 |
 | packed words (#30) | unpacked | **1.13x to 1.40x**, up to 33% less memory | the fast backend |
+| compiled hybrid moves (#33) | Python moves | **1.4x to 6.3x**, up to 31% less memory | the hybrid on rows reaching 3+ generators |
 
 **How it was measured.** One commit (`main` at `7245b6bd`), `run.py` with `workers = 1` and
 `NUMBA_NUM_THREADS=1`, on a shared 4-vCPU VM (Xeon 2.8 GHz; Python 3.12.3, numba 0.63.1, numpy 2.1.3). The time is
@@ -157,6 +158,25 @@ canonicalises words of up to 64 bits as integers. Results are identical record f
 | S20_MK2, cap 24, 10,000 pops, MS640 | 69.2 | 61.0 | **1.13x** | 259 | 228 |
 | LENGTH, no cap, 100,000 pops, MS640 rows 568, 604, 620, 639 | 61.4 | 43.9 | **1.40x** | 2,506 | 1,689 |
 | rank 3, 1,000 pops a search, 1,600 searches | 57.5 | 52.5 | 1.09x (noise 10%) | 177 | 171 |
+
+## Compiled hybrid moves
+
+Since #33 the hybrid's `fast` backend runs its moves on three or more generators and its rank-two expansion in numba
+([`acx/hybrid_highspeedup`](../acx/hybrid_highspeedup)); `backend = "spec"` keeps the Python reference, and both pop
+the same entries in the same order (`tests/test_hybrid.py`). Results are identical record for record; `main` before
+(`c26e99bc`) against after, `configs/hybrid.toml`, `workers = 3`, one run each:
+
+| run | rows | CPU s before | after | speedup | peak MB before | after |
+|---|---:|---:|---:|---:|---:|---:|
+| U124 (unsolved by every method) rows 0 to 120 step 8, 10,000 units, `path = false` | 16 | 751.2 | 119.2 | **6.3x** | 1,661 | 1,140 |
+| ladder200, 1,000 units | 188 | 28.3 | 11.3 | **2.5x** | 200 | 192 |
+| AC19 Aut-min (`ac19_autmin`), 1,000 units | 72,779 | 692.3 | 498.8 | **1.39x** | 383 | 380 |
+| bench60, 1,000 units | 60 | 3.1 | 3.0 | 1.0x | 136 | 146 |
+| MS640, 1,000 units, the fastest of three | 640 | 7.8 | 7.0 | 1.1x (noise 10%) | 137 | 151 |
+
+The gain is in the rows that reach three or more generators, and it grows with the budget. MS640 and bench60 rows are
+solved on two generators in a few units, so they gain nothing and carry the compiled module's 10 to 14 MB. Greedy, aut,
+CoV, SAC and RL do not load these modules.
 
 ## Speed check in CI
 
