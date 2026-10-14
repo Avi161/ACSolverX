@@ -3,8 +3,10 @@
 A key is the canonical pair as bytes of key codes (``X=1 Y=2 x=3 y=4``), relators split by ``0``; byte order is
 ``acx.core.words.state_key`` order. A backend is ``(expand, full, transform)``: the children of the S-moves, every child
 as arrays (for the cap counters), and one of the ``AUTOS`` applied to a key. ``over_cap`` picks the rejected ones.
+``grouped`` gives the search ``expand`` in the layout it pushes (``spec_expand_groups``).
 """
 from collections import namedtuple
+from itertools import accumulate
 
 import numpy as np
 
@@ -12,6 +14,7 @@ from ..aut.autos import SIGNED
 from ..core.config import BACKENDS
 from ..core.moves import Move
 from ..core.words import canonical_rels, inverse, reduce, rotate
+from .cascade import gate_precheck_key
 from .steps import aut_child
 
 _CODE = {-1: 1, -2: 2, 1: 3, 2: 4}
@@ -83,9 +86,42 @@ def backend(name):
     return fast_expand, fast_full, fast_transform
 
 
+def spec_expand_groups(key, cap):
+    """``spec_expand`` as ``(raw, offsets, moves, flagged, groups, rejected)``: child ``c`` is ``raw[offsets[c]:offsets[c+1]]``
+    with the move ``moves[c]`` (an int array, one row per child), ``flagged`` the children ``gate_precheck_key`` passes,
+    ``groups`` the children grouped by key length, each group in order, the groups by increasing length."""
+    children, rejected = spec_expand(key, cap)
+    keys = [k for k, _ in children]
+    groups = {}
+    for c, k in enumerate(keys):
+        groups.setdefault(len(k), []).append(c)
+    moves = np.array([tuple(m) for _, m in children], dtype=np.int64).reshape(len(children), 5)
+    return (b"".join(keys), list(accumulate(map(len, keys), initial=0)), moves,
+            [c for c, k in enumerate(keys) if gate_precheck_key(k)], [groups[n] for n in sorted(groups)], rejected)
+
+
+def grouped(name):
+    """``expand`` of backend ``name`` in the layout of ``spec_expand_groups``."""
+    if name == "spec":
+        return spec_expand_groups
+    if name != "fast":
+        raise ValueError(f"backend {name!r} not in {BACKENDS}")
+    from ..highspeedup.r2kernels import fast_expand_groups
+    return fast_expand_groups
+
+
 def orbit(key, transform):
     """The eight images of ``key`` under the signed permutations (``SIGNED``, the identity first)."""
     return [key] + [transform(key, k) for k in SIGNED[1:]]
+
+
+def orbits(name):
+    """``orbit`` on backend ``name`` as a function of the key (``fast``: one numba call for the seven images)."""
+    if name == "fast":
+        from ..highspeedup.r2kernels import fast_orbit
+        return fast_orbit
+    transform = backend(name)[2]
+    return lambda key: orbit(key, transform)
 
 
 Drops = namedtuple("Drops", "raw pos before total longest start end flag")

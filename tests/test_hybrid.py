@@ -13,6 +13,7 @@ import random
 import sys
 import time
 from bisect import bisect_left
+from functools import lru_cache
 from types import SimpleNamespace
 
 import numpy as np
@@ -22,6 +23,7 @@ import acx.hybrid
 from acx import data, runner
 from acx.aut.autos import AUTOS
 from acx.core.capcount import blank, fields
+from acx.core.digrams import digram_counts
 from acx.core.moves import Move
 from acx.core.words import Presentation, parse
 from acx.hybrid import HybridConfig, capwatch, certify, decode_steps, dynrank, encode_steps, solve
@@ -166,8 +168,14 @@ def run_with_pops(pres, **kw):
         hybrid_search.heapq = old
 
 
+@lru_cache(maxsize=None)
+def ac19_rows():
+    """The first 1,300 rows of ``AC19_extended_aut_min.csv`` by id (read once: the file takes over a second)."""
+    return {r.id: r.pres for r in data.load_csv("data/AC19_extended_aut_min.csv")[:1300]}
+
+
 def ac19_row(rid):
-    return next(r.pres for r in data.load_csv("data/AC19_extended_aut_min.csv")[:1300] if r.id == rid)
+    return ac19_rows()[rid]
 
 
 def test_every_hybrid_result_carries_the_three_counters(ms640):
@@ -315,8 +323,8 @@ def test_lazy_entries_come_in_key_order_and_equal_the_eager_list(ms640):
     markers = [e for e in entries if e[3] is None]
     assert markers and [e[0] for e in states] == sorted(e[0] for e in states)
     eager = set()
-    for total, _, rank, (i, product) in items:
-        state = tuple(sorted(words[:i] + (product,) + words[i + 1:]))
+    for total, _, rank, (i, product) in items:                 # a cut product is reduced, not yet canonical
+        state = tuple(sorted(words[:i] + (dynrank.dcanon(product),) + words[i + 1:]))
         if state not in offered:
             eager.add((float(total + penalty * (rank - 2)), state))
     assert {(e[0][0], e[3]) for e in states} == eager and len(states) == len(eager)
@@ -414,6 +422,145 @@ def test_ceiling_counter_counts_a_dropped_state_that_would_pop():
     assert solve(pres, FAST, dyn_cap=None, slack=1).stats["slack_would_pop"] == 0
 
 
+# ------------------------------------------------------------------ the compiled moves (backend "fast") and the spec
+def random_state(rng):
+    """A random state: one to six relators over up to two more generators than relators, most freely reduced."""
+    n, extra = rng.choice((1, 2, 2, 3, 3, 3, 4, 4, 5, 6)), rng.choice((0, 0, 0, 1, 2))
+    letters = [g for g in range(-n - extra, n + extra + 1) if g]
+    reduced, longest = rng.random() < 0.7, rng.choice((3, 6, 10, 14))
+    words = []
+    for _ in range(n):
+        w = []
+        for _ in range(rng.randint(0, longest)):
+            x = rng.choice(letters)
+            if not (reduced and w and w[-1] == -x):
+                w.append(x)
+        words.append(tuple(w))
+    return tuple(words)
+
+
+def outcome(f, *args):
+    """``f(*args)``, or the type and message of the exception it raised."""
+    try:
+        return f(*args)
+    except Exception as e:      # noqa: BLE001 - the two backends must raise alike
+        return type(e), str(e)
+
+
+def assert_moves_agree(words, caps=(None, 3, 8), ceilings=(30, float("inf"))):
+    """Every higher-rank move of ``dynrank`` and of ``dynkernels`` (the ``fast`` backend) gives the same on ``words``,
+    in the same order, or raises alike; the search's batched forms (``make_keys``, ``children_lazy``) too."""
+    from acx.highspeedup import dynkernels as K
+    spec, fast = dynrank.SPEC, dynrank.backend("fast")
+    for w in words:
+        assert K.dcanon(w) == dynrank.dcanon(w), w
+    assert K.normalize(words) == dynrank.normalize(words), words
+    for limit in (3, 20_000):
+        assert outcome(K.relabel_canonical, words, limit) == outcome(dynrank.relabel_canonical, words, limit), words
+    key = outcome(spec.make_key, words)
+    assert outcome(fast.make_key, words) == key, words
+    assert fast.make_keys([words, words]) == [None if isinstance(key[0], type) else key] * 2   # None: make_key raises
+    assert dynrank.make_keys([words]) == [None]                 # spec: the search calls make_key one by one
+    for cap in caps:
+        assert K.products(words, cap) == dynrank.products(words, cap), (words, cap)
+    for uses in (1, 2, 3):
+        assert K.defines(words, uses) == dynrank.defines(words, uses), (words, uses)
+    assert K.eliminations(words) == dynrank.eliminations(words), words
+    assert K.nielsen_children(words) == dynrank.nielsen_children(words), words
+    assert fast.most_uses(words) == spec.most_uses(words) == max(digram_counts(words).values(), default=0), words
+    for cap in caps:
+        for ceiling in ceilings:
+            want = dynrank.children(words, cap, ceiling, 2)
+            assert fast.children(words, cap, ceiling, 2) == want, (words, cap, ceiling)
+            kept, cut, over = fast.children_lazy(words, cap, ceiling, 2)
+            items = cut if cut.__class__ is list else cut.items()
+            assert (kept, items, over) == want and len(cut) == len(want[1]), (words, cap, ceiling)
+            if cut.__class__ is not list and items:
+                assert cut.min_total() == min(t[0] for t in items)
+                assert cut.above(2).items() == [t for t in items if t[2] > 2]
+
+
+def test_compiled_moves_equal_the_spec_on_random_states():
+    """``dynkernels`` is ``dynrank`` compiled: the same children in the same order on random states of rank one to
+    six (some not reduced, some with more generators than relators), the same exceptions."""
+    rng = random.Random(2026)
+    for _ in range(100):
+        words = random_state(rng)
+        assert_moves_agree(words)
+        assert_moves_agree(dynrank.normalize(words))
+
+
+def search_states(monkeypatch, rows):
+    """The states the search expands at higher rank and those whose defines it builds (rank two), in pop order."""
+    states = []
+    for name in ("expand_dyn", "expand_defs"):
+        def spy(self, state, *rest, _old=getattr(hybrid_search.BestFirst, name)):
+            states.append(state)
+            return _old(self, state, *rest)
+        monkeypatch.setattr(hybrid_search.BestFirst, name, spy)
+    for pres, budget in rows:
+        solve(pres, FAST, budget=budget)
+    monkeypatch.undo()
+    return states
+
+
+HARD_ROW = data.rows("u124")[5].pres          # aca_5: unsolved by every method (U124); rank four within 300 units
+
+
+def test_compiled_moves_equal_the_spec_on_search_states(monkeypatch):
+    """The same on the states four searches expand (rank two to four), at several limits; and the lazy cut list
+    gives the counters' pool the entries ``lazy_entries`` gives from the spec's list."""
+    from acx.highspeedup import dynkernels as K
+    rows = [(ac19_row(r), 1000) for r in ("ac19_239", "ac19_714", "ac19_1286")] + [(HARD_ROW, 300)]
+    states = search_states(monkeypatch, rows)
+    assert {len(s) for s in states} == {2, 3, 4} and len(states) > 250
+    for words in states[::6]:
+        assert_moves_agree(words, caps=(None, 6), ceilings=(len(words) * 8, float("inf")))
+    assert K.make_keys(states) == [dynrank.make_key(s) for s in states]
+    compared = 0
+    for words in states[1::3]:
+        kept, cut, _ = dynrank.children(words, 5, float("inf"), 2)
+        items = [t for t in cut if t[2] > 2]
+        if items:                                           # rank three or more: the cut list is a ``Cuts``
+            cuts = K.children_lazy(words, 5, float("inf"), 2)[1].above(2)
+            offered = sorted(state for state, _ in kept)
+            assert (list(capwatch.lazy_cut_entries(3, 50, 5, 1, words, offered, cuts, K.dcanon))
+                    == list(capwatch.lazy_entries(3, 50, 5, 1, words, offered, items)))
+            compared += 1
+    assert compared > 30
+
+
+def test_rank_two_layout_and_orbits_agree_between_the_backends(ms640):
+    """The S-move children in the layout ``expand_r2`` pushes (``grouped``) and the orbit of a key (``orbits``) are
+    the same on both backends, and the layout holds the children of ``expand`` in its order."""
+    from acx.hybrid.frontier import grouped, orbits
+    (sx, _, st), (gs, gf) = backend("spec"), map(grouped, ("spec", "fast"))
+    for pres in ms640[::16]:
+        key = pack(pres.reduced().canonical().rels)
+        assert orbits("fast")(key) == orbits("spec")(key) == orbit(key, st)
+        for cap in (None, len(key) - 1, 6, 3):
+            (raw, offs, moves, flagged, groups, rejected), want = gf(key, cap), gs(key, cap)
+            assert (raw, offs, flagged, groups, rejected) == want[:2] + want[3:] and np.array_equal(moves, want[2])
+            children, n = sx(key, cap)
+            listed = [(raw[a:b], Move(*m)) for a, b, m in zip(offs, offs[1:], moves.tolist())]
+            assert (listed, rejected) == (children, n)
+            assert flagged == [c for c, (k, _) in enumerate(children) if gate_precheck_key(k)]
+            assert sorted(sum(groups, [])) == list(range(len(children)))
+            for group in groups:
+                assert group == sorted(group) and len({len(children[c][0]) for c in group}) == 1
+
+
+def test_the_backends_pop_the_same_entries_in_the_same_order():
+    """The search on the compiled moves (``fast``: grouped rank-two pushes, batched keys, lazy cut lists) pops what
+    the spec pops, entry by entry, at the default limits and tight ones."""
+    for pres, kw in [(ac19_row("ac19_239"), {}), (HARD_ROW, dict(budget=100)),
+                     (HARD_ROW, dict(budget=60, r2_cap=12, dyn_cap=6, slack=4))]:
+        (a, la), (b, lb) = (run_with_pops(pres, backend=be, **kw) for be in ("fast", "spec"))
+        assert la == lb and (a.units, a.steps, counters(a)) == (b.units, b.steps, counters(b))
+        assert a.stats["max_rank"] >= 3 and len(la) > 50
+        assert a.stats["dyn_cap_dropped"] > 0 and (a.stats["cap_would_pop"] > 0) == ("r2_cap" in kw)
+
+
 # ------------------------------------------------------------------ cost of the rank-two counter
 def calls_and_seconds(pres, watch_cap, **kw):
     """Python-level calls of one solve and its best CPU seconds of three, with the ``r2_cap`` counter on or off."""
@@ -437,19 +584,25 @@ def calls_and_seconds(pres, watch_cap, **kw):
     return n, min(seconds)
 
 
-def test_integer_r2_cap_counters_cost_under_ten_percent(ms640):
+def test_integer_r2_cap_counters_cost_a_few_calls_per_dropped_move(ms640):
     """A tight integer ``r2_cap`` drops hundreds of moves per pop; counting them must stay cheap (the first
-    version was 5x slower). Python calls are the deterministic measure (within 10%), CPU time the sanity check
-    (best of three within 60%, loose because the machine is shared; about 25% is measured at ``r2_cap`` 8, most of
-    it the orbit of each counted state)."""
+    version was 5x slower). Python calls are the deterministic measure: at most 5 per dropped move (3.2 and 2.4 are
+    measured on these rows), CPU time the sanity check (best of three, at most 15 us per dropped move, loose because
+    the machine is shared; 3 to 6 us is measured, most of it the orbit of each counted state).
+
+    The bound is per dropped move, no longer a share of the search's own cost (it was 10% of the calls and 60% of
+    the time): the compiled higher-rank moves and the grouped rank-two pushes cut the search's own calls 23- and
+    31-fold on these rows, so the same counter, at 6.7 and 5.4 calls per dropped move then, was 4-6% of the calls
+    then and is 40-80% of them now."""
     solve(ms640[380], FAST)
     kw = dict(r2_cap=8, budget=150)
     for i in (380, 602):
         on, t_on = calls_and_seconds(ms640[i], True, **kw)
         off, t_off = calls_and_seconds(ms640[i], False, **kw)
-        assert solve(ms640[i], FAST, **kw).stats["cap_dropped"] > 10_000
-        assert on <= 1.10 * off, (i, on, off)
-        assert t_on <= 1.60 * t_off, (i, t_on, t_off)
+        dropped = solve(ms640[i], FAST, **kw).stats["cap_dropped"]
+        assert dropped > 10_000
+        assert on - off <= 5 * dropped, (i, on, off, dropped)
+        assert t_on - t_off <= 15e-6 * dropped, (i, t_on, t_off, dropped)
 
 
 # ------------------------------------------------------------------ the limits: slack, orbits, r2_cap
