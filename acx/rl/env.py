@@ -27,7 +27,8 @@ class VecEnv:
             raise ValueError(f"init_states must be a nonempty (S, {2 * L}) array")
         if states.dtype == torch.bool or states.is_floating_point() or states.is_complex():
             raise ValueError("init_states must contain integer generator symbols")
-        if (states.abs() > 2).any():
+        # abs(minimum_signed_integer) overflows back to a negative number; compare bounds directly.
+        if (states > 2).any() or (states.is_signed() and (states < -2).any()):
             raise ValueError("init_states must contain only -2, -1, 0, 1, 2")
         self.init = states.to(dtype=torch.int64)
         self.S = len(self.init)

@@ -6,7 +6,8 @@
 
 Each workload is a config of ``configs/`` run with ``run.py`` on a slice of its benchmark, once as is (``normal``:
 paths kept, decoded and replayed) and once with ``path = false`` (``fast``). The time is the rows' CPU seconds from
-``summary.json`` (``core_seconds`` for the rank-n sweep), so start-up and compilation are left out. The trees are
+``summary.json``; rank-n's ``core_seconds`` instead sums row wall times. Ordinary runs warm up before timing; the
+rank-n minimum across repeated processes uses the warmed disk cache. Process start-up is left out. The trees are
 timed in turn (in alternating order), ``repeat`` times each, and the fastest time of each is kept. A workload over
 ``1 + tolerance`` times its base time, or under ``1 / (1 + tolerance)``, is timed ``confirm`` more rounds, since three
 runs on a CI runner varied by up to 5% on identical code (10% for RL). The check fails when one is still over; the
@@ -72,7 +73,7 @@ def faster(timings, tolerance):
 
 def table(timings, tolerance):
     """A markdown table of the timings, each marked slower, faster or within the tolerance."""
-    lines = ["| pipeline | base CPU s | head CPU s | change | runs | |", "|---|---:|---:|---:|---:|---|"]
+    lines = ["| pipeline | base CPU s* | head CPU s* | change | runs | |", "|---|---:|---:|---:|---:|---|"]
     for t in timings:
         mark = ("**slower**" if slower([t], tolerance) else "faster" if faster([t], tolerance)
                 else f"within {tolerance:.0%}")
@@ -96,7 +97,8 @@ def report(timings, tolerance):
     note = (f"CPU seconds of the rows (start-up and compilation left out), the fastest of {rounds[0]} runs on each "
             f"tree{f', {rounds[-1]} for a pipeline beyond {tolerance:.0%}' if len(rounds) > 1 else ''}; "
             "base: the commit compared with (`main` for a pull request), head: this change; `normal` keeps the "
-            "paths, `fast` is `path = false`.")
+            "paths, `fast` is `path = false`. *Rank-n uses recorded row wall time (`core_seconds`), which also "
+            "includes per-row bookkeeping and is sensitive to other machine load.")
     return f"## Speed against the base\n\n{verdict}\n\n{table(timings, tolerance)}\n\n{note}\n"
 
 

@@ -297,6 +297,22 @@ def test_training_environment_rejects_invalid_initialization(states, envs, pinne
         VecEnv(states, envs, n_pinned=pinned)
 
 
+@pytest.mark.parametrize("dtype", [torch.int8, torch.int16, torch.int32, torch.int64])
+def test_training_state_bounds_do_not_overflow_on_minimum_signed_integer(dtype):
+    from acx.rl.env import VecEnv
+    states = torch.zeros((1, 48), dtype=dtype)
+    states[0, 0] = torch.iinfo(dtype).min
+    with pytest.raises(ValueError, match="only -2, -1, 0, 1, 2"):
+        VecEnv(states, 1)
+
+
+def test_training_state_bounds_accept_unsigned_small_symbols():
+    from acx.rl.env import VecEnv
+    states = torch.zeros((1, 48), dtype=torch.uint8)
+    states[0, 0], states[0, 24] = 1, 2
+    assert torch.equal(VecEnv(states, 1).init, states.to(torch.int64))
+
+
 def test_s_move_sizes_describe_the_dropped_product():
     """``s_move`` returns the seam-reduced product length and the child's total beside the new state and ``over``."""
     x = torch.tensor([m[0] for m in REF["moves"]])

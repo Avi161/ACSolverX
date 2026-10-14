@@ -119,7 +119,8 @@ times were not rejected, and `--repeat 0` could produce infinite times with a Na
 
 The harness now refuses errors, skips, zero rows, missing/nonpositive/non-finite times and invalid repetition or
 tolerance settings. Tests simulate a successful subprocess that writes each invalid summary, plus valid ordinary
-and rank-n summaries. Search correctness remains established by replay and parity checks; the timing gate alone
+and rank-n summaries. The report also labels rank-n's recorded wall time explicitly rather than describing it as CPU
+time. Search correctness remains established by replay and parity checks; the timing gate alone
 does not prove semantic equivalence or identical solve sets. The existing 2% slowdown threshold is unchanged.
 
 ## Limits and evidence
