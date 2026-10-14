@@ -15,6 +15,8 @@ flowchart LR
 
 ## Run
 
+For a worked comparison from setup to retained evidence, see [EXPERIMENTS.md](EXPERIMENTS.md).
+
 ```bash
 python run.py --config configs/greedy_fast.toml                                  # the config's benchmark (MS640)
 python run.py --config configs/s20_mk2_fast.toml --set benchmark=bench60 --rows 0:10
@@ -34,6 +36,9 @@ python run.py --config configs/hybrid.toml --pres "xxYYY, xyxYXY" --pres "YYXyx,
 | `--fresh` | delete this run name's earlier results first |
 
 ## Inputs
+
+`--rows ""` clears the config's selection. A TOML list such as `rows = ["one,two", "0:1"]` selects literal ids,
+including commas, surrounding whitespace or slice-like names; `--solved-from` preserves these ids literally too.
 
 **Shipped sets**, by name (`--set benchmark=<name>`; [benchmark/README.md](../benchmark/README.md) describes them).
 `python -c "import acx.data as d; print(*d.DATASETS, *d.BENCHMARKS, *d.SPLITS)"` lists them.
@@ -81,6 +86,12 @@ separators, `.` or `..`); run folders and result files may not be symlinks.
   result files, keeping `input.txt`). **Never `--fresh` a shipped folder in `results/`**: pick `--set name=mine` or
   another `--out`. Rank-n resume checks every stored row against the whole current input; a changed row needs
   `--fresh` or a new name.
+
+New runs write **`provenance.json`** with source content and Python/dependency identity plus each invocation's git,
+host, thread, backend, worker and selection context. Source/runtime drift refuses resume before result files change;
+use another name after changing code or dependencies. `--fresh` replaces the history. Older folders without it may
+resume with `prior_results_untracked: true`: their earlier results cannot be attributed to the current source.
+Duplicate record ids are rejected consistently by resume and reporting. Details: [EXPERIMENTS.md](EXPERIMENTS.md).
 
 ## The config
 

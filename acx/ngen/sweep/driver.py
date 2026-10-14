@@ -8,6 +8,7 @@ from multiprocessing import Pool
 
 from ... import data
 from ...runner.rundir import check_config, write_config
+from ...runner.provenance import prepare_provenance, write_provenance
 from ...runner.storage import run_directory
 from .config import SweepConfig, words_of
 from .rows import check_two_relators, finished_rows, row_path, sweep_row_file, validate_rows
@@ -58,6 +59,8 @@ def run(cfg, out="results", fresh=False, log=print):
     Refused before anything is written: a row that is not two-generator, two-relator, and (unless ``fresh``) a run
     that would replace a published summary with one of fewer rows.
     """
+    if cfg.get("method") != "rankn":
+        raise ValueError("the rank-n sweep needs method = 'rankn'")
     sc = SweepConfig.from_cfg(cfg)
     result_dir = run_directory(out, cfg["name"])
     every_row = data.rows(cfg["benchmark"])
@@ -67,7 +70,9 @@ def run(cfg, out="results", fresh=False, log=print):
         check_config(result_dir, {"benchmark": cfg["benchmark"], "method": "rankn", "sweep": sc.key()})
         refuse_to_shrink(result_dir, [row.id for row in rows])
         validate_rows(result_dir, every_row, sc)
+    provenance = prepare_provenance(result_dir, cfg, fresh)
     open_result_dir(result_dir, {"benchmark": cfg["benchmark"], "method": "rankn", "sweep": sc.key()}, fresh)
+    write_provenance(result_dir, provenance)
 
     n_words = len(words_of(sc))
     done = sum(os.path.exists(row_path(result_dir, r.id)) for r in rows)

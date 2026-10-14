@@ -2,6 +2,7 @@
 import hashlib
 import json
 from dataclasses import asdict, dataclass, fields
+from functools import lru_cache
 
 from ...core.capcount import FIELDS
 from ...core.config import SearchConfig, is_number, reject_unknown, require_bool
@@ -75,6 +76,12 @@ def words_of(sc):
 
 def ident_of(sc, row_id, pres):
     """What a row file must say about itself: its row, the config and the word pool."""
-    pool_hash = hashlib.md5(",".join(map(fmt, words_of(sc))).encode()).hexdigest()
+    pool_hash = _pool_hash(sc.min_len, sc.max_len, sc.inverse)
     ident = {"id": row_id, "r1": fmt(pres.rels[0]), "r2": fmt(pres.rels[1]), "config": sc.key(), "pool": pool_hash}
     return json.dumps(ident, sort_keys=True, separators=(",", ":"))
+
+
+@lru_cache(maxsize=32)
+def _pool_hash(min_len, max_len, inverted):
+    """The unchanged published digest, computed once per pool rather than once per row/read/write."""
+    return hashlib.md5(",".join(map(fmt, pool(min_len, max_len, inverted))).encode()).hexdigest()

@@ -12,7 +12,7 @@ from ..core.moves import Move
 from ..core.priority import length
 from ..core.words import canonical_rels
 from . import dynrank as D
-from .capwatch import DYNPOOL, Watch, lazy_cut_entries, lazy_entries
+from .capwatch import DYNPOOL, Watch, lazy_entries
 from .cascade import gate_applicable, gate_precheck_key, run_gates
 from .frontier import backend, grouped, orbits, over_cap, pack, unpack
 from .steps import NIELSEN, Aut, Budget, Run, is_terminal
@@ -181,8 +181,7 @@ class BestFirst:
         states = [state for state, _ in offered]
         for name, offset, items in lazy:
             if items:
-                entries = lazy_entries if items.__class__ is list else lazy_cut_entries
-                watch.block(name, DYNPOOL, entries(depth, base, pen, offset, words, states, items, self.dyn.dcanon))
+                watch.block(name, DYNPOOL, lazy_entries(depth, base, pen, offset, words, states, items, self.dyn.dcanon))
         for j, ((state, event), mk) in enumerate(zip(offered, self.dyn.make_keys(states)), base + 1):
             mk = mk or make_key(state)                  # one by one where the batch did not (spec, or it raises)
             if event.__class__ is tuple:                # an elimination to rank two that a limit rejected
@@ -202,7 +201,7 @@ class BestFirst:
     def expand_defs(self, state, parent, depth):
         """The deferred define children of a rank-two state (no charge)."""
         kept, over = [], []
-        for cw, event in _dedup_sorted(self.dyn.defines(self.dyn.normalize(state), self.cfg.min_uses)):
+        for cw, event in _dedup_sorted(self.dyn.defines(D.normalize(state), self.cfg.min_uses)):
             if length(cw) <= self.ceiling:
                 kept.append((cw, event))
             else:

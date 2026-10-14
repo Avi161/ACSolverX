@@ -5,6 +5,7 @@ Each image of ``acx.cov.enumerate_images`` is a plain ``acx.search`` (``cfg.sear
 """
 import time
 from dataclasses import dataclass, field, replace
+from itertools import chain
 
 from ..aut import automorphism, transport
 from ..core.capcount import FIELDS, blank, combine
@@ -15,7 +16,7 @@ from ..search import Result, search
 from ..verify.replay import ReplayError, replay
 from .certificate import check_cert
 from .family import FAMILIES, MAX_LEN
-from .images import CoVImage, enumerate_images
+from .images import CoVImage, iter_images
 
 
 @dataclass(frozen=True)
@@ -149,22 +150,29 @@ def run(pres, cfg=None, **overrides):
     ``cap_dropped`` and ``cap_would_pop`` are sums, ``cap_dropped_min_total`` and ``cap_needed`` minima (``cap_needed``
     in letters of the binding leg's own cap), ``cap_first_bind`` is a pop number of the row (pops of earlier legs plus
     the first binding leg's) and ``cap_legs_bound`` counts the legs with ``cap_would_pop > 0``. When no leg binds,
-    every larger cap gives the same run. ``max_len`` only decides which images exist (``stats["images"]``): no counter.
+    every larger cap gives the same run. ``max_len`` only filters images, not a search cap counter. Images are generated
+    on demand: ``stats["images"]`` counts the emitted prefix and ``images_exhausted`` says whether the iterator ended.
+    Use ``enumerate_images`` to count the complete family separately.
     With ``search.capture_path=False``, classification still checks the Aut(F2) orbit, but paths are neither
     captured, transported nor verified. ``Outcome.path`` is None and ``result.path_length`` retains the depth.
     """
     cfg = (cfg or CoVConfig()).replace(**overrides)
     pres = as_presentation(pres)
     search_cfg, started = cfg.search, time.perf_counter()
-    images = enumerate_images(pres, cfg.max_len, cfg.family)
-    legs_to_try = ([None] if cfg.control else []) + list(images)        # None: the row itself
+    images = iter_images(pres, cfg.max_len, cfg.family)
+    legs_to_try = chain((None,) if cfg.control else (), images)        # None: the row itself
     seen_starts, outcomes = set(), []
     pops = duplicates = tried = 0
+    generated, exhausted = 0, False
     legs = []                           # (cap counter record, pops spent before the leg)
-    for img in legs_to_try:
+    while pops < cfg.total_budget:
         pops_left = cfg.total_budget - pops
-        if pops_left <= 0:
+        try:
+            img = next(legs_to_try)
+        except StopIteration:
+            exhausted = True
             break
+        generated += img is not None
         raw = pres if img is None else img.pres
         start = raw.normal(search_cfg.cyclic)
         if start in seen_starts:
@@ -181,6 +189,7 @@ def run(pres, cfg=None, **overrides):
                 verify(pres, outcomes[-1])
             if cfg.until == "solve" or outcomes[-1].kind == "ac_path":
                 break
-    stats = {"images": len(images), "tried": tried, "duplicates": duplicates, **_row_caps(legs, search_cfg.cap),
+    stats = {"images": generated, "images_exhausted": exhausted, "tried": tried, "duplicates": duplicates,
+             **_row_caps(legs, search_cfg.cap),
              "seconds": time.perf_counter() - started}
     return CoVResult(tuple(outcomes), pops, stats)

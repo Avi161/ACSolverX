@@ -276,6 +276,10 @@ order is worse (all patterns of the shortest `w` first). Searching each `class_k
 would solve bench60 40 and MS640 586 under the shipped policy, against 39 and 584; the default keeps exact-pair dedup,
 so the published numbers stand. (`zf3`, every word of length 2 to 4, was tried on research branches, not shipped.)
 
+CoV search now consumes `iter_images` lazily. `stats.images` counts the generated prefix and `images_exhausted` says
+whether the entire family was consumed. The explicit `enumerate_images` API still returns the full family in the
+same order; use it for a census independent of solver stopping conditions.
+
 ## 12. n-generator search and short-relator forms
 
 **n-generator search** (`acx.ngen`, on `acx.search`, either backend). The S-move takes a source index:
@@ -309,6 +313,12 @@ log-probability, drops duplicates and visited states, and stops at a trivial sta
 letters (the policy's input width), else unsolved with `skipped`. `cost` is the number of states scored. Training code:
 `acx.rl.env`, `acx.rl.ppo`. PPO's reward normaliser is the JAX trainer's `NormalizeVecReward` with its quirks: a step's
 own `done` clears the return before its reward is added. Keep it, or training no longer reproduces the checkpoint's.
+
+For RL, a nonzero `alpha` adds the current parent's value estimate when ranking its children. Only log probabilities
+carry into the next step; past value bonuses do not accumulate. The default `alpha=0` keeps its reference behavior.
+PPO validates settings, partitions every sample into exactly the requested number of minibatches and skips advantage
+normalization for a singleton. Microbatches preserve gradient weighting. The intentional JAX reward-normalizer order
+remains unchanged. A small CPU training example is in [EXPERIMENTS.md](EXPERIMENTS.md).
 
 ## 14. Verification
 

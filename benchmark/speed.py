@@ -6,14 +6,17 @@
 
 Each workload is a config of ``configs/`` run with ``run.py`` on a slice of its benchmark, once as is (``normal``:
 paths kept, decoded and replayed) and once with ``path = false`` (``fast``). The time is the rows' CPU seconds from
-``summary.json`` (``core_seconds`` for the rank-n sweep), so start-up and compilation are left out. The trees are
+``summary.json``; rank-n's ``core_seconds`` instead sums row wall times. Ordinary runs warm up before timing; the
+rank-n minimum across repeated processes uses the warmed disk cache. Process start-up is left out. The trees are
 timed in turn (in alternating order), ``repeat`` times each, and the fastest time of each is kept. A workload over
 ``1 + tolerance`` times its base time, or under ``1 / (1 + tolerance)``, is timed ``confirm`` more rounds, since three
 runs on a CI runner varied by up to 5% on identical code (10% for RL). The check fails when one is still over; the
 report says how much faster or slower each pipeline is, for the pull request.
+Errored, skipped or empty workloads and invalid timings are refused even when the runner exits successfully.
 """
 import argparse
 import json
+import math
 import os
 import subprocess
 import sys
@@ -70,7 +73,7 @@ def faster(timings, tolerance):
 
 def table(timings, tolerance):
     """A markdown table of the timings, each marked slower, faster or within the tolerance."""
-    lines = ["| pipeline | base CPU s | head CPU s | change | runs | |", "|---|---:|---:|---:|---:|---|"]
+    lines = ["| pipeline | base CPU s* | head CPU s* | change | runs | |", "|---|---:|---:|---:|---:|---|"]
     for t in timings:
         mark = ("**slower**" if slower([t], tolerance) else "faster" if faster([t], tolerance)
                 else f"within {tolerance:.0%}")
@@ -94,7 +97,8 @@ def report(timings, tolerance):
     note = (f"CPU seconds of the rows (start-up and compilation left out), the fastest of {rounds[0]} runs on each "
             f"tree{f', {rounds[-1]} for a pipeline beyond {tolerance:.0%}' if len(rounds) > 1 else ''}; "
             "base: the commit compared with (`main` for a pull request), head: this change; `normal` keeps the "
-            "paths, `fast` is `path = false`.")
+            "paths, `fast` is `path = false`. *Rank-n uses recorded row wall time (`core_seconds`), which also "
+            "includes per-row bookkeeping and is sensitive to other machine load.")
     return f"## Speed against the base\n\n{verdict}\n\n{table(timings, tolerance)}\n\n{note}\n"
 
 
@@ -117,12 +121,25 @@ def cpu_seconds(tree, config, rows, args):
                    *args]
         subprocess.run(command, cwd=tree, env=env, check=True, capture_output=True)
         summary = json.loads(next(Path(out).glob("*/summary.json")).read_text())
-    return summary.get("cpu_seconds") or summary["core_seconds"]
+    return checked_seconds(summary)
+
+
+def checked_seconds(summary):
+    """A quick failed or empty run is not evidence of a speed-up; rank-n has no error/skip fields."""
+    if not summary.get("rows", 0) or summary.get("errors", 0) or summary.get("skipped", 0):
+        raise ValueError("speed workload must finish nonempty, without errors or skipped rows")
+    seconds = summary.get("cpu_seconds") if "cpu_seconds" in summary else summary.get("core_seconds")
+    if (isinstance(seconds, bool) or not isinstance(seconds, (int, float))
+            or not math.isfinite(seconds) or seconds <= 0):
+        raise ValueError("speed workload must record positive finite CPU seconds; use a larger row slice")
+    return seconds
 
 
 def measure(base, head, repeat, names=None, tolerance=0.02, confirm=9, log=print):
     """The fastest of ``repeat`` runs of each workload (all, or those in ``names``) and mode on each tree, the trees
     timed in turn; a workload slower or faster by more than ``tolerance`` is timed ``confirm`` more rounds."""
+    if repeat < 1 or confirm < 0 or not math.isfinite(tolerance) or tolerance < 0:
+        raise ValueError("repeat must be positive, confirm nonnegative and tolerance finite and nonnegative")
     timings = []
     for name in names or WORKLOADS:
         config, rows, modes = WORKLOADS[name]

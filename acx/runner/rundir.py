@@ -78,6 +78,7 @@ def iter_records(path, repair=False):
     records a resume appends start on a line of their own. A bad line with lines after it raises ``ValueError``.
     """
     cut = None
+    first_line = {}
     with open(path, "rb") as f:
         line, number, offset = f.readline(), 1, 0
         while line:
@@ -93,6 +94,10 @@ def iter_records(path, repair=False):
                             or type(rec.get("solved")) is not bool
                             or ("pres" in rec and not isinstance(rec["pres"], str))):
                         raise ValueError(f"{path}:{number}: a record needs string id, boolean solved and optional string pres")
+                    rid = rec["id"]
+                    if rid in first_line:
+                        raise ValueError(f"{path}:{number}: duplicate id {rid!r} (first on line {first_line[rid]})")
+                    first_line[rid] = number
                     yield rec
             offset += len(line)
             line, number = following, number + 1

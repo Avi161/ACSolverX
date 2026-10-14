@@ -9,6 +9,7 @@ from .. import data
 from ..verify.replay import ReplayError, abs_det
 from .methods import SOLVERS, record
 from .output import shape, without_certificate
+from .provenance import prepare_provenance, write_provenance
 from .rundir import drop_changed, iter_records, prepare, pres_text
 from .summary import summarize
 from .storage import run_directory, write_json
@@ -89,11 +90,13 @@ def run(cfg, out="results", fresh=False, log=print):
         return run_rankn(cfg, out, fresh, log)
     every_row = data.rows(cfg["benchmark"])
     rows = data.select(every_row, cfg.get("rows"))
+    provenance = prepare_provenance(run_dir, cfg, fresh)
     paths_file = prepare(run_dir, cfg, fresh, len(rows))
     done = {}
     if os.path.exists(paths_file):
         done = {rec["id"]: without_certificate(rec) for rec in iter_records(paths_file, repair=True)}
     drop_changed(done, every_row, paths_file)
+    write_provenance(run_dir, provenance)
     todo = [r for r in rows if r.id not in done]
     log(f"{cfg['name']}: {cfg['method']} on {cfg['benchmark']}, {len(rows)} rows ({len(rows) - len(todo)} done)")
     start = time.perf_counter()

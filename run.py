@@ -110,7 +110,9 @@ def execute(args):
     """Run the config with the arguments' overrides, rows and own presentations; print the summary."""
     # your own presentations replace the config's benchmark, and with it the config's slice of rows
     own = ['benchmark="own"', 'rows=""'] if args.input is not None or args.pres else []
-    cfg = load_config(args.config, own + args.set + ([f'rows="{args.rows}"'] if args.rows else []))
+    cfg = load_config(args.config, own + args.set)
+    if args.rows is not None:
+        cfg["rows"] = args.rows
     if own and not any(parse_override(item)[0] == "name" for item in args.set):
         cfg["name"] = own_name(cfg["name"], args.input)
     run_dir = run_directory(args.out, cfg["name"])
@@ -120,7 +122,7 @@ def execute(args):
     if args.solved_from:
         current = ([Row(str(i), pres, {}) for i, pres in enumerate(args.pres)] if lines
                    else load_rows(cfg["benchmark"]))
-        cfg["rows"] = ",".join(solved_ids(args.solved_from, current))
+        cfg["rows"] = solved_ids(args.solved_from, current)
     if lines:
         cfg["benchmark"] = write_input(lines, run_dir, args.fresh)
     summary = run(cfg, args.out, args.fresh)

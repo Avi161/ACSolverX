@@ -2,7 +2,7 @@
 
 **TL;DR.** AC-SolverX searches for Andrews-Curtis paths that reduce balanced presentations of the trivial group, such
 as `<x, y | xxYYY, xyxYXY>`, to `<x, y | x, y>`. One command runs any of seven methods on a benchmark or your own file,
-and every solve is replayed on its row before it is written. On MS640 the **hybrid solves 640 / 640** at 1,000 work
+and captured solves are replayed on their rows before they are written. On MS640 the **hybrid solves 640 / 640** at 1,000 work
 units a row; greedy search solves 626 (S20_MK2) and 606 (LENGTH) at 10,000 pops a row. Code and data for *The Two-Hump
 Problem: Bridging the Difficulty Gap in Mathematical Reinforcement Learning* (ICML 2026;
 [project page](https://icml.cc/virtual/2026/poster/64251), [arXiv](https://arxiv.org/abs/2606.21611)) and the stable
@@ -102,6 +102,9 @@ orbit, the hybrid's Nielsen/pinch cascade) is carried back to the row (`acx/aut/
 `aut_assisted: true`. It needs `path = true`, or `--solved-from` after a high-speed run.
 
 ## Docs
+
+- [docs/EXPERIMENTS.md](docs/EXPERIMENTS.md): setup, matched comparisons, resume, certificates and retained evidence.
+- [docs/REVIEW_FOLLOWUP.md](docs/REVIEW_FOLLOWUP.md): the follow-up review of experiment integrity and avoidable work.
 
 | doc | what |
 |---|---|

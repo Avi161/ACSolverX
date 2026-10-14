@@ -241,6 +241,9 @@ class Presentation:
         until it stops changing. Cyclic reduction is stable after one pass; free reduction alone is not, since
         a canonical rotation of a word need not be freely reduced."""
         p = self.reduced(cyclic).canonical()
+        if cyclic:
+            # Rotations/inverses of a cyclically reduced word are already cyclically reduced.
+            return p
         while (q := p.reduced(cyclic).canonical()) != p:
             p = q
         return p

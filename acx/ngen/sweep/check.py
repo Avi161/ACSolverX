@@ -6,6 +6,7 @@ import random
 import numpy as np
 
 from ... import data
+from ...core.config import require_int
 from ...core.moves import decode_path
 from ...search import search
 from ...verify.replay import replay
@@ -22,6 +23,7 @@ def verify(result_dir, recheck=0, seed=0, log=print):
     stored path (control and sampled) replays on its start through ``acx.verify.replay``. Then ``recheck`` random
     cells re-run on both backends must agree with the file on solved, pops, path length and the counters.
     """
+    require_int(recheck, "recheck", low=0)
     with open(os.path.join(result_dir, "config.json")) as f:
         key = json.load(f)
     sc = SweepConfig.from_key(key["sweep"])

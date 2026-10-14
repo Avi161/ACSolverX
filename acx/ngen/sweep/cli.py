@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 
+from ...core.config import require_int
 from ...runner import load_config
 from .check import verify
 from .driver import run
@@ -29,8 +30,11 @@ def main(argv=None):
 
 def sweep_and_verify(args):
     """Run the sweep the arguments describe, print its summary, and verify ``--verify`` cells."""
-    overrides = args.set + ([f'rows="{args.rows}"'] if args.rows else [])
-    cfg = load_config(args.config, overrides)
+    if args.verify is not None:
+        require_int(args.verify, "verify", low=0)
+    cfg = load_config(args.config, args.set)
+    if args.rows is not None:
+        cfg["rows"] = args.rows
     summary = run(cfg, args.out, args.fresh)
     print(json.dumps({k: v for k, v in summary.items() if k != "buckets"}, indent=1))
     if args.verify is not None:

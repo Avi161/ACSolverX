@@ -81,15 +81,27 @@ def enumerate_images(pres, max_len=MAX_LEN, family="subnc2pxysb"):
     **isolate** ``g^+-1`` in one relator (``g = expr(other, z)``), **destabilise** (put ``expr`` for ``g`` in the
     remaining two relators, drop ``g``) and **relabel** the survivors to ``x, y``.
     """
+    return tuple(iter_images(pres, max_len, family))
+
+
+def iter_images(pres, max_len=MAX_LEN, family="subnc2pxysb"):
+    """Stream ``enumerate_images`` in the same order, stopping generation when the caller stops searching.
+
+    Validate the input immediately, even when the caller never consumes the iterator (a control solve).
+    """
     if pres.n_gen != 2 or len(pres.rels) != 2:
         raise ValueError(f"CoV needs a 2-generator, 2-relator presentation, got {pres}")
     if family not in FAMILIES:
         raise ValueError(f"family {family!r} not in {FAMILIES}")
+    return _images(pres, max_len, family)
+
+
+def _images(pres, max_len, family):
+    """Generate and deduplicate the selected family's images on demand."""
     exhaustive = family == "suballpxyb8"
     r1, r2 = pres.reduced().rels
     words = proper_subwords(r1, r2) if exhaustive else subwords(r1, r2)
     seen = {class_key(pres)} if exhaustive else set()
-    images = []
     for w in words:
         for r1_sub, r2_sub, n_subs in substitutions(r1, r2, w, exhaustive):
             for gen in (X, Y):
@@ -97,5 +109,4 @@ def enumerate_images(pres, max_len=MAX_LEN, family="subnc2pxysb"):
                     key = class_key(image.pres) if exhaustive else image.pres.rels
                     if key not in seen:
                         seen.add(key)
-                        images.append(image)
-    return tuple(images)
+                        yield image

@@ -31,6 +31,9 @@ inputs, malformed types, optional verification and episode ends. **P1**: a high-
 
 ## Limits left open
 
+The [14 October follow-up](REVIEW_FOLLOWUP.md) addresses source/runtime provenance, eager CoV generation, rank-n
+combination storage and additional experiment-integrity defects. The limits below describe this original review.
+
 - **Run provenance**: configs and per-row words identify settings and input, not the source revision, dependency lock
   or hardware; reproduce across revisions under a new run name and record those outside. A versioned manifest would
   make this checkable.

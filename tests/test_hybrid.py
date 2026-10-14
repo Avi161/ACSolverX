@@ -306,6 +306,8 @@ def test_relabel_canonical_raises_past_its_leaf_limit():
     canon, perm, _ = dynrank.relabel_canonical(words, limit=6)
     assert sorted(perm.values()) == [1, 2, 3]
     assert dynrank.relabel_canonical(words[::-1], limit=6)[0] == canon      # the order of the relators does not matter
+    from acx.hybrid_highspeedup import dynkernels as K
+    assert K.make_keys([words, words], 5) == [None, None] and K.make_keys([words], 6) == [dynrank.make_key(words)]
 
 
 def test_lazy_entries_come_in_key_order_and_equal_the_eager_list(ms640):
@@ -454,12 +456,11 @@ def assert_moves_agree(words, caps=(None, 3, 8), ceilings=(30, float("inf"))):
     spec, fast = dynrank.SPEC, dynrank.backend("fast")
     for w in words:
         assert K.dcanon(w) == dynrank.dcanon(w), w
-    assert K.normalize(words) == dynrank.normalize(words), words
-    for limit in (3, 20_000):
-        assert outcome(K.relabel_canonical, words, limit) == outcome(dynrank.relabel_canonical, words, limit), words
     key = outcome(spec.make_key, words)
     assert outcome(fast.make_key, words) == key, words
     assert fast.make_keys([words, words]) == [None if isinstance(key[0], type) else key] * 2   # None: make_key raises
+    got = outcome(dynrank.relabel_canonical, words, 3)                      # past a leaf limit of 3: None too
+    assert K.make_keys([words], 3) == [None if isinstance(got[0], type) else (got[0], {"perm": got[1], "signs": got[2]})]
     assert dynrank.make_keys([words]) == [None]                 # spec: the search calls make_key one by one
     for cap in caps:
         assert K.products(words, cap) == dynrank.products(words, cap), (words, cap)
@@ -478,6 +479,7 @@ def assert_moves_agree(words, caps=(None, 3, 8), ceilings=(30, float("inf"))):
             if cut.__class__ is not list and items:
                 assert cut.min_total() == min(t[0] for t in items)
                 assert cut.above(2).items() == [t for t in items if t[2] > 2]
+                assert cut.prios(5).tolist() == [t[0] + 5 * (t[2] - 2) for t in items]
 
 
 def test_compiled_moves_equal_the_spec_on_random_states():
@@ -525,7 +527,7 @@ def test_compiled_moves_equal_the_spec_on_search_states(monkeypatch):
         if items:                                           # rank three or more: the cut list is a ``Cuts``
             cuts = K.children_lazy(words, 5, float("inf"), 2)[1].above(2)
             offered = sorted(state for state, _ in kept)
-            assert (list(capwatch.lazy_cut_entries(3, 50, 5, 1, words, offered, cuts, K.dcanon))
+            assert (list(capwatch.lazy_entries(3, 50, 5, 1, words, offered, cuts, K.dcanon))
                     == list(capwatch.lazy_entries(3, 50, 5, 1, words, offered, items)))
             compared += 1
     assert compared > 30

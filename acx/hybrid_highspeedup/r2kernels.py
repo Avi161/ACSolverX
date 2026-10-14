@@ -8,51 +8,18 @@ import numpy as np
 from numba import njit
 
 from ..aut.autos import SIGNED
-from ..aut.fast import IMAGES, LENGTHS
-from ..hybrid.kernels import _BOOTH, _split, _write, expand_key
-from ..search.fast.kernels import canon_buf, reduce_buf, rel_less
-
-
-@njit(cache=True)
-def _image_into(codes, s, e, k, buf):
-    """``image`` of the relator ``codes[s:e]`` (key codes) under ``AUTOS[k]`` into ``buf``, reduced: ``(lo, n)``."""
-    n = 0
-    for t in range(s, e):
-        c = _BOOTH[codes[t]]
-        g = 1 - (c >> 1)
-        m = LENGTHS[k, g]
-        for j in range(m):
-            buf[n] = IMAGES[k, g, j] if c & 1 else IMAGES[k, g, m - 1 - j] ^ 1
-            n += 1
-    return reduce_buf(buf, n, True)
+from ..hybrid.kernels import expand_key, transform_key
 
 
 @njit(cache=True)
 def orbit_key(codes, ks):
-    """``transform_key`` of each of ``ks`` in turn, its scratch reused: ``(blob, offsets)``."""
-    sep = _split(codes)
-    width = 3 * max(sep, len(codes) - sep - 1) + 1
-    wa = np.empty(width, dtype=np.uint8)
-    wb = np.empty(width, dtype=np.uint8)
-    ca = np.empty(width, dtype=np.uint8)
-    cb = np.empty(width, dtype=np.uint8)
+    """``transform_key`` of each of ``ks`` in turn: ``(blob, offsets)``."""
     offs = np.zeros(len(ks) + 1, dtype=np.int64)
     blob = np.empty(len(ks) * (3 * len(codes) + 1), dtype=np.uint8)
     for t in range(len(ks)):
-        lo_a, na = _image_into(codes, 0, sep, ks[t], wa)
-        lo_b, nb = _image_into(codes, sep + 1, len(codes), ks[t], wb)
-        canon_buf(wa, lo_a, na, ca)
-        canon_buf(wb, lo_b, nb, cb)
-        o = offs[t]
-        if rel_less(cb, nb, ca, na):             # canon_pair: the pair by (length, Booth)
-            _write(blob, o, cb, nb)
-            blob[o + nb] = 0
-            _write(blob, o + nb + 1, ca, na)
-        else:
-            _write(blob, o, ca, na)
-            blob[o + na] = 0
-            _write(blob, o + na + 1, cb, nb)
-        offs[t + 1] = o + na + nb + 1
+        image = transform_key(codes, ks[t])
+        blob[offs[t]:offs[t] + len(image)] = image
+        offs[t + 1] = offs[t] + len(image)
     return blob[:offs[len(ks)]], offs
 
 
