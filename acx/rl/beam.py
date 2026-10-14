@@ -62,14 +62,10 @@ def top_children(model, states, live, cum, alpha, chunk):
     logits, value = forward(model, states[live], chunk)
     log_prob = torch.full((width, n_actions), MINUS_INF)
     log_prob[live] = torch.log_softmax(logits, -1).masked_fill(logits < -1e8, MINUS_INF)
-    cumulative = cum[:, None] + log_prob
-    scores = cumulative
-    if alpha:
-        bonus = torch.zeros(width)
-        bonus[live] = alpha * value
-        scores = cumulative + bonus[:, None]
-    top, index = torch.topk(scores.reshape(-1), width)
-    return top, index, cumulative.reshape(-1)[index] if alpha else top
+    cumulative, bonus = cum[:, None] + log_prob, torch.zeros(width)
+    bonus[live] = alpha * value
+    top, index = torch.topk((cumulative + bonus[:, None]).reshape(-1), width)
+    return top, index, cumulative.reshape(-1)[index]
 
 
 @torch.no_grad()

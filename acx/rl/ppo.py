@@ -87,13 +87,10 @@ def update(model, opt, batch, cfg, gen):
     """Epochs x minibatches of the clipped PPO loss. Returns the mean policy / value / entropy terms."""
     obs, act, logp, val, adv, target = batch
     B = len(act)
-    minibatches = require_int(cfg["minibatches"], "minibatches")
-    if minibatches > B:
-        raise ValueError("minibatches must not exceed the batch size")
     eps, totals, n = cfg["clip"], torch.zeros(3), 0
     for _ in range(cfg["epochs"]):
         perm = torch.randperm(B, generator=gen)
-        for sel in torch.tensor_split(perm, minibatches):
+        for sel in torch.tensor_split(perm, cfg["minibatches"]):
             a = adv[sel]
             if len(a) > 1:                                     # sample std is undefined for a singleton
                 a = (a - a.mean()) / (a.std() + 1e-8)           # per minibatch, before microbatching

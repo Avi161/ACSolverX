@@ -9,12 +9,14 @@ as arrays, ``Cuts``) the search uses in place of ``make_key`` one by one and ``c
 A state goes to a kernel as one int64 array ``[n, len_1 .. len_n, letters ..]`` (``encode``). Words compare as Python
 tuples (int order ``-2 < -1 < 1 < 2``, a proper prefix first), which is the order ``dynrank`` sorts and canonicalises in.
 """
+from functools import cache
 from itertools import chain, repeat
 
 import numpy as np
 from numba import njit
 
 from ..core.priority import length
+from ..hybrid import dynrank as D
 
 I64 = np.int64
 
@@ -157,17 +159,6 @@ def _emit_sorted(buf, st, ln, k, order, let, p, lens, q):
 
 
 @njit(cache=True)
-def _pack(let, p, lens, q, head):
-    """``[head .., lens[:q] .., let[:p] ..]`` as one array."""
-    h = len(head)
-    out = np.empty(h + q + p, I64)
-    out[:h] = head
-    out[h:h + q] = lens[:q]
-    out[h + q:] = let[:p]
-    return out
-
-
-@njit(cache=True)
 def dcanon_kernel(enc):
     """``dynrank.dcanon`` of the one word ``enc[1:]`` (``enc[0]`` its length)."""
     m = enc[0]
@@ -175,24 +166,6 @@ def dcanon_kernel(enc):
     out = np.empty(m, I64)
     k = _dcanon_to(buf, 0, m, out, 0)
     return out[:k]
-
-
-@njit(cache=True)
-def normalize_kernel(enc):
-    """``dynrank.normalize`` of an encoded state: ``[lens .., letters ..]``."""
-    n, off, flat = _parse(enc)
-    buf = flat.copy()
-    out = np.empty(len(flat), I64)
-    st = np.empty(n, I64)
-    ln = np.empty(n, I64)
-    for w in range(n):
-        st[w] = off[w]
-        ln[w] = _dcanon_to(buf, off[w], off[w + 1] - off[w], out, off[w])
-    let = np.empty(len(flat), I64)
-    lens = np.empty(n, I64)
-    order = np.empty(n, I64)
-    p, q = _emit_sorted(out, st, ln, n, order, let, 0, lens, 0)
-    return _pack(let, p, lens, q, np.empty(0, I64))
 
 
 # ---------------------------------------------------------------- generator relabelling
@@ -416,16 +389,8 @@ def _relabel_into(flat, off, n, limit, out, o):
 
 
 @njit(cache=True)
-def relabel_kernel(enc, limit):
-    """``dynrank.relabel_canonical`` of an encoded state, as ``_relabel_into`` writes it."""
-    n, off, flat = _parse(enc)
-    out = np.empty(1 + 2 * n + off[n], I64)
-    return out[:_relabel_into(flat, off, n, limit, out, 0)]
-
-
-@njit(cache=True)
 def relabel_batch_kernel(encs, limit):
-    """``relabel_kernel`` of each of the states ``encs = [count, state, state, ..]`` (each as ``encode`` writes it), the
+    """``_relabel_into`` of each of the states ``encs = [count, state, state, ..]`` (each as ``encode`` writes it), the
     records one after another."""
     size = 0
     pos = 1
@@ -873,47 +838,19 @@ def dcanon(w):
     return tuple(dcanon_kernel(np.array((len(w),) + w, I64)).tolist())
 
 
-def normalize(words):
-    """``dynrank.normalize``."""
-    words = tuple(words)
-    n = len(words)
-    out = normalize_kernel(encode(words)).tolist()
-    canon, p = [], n
-    for m in out[:n]:
-        canon.append(tuple(out[p:p + m]))
-        p += m
-    return tuple(canon)
-
-
-def relabel_canonical(words, limit=20000):
-    """``dynrank.relabel_canonical``."""
-    n = len(words)
-    out = relabel_kernel(encode(words), limit).tolist()
-    if out[0] == -1:
-        raise ValueError("letters must lie in 1..rank")
-    if out[0] == -2:
-        raise RuntimeError("relabel_canonical leaf limit exceeded")
-    canon, p = [], 1 + 2 * n
-    for m in out[1 + n:1 + 2 * n]:
-        canon.append(tuple(out[p:p + m]))
-        p += m
-    return tuple(canon), dict(zip(range(1, n + 1), out[1:1 + n])), dict.fromkeys(range(1, n + 1), 1)
-
-
 def make_key(words):
-    """``dynrank.make_key``."""
-    canon, perm, signs = relabel_canonical(words)
-    return canon, {"perm": perm, "signs": signs}
+    """``dynrank.make_key``, by ``make_keys`` (``dynrank``'s, where that gives None, raises the same error)."""
+    return make_keys([words])[0] or D.make_key(words)
 
 
-def make_keys(states):
-    """``make_key`` of each state in one kernel call; None for a state on which ``make_key`` raises (the caller calls
-    it there, so the error comes where it would have)."""
+def make_keys(states, limit=20000):
+    """``dynrank.make_key`` of each state in one kernel call; None for a state on which it raises (the caller calls it
+    there, so the error comes where it would have) or that needs more than ``limit`` leaves (``relabel_canonical``)."""
     if not states:
         return []
     enc = np.array([len(states), *chain.from_iterable(chain((len(w),), map(len, w), chain.from_iterable(w))
                                                       for w in states)], I64)
-    out = relabel_batch_kernel(enc, 20000).tolist()
+    out = relabel_batch_kernel(enc, limit).tolist()
     keys, o = [], 0
     for w in states:
         n = len(w)
@@ -932,9 +869,49 @@ def make_keys(states):
     return keys
 
 
-def _products(words, enc, cap, lazy=False):
+class Cuts:
+    """What ``dynrank.children`` cuts, the products left as the kernel's arrays: the items ``(total, size, rank,
+    (i, product))`` of the cut products, then ``elims``, the cut eliminations as items. The search reads it through
+    ``capwatch.lazy_entries``, which builds an item only when a pool bar reaches it (one in a hundred on a hard row)."""
+
+    __slots__ = ("rank", "i", "total", "size", "offs", "letters", "elims")
+
+    def __init__(self, rank, i, total, size, offs, letters, elims):
+        self.rank, self.i, self.total, self.size, self.offs, self.letters, self.elims = (
+            rank, i, total, size, offs, letters, elims)
+
+    def __len__(self):
+        return len(self.total) + len(self.elims)
+
+    def item(self, k):
+        """Item ``k`` (the products, then ``elims``)."""
+        if k >= len(self.total):
+            return self.elims[k - len(self.total)]
+        product = tuple(self.letters[self.offs[k]:self.offs[k + 1]].tolist())
+        return int(self.total[k]), int(self.size[k]), self.rank, (int(self.i[k]), product)
+
+    def items(self):
+        """The list ``dynrank.children`` gives."""
+        return [self.item(k) for k in range(len(self))]
+
+    def min_total(self):
+        """The least total of an item."""
+        return min(chain(self.total.tolist(), (t[0] for t in self.elims)))
+
+    def prios(self, penalty):
+        """The search priority of each item (``capwatch.lazy_entries``), as an array."""
+        return np.concatenate((self.total + penalty * (self.rank - 2),
+                               np.array([t[0] + penalty * (t[2] - 2) for t in self.elims], dtype=I64)))
+
+    def above(self, rank):
+        """The items of rank above ``rank`` (``rank`` below the products')."""
+        return Cuts(self.rank, self.i, self.total, self.size, self.offs, self.letters,
+                    [t for t in self.elims if t[2] > rank])
+
+
+def products(words, cap, lazy=False):
     """``dynrank.products``; with ``lazy`` the cut ones as ``Cuts`` (its ``elims`` empty)."""
-    meta, offs, let, ci, ctot, csize, coffs, clet, ordered = products_kernel(enc, -1 if cap is None else cap)
+    meta, offs, let, ci, ctot, csize, coffs, clet, ordered = products_kernel(encode(words), -1 if cap is None else cap)
     n, L, O, M = len(words), let.tolist(), offs.tolist(), meta.tolist()
     out = []
     for c in range(len(O) - 1):
@@ -953,56 +930,9 @@ def _products(words, enc, cap, lazy=False):
     return out, list(zip(ctot.tolist(), csize.tolist(), repeat(n), words_cut))
 
 
-class Cuts:
-    """What ``dynrank.children`` cuts, the products left as the kernel's arrays: the items ``(total, size, rank,
-    (i, product))`` of the cut products, then ``elims``, the cut eliminations as items. The search reads it through
-    ``capwatch.lazy_cut_entries``, which builds an item only when a pool bar reaches it (one in a hundred on a hard row)."""
-
-    __slots__ = ("rank", "i", "total", "size", "offs", "letters", "elims")
-
-    def __init__(self, rank, i, total, size, offs, letters, elims):
-        self.rank, self.i, self.total, self.size, self.offs, self.letters, self.elims = (
-            rank, i, total, size, offs, letters, elims)
-
-    def __len__(self):
-        return len(self.total) + len(self.elims)
-
-    def products(self):
-        """How many cut products come first."""
-        return len(self.total)
-
-    def item(self, k):
-        """Item ``k`` (the products, then ``elims``)."""
-        if k >= len(self.total):
-            return self.elims[k - len(self.total)]
-        product = tuple(self.letters[self.offs[k]:self.offs[k + 1]].tolist())
-        return int(self.total[k]), int(self.size[k]), self.rank, (int(self.i[k]), product)
-
-    def items(self):
-        """The list ``dynrank.children`` gives."""
-        return [self.item(k) for k in range(len(self))]
-
-    def min_total(self):
-        """The least total of an item."""
-        least = min((t[0] for t in self.elims), default=None)
-        if len(self.total):
-            low = int(self.total.min())
-            least = low if least is None or low < least else least
-        return least
-
-    def above(self, rank):
-        """The items of rank above ``rank`` (``rank`` below the products')."""
-        return Cuts(self.rank, self.i, self.total, self.size, self.offs, self.letters,
-                    [t for t in self.elims if t[2] > rank])
-
-
-def products(words, cap):
-    """``dynrank.products``."""
-    return _products(words, encode(words), cap)
-
-
-def _defines(words, enc, min_uses):
-    meta, tlens, tlet, clens, clet = defines_kernel(enc, min_uses)
+def defines(words, min_uses=2):
+    """``dynrank.defines``."""
+    meta, tlens, tlet, clens, clet = defines_kernel(encode(words), min_uses)
     n, h = len(words), len(words) + 1
     templates = _states(tlens, tlet, n) if n else [()] * len(meta)
     kids = _states(clens, clet, n + 1)
@@ -1010,53 +940,39 @@ def _defines(words, enc, min_uses):
             for (d0, d1, uses), t, kid in zip(meta.tolist(), templates, kids)]
 
 
-def defines(words, min_uses=2):
-    """``dynrank.defines``."""
-    return _defines(words, encode(words), min_uses)
-
-
-def _eliminations(words, enc):
-    meta, ilens, ilet, clens, clet = eliminations_kernel(enc)
+def eliminations(words):
+    """``dynrank.eliminations``."""
+    meta, ilens, ilet, clens, clet = eliminations_kernel(encode(words))
     n = len(words)
     kids = _states(clens, clet, n - 1) if n > 1 else [()] * len(meta)
     return [(kid, {"kind": "eliminate", "i": i, "g": g, "image": image})
             for (i, g), image, kid in zip(meta.tolist(), _words(ilens, ilet), kids)]
 
 
-def eliminations(words):
-    """``dynrank.eliminations``."""
-    return _eliminations(words, encode(words))
-
-
-def _nielsen(words, enc):
+def nielsen_children(words):
+    """``dynrank.nielsen_children``."""
     n = len(words)
     if n < 2:
         return []
-    kids = _states(*nielsen_kernel(enc), n)
+    kids = _states(*nielsen_kernel(encode(words)), n)
     events = [{"kind": "nielsen", "i": i, "j": j, "sign": s}
               for i in range(1, n + 1) for j in range(1, n + 1) if i != j for s in (1, -1)]
     return list(zip(kids, events))
 
 
-def nielsen_children(words):
-    """``dynrank.nielsen_children``."""
-    return _nielsen(words, encode(words))
-
-
 def children(words, cap, ceiling, min_uses=2, lazy=False):
     """``dynrank.children``; with ``lazy`` (and rank three or more) ``cut`` is a ``Cuts``, the same items."""
     lazy = lazy and len(words) > 2
-    enc = encode(words)
-    prods, cut = _products(words, enc, cap, lazy)
+    prods, cut = products(words, cap, lazy)
     kept, cut_elims = [], cut.elims if lazy else cut
-    for k, e in _eliminations(words, enc):
+    for k, e in eliminations(words):
         longest = max(map(len, k), default=0)
         if cap is None or longest <= cap:
             kept.append((k, e))
         else:
             cut_elims.append((length(k), longest, len(k), k))
     out, over = [], []
-    for k, e in prods + _defines(words, enc, min_uses) + kept + _nielsen(words, enc):
+    for k, e in prods + defines(words, min_uses) + kept + nielsen_children(words):
         total = length(k)
         if total <= ceiling:
             out.append((k, e))
@@ -1078,19 +994,11 @@ def most_uses(words):
 _WARM = ((1, 2, -1, -2), (1, 1, 2), (2, 3, -2, -3, 3))      # rank three: every kernel above has work on it
 
 
-_warmed = False
-
-
+@cache
 def warm():
     """Load every kernel here (from numba's cache, or compile it) once per process, so that the first search to
     need one is not charged for it (about 0.3 s with the cache)."""
-    global _warmed
-    if _warmed:
-        return
     children_lazy(_WARM, 6, 30)
     make_keys([_WARM])
-    make_key(_WARM)
     dcanon(_WARM[0])
-    normalize(_WARM)
     most_uses(_WARM)
-    _warmed = True

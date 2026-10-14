@@ -63,11 +63,7 @@ class Combinations(Sequence):
         return itertools.combinations_with_replacement(range(self.n_words), self.extra)
 
     def __getitem__(self, index):
-        if isinstance(index, slice):
-            return tuple(self[i] for i in range(*index.indices(len(self))))
         index = operator.index(index)
-        if index < 0:
-            index += len(self)
         if not 0 <= index < len(self):
             raise IndexError("combination index out of range")
         chosen, low = [], 0

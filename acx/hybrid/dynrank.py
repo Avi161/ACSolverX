@@ -243,8 +243,8 @@ def most_uses(words):
     return max(digram_counts(words).values(), default=0)
 
 
-Moves = namedtuple("Moves", "children defines normalize make_key dcanon make_keys children_lazy most_uses")
-SPEC = Moves(children, defines, normalize, make_key, dcanon, make_keys, children, most_uses)
+Moves = namedtuple("Moves", "children defines make_key dcanon make_keys children_lazy most_uses")
+SPEC = Moves(children, defines, make_key, dcanon, make_keys, children, most_uses)
 
 
 def backend(name):
@@ -259,4 +259,4 @@ def backend(name):
         raise ValueError(f"backend {name!r} not in {BACKENDS}")
     from ..hybrid_highspeedup import dynkernels as K
     K.warm()
-    return Moves(K.children, K.defines, K.normalize, K.make_key, K.dcanon, K.make_keys, K.children_lazy, K.most_uses)
+    return Moves(K.children, K.defines, K.make_key, K.dcanon, K.make_keys, K.children_lazy, K.most_uses)

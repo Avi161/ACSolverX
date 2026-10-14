@@ -8,7 +8,7 @@
 """
 import torch
 
-from ..core.config import is_finite_number, require_int
+from ..core.config import require_int
 from .moves import decode_action, s_move
 
 
@@ -19,18 +19,13 @@ class VecEnv:
         for key, value in (("num_envs", num_envs), ("L", L), ("max_steps", max_steps)):
             require_int(value, key)
         require_int(n_pinned, "n_pinned", low=0)
-        if not is_finite_number(gamma) or not 0 <= gamma <= 1:
-            raise ValueError("gamma must be a finite number in [0, 1]")
         self.L, self.max_steps, self.gamma, self.N = L, max_steps, gamma, num_envs
         states = torch.as_tensor(init_states)
-        if states.ndim != 2 or states.shape[1] != 2 * L or len(states) == 0:
-            raise ValueError(f"init_states must be a nonempty (S, {2 * L}) array")
         if states.dtype == torch.bool or states.is_floating_point() or states.is_complex():
             raise ValueError("init_states must contain integer generator symbols")
-        # abs(minimum_signed_integer) overflows back to a negative number; compare bounds directly.
-        if (states > 2).any() or (states.is_signed() and (states < -2).any()):
-            raise ValueError("init_states must contain only -2, -1, 0, 1, 2")
-        self.init = states.to(dtype=torch.int64)
+        self.init = init = states.to(dtype=torch.int64)     # bounds in int64: abs(int min) overflows, uint8 < -2 raises
+        if init.ndim != 2 or init.shape[1] != 2 * L or not len(init) or ((init < -2) | (init > 2)).any():
+            raise ValueError(f"init_states must be a nonempty (S, {2 * L}) array of only -2, -1, 0, 1, 2")
         self.S = len(self.init)
         if n_pinned > min(num_envs, self.S):
             raise ValueError("n_pinned must not exceed num_envs or the number of initial states")

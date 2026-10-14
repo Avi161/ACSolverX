@@ -33,49 +33,27 @@ def gates_act(key):
 
 def lazy_entries(depth, base, penalty, offset, words, offered, items, dcanon=D.dcanon):
     """The pool entries ``(key, total, needed, state)`` of the higher-rank children one pop's limit rejected (``items``, as
-    ``dynrank.children`` returns them), in key order, built only as far as a bar reaches. Ahead of each priority group stands
-    a marker (state None) whose key bounds the group's from below, so a group of hundreds costs nothing until a bar passes
-    it. ``offered``: the sorted states the pop did offer, the ``j``-th with the tick ``base + 1 + j``; a dropped state
-    takes a tick between its neighbours, and one equal to an offered state is not new. ``needed - offset`` is the value
-    the counter reports. ``dcanon``: the backend's (``dynrank.backend``)."""
-    prio = lambda t: t[0] + penalty * (t[2] - 2)
-    last = min(map(itemgetter(0), items)) + penalty            # no rank-two child is here, so no priority is lower
+    ``dynrank.children`` returns them, or a ``hybrid_highspeedup.dynkernels.Cuts`` of them), in key order, built only as
+    far as a bar reaches. Ahead of each priority group stands a marker (state None) whose key bounds the group's from
+    below, so a group of hundreds costs nothing until a bar passes it. ``offered``: the sorted states the pop did offer,
+    the ``j``-th with the tick ``base + 1 + j``; a dropped state takes a tick between its neighbours, and one equal to an
+    offered state is not new. ``needed - offset`` is the value the counter reports. ``dcanon``: the backend's
+    (``dynrank.backend``)."""
+    if items.__class__ is list:
+        least, item = min(map(itemgetter(0), items)), items.__getitem__
+        prios = [t[0] + penalty * (t[2] - 2) for t in items]
+    else:                                                       # a ``Cuts`` builds item ``k`` when asked
+        least, item, prios = items.min_total(), items.item, items.prios(penalty)
+    last = least + penalty                                      # no rank-two child is here, so no priority is lower
     yield (float(last), depth, base), 0, 0, None
-    items.sort(key=prio)
-    for p, group in groupby(items, prio):
+    prios = np.asarray(prios)
+    order = np.argsort(prios, kind="stable").tolist()          # ``items.sort(key=prio)``: stable
+    for p, group in groupby(order, prios.tolist().__getitem__):
         if p != last:
             yield (float(p), depth, base), 0, 0, None
             last = p
         found = {}
-        for total, needed, _, payload in group:
-            if payload[0].__class__ is int:                    # (i, product): relator i replaced
-                payload = tuple(sorted(words[:payload[0]] + (dcanon(payload[1]),) + words[payload[0] + 1:]))
-            at = bisect_left(offered, payload)
-            if payload not in found and not (at < len(offered) and offered[at] == payload):
-                found[payload] = (total, needed - offset)
-        for r, state in enumerate(sorted(found)):
-            yield (float(p), depth, base + bisect_left(offered, state) + (r + 1) / (len(found) + 1)), *found[state], state
-
-
-def lazy_cut_entries(depth, base, penalty, offset, words, offered, cuts, dcanon=D.dcanon):
-    """``lazy_entries`` of ``cuts`` (a ``hybrid_highspeedup.dynkernels.Cuts`` of items of rank above two, the list it
-    stands for): the same entries, in the same order, an item built only when a bar reaches its priority group."""
-    last = cuts.min_total() + penalty
-    yield (float(last), depth, base), 0, 0, None
-    prios = np.concatenate((cuts.total + penalty * (cuts.rank - 2),
-                            np.array([t[0] + penalty * (t[2] - 2) for t in cuts.elims], dtype=np.int64)))
-    order = np.argsort(prios, kind="stable")                  # ``items.sort(key=prio)``: stable
-    sorted_prios = prios[order]
-    starts = [0, *(np.flatnonzero(sorted_prios[1:] != sorted_prios[:-1]) + 1).tolist(), len(order)]
-    order, sorted_prios = order.tolist(), sorted_prios.tolist()
-    for a, b in zip(starts, starts[1:]):
-        p = sorted_prios[a]
-        if p != last:
-            yield (float(p), depth, base), 0, 0, None
-            last = p
-        found = {}
-        for k in order[a:b]:
-            total, needed, _, payload = cuts.item(k)
+        for total, needed, _, payload in map(item, group):
             if payload[0].__class__ is int:                    # (i, product): relator i replaced
                 payload = tuple(sorted(words[:payload[0]] + (dcanon(payload[1]),) + words[payload[0] + 1:]))
             at = bisect_left(offered, payload)
