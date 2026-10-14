@@ -2,6 +2,7 @@
 the table a pull request gets."""
 import importlib.util
 import itertools
+import json
 from pathlib import Path
 
 import pytest
@@ -113,6 +114,36 @@ def test_the_report_joins_the_jobs_in_workload_order(tmp_path, capsys):
             in report)
     failing = speed.report([speed.Timing("aut fast", 1, 1.05, 12), speed.Timing("cov fast", 1, 1.03, 12)], 0.02)
     assert "**2 pipelines are more than 2% slower, so the check fails:** aut fast (5.0% slower), cov fast" in failing
+
+
+@pytest.mark.parametrize("change", [{"errors": 1}, {"skipped": 1}, {"rows": 0},
+                                    {"cpu_seconds": None}, {"cpu_seconds": 0}, {"cpu_seconds": -1},
+                                    {"cpu_seconds": float("nan")}, {"cpu_seconds": float("inf")}])
+def test_successful_exit_cannot_turn_an_invalid_workload_into_a_speedup(monkeypatch, change):
+    def run(command, **kwargs):
+        folder = Path(command[command.index("--out") + 1]) / "experiment"
+        folder.mkdir()
+        (folder / "summary.json").write_text(json.dumps(
+            {"rows": 20, "errors": 0, "skipped": 0, "cpu_seconds": 1.5, **change}))
+    monkeypatch.setattr(speed.subprocess, "run", run)
+    with pytest.raises(ValueError, match="speed workload must"):
+        speed.cpu_seconds("tree", "config.toml", "0:20", [])
+
+
+def test_rankn_core_time_and_ordinary_cpu_time_are_accepted():
+    assert speed.checked_seconds({"rows": 2, "core_seconds": 1.5}) == 1.5
+    assert speed.checked_seconds({"rows": 2, "errors": 0, "skipped": 0, "cpu_seconds": 1.2}) == 1.2
+
+
+@pytest.mark.parametrize("settings", [{"repeat": 0}, {"repeat": -1}, {"confirm": -1},
+                                      {"tolerance": -0.1}, {"tolerance": float("nan")},
+                                      {"tolerance": float("inf")}])
+def test_invalid_measurement_settings_fail_before_running(monkeypatch, settings):
+    def fail(*args, **kwargs):
+        pytest.fail("invalid settings must be rejected before running a workload")
+    monkeypatch.setattr(speed, "cpu_seconds", fail)
+    with pytest.raises(ValueError, match="repeat must"):
+        speed.measure("base", "head", **{"repeat": 3, **settings})
 
 
 @pytest.mark.slow

@@ -11,9 +11,11 @@ timed in turn (in alternating order), ``repeat`` times each, and the fastest tim
 ``1 + tolerance`` times its base time, or under ``1 / (1 + tolerance)``, is timed ``confirm`` more rounds, since three
 runs on a CI runner varied by up to 5% on identical code (10% for RL). The check fails when one is still over; the
 report says how much faster or slower each pipeline is, for the pull request.
+Errored, skipped or empty workloads and invalid timings are refused even when the runner exits successfully.
 """
 import argparse
 import json
+import math
 import os
 import subprocess
 import sys
@@ -117,12 +119,25 @@ def cpu_seconds(tree, config, rows, args):
                    *args]
         subprocess.run(command, cwd=tree, env=env, check=True, capture_output=True)
         summary = json.loads(next(Path(out).glob("*/summary.json")).read_text())
-    return summary.get("cpu_seconds") or summary["core_seconds"]
+    return checked_seconds(summary)
+
+
+def checked_seconds(summary):
+    """A quick failed or empty run is not evidence of a speed-up; rank-n has no error/skip fields."""
+    if not summary.get("rows", 0) or summary.get("errors", 0) or summary.get("skipped", 0):
+        raise ValueError("speed workload must finish nonempty, without errors or skipped rows")
+    seconds = summary.get("cpu_seconds") if "cpu_seconds" in summary else summary.get("core_seconds")
+    if (isinstance(seconds, bool) or not isinstance(seconds, (int, float))
+            or not math.isfinite(seconds) or seconds <= 0):
+        raise ValueError("speed workload must record positive finite CPU seconds; use a larger row slice")
+    return seconds
 
 
 def measure(base, head, repeat, names=None, tolerance=0.02, confirm=9, log=print):
     """The fastest of ``repeat`` runs of each workload (all, or those in ``names``) and mode on each tree, the trees
     timed in turn; a workload slower or faster by more than ``tolerance`` is timed ``confirm`` more rounds."""
+    if repeat < 1 or confirm < 0 or not math.isfinite(tolerance) or tolerance < 0:
+        raise ValueError("repeat must be positive, confirm nonnegative and tolerance finite and nonnegative")
     timings = []
     for name in names or WORKLOADS:
         config, rows, modes = WORKLOADS[name]

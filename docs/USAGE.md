@@ -87,13 +87,13 @@ separators, `.` or `..`); run folders and result files may not be symlinks.
   another `--out`. Rank-n resume checks every stored row against the whole current input; a changed row needs
   `--fresh` or a new name.
 
-## The config
-
 New runs write **`provenance.json`** with source content and Python/dependency identity plus each invocation's git,
 host, thread, backend, worker and selection context. Source/runtime drift refuses resume before result files change;
 use another name after changing code or dependencies. `--fresh` replaces the history. Older folders without it may
 resume with `prior_results_untracked: true`: their earlier results cannot be attributed to the current source.
 Duplicate record ids are rejected consistently by resume and reporting. Details: [EXPERIMENTS.md](EXPERIMENTS.md).
+
+## The config
 
 Top-level keys, then one section per part of the method; [`configs/template.toml`](../configs/template.toml) lists
 every key with its default. An unknown key, a section the method does not read, or a bad value is an error before

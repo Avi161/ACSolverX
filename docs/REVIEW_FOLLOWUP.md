@@ -19,8 +19,8 @@ this particularly expensive.
 `iter_images` now generates the same ordered, deduplicated stream on demand; `enumerate_images` remains the complete
 tuple API backed by that one implementation. The runner does not prefetch after exhausting its total budget. Tests
 make unused generation fail, retain complete-family digest pins and compare search/cap results. On 20 easy MS640
-rows, an alternating warmed comparison measured 20.3 ms eager versus 3.88 ms streamed for the default family, and
-289.1 ms versus 3.24 ms for the exhaustive family. These are local wall times for control-solvable rows, not a claim
+rows on this branch, an alternating warmed comparison measured 25.9 ms eager versus 4.37 ms streamed for the default
+family, and 473 ms versus 4.57 ms for the exhaustive family. These are local wall times for control-solvable rows, not a claim
 about the full dataset; see the measurements below.
 
 Compatibility: `stats.images` now counts the generated prefix, and `stats.images_exhausted` says whether generation
@@ -38,7 +38,8 @@ its path. Results fill their NumPy columns directly. An indexable lazy combinati
 order and supports verifier/summary access without constructing preceding combinations; small exhaustive tests pin
 every cell index. The pool digest is cached by pool parameters, and archive readers can load selected members.
 
-A before/after comparison of 320 starts checked every stored field except time and found equality. Its three-run
+A preliminary comparison before integration with #30–#33 covered 320 starts and found equality in every stored
+field except time. Its three-run
 median was 11.57 s before and 11.69 s after, so it does **not** establish an overall runtime improvement. The tests
 establish skipped certificate work and bounded combination storage independently. Word pools, per-start arrays and
 per-row checkpoint granularity remain scaling limits. `combos` now returns an indexable sequence rather than a tuple;
@@ -110,6 +111,17 @@ runs bypassed both checks. Reusing a dataset path/id for different words could t
 The common table entry point now checks identities for any number of runs. Historical records without `pres` remain
 limited to id-only matching; no missing identity is inferred.
 
+### 10. P2 — failed workloads could be accepted as performance improvements
+
+The ordinary runner records per-row exceptions and can exit successfully with `summary.errors > 0`. The speed gate
+read only the time, so an early solver failure could appear faster and pass. Empty/skipped workloads and non-finite
+times were not rejected, and `--repeat 0` could produce infinite times with a NaN ratio that evaded the slowdown check.
+
+The harness now refuses errors, skips, zero rows, missing/nonpositive/non-finite times and invalid repetition or
+tolerance settings. Tests simulate a successful subprocess that writes each invalid summary, plus valid ordinary
+and rank-n summaries. Search correctness remains established by replay and parity checks; the timing gate alone
+does not prove semantic equivalence or identical solve sets. The existing 2% slowdown threshold is unchanged.
+
 ## Limits and evidence
 
 New runs have source/runtime manifests, but older runs and direct training calls do not. Archive input files and
@@ -118,5 +130,8 @@ remain resident and a row checkpoints only when complete. Replay and spec/fast p
 summary-only studies, GPU/cluster execution and concurrent writers are not revalidated by these changes.
 
 The [experiment guide](EXPERIMENTS.md) covers setup, matched comparisons, resume, certificate reruns and retained
-evidence. Current-main validation and performance results are recorded in the PR; preliminary measurements above
-were made before integrating #30–#33 and must not be read as final-main timing claims.
+evidence. Current-main validation and pipeline performance results are recorded in the PR. The CoV microbenchmark
+uses MS640 rows 0–19, cap 24, per-leg/total budgets 1,000 and capture disabled; it alternates eager materialization
+and streaming on the same implementation, discards a warm pair and reports six-run medians. It ran on a shared
+x86-64 host with Python 3.12.14, NumPy 2.1.3 and Numba 0.63.1 while tests were running. Its outcomes and pop counts
+matched. These easy-row measurements isolate generation overhead and cannot predict a full-dataset speed-up.
