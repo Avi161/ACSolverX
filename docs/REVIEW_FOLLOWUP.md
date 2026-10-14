@@ -8,6 +8,21 @@ This report records additional experiment-integrity and avoidable-work findings.
 P2 denotes a reproducible defect or missing safeguard in a supported workflow. Each finding includes impact, the
 change and checks. This is a bounded engineering review, not a claim that every possible defect has been found.
 
+## Purpose and organization
+
+The package searches Andrews–Curtis move sequences and preserves evidence for comparing methods. The critical
+boundaries are mathematical word/move semantics (`core`), search ordering and cap accounting (`search`), transforms
+and certificate transport (`aut`, `cov`, `ngen`, `hybrid`), learned policy/training (`rl`), and experiment persistence
+and interpretation (`runner`, `report`). The reference Python implementations and compiled kernels deliberately
+remain separate so parity tests can compare them; sharing their entire implementation would weaken that check.
+
+The follow-up consolidates source/runtime tracking in one module used by both drivers, image generation in one
+iterator used by eager and streamed callers, and combination indexing in one sequence used by search, summaries
+and verification. Existing packed-state and hybrid-kernel module boundaries remain intact. The new experiment
+walkthrough connects the API reference to a complete research workflow. Architecture notes now distinguish greedy,
+hybrid and RL engines and state when records have replayed certificates. Remaining scaling and independent-checker
+gaps are listed below rather than presented as solved by these changes.
+
 ## Findings and fixes
 
 ### 1. P2 — CoV generated all alternatives before checking the control

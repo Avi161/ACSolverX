@@ -1,10 +1,11 @@
 # Architecture
 
-**TL;DR.** `run.py` hands a checked config to `acx.runner`, which runs one method module per row, replays every
-solve through `acx.verify` and writes `results/<name>/`; `compare.py` reads those folders through `acx.report`. All
-best-first searches share one engine (`acx.search`, with a pure-Python and a numba backend that pop the same states in
-the same order) and one cap counter (`acx.core.capcount`). How to run it: [USAGE.md](USAGE.md); the tests named below
-pin what is said here.
+**TL;DR.** `run.py` hands a checked config to `acx.runner`, which runs one method module per row and writes
+`results/<name>/`; `compare.py` reads those folders through `acx.report`. Captured solutions are checked through
+`acx.verify`; `path=false` omits that verification. Greedy searches share `acx.search`, whose pure-Python and numba
+backends pop the same states in the same order. Hybrid has its own mixed-rank best-first engine, and RL uses a policy
+beam. Searches reuse word/move definitions and cap accounting. How to run it: [USAGE.md](USAGE.md); the tests named
+below pin what is said here.
 
 ```mermaid
 flowchart TD
@@ -22,7 +23,8 @@ flowchart TD
     DATA["acx.data<br/>datasets, benchmarks, your files"] -.-> RUNNER
 ```
 
-*Every path to `results/` passes through `acx.verify`: a record is written only after its path replays.*
+*Captured solution paths are checked before writing. Unsolved, errored and `path=false` records have no such
+certificate. Rank-n stores certificates only for its control and deterministic sample.*
 
 | module | what | entry point |
 |---|---|---|
@@ -52,7 +54,8 @@ Top level: `from acx import Presentation, Move, SearchConfig, search, Result, re
 - `reduce(w, cyclic=True)`: free reduction, then the cyclic tail; `free(w)`: free reduction only.
 - **Canonical form**: each relator the least rotation of itself or its inverse in **Booth order** `Y < y < X < x`
   (`canonical_word`), relators sorted by `(length, Booth order)` (`canonical_rels`). `Presentation.normal(cyclic)`
-  repeats `reduced(cyclic).canonical()` to a fixed point: a search starts there and replay normalises to it.
+  computes the fixed point of `reduced(cyclic).canonical()`: one pass suffices when cyclic, while noncyclic mode
+  iterates until stable. A search starts there and replay normalises to it.
 - **Key order** (the heap tie-break) is different, `X < Y < x < y`: `state_key(rels, n_gen)` (per-relator code tuples)
   and `state_bytes` (the same as bytes; what the cap counter and fast kernels compare).
 - `conjugators(w, t)` yields every `(sign, c)` with `c^-1 w^sign c == t` (the witness for transport and certify).
