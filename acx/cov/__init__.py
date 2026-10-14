@@ -10,6 +10,6 @@ The docstrings of ``enumerate_images`` and ``run_cov`` explain the transform and
 ``stable_cert`` and ``ac_path``.
 """
 from .certificate import ReplayError, apply_steps, check_cert
-from .images import CoVImage, enumerate_images
+from .images import CoVImage, enumerate_images, iter_images
 from .run import CoVConfig, CoVResult, Outcome, verify
 from .run import run as run_cov

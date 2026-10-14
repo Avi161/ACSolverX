@@ -34,9 +34,9 @@ def check_two_relators(rows):
 
 def search_control_and_null(r1, r2, sc, row_id):
     """The 2-generator control and the null stabilisation of a row, as records; they must agree."""
-    control_result = search(Presentation(2, (r1, r2)), sc.search)
+    control_result = search(Presentation(2, (r1, r2)), sc.search.replace(capture_path=True))
     control = search_record(control_result)
-    null = search_record(search(start(r1, r2, [()] * sc.extra), sc.search))
+    null = search_record(search(start(r1, r2, [()] * sc.extra), sc.search.replace(capture_path=False)))
     if outcome(control) != outcome(null):
         raise SweepError(
             f"row {row_id}: the control {outcome(control)} and the null stabilisation {outcome(null)} differ")
@@ -46,30 +46,35 @@ def search_control_and_null(r1, r2, sc, row_id):
 
 
 def search_starts(row_id, pres, sc):
-    """Search every start of the pool; return the records (by start index) and the sampled solved paths."""
+    """Search every start directly into the stored columns; capture only paths selected by the fixed sample."""
     words = words_of(sc)
-    records, kept_paths = [], []
-    for index, combo in enumerate(combos(len(words), sc.extra)):
+    starts = combos(len(words), sc.extra)
+    columns = {key: np.empty(len(starts), dtype=np.uint16 if key == "pops" else np.int32)
+               for key in ("pops", "path_len", "min_total", *COUNTERS)}
+    kept_paths = []
+    without_path = sc.search.replace(capture_path=False)
+    with_path = sc.search.replace(capture_path=True)
+    for index, combo in enumerate(starts):
         chosen = [words[j] for j in combo]
-        result = search(start(*pres.rels, chosen), sc.search)
-        records.append(search_record(result))
-        if result.solved and sampled(row_id, word_str(chosen), sc.sample):
-            kept_paths.append({"index": index, "word": word_str(chosen), "pops": result.pops,
+        text = word_str(chosen) if sc.sample else None
+        capture = bool(sc.sample) and sampled(row_id, text, sc.sample)
+        result = search(start(*pres.rels, chosen), with_path if capture else without_path)
+        for key, value in search_record(result).items():
+            if key in columns:
+                columns[key][index] = -1 if value is None else value
+        if result.solved and capture:
+            kept_paths.append({"index": index, "word": text, "pops": result.pops,
                                "path": encode_path(result.path)})
-    return records, kept_paths
+    columns["nodes"] = columns.pop("pops")
+    return columns, kept_paths
 
 
 def sweep_row(row_id, pres, sc):
     """The arrays of one row file: the control, the null stabilisation and every start of the pool (by index)."""
     began = time.perf_counter()
     control, null = search_control_and_null(*pres.rels, sc, row_id)
-    records, kept_paths = search_starts(row_id, pres, sc)
-
-    def column(key, dtype=np.int32):
-        return np.array([-1 if r[key] is None else r[key] for r in records], dtype)
-
-    return {"nodes": column("pops", np.uint16), "path_len": column("path_len", np.int32),
-            "min_total": column("min_total"), **{k: column(k) for k in COUNTERS},
+    columns, kept_paths = search_starts(row_id, pres, sc)
+    return {**columns,
             "control": np.array(json.dumps(control)), "null": np.array(json.dumps(null)),
             "paths": np.array(json.dumps(kept_paths)), "seconds": np.float32(time.perf_counter() - began),
             "ident": np.array(ident_of(sc, row_id, pres))}
@@ -110,13 +115,14 @@ def read_ident(path):
         return str(z["ident"])
 
 
-def load_row(path):
-    """A row file as a dict of arrays, with the JSON records parsed and ``ident`` as a string."""
+def load_row(path, fields=None):
+    """A row file as a dict, optionally reading only ``fields`` without decompressing the other members."""
     with np.load(path) as z:
-        row = {k: z[k] for k in z.files}
-    for key in ("control", "null", "paths"):
+        row = {k: z[k] for k in (z.files if fields is None else fields)}
+    for key in row.keys() & {"control", "null", "paths"}:
         row[key] = json.loads(str(row[key]))
-    row["ident"] = str(row["ident"])
+    if "ident" in row:
+        row["ident"] = str(row["ident"])
     return row
 
 

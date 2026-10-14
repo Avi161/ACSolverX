@@ -207,6 +207,30 @@ def test_relative_paths_work_from_any_directory(tmp_path, monkeypatch):
     assert [r["solved"] for r in records(tmp_path / "results", "b")] == [True]
 
 
+def test_solved_from_preserves_literal_ids(tmp_path):
+    ids = ['one,two', '0:1', 'quote"id', ' padded ']
+    mine = tmp_path / "literal.jsonl"
+    mine.write_text("".join(json.dumps({"id": rid, "relators": ["x", "y"]}) + "\n" for rid in ids))
+    run_cli(tmp_path, "--input", str(mine), "--set", "name=fast", "--set", "path=false", *SPEC)
+    run_cli(tmp_path, "--input", str(mine), "--solved-from", str(tmp_path / "fast"),
+            "--set", "name=paths", *SPEC)
+    recs = records(tmp_path, "paths")
+    assert [r["id"] for r in recs] == ids
+    assert all(r["verified"] for r in recs)
+
+
+def test_rows_flag_preserves_quotes_in_an_id(tmp_path):
+    mine = tmp_path / "quotes.jsonl"
+    mine.write_text(json.dumps({"id": 'row"1', "relators": ["x", "y"]}) + "\n")
+    run_cli(tmp_path, "--input", str(mine), "--rows", 'row"1', "--set", "name=quoted", *SPEC)
+    assert [r["id"] for r in records(tmp_path, "quoted")] == ['row"1']
+
+
+def test_empty_rows_flag_clears_the_config_slice(tmp_path):
+    run_cli(tmp_path, "--rows", "", "--set", "search.budget=1", *SPEC)
+    assert len(records(tmp_path)) == 640
+
+
 def test_help_describes_both_flags(capsys):
     with pytest.raises(SystemExit):
         run.main(["--help"])

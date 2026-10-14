@@ -94,6 +94,41 @@ def test_best_of_each_hash_keeps_the_best_and_the_first_on_ties():
     assert beam.best_of_each_hash(hashes, score).tolist() == [False, True, True, False, True]
 
 
+def test_beam_does_not_accumulate_the_value_bonus_as_log_probability(monkeypatch):
+    # A probability-one path has log probability zero at every depth, even with a nonzero value heuristic.
+    seen = []
+    original = beam.top_children
+
+    def forward(model, states, chunk):
+        logits = torch.full((len(states), 16), -1e9)
+        logits[:, 0] = 0
+        return logits, torch.full((len(states),), 7.0)
+
+    def top(*args):
+        seen.append(args[3].tolist())
+        return original(*args)
+
+    def move(states, *args):
+        new = states.clone()
+        new[:, 0] += 1                 # distinct nonterminal states; action semantics are tested separately
+        return (new, torch.zeros(len(states), dtype=torch.bool),
+                torch.ones(len(states), dtype=torch.long), torch.ones(len(states), dtype=torch.long))
+
+    monkeypatch.setattr(beam, "forward", forward)
+    monkeypatch.setattr(beam, "top_children", top)
+    monkeypatch.setattr(beam, "s_move", move)
+    beam.beam_search(None, torch.ones(4, dtype=torch.int64), L=2, width=1, steps=3, alpha=1)
+    assert seen == [[0.0], [0.0], [0.0]]
+
+
+def test_nonzero_value_weight_retains_capture_parity(model):
+    pres = data.load("ms640", ids=[0])[0].pres
+    full = rl_solve.solve(pres, model, width=64, steps=30, alpha=0.5)
+    fast = rl_solve.solve(pres, model, width=64, steps=30, alpha=0.5, capture_path=False)
+    assert full.solved and (fast.solved, fast.pops, fast.path_length) == (full.solved, full.pops, full.path_length)
+    assert replay(pres, full.path)[-1].is_trivial()
+
+
 def test_beam_solves_easy_ms640_rows_and_replays(model):
     for row in data.load("ms640", ids=range(5)):
         res = rl_solve.solve(row.pres, model, width=64, steps=60)
@@ -187,6 +222,79 @@ def test_ppo_smoke():
     model = train(states, 2, n_pinned=3, envs=8, steps=6, minibatches=2, micro=16, log=lambda *_: None,
                   model=policy.ActorCritic())
     assert any(not torch.equal(v, before[k]) for k, v in model.state_dict().items())
+
+
+def test_ppo_singleton_minibatch_stays_finite():
+    states = encode_rows(data.load("ms640", ids=[0]))
+    model = train(states, 1, envs=1, steps=1, minibatches=1, epochs=1, log=lambda *_: None)
+    assert all(torch.isfinite(p).all() for p in model.parameters())
+
+
+def test_ppo_uneven_minibatches_use_every_sample_once_and_microbatch_gradients_agree():
+    from copy import deepcopy
+    from acx.rl.ppo import DEFAULTS, update
+
+    class SmallPolicy(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.linear = torch.nn.Linear(3, 3)
+            self.seen = []
+
+        def forward(self, x):
+            self.seen.extend(x[:, 0].tolist())
+            y = self.linear(x)
+            return y[:, :2], y[:, 2]
+
+    base = SmallPolicy()
+    obs = torch.arange(21, dtype=torch.float32).reshape(7, 3) / 20
+    act = torch.arange(7) % 2
+    with torch.no_grad():
+        logits, val = base(obs)
+        logp = policy.log_prob_entropy(logits, act)[0]
+    base.seen.clear()
+    batch = obs, act, logp, val, torch.arange(7).float(), val + 0.5
+    outcomes = []
+    for micro in (1, 2, 100):
+        model = deepcopy(base)
+        opt = torch.optim.SGD(model.parameters(), lr=0.001)
+        updates = []
+        opt.register_step_post_hook(lambda *args: updates.append(1))
+        stats = update(model, opt, batch, {**DEFAULTS, "minibatches": 3, "epochs": 2, "micro": micro},
+                       torch.Generator().manual_seed(7))
+        assert len(updates) == 6
+        assert sorted(model.seen) == sorted(obs[:, 0].tolist() * 2)
+        assert all(torch.isfinite(torch.tensor(v)) for v in stats.values())
+        outcomes.append(model.state_dict())
+    for other in outcomes[1:]:
+        for key in other:
+            torch.testing.assert_close(other[key], outcomes[0][key], atol=1e-6, rtol=1e-6)
+
+
+@pytest.mark.parametrize("overrides", [
+    {"step": 6}, {"envs": 0}, {"steps": True}, {"micro": 0}, {"chunk": 0}, {"epochs": 0},
+    {"minibatches": 0}, {"envs": 1, "steps": 1, "minibatches": 2},
+    {"gamma": float("nan")}, {"lam": 1.01}, {"lr": 0}, {"vf": -1}, {"clip": float("inf")},
+])
+def test_ppo_rejects_bad_experiment_settings(overrides):
+    from acx.rl.ppo import training_config
+
+    with pytest.raises(ValueError):
+        training_config(overrides)
+
+
+@pytest.mark.parametrize("states, envs, pinned", [
+    (torch.empty((0, 48), dtype=torch.int64), 1, 0),
+    (torch.zeros((1, 47), dtype=torch.int64), 1, 0),
+    (torch.zeros((1, 48)), 1, 0),
+    (torch.full((1, 48), 3, dtype=torch.int64), 1, 0),
+    (torch.zeros((1, 48), dtype=torch.int64), 1, 2),
+    (torch.zeros((1, 48), dtype=torch.int64), 0, 0),
+])
+def test_training_environment_rejects_invalid_initialization(states, envs, pinned):
+    from acx.rl.env import VecEnv
+
+    with pytest.raises(ValueError):
+        VecEnv(states, envs, n_pinned=pinned)
 
 
 def test_s_move_sizes_describe_the_dropped_product():

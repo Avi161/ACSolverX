@@ -485,9 +485,47 @@ def test_family_is_a_config_choice():
     with pytest.raises(ValueError, match="family 'zf3' not in"):
         enumerate_images(AK3, family="zf3")
     out = run(PLANTED, CoVConfig(total_budget=2000, control=False, family="suballpxyb8"))
-    assert out.solved and out.stats["images"] == len(enumerate_images(PLANTED, family="suballpxyb8"))
+    assert out.solved and 0 < out.stats["images"] <= len(enumerate_images(PLANTED, family="suballpxyb8"))
+    assert not out.stats["images_exhausted"]
     for o in out.outcomes:
         verify(PLANTED, o)
+
+
+@pytest.mark.parametrize("capture", [False, True])
+def test_control_solve_does_not_generate_images(monkeypatch, capture):
+    import acx.cov.images as images
+
+    def unused(*args):
+        raise AssertionError("image generation ran after a control solve")
+        yield  # keep this an iterator; input validation still happens in iter_images
+
+    monkeypatch.setattr(images, "_images", unused)
+    result = run(Presentation.parse("x", "y"), CoVConfig(search=SearchConfig(capture_path=capture)))
+    assert result.solved and result.pops == 1
+    assert result.stats["images"] == 0 and not result.stats["images_exhausted"]
+    with pytest.raises(ValueError, match="2-generator"):
+        run(Presentation.parse("x", "y", "z"))
+
+
+def test_spent_budget_does_not_prefetch_another_image(monkeypatch):
+    import acx.cov.images as images
+
+    first = enumerate_images(PLANTED)[0]
+
+    def just_one(*args):
+        yield first
+        raise AssertionError("image generation continued after the total budget")
+
+    monkeypatch.setattr(images, "_images", just_one)
+    result = run(PLANTED, CoVConfig(total_budget=1, control=False))
+    assert result.pops == 1 and result.stats["images"] == 1
+    assert not result.stats["images_exhausted"]
+
+
+def test_exhausted_family_reports_the_complete_count():
+    # There are no eligible substitutions on the trivial presentation.
+    result = run(Presentation.parse("x", "y"), CoVConfig(control=False))
+    assert not result.solved and result.stats["images"] == 0 and result.stats["images_exhausted"]
 
 
 @pytest.mark.parametrize("bad", [0, -5, 1.5, "100", True, None])

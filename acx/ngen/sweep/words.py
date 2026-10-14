@@ -4,6 +4,9 @@ A start is ``<x, y, z1..zk | r1, r2, Z1.w1, .., Zk.wk>`` for words ``w_i`` in ``
 """
 import hashlib
 import itertools
+import math
+import operator
+from collections.abc import Sequence
 from functools import lru_cache
 
 from ...core.words import Presentation, fmt, inverse
@@ -42,10 +45,52 @@ def pool(min_len, max_len, inverted):
     return tuple(inverse(w) for w in words) if inverted else words
 
 
-@lru_cache(maxsize=None)
+class Combinations(Sequence):
+    """Word-index multisets in itertools order, without storing every combination.
+
+    Iteration streams the starts; indexing un-ranks one start in O(extra * log(n_words)) steps. This lets the
+    summary and verifier address a stored cell without allocating the entire rank-four/five combination table.
+    """
+
+    def __init__(self, n_words, extra):
+        self.n_words, self.extra = n_words, extra
+        self.size = math.comb(n_words + extra - 1, extra) if n_words else int(extra == 0)
+
+    def __len__(self):
+        return self.size
+
+    def __iter__(self):
+        return itertools.combinations_with_replacement(range(self.n_words), self.extra)
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+            return tuple(self[i] for i in range(*index.indices(len(self))))
+        index = operator.index(index)
+        if index < 0:
+            index += len(self)
+        if not 0 <= index < len(self):
+            raise IndexError("combination index out of range")
+        chosen, low = [], 0
+        for remaining in range(self.extra, 0, -1):
+            total = math.comb(self.n_words - low + remaining - 1, remaining)
+            left, right = low, self.n_words - 1
+            # Starts whose next index is below v: total - C(n_words-v+remaining-1, remaining).
+            while left < right:
+                mid = (left + right + 1) // 2
+                skipped = total - math.comb(self.n_words - mid + remaining - 1, remaining)
+                if skipped <= index:
+                    left = mid
+                else:
+                    right = mid - 1
+            index -= total - math.comb(self.n_words - left + remaining - 1, remaining)
+            chosen.append(left)
+            low = left
+        return tuple(chosen)
+
+
 def combos(n_words, extra):
-    """Index tuples of the starts: every multiset of ``extra`` pool words (one word each for ``extra = 1``)."""
-    return tuple(itertools.combinations_with_replacement(range(n_words), extra))
+    """A lazy, indexable sequence of every multiset of ``extra`` word indices (in the published cell order)."""
+    return Combinations(n_words, extra)
 
 
 def word_str(words):

@@ -1,5 +1,6 @@
 """acx.ngen.sweep: the rank-3 / rank-n brute-force sweep (word pool, starts, rows, resume, summary, verifier)."""
 import hashlib
+import itertools
 import json
 import os
 import shutil
@@ -66,8 +67,67 @@ def test_reduced_words():
 def test_pools_and_multisets():
     assert len(pool(1, 3, False)) == 26 and len(combos(26, 2)) == 351     # rank 4
     assert len(pool(1, 2, False)) == 8 and len(combos(8, 3)) == 120       # rank 5
-    assert combos(8, 1) == tuple((i,) for i in range(8))
+    assert tuple(combos(8, 1)) == tuple((i,) for i in range(8))
     assert pool(1, 2, True)[0] == (-1,) and pool(1, 2, True)[4] == tuple(-g for g in reversed(pool(1, 2, False)[4]))
+
+
+@pytest.mark.parametrize("n_words", [0, 1, 2, 8, 26])
+@pytest.mark.parametrize("extra", [1, 2, 3])
+def test_lazy_combinations_retain_every_cell_index(n_words, extra):
+    expected = tuple(itertools.combinations_with_replacement(range(n_words), extra))
+    starts = combos(n_words, extra)
+    assert len(starts) == len(expected)
+    assert tuple(starts) == expected
+    assert [starts[i] for i in range(len(starts))] == list(expected)
+    assert starts[::-1] == expected[::-1]
+    with pytest.raises(IndexError):
+        starts[len(starts)]
+    with pytest.raises(IndexError):
+        starts[-len(starts) - 1]
+
+
+def test_large_combination_pool_does_not_allocate_every_start():
+    # 47 billion starts must be countable/indexable without materializing them; no search is run here.
+    starts = combos(6560, 3)
+    assert len(starts) == 47_071_588_320
+    assert starts[0] == (0, 0, 0)
+    assert starts[-1] == (6559, 6559, 6559)
+    assert starts[6560] == (0, 1, 1)
+
+
+@pytest.mark.parametrize("backend", ["spec", "fast"])
+def test_sampling_skips_unkept_certificates_without_changing_results(ms640, monkeypatch, backend):
+    from dataclasses import replace
+
+    sc = SweepConfig.from_cfg(cfg(budget=100, max_len=2, backend=backend, sample=1.0))
+    full = sweep.sweep_row("0", ms640[0], sc)
+    used = []
+    real = sweep.rows.search
+
+    def spy(pres, search_config):
+        used.append(search_config.capture_path)
+        return real(pres, search_config)
+
+    monkeypatch.setattr(sweep.rows, "search", spy)
+    for fraction in (0.0, 0.5):
+        used.clear()
+        sampled = sweep.sweep_row("0", ms640[0], replace(sc, sample=fraction))
+        for key in ("nodes", "path_len", "min_total", "control", "null", *COUNTER_NAMES):
+            np.testing.assert_array_equal(sampled[key], full[key])
+        kept = [p for p in json.loads(str(full["paths"])) if sweep.sampled("0", p["word"], fraction)]
+        assert json.loads(str(sampled["paths"])) == kept
+        assert used[:2] == [True, False]          # control kept; null is never stored
+        expected = [sweep.sampled("0", fmt(w), fraction) for w in sweep.words_of(sc)]
+        assert used[2:] == expected
+
+
+def test_partial_row_load_does_not_decompress_paths(tmp_path):
+    # Deliberately invalid JSON in a member the summary does not use.
+    path = tmp_path / "row.npz"
+    np.savez_compressed(path, nodes=np.array([3]), paths=np.array("not JSON"))
+    assert sweep.load_row(path, fields=("nodes",))["nodes"].tolist() == [3]
+    with pytest.raises(ValueError):
+        sweep.load_row(path)
 
 
 @pytest.mark.parametrize("lengths, inverted, md5", [
@@ -516,6 +576,25 @@ def test_help_names_the_module(capsys):
     with pytest.raises(SystemExit):
         sweep.main(["--help"])
     assert "usage: python -m acx.ngen.sweep" in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("args, message", [
+    (["--config", os.path.join(ROOT, "configs", "hybrid.toml")], "method = 'rankn'"),
+    (["--config", os.path.join(ROOT, "configs", "rank3_bf.toml"), "--verify", "-1"], "verify must be"),
+])
+def test_sweep_cli_rejects_ignored_or_invalid_experiment_options(tmp_path, args, message):
+    with pytest.raises(SystemExit, match=message):
+        sweep.main([*args, "--out", str(tmp_path / "out")])
+    assert not (tmp_path / "out").exists()
+
+
+def test_sweep_rows_flag_preserves_literal_quotes(tmp_path):
+    mine = tmp_path / "quoted.jsonl"
+    mine.write_text(json.dumps({"id": 'row"1', "relators": ["x", "y"]}) + "\n")
+    sweep.main(["--config", os.path.join(ROOT, "configs", "rank3_bf.toml"), "--rows", 'row"1',
+                "--set", f"benchmark={mine}", "--set", "rankn.max_len=1", "--set", "search.budget=1",
+                "--out", str(tmp_path / "out")])
+    assert sweep.rows.finished_rows(tmp_path / "out" / "rank3_bf") == ['row"1']
 
 
 # ------------------------------------------------------------------- the driver refuses before it writes anything

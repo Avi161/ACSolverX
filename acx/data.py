@@ -226,16 +226,19 @@ def rows(spec):
 
 def select(table, spec):
     """The rows of ``table`` sliced by ``"a:b[:c]"`` or picked by comma-separated ids (a repeated id once, first
-    place)."""
+    place). A list/tuple selects literal ids, including commas, whitespace and slice-like names."""
     if spec in (None, ""):
         return table
-    spec = str(spec).strip()
-    if SLICE.fullmatch(spec):
+    literal = isinstance(spec, (list, tuple))
+    if literal and not all(isinstance(i, str) for i in spec):
+        raise ValueError("rows as a list must contain string ids")
+    spec = spec if literal else str(spec).strip()
+    if not literal and SLICE.fullmatch(spec):
         try:
             return table[slice(*(int(t) if t else None for t in spec.split(":")))]
         except ValueError:                                       # a step of 0
             raise ValueError(f"bad rows slice {spec!r}: write integers as a:b or a:b:c, the step not 0") from None
-    ids = list(dict.fromkeys(i.strip() for i in spec.split(",")))
+    ids = list(dict.fromkeys(spec if literal else (i.strip() for i in spec.split(","))))
     by_id = {r.id: r for r in table}
     missing = [i for i in ids if i not in by_id]
     if missing:

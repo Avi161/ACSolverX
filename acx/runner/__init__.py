@@ -6,6 +6,7 @@
 - ``caps``: the cap counters of a record and their ``summary.json`` block.
 - ``summary``: ``summary.json`` from a run's records.
 - ``rundir``: the run folder: its ``config.json`` guard, the records of ``paths.jsonl``, what a resume keeps.
+- ``provenance``: source/runtime resume identity and the context of each invocation.
 - ``execute``: solve the rows (picked by ``acx.data.select``), resume, write ``results/<name>/`` (``run``).
 """
 from ..data import select

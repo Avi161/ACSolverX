@@ -278,6 +278,10 @@ so the published numbers stand. (`zf3`, every word of length 2 to 4, was tried o
 
 ## 12. n-generator search and short-relator forms
 
+CoV search now consumes `iter_images` lazily. `stats.images` counts the generated prefix and `images_exhausted` says
+whether the entire family was consumed. The explicit `enumerate_images` API still returns the full family in the
+same order; use it for a census independent of solver stopping conditions.
+
 **n-generator search** (`acx.ngen`, on `acx.search`, either backend). The S-move takes a source index:
 `r_i <- rot_k1(r_i) . rot_k2(r_j ^ s)` for `j != i`, enumerated `i, j, s, k1, k2` (at two relators the baseline's
 order). Goal: every relator one letter and every generator present. `spec` and `fast` are trace-equal on triangle roots
@@ -311,6 +315,12 @@ letters (the policy's input width), else unsolved with `skipped`. `cost` is the 
 own `done` clears the return before its reward is added. Keep it, or training no longer reproduces the checkpoint's.
 
 ## 14. Verification
+
+For RL, a nonzero `alpha` adds the current parent's value estimate when ranking its children. Only log probabilities
+carry into the next step; past value bonuses do not accumulate. The default `alpha=0` keeps its reference behavior.
+PPO validates settings, partitions every sample into exactly the requested number of minibatches and skips advantage
+normalization for a singleton. Microbatches preserve gradient weighting. The intentional JAX reward-normalizer order
+remains unchanged. A small CPU training example is in [EXPERIMENTS.md](EXPERIMENTS.md).
 
 `pytest` runs the default selection (a few minutes), `pytest -m ""` adds the slow parity and census sets. With
 `path = true` every solved record is replayed before it is written; `path = false` records are unverified counts.

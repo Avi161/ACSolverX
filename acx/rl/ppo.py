@@ -10,12 +10,35 @@ import math
 
 import torch
 
+from ..core.config import is_finite_number, reject_unknown, require_int
 from .env import VecEnv
 from .policy import ActorCritic, forward, log_prob_entropy
 from .codec import encode
 
 DEFAULTS = dict(lr=2.5e-3, envs=2380, steps=96, epochs=3, minibatches=8, gamma=0.999, lam=0.95,
                 clip=0.2, ent=0.01, vf=0.5, max_grad_norm=0.5, micro=2048, chunk=4096, seed=142)
+
+
+def training_config(overrides):
+    """Validate PPO settings before constructing the model or starting an experiment."""
+    reject_unknown(overrides, DEFAULTS, "PPO")
+    cfg = {**DEFAULTS, **overrides}
+    for key in ("envs", "steps", "epochs", "minibatches", "micro", "chunk"):
+        require_int(cfg[key], key)
+    require_int(cfg["seed"], "seed", low=0)
+    if cfg["minibatches"] > cfg["envs"] * cfg["steps"]:
+        raise ValueError("minibatches must not exceed envs * steps")
+    for key in ("lr", "gamma", "lam", "clip", "ent", "vf", "max_grad_norm"):
+        value = cfg[key]
+        if not is_finite_number(value) or value < 0:
+            raise ValueError(f"{key} must be a finite nonnegative number, got {value!r}")
+    for key in ("gamma", "lam"):
+        if cfg[key] > 1:
+            raise ValueError(f"{key} must be in [0, 1]")
+    for key in ("lr", "max_grad_norm"):
+        if cfg[key] == 0:
+            raise ValueError(f"{key} must be positive")
+    return cfg
 
 
 def encode_rows(rows, L=24):
@@ -64,13 +87,16 @@ def update(model, opt, batch, cfg, gen):
     """Epochs x minibatches of the clipped PPO loss. Returns the mean policy / value / entropy terms."""
     obs, act, logp, val, adv, target = batch
     B = len(act)
-    mb, eps, totals, n = B // cfg["minibatches"], cfg["clip"], torch.zeros(3), 0
+    minibatches = require_int(cfg["minibatches"], "minibatches")
+    if minibatches > B:
+        raise ValueError("minibatches must not exceed the batch size")
+    eps, totals, n = cfg["clip"], torch.zeros(3), 0
     for _ in range(cfg["epochs"]):
         perm = torch.randperm(B, generator=gen)
-        for lo in range(0, B, mb):
-            sel = perm[lo:lo + mb]
+        for sel in torch.tensor_split(perm, minibatches):
             a = adv[sel]
-            a = (a - a.mean()) / (a.std() + 1e-8)                  # per minibatch, before splitting
+            if len(a) > 1:                                     # sample std is undefined for a singleton
+                a = (a - a.mean()) / (a.std() + 1e-8)           # per minibatch, before microbatching
             opt.zero_grad(set_to_none=True)
             for c in range(0, len(sel), cfg["micro"]):
                 idx, ac = sel[c:c + cfg["micro"]], a[c:c + cfg["micro"]]
@@ -91,12 +117,13 @@ def update(model, opt, batch, cfg, gen):
 
 def train(states, updates, n_pinned=0, model=None, log=print, **overrides):
     """Run ``updates`` PPO updates over the initial ``states``; returns the model."""
-    cfg = {**DEFAULTS, **overrides}
+    cfg = training_config(overrides)
+    require_int(updates, "updates", low=0)
+    env = VecEnv(states, cfg["envs"], n_pinned=n_pinned, gamma=cfg["gamma"], max_steps=cfg["steps"], seed=cfg["seed"])
     torch.manual_seed(cfg["seed"])
     gen = torch.Generator().manual_seed(cfg["seed"] + 1)
     model = model or ActorCritic()
     opt = torch.optim.Adam(model.parameters(), lr=cfg["lr"], eps=1e-5)
-    env = VecEnv(states, cfg["envs"], n_pinned=n_pinned, gamma=cfg["gamma"], max_steps=cfg["steps"], seed=cfg["seed"])
     for u in range(1, updates + 1):
         obs, act, logp, val, rew, done, last, terminated = rollout(model, env, cfg, gen)
         adv, target = gae(val, rew, done, last, cfg["gamma"], cfg["lam"])

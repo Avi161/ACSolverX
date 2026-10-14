@@ -130,7 +130,8 @@ def summarize(result_dir, wall=None):
     n_rows = n_control_solved = 0
     core_seconds = 0.0
     for row_id in finished_rows(result_dir):
-        row = load_row(row_path(result_dir, row_id))
+        row = load_row(row_path(result_dir, row_id), fields=(
+            "control", "nodes", "path_len", "seconds", "cap_first_bind", "cap_dropped"))
         control_solved, control_pops = bool(row["control"]["solved"]), row["control"]["pops"]
         solved, pops = row["path_len"] >= 0, row["nodes"].astype(np.int64)
         n_rows += 1

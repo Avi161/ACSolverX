@@ -53,16 +53,23 @@ def best_of_each_hash(hashes, score):
 
 
 def top_children(model, states, live, cum, alpha, chunk):
-    """Score every action of the ``live`` beams: the global top-``width`` ``(total score, flat index)``.
+    """Return the top-``width`` children's ranking score, flat index, and cumulative log probability.
 
     Children of dead beams and illegal actions score ``-inf``; the flat index is ``parent * (4 L^2) + action``.
+    The value bonus affects this selection only; carrying it into the next step would accumulate past values.
     """
     width, n_actions = len(states), 4 * (states.shape[1] // 2) ** 2
     logits, value = forward(model, states[live], chunk)
-    log_prob = torch.log_softmax(logits, -1) + alpha * value[:, None]
-    scores = torch.full((width, n_actions), MINUS_INF)
-    scores[live] = log_prob.masked_fill(logits < -1e8, MINUS_INF)
-    return torch.topk((cum[:, None] + scores).reshape(-1), width)
+    log_prob = torch.full((width, n_actions), MINUS_INF)
+    log_prob[live] = torch.log_softmax(logits, -1).masked_fill(logits < -1e8, MINUS_INF)
+    cumulative = cum[:, None] + log_prob
+    scores = cumulative
+    if alpha:
+        bonus = torch.zeros(width)
+        bonus[live] = alpha * value
+        scores = cumulative + bonus[:, None]
+    top, index = torch.topk(scores.reshape(-1), width)
+    return top, index, cumulative.reshape(-1)[index] if alpha else top
 
 
 @torch.no_grad()
@@ -96,7 +103,7 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
         live = alive.nonzero().squeeze(1)
         if len(live) == 0:
             break
-        top, idx = top_children(model, states, live, cum, alpha, chunk)
+        top, idx, log_prob = top_children(model, states, live, cum, alpha, chunk)
         evaluated += len(live)
         parent, action = idx // n_actions, idx % n_actions
         old = states[parent]
@@ -116,7 +123,7 @@ def beam_search(model, x0, *, L=24, cap=None, width=1024, steps=150, alpha=0.0, 
         hashes = (new * hash_vec).sum(-1)
         score = torch.where(alive, top, torch.full_like(top, MINUS_INF))
         alive &= best_of_each_hash(hashes, score) & ~visited.contains(hashes)
-        cum = torch.where(alive, top, torch.full_like(top, MINUS_INF))
+        cum = torch.where(alive, log_prob, torch.full_like(log_prob, MINUS_INF))
         visited.add(hashes, alive)
         states = new
         if solved.any():

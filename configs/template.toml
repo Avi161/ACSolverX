@@ -5,6 +5,7 @@ name = "template"                          # results/<name>/ (default: this file
 method = "greedy"                          # greedy | aut | cov | ngen | hybrid | rl | rankn (blocks below)
 benchmark = "examples/presentations.txt"   # a benchmark name, or your own .txt/.csv/.jsonl file
 rows = ""                                  # "" = every row; a slice "0:3" or ids "0,6"
+# rows = ["one,two", "0:1"]                 # literal ids, when commas or slice-like names are part of the id
 workers = 1                                # processes; 1 runs in this process
 decode = true                              # elementary length of S-move paths (hybrid, aut: always given)
 path = true                                # false: faster; no path, no replay, elem_moves null

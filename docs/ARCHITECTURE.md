@@ -175,6 +175,10 @@ Each keeps a frozen config and returns typed results; `acx.runner.methods` maps 
 
 ## Runner (`acx.runner`)
 
+`provenance.py` shares source/runtime resume checks and invocation context between the ordinary and rank-n drivers.
+It writes `provenance.json` atomically after the input/config guards pass, preserving an explicit flag for untracked
+legacy results. [EXPERIMENTS.md](EXPERIMENTS.md) describes how to use this evidence.
+
 One job per module; it re-exports only `load_config`, `method_config`, `run`, `select` (from `acx.data`) and
 `summarize`.
 
@@ -187,6 +191,9 @@ One job per module; it re-exports only `load_config`, `method_config`, `run`, `s
 | `execute` | `run` selects rows, resumes (a record counts only for the presentation in its `pres`), skips repeated ids, solves AK(2) once untimed, and writes `results/<name>/`; `rankn` goes to `acx.ngen.sweep.run`, which refuses a row that is not two-generator two-relator, a run that would shrink a published summary, and a stored row that differs from the current input. A row with `\|det\| != 1`, or whose method raises, is recorded unsolved with an `error` |
 
 ## Data (`acx.data`)
+
+`select` also accepts a list/tuple of literal ids; decode-later uses it to avoid treating commas and slice-like ids
+as selection syntax.
 
 `rows(spec)` resolves `DATASETS` (`ms640`, `ms_unsolved`, `1190ms`, `ac19`, `ac19_extended`, `ac1m`; flat-int
 `.txt[.gz]`, `id` = line index), `BENCHMARKS` (CSVs: `bench10..60`, `ladder20..500`, `ladder20..300_s20hard`,

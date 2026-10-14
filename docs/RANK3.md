@@ -70,6 +70,12 @@ is a cluster job.
 
 ## Reproduction of the stored study
 
+The sweep now captures only the deterministic path sample and the control's certificate; unsampled starts and the
+null stabilisation retain depths/counters without replay. Combinations form a lazy indexable sequence in the original
+cell order (`tuple(combos(...))` materializes it explicitly). Results fill compact NumPy columns directly, and summary
+reads omit unused archive members. Word pools and result arrays still grow with the experiment, and a row checkpoints
+only after it finishes. `provenance.json` provides the ordinary runner's source/runtime guard too.
+
 Budget 1,000 pops, cap 24, MS640, fast backend; each cell against the study's `rank3_bf_ms640_b1000_cap24_*.npz` and
 `rankn_bf_ms640_b1000_cap24_r{4,5}.npz` (not in git; listed in
 [`results/stable_ac/rank3_bf/MANIFEST.json`](../results/stable_ac/rank3_bf/MANIFEST.json)), comparing `nodes`,

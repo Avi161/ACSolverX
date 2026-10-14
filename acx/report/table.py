@@ -163,6 +163,7 @@ def notes(runs, measured, ids):
 
 def tabulate(runs, common):
     """Each run's table numbers and the notes on what they cover; the one step the markdown and the page share."""
+    check_presentations(runs)
     ids = common_ids(runs) if common else None
     measured = [measure(run, ids) for run in runs]
     return measured, notes(runs, measured, ids)

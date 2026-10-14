@@ -60,9 +60,10 @@ def test_sweep_path_lengths_fit_the_permitted_budget(monkeypatch):
     from acx.core.capcount import blank
     sc = SweepConfig.from_cfg(dict(search=dict(budget=65535), rankn=dict(max_len=1)))
     monkeypatch.setattr(module, "search_control_and_null", lambda *args: ({}, {}))
-    record = dict(pops=40001, path_len=40000, min_total=3, **blank())
-    monkeypatch.setattr(module, "search_starts", lambda *args: ([record], []))
-    assert module.sweep_row("a", data.AK(2), sc)["path_len"].tolist() == [40000]
+    from types import SimpleNamespace
+    result = SimpleNamespace(solved=False, pops=40001, path_length=40000, stats=dict(min_total=3, **blank()))
+    monkeypatch.setattr(module, "search", lambda *args: result)
+    assert module.sweep_row("a", data.AK(2), sc)["path_len"].tolist() == [40000, 40000]
 
 
 def test_reports_and_resume_agree_on_an_uncommitted_last_record(tmp_path):
@@ -70,6 +71,28 @@ def test_reports_and_resume_agree_on_an_uncommitted_last_record(tmp_path):
     path = tmp_path / "paths.jsonl"
     path.write_text('{"id":"a","solved":true}\n{"id":"b","solved":true}')
     assert report_records(path) == read_records(path) == [dict(id="a", solved=True)]
+
+
+def test_duplicate_records_cannot_disagree_between_resume_and_reports(tmp_path):
+    from acx.report.load import read_records as report_records
+
+    path = tmp_path / "paths.jsonl"
+    path.write_text('{"id":"a","solved":true}\n{"id":"a","solved":false}\n')
+    with pytest.raises(ValueError, match="duplicate id 'a'"):
+        read_records(path, repair=True)
+    with pytest.raises(SystemExit, match="duplicate id 'a'"):
+        report_records(path)
+    assert len(path.read_text().splitlines()) == 2
+
+
+def test_three_run_comparison_checks_presentation_identity():
+    from acx.report.load import Run
+    from acx.report.table import markdown
+
+    runs = [Run(str(i), "greedy", "input.txt", "pops", [dict(id="0", solved=True, pres=pres)])
+            for i, pres in enumerate(("x, y", "x, y", "x, xy"))]
+    with pytest.raises(SystemExit, match="different presentations"):
+        markdown(runs)
 
 
 @pytest.mark.parametrize("value", [1.9, "1", True, np.float64(1.0)])
