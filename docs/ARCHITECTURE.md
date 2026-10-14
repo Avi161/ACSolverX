@@ -33,6 +33,7 @@ flowchart TD
 | `acx.aut` | Whitehead canonical form, numba twin, transport, equivalence-certificate checker | `aut_canon`, `solve_via_aut_min` |
 | `acx.cov` | one-shot change of variables (family `subnc2pxysb`, or `suballpxyb8` with `[cov] family`) | `run_cov(pres, CoVConfig)` |
 | `acx.hybrid` | cascade + rank-two/higher-rank best-first search, certified | `solve(pres, HybridConfig)` |
+| `acx.hybrid_highspeedup` | the hybrid's backend `fast` beyond `acx.search.fast`: its higher-rank moves (`dynkernels`) and rank-two orbit and child layout (`r2kernels`) in numba, equal to the Python | used by `hybrid` |
 | `acx.ngen` | n-generator search, SAC transform to relators of length <= 3, lift, rank-n sweep | `solve(pres, NGenConfig)`, `acx.ngen.sweep` |
 | `acx.rl` | optional (torch): the paper's policy as a beam search | `acx.rl.solve.solve(pres)` |
 | `acx.data` | datasets, benchmarks and splits by name, your `.txt`/`.csv`/`.jsonl` files, row selection; `MS(n, w)`, `AK(n)` | `rows(name_or_path)`, `select(rows, spec)`, `parse_presentation` |
@@ -164,7 +165,8 @@ Each keeps a frozen config and returns typed results; `acx.runner.methods` maps 
   elementary (plus AC4/AC5 for a `stable_cert`), replayed with `normalize=False`; `stats` holds its three limits'
   counters. Exports `certify`, `Aut`, `encode_steps`, `decode_steps`. Modules: `steps.py`, `cascade.py` and `pinch.py`
   (stages A-C and the finishing gates), `search.py` (with `frontier.py`, `kernels.py`, `dynrank.py`), `capwatch.py`,
-  `solver.py`, `elementary.py` and `frame.py` (`certify`).
+  `solver.py`, `elementary.py` and `frame.py` (`certify`). Backend `fast` runs `dynrank`'s moves and the rank-two
+  orbit and child layout compiled, from `acx.hybrid_highspeedup`; `spec` runs the Python, with the same records.
 - `acx.ngen.solve(pres, NGenConfig) -> NGenResult(solved, kind, search, sac, moves)`; a SAC solve is lifted to an
   elementary stable path. Modules: `sac.py`, `solver.py` (`solve`, `NGenConfig`, `NGenResult`), `lifting.py`
   (`lift`), and `sweep/`, the rank-n brute force ([RANK3.md](RANK3.md)).

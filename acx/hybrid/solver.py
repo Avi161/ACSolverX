@@ -3,6 +3,7 @@
 A solve is a ``HybridResult`` whose ``steps`` are typed: an ``ac_path`` has AC moves and automorphisms of F2 only,
 a ``stable_cert`` also has higher-rank steps. ``certify`` writes either as elementary moves and ``acx.verify`` replays them.
 """
+import gc
 import time
 from dataclasses import dataclass, field, replace
 
@@ -82,7 +83,16 @@ def solve(pres, cfg=None, **overrides):
     if stage is not None:
         solved, steps, units = True, tuple(run.steps), 1 if stage == "terminal" else run.units
     else:
-        solved, steps, stats = BestFirst(run, cfg, cfg.budget - run.units).go()
+        # The cyclic garbage collector is paused while the search lives: its passes would walk the millions of tuples
+        # the heaps hold (about half the time of a hard row). The search makes no garbage cycles (``Watch.close``
+        # breaks its one), so the search's memory goes back by reference counting when it ends, before the resume.
+        enabled = gc.isenabled()
+        gc.disable()
+        try:
+            solved, steps, stats = BestFirst(run, cfg, cfg.budget - run.units).go()
+        finally:
+            if enabled:
+                gc.enable()
         steps, units, stage = tuple(run.steps) + steps, min(run.units + stats["pops"], cfg.budget), "H"
     stats["seconds"] = time.perf_counter() - start
     if not solved:

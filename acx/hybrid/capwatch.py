@@ -31,13 +31,13 @@ def gates_act(key):
     return run_gates(run) or run.units > 0
 
 
-def lazy_entries(depth, base, penalty, offset, words, offered, items):
+def lazy_entries(depth, base, penalty, offset, words, offered, items, dcanon=D.dcanon):
     """The pool entries ``(key, total, needed, state)`` of the higher-rank children one pop's limit rejected (``items``, as
     ``dynrank.children`` returns them), in key order, built only as far as a bar reaches. Ahead of each priority group stands
     a marker (state None) whose key bounds the group's from below, so a group of hundreds costs nothing until a bar passes
     it. ``offered``: the sorted states the pop did offer, the ``j``-th with the tick ``base + 1 + j``; a dropped state
     takes a tick between its neighbours, and one equal to an offered state is not new. ``needed - offset`` is the value
-    the counter reports."""
+    the counter reports. ``dcanon``: the backend's (``dynrank.backend``)."""
     prio = lambda t: t[0] + penalty * (t[2] - 2)
     last = min(map(itemgetter(0), items)) + penalty            # no rank-two child is here, so no priority is lower
     yield (float(last), depth, base), 0, 0, None
@@ -49,7 +49,35 @@ def lazy_entries(depth, base, penalty, offset, words, offered, items):
         found = {}
         for total, needed, _, payload in group:
             if payload[0].__class__ is int:                    # (i, product): relator i replaced
-                payload = tuple(sorted(words[:payload[0]] + (payload[1],) + words[payload[0] + 1:]))
+                payload = tuple(sorted(words[:payload[0]] + (dcanon(payload[1]),) + words[payload[0] + 1:]))
+            at = bisect_left(offered, payload)
+            if payload not in found and not (at < len(offered) and offered[at] == payload):
+                found[payload] = (total, needed - offset)
+        for r, state in enumerate(sorted(found)):
+            yield (float(p), depth, base + bisect_left(offered, state) + (r + 1) / (len(found) + 1)), *found[state], state
+
+
+def lazy_cut_entries(depth, base, penalty, offset, words, offered, cuts, dcanon=D.dcanon):
+    """``lazy_entries`` of ``cuts`` (a ``hybrid_highspeedup.dynkernels.Cuts`` of items of rank above two, the list it
+    stands for): the same entries, in the same order, an item built only when a bar reaches its priority group."""
+    last = cuts.min_total() + penalty
+    yield (float(last), depth, base), 0, 0, None
+    prios = np.concatenate((cuts.total + penalty * (cuts.rank - 2),
+                            np.array([t[0] + penalty * (t[2] - 2) for t in cuts.elims], dtype=np.int64)))
+    order = np.argsort(prios, kind="stable")                  # ``items.sort(key=prio)``: stable
+    sorted_prios = prios[order]
+    starts = [0, *(np.flatnonzero(sorted_prios[1:] != sorted_prios[:-1]) + 1).tolist(), len(order)]
+    order, sorted_prios = order.tolist(), sorted_prios.tolist()
+    for a, b in zip(starts, starts[1:]):
+        p = sorted_prios[a]
+        if p != last:
+            yield (float(p), depth, base), 0, 0, None
+            last = p
+        found = {}
+        for k in order[a:b]:
+            total, needed, _, payload = cuts.item(k)
+            if payload[0].__class__ is int:                    # (i, product): relator i replaced
+                payload = tuple(sorted(words[:payload[0]] + (dcanon(payload[1]),) + words[payload[0] + 1:]))
             at = bisect_left(offered, payload)
             if payload not in found and not (at < len(offered) and offered[at] == payload):
                 found[payload] = (total, needed - offset)
@@ -94,8 +122,10 @@ class Watch:
     the children that pass the free precheck, which is the larger part of what a tight ``r2_cap`` adds.
     """
 
-    def __init__(self, limits, seen_r2, seen_dyn, transform):
+    def __init__(self, limits, seen_r2, seen_dyn, transform, dyn=D.SPEC, orbit_of=None):
         self.armed = False                        # set by the first drop: until then no pop has anything to compare
+        self.make_key = dyn.make_key              # the higher-rank moves of the search's backend (``dynrank.backend``)
+        self.orbit = orbit_of or partial(orbit, transform=transform)    # ``frontier.orbit`` of a key
         self.seen_r2, self.seen_dyn, self.transform, self.live = seen_r2, seen_dyn, transform, []
         self.moves, self.mintot, self.pools = {}, {}, {}
         for name in PREFIXES:
@@ -165,7 +195,7 @@ class Watch:
         self._push(cc, entries)                   # the next of the block takes this one's place in the pool
         if key in self.seen_r2 or key in drained:
             return False
-        drained.update(orbit(key, self.transform))   # its signed permutations are the same state
+        drained.update(self.orbit(key))           # its signed permutations are the same state
         return True
 
     def _accept_dyn(self, cc, drained, payload):
@@ -173,7 +203,7 @@ class Watch:
         self._push(cc, entries)
         if words is None:                         # a marker: the group behind it is built now
             return False
-        ident = D.make_key(words)[0]
+        ident = self.make_key(words)[0]
         if ident in self.seen_dyn or ident in drained:
             return False
         drained.add(ident)
@@ -207,6 +237,14 @@ class Watch:
                 cc.end(ran_dry, left)
                 if first is None and cc.first_bind is not None:
                     cc.first_bind = units + 1
+
+    def close(self):
+        """The search is over: drop the lazy blocks and the pools' callbacks (a reference cycle through ``self``), so
+        reference counting frees them at once (``solver.solve`` runs the search with the cyclic collector paused)."""
+        self.live = []
+        for pair in self.pools.values():
+            for cc in pair:
+                cc.accept = None
 
     def record(self, name):
         """The six fields of one limit, its two pools merged."""

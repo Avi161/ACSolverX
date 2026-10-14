@@ -11,9 +11,13 @@ the least of its rotations and those of its inverse in int order (``-2 < -1 < 1 
 ``nielsen``    the transvection ``x_i -> x_i x_j^sign`` on every relator.
 
 ``relabel_canonical`` quotients states by permutations of the generators; the permutation is part of the step.
-"""
-from collections import Counter
 
+This module is the reference (backend ``"spec"``); ``acx.hybrid_highspeedup.dynkernels`` compiles the same moves with
+numba (backend ``"fast"``), same output bit for bit. ``backend(name)`` gives the moves the search calls.
+"""
+from collections import Counter, namedtuple
+
+from ..core.config import BACKENDS
 from ..core.digrams import digram_counts, tokenize
 from ..core.priority import length
 from ..core.words import inverse, reduce, renumber, substitute_generator
@@ -22,9 +26,15 @@ from ..core.words import inverse, reduce, renumber, substitute_generator
 def dcanon(w):
     """Cyclically reduce, then the least rotation of ``w`` or ``w^-1`` in int order."""
     w = reduce(w)
-    if not w:
-        return ()
-    return min(v[k:] + v[:k] for v in (w, inverse(w)) for k in range(len(v)))
+    return _least_rotation(w) if w else ()
+
+
+def _least_rotation(w):
+    """The least rotation of the reduced ``w`` or ``w^-1``: it starts with their least letter, so only those starts
+    are compared."""
+    v = inverse(w)
+    m = min(w) if min(w) < min(v) else min(v)
+    return min(u[k:] + u[:k] for u in (w, v) for k in range(len(u)) if u[k] == m)
 
 
 def normalize(words):
@@ -108,7 +118,8 @@ def make_key(words):
 def products(words, cap):
     """``(children, cut)``: every rotation product with a result of at most ``cap`` letters (first move per child), and
     for each longer one ``(total, needed, rank, (i, product))``: the child's total length, the cap that would admit it,
-    its rank and what it takes to build the child (``(i, product)`` replaces relator ``i``)."""
+    its rank and what it takes to build the child (``(i, product)`` replaces relator ``i``; ``product`` is reduced but
+    not yet ``dcanon``, which only the counters need). ``words`` is a normalized state."""
     n, total = len(words), sum(map(len, words))
     seen, cut = {}, []
     for i in range(n):
@@ -123,13 +134,18 @@ def products(words, cap):
                 for k1 in range(len(target)):
                     left = target[k1:] + target[:k1]
                     for k2 in range(len(base)):
-                        product = dcanon(left + base[k2:] + base[:k2])
-                        if not product or product == target:
+                        product = reduce(left + base[k2:] + base[:k2])
+                        if not product:
                             continue
-                        if cap is not None and len(product) > cap:
-                            cut.append((total - len(target) + len(product), len(product), n, (i, product)))
+                        size = len(product)
+                        if cap is not None and size > cap:      # left reduced, not canonical: lazy_entries does that
+                            if size != len(target) or _least_rotation(product) != target:
+                                cut.append((total - len(target) + size, size, n, (i, product)))
                             continue
-                        key = normalize(words[:i] + (product,) + words[i + 1:])
+                        product = _least_rotation(product)
+                        if product == target:
+                            continue
+                        key = tuple(sorted(words[:i] + (product,) + words[i + 1:]))   # words are normalized
                         if key not in seen:
                             seen[key] = {"kind": "product", "i": i, "j": j, "sign": sign,
                                          "k1": k1, "k2": k2, "result": product}
@@ -215,3 +231,32 @@ def children(words, cap, ceiling, min_uses=2):
         else:
             over.append((total, total, len(k), k))
     return out, cut, over
+
+
+def make_keys(states):
+    """``make_key`` of each state, or None where the caller is to call it itself: here all of them, one by one."""
+    return [None] * len(states)
+
+
+def most_uses(words):
+    """The count of the most frequent cyclic digram of ``words`` (0 if none): the most a define can save."""
+    return max(digram_counts(words).values(), default=0)
+
+
+Moves = namedtuple("Moves", "children defines normalize make_key dcanon make_keys children_lazy most_uses")
+SPEC = Moves(children, defines, normalize, make_key, dcanon, make_keys, children, most_uses)
+
+
+def backend(name):
+    """The higher-rank moves the search calls, ``Moves``: ``spec`` this module, ``fast`` (numba, ``dynkernels``) the
+    same functions compiled; ``fast`` is imported only when asked for, and its kernels are loaded on the first ask
+    (``dynkernels.warm``: the runner's warm-up solve asks, so no timed row pays for it). ``make_keys`` and
+    ``children_lazy`` are the search's batched forms (``make_key`` of many states; ``children`` with the cut products
+    left as arrays)."""
+    if name == "spec":
+        return SPEC
+    if name != "fast":
+        raise ValueError(f"backend {name!r} not in {BACKENDS}")
+    from ..hybrid_highspeedup import dynkernels as K
+    K.warm()
+    return Moves(K.children, K.defines, K.normalize, K.make_key, K.dcanon, K.make_keys, K.children_lazy, K.most_uses)
