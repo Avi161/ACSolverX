@@ -488,6 +488,7 @@ def test_compiled_moves_equal_the_spec_on_random_states():
         words = random_state(rng)
         assert_moves_agree(words)
         assert_moves_agree(dynrank.normalize(words))
+    assert_moves_agree(dynrank.normalize(((1, 2, 1, 2, 1), (-1, -2, 1, 2))))   # a cut product equal to its target
 
 
 def search_states(monkeypatch, rows):
@@ -535,7 +536,8 @@ def test_rank_two_layout_and_orbits_agree_between_the_backends(ms640):
     the same on both backends, and the layout holds the children of ``expand`` in its order."""
     from acx.hybrid.frontier import grouped, orbits
     (sx, _, st), (gs, gf) = backend("spec"), map(grouped, ("spec", "fast"))
-    for pres in ms640[::16]:
+    two_syllables = Presentation(2, ((1, 1, 2, 2, 2), (1, 2, -1, -2, 1, 2, -1, -2)))   # x^2 y^3 fails the precheck
+    for pres in ms640[::16] + [two_syllables]:
         key = pack(pres.reduced().canonical().rels)
         assert orbits("fast")(key) == orbits("spec")(key) == orbit(key, st)
         for cap in (None, len(key) - 1, 6, 3):
@@ -587,12 +589,12 @@ def calls_and_seconds(pres, watch_cap, **kw):
 def test_integer_r2_cap_counters_cost_a_few_calls_per_dropped_move(ms640):
     """A tight integer ``r2_cap`` drops hundreds of moves per pop; counting them must stay cheap (the first
     version was 5x slower). Python calls are the deterministic measure: at most 5 per dropped move (3.2 and 2.4 are
-    measured on these rows), CPU time the sanity check (best of three, at most 15 us per dropped move, loose because
-    the machine is shared; 3 to 6 us is measured, most of it the orbit of each counted state).
+    measured on these rows), CPU time the sanity check (best of three, at most 10 us per dropped move, loose because
+    the machine is shared; 3 to 4.5 us is measured, most of it the orbit of each counted state).
 
     The bound is per dropped move, no longer a share of the search's own cost (it was 10% of the calls and 60% of
-    the time): the compiled higher-rank moves and the grouped rank-two pushes cut the search's own calls 23- and
-    31-fold on these rows, so the same counter, at 6.7 and 5.4 calls per dropped move then, was 4-6% of the calls
+    the time): the compiled higher-rank moves and the grouped rank-two pushes cut the search's own calls 31- and
+    46-fold on these rows, so the same counter, at 6.7 and 5.4 calls per dropped move then, was 3-4% of the calls
     then and is 40-80% of them now."""
     solve(ms640[380], FAST)
     kw = dict(r2_cap=8, budget=150)
@@ -602,7 +604,7 @@ def test_integer_r2_cap_counters_cost_a_few_calls_per_dropped_move(ms640):
         dropped = solve(ms640[i], FAST, **kw).stats["cap_dropped"]
         assert dropped > 10_000
         assert on - off <= 5 * dropped, (i, on, off, dropped)
-        assert t_on - t_off <= 15e-6 * dropped, (i, t_on, t_off, dropped)
+        assert t_on - t_off <= 10e-6 * dropped, (i, t_on, t_off, dropped)
 
 
 # ------------------------------------------------------------------ the limits: slack, orbits, r2_cap
