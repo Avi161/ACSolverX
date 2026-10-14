@@ -504,14 +504,14 @@ def search_states(monkeypatch, rows):
     return states
 
 
-HARD_ROW = data.rows("u124")[5].pres          # aca_5: unsolved by every method (U124); rank four within 300 units
+HARD_ROW = data.rows("u124")[101].pres        # aca_101: unsolved by every method (U124); rank four within 1,000 units
 
 
 def test_compiled_moves_equal_the_spec_on_search_states(monkeypatch):
     """The same on the states four searches expand (rank two to four), at several limits; and the lazy cut list
     gives the counters' pool the entries ``lazy_entries`` gives from the spec's list."""
     from acx.highspeedup import dynkernels as K
-    rows = [(ac19_row(r), 1000) for r in ("ac19_239", "ac19_714", "ac19_1286")] + [(HARD_ROW, 300)]
+    rows = [(ac19_row(r), 1000) for r in ("ac19_239", "ac19_714", "ac19_1286")] + [(HARD_ROW, 1000)]
     states = search_states(monkeypatch, rows)
     assert {len(s) for s in states} == {2, 3, 4} and len(states) > 250
     for words in states[::6]:
