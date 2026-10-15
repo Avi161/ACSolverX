@@ -29,14 +29,28 @@ inputs, malformed types, optional verification and episode ends. **P1**: a high-
 | 11 | P2 | **`nan` and `inf` passed** as `rl.alpha` and `hybrid.dyn_ratio` | one finite-number check; the RL entry point also checks width, steps, capture and alpha |
 | 12 | P2 | **Optional RL code was absent from CI**, and the docs overstated verification (replay shares words and moves with the reference engine; `path=false` skips verification) | a CPU PyTorch CI job runs policy/JAX parity, legal moves and cap behaviour, beam replay, PPO, runner integration and the review regressions; the docs state those limits |
 
+## 14 October follow-up
+
+On [`a7174816`](https://github.com/Avi161/ACSolverX/commit/a7174816c9bf6876b4434478e0ba1995e3485750) (after #29 to #33),
+ten more P2 defects, each fixed with a test:
+
+| # | problem | fix |
+|---:|---|---|
+| 1 | **CoV built the whole family before its first search**, even when the control solved | `iter_images` streams the same ordered family (`enumerate_images` wraps it); `stats.images` now counts the generated prefix, `images_exhausted` says whether it finished. 20 easy MS640 rows: 25.9 → 4.4 ms (default family), 473 → 4.6 ms (exhaustive) |
+| 2 | **The rank-n sweep did unused work**: captured every path for a 0.2% sample, cached every combination (47,071,588,320 tuples for 6,560 words and three generators), rehashed the pool | capture is decided before the search; `combos` is a lazy indexable sequence in itertools order; results fill NumPy columns; the pool digest is cached. Runtime is unchanged (11.57 vs 11.69 s on 320 starts) |
+| 3 | **PPO minibatches**: one sample gave NaN advantages, a remainder gave extra steps, unknown settings were ignored | exactly `minibatches` nonempty groups, no normalisation of a singleton, unknown or out-of-range settings and bad initial states refused |
+| 4 | **Selectors changed ids**: `--solved-from` split `one,two`, `--rows` went through TOML, an empty `--rows` kept the slice, the sweep CLI ran a hybrid config as rank-n, `--verify -1` skipped every recheck | literal id lists, no TOML reparse, empty `--rows` selects all, the sweep requires `method = 'rankn'` and a nonnegative recheck |
+| 5 | **Resume could mix implementations**: `config.json` misses solver code, dependencies and the RL checkpoint | `runner/provenance.py` records source, runtime and each invocation; both drivers refuse drift before writing. Older folders are marked untracked; direct PPO calls are not tracked |
+| 6 | **Cyclic `normal` always ran a second, unchanged pass** | one pass for `cyclic=True` (rotations and inverses of a cyclically reduced word stay reduced); the loop stays for `cyclic=False` |
+| 7 | **The RL beam carried the value bonus** into the next step's log probability (`0, 7, 14` instead of `0, 0, 0`) | ranking scores and log probabilities are separate; `alpha=0` is unchanged, nonzero-alpha runs need a rerun |
+| 8 | **Duplicate record ids** counted differently in resume and reports | the shared reader refuses duplicates with both line numbers |
+| 9 | **A three-run comparison skipped the identity check** | the table checks `pres` for any number of runs |
+| 10 | **The speed gate passed failed workloads** (errors, skips, zero rows, non-finite times, `--repeat 0`) | it refuses them; rank-n's time is labelled wall time; the 2% threshold is unchanged |
+
 ## Limits left open
 
-The [14 October follow-up](REVIEW_FOLLOWUP.md) addresses source/runtime provenance, eager CoV generation, rank-n
-combination storage and additional experiment-integrity defects. The limits below describe this original review.
-
-- **Run provenance**: configs and per-row words identify settings and input, not the source revision, dependency lock
-  or hardware; reproduce across revisions under a new run name and record those outside. A versioned manifest would
-  make this checkable.
+- **Run provenance**: new runs carry source and runtime manifests (follow-up 5); older runs and direct training calls do
+  not, and the dependency lock and input files must be archived separately.
 - **Independent assurance**: spec/fast parity and replay share definitions; a separate checker or a formalisation
   would catch common-mode errors.
 - **Scale**: `data.rows` materialises a dataset before `--rows`, and rank-n word pools are materialised; large AC1M

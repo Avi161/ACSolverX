@@ -103,12 +103,10 @@ orbit, the hybrid's Nielsen/pinch cascade) is carried back to the row (`acx/aut/
 
 ## Docs
 
-- [docs/EXPERIMENTS.md](docs/EXPERIMENTS.md): setup, matched comparisons, resume, certificates and retained evidence.
-- [docs/REVIEW_FOLLOWUP.md](docs/REVIEW_FOLLOWUP.md): the follow-up review of experiment integrity and avoidable work.
-
 | doc | what |
 |---|---|
 | [docs/USAGE.md](docs/USAGE.md) | inputs, flags, run names and resume, config keys, output fields, comparing runs |
+| [docs/EXPERIMENTS.md](docs/EXPERIMENTS.md) | setup, matched comparisons, resume, certificates and retained evidence |
 | [docs/METHODS.md](docs/METHODS.md) | moves, search, priorities, transport, decoder, every method, verification |
 | [docs/RESULTS.md](docs/RESULTS.md) | every published number, its budget and the command that reproduces it |
 | [docs/PERFORMANCE.md](docs/PERFORMANCE.md) | CPU and memory: `fast` against `spec`, node budget, recording the path, relator cap, methods side by side |
@@ -116,7 +114,7 @@ orbit, the hybrid's Nielsen/pinch cascade) is carried back to the row (`acx/aut/
 | [docs/RANK3.md](docs/RANK3.md) | the rank-n brute force and the n-generator package |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | the module map and interfaces |
 | [docs/PROVENANCE.md](docs/PROVENANCE.md) | where each file, number and run comes from |
-| [docs/REVIEW.md](docs/REVIEW.md) | the October 2026 adversarial review: findings, fixes, limits |
+| [docs/REVIEW.md](docs/REVIEW.md) | the October 2026 adversarial review and its 14 October follow-up: findings, fixes, limits |
 | [benchmark/README.md](benchmark/README.md) | the evaluation sets and the difficulty ladder |
 | [results/README.md](results/README.md) | run folders, the two stored studies and their manifests |
 
