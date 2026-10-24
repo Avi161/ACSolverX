@@ -111,7 +111,7 @@ orbit, the hybrid's Nielsen/pinch cascade) is carried back to the row (`acx/aut/
 | [docs/RESULTS.md](docs/RESULTS.md) | every published number, its budget and the command that reproduces it |
 | [docs/PERFORMANCE.md](docs/PERFORMANCE.md) | CPU and memory: `fast` against `spec`, node budget, recording the path, relator cap, methods side by side |
 | [docs/CAP.md](docs/CAP.md) | the relator cap (`cap`, default 24, `"none"` = uncapped) and its counters |
-| [docs/STABLE_AC.md](docs/STABLE_AC.md) | AC and stable AC defined; the 2- and 3-generator baselines on MS640 |
+| [docs/writeup/stable_ac.pdf](docs/writeup/stable_ac.pdf) | the writeup (LaTeX source beside it): AC and stable AC, every method's definition and score |
 | [docs/RANK3.md](docs/RANK3.md) | the rank-n brute force and the n-generator package |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | the module map and interfaces |
 | [docs/PROVENANCE.md](docs/PROVENANCE.md) | where each file, number and run comes from |
