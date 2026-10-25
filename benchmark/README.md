@@ -2,17 +2,26 @@
 
 **TL;DR.** Fixed row lists so two techniques are scored on the same presentations. Every row is a verbatim
 presentation from `data/` and can be checked against it. The headline benchmark is the **difficulty ladder** (ten
-levels, from a few pops to "only the cascades solve it"; main testers `ladder60`, `ladder100`, `ladder200`); the
+levels, from a few pops to "only the cascades solve it"); **the default is `ladder`, 100 rows, 10 a level**; the
 **bench10 to bench60** subsets span MS640's difficulty bins; **`ac1m_hard_holdout60`** is a holdout read once. Results
 are not kept here ([docs/RESULTS.md](../docs/RESULTS.md)).
 
 Run one by name, `python run.py --config configs/<method>.toml --set benchmark=<name>`, or load it with
-`acx.data.rows(name)`: `ms640`, `1190ms`, `bench10`..`bench60`, `ladder20`..`ladder500`,
+`acx.data.rows(name)`: `ms640`, `1190ms`, `bench10`..`bench60`, `ladder` (the default), `ladder20`..`ladder500`,
 `ladder20_s20hard`..`ladder300_s20hard`, `ac1m_hard_holdout60`, `ac19_autmin`, `ac1m_autmin`, `u124`
 ([docs/USAGE.md](../docs/USAGE.md) lists their row ids). `u124` is `data/ms_unsolved_reps/aca_124_initial.csv`, the
 same rows as `ladder/unsolved_124.csv`. Tables without relator columns (`ladder_pairs.csv`, ...) are reference data.
 
 ## The difficulty ladder (`ladder/`)
+
+**The default ladder** is `ladder` (`ladder/ladder_default.csv`, also `rows("ladder_default")`; `configs/ladder.toml`
+runs it; built by `ladder/build_ladder_default.py`): exactly 100 rows, 10 a level. It is `ladder_100` with two changes.
+Level 10 has only 9 pool rows that neither plain greedy nor S20_MK2 solves at 10M pops, so its tenth row is
+`ac19_12445`, the S20_MK2-hardest level-9 pool row not already chosen (plain greedy unsolved at 10M, S20_MK2 1,297,772
+pops): every row of levels 9 and 10 stays greedy-unsolved at 10M. Level 8 swaps its last-ranked row (`ac19_52553`,
+2,637,834 pops) for `ac19_44158` (8,009,273 pops), so its top is not a single outlier. Mean plain-greedy pops on record,
+per level: 213.6, 3,983, 17,612, 56,183, 235,756, 588,638, 1,794,322 and 4,160,015 for levels 1 to 8; levels 9 and 10
+are greedy-unsolved at 10M. It is not part of the nested family.
 
 Difficulty is the node count `g` of plain length-ordered greedy **on record**; every row is solved by something on
 record. Panels of 20, 40, 60, 100, 200, 300 and 500 rows are nested, capped by population at 99, 188, 268 and 377
@@ -40,6 +49,7 @@ recorded pops).
 
 | file | what |
 |---|---|
+| `ladder_default.csv` (+ `.json`), `build_ladder_default.py` | the default ladder, 100 rows, 10 a level, and its builder |
 | `ladder_{20,40,60,100,200,300,500}.csv` (+ `.json`) | the spread panels |
 | `ladder_{20,40,60,100,200,300}_s20hard.csv` (+ `.json`) | the S20-hard panels |
 | `originals_45.csv` | the 45 pre-Aut-min originals: pool rows, never on a panel |

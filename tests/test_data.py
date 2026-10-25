@@ -58,6 +58,30 @@ def test_ladder_200_level_counts():
     assert [levels[k] for k in range(1, 11)] == [20] * 8 + [19, 9]
 
 
+def test_default_ladder_matches_its_builder():
+    """The default ladder (``rows("ladder")``): ladder_100 with level 10 filled by the S20_MK2-hardest level-9 pool row
+    (greedy unsolved at 10M) and level 8's last-ranked row swapped for the greedy row closest to 10M; 10 rows a level."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("bld", path(f"{LADDER}/build_ladder_default.py"))
+    bld = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(bld)
+    built, l9, g8, drop = bld.build()
+    rows = read_csv(f"{LADDER}/ladder_default.csv")
+    assert rows == built
+    assert (l9["name"], g8["name"], drop) == ("ac19_12445", "ac19_44158", "ac19_52553")
+    levels = collections.Counter(int(r["level"]) for r in rows)
+    assert len(rows) == 100 and [levels[k] for k in range(1, 11)] == [10] * 10
+    # levels stay ordered: every level-9 and level-10 row is greedy-unsolved at 10M
+    assert all(r["greedy_solved"] == "0" for r in rows if int(r["level"]) >= 9)
+    pool = {r["name"]: r for r in read_csv(f"{LADDER}/ladder_500.csv")}
+    for r in rows:
+        assert {**r, "level": pool[r["name"]]["level"]} == pool[r["name"]], r["name"]
+        if r["name"] != "ac19_12445":
+            assert r["level"] == pool[r["name"]]["level"], r["name"]
+    assert read_json(f"{LADDER}/ladder_default.json")["subset"] == [r["name"] for r in rows]
+    assert [r.id for r in data.rows("ladder")] == [r["name"] for r in rows]
+
+
 def test_ladder_subsets_nest():
     names = [{r["name"] for r in read_csv(f"{LADDER}/ladder_{k}.csv")} for k in sorted(LADDER_SIZES)]
     assert all(a <= b for a, b in zip(names, names[1:]))
@@ -124,7 +148,7 @@ def test_ac1m_aut_min_rows():
         assert sum(1 for _ in csv.DictReader(f)) == 71283
 
 
-@pytest.mark.parametrize("name,n", [("ms640", 640), ("bench60", 60), ("ladder20", 20), ("ladder300_s20hard", 268),
+@pytest.mark.parametrize("name,n", [("ms640", 640), ("bench60", 60), ("ladder", 100), ("ladder20", 20), ("ladder300_s20hard", 268),
                                     ("ac1m_hard_holdout60", 60), ("u124", 124), ("ac19_autmin", 72779)])
 def test_rows_by_name(name, n):
     assert len(data.rows(name)) == n

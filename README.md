@@ -69,7 +69,7 @@ replayed. A row that misses spends its whole **budget**; cost covers every row. 
 | rl, first 30 rows (`rl`, run `ms640_rl30`) | beam 256 x 150 steps | 30 / 30 | 30 / 0 / 0 | 9,650 evaluations | 321.7 | 4.4 | 28.2 |
 
 A hybrid unit is not a pop: compare the two by CPU ([docs/PERFORMANCE.md](docs/PERFORMANCE.md#methods-side-by-side)).
-[docs/RESULTS.md](docs/RESULTS.md) has every published run and its command, among them bench60, ladder200 and the
+[docs/RESULTS.md](docs/RESULTS.md) has every published run and its command, among them bench60, the default ladder (100 rows), ladder200 and the
 hybrid on all 72,779 AC19 Aut(F2) orbits (72,779 solved, 188 as `stable_cert`) and on all 1,136,154 raw AC1M
 presentations (1,136,135 solved).
 

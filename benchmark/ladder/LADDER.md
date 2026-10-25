@@ -4,7 +4,8 @@
 it", graded by the node count of plain length-ordered greedy **on record**, in nested panels of 20 to 500 rows so a
 method can be scored level by level. **Every ladder row is solved by something on record**; the 124 unsolved
 Miller–Schupp classes ship apart in [`unsolved_124.csv`](unsolved_124.csv). Panels draw from two strata, **Aut-min
-AC19 orbits and MS-640 rows**. **Subsets 60, 100 and 200 are the main testers.**
+AC19 orbits and MS-640 rows**. **The default panel is `ladder_default` (`rows("ladder")`): 100 rows, 10 a level**
+([below](#the-default-ladder)); the nested subsets 60, 100 and 200 remain available.
 
 > **In this checkout**: the panel CSV/JSON files, `ladder_manifest.json` and this file; run a panel with `run.py`
 > ([below](#running-a-panel)). The build and tester scripts (`build_ladder.py`, `grade_extra.py`, `run_ladder.py`,
@@ -129,6 +130,38 @@ and levels 5–10 are unchanged by this (no original was above level 4), and the
 Deterministic, no seed. Populations cap the top: levels 6 / 7 / 8 / 9 / 10 hold 39 / 30 / 30 / 19 / 9 rows, so
 subsets up to 60 are exact, 100 has 99 rows, 200 has 188, 300 has 268, 500 has 377 (`per_level_actual` in the JSON).
 
+### The default ladder
+
+`ladder_default.csv` (+ `.json`), loaded as `ladder` or `ladder_default`, run by `configs/ladder.toml` and built by
+`build_ladder_default.py`, is the panel to report on: exactly 100 rows, 10 a level. `ladder_100` has 99 because level 10
+has only 9 pool rows (plain greedy and S20_MK2 both unsolved at 10M). The default ladder keeps `ladder_100` with two
+changes:
+
+- **Level 10** adds `ac19_12445`, the S20_MK2-hardest level-9 pool row not already in `ladder_100` (plain greedy
+  unsolved at 10M; S20_MK2 1,297,772 pops, against 1,299,594 for the hardest level-9 pick). Every row of levels 9 and 10
+  is therefore greedy-unsolved at 10M, and level 10 is the 9 rows both methods fail on plus the hardest remaining
+  S20_MK2 row.
+- **Level 8** swaps its last-ranked row, `ac19_52553` (2,637,834 pops), for `ac19_44158` (8,009,273), the greedy-solved
+  row closest to 10M that `ladder_100` lacks, so the level's top is two rows near 8M instead of one outlier.
+
+Every row is the pool row verbatim except the level of `ac19_12445` (graded 9). It is not nested with the other panels.
+
+| level | rows (AC19 + MS-640) | plain greedy pops on record: mean | median | min | max | S20_MK2 pops on record: mean |
+|---:|---|---:|---:|---:|---:|---:|
+| 1 | 5 + 5 | 213.6 | 10.5 | 2 | 999 | 101.2 |
+| 2 | 5 + 5 | 3,983 | 2,552 | 1,000 | 9,943 | 706.6 |
+| 3 | 5 + 5 | 17,612 | 15,750 | 10,008 | 31,607 | 7,646 |
+| 4 | 5 + 5 | 56,183 | 51,011 | 31,697 | 99,536 | 9,780 |
+| 5 | 6 + 4 | 235,756 | 244,128 | 104,005 | 310,069 | 13,312 |
+| 6 | 8 + 2 | 588,638 | 574,654 | 353,005 | 948,266 | 4,693 |
+| 7 | 10 + 0 | 1,794,322 | 1,889,554 | 1,077,421 | 2,233,190 | 313,514 |
+| 8 | 10 + 0 | 4,160,015 | 3,377,244 | 2,274,604 | 8,204,360 | 73,284 |
+| 9 | 10 + 0 | unsolved at 10M | | | | 340,650 |
+| 10 | 10 + 0 | unsolved at 10M | | | | unsolved at 10M (9); ac19_12445 1,297,772 |
+
+Pops are each row's grading run at its own `greedy_cap` (24 for MS-640, 48 or 64 for AC19; see Caps above); the S20_MK2
+column is the mean of `s20_nodes`. S20_MK2 cost is not monotone in the level, which is graded by plain greedy.
+
 ### The S20-hard variant: `ladder_{20,40,60,100,200,300}_s20hard`
 
 Same levels, strata and exclusions, but a level keeps the `k` rows **S20_MK2 finds hardest** (largest `s20_nodes`;
@@ -158,7 +191,8 @@ Levels 1–2 are still "greedy under 10k": the S20-hard rows there are where the
 ## Running a panel
 
 ```bash
-python run.py --config configs/ladder.toml                              # S20_MK2 on ladder_200, 10,000 pops
+python run.py --config configs/ladder.toml                              # S20_MK2 on the default ladder, 10,000 pops
+python run.py --config configs/ladder.toml --set benchmark=ladder200    # the same on ladder_200
 python run.py --config configs/greedy_fast.toml --set benchmark=ladder60 --set name=ladder60_length
 python run.py --config configs/hybrid.toml --set benchmark=ladder200 --set name=ladder200_hybrid_mine
 python run.py --config configs/ladder.toml --input benchmark/ladder/originals_45.csv

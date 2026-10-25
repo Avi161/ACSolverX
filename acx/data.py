@@ -45,6 +45,8 @@ BENCHMARKS = {
     **{f"bench{n}": f"benchmark/subsets/benchmark_subset_{n}.csv" for n in (10, 20, 40, 60)},
     **{f"ladder{n}": f"benchmark/ladder/ladder_{n}.csv" for n in (20, 40, 60, 100, 200, 300, 500)},
     **{f"ladder{n}_s20hard": f"benchmark/ladder/ladder_{n}_s20hard.csv" for n in (20, 40, 60, 100, 200, 300)},
+    "ladder": "benchmark/ladder/ladder_default.csv",          # the default ladder: 100 rows, 10 a level
+    "ladder_default": "benchmark/ladder/ladder_default.csv",
     "ac19_autmin": "data/AC19_extended_aut_min.csv",
     "ac1m_autmin": "data/AC1M_aut_min.csv.gz",
     "u124": "data/ms_unsolved_reps/aca_124_initial.csv",
