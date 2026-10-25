@@ -59,24 +59,33 @@ def test_ladder_200_level_counts():
 
 
 def test_default_ladder_matches_its_builder():
-    """The default ladder (``rows("ladder")``): ladder_100 with level 10 filled by the S20_MK2-hardest level-9 pool row
-    (greedy unsolved at 10M) and level 8's last-ranked row swapped for the greedy row closest to 10M; 10 rows a level."""
+    """The default ladder (``rows("ladder")``): ladder_100's levels 1-6 and 9; levels 7 and 8 split at E = 3,000,000, level 7
+    the 10 largest S20_MK2 costs and level 8 the 10 largest greedy costs; level 10 filled by the S20_MK2-hardest level-9
+    pool row; 10 rows a level."""
     import importlib.util
     spec = importlib.util.spec_from_file_location("bld", path(f"{LADDER}/build_ladder_default.py"))
     bld = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(bld)
-    built, l9, g8, drop = bld.build()
+    built, l9 = bld.build()
     rows = read_csv(f"{LADDER}/ladder_default.csv")
-    assert rows == built
-    assert (l9["name"], g8["name"], drop) == ("ac19_12445", "ac19_44158", "ac19_52553")
+    assert rows == built and l9["name"] == "ac19_12445"
     levels = collections.Counter(int(r["level"]) for r in rows)
     assert len(rows) == 100 and [levels[k] for k in range(1, 11)] == [10] * 10
-    # levels stay ordered: every level-9 and level-10 row is greedy-unsolved at 10M
+    # levels stay ordered: level 7 below E, level 8 from E to 10M, levels 9 and 10 greedy-unsolved at 10M
+    g = lambda r: int(r["greedy_nodes"])
+    assert all(10**6 <= g(r) < bld.E for r in rows if r["level"] == "7")
+    assert all(bld.E <= g(r) <= 10**7 for r in rows if r["level"] == "8")
     assert all(r["greedy_solved"] == "0" for r in rows if int(r["level"]) >= 9)
+    # level 7 holds the 10 largest S20_MK2 costs below E; level 8 the 10 largest greedy costs of the whole pool
     pool = {r["name"]: r for r in read_csv(f"{LADDER}/ladder_500.csv")}
-    for r in rows:
+    s20 = lambda r: int(r["s20_nodes"])
+    below = sorted((s20(r) for r in pool.values() if r["greedy_solved"] == "1" and 10**6 <= g(r) < bld.E), reverse=True)
+    assert sorted((s20(r) for r in rows if r["level"] == "7"), reverse=True) == below[:10]
+    solved = sorted((g(r) for r in pool.values() if r["greedy_solved"] == "1"), reverse=True)
+    assert sorted((g(r) for r in rows if r["level"] == "8"), reverse=True) == solved[:10]
+    for r in rows:  # pool rows verbatim apart from the level column
         assert {**r, "level": pool[r["name"]]["level"]} == pool[r["name"]], r["name"]
-        if r["name"] != "ac19_12445":
+        if r["level"] not in ("7", "8", "10"):
             assert r["level"] == pool[r["name"]]["level"], r["name"]
     assert read_json(f"{LADDER}/ladder_default.json")["subset"] == [r["name"] for r in rows]
     assert [r.id for r in data.rows("ladder")] == [r["name"] for r in rows]

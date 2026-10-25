@@ -133,18 +133,20 @@ subsets up to 60 are exact, 100 has 99 rows, 200 has 188, 300 has 268, 500 has 3
 ### The default ladder
 
 `ladder_default.csv` (+ `.json`), loaded as `ladder` or `ladder_default`, run by `configs/ladder.toml` and built by
-`build_ladder_default.py`, is the panel to report on: exactly 100 rows, 10 a level. `ladder_100` has 99 because level 10
-has only 9 pool rows (plain greedy and S20_MK2 both unsolved at 10M). The default ladder keeps `ladder_100` with two
-changes:
+`build_ladder_default.py`, is the panel to report on: exactly 100 rows, 10 a level. It keeps `ladder_100`'s levels 1-6
+and 9 and changes three things:
 
+- **Levels 7 and 8 split at 3,000,000 pops**, a round number, instead of the logarithmic median `E` = 2,253,802. Level 7
+  is `1M <= g < 3M` (43 pool rows) and takes the **10 rows that cost S20_MK2 the most** (`s20_nodes` 110,115 to
+  1,383,279; the next is 72,715), so S20_MK2 at 10,000 pops solves none of them. Level 8 is
+  `3M <= g <= 10M` (17 pool rows) and takes the **10 largest `g`** (ties by name in both levels), so it holds every greedy-solved row
+  closest to 10M: `ac19_15866` (8,204,360), `ac19_44158` (8,009,273) and `ac19_14060` (5,309,101) among them.
 - **Level 10** adds `ac19_12445`, the S20_MK2-hardest level-9 pool row not already in `ladder_100` (plain greedy
   unsolved at 10M; S20_MK2 1,297,772 pops, against 1,299,594 for the hardest level-9 pick). Every row of levels 9 and 10
-  is therefore greedy-unsolved at 10M, and level 10 is the 9 rows both methods fail on plus the hardest remaining
-  S20_MK2 row.
-- **Level 8** swaps its last-ranked row, `ac19_52553` (2,637,834 pops), for `ac19_44158` (8,009,273), the greedy-solved
-  row closest to 10M that `ladder_100` lacks, so the level's top is two rows near 8M instead of one outlier.
+  is therefore greedy-unsolved at 10M.
 
-Every row is the pool row verbatim except the level of `ac19_12445` (graded 9). It is not nested with the other panels.
+Every row is the pool row verbatim except the `level` column, which follows the 3M split in levels 7-8 and is 10 for
+`ac19_12445`. It is not nested with the other panels, which keep `E` = 2,253,802.
 
 | level | rows (AC19 + MS-640) | plain greedy pops on record: mean | median | min | max | S20_MK2 pops on record: mean |
 |---:|---|---:|---:|---:|---:|---:|
@@ -154,8 +156,8 @@ Every row is the pool row verbatim except the level of `ac19_12445` (graded 9). 
 | 4 | 5 + 5 | 56,183 | 51,011 | 31,697 | 99,536 | 9,780 |
 | 5 | 6 + 4 | 235,756 | 244,128 | 104,005 | 310,069 | 13,312 |
 | 6 | 8 + 2 | 588,638 | 574,654 | 353,005 | 948,266 | 4,693 |
-| 7 | 10 + 0 | 1,794,322 | 1,889,554 | 1,077,421 | 2,233,190 | 313,514 |
-| 8 | 10 + 0 | 4,160,015 | 3,377,244 | 2,274,604 | 8,204,360 | 73,284 |
+| 7 | 10 + 0 | 1,875,962 | 2,063,274 | 1,077,421 | 2,908,496 | 424,977 |
+| 8 | 10 + 0 | 5,022,975 | 4,191,868 | 3,717,694 | 8,204,360 | 113,309 |
 | 9 | 10 + 0 | unsolved at 10M | | | | 340,650 |
 | 10 | 10 + 0 | unsolved at 10M | | | | unsolved at 10M (9); ac19_12445 1,297,772 |
 

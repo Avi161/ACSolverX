@@ -26,9 +26,9 @@ from typing import NamedTuple
 
 # name: (config, rows, modes); each slice takes 1.5 to 9 CPU seconds a run on a CI runner. Rank-n has no path switch.
 BOTH, NORMAL = ("normal", "fast"), ("normal",)
-# The first-ranked row of each ladder level, by id: in the default ladder and in ladder200 alike, so the workload is the
+# One row of each ladder level, by id, present in the default ladder and in ladder200 alike, so the workload is the
 # same ten searches on a tree whose configs/ladder.toml still names ladder200.
-LADDER_ROWS = ("ac19_6582,ac19_21100,ac19_20653,ac19_58079,ac19_30155,ac19_24379,ac19_50910,ac19_54765,ac19_20270,"
+LADDER_ROWS = ("ac19_6582,ac19_21100,ac19_20653,ac19_58079,ac19_30155,ac19_24379,ac19_68854,ac19_15866,ac19_20270,"
                "ac19_65753")
 WORKLOADS = {
     "greedy": ("configs/greedy_fast.toml", "0:640:10", BOTH),

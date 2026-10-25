@@ -15,13 +15,14 @@ same rows as `ladder/unsolved_124.csv`. Tables without relator columns (`ladder_
 ## The difficulty ladder (`ladder/`)
 
 **The default ladder** is `ladder` (`ladder/ladder_default.csv`, also `rows("ladder_default")`; `configs/ladder.toml`
-runs it; built by `ladder/build_ladder_default.py`): exactly 100 rows, 10 a level. It is `ladder_100` with two changes.
-Level 10 has only 9 pool rows that neither plain greedy nor S20_MK2 solves at 10M pops, so its tenth row is
-`ac19_12445`, the S20_MK2-hardest level-9 pool row not already chosen (plain greedy unsolved at 10M, S20_MK2 1,297,772
-pops): every row of levels 9 and 10 stays greedy-unsolved at 10M. Level 8 swaps its last-ranked row (`ac19_52553`,
-2,637,834 pops) for `ac19_44158` (8,009,273 pops), so its top is not a single outlier. Mean plain-greedy pops on record,
-per level: 213.6, 3,983, 17,612, 56,183, 235,756, 588,638, 1,794,322 and 4,160,015 for levels 1 to 8; levels 9 and 10
-are greedy-unsolved at 10M. It is not part of the nested family.
+runs it; built by `ladder/build_ladder_default.py`): exactly 100 rows, 10 a level. Levels 1-6 and 9 are `ladder_100`'s.
+Levels 7 and 8 split at a round number, **3,000,000** plain-greedy pops, instead of the logarithmic median 2,253,802:
+level 7 is 1M to 3M and takes the 10 rows S20_MK2 finds most expensive (110k to 1.38M pops), and level 8 is the 10
+greedy-solved rows with the largest cost (3.7M to 8.2M).
+Level 10 has only 9 pool rows that neither plain greedy nor S20_MK2 solves at 10M, so its tenth row is `ac19_12445`,
+the S20_MK2-hardest level-9 pool row not already chosen (S20_MK2 1,297,772 pops). Mean plain-greedy pops on record, per
+level: 213.6, 3,983, 17,612, 56,183, 235,756, 588,638, 1,875,962 and 5,022,975 for levels 1 to 8; levels 9 and 10 are
+greedy-unsolved at 10M. It is not part of the nested family.
 
 Difficulty is the node count `g` of plain length-ordered greedy **on record**; every row is solved by something on
 record. Panels of 20, 40, 60, 100, 200, 300 and 500 rows are nested, capped by population at 99, 188, 268 and 377
