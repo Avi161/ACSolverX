@@ -47,7 +47,7 @@ including commas, surrounding whitespace or slice-like names; `--solved-from` pr
 |---|---|
 | `ms640`, `1190ms`, `ms_unsolved`, `ac19`, `ac19_extended`, `ac1m` (the datasets in `data/`) | the line number, from 0 |
 | `bench10`, `bench20`, `bench40`, `bench60` | the `pres_id` column (the MS640 line) |
-| `ladder20` .. `ladder500`, `ladder20_s20hard` .. `ladder300_s20hard`, `ac19_autmin`, `ac1m_autmin`, `u124` | the `name` column |
+| `ladder` (the default ladder, 100 rows), `ladder20` .. `ladder500`, `ladder20_s20hard` .. `ladder300_s20hard`, `ac19_autmin`, `ac1m_autmin`, `u124` | the `name` column |
 | `ac1m_hard_holdout60` | `idx` (the AC1M line) |
 
 **Your own file** (`--input PATH` or `benchmark = "PATH"`): UTF-8, optionally gzipped (`.txt.gz`, ...). Generators
