@@ -1,0 +1,150 @@
+{
+ "scope": "rows searched at budget 1e5 (rows carried from elliot_10k were verified in results/elliot_10k/VERIFY.json)",
+ "files": {
+  "bench60__auto_dual.jsonl": {
+   "file": "bench60__auto_dual.jsonl",
+   "counts": {
+    "rows": 4,
+    "solved": 4,
+    "states": 3760,
+    "auto_cov_in_orbit": 40,
+    "auto_cov_recon_ok": 40,
+    "sub_ok": 3716,
+    "sub_acx_sampled": 3716
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "bench60__auto_nonauto_cov_triple.jsonl": {
+   "file": "bench60__auto_nonauto_cov_triple.jsonl",
+   "counts": {
+    "rows": 4,
+    "solved": 4,
+    "states": 3760,
+    "auto_cov_in_orbit": 40,
+    "auto_cov_recon_ok": 40,
+    "sub_ok": 3716,
+    "sub_acx_sampled": 3716
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "bench60__single_auto_cov_dual.jsonl": {
+   "file": "bench60__single_auto_cov_dual.jsonl",
+   "counts": {
+    "rows": 8,
+    "solved": 8,
+    "states": 6168,
+    "single_cov_in_orbit": 84,
+    "single_cov_recon_ok": 84,
+    "sub_ok": 6076,
+    "sub_acx_sampled": 6076
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ladder100__auto_dual.jsonl": {
+   "file": "ladder100__auto_dual.jsonl",
+   "counts": {
+    "rows": 3,
+    "solved": 3,
+    "states": 2820,
+    "auto_cov_in_orbit": 30,
+    "auto_cov_recon_ok": 30,
+    "sub_ok": 2787,
+    "sub_acx_sampled": 2787
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ladder100__auto_nonauto_cov_triple.jsonl": {
+   "file": "ladder100__auto_nonauto_cov_triple.jsonl",
+   "counts": {
+    "rows": 3,
+    "solved": 3,
+    "states": 2820,
+    "auto_cov_in_orbit": 30,
+    "auto_cov_recon_ok": 30,
+    "sub_ok": 2787,
+    "sub_acx_sampled": 2787
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ladder100__single_auto_cov_dual.jsonl": {
+   "file": "ladder100__single_auto_cov_dual.jsonl",
+   "counts": {
+    "rows": 8,
+    "solved": 8,
+    "states": 5475,
+    "single_cov_in_orbit": 86,
+    "single_cov_recon_ok": 86,
+    "sub_ok": 5381,
+    "sub_acx_sampled": 5381
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ms640__auto_dual.jsonl": {
+   "file": "ms640__auto_dual.jsonl",
+   "counts": {
+    "rows": 6,
+    "solved": 6,
+    "states": 5639,
+    "auto_cov_in_orbit": 59,
+    "auto_cov_recon_ok": 59,
+    "sub_ok": 5574,
+    "sub_acx_sampled": 5574
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ms640__auto_nonauto_cov_triple.jsonl": {
+   "file": "ms640__auto_nonauto_cov_triple.jsonl",
+   "counts": {
+    "rows": 6,
+    "solved": 6,
+    "states": 5639,
+    "auto_cov_in_orbit": 59,
+    "auto_cov_recon_ok": 59,
+    "sub_ok": 5574,
+    "sub_acx_sampled": 5574
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ms640__single_auto_cov_dual.jsonl": {
+   "file": "ms640__single_auto_cov_dual.jsonl",
+   "counts": {
+    "rows": 13,
+    "solved": 13,
+    "states": 10017,
+    "single_cov_in_orbit": 134,
+    "single_cov_recon_ok": 134,
+    "sub_ok": 9870,
+    "sub_acx_sampled": 9870
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  }
+ },
+ "all_pass": true
+}
