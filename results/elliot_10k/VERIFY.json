@@ -1,0 +1,147 @@
+{
+ "description": "Independent verification of every solved path (scratchpad verify.py). sub: to-state = from-state with r_i -> cyclic reduction of rot(r_i)*rot(r_j^{+-1}) with cancelling seam (own string check; every step also cross-checked against acx.core.moves enumerate_moves/s_step). auto_cov: same Aut(F2) orbit (acx.aut orbit_key fast) and to-state = named AUTO_COV_MAPS image. single_cov: same orbit and rebuilt from (subword,target,replacement). triple complete_cov: to-state among outputs of ACSolverES generate_non_automorphic_complete_cov_moves(from, max_len=65) with native automorphic key; orbit membership recorded. Also: path[0]==canonical(r1,r2), last state trivial, len(moves)==len(path)-1==path_length, |det|=1 every state, move_kinds and kind labels consistent.",
+ "all_pass": true,
+ "files": {
+  "bench60__auto_dual.jsonl": {
+   "counts": {
+    "rows": 60,
+    "solved": 56,
+    "states": 6010,
+    "auto_cov_in_orbit": 143,
+    "auto_cov_recon_ok": 143,
+    "sub_ok": 5811,
+    "sub_acx_sampled": 5811
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "bench60__auto_nonauto_cov_triple.jsonl": {
+   "counts": {
+    "rows": 60,
+    "solved": 56,
+    "states": 6002,
+    "auto_cov_in_orbit": 138,
+    "auto_cov_recon_ok": 138,
+    "sub_ok": 5800,
+    "sub_acx_sampled": 5800,
+    "complete_cov_not_in_orbit": 8,
+    "complete_cov_gen_exact": 8
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 7,
+   "stable_cert_rows": 7,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "bench60__single_auto_cov_dual.jsonl": {
+   "counts": {
+    "rows": 60,
+    "solved": 52,
+    "states": 2772,
+    "single_cov_in_orbit": 171,
+    "single_cov_recon_ok": 171,
+    "sub_ok": 2549,
+    "sub_acx_sampled": 2549
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ladder100__auto_dual.jsonl": {
+   "counts": {
+    "rows": 100,
+    "solved": 97,
+    "states": 9504,
+    "sub_ok": 8858,
+    "sub_acx_sampled": 8858,
+    "auto_cov_in_orbit": 549,
+    "auto_cov_recon_ok": 549
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ladder100__auto_nonauto_cov_triple.jsonl": {
+   "counts": {
+    "rows": 100,
+    "solved": 97,
+    "states": 9395,
+    "sub_ok": 8756,
+    "sub_acx_sampled": 8756,
+    "auto_cov_in_orbit": 525,
+    "auto_cov_recon_ok": 525,
+    "complete_cov_not_in_orbit": 17,
+    "complete_cov_gen_exact": 17
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 17,
+   "stable_cert_rows": 17,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ladder100__single_auto_cov_dual.jsonl": {
+   "counts": {
+    "rows": 100,
+    "solved": 92,
+    "states": 6091,
+    "single_cov_in_orbit": 582,
+    "single_cov_recon_ok": 582,
+    "sub_ok": 5417,
+    "sub_acx_sampled": 5417
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ms640__auto_dual.jsonl": {
+   "counts": {
+    "rows": 640,
+    "solved": 634,
+    "states": 23173,
+    "auto_cov_in_orbit": 787,
+    "auto_cov_recon_ok": 787,
+    "sub_ok": 21752,
+    "sub_acx_sampled": 21752
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ms640__auto_nonauto_cov_triple.jsonl": {
+   "counts": {
+    "rows": 640,
+    "solved": 634,
+    "states": 23222,
+    "auto_cov_in_orbit": 758,
+    "auto_cov_recon_ok": 758,
+    "sub_ok": 21772,
+    "sub_acx_sampled": 21772,
+    "complete_cov_not_in_orbit": 58,
+    "complete_cov_gen_exact": 58
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 54,
+   "stable_cert_rows": 54,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  },
+  "ms640__single_auto_cov_dual.jsonl": {
+   "counts": {
+    "rows": 640,
+    "solved": 627,
+    "states": 16703,
+    "single_cov_in_orbit": 1012,
+    "single_cov_recon_ok": 1012,
+    "sub_ok": 15064,
+    "sub_acx_sampled": 15064
+   },
+   "failures": {},
+   "rows_with_nonorbit_step": 0,
+   "stable_cert_rows": 0,
+   "nonorbit_rows_equal_stable_cert_rows": true
+  }
+ }
+}
