@@ -34,7 +34,11 @@ def main():
     a = ap.parse_args()
     folder = Path(a.folder)
     lines = []
-    head = ("| benchmark | method | rows | solved @1e3 | solved @1e4 | stable_cert | nodes mean / median / max (solved) "
+    budgets = sorted({json.loads(f.read_text().splitlines()[0])["budget"] for f in folder.glob("*.jsonl")})
+    top = budgets[-1] if budgets else 10_000
+    marks = [b for b in (10**3, 10**4, 10**5, 10**6, 10**7) if b <= top]
+    solved_cols = " | ".join(f"solved @1e{len(str(b)) - 1}" for b in marks)
+    head = ("| benchmark | method | rows | " + solved_cols + " | stable_cert | nodes mean / median / max (solved) "
             "| nodes total (fail = budget) | path mean / median / max | S-moves mean | CoV moves mean / max "
             "| max relator len mean / max | max total len max | pruned | errors |")
     lines += [head, "|" + "---|" * (head.count("|") - 1)]
@@ -48,7 +52,7 @@ def main():
             ok = [r for r in recs if "error" not in r]
             sol = [r for r in ok if r["solved"]]
             n_err = len(recs) - len(ok)
-            s1e3 = sum(1 for r in sol if r["nodes"] <= 1000)
+            solved_at = " | ".join(str(sum(1 for r in sol if r["nodes"] <= b)) for b in marks)
             stable = sum(1 for r in sol if r["kind"] == "stable_cert")
             total = sum(r["nodes"] if r["solved"] else budget for r in ok)
             nm, nmed, nmax = stats([r["nodes"] for r in sol])
@@ -59,7 +63,7 @@ def main():
             mt = max((r["max_total_len"] for r in sol), default="-")
             pruned = sum(r.get("frontier_prune_count") or 0 for r in ok)
             lines.append(
-                f"| {bench} | {LABEL[algo]} | {len(recs)} | {s1e3} | {len(sol)} | {stable} | {nm} / {nmed} / {nmax} "
+                f"| {bench} | {LABEL[algo]} | {len(recs)} | {solved_at} | {stable} | {nm} / {nmed} / {nmax} "
                 f"| {total:,} | {pm} / {pmed} / {pmax} | {sub} | {cov} | {mr} | {mt} | {pruned} | {n_err} |"
             )
     text = "\n".join(lines)

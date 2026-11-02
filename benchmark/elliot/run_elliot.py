@@ -149,11 +149,15 @@ def main():
     ap.add_argument("--benches", default="ms640,bench60,ladder100")
     ap.add_argument("--algos", default=",".join(ALGOS))
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--from", dest="base", default=None,
+                    help="earlier run folder at a smaller budget: its solved rows are carried over "
+                         "(same result at any larger budget), only its unsolved rows are searched")
     a = ap.parse_args()
 
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
-    jobs = []
+    carried = []          # (bench, algo, record) copied from --from
+    jobs = []             # (bench, algo, pid, r1, r2) to search
     for bench in a.benches.split(","):
         rows = load_bench(bench)
         for algo in a.algos.split(","):
@@ -161,25 +165,47 @@ def main():
             done = set()
             if f.exists():
                 done = {json.loads(l)["id"] for l in f.read_text().splitlines() if l.strip()}
+            base = {}
+            if a.base:
+                bf = Path(a.base) / f"{bench}__{algo}.jsonl"
+                base = {r["id"]: r for r in map(json.loads, bf.read_text().splitlines()) if "error" not in r}
             for pid, r1, r2 in rows:
-                if pid not in done:
+                if pid in done:
+                    continue
+                prev = base.get(pid)
+                if prev is not None and prev["solved"] and prev["budget"] <= a.budget:
+                    rec = dict(prev, budget=a.budget, carried_from=str(a.base))
+                    carried.append((bench, algo, rec))
+                else:
                     jobs.append((bench, algo, pid, r1, r2))
-    print(f"{len(jobs)} jobs", flush=True)
+
     handles = {}
+
+    def write(bench, algo, rec):
+        rec["bench"] = bench
+        key = (bench, algo)
+        if key not in handles:
+            handles[key] = (out / f"{bench}__{algo}.jsonl").open("a")
+        handles[key].write(json.dumps(rec) + "\n")
+        handles[key].flush()
+
+    for bench, algo, rec in carried:
+        write(bench, algo, rec)
+    # one search per (algo, presentation): bench60 and the ladder's ms_* rows are MS640 rows
+    unique = {}
+    for bench, algo, pid, r1, r2 in jobs:
+        unique.setdefault((algo, r1, r2), []).append((bench, pid))
+    print(f"{len(carried)} rows carried, {len(jobs)} rows to search, {len(unique)} distinct searches", flush=True)
     with ProcessPoolExecutor(a.workers, initializer=_warm) as ex:
-        futs = {ex.submit(run_one, algo, a.budget, pid, r1, r2): (bench, algo)
-                for bench, algo, pid, r1, r2 in jobs}
+        futs = {ex.submit(run_one, algo, a.budget, uses[0][1], r1, r2): (algo, uses)
+                for (algo, r1, r2), uses in unique.items()}
         for n, fut in enumerate(as_completed(futs), 1):
-            bench, algo = futs[fut]
+            algo, uses = futs[fut]
             rec = fut.result()
-            rec["bench"] = bench
-            key = (bench, algo)
-            if key not in handles:
-                handles[key] = (out / f"{bench}__{algo}.jsonl").open("a")
-            handles[key].write(json.dumps(rec) + "\n")
-            handles[key].flush()
-            if n % 100 == 0 or "error" in rec:
-                print(n, bench, algo, rec["id"], rec.get("nodes"), rec.get("error", "")[:200], flush=True)
+            for bench, pid in uses:
+                write(bench, algo, dict(rec, id=pid))
+            print(n, algo, [u[1] for u in uses], rec.get("solved"), rec.get("nodes"),
+                  round(rec.get("seconds", 0)), rec.get("error", "")[:200], flush=True)
     for h in handles.values():
         h.close()
 
