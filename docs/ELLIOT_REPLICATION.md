@@ -24,8 +24,9 @@ and Section 2, stable AC); the LaTeX source is not in this repository.
 | Independent replay of every solved path | done |
 | Time-weighted cost | not done (see [Open items](#open-items)) |
 
-Draft PR [Avi161/ACSolverX#38](https://github.com/Avi161/ACSolverX/pull/38) exists for this branch. The user asked
-for no further PRs; push to the branch.
+**No PR, no CI.** This branch has no pull request and none should be opened. Commit and push to
+`elliot-replication` only, and do not watch, run or fix CI. The draft PR #38 opened earlier was closed at the user's
+request.
 
 ## Files on this branch
 

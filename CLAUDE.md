@@ -13,5 +13,6 @@ Quick facts:
 - **Results:** `results/elliot_10k/`, `results/elliot_100k/`.
 - **Status:** done at 10^4 and 10^5 nodes, every row solved, all paths verified.
 - **Next:** a time-weighted cost study, waiting on the user's choice of unit.
-- **PR:** draft PR Avi161/ACSolverX#38 tracks this branch. Push to the branch; do not open new PRs.
+- **No PR, no CI:** this branch has no pull request and none should be opened. Commit and push to
+  `elliot-replication` only, and do not watch, run or fix CI (draft PR #38 was closed on request).
 - **Ask first:** ask before expensive runs or deletions, and keep replies short.
