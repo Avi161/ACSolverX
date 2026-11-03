@@ -1,0 +1,87 @@
+{
+ "ladder100__long_presentation": {
+  "rows": 7,
+  "solved": 7,
+  "sub_steps": 2877,
+  "cov_steps": 336,
+  "failures": {}
+ },
+ "ladder100__no_short_sub": {
+  "rows": 7,
+  "solved": 7,
+  "sub_steps": 2848,
+  "cov_steps": 378,
+  "failures": {}
+ },
+ "ladder100__periodic10": {
+  "rows": 7,
+  "solved": 7,
+  "sub_steps": 3046,
+  "cov_steps": 400,
+  "failures": {}
+ },
+ "ladder100__plateau100": {
+  "rows": 7,
+  "solved": 7,
+  "sub_steps": 2951,
+  "cov_steps": 348,
+  "failures": {}
+ },
+ "ladder100__short_relator": {
+  "rows": 60,
+  "solved": 20,
+  "sub_steps": 3707,
+  "cov_steps": 22,
+  "failures": {}
+ },
+ "ladder100__unbalanced": {
+  "rows": 7,
+  "solved": 7,
+  "sub_steps": 2688,
+  "cov_steps": 280,
+  "failures": {}
+ },
+ "ms640__long_presentation": {
+  "rows": 14,
+  "solved": 14,
+  "sub_steps": 5754,
+  "cov_steps": 670,
+  "failures": {}
+ },
+ "ms640__no_short_sub": {
+  "rows": 14,
+  "solved": 14,
+  "sub_steps": 5692,
+  "cov_steps": 754,
+  "failures": {}
+ },
+ "ms640__periodic10": {
+  "rows": 14,
+  "solved": 14,
+  "sub_steps": 6068,
+  "cov_steps": 802,
+  "failures": {}
+ },
+ "ms640__plateau100": {
+  "rows": 14,
+  "solved": 14,
+  "sub_steps": 5908,
+  "cov_steps": 687,
+  "failures": {}
+ },
+ "ms640__short_relator": {
+  "rows": 6,
+  "solved": 6,
+  "sub_steps": 2851,
+  "cov_steps": 6,
+  "failures": {}
+ },
+ "ms640__unbalanced": {
+  "rows": 14,
+  "solved": 14,
+  "sub_steps": 5376,
+  "cov_steps": 558,
+  "failures": {}
+ },
+ "all_pass": true
+}

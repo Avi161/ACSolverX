@@ -11,7 +11,7 @@ Quick facts:
 
 - **Code:** `benchmark/ryan/` (Python port, numba kernel, equivalence checks, driver, summary, verifier) and
   `benchmark/elliot/`.
-- **Results:** `results/ryan_1e5/`, `results/ryan_1e6/` (when present); Elliot: `results/elliot_*`.
+- **Results:** `results/ryan_1e5/`, `results/ryan_1e6/`, `results/ryan_full_1e6/` (done, all verified); Elliot: `results/elliot_*`.
 - **AWS:** `ops/aws/` scripts. `ops/aws/ledger.md` records every box and its cost. Terminate boxes when done and run
   the all-regions audit. Spot only, cheapest.
 - **No PR, no CI:** commit and push to the branch only; do not open PRs or watch CI.

@@ -57,7 +57,9 @@ reproduces Ryan); **runs here use no cap**. Uncapped searches generate relators 
 | `benchmark/ryan/summarize.py` | table; bench60 read off MS640 |
 | `benchmark/ryan/verify_paths.py` | independent replay: substitutions as products of rotations, CoV steps in the Aut(F2) orbit |
 | `results/ryan_1e5/` | all 4,440 searches at 10^5 pops; `README.md`, `SUMMARY_TABLE.md`, `VERIFY.json` (all pass) |
-| `results/ryan_1e6/` | the searches unsolved at 10^5, rerun at 10^6 (when present) |
+| `results/ryan_1e6/` | the 171 searches unsolved at 10^5, rerun at 10^6; `VERIFY.json` (all pass) |
+| `results/ryan_full_1e6/` | merged full table to 10^6; `README.md`, `SUMMARY_TABLE.md` |
+| `benchmark/ryan/merge.py` | carries rows solved at the smaller budget, replaces the unsolved ones by their rerun |
 | `ops/aws/` | `env.sh`, `launch.sh`, `ssm-run.sh`, `box_ryan.sh`, `status.sh`, `ledger.md` (cost record) |
 
 ## Verification done
@@ -102,10 +104,26 @@ Solved at 10^3 / 10^4 / 10^5 (full metrics in `results/ryan_1e5/SUMMARY_TABLE.md
   - the rerun uses r7a.16xlarge (512 GB) with 20 workers.
 - **Memory per search:** about 150 B per state; 10^6 pops make about 70M states.
 
+## Results to 10^6 (no cap), `results/ryan_full_1e6/`
+
+Solved at 10^3 / 10^4 / 10^5 / 10^6:
+
+| gate | MS640 | bench60 | ladder100 |
+|---|---|---|---|
+| no_short_sub | 590 / 612 / 626 / 640 | 43 / 49 / 52 / 60 | 66 / 88 / 93 / 100 |
+| short_relator | 552 / 606 / 634 / 640 | 28 / 40 / 54 / 60 | 11 / 20 / 40 / 60 |
+| unbalanced | 558 / 610 / 626 / 640 | 31 / 47 / 52 / 60 | 23 / 69 / 93 / 100 |
+| long_presentation | 590 / 612 / 626 / 640 | 43 / 49 / 52 / 60 | 65 / 88 / 93 / 100 |
+| plateau100 | 590 / 612 / 626 / 640 | 43 / 49 / 52 / 60 | 61 / 88 / 93 / 100 |
+| periodic10 | 589 / 612 / 626 / 640 | 42 / 49 / 52 / 60 | 63 / 88 / 93 / 100 |
+
+Every path is verified. The 10^6 rerun ran on r7a.16xlarge spot (20 workers, 20 minutes). The total AWS cost of the
+Ryan replication is about $3.25 (`ops/aws/ledger.md`). The final all-regions audit found 0 of ours left.
+
 ## Open items
 
-- Finish and commit the 10^6 rerun (`results/ryan_1e6/`), verify its paths, terminate the box, run the all-regions
-  audit, and update the ledger.
-- Time-weighted cost, as was done for Elliot, if wanted.
+- Time-weighted cost, as was done for Elliot, if wanted. CoV enumeration at gate openings is not charged in nodes.
 - The paper tables. The rows per gate are long, so pick the best gate or two (`no_short_sub` / `periodic10`) for the
   main table.
+- The hard-row JAX search comparison (rows 590–591) was still running locally when this was written. The child-level
+  JAX comparison and all numba comparisons passed.
