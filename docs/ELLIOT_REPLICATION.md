@@ -22,7 +22,7 @@ and Section 2, stable AC); the LaTeX source is not in this repository.
 | Review of the friend's code | done |
 | Runs at 10^4 and 10^5 nodes | done |
 | Independent replay of every solved path | done |
-| Time-weighted cost | not done (see [Open items](#open-items)) |
+| Time-weighted cost | done (`results/elliot_cost/`) |
 
 **No PR, no CI.** This branch has no pull request and none should be opened. Commit and push to
 `elliot-replication` only, and do not watch, run or fix CI. The draft PR #38 opened earlier was closed at the user's
@@ -36,6 +36,8 @@ request.
 | `benchmark/elliot/summarize.py` | the summary table of a results folder (`SUMMARY_TABLE.md`) |
 | `benchmark/elliot/verify_paths.py` | independent replay of every solved path in one results file |
 | `results/elliot_10k/` | all 2,400 rows (800 rows x 3 methods) at 10^4 nodes; `README.md` (settings, fields), `SUMMARY_TABLE.md`, `VERIFY.json` |
+| `benchmark/elliot/time_cost.py` | time-weighted cost: CPU time of the CoV callbacks, converted to substitution-pop units |
+| `results/elliot_cost/` | per-row CPU time and cost units for all 2,400 rows; `README.md`, `COST_TABLE.md` |
 | `results/elliot_100k/` | the same at 10^5 nodes: 2,345 rows carried from 10^4 (`carried_from`), 55 rows searched (26 distinct presentations) |
 
 ## Setup (the container is ephemeral; redo this)
@@ -236,19 +238,45 @@ Solved at 10^3 / 10^4 / 10^5 nodes. LENGTH and S20_MK2 are the paper's numbers; 
 - **Replay:** `VERIFY.json` in both results folders has `all_pass: true`. Every step of every solved path was replayed
   (S-move, Aut orbit, CoV rebuilt or regenerated), and the count of non-orbit rows equals the `stable_cert` count.
 
+## Time-weighted cost (`results/elliot_cost/`, done)
+
+`benchmark/elliot/time_cost.py` wraps the CoV callbacks that the C++ engine calls with a CPU timer, without changing
+ACSolverES or the results. It converts the callback time into substitution-pop units:
+
+    cost = nodes + callback_s / t_pop,    t_pop = engine time / nodes,  about 0.2 ms
+
+A substitution pop does the work of one LENGTH expansion, so these are LENGTH-expansion units algorithmically.
+
+**Cost of one CoV step, in substitution pops:** single CoV about 25; auto CoV about 5–6; the triple 7–11 (empty
+complete-CoV pops included). Seeding the start state costs about 23–34 for single CoV and 4–6 for auto.
+
+**cost / nodes:**
+
+| method | MS640 | bench60 | ladder100 |
+|---|---:|---:|---:|
+| Dual, single CoV | 1.42 | 1.35 | 2.01 |
+| Dual, auto CoV | 1.03 | 1.02 | 1.14 |
+| Triple | 1.11 | 1.07 | 1.16 |
+
+**Solved within a budget in cost units (10^3 / 10^4 / 10^5):**
+
+| method | MS640 | bench60 | ladder100 |
+|---|---|---|---|
+| Dual, single CoV | 593 / 621 / 640 | 43 / 52 / 60 | 56 / 82 / 100 |
+| Dual, auto CoV | 614 / 634 / 640 | 51 / 56 / 60 | 77 / 96 / 100 |
+| Triple | 612 / 634 / 640 | 49 / 56 / 60 | 81 / 97 / 100 |
+
+All rows are still solved within 10^5 cost units; the max is 61,821, single CoV on `ac19_70845`. Details and caveats
+(timing ±10%, 2 workers on 4 cores) are in `results/elliot_cost/README.md`.
+
 ## Open items
 
-1. **Time-weighted cost**, proposed to the user but not yet approved. The open question is the unit: their sub pop,
-   or our LENGTH pop.
-   - Rerun recording sub pops and CoV pops per row, single-core CPU time, and the time spent in uncharged work.
-   - Time one pop of each kind on the same states, as in the paper's "Time per unit" paragraph.
-   - Report CPU seconds per row and cost in sub-pop equivalents.
-   - The runner does not yet store per-queue pop counts. They are in the engine result as `sub_pop_count`,
-     `cov_pop_count`, `auto_cov_queue_pop_count` and `complete_cov_queue_pop_count`. Add them to
-     `run_elliot.run_one`.
-2. The review of ACSolverES's Python policy layer started but its report never came back. The points above about the
-   Python engines come from the C++ review and the build tests.
-3. Optional: lift the 65 cap in the C++ (mechanical) if a longer-path benchmark is ever run.
+1. **The paper text.** Nothing is written into the LaTeX yet: no tables or paragraphs for Sections 1 and 2, and no
+   citation of ACSolverES (it has a `CITATION.cff`). The `.tex` file is not in this repository; ask the user for it,
+   or draft the text for them to paste.
+2. **The Python-layer review.** The review of ACSolverES's Python policy layer started, but its report never came
+   back. The C++ review, the build tests and the exact reproduction cover most of its scope.
+3. **Optional:** lift the 65 cap in the C++ (mechanical) if a benchmark with longer paths is ever run.
 
 ## How the user works
 

@@ -180,6 +180,25 @@ def summarize(folder: Path, md: str | None):
                 f"| {bench} | {LABEL[algo]} | {nodes:,} | {cov_pops:,} | {cpu:,.1f} | {cbs / cpu:.0%} "
                 f"| {t_pop * 1e6:,.1f} | {seed_cost:,.0f} | {pop_cost:,.0f} | {cost:,.0f} | {cost / nodes:.2f} |"
             )
+    lines += [
+        "",
+        "Solved within a budget B, counted in nodes and in cost units (CoV work included):",
+        "",
+        "| benchmark | method | nodes <= 1e3 / 1e4 / 1e5 | cost <= 1e3 / 1e4 / 1e5 | cost median | cost max |",
+        "|---|---|---|---|---:|---:|",
+    ]
+    for bench in ("ms640", "bench60", "ladder100"):
+        for algo in R.ALGOS:
+            f = folder / f"{bench}__{algo}.jsonl"
+            if not f.exists():
+                continue
+            recs = [json.loads(l) for l in f.read_text().splitlines() if l.strip()]
+            t_pop = sum(r["engine_s"] for r in recs) / sum(r["nodes"] for r in recs)
+            cost = sorted(r["nodes"] + r["callback_s"] / t_pop for r in recs if r["solved"])
+            nodes = [r["nodes"] for r in recs if r["solved"]]
+            by = lambda xs: " / ".join(str(sum(x <= b for x in xs)) for b in (1e3, 1e4, 1e5))
+            lines.append(f"| {bench} | {LABEL[algo]} | {by(nodes)} | {by(cost)} "
+                         f"| {st.median(cost):,.0f} | {cost[-1]:,.0f} |")
     text = "\n".join(lines)
     print(text)
     if md:
