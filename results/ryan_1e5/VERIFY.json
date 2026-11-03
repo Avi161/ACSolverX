@@ -1,0 +1,87 @@
+{
+ "ladder100__long_presentation": {
+  "rows": 100,
+  "solved": 93,
+  "sub_steps": 2888,
+  "cov_steps": 418,
+  "failures": {}
+ },
+ "ladder100__no_short_sub": {
+  "rows": 100,
+  "solved": 93,
+  "sub_steps": 2630,
+  "cov_steps": 584,
+  "failures": {}
+ },
+ "ladder100__periodic10": {
+  "rows": 100,
+  "solved": 93,
+  "sub_steps": 3304,
+  "cov_steps": 754,
+  "failures": {}
+ },
+ "ladder100__plateau100": {
+  "rows": 100,
+  "solved": 93,
+  "sub_steps": 3447,
+  "cov_steps": 617,
+  "failures": {}
+ },
+ "ladder100__short_relator": {
+  "rows": 100,
+  "solved": 40,
+  "sub_steps": 4855,
+  "cov_steps": 38,
+  "failures": {}
+ },
+ "ladder100__unbalanced": {
+  "rows": 100,
+  "solved": 93,
+  "sub_steps": 3692,
+  "cov_steps": 395,
+  "failures": {}
+ },
+ "ms640__long_presentation": {
+  "rows": 640,
+  "solved": 626,
+  "sub_steps": 9784,
+  "cov_steps": 675,
+  "failures": {}
+ },
+ "ms640__no_short_sub": {
+  "rows": 640,
+  "solved": 626,
+  "sub_steps": 8854,
+  "cov_steps": 1127,
+  "failures": {}
+ },
+ "ms640__periodic10": {
+  "rows": 640,
+  "solved": 626,
+  "sub_steps": 10270,
+  "cov_steps": 1390,
+  "failures": {}
+ },
+ "ms640__plateau100": {
+  "rows": 640,
+  "solved": 626,
+  "sub_steps": 11178,
+  "cov_steps": 757,
+  "failures": {}
+ },
+ "ms640__short_relator": {
+  "rows": 640,
+  "solved": 634,
+  "sub_steps": 19941,
+  "cov_steps": 512,
+  "failures": {}
+ },
+ "ms640__unbalanced": {
+  "rows": 640,
+  "solved": 626,
+  "sub_steps": 11060,
+  "cov_steps": 596,
+  "failures": {}
+ },
+ "all_pass": true
+}
