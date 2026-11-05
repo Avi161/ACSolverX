@@ -159,9 +159,13 @@ The hybrid stays at rank $2$, so its certificates are AC paths. It can also chan
 
 \subsection{Benchmarks}\label{sec:benchmarks}
 
-Every benchmark below is a list of balanced presentations of the trivial group, all of rank $2$. For a
-presentation $P$, $g(P)$ denotes the number of expansions (Definition~\ref{def:greedy}) that GS-SUB \cite{FTS26}
-requires to solve $P$, and $g_S(P)$ the number that $\SMK$ (Definition~\ref{def:smk}) requires.
+% ---------BENCHMARKS---------------
+
+\paragraph{Benchmarks.} Every benchmark below is a list of balanced presentations of the trivial
+group, all of rank $2$. An \emph{expansion} is one removal of a state from the search heap. For a
+presentation $P$, $g(P)$ is the number of expansions GS-SUB \cite{FTS26} needs to solve $P$, and
+$g_S(P)$ is the number of expansions our greedy search with the $\SMK$ priority needs. We write $g$
+and $g_S$ for these functions of $P$.
 
 \begin{definition}[MS640]
 The Miller--Schupp benchmark of \cite{SMM24} is a list of $1{,}190$ presentations $\MS(n,w)$. \textbf{MS640}
@@ -169,10 +173,10 @@ The Miller--Schupp benchmark of \cite{SMM24} is a list of $1{,}190$ presentation
 \end{definition}
 
 \begin{definition}[bench60]\label{def:bench60}
-\textbf{bench60} is a subset of $60$ presentations of MS640, comprising $6$ presentations from each of $10$ difficulty
-classes of $g$ whose bounds increase geometrically by a factor of approximately $3.37$. Within each difficulty class,
-the presentations are chosen to span the range of path lengths and to minimise the number of pairs lying in a common
-$\Aut(\F_2)$-orbit. The complete selection rule and the position of the chosen presentations within MS640 are given in
+\textbf{bench60} is a subset of $60$ presentations of MS640, comprising $6$ presentations from each of $10$ difficult class of
+$g$ whose bounds increase geometrically by a factor of approximately $3.37$. Within each bin, the presentations are
+chosen to span the range of path lengths and to minimise the number of pairs lying in a common $\Aut(\F_2)$-orbit. The
+complete selection rule and position of the chosen presentations within MS640 are given in
 Appendix~\ref{app:bench60}.
 \end{definition}
 
@@ -210,7 +214,7 @@ in the top row.}
 
 \subsection{Units}\label{sec:units}
 
-Every budget is counted in \emph{units}, and every method is charged one unit per
+\paragraph{Units.} Every budget is counted in \emph{units}, and every method is charged one unit per
 \emph{expansion}: the first state is removed from the heap, its children are generated, those already discovered are
 discarded, and the remainder are pushed onto the heap according to the priority. For the hybrid
 (Definition~\ref{def:hybrid}), each S-move applied by a finishing check is also charged one unit. A budget applies to
