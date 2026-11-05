@@ -152,8 +152,7 @@ other children are pushed onto the heap.}
 group, all of rank $2$. An \emph{expansion} is one removal of a state from the search heap. For a
 presentation $P$, $g(P)$ is the number of expansions GS-SUB \cite{FTS26}, that is, LENGTH
 (Definition~\ref{def:length}), needs to solve $P$, and
-$g_S(P)$ is the number of expansions our greedy search with the $\SMK$ priority (Definition~\ref{def:smk}) needs. We write $g$
-and $g_S$ for these functions of $P$. Every method is charged in the same units, one per expansion (Section~\ref{sec:units}).
+$g_S(P)$ is the number of expansions our greedy search with the $\SMK$ priority (Definition~\ref{def:smk}) needs. Every method is charged in the same units, one per expansion (Section~\ref{sec:units}).
 
 \begin{definition}[MS640]
 The Miller--Schupp benchmark of \cite{SMM24} is a list of $1{,}190$ presentations $\MS(n,w)$. \textbf{MS640}
@@ -180,10 +179,7 @@ carries the same AC-triviality questions as AC19. However, an automorphism of a 
 \begin{definition}[ladder100]\label{def:ladder}\label{def:levels}
 \textbf{ladder100} is a benchmark of $100$ AC-trivial presentations, taken from AC19\_autmin and MS640 and arranged
 in $10$ levels of $10$ presentations each, in increasing order of difficulty for greedy search
-(Figure~\ref{fig:ladder}). At levels $1$--$8$, LENGTH solves every presentation, and the number of expansions $g$ it
-requires increases from fewer than $10^3$ at level $1$ to between $3\cdot10^6$ and $10^7$ at level $8$. At level $9$,
-LENGTH fails within $10^7$ expansions but $\SMK$ succeeds; at level $10$, $\SMK$ fails as well, with one exception.
-The selection rule within each level, the verification of AC-triviality and the statistics of each level are given in
+(Figure~\ref{fig:ladder}). The selection rule within each level, the verification of AC-triviality and the statistics of each level are given in
 Appendix~\ref{app:ladder}.
 \end{definition}
 
@@ -219,7 +215,7 @@ charged one unit per expansion, so that equal budgets in units are comparable up
 
 \paragraph{Scores.} We compare the three methods at equal budgets in units: the number of
 presentations each solves on the three benchmarks.
-
+ 
 \begin{center}
 \small
 \begin{tabular}{llrrrrr}
@@ -241,20 +237,20 @@ ladder100 & LENGTH & $11$ & $20$ & $40$ & $60$ & $80$\\
 & hybrid & $99$ & $100$ & $100$ & $100$ & $100$\\
 \bottomrule
 \end{tabular}
-
+ 
 \end{center}
-
+ 
 $\SMK$ solves all of MS640 and bench60 by $10^5$ units, LENGTH only by $10^6$. On ladder100 neither finishes by
 $10^7$: $9$ rows are unsolved by both. The hybrid solves all of MS640 and bench60 at $10^3$ units and all of
 ladder100 at $10^4$; its hardest row, \texttt{ac19\_70845}, takes $2{,}267$ units.
-
+ 
 \paragraph{Units and path lengths.} For every solve we also record the units it took and the length of its path:
 S-moves. For the hybrid, each S-move and each Nielsen map counts as one unit; its path length is then rewritten as a sequence of AC moves on the original presentation and verified there.
-
+ 
 \begin{center}
 \includegraphics[width=\textwidth]{figures/units_paths.png}
 \end{center}
-
+ 
 \begin{center}
 \small
 \begin{tabular}{llrrrrrr}
@@ -276,17 +272,18 @@ ladder100 & LENGTH & $975{,}165$ & $101{,}771$ & $8{,}204{,}360$ & $130.8$ & $69
  & hybrid & $127$ & $53$ & $2{,}267$ & $49.7$ & $30$ & $262$\\
 \bottomrule
 \end{tabular}
-
+ 
 \smallskip
 \footnotesize Over the rows each method solves (on ladder100: $80$, $91$ and $100$).
 \end{center}
-
-
+ 
+ 
 On easy rows the hybrid spends about as many units as the greedy searches (median $11$ against $11$ on MS640); on
 hard rows it needs far fewer, at most $2{,}267$ against $8.2$ million for LENGTH.
 Its paths are shorter on hard rows too: on the $80$ ladder100 rows that all three solve, $53.8$ steps on average
 against $130.8$ for LENGTH and $142.4$ for $\SMK$. $\SMK$ paths are about as long as LENGTH's.
 
+\clearpage
 \section{Stable AC algorithms}\label{sec:stable}
 
 \begin{definition}[Stable AC moves]\label{def:stableac}
@@ -323,6 +320,7 @@ search is one run of the naive stable search from one start on one presentation.
 The rank-$3$ starts ($k=1$) are the freely reduced words $w$ of length $1$ to $10$, taken up to inversion, that is
 $59{,}048$ words; the words of length $1$ to $7$ are also run at a budget of $10^4$ units. The construction of these
 words, and the derivation of their number, are given in Appendix~\ref{app:stable}.
+
 
 For a set of words we report three things. \emph{Solved}: the share of its
 searches $(P,w)$ that solve $P$ within the budget, that is, the chance that a random word of the set solves a random
@@ -560,8 +558,6 @@ The last $36$ presentations are the rows with $n=7$, $r_1=y^{-8}x^{-1}y^{7}x$; t
 $14{,}400$ units and give paths of $489$ S-moves. The best image is chosen with hindsight: finding it by searching every
 image costs a mean of $657{,}198$ units per presentation at budget $10^5$.
 \newline
-
-
 
 \clearpage
 \bibliographystyle{plain}
