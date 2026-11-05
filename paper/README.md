@@ -27,11 +27,11 @@ number in Table `tab:smk` (`python3 paper/figsrc/smk_separation.py`, about 6 s, 
 clustering study (branch `claude/abelianized-exponents-verify-1i6muh`, `experiments/clustering/rank_signals.py`,
 `results/clustering/signal_ranking.json`): $S$ 0.912, MK 0.860, length 0.809, exactly.
 
-`stable_ranks_split.png` (ranks 3, 4, 5 by difficulty) comes from `figsrc/stable_ranks_fig.py`, which reads the rank-n arrays of branch `rank3/brute-force-baseline` (`results/stable_ac/rank3_bf/`).
+`stable_ranks_split.png` (rank 3 by word length and difficulty) comes from `figsrc/stable_ranks_fig.py`, which reads the rank-3 arrays of branch `rank3/brute-force-baseline` (`results/stable_ac/rank3_bf/`).
 
 ## Open issues in `avi.tex`
 
-- `sec:hybrid` reference removed by Truett; `fig:stable_split` and `tab:stable_ranks` now exist (5 Nov).
+- `sec:hybrid` reference removed by Truett; `fig:stable_split` now shows rank 3 only; ranks 4 and 5 were removed at Truett's request (5 Nov).
 - The paragraph "The best image passes LENGTH at every budget, but the margin falls from 100 to 6 ..." appears twice in
   the CoV section, once saying a random image is worse than P (at 10^4) and once saying it is often cheaper (at 10^3).
   Keep one.

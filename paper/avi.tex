@@ -320,17 +320,11 @@ priority $\lambda$. For $k=0$ it is LENGTH on $P$, the rank-$2$ baseline.
 \paragraph{Setup.} All searches are on the $640$ presentations of MS640, with a budget of $10^3$ units per search
 unless stated otherwise. A \emph{start} is a choice of the words $w_1,\dots,w_k$ of Definition~\ref{def:stab}, and one
 search is one run of the naive stable search from one start on one presentation.
-\begin{itemize}
-  \item \emph{Rank 3} ($k=1$): every freely reduced word $w$ of length $1$ to $10$, taken up to inversion, that is
-  $59{,}048$ words. The words of length $1$ to $7$ are also run at a budget of $10^4$ units.
-  \item \emph{Rank 4} ($k=2$): every unordered pair, repetition allowed, of the $26$ words of length at most $3$, that
-  is $351$ starts.
-  \item \emph{Rank 5} ($k=3$): every unordered triple, repetition allowed, of the $8$ words of length at most $2$, that
-  is $120$ starts.
-\end{itemize}
-The construction of these families, and the derivation of their sizes, are given in Appendix~\ref{app:stable}.
+The rank-$3$ starts ($k=1$) are the freely reduced words $w$ of length $1$ to $10$, taken up to inversion, that is
+$59{,}048$ words; the words of length $1$ to $7$ are also run at a budget of $10^4$ units. The construction of these
+words, and the derivation of their number, are given in Appendix~\ref{app:stable}.
 
-For a set of words we report three things; for ranks 4 and 5, read start for word. \emph{Solved}: the share of its
+For a set of words we report three things. \emph{Solved}: the share of its
 searches $(P,w)$ that solve $P$ within the budget, that is, the chance that a random word of the set solves a random
 presentation. For $|w|=1$: $2$ words on $640$ presentations are $1{,}280$ searches, $769$ solve, so $60.1\%$.
 \emph{Best fixed word}: the most presentations solved by a single word of the set, chosen with hindsight.
@@ -389,48 +383,16 @@ state already popped, up to $z=x$. Where rank 2 solves and rank 3 fails, the $10
 different states, while rank 2 needs a median of $116$ pops.
 
 
-\paragraph{Ranks 4 and 5.} Table~\ref{tab:stable_ranks} compares each of ranks $4$ and $5$ with rank $3$ on the
-same pool of words: rank $4$ with rank $3$ on the $26$ words of length at most $3$, and rank $5$ with rank $3$ on the
-$8$ words of length at most $2$. Rank $4$ and rank $5$ are not compared with each other, since their pools differ. On
-the same words, each additional generator lowers every measure, although ranks $4$ and $5$ offer many more starts: a
-random start solves $59.1\%$ of the presentations against $68.7\%$ at rank $3$, and $53.6\%$ against $66.3\%$; some
-start solves $506$ presentations against $516$, and $416$ against $472$; and the best fixed start solves $454$ against
-$478$, and $376$ against $449$. No start at any rank solves a presentation that rank $2$ fails to solve within $10^3$
-units. Figure~\ref{fig:stable_split} shows where the loss occurs. Where LENGTH needs fewer than $10$ units on $P$,
-almost every start solves. Where it needs $10$ to $99$ units, $52\%$ of the rank-$4$ starts and $30\%$ of the
-rank-$5$ starts solve, against $84\%$ and $78\%$ at rank $3$. Where it needs $100$ to $999$ units, almost no start
-solves.
-
-\begin{table}[ht]
-\centering
-\small
-\begin{tabular}{lrrrr}
-\toprule
-& \multicolumn{2}{c}{words of length $\le3$} & \multicolumn{2}{c}{words of length $\le2$}\\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}
-& rank 3 & rank 4 & rank 3 & rank 5\\
-\midrule
-starts per presentation & $26$ & $351$ & $8$ & $120$\\
-a random start solves & $68.7\%$ & $59.1\%$ & $66.3\%$ & $53.6\%$\\
-a random start needs fewer units than rank 2 & $0.6\%$ & $0.2\%$ & $0.8\%$ & $0.0\%$\\
-presentations solved by some start & $516$ & $506$ & $472$ & $416$\\
-\quad gained over rank 2 & $0$ & $0$ & $0$ & $0$\\
-\quad lost by every start & $38$ & $48$ & $82$ & $138$\\
-best fixed start & $478$ & $454$ & $449$ & $376$\\
-\bottomrule
-\end{tabular}
-\caption{Ranks $3$, $4$ and $5$ on MS640 at a budget of $10^3$ units; rank $2$ solves $554$ presentations. A random
-start: the share of a presentation's starts, averaged over the $640$ presentations; a solve where rank $2$ fails
-counts as fewer units. Gained: solved by some start and not by rank $2$. Lost: solved by rank $2$ and by no start.}
-\label{tab:stable_ranks}
-\end{table}
+Figure~\ref{fig:stable_split} shows where the loss occurs. Where LENGTH needs fewer than $10$ units on $P$, every
+word solves. Where it needs $10$ to $99$ units, between $56.3\%$ and $86.1\%$ of the words of each length solve, and
+where it needs $100$ to $999$ units, at most $15.7\%$ do. On the $86$ presentations that rank $2$ does not solve, at
+most $0.2\%$ of the words of each length solve.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/stable_ranks_split.png}
-\caption{The share of starts that solve within $10^3$ units at ranks $3$, $4$ and $5$, with the $554$ presentations
-that rank $2$ solves grouped by the number of units LENGTH needs on $P$. On the $86$ presentations that rank $2$ does
-not solve, no start solves.}
+\caption{The share of the words of length $|w|$ that solve within $10^3$ units at rank $3$ on MS640, with the
+presentations grouped by the number of units LENGTH needs on $P$ (rank $2$).}
 \label{fig:stable_split}
 \end{figure}
 
