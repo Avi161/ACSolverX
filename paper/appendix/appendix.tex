@@ -135,3 +135,102 @@ An expansion of the hybrid also constructs the four Nielsen images and runs the 
 times as much; its remaining units are single moves and cost less. Constructing the change-of-variables images of a
 state costs $3.5$--$3.8$ expansions of LENGTH for $\lambda>10$. A unit of each method thus costs within a small factor
 of one expansion of LENGTH, and equal budgets in units are comparable up to that factor.
+
+\subsection{Hybrid solver}\label{app:hybrid}
+
+\subsubsection{Pinch replacements}\label{sec:pinch}
+
+Below, $P=\pres{x,y}{r,s}$ with $|\det M|=1$ and $\{g,h\}=\{x,y\}$. S-moves and Nielsen maps preserve $|\det M|$, so
+every state of the search has $|\det M|=1$. A relator splits into \emph{blocks} (Definition~\ref{def:smk}):
+$x^2y^{-1}x^{-3}y$ has the four blocks $x^2\mid y^{-1}\mid x^{-3}\mid y$. A relator $r$ is a \emph{pinch form} if it
+reads cyclically as $g^ah^pg^{-a}h^q$ with $a>0$ and $p,q\neq0$; it says $g^ah^pg^{-a}=h^{-q}$ and
+$g^{-a}h^qg^a=h^{-p}$.
+
+\begin{lemma}[Pinch replacements]\label{lem:pinch}
+Let $r=g^ah^pg^{-a}h^q$ be a pinch form and $n\in\mathbb Z$. If $s$, read cyclically, contains $g^ah^{np}g^{-a}$, then
+$|n|$ S-moves by $r^{\pm1}$ replace it by $h^{-nq}$. Likewise $|n|$ S-moves replace $g^{-a}h^{nq}g^a$ by $h^{-np}$.
+\end{lemma}
+
+\begin{proof}
+Let $n>0$. Rotate $s$ to $v\,g^ah^p$, ending with the first $g^ah^p$ of the occurrence, and multiply by
+$h^{-p}g^{-a}h^{-q}g^a$, a rotation of $r^{-1}$. The seam cancels, so this is an S-move, and
+\[
+v\,g^ah^p\cdot h^{-p}g^{-a}h^{-q}g^a=v\,h^{-q}g^a .
+\]
+So $g^a$ moves one step right and turns $h^p$ into $h^{-q}$. After $n$ moves $g^ah^{np}$ is $h^{-nq}g^a$, and
+$g^ag^{-a}$ cancels. For $n<0$ the factor is $h^pg^{-a}h^qg^a$, a rotation of $r$. The second replacement uses
+$h^{-q}g^ah^{-p}g^{-a}=r^{-1}$, or $h^qg^ah^pg^{-a}$ for $n<0$.
+\end{proof}
+
+\begin{example}\label{ex:replace}
+Let $s=g^ah^{3p}g^{-a}w$, with $w$ any word. Each step replaces the first $g^ah^p$ by $h^{-q}g^a$, one S-move as in
+the proof:
+\begin{align*}
+s&=g^ah^p\cdot h^{2p}g^{-a}w &&(h^{3p}\text{ to pass})\\
+&\to h^{-q}g^ah^p\cdot h^{p}g^{-a}w &&(h^{2p}\text{ left})\\
+&\to h^{-2q}g^ah^p\cdot g^{-a}w &&(h^{p}\text{ left})\\
+&\to h^{-3q}g^ag^{-a}w=h^{-3q}w.
+\end{align*}
+In full, the first step rotates $s$, multiplies by $h^{-p}g^{-a}h^{-q}g^a$, and rotates back ($\sim$ is rotation):
+\[
+s\sim h^{2p}g^{-a}w\cdot g^ah^p\;\to\;h^{2p}g^{-a}w\cdot g^ah^p\cdot h^{-p}g^{-a}h^{-q}g^a=h^{2p}g^{-a}w\,h^{-q}g^a
+\sim h^{-q}g^ah^{2p}g^{-a}w.
+\]
+Three S-moves replace $g^ah^{3p}g^{-a}$ by $h^{-3q}$, and the $g^a$ and $g^{-a}$ are gone.
+\end{example}
+
+\paragraph{Check (ii).} Let $r=g^ah^pg^{-a}h^q$ be a pinch form. Check (ii) uses Lemma~\ref{lem:pinch} on the other
+relator $s$ again and again: while $s$ contains $g^ah^{np}g^{-a}$ or $g^{-a}h^{nq}g^a$, replace it by $h^{-nq}$ or
+$h^{-np}$. Each replacement removes $2a$ letters $g$, so this stops, either with at most one $g$-block left in $s$, or
+with neither factor in $s$. Which of the two happens depends only on the exponents of the blocks of $s$, so the check
+first works it out on these integers, without moves. If $s$ ends with at most one $g$-block, the replacements are
+made as S-moves and Proposition~\ref{prop:pinch} finishes $P$. Otherwise no move is made and the state is pushed onto
+the heap. Both relators are tried as $r$.
+
+\subsubsection{Filters}
+
+\begin{definition}[Filters]\label{def:filters}
+A state $Q=(r,s)$ passes
+\begin{enumerate}
+  \item[(F1)] if a relator has a generator occurring once or has exactly four blocks;
+  \item[(F2)] if a relator has a generator occurring once (check (i)), or a relator is a pinch form whose
+  replacements, worked out on the exponents, bring the other relator to at most one $g$-block (check (ii)).
+\end{enumerate}
+\end{definition}
+
+A child is tested by (F1), then by (F2) if it passed (F1), then finished by its check if it passed (F2); every other
+child is pushed onto the heap. (F1) counts letters and blocks, about $1\,\mu$s per child; (F2) is integer arithmetic
+on the exponents. Neither makes a move or costs units.
+
+\subsubsection{Finishing checks}
+
+\begin{proposition}[Check (i), one occurrence]\label{prop:once}
+If $g$ occurs exactly once in $r$, then $P$ is AC-trivial, by at most $n_g(s)+|k|$ S-moves, where $r=gh^k$ up to
+rotation and inversion and $n_g(s)$ is the number of letters $g^{\pm1}$ in $s$.
+\end{proposition}
+
+\begin{proof}
+While $g$ occurs in $s$, rotate $s$ to $ug^{\varepsilon}$ and multiply by the rotation of $r^{-\varepsilon}$ that begins
+with $g^{-\varepsilon}$: one S-move, giving $uh^{-\varepsilon k}$. After at most $n_g(s)$ moves $s=h^m$. The rows of
+$M$ are $(1,k)$ and $(0,m)$, so $|m|=1$. Then $|k|$ S-moves by $s^{\pm1}$ delete the $h$'s of $r$, leaving
+$(g,h^{\pm1})$, which is $T_2=\pres{x,y}{x,y}$ up to inversion.
+\end{proof}
+
+\begin{proposition}[Check (ii), pinch]\label{prop:pinch}
+If $r$ is a pinch form and its replacements bring $s$ to at most one $g$-block, then $P$ is AC-trivial.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:pinch} the replacements are S-moves; they give $(r,s')$ with $s'$ having at most one $g$-block
+$g^e$, and $|\det M|=1$. The exponent sums are $(0,p+q)$ for $r$ and $(e,m)$ for $s'$, so $|e|\,|p+q|=1$ and $|e|=1$:
+$g$ occurs once in $s'$, and Proposition~\ref{prop:once} finishes.
+\end{proof}
+
+\begin{proposition}\label{prop:filters}
+A child passes (F2) if and only if check (i) or (ii) finishes it, and every child that passes (F2) passes (F1).
+\end{proposition}
+
+\begin{proof}
+(F2) holds exactly when check (i) or (ii) applies, and then Proposition~\ref{prop:once} or~\ref{prop:pinch} finishes
+the child. A pinch form has exactly four blocks, so (F2) implies (F1).
+\end{proof}
