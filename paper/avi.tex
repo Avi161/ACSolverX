@@ -317,17 +317,28 @@ priority $\lambda$. For $k=0$ it is LENGTH on $P$, the rank-$2$ baseline.
 \paragraph{Setup.} All searches are on the $640$ presentations of MS640, with a budget of $10^3$ units per search
 unless stated otherwise. A \emph{start} is a choice of the words $w_1,\dots,w_k$ of Definition~\ref{def:stab}, and one
 search is one run of the naive stable search from one start on one presentation.
+
 The rank-$3$ starts ($k=1$) are the freely reduced words $w$ of length $1$ to $10$, taken up to inversion, that is
 $59{,}048$ words; the words of length $1$ to $7$ are also run at a budget of $10^4$ units. The construction of these
 words, and the derivation of their number, are given in Appendix~\ref{app:stable}.
 
 
-For a set of words we report three things. \emph{Solved}: the share of its
-searches $(P,w)$ that solve $P$ within the budget, that is, the chance that a random word of the set solves a random
-presentation. For $|w|=1$: $2$ words on $640$ presentations are $1{,}280$ searches, $769$ solve, so $60.1\%$.
-\emph{Best fixed word}: the most presentations solved by a single word of the set, chosen with hindsight.
-\emph{Some word}: the number of presentations solved by at least one word of the set; this needs the right word in
-advance, so it bounds what a choice of word can do and is not a method.
+For each word length $n$, three measures are reported, each as a number of presentations out of $640$; they are the
+three curves of Figure~\ref{fig:stable_words}.
+\begin{itemize}
+  \item \emph{Random word}: every word of length exactly $n$ is run on every presentation, and the total number of
+  solves is divided by the number of words. It is the number of presentations that a word of length $n$, chosen at
+  random, solves on average. For $n=1$, the $2$ words solve $769$ of the $2\times640=1{,}280$ searches, that is
+  $384.5$ presentations per word; for $n=10$, the $39{,}366$ words solve $16{,}550{,}697$ of the $39{,}366\times640$
+  searches, that is $420.4$ presentations per word.
+  \item \emph{Best fixed word}: the largest number of presentations solved by a single word of length at most $n$,
+  the same word being used on every presentation. The word is chosen after the searches, with hindsight.
+  \item \emph{Some word}: the number of presentations solved by at least one word of length at most $n$, each
+  presentation being allowed its own word. It requires the right word for each presentation in advance, so it is an
+  upper bound on what any choice of word can achieve, and not itself a method.
+\end{itemize}
+Each measure is compared with rank $2$, that is, LENGTH on $P$, which solves $554$ presentations at $10^3$ units and
+$606$ at $10^4$ units.
 
 \begin{figure}[ht]
 \centering
@@ -344,24 +355,25 @@ random word is $640$ times the share solved by the words of length exactly $|w|$
 \toprule
 & & \multicolumn{2}{c}{words of length $|w|$} & \multicolumn{3}{c}{some word of length $\le|w|$}\\
 \cmidrule(lr){3-4}\cmidrule(lr){5-7}
-$|w|$ & words & solved & faster than rank 2 & solves & gained & lost\\
+$|w|$ & words & random word & faster than rank 2 & solves & gained & lost\\
 \midrule
-1 & $2$ & $60.1\%$ & $0.0\%$ & $403$ & $0$ & $151$\\
-2 & $6$ & $68.4\%$ & $1.1\%$ & $472$ & $0$ & $82$\\
-3 & $18$ & $69.8\%$ & $0.6\%$ & $516$ & $0$ & $38$\\
-4 & $54$ & $68.6\%$ & $1.1\%$ & $540$ & $4$ & $18$\\
-5 & $162$ & $67.3\%$ & $0.9\%$ & $546$ & $8$ & $16$\\
-6 & $486$ & $66.8\%$ & $0.7\%$ & $562$ & $16$ & $8$\\
-7 & $1{,}458$ & $66.5\%$ & $0.6\%$ & $572$ & $20$ & $2$\\
-8 & $4{,}374$ & $66.2\%$ & $0.6\%$ & $576$ & $22$ & $0$\\
-9 & $13{,}122$ & $65.9\%$ & $0.5\%$ & $576$ & $22$ & $0$\\
-10 & $39{,}366$ & $65.7\%$ & $0.5\%$ & $578$ & $24$ & $0$\\
+1 & $2$ & $384.5$ & $0.0\%$ & $403$ & $0$ & $151$\\
+2 & $6$ & $437.8$ & $1.1\%$ & $472$ & $0$ & $82$\\
+3 & $18$ & $446.8$ & $0.6\%$ & $516$ & $0$ & $38$\\
+4 & $54$ & $438.8$ & $1.1\%$ & $540$ & $4$ & $18$\\
+5 & $162$ & $430.9$ & $0.9\%$ & $546$ & $8$ & $16$\\
+6 & $486$ & $427.8$ & $0.7\%$ & $562$ & $16$ & $8$\\
+7 & $1{,}458$ & $425.7$ & $0.6\%$ & $572$ & $20$ & $2$\\
+8 & $4{,}374$ & $423.7$ & $0.6\%$ & $576$ & $22$ & $0$\\
+9 & $13{,}122$ & $421.8$ & $0.5\%$ & $576$ & $22$ & $0$\\
+10 & $39{,}366$ & $420.4$ & $0.5\%$ & $578$ & $24$ & $0$\\
 \midrule
-rank 2 & & $86.6\%$ & & $554$ & &\\
+rank 2 & & $554$ & & $554$ & &\\
 \bottomrule
 \end{tabular}
-\caption{Rank 3 at budget $10^3$. Solved: the share of the $640\times$words searches solved; faster: the share solved
-in fewer units than rank 2, or solved where rank 2 fails. Gained: solved by some word, not by rank 2; lost: solved by
+\caption{Rank 3 at budget $10^3$. Random word: the number of presentations, out of $640$, that a word of length $|w|$
+solves on average; faster: the share of the $640\times$words searches solved in fewer units than rank 2, or solved
+where rank 2 fails. Some word: the presentations solved by at least one word of length at most $|w|$. Gained: solved by some word, not by rank 2; lost: solved by
 rank 2, by no word.}
 \label{tab:stable_words}
 \end{table}
