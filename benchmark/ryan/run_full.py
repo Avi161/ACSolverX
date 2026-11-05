@@ -25,8 +25,11 @@ import cov_gates_cpu as C  # noqa: E402
 from run_all import rows  # noqa: E402
 
 
-def work(key, gate, budget, mode, charge, mem_gb):
-    import cov_full as F
+def work(key, gate, budget, mode, charge, mem_gb, engine="python"):
+    if engine == "numba":
+        import cov_full_numba as F
+    else:
+        import cov_full as F
     if mem_gb:
         cap = int(mem_gb * 2**30)
         resource.setrlimit(resource.RLIMIT_AS, (cap, cap))
@@ -50,6 +53,8 @@ def main():
     ap.add_argument("--workers", type=int, default=os.cpu_count())
     ap.add_argument("--only-unsolved-from", default=None)
     ap.add_argument("--limit", type=int, default=None, help="first N rows of each benchmark (tests)")
+    ap.add_argument("--engine", default="python", choices=("python", "numba"),
+                    help="numba: cov_full_numba.py, the same search compiled (mode full only)")
     ap.add_argument("--mem-gb", type=float, default=None, help="address-space cap per search (MemoryError -> unsolved)")
     a = ap.parse_args()
     out = Path(a.out)
@@ -74,7 +79,7 @@ def main():
     print(f"{len(keys)} searches for {sum(map(len, targets.values()))} rows, {a.workers} workers", flush=True)
     handles = {}
     with ProcessPoolExecutor(a.workers, max_tasks_per_child=1) as ex:
-        futs = {ex.submit(work, k, a.gate, a.budget, a.mode, not a.no_charge, a.mem_gb): k for k in keys}
+        futs = {ex.submit(work, k, a.gate, a.budget, a.mode, not a.no_charge, a.mem_gb, a.engine): k for k in keys}
         for n, fut in enumerate(as_completed(futs), 1):
             key = futs[fut]
             rec = fut.result()
