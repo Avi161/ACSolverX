@@ -204,7 +204,7 @@ def _record(solved, reason, locals_, path):
     rec = {"solved": solved, "termination": reason, "units": d["units"], "nodes_visited": d["pops"],
            "gate_openings": d["openings"], "states_seen": d["states"],
            "children_sub": d["n_sub"], "children_cov": d["n_cov"], "children_img": d["n_img"],
-           "img_states_new": d["img_new"], "img_seconds": round(d["img_seconds"], 3),
+           "img_states_new": d["img_new"], "img_seconds": None if d["img_seconds"] is None else round(d["img_seconds"], 3),
            "elapsed_sec": round(time.monotonic() - d["t0"], 3), "best_popped_length": d["best"],
            "max_relator_len_generated": d["max_gen_rel"]}
     if solved:
