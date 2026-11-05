@@ -351,6 +351,10 @@ random word is $640$ times the share solved by the words of length exactly $|w|$
 \begin{table}[ht]
 \centering
 \small
+\caption{Naive stable search at rank $3$ against rank $2$ on MS640, at a budget of $10^3$ units. Faster: the share of
+the $640\times$words searches solved in fewer units than rank 2. Some word: the presentations solved by at least one
+word of length at most $|w|$. Gained: solved by some word, not by rank 2; lost: solved by rank 2, by no word.}
+\label{tab:stable_words}
 \begin{tabular}{rrrrrrr}
 \toprule
 & & \multicolumn{2}{c}{words of length $|w|$} & \multicolumn{3}{c}{some word of length $\le|w|$}\\
@@ -371,11 +375,6 @@ $|w|$ & words & random word & faster than rank 2 & solves & gained & lost\\
 rank 2 & & $554$ & & $554$ & &\\
 \bottomrule
 \end{tabular}
-\caption{Rank 3 at budget $10^3$. Random word: the number of presentations, out of $640$, that a word of length $|w|$
-solves on average; faster: the share of the $640\times$words searches solved in fewer units than rank 2, or solved
-where rank 2 fails. Some word: the presentations solved by at least one word of length at most $|w|$. Gained: solved by some word, not by rank 2; lost: solved by
-rank 2, by no word.}
-\label{tab:stable_words}
 \end{table}
 
 \paragraph{Rank 3.} Rank 3 beats rank 2 only with the right word (Figure~\ref{fig:stable_words},
