@@ -237,6 +237,19 @@ the child. A pinch form has exactly four blocks, so (F2) implies (F1).
 
 \subsection{Separation by $S$ and $\mathrm{MK}$}\label{app:smk}
 
+\begin{remark}[Choice of $S$ and $\mathrm{MK}$]
+The features $S$ and $\mathrm{MK}$ come from comparing, on the starting presentations of MS1190, the $640$ rows that
+LENGTH solves with the $550$ it does not, and keeping the features that best separate the two groups. They are
+imperfect: no feature of a single state can decide whether a presentation is easy or hard. For example,
+\[
+\pres{x,y}{y^{-1}x^{-1}yxy^{-1}x,\ y^{-4}x^3}
+\qquad\text{and}\qquad
+\pres{x,y}{y^{-1}x^{-1}y^{-1}xyx,\ y^{-4}x^3}
+\]
+have the same $\lambda=13$, $\mathrm{MK}=3$ and $S=1.5$, hence the same $\pi_{\SMK}=49$. LENGTH solves the first in
+$107$ expansions, with a path of $19$ S-moves, while the second is $\mathrm{AK}(3)$. For example, length is also an imperfect heuristic, but the idea here is to obtain features that represent a state that might be easier to solve on average so that temporarily increasing the length can be a possibility.
+\end{remark}
+
 This appendix quantifies the extent to which the features $S$ and $\mathrm{MK}$ of Definition~\ref{def:smk}, evaluated
 on starting presentations, separate the presentations of MS1190 that LENGTH solves from those that it does not solve.
 A presentation is called \emph{solved} if it belongs to MS640 and \emph{unsolved} otherwise. The comparison is carried
