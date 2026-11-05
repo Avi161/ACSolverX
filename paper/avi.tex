@@ -230,42 +230,18 @@ benchmark & method & $10^3$ & $10^4$ & $10^5$ & $10^6$ & $10^7$\\
 \midrule
 MS640 & LENGTH & $554$ & $606$ & $634$ & $640$ & $640$\\
 (of $640$) & $\SMK$ & $574$ & $626$ & $640$ & $640$ & $640$\\
-& dual, single CoV & $593$ & $621$ & $640$ & $640$ & $640$\\
-& dual, auto CoV & $614$ & $634$ & $640$ & $640$ & $640$\\
-& triple$^{\dagger}$ & $612$ & $634$ & $640$ & $640$ & $640$\\
-& CoV gate & $590$ & $612$ & $626$ & $640$ & $640$\\
 & hybrid & $640$ & $640$ & $640$ & $640$ & $640$\\
 \midrule
 bench60 & LENGTH & $29$ & $40$ & $54$ & $60$ & $60$\\
 (of $60$) & $\SMK$ & $37$ & $52$ & $60$ & $60$ & $60$\\
-& dual, single CoV & $43$ & $52$ & $60$ & $60$ & $60$\\
-& dual, auto CoV & $51$ & $56$ & $60$ & $60$ & $60$\\
-& triple$^{\dagger}$ & $49$ & $56$ & $60$ & $60$ & $60$\\
-& CoV gate & $43$ & $49$ & $52$ & $60$ & $60$\\
 & hybrid & $60$ & $60$ & $60$ & $60$ & $60$\\
 \midrule
 ladder100 & LENGTH & $11$ & $20$ & $40$ & $60$ & $80$\\
 (of $100$) & $\SMK$ & $23$ & $53$ & $69$ & $87$ & $91$\\
-& dual, single CoV & $56$ & $82$ & $100$ & $100$ & $100$\\
-& dual, auto CoV & $77$ & $96$ & $100$ & $100$ & $100$\\
-& triple$^{\dagger}$ & $81$ & $97$ & $100$ & $100$ & $100$\\
-& CoV gate & $66$ & $88$ & $93$ & $100$ & $100$\\
 & hybrid & $99$ & $100$ & $100$ & $100$ & $100$\\
 \bottomrule
 \end{tabular}
 
-\smallskip
-\footnotesize Dual and triple: the greedy searches of ACSolverES (E.~Steffen), with the CoV work counted in
-substitution-pop units. Counted in nodes, where a CoV pop counts as $1$, the $10^3$ / $10^4$ columns read: single CoV
-$604$/$627$, $46$/$52$, $64$/$92$; auto CoV $618$/$634$, $51$/$56$, $80$/$97$; triple $618$/$634$, $51$/$56$,
-$86$/$97$. Every row is solved within $10^5$, so the $10^6$ and $10^7$ columns are full.
-$^{\dagger}$The triple's complete CoV is not an automorphism, so $54$, $7$ and $17$ of its solves prove only stable
-AC-triviality.
-CoV gate: the best-first search of Stable-ACSolver (R.~Zang), with the gate \texttt{no\_short\_sub}, which adds the
-CoV moves of a state when none of its S-move children is shorter, and without a bound on the relator length. Each CoV
-move is an automorphism of $\F_2$, so every solve is an AC path. One unit is one expansion; the enumeration of the CoV
-moves is not charged. Every row is solved within $10^6$, so the $10^7$ column is full. Four of the other five gates
-also solve every row within $10^6$; the gate \texttt{short\_relator} solves $640$, $60$ and $60$.
 \end{center}
 
 $\SMK$ solves all of MS640 and bench60 by $10^5$ units, LENGTH only by $10^6$. On ladder100 neither finishes by
@@ -289,35 +265,20 @@ benchmark & method & mean & median & max & mean & median & max\\
 \midrule
 MS640 & LENGTH & $4{,}963$ & $11$ & $574{,}959$ & $36.8$ & $9$ & $708$\\
  & $\SMK$ & $995$ & $11$ & $34{,}438$ & $42.9$ & $9$ & $787$\\
- & dual, single CoV & $729$ & $31$ & $25{,}854$ & $40.8$ & $10$ & $825$\\
- & dual, auto CoV & $349$ & $14$ & $18{,}110$ & $44.0$ & $9$ & $939$\\
- & triple$^{\dagger}$ & $376$ & $22$ & $18{,}745$ & $44.1$ & $9$ & $939$\\
- & CoV gate & $4{,}265$ & $10$ & $163{,}991$ & $25.7$ & $9$ & $462$\\
  & hybrid & $23$ & $11$ & $322$ & $21.2$ & $10$ & $262$\\
 \midrule
 bench60 & LENGTH & $45{,}244$ & $1{,}311$ & $574{,}959$ & $142.6$ & $47$ & $708$\\
  & $\SMK$ & $4{,}685$ & $359$ & $34{,}438$ & $154.3$ & $42$ & $787$\\
- & dual, single CoV & $3{,}509$ & $326$ & $25{,}582$ & $148.0$ & $45$ & $780$\\
- & dual, auto CoV & $1{,}795$ & $192$ & $18{,}079$ & $161.8$ & $39$ & $939$\\
- & triple$^{\dagger}$ & $1{,}879$ & $198$ & $18{,}637$ & $161.7$ & $39$ & $939$\\
- & CoV gate & $23{,}031$ & $89$ & $163{,}991$ & $88.8$ & $20$ & $462$\\
  & hybrid & $67$ & $28$ & $322$ & $59.9$ & $22$ & $262$\\
 \midrule
 ladder100 & LENGTH & $975{,}165$ & $101{,}771$ & $8{,}204{,}360$ & $130.8$ & $69$ & $706$\\
  & $\SMK$ & $114{,}830$ & $6{,}073$ & $1{,}383{,}279$ & $133.9$ & $69$ & $787$\\
- & dual, single CoV & $4{,}654$ & $796$ & $61{,}821$ & $114.7$ & $58$ & $780$\\
- & dual, auto CoV & $1{,}523$ & $315$ & $18{,}113$ & $122.2$ & $58$ & $939$\\
- & triple$^{\dagger}$ & $1{,}373$ & $314$ & $18{,}680$ & $121.2$ & $54$ & $939$\\
- & CoV gate & $13{,}155$ & $256$ & $163{,}991$ & $64.4$ & $26$ & $462$\\
  & hybrid & $127$ & $53$ & $2{,}267$ & $49.7$ & $30$ & $262$\\
 \bottomrule
 \end{tabular}
 
 \smallskip
-\footnotesize Over the rows each method solves (on ladder100: $80$, $91$, all $100$ for the dual, triple and CoV gate
-searches, and $100$). Dual and triple: units count the CoV work in substitution-pop units, and a path counts each CoV
-move as one step (a map $x\mapsto xy^k$ counts $1$); so does the CoV gate. $^{\dagger}$Stable AC certificate on $54$, $7$ and $17$ of the
-rows.
+\footnotesize Over the rows each method solves (on ladder100: $80$, $91$ and $100$).
 \end{center}
 
 
@@ -329,7 +290,7 @@ against $130.8$ for LENGTH and $142.4$ for $\SMK$. $\SMK$ paths are about as lon
 \section{Stable AC algorithms}\label{sec:stable}
 
 \begin{definition}[Stable AC moves]\label{def:stableac}
-The \emph{AC moves} on $\pres{X}{r_1,\dots,r_n}$ are (AC1) $r_i\mapsto r_ir_j$ for $i\neq j$, (AC2) $r_i\mapsto
+The \emph{AC moves} on a presentation $P=\pres{X}{R}$ with $R=\{r_1,\dots,r_n\}$ are (AC1) $r_i\mapsto r_ir_j$ for $i\neq j$, (AC2) $r_i\mapsto
 r_i^{-1}$ and (AC3) $r_i\mapsto gr_ig^{-1}$ for $g\in X^{\pm1}$. The \emph{trivial presentation} is $\pres{X}{X}$.
 The \emph{stable AC moves} add two more, for a generator $z\notin X$:
 \begin{align*}
@@ -601,16 +562,13 @@ $14{,}400$ units and give paths of $489$ S-moves. The best image is chosen with 
 image costs a mean of $657{,}198$ units per presentation at budget $10^5$.
 \newline
 
+
+
+\clearpage
+\bibliographystyle{plain}
+\bibliography{references}
+
+\clearpage
 \input{appendix/appendix}
-
-
-\begin{thebibliography}{9}
-\bibitem{SMM24} A.~Shehper, A.~M.~Medina-Mardones, L.~Fagan, B.~Lewandowski, A.~Gruen, Y.~Qiu, P.~Kucharski,
-Z.~Wang and S.~Gukov, \emph{What makes math problems hard for reinforcement learning: a case study}, arXiv:2408.15332,
-2024.
-\bibitem{FTS26} L.~Fagan, M.~Tarquini, A.~Shehper, M.~Manko, A.~Gruen, C.~Huang, G.~Butbaia, D.~Passaro and
-S.~Gukov, \emph{The Two-Hump Problem: Bridging the Difficulty Gap in Mathematical Reinforcement Learning}, Proceedings
-of the 43rd International Conference on Machine Learning (ICML), 2026, arXiv:2606.21611.
-\end{thebibliography}
 
 \end{document}
