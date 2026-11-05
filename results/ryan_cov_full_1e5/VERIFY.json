@@ -1,0 +1,27 @@
+{
+ "ladder100__no_short_sub": {
+  "rows": 100,
+  "solved": 93,
+  "ac_path": 5,
+  "stable_cert": 88,
+  "steps": {
+   "sub": 1637,
+   "cov": 0,
+   "img": 782
+  },
+  "failures": {}
+ },
+ "ms640__no_short_sub": {
+  "rows": 640,
+  "solved": 626,
+  "ac_path": 297,
+  "stable_cert": 329,
+  "steps": {
+   "sub": 6167,
+   "cov": 0,
+   "img": 1737
+  },
+  "failures": {}
+ },
+ "all_pass": true
+}
