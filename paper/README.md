@@ -1,6 +1,6 @@
 # Conference paper draft
 
-`avi.tex` is the paper (it mirrors Truett's Overleaf project: `avi.tex`, `figures/`, `appendix/`). It started as the
+`avi.tex` is the paper (it mirrors Truett's Overleaf project: `avi.tex`, `references.bib`, `figures/`, `appendix/`). References live in `references.bib` (BibTeX, style `plain`). It started as the
 version pasted into the project thread on 5 Nov 2026. Figures go
 in `figures/`. This branch (`paper`) was cut from `ryan-replication`, so it also carries the Elliot Steffen and Ryan
 Zang replications and their results (`docs/ELLIOT_REPLICATION.md`, `docs/RYAN_REPLICATION.md`).
