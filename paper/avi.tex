@@ -315,13 +315,11 @@ priority $\lambda$. For $k=0$ it is LENGTH on $P$, the rank-$2$ baseline.
 \end{definition}
 
 \paragraph{Setup.} All searches are on the $640$ presentations of MS640, with a budget of $10^3$ units per search
-unless stated otherwise. A \emph{start} is a choice of the words $w_1,\dots,w_k$ of Definition~\ref{def:stab}, and one
-search is one run of the naive stable search from one start on one presentation.
+unless stated otherwise. A \emph{start} is a choice of the words $w_1,\dots,w_k$ of Definition~\ref{def:stab}, and one search is one run of the naive stable search from one start on one presentation.
 
 The rank-$3$ starts ($k=1$) are the freely reduced words $w$ of length $1$ to $10$, taken up to inversion, that is
 $59{,}048$ words; the words of length $1$ to $7$ are also run at a budget of $10^4$ units. The construction of these
 words, and the derivation of their number, are given in Appendix~\ref{app:stable}.
-
 
 For each word length $n$, three measures are reported, each as a number of presentations out of $640$; they are the
 three curves of Figure~\ref{fig:stable_words}.
@@ -344,7 +342,9 @@ $606$ at $10^4$ units.
 \centering
 \includegraphics[width=\textwidth]{figures/stable_rank3_words.png}
 \caption{Rank 3 against rank 2 on MS640. Some word and the best fixed word use the words of length at most $|w|$;
-random word is $640$ times the share solved by the words of length exactly $|w|$. Dashed: rank 2.}
+random word is $640$ times the share solved by the words of length exactly $|w|$. Dashed: rank 2. Rank 3 beats rank 2 only with the right word (Figure~\ref{fig:stable_words},
+Table~\ref{tab:stable_words}). A random word solves at most $446.8$ presentations on average, against $554$ for
+rank 2, and the best fixed word, \texttt{yXYYYxyyy}, solves $528$. }
 \label{fig:stable_words}
 \end{figure}
 
@@ -377,12 +377,9 @@ rank 2, by no word.}
 \label{tab:stable_words}
 \end{table}
 
-\paragraph{Rank 3.} Rank 3 beats rank 2 only with the right word (Figure~\ref{fig:stable_words},
-Table~\ref{tab:stable_words}). A random word solves at most $446.8$ presentations on average, against $554$ for
-rank 2, and the best fixed word, \texttt{yXYYYxyyy}, solves $528$. Only some word, which requires the right word for
-each presentation in advance, passes rank 2, from length $6$ onwards.
+\clearpage
 
-\subsection{One-shot change of variables}\label{sec:cov}
+\subsection{Change of variables}\label{sec:cov}
 
 The naive stable search keeps $z$ and searches in rank $3$. A change of variables uses $z$ once, to remove $x$ or $y$,
 and then searches in rank $2$ again.
@@ -401,151 +398,157 @@ The result is a presentation $P'$ on the two generators $\{x,y,z\}\setminus\{g\}
 them $x,y$ and search $P'$ with LENGTH.
 \end{definition}
 
-\begin{example}
-Let $P=\pres{x,y}{y^{-5}x^{-1}y^{4}x,\ y^{-2}xy^{-1}xy^{-1}x^{-1}}$ and $w=x^{-1}y$. Substituting $z$ for
-$w$ ($3$ occurrences) gives
-\[
-P_w\ \to\ \pres{x,y,z}{y^{-5}zy^{3}x,\ \ y^{-1}z^{-2}y^{-1}x^{-1},\ \ z^{-1}x^{-1}y}.
-\]
-In the first relator $x$ occurs once: $x=y^{-3}z^{-1}y^{5}$. Substituting it into the other two and renaming
-$y,z$ as $x,y$ gives the image
-\[
-P'=\pres{x,y}{x^{-1}y^{-2}x^{-6}yx^{3},\ \ y^{-1}x^{-5}yx^{4}}.
-\]
-\end{example}
+An example is given in Appendix~\ref{app:cov}.
 
-\begin{definition}[One-shot CoV]\label{def:oneshot}
-The words $w$ are the cyclic subwords of $r_1$ and $r_2$ of length at least $2$, one of each pair $\{w,w^{-1}\}$,
-except those whose substitution leaves a relator with fewer than $3$ letters. Step 2 substitutes every
-non-overlapping occurrence, read left to right; step 3 tries $g=x$ and $g=y$ and every relator in which $g$ occurs once.
-Each choice gives one image, and the images are ordered by $|w|$, then by $w$. The one-shot policy runs LENGTH with
-$10^3$ units on $P$ itself, then on the images in this order, $10^3$ units each, and stops at the first solve or after
-$10^4$ units in total. $P$ is searched at cap $24$, an image at cap $\max(24,\ \text{longest relator of }P'+16)$.
+The searches of this section use the following family of images.
+
+\begin{definition}[CoV images of a state]\label{def:covimages}
+For a state $Q=\pres{x,y}{r_1,r_2}$, the \emph{CoV images} of $Q$ are the images (Definition~\ref{def:cov}) obtained
+from every word $w$ that is a cyclic subword of $r_1$ or of $r_2$ with $2\le|w|\le|r_i|-1$, by substituting every
+non-empty set of non-overlapping occurrences of $w^{\pm1}$ and eliminating every generator $g$ through every relator
+in which $g$ occurs once. Images equal up to relator order, rotation, inversion and the $8$ signed permutations of
+$x,y$ are identified, and an image equal to $Q$ is discarded. No length bound is applied.
 \end{definition}
 
-On MS640 a presentation has $8$ to $174$ images (median $56$). The policy reaches at most the first $9$ of them, since
-$P$ takes the first $10^3$ units.
+A CoV image is an automorphic image of $Q$ when the relator used for the elimination contains $z$ exactly once; a
+solve whose CoV moves are all of this kind is transported to an AC path of $P$. Otherwise the solve is a stable
+certificate \cite[Lemma~11]{SMM24}.
 
-\paragraph{Score.} Table~\ref{tab:cov_oneshot} compares the policy with LENGTH on $P$ at the same total budget of
-$10^4$ units. Every solve was replayed: an AC path on $P$, a stable certificate by redoing the change of variables and
-then the path on $P'$.
+\paragraph{One-shot CoV.}
 
-\begin{table}[ht]
-\centering
-\small
-\begin{tabular}{lrrrrrr}
-\toprule
-& & \multicolumn{2}{c}{AC path of $P$} & & & LENGTH\\
-\cmidrule(lr){3-4}
-benchmark & solved & from $P$ & from $\varphi(P)$ & stable certificate & units spent & at $10^4$\\
-\midrule
-MS640 & $584$ & $554$ & $0$ & $30$ & $693{,}162$ & $606$\\
-bench60 & $39$ & $29$ & $0$ & $10$ & $246{,}744$ & $40$\\
-ladder100 & $46$ & $11$ & $13$ & $22$ & $734{,}766$ & $20$\\
-\bottomrule
-\end{tabular}
-\caption{One-shot CoV, $10^3$ units per search and $10^4$ per presentation. Units spent: summed over the benchmark,
-failures included.}
-\label{tab:cov_oneshot}
-\end{table}
+\begin{definition}[One-shot CoV]\label{def:oneshot}
+The \emph{one-shot CoV} search runs LENGTH on a single CoV image of $P$ (Definition~\ref{def:covimages}) in place of
+$P$.
+\end{definition}
+
+On MS640 the presentations have $5$ to $10{,}740$ CoV images (median $36$), $114{,}042$ in all, and every image was
+searched. As for rank $3$, Table~\ref{tab:cov_all} reports two measures, each as a number of presentations out of
+$640$, and compares them with LENGTH on $P$.
+\begin{itemize}
+  \item \emph{Random image}: the share of the images of $P$ that are solved, summed over the $640$ presentations. It is
+  the number of presentations that an image chosen at random solves on average.
+  \item \emph{Best image}: the number of presentations solved by at least one of their images. Like some word, it
+  requires the right image for each presentation in advance, so it is an upper bound and not a method; the last
+  column gives the mean number of units needed to search every image.
+\end{itemize}
 
 \begin{table}[ht]
 \centering
 \small
-\begin{tabular}{llrrrr}
-\toprule
-& & \multicolumn{2}{c}{units to solve} & \multicolumn{2}{c}{S-moves}\\
-\cmidrule(lr){3-4}\cmidrule(lr){5-6}
-benchmark & solved by & median & max & median & max\\
-\midrule
-MS640 & $P$ & $9$ & $990$ & $8$ & $101$\\
-& image & $2{,}400$ & $9{,}840$ & $49.5$ & $100$\\
-bench60 & $P$ & $61$ & $875$ & $16$ & $47$\\
-& image & $1{,}556.5$ & $9{,}840$ & $45.5$ & $69$\\
-ladder100 & $P$ & $4{,}092.5$ & $9{,}833$ & $31$ & $113$\\
-& image & $5{,}138.5$ & $8{,}963$ & $43$ & $120$\\
-\bottomrule
-\end{tabular}
-\caption{The solves of Table~\ref{tab:cov_oneshot}. Units to solve count every unit of the presentation, the search on
-$P$ included. S-moves are those of the solving search, on $P$ or on $P'$; for ladder100, solved by $P$ includes the
-$13$ solves through $\varphi(P)$.}
-\label{tab:cov_oneshot_cost}
-\end{table}
-
-On MS640 and bench60 every AC path comes from the search on $P$ within its first $10^3$ units: the images add only
-stable certificates, $30$ and $10$. LENGTH spends the same remaining $9\times10^3$ units on $P$ and gains more, $52$
-and $11$. On ladder100 the order is reversed, $46$ against $20$: its rows are graded by the units LENGTH needs
-(Definition~\ref{def:ladder}), so LENGTH alone is weak there by construction. On MS640 the solving image is one of the
-first $9$, and the first in $15$ of the $30$; its word is $x^{-1}y$ ($14$), $yx$ ($7$), $xy$ ($7$) or $x^{-1}y^{2}$
-($2$).
-
-\paragraph{Every image.} The one-shot policy sees a few images. To see what the images can do at all, we searched every
-image of every MS640 presentation, each with the full budget. This family is larger: $w$ is any cyclic subword of
-length $2$ to $|r_i|-1$, every set of non-overlapping occurrences is substituted, and images equal up to relator order,
-rotation, inversion and the $8$ signed permutations of $x,y$ are searched once. That gives $114{,}042$ images, $5$ to
-$10{,}740$ per presentation (median $36$), $335$ CPU-hours in all. The \emph{best image} counts a presentation as
-solved if some image of it is solved; like some word in Section~\ref{sec:stable}, it needs the right image in advance
-and is a bound, not a method.
-
-\begin{table}[ht]
-\centering
-\small
+\textbf{One-shot CoV against LENGTH on MS640}\par\smallskip
 \begin{tabular}{rrrrrr}
 \toprule
-budget & & best & & random image & units to search\\
-per search & LENGTH on $P$ & image & gained & solves & every image\\
+budget & LENGTH & random & best & & units to search\\
+per search & on $P$ & image & image & gained & every image\\
 \midrule
-$10^2$ & $455$ & $555$ & $100$ & $67.3\%$ & $5{,}328$\\
-$10^3$ & $554$ & $604$ & $50$ & $82.3\%$ & $28{,}456$\\
-$10^4$ & $606$ & $626$ & $20$ & $90.8\%$ & $164{,}759$\\
-$10^5$ & $634$ & $640$ & $6$ & $95.8\%$ & $657{,}198$\\
+$10$ & $317$ & $271.7$ & $416$ & $99$ & $1{,}408$\\
+$10^2$ & $455$ & $430.8$ & $555$ & $100$ & $5{,}328$\\
+$10^3$ & $554$ & $527.0$ & $604$ & $50$ & $28{,}456$\\
+$10^4$ & $606$ & $581.4$ & $626$ & $20$ & $164{,}759$\\
+$10^5$ & $634$ & $613.2$ & $640$ & $6$ & $657{,}198$\\
 \bottomrule
 \end{tabular}
-\caption{Every image on MS640. Gained: solved by the best image, not by LENGTH on $P$; no presentation is lost.
-Random image: the share of a presentation's images that are solved, averaged over the $640$ presentations. Units to
-search every image: the mean over presentations, a failed search counted at the full budget.}
+\caption{Gained: solved by the best image, not by LENGTH on $P$; no presentation is lost. Units to search every image:
+the mean over presentations, a failed search counted at the full budget. Images are searched with the length bound
+$\max(24,\ \text{longest relator}+16)$, $P$ with $24$.}
 \label{tab:cov_all}
 \end{table}
 
 The best image passes LENGTH at every budget, but the margin falls from $100$ to $6$, and finding the image costs more
-than the margin (Table~\ref{tab:cov_all}). At $10^3$, searching every image takes a mean of $28{,}456$ units per
-presentation, against $10^4$ for LENGTH to reach $606$. A random image is worse than $P$: at $10^4$ it needs fewer units
-than $P$ in $33.0\%$ of the pairs, the same in $9.6\%$, more in $48.2\%$, and fails in $9.2\%$. On the $606$
-presentations both solve at $10^4$, the best image needs a mean of $86$ units and $12.8$ S-moves, against $390$ units
-and $20.0$ S-moves for $P$. Images run at a cap of $24$ to $91$ and $P$ at $24$, so the comparison favours the images.
+than the margin. A random image solves fewer presentations than LENGTH on $P$ at every budget.
 
-\begin{figure}[ht]
+\paragraph{Searches with change-of-variables moves.} The searches below use the change of variables as a move inside
+a search rather than once at the start.
+
+\begin{definition}[CoV-gate search]\label{def:covgate}
+The \emph{CoV-gate search} of \cite{Zan} is a greedy search with priority $\lambda$, ties broken by depth and then by
+order of insertion, and no length bound. An expansion of a state $Q$ generates its S-move children; if no S-move
+child is shorter than $Q$ (the gate \emph{opens}), it also generates the CoV images of $Q$. In \cite{Zan} the CoV
+move substitutes a single occurrence of a cyclic window, so that every CoV move is an automorphism; here it is
+replaced by the CoV images of Definition~\ref{def:covimages}. One unit is charged per expansion and one more per
+opening of the gate.
+\end{definition}
+
+\begin{definition}[Dual and triple searches]\label{def:dualtriple}
+The searches of \cite{Ste} keep several heaps, each ordered by $\lambda$ with ties broken towards the deepest state.
+Every new state is pushed onto the \emph{S-heap}, and a state removed from the S-heap is expanded by S-moves and then
+pushed onto the other heaps. Removing a state from a CoV heap generates its CoV children, which are pushed onto the
+S-heap. One unit is charged per removal from any heap, and the input is expanded once by the CoV heaps without charge.
+\begin{itemize}
+  \item \emph{Dual, single CoV}: one CoV heap, whose children are the CoV images. The CoV heap is used when its first
+  state is at least $3$ shorter than the first state of the S-heap, and the S-heap otherwise.
+  \item \emph{Dual, auto CoV}: as the dual, single CoV, with the children of the CoV heap being the $24$ images under
+  $x\mapsto xy^{k}$ and $y\mapsto yx^{k}$, $1\le|k|\le6$, together with the CoV images.
+  \item \emph{Triple}: an S-heap, an auto heap with the $24$ images above, and a CoV heap with the CoV images. Each
+  step uses the heap of least $\lambda+t$, with $t=0$ for the S-heap and $t=2$ for the other two, ties going to the
+  S-heap, then the auto heap.
+\end{itemize}
+In \cite{Ste} the CoV step of the dual is a single substitution, and that of the triple substitutes at least two
+occurrences; here both are replaced by the CoV images of Definition~\ref{def:covimages}.
+\end{definition}
+
+\paragraph{Scores.} Table~\ref{tab:cov_search_solved} gives the number of presentations each search solves at equal
+budgets in units, and Table~\ref{tab:cov_search_paths} the units and path lengths of the solves. A path length counts
+each S-move and each CoV move as one step. Every solve was replayed move by move.
+
+\begin{table}[ht]
 \centering
-\includegraphics[width=\textwidth]{figures/cov_images.png}
-\caption{Every image on MS640. (a) Presentations solved by LENGTH on $P$, by the best image, and by a random image
-($640$ times the mean share of a presentation's images solved). (b) A random image against LENGTH on $P$ at budget
-$10^3$, with MS640 grouped by the units LENGTH needs on $P$.}
-\label{fig:cov_images}
-\end{figure}
-
-The best image passes LENGTH at every budget, but the margin falls from $100$ to $6$, and finding the image costs more
-than the margin (Table~\ref{tab:cov_all}, Figure~\ref{fig:cov_images}a). Unlike a stable start, an image is often
-cheaper than $P$ (Figure~\ref{fig:cov_images}b): where LENGTH needs $1$ to $9$ units, $52.6\%$ of the images solve in
-no more units, and where LENGTH fails within $10^3$, $9.8\%$ of the images still solve.
-
-\paragraph{The best image, then LENGTH.} Search each presentation from its best image only. Then LENGTH solves all
-$640$ presentations of MS640 within $14{,}473$ units each, $295{,}268$ units in all (mean $461$, median $7$), with
-paths of median $6$ and at most $489$ S-moves. LENGTH on $P$ still misses $6$ at $10^5$ units.
-\begin{center}
 \small
-\begin{tabular}{lrrrrrr}
+\begin{tabular}{llrrrrr}
 \toprule
-budget (units) & $10$ & $10^2$ & $10^3$ & $10^4$ & $3\cdot10^4$ & $10^5$\\
+& & \multicolumn{5}{c}{budget (units)}\\
+\cmidrule(lr){3-7}
+benchmark & method & $10^3$ & $10^4$ & $10^5$ & $10^6$ & $10^7$\\
 \midrule
-best image, then LENGTH & $416$ & $555$ & $604$ & $626$ & $640$ & $640$\\
-LENGTH on $P$ & $317$ & $455$ & $554$ & $606$ & $626$ & $634$\\
+MS640 & CoV gate & $596$ & $612$ & $626$ & -- & --\\
+(of $640$) & dual, single CoV & $612$ & $634$ & $640$ & $640$ & $640$\\
+& dual, auto CoV & $612$ & $627$ & $640$ & $640$ & $640$\\
+& triple & $612$ & $637$ & $640$ & $640$ & $640$\\
+\midrule
+bench60 & CoV gate & $45$ & $49$ & $52$ & -- & --\\
+(of $60$) & dual, single CoV & $49$ & $57$ & $60$ & $60$ & $60$\\
+& dual, auto CoV & $49$ & $53$ & $60$ & $60$ & $60$\\
+& triple & $49$ & $58$ & $60$ & $60$ & $60$\\
+\midrule
+ladder100 & CoV gate & $73$ & $89$ & $93$ & -- & --\\
+(of $100$) & dual, single CoV & $73$ & $98$ & $100$ & $100$ & $100$\\
+& dual, auto CoV & $72$ & $94$ & $100$ & $100$ & $100$\\
+& triple & $73$ & $97$ & $100$ & $100$ & $100$\\
 \bottomrule
 \end{tabular}
-\end{center}
-The last $36$ presentations are the rows with $n=7$, $r_1=y^{-8}x^{-1}y^{7}x$; their best images need about
-$14{,}400$ units and give paths of $489$ S-moves. The best image is chosen with hindsight: finding it by searching every
-image costs a mean of $657{,}198$ units per presentation at budget $10^5$.
-\newline
+\caption{Presentations solved by the searches with CoV images. The CoV-gate search has been run to $10^5$ units.}
+\label{tab:cov_search_solved}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{llrrrrrr}
+\toprule
+& & \multicolumn{3}{c}{units to solve} & \multicolumn{3}{c}{path length}\\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}
+benchmark & method & mean & median & max & mean & median & max\\
+\midrule
+MS640 & CoV gate & $857$ & $10$ & $34{,}540$ & $12.6$ & $8$ & $147$\\
+& dual, single CoV & $305$ & $9$ & $19{,}544$ & $41.2$ & $9$ & $963$\\
+& dual, auto CoV & $579$ & $8$ & $31{,}332$ & $40.2$ & $8$ & $907$\\
+& triple & $312$ & $8$ & $18{,}528$ & $39.2$ & $8$ & $842$\\
+\midrule
+bench60 & CoV gate & $2{,}222$ & $24$ & $34{,}540$ & $23.5$ & $13$ & $146$\\
+& dual, single CoV & $1{,}576$ & $106$ & $19{,}544$ & $162.5$ & $25.5$ & $963$\\
+& dual, auto CoV & $3{,}055$ & $120$ & $31{,}016$ & $152.6$ & $25.5$ & $907$\\
+& triple & $1{,}657$ & $114$ & $18{,}528$ & $145.8$ & $32.5$ & $842$\\
+\midrule
+ladder100 & CoV gate & $1{,}796$ & $93$ & $34{,}525$ & $26.0$ & $20$ & $147$\\
+& dual, single CoV & $1{,}146$ & $290$ & $10{,}372$ & $118.0$ & $46$ & $941$\\
+& dual, auto CoV & $2{,}059$ & $426$ & $31{,}016$ & $116.3$ & $48$ & $907$\\
+& triple & $1{,}444$ & $403$ & $18{,}528$ & $113.2$ & $52$ & $842$\\
+\bottomrule
+\end{tabular}
+\caption{Units and path lengths over the presentations each search solves (for the CoV-gate search at $10^5$ units:
+$626$, $52$ and $93$).}
+\label{tab:cov_search_paths}
+\end{table}
 
 \clearpage
 \bibliographystyle{plain}
