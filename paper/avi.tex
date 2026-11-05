@@ -315,13 +315,11 @@ priority $\lambda$. For $k=0$ it is LENGTH on $P$, the rank-$2$ baseline.
 \end{definition}
 
 \paragraph{Setup.} All searches are on the $640$ presentations of MS640, with a budget of $10^3$ units per search
-unless stated otherwise. A \emph{start} is a choice of the words $w_1,\dots,w_k$ of Definition~\ref{def:stab}, and one
-search is one run of the naive stable search from one start on one presentation.
+unless stated otherwise. A \emph{start} is a choice of the words $w_1,\dots,w_k$ of Definition~\ref{def:stab}, and one search is one run of the naive stable search from one start on one presentation.
 
 The rank-$3$ starts ($k=1$) are the freely reduced words $w$ of length $1$ to $10$, taken up to inversion, that is
 $59{,}048$ words; the words of length $1$ to $7$ are also run at a budget of $10^4$ units. The construction of these
 words, and the derivation of their number, are given in Appendix~\ref{app:stable}.
-
 
 For each word length $n$, three measures are reported, each as a number of presentations out of $640$; they are the
 three curves of Figure~\ref{fig:stable_words}.
@@ -344,7 +342,9 @@ $606$ at $10^4$ units.
 \centering
 \includegraphics[width=\textwidth]{figures/stable_rank3_words.png}
 \caption{Rank 3 against rank 2 on MS640. Some word and the best fixed word use the words of length at most $|w|$;
-random word is $640$ times the share solved by the words of length exactly $|w|$. Dashed: rank 2.}
+random word is $640$ times the share solved by the words of length exactly $|w|$. Dashed: rank 2. Rank 3 beats rank 2 only with the right word (Figure~\ref{fig:stable_words},
+Table~\ref{tab:stable_words}). A random word solves at most $446.8$ presentations on average, against $554$ for
+rank 2, and the best fixed word, \texttt{yXYYYxyyy}, solves $528$. }
 \label{fig:stable_words}
 \end{figure}
 
@@ -377,12 +377,9 @@ rank 2, by no word.}
 \label{tab:stable_words}
 \end{table}
 
-\paragraph{Rank 3.} Rank 3 beats rank 2 only with the right word (Figure~\ref{fig:stable_words},
-Table~\ref{tab:stable_words}). A random word solves at most $446.8$ presentations on average, against $554$ for
-rank 2, and the best fixed word, \texttt{yXYYYxyyy}, solves $528$. Only some word, which requires the right word for
-each presentation in advance, passes rank 2, from length $6$ onwards.
+\clearpage
 
-\subsection{One-shot change of variables}\label{sec:cov}
+\subsection{Change of variables}\label{sec:cov}
 
 The naive stable search keeps $z$ and searches in rank $3$. A change of variables uses $z$ once, to remove $x$ or $y$,
 and then searches in rank $2$ again.
