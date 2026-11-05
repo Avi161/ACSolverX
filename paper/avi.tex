@@ -46,72 +46,6 @@ is $x^3y^{-4}$.
 
 \section{AC algorithms}\label{sec:ac}
 
-% ---------BENCHMARKS---------------
-
-\paragraph{Benchmarks.} Every benchmark below is a list of balanced presentations of the trivial
-group, all of rank $2$. An \emph{expansion} is one removal of a state from the search heap. For a
-presentation $P$, $g(P)$ is the number of expansions GS-SUB \cite{FTS26} needs to solve $P$, and
-$g_S(P)$ is the number of expansions our greedy search with the $\SMK$ priority needs. We write $g$
-and $g_S$ for these functions of $P$.
-
-\begin{definition}[MS640]
-The Miller--Schupp benchmark of \cite{SMM24} is a list of $1{,}190$ presentations $\MS(n,w)$. \textbf{MS640}
-\cite{FTS26} is the sublist of the $640$ presentations with $g(P)\le10^6$. Under $\Aut(\F_2)$, MS640, in particular, has $113$ orbits.
-\end{definition}
-
-\begin{definition}[bench60]\label{def:bench60}
-\textbf{bench60} is a subset of $60$ presentations of MS640, comprising $6$ presentations from each of $10$ difficulty classes of
-$g$ whose bounds increase geometrically by a factor of approximately $3.37$. Within each difficulty class, the presentations are
-chosen to span the range of path lengths and to minimise the number of pairs lying in a common $\Aut(\F_2)$-orbit. The
-complete selection rule, the difficulty classes, and the position of the chosen presentations within MS640 are given in
-Appendix~\ref{app:bench60}.
-\end{definition}
-
-\begin{definition}[AC19\_autmin]\label{def:ac19}
-\textbf{AC19\_autmin} is the extended AC19 data set of \cite{FTS26} ($156{,}762$ balanced
-presentations of the trivial group), reduced to one presentation per $\Aut(\F_2)$-orbit.
-It has $72{,}779$ rows.
-\end{definition}
-
-A presentation of AC19 is AC-trivial if and only if its automorphic form is, so AC19\_autmin
-carries the same AC-triviality questions as AC19. However, an automorphism of a presentation can be much harder or easier to search than the original presentation.
-
-\begin{definition}[ladder100]\label{def:ladder}\label{def:levels}
-\textbf{ladder100} is a benchmark of $100$ AC-trivial presentations, taken from AC19\_autmin and MS640 and arranged
-in $10$ levels of $10$ presentations each, in increasing order of difficulty for greedy search
-(Figure~\ref{fig:ladder}). At levels $1$--$8$, LENGTH solves every presentation, and the number of expansions $g$ it
-requires increases from fewer than $10^3$ at level $1$ to between $3\cdot10^6$ and $10^7$ at level $8$. At level $9$,
-LENGTH fails within $10^7$ expansions but $\SMK$ succeeds; at level $10$, $\SMK$ fails as well, with one exception.
-The selection rule within each level, the verification of AC-triviality and the statistics of each level are given in
-Appendix~\ref{app:ladder}.
-\end{definition}
-
-The purpose of ladder100 is to extend the range of difficulty beyond that of MS640, up to presentations that are
-AC-trivial but are not solved by greedy substitution search within $10^7$ expansions, and thereby to support the
-development of algorithms for presentations closer to the second hump \cite{FTS26}.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.6\textwidth]{figures/ladder100_levels.png}
-\caption{The $100$ presentations of ladder100 by level: the number of expansions that LENGTH ($g$, circles) and
-$\SMK$ ($g_S$, diamonds) require to solve each presentation. Searches that fail within $10^7$ expansions are drawn
-in the top row.}
-\label{fig:ladder}
-\end{figure}
-
-\paragraph{Units.} Every budget is counted in \emph{units}, and every method is charged one unit per
-\emph{expansion}: the first state is removed from the heap, its children are generated, those already discovered are
-discarded, and the remainder are pushed onto the heap according to the priority. For the hybrid
-(Definition~\ref{def:hybrid}), each S-move applied by a finishing check is also charged one unit. A budget applies to
-each presentation separately, a failed search is charged the full budget, and path lengths are counted in S-moves (for
-the hybrid, S-moves together with Nielsen images).
-
-An expansion does not require the same time in every method. Measured on a common set of states
-(Appendix~\ref{app:time}), one expansion of $\SMK$ takes on average approximately $1.2$ times as long as one expansion
-of LENGTH, one expansion of the hybrid approximately $2.1$ times as long, and the construction of the
-change-of-variables images of a state approximately $3.6$ times as long. In this paper every method is nevertheless
-charged one unit per expansion, so that equal budgets in units are comparable up to these factors.
-
 \subsection{AC search methods}\label{sec:methods}
 
 The three methods below are AC search methods: each solve comes with an AC certificate. All three search over
@@ -222,6 +156,74 @@ other children are pushed onto the heap.}
 
 The hybrid stays at rank $2$, so its certificates are AC paths. It can also change the rank during the search
 (Section~\ref{sec:hybrid}); that extension is left out here.
+
+\subsection{Benchmarks}\label{sec:benchmarks}
+
+Every benchmark below is a list of balanced presentations of the trivial group, all of rank $2$. For a
+presentation $P$, $g(P)$ denotes the number of expansions (Definition~\ref{def:greedy}) that GS-SUB \cite{FTS26}
+requires to solve $P$, and $g_S(P)$ the number that $\SMK$ (Definition~\ref{def:smk}) requires.
+
+\begin{definition}[MS640]
+The Miller--Schupp benchmark of \cite{SMM24} is a list of $1{,}190$ presentations $\MS(n,w)$. \textbf{MS640}
+\cite{FTS26} is the sublist of the $640$ presentations with $g(P)\le10^6$. Under $\Aut(\F_2)$, MS640, in particular, has $113$ orbits.
+\end{definition}
+
+\begin{definition}[bench60]\label{def:bench60}
+\textbf{bench60} is a subset of $60$ presentations of MS640, comprising $6$ presentations from each of $10$ difficulty
+classes of $g$ whose bounds increase geometrically by a factor of approximately $3.37$. Within each difficulty class,
+the presentations are chosen to span the range of path lengths and to minimise the number of pairs lying in a common
+$\Aut(\F_2)$-orbit. The complete selection rule and the position of the chosen presentations within MS640 are given in
+Appendix~\ref{app:bench60}.
+\end{definition}
+
+\begin{definition}[AC19\_autmin]\label{def:ac19}
+\textbf{AC19\_autmin} is the extended AC19 data set of \cite{FTS26} ($156{,}762$ balanced
+presentations of the trivial group), reduced to one presentation per $\Aut(\F_2)$-orbit.
+It has $72{,}779$ rows.
+\end{definition}
+
+A presentation of AC19 is AC-trivial if and only if its automorphic form is, so AC19\_autmin
+carries the same AC-triviality questions as AC19. However, an automorphism of a presentation can be much harder or easier to search than the original presentation \cite{FTS26}.
+
+\begin{definition}[ladder100]\label{def:ladder}\label{def:levels}
+\textbf{ladder100} is a benchmark of $100$ AC-trivial presentations, taken from AC19\_autmin and MS640 and arranged
+in $10$ levels of $10$ presentations each, in increasing order of difficulty for greedy search
+(Figure~\ref{fig:ladder}). At levels $1$--$8$, LENGTH solves every presentation, and the number of expansions $g$ it
+requires increases from fewer than $10^3$ at level $1$ to between $3\cdot10^6$ and $10^7$ at level $8$. At level $9$,
+LENGTH fails within $10^7$ expansions but $\SMK$ succeeds; at level $10$, $\SMK$ fails as well, with one exception.
+The selection rule within each level, the verification of AC-triviality and the statistics of each level are given in
+Appendix~\ref{app:ladder}.
+\end{definition}
+
+The purpose of ladder100 is to extend the range of difficulty beyond that of MS640, up to presentations that are
+AC-trivial but are not solved by greedy substitution search within $10^7$ expansions, and thereby to support the
+development of algorithms for presentations closer to the second hump \cite{FTS26}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/ladder100_levels.png}
+\caption{The $100$ presentations of ladder100 by level: the number of expansions that LENGTH ($g$, circles) and
+$\SMK$ ($g_S$, diamonds) require to solve each presentation. Searches that fail within $10^7$ expansions are drawn
+in the top row.}
+\label{fig:ladder}
+\end{figure}
+
+\subsection{Units}\label{sec:units}
+
+Every budget is counted in \emph{units}, and every method is charged one unit per
+\emph{expansion}: the first state is removed from the heap, its children are generated, those already discovered are
+discarded, and the remainder are pushed onto the heap according to the priority. For the hybrid
+(Definition~\ref{def:hybrid}), each S-move applied by a finishing check is also charged one unit. A budget applies to
+each presentation separately, a failed search is charged the full budget, and path lengths are counted in S-moves (for
+the hybrid, S-moves together with Nielsen images).
+
+An expansion does not require the same time in every method. Measured on a common set of states
+(Appendix~\ref{app:time}), one expansion of $\SMK$ takes on average approximately $1.2$ times as long as one expansion
+of LENGTH, one expansion of the hybrid approximately $2.1$ times as long, and the construction of the
+change-of-variables images of a state approximately $3.6$ times as long. In this paper every method is nevertheless
+charged one unit per expansion, so that equal budgets in units are comparable up to these factors.
+
+\subsection{Results}\label{sec:ac_results}
 
 \paragraph{Scores.} We compare the three methods at equal budgets in units: the number of
 presentations each solves on the three benchmarks.
