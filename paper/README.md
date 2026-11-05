@@ -9,10 +9,10 @@ No pull request for this branch. Never add solutions to the 10,115 SAIR ACC chal
 
 ## Appendix
 
-All appendices live in one file, `appendix/appendix.tex` (it starts with `\appendix`, then one
-`\section{...}\label{app:<name>}` per appendix, no preamble). `avi.tex` pulls it in just before the bibliography with
-`\input{appendix/appendix}`. Point to an appendix from the main text with `Appendix~\ref{app:<name>}`. Figure paths
-inside it are relative to `avi.tex`.
+All appendices live in one file, `appendix/appendix.tex`: one unnumbered section titled "Appendix", whose parts are
+subsections lettered A, B, C (A is bench60). `avi.tex` pulls it in just before the bibliography with
+`\input{appendix/appendix}`. Point to a part from the main text with `Appendix~\ref{app:<name>}`, which prints
+"Appendix A". Figure paths inside it are relative to `avi.tex`.
 
 ## Figures
 

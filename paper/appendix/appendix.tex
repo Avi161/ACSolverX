@@ -1,8 +1,12 @@
 % All appendices, in one file. avi.tex pulls it in with \input{appendix/appendix}; no preamble here.
-% Add each new appendix as another \section{...}\label{app:...} below.
-\appendix
+% One big unnumbered section, "Appendix"; each part is a subsection lettered A, B, C, ...
+% Add the next part as another \subsection{...}\label{app:...} below.
+\section*{Appendix}\label{sec:appendix}
+\addcontentsline{toc}{section}{Appendix}
+\setcounter{subsection}{0}
+\renewcommand{\thesubsection}{\Alph{subsection}}
 
-\section{bench60}\label{app:bench60}
+\subsection{bench60}\label{app:bench60}
 
 \begin{definition}[bench60, full rule]\label{def:bench60full}
 Let $g_0=3$ and $g_{10}=574{,}959$ be the least and the largest value of $g$ on MS640 at budget $10^6$, and
