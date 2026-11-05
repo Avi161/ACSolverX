@@ -27,7 +27,7 @@ number in Table `tab:smk` (`python3 paper/figsrc/smk_separation.py`, about 6 s, 
 clustering study (branch `claude/abelianized-exponents-verify-1i6muh`, `experiments/clustering/rank_signals.py`,
 `results/clustering/signal_ranking.json`): $S$ 0.912, MK 0.860, length 0.809, exactly.
 
-`stable_ranks_split.png` (rank 3 by word length and difficulty) comes from `figsrc/stable_ranks_fig.py`, which reads the rank-3 arrays of branch `rank3/brute-force-baseline` (`results/stable_ac/rank3_bf/`).
+`stable_ranks_split.png` (no longer used in avi.tex; rank 3 by word length and difficulty) comes from `figsrc/stable_ranks_fig.py`, which reads the rank-3 arrays of branch `rank3/brute-force-baseline` (`results/stable_ac/rank3_bf/`).
 
 ## Open issues in `avi.tex`
 

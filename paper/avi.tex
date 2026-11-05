@@ -383,19 +383,6 @@ Table~\ref{tab:stable_words}). A random word solves at most $446.8$ presentation
 rank 2, and the best fixed word, \texttt{yXYYYxyyy}, solves $528$. Only some word, which requires the right word for
 each presentation in advance, passes rank 2, from length $6$ onwards.
 
-Figure~\ref{fig:stable_split} shows where the loss occurs. Where LENGTH needs fewer than $10$ units on $P$, every
-word solves. Where it needs $10$ to $99$ units, between $56.3\%$ and $86.1\%$ of the words of each length solve, and
-where it needs $100$ to $999$ units, at most $15.7\%$ do. On the $86$ presentations that rank $2$ does not solve, at
-most $0.2\%$ of the words of each length solve.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\textwidth]{figures/stable_ranks_split.png}
-\caption{The share of the words of length $|w|$ that solve within $10^3$ units at rank $3$ on MS640, with the
-presentations grouped by the number of units LENGTH needs on $P$ (rank $2$).}
-\label{fig:stable_split}
-\end{figure}
-
 \subsection{One-shot change of variables}\label{sec:cov}
 
 The naive stable search keeps $z$ and searches in rank $3$. A change of variables uses $z$ once, to remove $x$ or $y$,
@@ -533,7 +520,7 @@ and $20.0$ S-moves for $P$. Images run at a cap of $24$ to $91$ and $P$ at $24$,
 \includegraphics[width=\textwidth]{figures/cov_images.png}
 \caption{Every image on MS640. (a) Presentations solved by LENGTH on $P$, by the best image, and by a random image
 ($640$ times the mean share of a presentation's images solved). (b) A random image against LENGTH on $P$ at budget
-$10^3$, with MS640 grouped by the units LENGTH needs on $P$; compare Figure~\ref{fig:stable_split}.}
+$10^3$, with MS640 grouped by the units LENGTH needs on $P$.}
 \label{fig:cov_images}
 \end{figure}
 
