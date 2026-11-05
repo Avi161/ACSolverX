@@ -10,7 +10,7 @@ No pull request for this branch. Never add solutions to the 10,115 SAIR ACC chal
 ## Appendix
 
 All appendices live in one file, `appendix/appendix.tex`: one unnumbered section titled "Appendix", whose parts are
-subsections lettered A, B, C, D (A bench60, B ladder100, C time per unit, D the hybrid solver: pinch replacements, filters and finishing checks, moved verbatim from the main text). `avi.tex` pulls it in just before the bibliography with
+subsections lettered A, B, C, D, E (A bench60, B ladder100, C time per unit, D the hybrid solver: pinch replacements, filters and finishing checks, moved verbatim from the main text, E how well $S$ and MK separate the solved from the unsolved MS1190 presentations). `avi.tex` pulls it in just before the bibliography with
 `\input{appendix/appendix}`. Point to a part from the main text with `Appendix~\ref{app:<name>}`, which prints
 "Appendix A". Figure paths inside it are relative to `avi.tex`.
 
@@ -20,6 +20,12 @@ Five figures are in `figures/`: `bench60_g.png` and `bench60_path.png` from the 
 writeup, and `units_paths.png`, `stable_rank3_words.png`, `cov_images.png` uploaded by Truett on 5 Nov.
 
 `units_paths.png` shows LENGTH, S20_MK2 and the hybrid only, not the dual and triple searches that its table lists.
+
+`smk_distributions.png` and `smk_roc.png` (Appendix E) come from `figsrc/smk_separation.py`, which also prints every
+number in Table `tab:smk` (`python3 paper/figsrc/smk_separation.py`, about 6 s, needs matplotlib). It reads only
+`data/` and uses `acx.core.priority.features`, the definitions the search uses. Population (c) reproduces the summer
+clustering study (branch `claude/abelianized-exponents-verify-1i6muh`, `experiments/clustering/rank_signals.py`,
+`results/clustering/signal_ranking.json`): $S$ 0.912, MK 0.860, length 0.809, exactly.
 
 Missing: `stable_ranks_split.png` (in Overleaf, not uploaded yet).
 
