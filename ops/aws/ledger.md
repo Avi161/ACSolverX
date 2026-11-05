@@ -24,3 +24,4 @@ the 300-vCPU spot quota (the Elliot thread's c8g.48xlarge holds 192).
 | instance | type | market | $/h | launched | purpose | max life | ended |
 |---|---|---|---:|---|---|---|---|
 | i-04b5c27624d921fd7 | c8g.16xlarge | spot (us-east-1a, sir-i2vfm1wh) | 0.670400 | 2026-11-05T21:10:28Z / 4:10 PM ET | full-CoV CoV gate: all rows at 1e5 units, then unsolved at 1e6 | 10 h | |
+| i-0b684365ee054b85b | r8g.8xlarge | spot (us-east-1b, sir-5asfn8ch) | 0.503300 | 2026-11-05T21:58:53.000Z / 4:58 PM ET | full-CoV CoV gate with the numba kernel (cov_full_numba.py): the 14 searches unsolved at 1e5, rerun at 1e6, 14 workers; run prefix cov_full/run_5nov_nb | 3 h | |
