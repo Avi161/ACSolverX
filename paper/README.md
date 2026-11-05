@@ -1,19 +1,35 @@
 # Conference paper draft
 
-`main.tex` is the paper as Truett had it on 5 Nov 2026 (pasted into the project thread, saved verbatim). Figures go
+`avi.tex` is the paper (it mirrors Truett's Overleaf project: `avi.tex`, `figures/`, `appendix/`). It started as the
+version pasted into the project thread on 5 Nov 2026. Figures go
 in `figures/`. This branch (`paper`) was cut from `ryan-replication`, so it also carries the Elliot Steffen and Ryan
 Zang replications and their results (`docs/ELLIOT_REPLICATION.md`, `docs/RYAN_REPLICATION.md`).
 
 No pull request for this branch. Never add solutions to the 10,115 SAIR ACC challenges here.
 
+## Appendix
+
+Each appendix is its own file in `appendix/`, with no preamble, starting with `\section{...}\label{app:<name>}`.
+`avi.tex` pulls them in just before the bibliography:
+
+```latex
+\appendix
+\input{appendix/bench60}
+```
+
+To add one: create `appendix/<name>.tex`, add `\input{appendix/<name>}` under the others, and point to it from the
+main text with `Appendix~\ref{app:<name>}`. Paths inside an appendix file (figures) are relative to `avi.tex`.
+
 ## Figures
 
-All five figures `main.tex` uses are in `figures/`: `bench60_g.png` and `bench60_path.png` from the 27 Oct internal
+Five figures are in `figures/`: `bench60_g.png` and `bench60_path.png` from the 27 Oct internal
 writeup, and `units_paths.png`, `stable_rank3_words.png`, `cov_images.png` uploaded by Truett on 5 Nov.
 
 `units_paths.png` shows LENGTH, S20_MK2 and the hybrid only, not the dual and triple searches that its table lists.
 
-## Open issues in `main.tex`
+Missing: `stable_ranks_split.png` (in Overleaf, not uploaded yet).
+
+## Open issues in `avi.tex`
 
 - Three references point at nothing: `fig:stable_split` and `tab:stable_ranks` (the rank 4 / rank 5 figure and table)
   and `sec:hybrid`.

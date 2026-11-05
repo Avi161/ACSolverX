@@ -60,52 +60,11 @@ The Miller--Schupp benchmark of \cite{SMM24} is a list of $1{,}190$ presentation
 \end{definition}
 
 \begin{definition}[bench60]\label{def:bench60}
-Let $g_0=3$ and $g_{10}=574{,}959$ be the least and the largest value of $g$ on MS640 at budget $10^6$, and
-let $\rho=(g_{10}/g_0)^{1/10}\approx3.37$. \emph{Bin} $b\in\{0,\dots,9\}$ is the set of $P\in$ MS640 with
-$g_0\rho^{b}\le g(P)<g_0\rho^{b+1}$ (bin $9$ closed on the right). \textbf{bench60} takes $6$ presentations from every
-bin by the following rule.
-\begin{enumerate}
-  \item Over the whole subset, minimise the number of pairs of chosen presentations in the same $\Aut(\F_2)$-orbit.
-  \item Subject to (1), sort the presentations of each bin by path length, the number of S-moves in the solution GS-SUB finds; break ties by smaller $g$ first, then by line number in MS640.
-  Take the $6$ presentations closest to $6$ evenly spaced positions of this sorted list, the first and the last
-  position included.
-  % This one needs more explaination
-\end{enumerate}
+\textbf{bench60} is a subset of $60$ presentations of MS640: MS640 is split into $10$ bins of $g$, each $3.37$ times
+the one below, and $6$ presentations are taken from every bin, spread over the path length and with as few repeated
+$\Aut(\F_2)$-orbits as possible. Appendix~\ref{app:bench60} gives the full rule, the bins and where the rows lie in
+MS640.
 \end{definition}
-
-Figure~\ref{fig:bench60} shows where the $60$ rows lie in MS640.
-
-\begin{center}
-\begin{tabular}{rrrrr}
-\toprule
-bin $b$ & range of $g$ & rows of MS640 & rows of bench60 & mean $g$ on bench60\\
-\midrule
-0 & $[3,\,11)$ & $317$ & $6$ & $6.3$\\
-1 & $[11,\,35)$ & $89$ & $6$ & $17.7$\\
-2 & $[35,\,116)$ & $63$ & $6$ & $74.3$\\
-3 & $[116,\,390)$ & $60$ & $6$ & $261.7$\\
-4 & $[390,\,1{,}314)$ & $31$ & $6$ & $691.2$\\
-5 & $[1{,}314,\,4{,}433)$ & $26$ & $6$ & $1{,}746.8$\\
-6 & $[4{,}433,\,14{,}959)$ & $28$ & $6$ & $9{,}869.2$\\
-7 & $[14{,}959,\,50{,}482)$ & $14$ & $6$ & $19{,}596.3$\\
-8 & $[50{,}482,\,170{,}367)$ & $6$ & $6$ & $66{,}530.7$\\
-9 & $[170{,}367,\,574{,}959]$ & $6$ & $6$ & $353{,}647.7$\\
-\midrule
-all & & $640$ & $60$ & \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.49\textwidth]{figures/bench60_g.png}\hfill
-\includegraphics[width=0.49\textwidth]{figures/bench60_path.png}
-\caption{bench60 inside MS640. Grey: all $640$ presentations; colour: the $60$ choices, six per bin. Blue circles are choices whose
-$\Aut(\F_2)$-orbit occurs once in bench60; diamonds are choices that share an orbit with another choice, which bins 7--9 force.
-Left: $g$ against the rows sorted by $g$; the shaded bands are bins 0--9, each $3.37$ times the one below.
-Right: the S-move length of a presentation against $g$.}
-\label{fig:bench60}
-\end{figure}
 
 \begin{definition}[AC19\_autmin]\label{def:ac19}
 \textbf{AC19\_autmin} is the extended AC19 data set of \cite{FTS26} ($156{,}762$ balanced
@@ -777,6 +736,9 @@ The last $36$ presentations are the rows with $n=7$, $r_1=y^{-8}x^{-1}y^{7}x$; t
 $14{,}400$ units and give paths of $489$ S-moves. The best image is chosen with hindsight: finding it by searching every
 image costs a mean of $657{,}198$ units per presentation at budget $10^5$.
 
+
+\appendix
+\input{appendix/bench60}
 
 \begin{thebibliography}{9}
 \bibitem{SMM24} A.~Shehper, A.~M.~Medina-Mardones, L.~Fagan, B.~Lewandowski, A.~Gruen, Y.~Qiu, P.~Kucharski,
