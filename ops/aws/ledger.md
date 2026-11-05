@@ -7,6 +7,12 @@
 
 Total for the Ryan replication: about $3.25 (2.16 h + 0.33 h of spot).
 
+## Elliot full-CoV rerun (5 Nov 2026)
+
+| instance | type | market | $/h | launched | purpose | max life | ended |
+|---|---|---|---:|---|---|---|---|
+| i-0ad72d0b40767ec9c | c8g.48xlarge | spot persistent, stop on reclaim (us-east-1a, sir-akdfpi9j) | 2.193100 | 2026-11-05T20:55:22Z / 3:55 PM ET | Elliot's three searches with the full CoV family (benchmark/elliot/fullcov), MS640 / bench60 / ladder100, 10^3 to 10^7 | 12 h (request valid to 08:25Z, power-off 08:55Z 6 Nov) | not ended by this session: its key (claude-code-sair) may launch but not SendCommand, read the bucket, cancel the request or terminate; Truett asked to cancel sir-akdfpi9j and terminate (5 Nov 3:57 PM ET). Its results were never read. |
+
 ## Full-CoV CoV-gate run (5 Nov 2026)
 
 Key `claude-code-sair` (it can launch but not terminate, cancel spot requests or send SSM commands), instance profile
@@ -18,4 +24,3 @@ the 300-vCPU spot quota (the Elliot thread's c8g.48xlarge holds 192).
 | instance | type | market | $/h | launched | purpose | max life | ended |
 |---|---|---|---:|---|---|---|---|
 | i-04b5c27624d921fd7 | c8g.16xlarge | spot (us-east-1a, sir-i2vfm1wh) | 0.670400 | 2026-11-05T21:10:28Z / 4:10 PM ET | full-CoV CoV gate: all rows at 1e5 units, then unsolved at 1e6 | 10 h | |
-| i-0ad72d0b40767ec9c | c8g.48xlarge | spot (sir-akdfpi9j) | ~1.5 | 2026-11-05T20:55:48Z / 3:55 PM ET | Elliot full-CoV thread's box; this key could not cancel or terminate it (UnauthorizedOperation), reported to the coordinator | expires tag 2026-11-06T08:55Z | |

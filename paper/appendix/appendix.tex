@@ -292,5 +292,64 @@ $113$ solved orbits and the $124$ unsolved classes (right). The legend gives the
 
 In every population, $\pi_{\SMK}$ separates the two groups better than $\lambda$ alone (Figure~\ref{fig:smk_roc}).
 
+\subsection{Starts of the naive stable search}\label{app:stable}
+
+This appendix describes the starts of the naive stable search (Definition~\ref{def:naive}) and derives their
+numbers.
+
+\paragraph{Freely reduced words.} A freely reduced word of length $n\ge1$ over $x^{\pm1},y^{\pm1}$ has $4$ choices for
+its first letter and $3$ for each subsequent letter, since the only excluded letter is the inverse of its predecessor.
+There are therefore $4\cdot3^{n-1}$ such words. The starts $\pres{x,y,z}{r_1,r_2,z^{-1}w}$ and
+$\pres{x,y,z}{r_1,r_2,z^{-1}w^{-1}}$ differ only by the renaming $z\mapsto z^{-1}$ followed by an inversion of the last
+relator, so the two searches are identical, and one word of each pair $\{w,w^{-1}\}$ is retained. A word is never equal
+to its own inverse, so this halves the count to $2\cdot3^{n-1}$ words of length $n$:
+\begin{center}
+\small
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+$n$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$\\
+\midrule
+words & $2$ & $6$ & $18$ & $54$ & $162$ & $486$ & $1{,}458$ & $4{,}374$ & $13{,}122$ & $39{,}366$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The words of length $1$ to $L$ number $\sum_{n=1}^{L}2\cdot3^{n-1}=3^L-1$: $8$ for $L=2$, $26$ for $L=3$, $2{,}186$ for
+$L=7$ and $59{,}048$ for $L=10$. For example, the $8$ words of length at most $2$ are $x$, $y$, $x^2$, $xy$, $yx$, $y^2$,
+$yx^{-1}$ and $x^{-1}y$.
+
+\paragraph{Rank 3.} Every one of the $59{,}048$ words is run on every presentation of MS640, which gives
+$59{,}048\times640=37{,}790{,}720$ searches at a budget of $10^3$ units. At a budget of $10^4$ units only the $2{,}186$
+words of length $1$ to $7$ are run, which gives $2{,}186\times640=1{,}399{,}040$ searches.
+
+\paragraph{Ranks 4 and 5.} A rank-$4$ start adds two generators, $\pres{x,y,z_1,z_2}{r_1,r_2,z_1^{-1}w_1,z_2^{-1}w_2}$.
+Exchanging $z_1$ and $z_2$ exchanges $w_1$ and $w_2$ and leaves the search unchanged, so the order of the two words is
+immaterial; the two words may coincide. A start is therefore a multiset of two words from a pool of $m$ words, and the
+number of such multisets is
+\[
+\binom{m+1}{2}=\frac{m(m+1)}{2}.
+\]
+With the $m=26$ words of length at most $3$ this gives $\binom{27}{2}=351$ starts, that is $325$ pairs of distinct words
+and $26$ pairs of equal words. A rank-$5$ start adds three generators, and in the same way a start is a multiset of three
+words, of which there are $\binom{m+2}{3}$. With the $m=8$ words of length at most $2$ this gives $\binom{10}{3}=120$
+starts. Over MS640 these are $351\times640=224{,}640$ and $120\times640=76{,}800$ searches, all at a budget of $10^3$
+units.
+
+\paragraph{Measures.} For a set of starts and a presentation $P$, rank $2$ denotes LENGTH on $P$ with the same budget.
+\begin{itemize}
+  \item \emph{A random start solves}: the share of the starts of $P$ that solve $P$ within the budget, averaged over the
+  $640$ presentations. It is the probability that a start chosen uniformly at random solves a presentation chosen
+  uniformly at random.
+  \item \emph{A random start needs fewer units than rank 2}: the share of the starts of $P$ that solve $P$ in fewer
+  units than rank $2$, or solve $P$ where rank $2$ fails, averaged over the presentations.
+  \item \emph{Some start}: the number of presentations solved by at least one start of the set. It presupposes the
+  right start for each presentation, so it bounds what any choice of start can achieve and is not itself a method.
+  \item \emph{Best fixed start}: the largest number of presentations solved by a single start, applied to every
+  presentation and chosen with hindsight.
+\end{itemize}
+
+\paragraph{Length bound.} Every search uses the length bound $c=24$ of Definition~\ref{def:greedy}. In none of the
+$40{,}098{,}032$ searches could the bound have changed the search: no child that it discarded would have been removed
+from the heap before the search ended.
+
 % Place every remaining figure of the appendix before the references.
 \clearpage

@@ -1,0 +1,51 @@
+{
+ "files": {
+  "bench60__dual_auto_cov.jsonl": {
+   "solved": 60,
+   "failed": 0,
+   "stable_cert": 32
+  },
+  "bench60__dual_single_cov.jsonl": {
+   "solved": 60,
+   "failed": 0,
+   "stable_cert": 34
+  },
+  "bench60__triple.jsonl": {
+   "solved": 60,
+   "failed": 0,
+   "stable_cert": 29
+  },
+  "ladder100__dual_auto_cov.jsonl": {
+   "solved": 100,
+   "failed": 0,
+   "stable_cert": 45
+  },
+  "ladder100__dual_single_cov.jsonl": {
+   "solved": 100,
+   "failed": 0,
+   "stable_cert": 53
+  },
+  "ladder100__triple.jsonl": {
+   "solved": 100,
+   "failed": 0,
+   "stable_cert": 40
+  },
+  "ms640__dual_auto_cov.jsonl": {
+   "solved": 640,
+   "failed": 0,
+   "stable_cert": 163
+  },
+  "ms640__dual_single_cov.jsonl": {
+   "solved": 640,
+   "failed": 0,
+   "stable_cert": 175
+  },
+  "ms640__triple.jsonl": {
+   "solved": 640,
+   "failed": 0,
+   "stable_cert": 156
+  }
+ },
+ "all_pass": true,
+ "failures": []
+}

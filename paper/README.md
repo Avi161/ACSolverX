@@ -10,7 +10,7 @@ No pull request for this branch. Never add solutions to the 10,115 SAIR ACC chal
 ## Appendix
 
 All appendices live in one file, `appendix/appendix.tex`: one unnumbered section titled "Appendix", whose parts are
-subsections lettered A, B, C, D, E (A bench60, B ladder100, C time per unit, D the hybrid solver: pinch replacements, filters and finishing checks, moved verbatim from the main text, E how well $S$ and MK separate the solved from the unsolved MS1190 presentations). `avi.tex` pulls it in after the bibliography, on a new page (`\clearpage`), with
+subsections lettered A to F (A bench60, B ladder100, C time per unit, D the hybrid solver: pinch replacements, filters and finishing checks, moved verbatim from the main text, E how well $S$ and MK separate the solved from the unsolved MS1190 presentations, F the starts of the naive stable search and their counts). `avi.tex` pulls it in after the bibliography, on a new page (`\clearpage`), with
 `\input{appendix/appendix}`. Point to a part from the main text with `Appendix~\ref{app:<name>}`, which prints
 "Appendix A". Figure paths inside it are relative to `avi.tex`.
 
@@ -27,12 +27,11 @@ number in Table `tab:smk` (`python3 paper/figsrc/smk_separation.py`, about 6 s, 
 clustering study (branch `claude/abelianized-exponents-verify-1i6muh`, `experiments/clustering/rank_signals.py`,
 `results/clustering/signal_ranking.json`): $S$ 0.912, MK 0.860, length 0.809, exactly.
 
-Missing: `stable_ranks_split.png` (in Overleaf, not uploaded yet).
+`stable_ranks_split.png` (ranks 3, 4, 5 by difficulty) comes from `figsrc/stable_ranks_fig.py`, which reads the rank-n arrays of branch `rank3/brute-force-baseline` (`results/stable_ac/rank3_bf/`).
 
 ## Open issues in `avi.tex`
 
-- Three references point at nothing: `fig:stable_split` and `tab:stable_ranks` (the rank 4 / rank 5 figure and table)
-  and `sec:hybrid`.
+- `sec:hybrid` reference removed by Truett; `fig:stable_split` and `tab:stable_ranks` now exist (5 Nov).
 - The paragraph "The best image passes LENGTH at every budget, but the margin falls from 100 to 6 ..." appears twice in
   the CoV section, once saying a random image is worse than P (at 10^4) and once saying it is often cheaper (at 10^3).
   Keep one.
