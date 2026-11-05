@@ -8,15 +8,10 @@ No pull request for this branch. Never add solutions to the 10,115 SAIR ACC chal
 
 ## Figures
 
-| file | status |
-|---|---|
-| `figures/bench60_g.png`, `figures/bench60_path.png` | here (from the 27 Oct internal writeup) |
-| `figures/units_paths.png` | missing |
-| `figures/stable_rank3_words.png` | missing |
-| `figures/cov_images.png` | missing |
+All five figures `main.tex` uses are in `figures/`: `bench60_g.png` and `bench60_path.png` from the 27 Oct internal
+writeup, and `units_paths.png`, `stable_rank3_words.png`, `cov_images.png` uploaded by Truett on 5 Nov.
 
-The three missing figures were made in a session whose files were never committed. Upload them from the copy that
-compiles (for example Overleaf), or they have to be redrawn from the result files.
+`units_paths.png` shows LENGTH, S20_MK2 and the hybrid only, not the dual and triple searches that its table lists.
 
 ## Open issues in `main.tex`
 
