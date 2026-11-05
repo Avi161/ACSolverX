@@ -152,8 +152,7 @@ other children are pushed onto the heap.}
 group, all of rank $2$. An \emph{expansion} is one removal of a state from the search heap. For a
 presentation $P$, $g(P)$ is the number of expansions GS-SUB \cite{FTS26}, that is, LENGTH
 (Definition~\ref{def:length}), needs to solve $P$, and
-$g_S(P)$ is the number of expansions our greedy search with the $\SMK$ priority (Definition~\ref{def:smk}) needs. We write $g$
-and $g_S$ for these functions of $P$. Every method is charged in the same units, one per expansion (Section~\ref{sec:units}).
+$g_S(P)$ is the number of expansions our greedy search with the $\SMK$ priority (Definition~\ref{def:smk}) needs. Every method is charged in the same units, one per expansion (Section~\ref{sec:units}).
 
 \begin{definition}[MS640]
 The Miller--Schupp benchmark of \cite{SMM24} is a list of $1{,}190$ presentations $\MS(n,w)$. \textbf{MS640}
@@ -180,10 +179,7 @@ carries the same AC-triviality questions as AC19. However, an automorphism of a 
 \begin{definition}[ladder100]\label{def:ladder}\label{def:levels}
 \textbf{ladder100} is a benchmark of $100$ AC-trivial presentations, taken from AC19\_autmin and MS640 and arranged
 in $10$ levels of $10$ presentations each, in increasing order of difficulty for greedy search
-(Figure~\ref{fig:ladder}). At levels $1$--$8$, LENGTH solves every presentation, and the number of expansions $g$ it
-requires increases from fewer than $10^3$ at level $1$ to between $3\cdot10^6$ and $10^7$ at level $8$. At level $9$,
-LENGTH fails within $10^7$ expansions but $\SMK$ succeeds; at level $10$, $\SMK$ fails as well, with one exception.
-The selection rule within each level, the verification of AC-triviality and the statistics of each level are given in
+(Figure~\ref{fig:ladder}). The selection rule within each level, the verification of AC-triviality and the statistics of each level are given in
 Appendix~\ref{app:ladder}.
 \end{definition}
 
@@ -219,7 +215,7 @@ charged one unit per expansion, so that equal budgets in units are comparable up
 
 \paragraph{Scores.} We compare the three methods at equal budgets in units: the number of
 presentations each solves on the three benchmarks.
-
+ 
 \begin{center}
 \small
 \begin{tabular}{llrrrrr}
@@ -241,20 +237,20 @@ ladder100 & LENGTH & $11$ & $20$ & $40$ & $60$ & $80$\\
 & hybrid & $99$ & $100$ & $100$ & $100$ & $100$\\
 \bottomrule
 \end{tabular}
-
+ 
 \end{center}
-
+ 
 $\SMK$ solves all of MS640 and bench60 by $10^5$ units, LENGTH only by $10^6$. On ladder100 neither finishes by
 $10^7$: $9$ rows are unsolved by both. The hybrid solves all of MS640 and bench60 at $10^3$ units and all of
 ladder100 at $10^4$; its hardest row, \texttt{ac19\_70845}, takes $2{,}267$ units.
-
+ 
 \paragraph{Units and path lengths.} For every solve we also record the units it took and the length of its path:
 S-moves. For the hybrid, each S-move and each Nielsen map counts as one unit; its path length is then rewritten as a sequence of AC moves on the original presentation and verified there.
-
+ 
 \begin{center}
 \includegraphics[width=\textwidth]{figures/units_paths.png}
 \end{center}
-
+ 
 \begin{center}
 \small
 \begin{tabular}{llrrrrrr}
@@ -276,17 +272,18 @@ ladder100 & LENGTH & $975{,}165$ & $101{,}771$ & $8{,}204{,}360$ & $130.8$ & $69
  & hybrid & $127$ & $53$ & $2{,}267$ & $49.7$ & $30$ & $262$\\
 \bottomrule
 \end{tabular}
-
+ 
 \smallskip
 \footnotesize Over the rows each method solves (on ladder100: $80$, $91$ and $100$).
 \end{center}
-
-
+ 
+ 
 On easy rows the hybrid spends about as many units as the greedy searches (median $11$ against $11$ on MS640); on
 hard rows it needs far fewer, at most $2{,}267$ against $8.2$ million for LENGTH.
 Its paths are shorter on hard rows too: on the $80$ ladder100 rows that all three solve, $53.8$ steps on average
 against $130.8$ for LENGTH and $142.4$ for $\SMK$. $\SMK$ paths are about as long as LENGTH's.
 
+\clearpage
 \section{Stable AC algorithms}\label{sec:stable}
 
 \begin{definition}[Stable AC moves]\label{def:stableac}
@@ -320,22 +317,28 @@ priority $\lambda$. For $k=0$ it is LENGTH on $P$, the rank-$2$ baseline.
 \paragraph{Setup.} All searches are on the $640$ presentations of MS640, with a budget of $10^3$ units per search
 unless stated otherwise. A \emph{start} is a choice of the words $w_1,\dots,w_k$ of Definition~\ref{def:stab}, and one
 search is one run of the naive stable search from one start on one presentation.
-\begin{itemize}
-  \item \emph{Rank 3} ($k=1$): every freely reduced word $w$ of length $1$ to $10$, taken up to inversion, that is
-  $59{,}048$ words. The words of length $1$ to $7$ are also run at a budget of $10^4$ units.
-  \item \emph{Rank 4} ($k=2$): every unordered pair, repetition allowed, of the $26$ words of length at most $3$, that
-  is $351$ starts.
-  \item \emph{Rank 5} ($k=3$): every unordered triple, repetition allowed, of the $8$ words of length at most $2$, that
-  is $120$ starts.
-\end{itemize}
-The construction of these families, and the derivation of their sizes, are given in Appendix~\ref{app:stable}.
 
-For a set of words we report three things; for ranks 4 and 5, read start for word. \emph{Solved}: the share of its
-searches $(P,w)$ that solve $P$ within the budget, that is, the chance that a random word of the set solves a random
-presentation. For $|w|=1$: $2$ words on $640$ presentations are $1{,}280$ searches, $769$ solve, so $60.1\%$.
-\emph{Best fixed word}: the most presentations solved by a single word of the set, chosen with hindsight.
-\emph{Some word}: the number of presentations solved by at least one word of the set; this needs the right word in
-advance, so it bounds what a choice of word can do and is not a method.
+The rank-$3$ starts ($k=1$) are the freely reduced words $w$ of length $1$ to $10$, taken up to inversion, that is
+$59{,}048$ words; the words of length $1$ to $7$ are also run at a budget of $10^4$ units. The construction of these
+words, and the derivation of their number, are given in Appendix~\ref{app:stable}.
+
+
+For each word length $n$, three measures are reported, each as a number of presentations out of $640$; they are the
+three curves of Figure~\ref{fig:stable_words}.
+\begin{itemize}
+  \item \emph{Random word}: every word of length exactly $n$ is run on every presentation, and the total number of
+  solves is divided by the number of words. It is the number of presentations that a word of length $n$, chosen at
+  random, solves on average. For $n=1$, the $2$ words solve $769$ of the $2\times640=1{,}280$ searches, that is
+  $384.5$ presentations per word; for $n=10$, the $39{,}366$ words solve $16{,}550{,}697$ of the $39{,}366\times640$
+  searches, that is $420.4$ presentations per word.
+  \item \emph{Best fixed word}: the largest number of presentations solved by a single word of length at most $n$,
+  the same word being used on every presentation. The word is chosen after the searches, with hindsight.
+  \item \emph{Some word}: the number of presentations solved by at least one word of length at most $n$, each
+  presentation being allowed its own word. It requires the right word for each presentation in advance, so it is an
+  upper bound on what any choice of word can achieve, and not itself a method.
+\end{itemize}
+Each measure is compared with rank $2$, that is, LENGTH on $P$, which solves $554$ presentations at $10^3$ units and
+$606$ at $10^4$ units.
 
 \begin{figure}[ht]
 \centering
@@ -352,85 +355,44 @@ random word is $640$ times the share solved by the words of length exactly $|w|$
 \toprule
 & & \multicolumn{2}{c}{words of length $|w|$} & \multicolumn{3}{c}{some word of length $\le|w|$}\\
 \cmidrule(lr){3-4}\cmidrule(lr){5-7}
-$|w|$ & words & solved & faster than rank 2 & solves & gained & lost\\
+$|w|$ & words & random word & faster than rank 2 & solves & gained & lost\\
 \midrule
-1 & $2$ & $60.1\%$ & $0.0\%$ & $403$ & $0$ & $151$\\
-2 & $6$ & $68.4\%$ & $1.1\%$ & $472$ & $0$ & $82$\\
-3 & $18$ & $69.8\%$ & $0.6\%$ & $516$ & $0$ & $38$\\
-4 & $54$ & $68.6\%$ & $1.1\%$ & $540$ & $4$ & $18$\\
-5 & $162$ & $67.3\%$ & $0.9\%$ & $546$ & $8$ & $16$\\
-6 & $486$ & $66.8\%$ & $0.7\%$ & $562$ & $16$ & $8$\\
-7 & $1{,}458$ & $66.5\%$ & $0.6\%$ & $572$ & $20$ & $2$\\
-8 & $4{,}374$ & $66.2\%$ & $0.6\%$ & $576$ & $22$ & $0$\\
-9 & $13{,}122$ & $65.9\%$ & $0.5\%$ & $576$ & $22$ & $0$\\
-10 & $39{,}366$ & $65.7\%$ & $0.5\%$ & $578$ & $24$ & $0$\\
+1 & $2$ & $384.5$ & $0.0\%$ & $403$ & $0$ & $151$\\
+2 & $6$ & $437.8$ & $1.1\%$ & $472$ & $0$ & $82$\\
+3 & $18$ & $446.8$ & $0.6\%$ & $516$ & $0$ & $38$\\
+4 & $54$ & $438.8$ & $1.1\%$ & $540$ & $4$ & $18$\\
+5 & $162$ & $430.9$ & $0.9\%$ & $546$ & $8$ & $16$\\
+6 & $486$ & $427.8$ & $0.7\%$ & $562$ & $16$ & $8$\\
+7 & $1{,}458$ & $425.7$ & $0.6\%$ & $572$ & $20$ & $2$\\
+8 & $4{,}374$ & $423.7$ & $0.6\%$ & $576$ & $22$ & $0$\\
+9 & $13{,}122$ & $421.8$ & $0.5\%$ & $576$ & $22$ & $0$\\
+10 & $39{,}366$ & $420.4$ & $0.5\%$ & $578$ & $24$ & $0$\\
 \midrule
-rank 2 & & $86.6\%$ & & $554$ & &\\
+rank 2 & & $554$ & & $554$ & &\\
 \bottomrule
 \end{tabular}
-\caption{Rank 3 at budget $10^3$. Solved: the share of the $640\times$words searches solved; faster: the share solved
-in fewer units than rank 2, or solved where rank 2 fails. Gained: solved by some word, not by rank 2; lost: solved by
+\caption{Rank 3 at budget $10^3$. Random word: the number of presentations, out of $640$, that a word of length $|w|$
+solves on average; faster: the share of the $640\times$words searches solved in fewer units than rank 2, or solved
+where rank 2 fails. Some word: the presentations solved by at least one word of length at most $|w|$. Gained: solved by some word, not by rank 2; lost: solved by
 rank 2, by no word.}
 \label{tab:stable_words}
 \end{table}
 
 \paragraph{Rank 3.} Rank 3 beats rank 2 only with the right word (Figure~\ref{fig:stable_words},
-Table~\ref{tab:stable_words}). On the $554$ presentations rank 2 solves, a random word fails on $24.0\%$ and is
-slower on $75.4\%$. The best fixed word, \texttt{yXYYYxyyy}, solves $528$. Some word passes rank 2 from length $6$
-($578$ at length $10$; $608$ against $606$ at budget $10^4$), but finding it costs more than rank 2: trying the words
-in shortlex order takes at least $41{,}711$ units on each of the $24$ gained, which rank 2 solves with $1{,}160$ to
-$26{,}838$.
+Table~\ref{tab:stable_words}). A random word solves at most $446.8$ presentations on average, against $554$ for
+rank 2, and the best fixed word, \texttt{yXYYYxyyy}, solves $528$. Only some word, which requires the right word for
+each presentation in advance, passes rank 2, from length $6$ onwards.
 
-\paragraph{Why one letter costs more than one move.} With $w=x$, the relator $z^{-1}x$ lets one S-move turn a letter
-$x^{\pm1}$ of another relator into $z^{\pm1}$, or back, without changing $\lambda$: $ux\cdot x^{-1}z=uz$. A state with
-$m$ letters $x^{\pm1}$ thus has up to $2^m$ copies of the same length, all the same state once $z$ is set to $x$, and
-the greedy pops them before any longer state. Over the $1{,}280$ searches with $|w|=1$, $97.5\%$ of the pops repeat a
-state already popped, up to $z=x$. Where rank 2 solves and rank 3 fails, the $10^3$ pops reach a median of $12$
-different states, while rank 2 needs a median of $116$ pops.
-
-
-\paragraph{Ranks 4 and 5.} Table~\ref{tab:stable_ranks} compares each of ranks $4$ and $5$ with rank $3$ on the
-same pool of words: rank $4$ with rank $3$ on the $26$ words of length at most $3$, and rank $5$ with rank $3$ on the
-$8$ words of length at most $2$. Rank $4$ and rank $5$ are not compared with each other, since their pools differ. On
-the same words, each additional generator lowers every measure, although ranks $4$ and $5$ offer many more starts: a
-random start solves $59.1\%$ of the presentations against $68.7\%$ at rank $3$, and $53.6\%$ against $66.3\%$; some
-start solves $506$ presentations against $516$, and $416$ against $472$; and the best fixed start solves $454$ against
-$478$, and $376$ against $449$. No start at any rank solves a presentation that rank $2$ fails to solve within $10^3$
-units. Figure~\ref{fig:stable_split} shows where the loss occurs. Where LENGTH needs fewer than $10$ units on $P$,
-almost every start solves. Where it needs $10$ to $99$ units, $52\%$ of the rank-$4$ starts and $30\%$ of the
-rank-$5$ starts solve, against $84\%$ and $78\%$ at rank $3$. Where it needs $100$ to $999$ units, almost no start
-solves.
-
-\begin{table}[ht]
-\centering
-\small
-\begin{tabular}{lrrrr}
-\toprule
-& \multicolumn{2}{c}{words of length $\le3$} & \multicolumn{2}{c}{words of length $\le2$}\\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}
-& rank 3 & rank 4 & rank 3 & rank 5\\
-\midrule
-starts per presentation & $26$ & $351$ & $8$ & $120$\\
-a random start solves & $68.7\%$ & $59.1\%$ & $66.3\%$ & $53.6\%$\\
-a random start needs fewer units than rank 2 & $0.6\%$ & $0.2\%$ & $0.8\%$ & $0.0\%$\\
-presentations solved by some start & $516$ & $506$ & $472$ & $416$\\
-\quad gained over rank 2 & $0$ & $0$ & $0$ & $0$\\
-\quad lost by every start & $38$ & $48$ & $82$ & $138$\\
-best fixed start & $478$ & $454$ & $449$ & $376$\\
-\bottomrule
-\end{tabular}
-\caption{Ranks $3$, $4$ and $5$ on MS640 at a budget of $10^3$ units; rank $2$ solves $554$ presentations. A random
-start: the share of a presentation's starts, averaged over the $640$ presentations; a solve where rank $2$ fails
-counts as fewer units. Gained: solved by some start and not by rank $2$. Lost: solved by rank $2$ and by no start.}
-\label{tab:stable_ranks}
-\end{table}
+Figure~\ref{fig:stable_split} shows where the loss occurs. Where LENGTH needs fewer than $10$ units on $P$, every
+word solves. Where it needs $10$ to $99$ units, between $56.3\%$ and $86.1\%$ of the words of each length solve, and
+where it needs $100$ to $999$ units, at most $15.7\%$ do. On the $86$ presentations that rank $2$ does not solve, at
+most $0.2\%$ of the words of each length solve.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/stable_ranks_split.png}
-\caption{The share of starts that solve within $10^3$ units at ranks $3$, $4$ and $5$, with the $554$ presentations
-that rank $2$ solves grouped by the number of units LENGTH needs on $P$. On the $86$ presentations that rank $2$ does
-not solve, no start solves.}
+\caption{The share of the words of length $|w|$ that solve within $10^3$ units at rank $3$ on MS640, with the
+presentations grouped by the number of units LENGTH needs on $P$ (rank $2$).}
 \label{fig:stable_split}
 \end{figure}
 
@@ -598,8 +560,6 @@ The last $36$ presentations are the rows with $n=7$, $r_1=y^{-8}x^{-1}y^{7}x$; t
 $14{,}400$ units and give paths of $489$ S-moves. The best image is chosen with hindsight: finding it by searching every
 image costs a mean of $657{,}198$ units per presentation at budget $10^5$.
 \newline
-
-
 
 \clearpage
 \bibliographystyle{plain}
