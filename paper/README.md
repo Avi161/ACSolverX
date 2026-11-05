@@ -21,7 +21,7 @@ writeup, and `units_paths.png`, `stable_rank3_words.png`, `cov_images.png` uploa
 
 `units_paths.png` shows LENGTH, S20_MK2 and the hybrid only, not the dual and triple searches that its table lists.
 
-`smk_distributions.png` (Appendix E) and `smk_roc.png` (no longer used in the paper since Truett shortened Appendix E on 5 Nov; kept for reference) come from `figsrc/smk_separation.py`, which also prints every
+`smk_distributions.png` and `smk_roc.png` (Appendix E) come from `figsrc/smk_separation.py`, which also prints every
 number in Table `tab:smk` (`python3 paper/figsrc/smk_separation.py`, about 6 s, needs matplotlib). It reads only
 `data/` and uses `acx.core.priority.features`, the definitions the search uses. Population (c) reproduces the summer
 clustering study (branch `claude/abelianized-exponents-verify-1i6muh`, `experiments/clustering/rank_signals.py`,
