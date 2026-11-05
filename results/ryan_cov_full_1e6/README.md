@@ -8,7 +8,8 @@ not in the family and are not added.
 
 - `../ryan_cov_full_1e5/`: all 740 rows (MS640 + ladder100) at 10^5 units (Python engine, `cov_full.py`).
 - this folder: the 14 searches (21 rows) unsolved at 10^5, rerun at 10^6 units (numba engine, `cov_full_numba.py`,
-  identical records to the Python by `check_full_numba.py`). All 21 solve, within 149,552 units.
+  identical records to the Python by `check_full_numba.py`). All 21 solve, within 149,552 units. The Python engine's
+  own 1e6 pass of the same 21 rows (box i-04b5c27624d921fd7) gave the same records, field for field.
 - bench60 is read off MS640. `SUMMARY_TABLE.md` merges both folders, beside Ryan's row (`../ryan_full_1e6`).
 
 ```bash
@@ -60,4 +61,4 @@ rotations; each CoV step's certificate (define z = w, substitute, eliminate) rep
 
 AWS spot, account 205558941715, results in `s3://acsolver-u124-205558941715/cov_full/` (`ops/aws/ledger.md`): the 10^5
 pass took 11 minutes on c8g.16xlarge (Python); the 10^6 rerun took 67 seconds per search, 1.1 GB each, on
-r8g.8xlarge (numba, 14 searches in parallel).
+r8g.8xlarge (numba, 14 searches in parallel), against about 15 minutes each in Python.
