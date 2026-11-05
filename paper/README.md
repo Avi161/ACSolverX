@@ -10,7 +10,7 @@ No pull request for this branch. Never add solutions to the 10,115 SAIR ACC chal
 ## Appendix
 
 All appendices live in one file, `appendix/appendix.tex`: one unnumbered section titled "Appendix", whose parts are
-subsections lettered A, B, C, D, E (A bench60, B ladder100, C time per unit, D the hybrid solver: pinch replacements, filters and finishing checks, moved verbatim from the main text, E how well $S$ and MK separate the solved from the unsolved MS1190 presentations). `avi.tex` pulls it in just before the bibliography with
+subsections lettered A, B, C, D, E (A bench60, B ladder100, C time per unit, D the hybrid solver: pinch replacements, filters and finishing checks, moved verbatim from the main text, E how well $S$ and MK separate the solved from the unsolved MS1190 presentations). `avi.tex` pulls it in after the bibliography, on a new page (`\clearpage`), with
 `\input{appendix/appendix}`. Point to a part from the main text with `Appendix~\ref{app:<name>}`, which prints
 "Appendix A". Figure paths inside it are relative to `avi.tex`.
 
