@@ -206,9 +206,8 @@ in the top row.}
 \emph{expansion}: the first state is removed from the heap, its children are generated, those already discovered are
 discarded, and the remainder are pushed onto the heap according to the priority. For the hybrid
 (Definition~\ref{def:hybrid}), each S-move applied by a finishing check is also charged one unit. A budget applies to
-each presentation separately, a failed search is charged the full budget, and path lengths are counted in S-moves. For
-the hybrid, each S-move and each Nielsen map counts as one step; its certificate is then rewritten as a sequence of AC
-moves on the original presentation and verified there.
+each presentation separately, a failed search is charged the full budget, and path lengths are counted in S-moves (for
+the hybrid, S-moves together with Nielsen images).
 
 An expansion does not require the same time in every method. Measured on a common set of states
 (Appendix~\ref{app:time}), one expansion of $\SMK$ takes on average approximately $1.2$ times as long as one expansion
@@ -274,7 +273,7 @@ $10^7$: $9$ rows are unsolved by both. The hybrid solves all of MS640 and bench6
 ladder100 at $10^4$; its hardest row, \texttt{ac19\_70845}, takes $2{,}267$ units.
 
 \paragraph{Units and path lengths.} For every solve we also record the units it took and the length of its path:
-S-moves, and for the hybrid S-moves plus Nielsen images.
+S-moves. For the hybrid, each S-move and each Nielsen map counts as one unit; its path length is then rewritten as a sequence of AC moves on the original presentation and verified there.
 
 \begin{center}
 \includegraphics[width=\textwidth]{figures/units_paths.png}
