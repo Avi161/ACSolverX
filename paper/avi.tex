@@ -379,19 +379,9 @@ rank 2, by no word.}
 \end{table}
 
 \paragraph{Rank 3.} Rank 3 beats rank 2 only with the right word (Figure~\ref{fig:stable_words},
-Table~\ref{tab:stable_words}). On the $554$ presentations rank 2 solves, a random word fails on $24.0\%$ and is
-slower on $75.4\%$. The best fixed word, \texttt{yXYYYxyyy}, solves $528$. Some word passes rank 2 from length $6$
-($578$ at length $10$; $608$ against $606$ at budget $10^4$), but finding it costs more than rank 2: trying the words
-in shortlex order takes at least $41{,}711$ units on each of the $24$ gained, which rank 2 solves with $1{,}160$ to
-$26{,}838$.
-
-\paragraph{Why one letter costs more than one move.} With $w=x$, the relator $z^{-1}x$ lets one S-move turn a letter
-$x^{\pm1}$ of another relator into $z^{\pm1}$, or back, without changing $\lambda$: $ux\cdot x^{-1}z=uz$. A state with
-$m$ letters $x^{\pm1}$ thus has up to $2^m$ copies of the same length, all the same state once $z$ is set to $x$, and
-the greedy pops them before any longer state. Over the $1{,}280$ searches with $|w|=1$, $97.5\%$ of the pops repeat a
-state already popped, up to $z=x$. Where rank 2 solves and rank 3 fails, the $10^3$ pops reach a median of $12$
-different states, while rank 2 needs a median of $116$ pops.
-
+Table~\ref{tab:stable_words}). A random word solves at most $446.8$ presentations on average, against $554$ for
+rank 2, and the best fixed word, \texttt{yXYYYxyyy}, solves $528$. Only some word, which requires the right word for
+each presentation in advance, passes rank 2, from length $6$ onwards.
 
 Figure~\ref{fig:stable_split} shows where the loss occurs. Where LENGTH needs fewer than $10$ units on $P$, every
 word solves. Where it needs $10$ to $99$ units, between $56.3\%$ and $86.1\%$ of the words of each length solve, and
