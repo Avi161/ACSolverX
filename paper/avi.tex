@@ -411,6 +411,111 @@ P'=\pres{x,y}{x^{-1}y^{-2}x^{-6}yx^{3},\ \ y^{-1}x^{-5}yx^{4}}.
 \]
 \end{example}
 
+\paragraph{Searches with change-of-variables moves.} The searches below use the change of variables as a move inside a
+search rather than once at the start. Each is run with the following family of images.
+
+\begin{definition}[CoV images of a state]\label{def:covimages}
+For a state $Q=\pres{x,y}{r_1,r_2}$, the \emph{CoV images} of $Q$ are the images (Definition~\ref{def:cov}) obtained
+from every word $w$ that is a cyclic subword of $r_1$ or of $r_2$ with $2\le|w|\le|r_i|-1$, by substituting every
+non-empty set of non-overlapping occurrences of $w^{\pm1}$ and eliminating every generator $g$ through every relator
+in which $g$ occurs once. Images equal up to relator order, rotation, inversion and the $8$ signed permutations of
+$x,y$ are identified, and an image equal to $Q$ is discarded. No length bound is applied.
+\end{definition}
+
+A CoV image is an automorphic image of $Q$ when the relator used for the elimination contains $z$ exactly once; a
+solve whose CoV moves are all of this kind is transported to an AC path of $P$. Otherwise the solve is a stable
+certificate \cite[Lemma~11]{SMM24}.
+
+\begin{definition}[CoV-gate search]\label{def:covgate}
+The \emph{CoV-gate search} of \cite{Zan} is a greedy search with priority $\lambda$, ties broken by depth and then by
+order of insertion, and no length bound. An expansion of a state $Q$ generates its S-move children; if no S-move
+child is shorter than $Q$ (the gate \emph{opens}), it also generates the CoV images of $Q$. In \cite{Zan} the CoV
+move substitutes a single occurrence of a cyclic window, so that every CoV move is an automorphism; here it is
+replaced by the CoV images of Definition~\ref{def:covimages}. One unit is charged per expansion and one more per
+opening of the gate.
+\end{definition}
+
+\begin{definition}[Dual and triple searches]\label{def:dualtriple}
+The searches of \cite{Ste} keep several heaps, each ordered by $\lambda$ with ties broken towards the deepest state.
+Every new state is pushed onto the \emph{S-heap}, and a state removed from the S-heap is expanded by S-moves and then
+pushed onto the other heaps. Removing a state from a CoV heap generates its CoV children, which are pushed onto the
+S-heap. One unit is charged per removal from any heap, and the input is expanded once by the CoV heaps without charge.
+\begin{itemize}
+  \item \emph{Dual, single CoV}: one CoV heap, whose children are the CoV images. The CoV heap is used when its first
+  state is at least $3$ shorter than the first state of the S-heap, and the S-heap otherwise.
+  \item \emph{Dual, auto CoV}: as the dual, single CoV, with the children of the CoV heap being the $24$ images under
+  $x\mapsto xy^{k}$ and $y\mapsto yx^{k}$, $1\le|k|\le6$, together with the CoV images.
+  \item \emph{Triple}: an S-heap, an auto heap with the $24$ images above, and a CoV heap with the CoV images. Each
+  step uses the heap of least $\lambda+t$, with $t=0$ for the S-heap and $t=2$ for the other two, ties going to the
+  S-heap, then the auto heap.
+\end{itemize}
+In \cite{Ste} the CoV step of the dual is a single substitution, and that of the triple substitutes at least two
+occurrences; here both are replaced by the CoV images of Definition~\ref{def:covimages}.
+\end{definition}
+
+\paragraph{Scores.} Table~\ref{tab:cov_search_solved} gives the number of presentations each search solves at equal
+budgets in units, and Table~\ref{tab:cov_search_paths} the units and path lengths of the solves. A path length counts
+each S-move and each CoV move as one step. Every solve was replayed move by move.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{llrrrrr}
+\toprule
+& & \multicolumn{5}{c}{budget (units)}\\
+\cmidrule(lr){3-7}
+benchmark & method & $10^3$ & $10^4$ & $10^5$ & $10^6$ & $10^7$\\
+\midrule
+MS640 & CoV gate & $596$ & $612$ & $626$ & -- & --\\
+(of $640$) & dual, single CoV & $612$ & $634$ & $640$ & $640$ & $640$\\
+& dual, auto CoV & $612$ & $627$ & $640$ & $640$ & $640$\\
+& triple & $612$ & $637$ & $640$ & $640$ & $640$\\
+\midrule
+bench60 & CoV gate & $45$ & $49$ & $52$ & -- & --\\
+(of $60$) & dual, single CoV & $49$ & $57$ & $60$ & $60$ & $60$\\
+& dual, auto CoV & $49$ & $53$ & $60$ & $60$ & $60$\\
+& triple & $49$ & $58$ & $60$ & $60$ & $60$\\
+\midrule
+ladder100 & CoV gate & $73$ & $89$ & $93$ & -- & --\\
+(of $100$) & dual, single CoV & $73$ & $98$ & $100$ & $100$ & $100$\\
+& dual, auto CoV & $72$ & $94$ & $100$ & $100$ & $100$\\
+& triple & $73$ & $97$ & $100$ & $100$ & $100$\\
+\bottomrule
+\end{tabular}
+\caption{Presentations solved by the searches with CoV images. The CoV-gate search has been run to $10^5$ units.}
+\label{tab:cov_search_solved}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{llrrrrrr}
+\toprule
+& & \multicolumn{3}{c}{units to solve} & \multicolumn{3}{c}{path length}\\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}
+benchmark & method & mean & median & max & mean & median & max\\
+\midrule
+MS640 & CoV gate & $857$ & $10$ & $34{,}540$ & $12.6$ & $8$ & $147$\\
+& dual, single CoV & $305$ & $9$ & $19{,}544$ & $41.2$ & $9$ & $963$\\
+& dual, auto CoV & $579$ & $8$ & $31{,}332$ & $40.2$ & $8$ & $907$\\
+& triple & $312$ & $8$ & $18{,}528$ & $39.2$ & $8$ & $842$\\
+\midrule
+bench60 & CoV gate & $2{,}222$ & $24$ & $34{,}540$ & $23.5$ & $13$ & $146$\\
+& dual, single CoV & $1{,}576$ & $106$ & $19{,}544$ & $162.5$ & $25.5$ & $963$\\
+& dual, auto CoV & $3{,}055$ & $120$ & $31{,}016$ & $152.6$ & $25.5$ & $907$\\
+& triple & $1{,}657$ & $114$ & $18{,}528$ & $145.8$ & $32.5$ & $842$\\
+\midrule
+ladder100 & CoV gate & $1{,}796$ & $93$ & $34{,}525$ & $26.0$ & $20$ & $147$\\
+& dual, single CoV & $1{,}146$ & $290$ & $10{,}372$ & $118.0$ & $46$ & $941$\\
+& dual, auto CoV & $2{,}059$ & $426$ & $31{,}016$ & $116.3$ & $48$ & $907$\\
+& triple & $1{,}444$ & $403$ & $18{,}528$ & $113.2$ & $52$ & $842$\\
+\bottomrule
+\end{tabular}
+\caption{Units and path lengths over the presentations each search solves (for the CoV-gate search at $10^5$ units:
+$626$, $52$ and $93$).}
+\label{tab:cov_search_paths}
+\end{table}
+
 \begin{definition}[One-shot CoV]\label{def:oneshot}
 The words $w$ are the cyclic subwords of $r_1$ and $r_2$ of length at least $2$, one of each pair $\{w,w^{-1}\}$,
 except those whose substitution leaves a relator with fewer than $3$ letters. Step 2 substitutes every
