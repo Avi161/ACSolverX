@@ -6,26 +6,6 @@ Zang replications and their results (`docs/ELLIOT_REPLICATION.md`, `docs/RYAN_RE
 
 No pull request for this branch. Never add solutions to the 10,115 SAIR ACC challenges here.
 
-## Layout
-
-Compile `main.tex`. It only holds the title and the order of the parts; the text lives in one file per part, pulled
-in with `\input`, so editing any of these files changes the paper:
-
-| file | holds |
-|---|---|
-| `preamble.tex` | packages, theorem styles, macros |
-| `sections/01_ac_benchmarks.tex` | Section 1 start: benchmarks (MS640, bench60 short form, AC19_autmin, ladder100) |
-| `sections/02_ac_methods.tex` | units, time per unit, AC search methods, scores |
-| `sections/03_ac_hybrid_checks.tex` | pinch replacements, filters, finishing checks |
-| `sections/04_stable.tex` | Section 2: stable AC moves, rank 3 / 4 / 5 |
-| `sections/05_cov.tex` | one-shot change of variables, every image |
-| `appendix/A_bench60.tex` | bench60 in full: the selection rule, the bin table, the figure |
-| `references.tex` | bibliography |
-
-To move more detail out of the main text: cut it from its section file, paste it into a new `appendix/B_<name>.tex`
-that starts with `\section{...}\label{app:<name>}`, add `\input{appendix/B_<name>}` after the other appendix
-lines in `main.tex`, and leave a one-line pointer (`Appendix~\ref{app:<name>}`) where the text was.
-
 ## Figures
 
 All five figures `main.tex` uses are in `figures/`: `bench60_g.png` and `bench60_path.png` from the 27 Oct internal
