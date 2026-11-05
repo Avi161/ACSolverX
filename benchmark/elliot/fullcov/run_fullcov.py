@@ -36,9 +36,10 @@ PARAMS = dict(threshold=2, seed=True, min_gap=0)
 
 
 def images_fn():
-    """The shared function: every CoV image of a presentation (2 <= |w| <= |r| - 1, one per class)."""
-    from acx.cov.images import iter_images
-    return lambda pres: iter_images(pres, max_len=None, family="suballpxyb8")
+    """The shared function ``acx.cov.states.cov_states``: every CoV image of a state, 2 <= |w| <= |r| - 1, one per
+    class (relator order, rotation, inversion, the 8 signed relabellings), no length limit."""
+    from acx.cov.states import cov_states
+    return lambda pres: cov_states(*pres.rels)
 
 
 def search(algo, start, budget):

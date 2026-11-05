@@ -6,3 +6,7 @@
 | i-0ab47e420fe6669fe | r7a.16xlarge | spot (us-east-1a) | 1.903700 | 2026-11-03T07:23:39Z / 02:23 ET | Ryan CoV gates, 1e6 on the 171 searches unsolved at 1e5, 20 workers (success) | 4 h | 2026-11-03T07:43:36Z (02:43 ET); 0.33 h x 1.90 = ~$0.63 |
 
 Total for the Ryan replication: about $3.25 (2.16 h + 0.33 h of spot).
+
+| instance | type | market | $/h | launched | purpose | max life | ended |
+|---|---|---|---:|---|---|---|---|
+| i-0ad72d0b40767ec9c | c8g.48xlarge | spot persistent, stop on reclaim (us-east-1a, sir-akdfpi9j) | 2.193100 | 2026-11-05T20:55:22Z / 3:55 PM ET | Elliot's three searches with the full CoV family (benchmark/elliot/fullcov), MS640 / bench60 / ladder100, 10^3 to 10^7 | 12 h (request valid to 08:25Z, power-off 08:55Z 6 Nov) | not ended by this session: its key (claude-code-sair) may launch but not SendCommand, read the bucket, cancel the request or terminate; Truett asked to cancel sir-akdfpi9j and terminate (5 Nov 3:57 PM ET). Its results were never read. |

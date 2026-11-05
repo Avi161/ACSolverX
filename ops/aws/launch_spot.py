@@ -2,8 +2,9 @@
 
     python ops/aws/launch_spot.py <type> <ami> <hours> <template> KEY=VALUE ...   (prints LAUNCHED <id> ...)
 
-The request relaunches the box after a reclaim until <hours> - 0.5 h from now; the template's __END__ (now + <hours>)
-is when the box powers off. Subnets are tried from the cheapest spot zone up. Cancel the request before terminating.
+A reclaim stops the box (its disk is kept) and the persistent request starts it again when capacity returns, until
+<hours> - 0.5 h from now; the template must resume on every boot. Its __END__ (now + <hours>) is when the box powers
+off. Subnets are tried from the cheapest spot zone up. Cancel the request before terminating.
 """
 import datetime as dt
 import sys
@@ -34,12 +35,12 @@ def main():
             r = ec2.run_instances(
                 ImageId=ami, InstanceType=itype, MinCount=1, MaxCount=1, SubnetId=s["SubnetId"],
                 SecurityGroupIds=[SG], IamInstanceProfile={"Name": PROFILE}, UserData=ud,
-                InstanceInitiatedShutdownBehavior="terminate",
+                InstanceInitiatedShutdownBehavior="stop",
                 MetadataOptions={"HttpTokens": "required", "HttpEndpoint": "enabled"},
                 BlockDeviceMappings=[{"DeviceName": "/dev/xvda", "Ebs": {"VolumeSize": 100, "VolumeType": "gp3",
                                                                          "DeleteOnTermination": True}}],
                 InstanceMarketOptions={"MarketType": "spot", "SpotOptions": {
-                    "SpotInstanceType": "persistent", "InstanceInterruptionBehavior": "terminate",
+                    "SpotInstanceType": "persistent", "InstanceInterruptionBehavior": "stop",
                     "ValidUntil": end - dt.timedelta(minutes=30)}},
                 TagSpecifications=[{"ResourceType": "instance", "Tags": tags},
                                    {"ResourceType": "volume", "Tags": tags[:2]}])
