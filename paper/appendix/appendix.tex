@@ -55,3 +55,43 @@ Left: $g$ against the rows sorted by $g$; the shaded bands are difficulty classe
 Right: the S-move length of a presentation against $g$.}
 \label{fig:bench60}
 \end{figure}
+
+\subsection{ladder100}\label{app:ladder}
+
+Each level of ladder100 (Definition~\ref{def:ladder}) contains $10$ presentations taken from AC19\_autmin and MS640;
+Table~\ref{tab:ladder} gives the range of $g$ of each level. Here $g>10^7$ indicates that LENGTH fails within $10^7$
+expansions, and $g_S$ denotes the number of expansions that $\SMK$ requires. At levels $1$--$6$ the presentations are
+spread over the range of $g$ of the level, and at level $9$ over the range of $g_S$. Level $7$ takes the presentations
+with the largest $g_S$, and level $8$ those with the largest $g$. Level $10$ consists of the presentations on which
+$\SMK$ also fails within $10^7$ expansions.
+
+Every presentation of ladder100 is AC-trivial. Those taken from MS640 are solved by LENGTH. For a presentation of
+AC19\_autmin, the corresponding presentation of the extended AC19 data set is solved, and its S-moves are carried over to
+the $\Aut(\F_2)$-minimal form.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrrrr}
+\toprule
+level & $g$ & from MS640 & mean $\lambda$ & mean $g$ & mean $g_S$\\
+\midrule
+1 & $<10^3$ & $5$ & $15.3$ & $214$ & $101$\\
+2 & $10^3$--$10^4$ & $5$ & $19.9$ & $3{,}983$ & $707$\\
+3 & $10^4$--$10^{4.5}$ & $5$ & $21.1$ & $17{,}612$ & $7{,}646$\\
+4 & $10^{4.5}$--$10^5$ & $5$ & $21.5$ & $56{,}183$ & $9{,}780$\\
+5 & $10^5$--$10^{5.5}$ & $4$ & $22.5$ & $235{,}756$ & $13{,}312$\\
+6 & $10^{5.5}$--$10^6$ & $2$ & $19.4$ & $588{,}638$ & $4{,}693$\\
+7 & $10^6$--$3\cdot10^6$ & $0$ & $20.2$ & $1{,}875{,}962$ & $424{,}977$\\
+8 & $3\cdot10^6$--$10^7$ & $0$ & $18.8$ & $5{,}022{,}975$ & $113{,}309$\\
+9 & $>10^7$ & $0$ & $21.0$ & -- & $340{,}650$\\
+10$^{*}$ & $>10^7$ & $0$ & $18.3$ & -- & --\\
+\bottomrule
+\end{tabular}
+
+\smallskip
+{\small $^{*}$Only $9$ presentations fail for $\SMK$, so the tenth, \texttt{ac19\_12445}, is the next hardest one for
+$\SMK$ from level $9$: it needs $1{,}297{,}772$ expansions.}
+\caption{The levels of ladder100: the range of $g$, the number of the $10$ presentations taken from MS640 (the rest
+are from AC19\_autmin), and the means of the starting total length $\lambda$, of $g$ and of $g_S$.}
+\label{tab:ladder}
+\end{table}

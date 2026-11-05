@@ -77,40 +77,27 @@ A presentation of AC19 is AC-trivial if and only if its automorphic form is, so 
 carries the same AC-triviality questions as AC19. However, an automorphism of a presentation can be much harder or easier to search than the original presentation.
 
 \begin{definition}[ladder100]\label{def:ladder}\label{def:levels}
-\textbf{ladder100} has $10$ presentations from AC19\_autmin and MS640 in each of the $10$ levels of Table~\ref{tab:ladder}, graded by $g$; $g>10^7$ means LENGTH fails within $10^7$ expansions, and $g_S$ is the $\SMK$
-expansion count. Levels $1$--$6$ spread their rows over the range of $g$ and level $9$ over the range of $g_S$, level $8$ takes the
-largest $g$, and level $7$ the largest $g_S$. Level $10$ holds the presentations on which $\SMK$ also fails within $10^7$ expansions. All of these presentations are verified to be AC-trivial by solving their initial automorphic state in $AC19$ extended dataset and using the same S-moves on the aut-min state.
-
-The purpose of creating this new benchmark was to raise the difficulty to even higher levels (up to presentations that are AC trivial but cannot be solved by greedy substitution even with $10^{7}$ nodes). This can help discover new algorithms capable of solving problems closer to the second hump \cite{FTS26}.
-
+\textbf{ladder100} is a benchmark of $100$ AC-trivial presentations, taken from AC19\_autmin and MS640 and arranged
+in $10$ levels of $10$ presentations each, in increasing order of difficulty for greedy search
+(Figure~\ref{fig:ladder}). At levels $1$--$8$, LENGTH solves every presentation, and the number of expansions $g$ it
+requires increases from fewer than $10^3$ at level $1$ to between $3\cdot10^6$ and $10^7$ at level $8$. At level $9$,
+LENGTH fails within $10^7$ expansions but $\SMK$ succeeds; at level $10$, $\SMK$ fails as well, with one exception.
+The selection rule within each level, the verification of AC-triviality and the statistics of each level are given in
+Appendix~\ref{app:ladder}.
 \end{definition}
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{rlrrrr}
-\toprule
-level & $g$ & from MS640 & mean $\lambda$ & mean $g$ & mean $g_S$\\
-\midrule
-1 & $<10^3$ & $5$ & $15.3$ & $214$ & $101$\\
-2 & $10^3$--$10^4$ & $5$ & $19.9$ & $3{,}983$ & $707$\\
-3 & $10^4$--$10^{4.5}$ & $5$ & $21.1$ & $17{,}612$ & $7{,}646$\\
-4 & $10^{4.5}$--$10^5$ & $5$ & $21.5$ & $56{,}183$ & $9{,}780$\\
-5 & $10^5$--$10^{5.5}$ & $4$ & $22.5$ & $235{,}756$ & $13{,}312$\\
-6 & $10^{5.5}$--$10^6$ & $2$ & $19.4$ & $588{,}638$ & $4{,}693$\\
-7 & $10^6$--$3\cdot10^6$ & $0$ & $20.2$ & $1{,}875{,}962$ & $424{,}977$\\
-8 & $3\cdot10^6$--$10^7$ & $0$ & $18.8$ & $5{,}022{,}975$ & $113{,}309$\\
-9 & $>10^7$ & $0$ & $21.0$ & -- & $340{,}650$\\
-10$^{*}$ & $>10^7$ & $0$ & $18.3$ & -- & --\\
-\bottomrule
-\end{tabular}
+The purpose of ladder100 is to extend the range of difficulty beyond that of MS640, up to presentations that are
+AC-trivial but are not solved by greedy substitution search within $10^7$ expansions, and thereby to support the
+development of algorithms for presentations closer to the second hump \cite{FTS26}.
 
-\smallskip
-{\small $^{*}$Only $9$ presentations fail for $\SMK$, so the tenth, \texttt{ac19\_12445}, is the next hardest one for
-$\SMK$ from level $9$: it needs $1{,}297{,}772$ expansions.}
-\caption{The levels of ladder100: the range of $g$, the number of the $10$ presentations taken from MS640 (the rest
-are from AC19\_autmin), and the means of the starting total length $\lambda$, of $g$ and of $g_S$.}
-\label{tab:ladder}
-\end{table}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/ladder100_levels.png}
+\caption{The $100$ presentations of ladder100 by level: the number of expansions that LENGTH ($g$, circles) and
+$\SMK$ ($g_S$, diamonds) require to solve each presentation. Searches that fail within $10^7$ expansions are drawn
+in the top row.}
+\label{fig:ladder}
+\end{figure}
 
 \paragraph{Units.} Every budget is counted in \emph{units}. For LENGTH and $\SMK$ (Definitions~\ref{def:greedy}
 and~\ref{def:smk}) a unit is one \emph{expansion}: remove the first state from the heap, generate its S-move children,
