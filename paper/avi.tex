@@ -164,9 +164,10 @@ The hybrid stays at rank $2$, so its certificates are AC paths. It can also chan
 
 \paragraph{Benchmarks.} Every benchmark below is a list of balanced presentations of the trivial
 group, all of rank $2$. An \emph{expansion} is one removal of a state from the search heap. For a
-presentation $P$, $g(P)$ is the number of expansions GS-SUB \cite{FTS26} needs to solve $P$, and
-$g_S(P)$ is the number of expansions our greedy search with the $\SMK$ priority needs. We write $g$
-and $g_S$ for these functions of $P$.
+presentation $P$, $g(P)$ is the number of expansions GS-SUB \cite{FTS26}, that is, LENGTH
+(Definition~\ref{def:length}), needs to solve $P$, and
+$g_S(P)$ is the number of expansions our greedy search with the $\SMK$ priority (Definition~\ref{def:smk}) needs. We write $g$
+and $g_S$ for these functions of $P$. Every method is charged in the same units, one per expansion (Section~\ref{sec:units}).
 
 \begin{definition}[MS640]
 The Miller--Schupp benchmark of \cite{SMM24} is a list of $1{,}190$ presentations $\MS(n,w)$. \textbf{MS640}
