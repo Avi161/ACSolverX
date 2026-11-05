@@ -1,6 +1,7 @@
 #!/bin/bash
 # usage: launch.sh <instance-type> <spot|ondemand> <max-hours> [root-gb]   (prints LAUNCHED <id> ...)
-# Optional env: AMI (default: latest al2023 x86_64), NAME (Name tag), ZONES (availability zones to try, in order).
+# Optional env: AMI (default: latest al2023 x86_64), NAME (Name tag), ZONES (availability zones to try, in order),
+# USER_DATA (a script file run at boot instead of the plain max-lifetime timer; it must set its own timer).
 set -euo pipefail
 source "$(dirname "$0")/env.sh"
 TYPE=$1 MARKET=$2 HOURS=$3 ROOT_GB=${4:-60}
@@ -13,7 +14,11 @@ cat > "$W/tags.json" <<J
 [{"ResourceType":"instance","Tags":[{"Key":"project","Value":"$PROJECT"},{"Key":"owner","Value":"agent"},{"Key":"expires","Value":"$EXP"},{"Key":"Name","Value":"${NAME:-$PROJECT-ryan-cov-gates}"}]},
  {"ResourceType":"volume","Tags":[{"Key":"project","Value":"$PROJECT"},{"Key":"owner","Value":"agent"}]}]
 J
-printf '#!/bin/bash\nshutdown -h +%d "max lifetime reached"\n' $((HOURS * 60)) > "$W/ud.sh"
+if [ -n "${USER_DATA:-}" ]; then
+  cp "$USER_DATA" "$W/ud.sh"
+else
+  printf '#!/bin/bash\nshutdown -h +%d "max lifetime reached"\n' $((HOURS * 60)) > "$W/ud.sh"
+fi
 MKT=()
 if [ "$MARKET" = spot ]; then
   echo '{"MarketType":"spot","SpotOptions":{"SpotInstanceType":"one-time","InstanceInterruptionBehavior":"terminate"}}' > "$W/mkt.json"

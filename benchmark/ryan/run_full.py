@@ -25,9 +25,16 @@ import cov_gates_cpu as C  # noqa: E402
 from run_all import rows  # noqa: E402
 
 
-def work(key, gate, budget, mode, charge):
+def work(key, gate, budget, mode, charge, mem_gb):
     import cov_full as F
-    rec = F.search(key, gate, budget, mode, charge)
+    if mem_gb:
+        cap = int(mem_gb * 2**30)
+        resource.setrlimit(resource.RLIMIT_AS, (cap, cap))
+    try:
+        rec = F.search(key, gate, budget, mode, charge)
+    except MemoryError:     # the search outgrew --mem-gb: unsolved, with the units it had reached unknown
+        rec = {"solved": False, "termination": "memory_cap", "units": None, "path_length": None, "path": [],
+               "kind": None, "elapsed_sec": None}
     rec["max_rss_mb"] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024
     return rec
 
@@ -43,6 +50,7 @@ def main():
     ap.add_argument("--workers", type=int, default=os.cpu_count())
     ap.add_argument("--only-unsolved-from", default=None)
     ap.add_argument("--limit", type=int, default=None, help="first N rows of each benchmark (tests)")
+    ap.add_argument("--mem-gb", type=float, default=None, help="address-space cap per search (MemoryError -> unsolved)")
     a = ap.parse_args()
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -66,7 +74,7 @@ def main():
     print(f"{len(keys)} searches for {sum(map(len, targets.values()))} rows, {a.workers} workers", flush=True)
     handles = {}
     with ProcessPoolExecutor(a.workers, max_tasks_per_child=1) as ex:
-        futs = {ex.submit(work, k, a.gate, a.budget, a.mode, not a.no_charge): k for k in keys}
+        futs = {ex.submit(work, k, a.gate, a.budget, a.mode, not a.no_charge, a.mem_gb): k for k in keys}
         for n, fut in enumerate(as_completed(futs), 1):
             key = futs[fut]
             rec = fut.result()
