@@ -498,34 +498,34 @@ each S-move and each CoV move as one step. Every solve was replayed move by move
 \cmidrule(lr){3-7}
 benchmark & method & $10^3$ & $10^4$ & $10^5$ & $10^6$ & $10^7$\\
 \midrule
-MS640 & LENGTH & $554$ & $606$ & $634$ & $\mathbf{640}$ & $\mathbf{640}$\\
-(of $640$) & $\SMK$ & $574$ & $626$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
- & hybrid & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
- & CoV gate & $596$ & $612$ & $626$ & $\mathbf{640}$ & $\mathbf{640}$\\
- & dual, single CoV & $612$ & $634$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
- & dual, auto CoV & $612$ & $627$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
- & triple & $612$ & $637$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
+MS640 & LENGTH & $554$ & $606$ & $634$ & $640$ & $640$\\
+(of $640$) & $\SMK$ & $574$ & $626$ & \underline{$640$} & $640$ & $640$\\
+ & hybrid & \underline{$640$} & \underline{$640$} & \underline{$640$} & $640$ & $640$\\
+ & CoV gate & $596$ & $612$ & $626$ & $640$ & $640$\\
+ & dual, single CoV & $612$ & $634$ & \underline{$640$} & $640$ & $640$\\
+ & dual, auto CoV & $612$ & $627$ & \underline{$640$} & $640$ & $640$\\
+ & triple & $612$ & $637$ & \underline{$640$} & $640$ & $640$\\
 \midrule
-bench60 & LENGTH & $29$ & $40$ & $54$ & $\mathbf{60}$ & $\mathbf{60}$\\
-(of $60$) & $\SMK$ & $37$ & $52$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
- & hybrid & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
- & CoV gate & $45$ & $49$ & $52$ & $\mathbf{60}$ & $\mathbf{60}$\\
- & dual, single CoV & $49$ & $57$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
- & dual, auto CoV & $49$ & $53$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
- & triple & $49$ & $58$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
+bench60 & LENGTH & $29$ & $40$ & $54$ & $60$ & $60$\\
+(of $60$) & $\SMK$ & $37$ & $52$ & \underline{$60$} & $60$ & $60$\\
+ & hybrid & \underline{$60$} & \underline{$60$} & \underline{$60$} & $60$ & $60$\\
+ & CoV gate & $45$ & $49$ & $52$ & $60$ & $60$\\
+ & dual, single CoV & $49$ & $57$ & \underline{$60$} & $60$ & $60$\\
+ & dual, auto CoV & $49$ & $53$ & \underline{$60$} & $60$ & $60$\\
+ & triple & $49$ & $58$ & \underline{$60$} & $60$ & $60$\\
 \midrule
 ladder100 & LENGTH & $11$ & $20$ & $40$ & $60$ & $80$\\
 (of $100$) & $\SMK$ & $23$ & $53$ & $69$ & $87$ & $91$\\
- & hybrid & $\mathbf{99}$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$\\
- & CoV gate & $73$ & $89$ & $93$ & $\mathbf{100}$ & $\mathbf{100}$\\
- & dual, single CoV & $73$ & $98$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$\\
- & dual, auto CoV & $72$ & $94$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$\\
- & triple & $73$ & $97$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$\\
+ & hybrid & \underline{$99$} & \underline{$100$} & \underline{$100$} & \underline{$100$} & \underline{$100$}\\
+ & CoV gate & $73$ & $89$ & $93$ & \underline{$100$} & \underline{$100$}\\
+ & dual, single CoV & $73$ & $98$ & \underline{$100$} & \underline{$100$} & \underline{$100$}\\
+ & dual, auto CoV & $72$ & $94$ & \underline{$100$} & \underline{$100$} & \underline{$100$}\\
+ & triple & $73$ & $97$ & \underline{$100$} & \underline{$100$} & \underline{$100$}\\
 \bottomrule
 \end{tabular}
 \caption{Presentations solved by the searches with CoV images, with LENGTH, $\SMK$ and the hybrid
 (Section~\ref{sec:ac_results}) for comparison. The CoV-gate search has been run to $10^6$ units, by which it solves
-every presentation. In each benchmark, the largest number in each column is in bold.}
+every presentation. In each benchmark, the largest number in each column is underlined, unless all methods tie.}
 \label{tab:cov_search_solved}
 \end{table}
 
@@ -547,24 +547,24 @@ omitted.}
 \cmidrule(lr){3-5}\cmidrule(lr){6-8}
 benchmark & method & mean & median & max & mean & median & max\\
 \midrule
-MS640 & CoV gate & $4{,}104$ & $10$ & $149{,}552$ & $20.5$ & $8$ & $375$\\
-& dual, single CoV & $305$ & $9$ & $19{,}544$ & $41.2$ & $9$ & $963$\\
-& dual, auto CoV & $579$ & $8$ & $31{,}332$ & $40.2$ & $8$ & $907$\\
-& triple & $312$ & $8$ & $18{,}528$ & $39.2$ & $8$ & $842$\\
+MS640 & CoV gate & $4{,}104$ & $10$ & $149{,}552$ & \underline{$20.5$} & \underline{$8$} & \underline{$375$}\\
+& dual, single CoV & \underline{$305$} & $9$ & $19{,}544$ & $41.2$ & $9$ & $963$\\
+& dual, auto CoV & $579$ & \underline{$8$} & $31{,}332$ & $40.2$ & \underline{$8$} & $907$\\
+& triple & $312$ & \underline{$8$} & \underline{$18{,}528$} & $39.2$ & \underline{$8$} & $842$\\
 \midrule
-bench60 & CoV gate & $21{,}827$ & $27.5$ & $149{,}552$ & $70.2$ & $16.5$ & $375$\\
-& dual, single CoV & $1{,}576$ & $106$ & $19{,}544$ & $162.5$ & $25.5$ & $963$\\
+bench60 & CoV gate & $21{,}827$ & \underline{$27.5$} & $149{,}552$ & \underline{$70.2$} & \underline{$16.5$} & \underline{$375$}\\
+& dual, single CoV & \underline{$1{,}576$} & $106$ & $19{,}544$ & $162.5$ & $25.5$ & $963$\\
 & dual, auto CoV & $3{,}055$ & $120$ & $31{,}016$ & $152.6$ & $25.5$ & $907$\\
-& triple & $1{,}657$ & $114$ & $18{,}528$ & $145.8$ & $32.5$ & $842$\\
+& triple & $1{,}657$ & $114$ & \underline{$18{,}528$} & $145.8$ & $32.5$ & $842$\\
 \midrule
-ladder100 & CoV gate & $12{,}119$ & $96$ & $149{,}552$ & $50.4$ & $20$ & $375$\\
-& dual, single CoV & $1{,}146$ & $290$ & $10{,}372$ & $118.0$ & $46$ & $941$\\
+ladder100 & CoV gate & $12{,}119$ & \underline{$96$} & $149{,}552$ & \underline{$50.4$} & \underline{$20$} & \underline{$375$}\\
+& dual, single CoV & \underline{$1{,}146$} & $290$ & \underline{$10{,}372$} & $118.0$ & $46$ & $941$\\
 & dual, auto CoV & $2{,}059$ & $426$ & $31{,}016$ & $116.3$ & $48$ & $907$\\
 & triple & $1{,}444$ & $403$ & $18{,}528$ & $113.2$ & $52$ & $842$\\
 \bottomrule
 \end{tabular}
 \caption{Units and path lengths over the presentations each search solves (all of them, at $10^6$ units for the
-CoV-gate search).}
+CoV-gate search). In each benchmark, the smallest number in each column is underlined.}
 \label{tab:cov_search_paths}
 \end{table}
 
