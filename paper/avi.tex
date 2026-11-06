@@ -584,44 +584,41 @@ presentations with three generators are not counted, and the paths are not rewri
 \small
 \begin{tabular}{llrrrr}
 \toprule
-& & \multicolumn{4}{c}{largest total relator length on the path}\\
-\cmidrule(lr){3-6}
-benchmark & method & mean & median & min & max\\
+& & & \multicolumn{3}{c}{largest total relator length on the path}\\
+\cmidrule(lr){4-6}
+benchmark & method & start & mean & median & max\\
 \midrule
-MS640 & starting presentation & $16.1$ & $15$ & $7$ & $25$\\
- & LENGTH & $16.9$ & $16$ & $7$ & $31$\\
- & $\SMK$ & $17.6$ & $16$ & $7$ & $35$\\
- & hybrid, search states & $25.5$ & $16$ & $7$ & $255$\\
- & hybrid, AC path & $55.1$ & $17$ & $7$ & $1{,}014$\\
- & CoV gate & $16.2$ & $15$ & $7$ & $25$\\
- & dual, single CoV & $16.2$ & $15$ & $7$ & $25$\\
- & dual, auto CoV & $16.2$ & $15$ & $7$ & $25$\\
- & triple & $16.2$ & $15$ & $7$ & $25$\\
+MS640 & LENGTH & $16.1$ & $16.9$ & $16$ & $31$\\
+ & $\SMK$ & $16.1$ & $17.6$ & $16$ & $35$\\
+ & hybrid, search states & $16.1$ & $25.5$ & $16$ & $255$\\
+ & hybrid, AC path & $16.1$ & $55.1$ & $17$ & $1{,}014$\\
+ & CoV gate & $16.1$ & $16.2$ & $15$ & $25$\\
+ & dual, single CoV & $16.1$ & $16.2$ & $15$ & $25$\\
+ & dual, auto CoV & $16.1$ & $16.2$ & $15$ & $25$\\
+ & triple & $16.1$ & $16.2$ & $15$ & $25$\\
 \midrule
-bench60 & starting presentation & $19.3$ & $20.5$ & $7$ & $25$\\
- & LENGTH & $22.0$ & $22.5$ & $7$ & $31$\\
- & $\SMK$ & $23.8$ & $23$ & $7$ & $35$\\
- & hybrid, search states & $59.3$ & $21$ & $7$ & $255$\\
- & hybrid, AC path & $214.8$ & $70.5$ & $7$ & $1{,}014$\\
- & CoV gate & $19.3$ & $20.5$ & $7$ & $25$\\
- & dual, single CoV & $19.4$ & $20.5$ & $7$ & $25$\\
- & dual, auto CoV & $19.4$ & $20.5$ & $7$ & $25$\\
- & triple & $19.4$ & $20.5$ & $7$ & $25$\\
+bench60 & LENGTH & $19.3$ & $22.0$ & $22.5$ & $31$\\
+ & $\SMK$ & $19.3$ & $23.8$ & $23$ & $35$\\
+ & hybrid, search states & $19.3$ & $59.3$ & $21$ & $255$\\
+ & hybrid, AC path & $19.3$ & $214.8$ & $70.5$ & $1{,}014$\\
+ & CoV gate & $19.3$ & $19.3$ & $20.5$ & $25$\\
+ & dual, single CoV & $19.3$ & $19.4$ & $20.5$ & $25$\\
+ & dual, auto CoV & $19.3$ & $19.4$ & $20.5$ & $25$\\
+ & triple & $19.3$ & $19.4$ & $20.5$ & $25$\\
 \midrule
-ladder100 & starting presentation & $19.8$ & $19$ & $7$ & $25$\\
- & LENGTH & $27.8$ & $28.5$ & $7$ & $39$\\
- & $\SMK$ & $30.3$ & $31$ & $7$ & $43$\\
- & hybrid, search states & $45.1$ & $21$ & $7$ & $255$\\
- & hybrid, AC path & $242.1$ & $146$ & $7$ & $1{,}014$\\
- & CoV gate & $20.4$ & $21$ & $7$ & $25$\\
- & dual, single CoV & $20.5$ & $21$ & $7$ & $25$\\
- & dual, auto CoV & $20.5$ & $21$ & $7$ & $25$\\
- & triple & $20.5$ & $21$ & $7$ & $25$\\
+ladder100 & LENGTH & $19.8$ & $27.8$ & $28.5$ & $39$\\
+ & $\SMK$ & $19.9$ & $30.3$ & $31$ & $43$\\
+ & hybrid, search states & $19.8$ & $45.1$ & $21$ & $255$\\
+ & hybrid, AC path & $19.8$ & $242.1$ & $146$ & $1{,}014$\\
+ & CoV gate & $19.8$ & $20.4$ & $21$ & $25$\\
+ & dual, single CoV & $19.8$ & $20.5$ & $21$ & $25$\\
+ & dual, auto CoV & $19.8$ & $20.5$ & $21$ & $25$\\
+ & triple & $19.8$ & $20.5$ & $21$ & $25$\\
 \bottomrule
 \end{tabular}
 \caption{The largest total relator length on the solution path, over the presentations each method solves (on
-ladder100: $80$ for LENGTH, $91$ for $\SMK$, all $100$ for the others). Starting presentation: the total relator length
-of the presentation itself, over all rows.}
+ladder100: $80$ for LENGTH, $91$ for $\SMK$, all $100$ for the others). Start: the mean total relator length of the
+starting presentations, over the same presentations.}
 \label{tab:maxrel}
 \end{table}
 
