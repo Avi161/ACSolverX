@@ -572,10 +572,10 @@ CoV-gate search).}
 \end{table}
 
 \FloatBarrier
-\subsection{Longest relator on a solution path}\label{sec:maxrel}
+\subsection{Total relator length on a solution path}\label{sec:maxrel}
 
 A search may lengthen the relators of a presentation before it shortens them. For every solved presentation we
-record the length of the longest relator over all states of its solution path, the starting presentation included,
+record the largest total relator length over all states of its solution path, the starting presentation included,
 each relator cyclically reduced. For LENGTH and $\SMK$ the states are those of the S-move path. For the hybrid we give
 two measures: over the states of its search, that is, the presentations after each S-move and each Nielsen map, and
 over the states of its AC path, in which each Nielsen map is rewritten as a sequence of AC moves on the original
@@ -587,62 +587,64 @@ presentations with three generators are not counted, and the paths are not rewri
 \small
 \begin{tabular}{llrrrr}
 \toprule
-& & \multicolumn{4}{c}{longest relator on the path}\\
+& & \multicolumn{4}{c}{largest total relator length on the path}\\
 \cmidrule(lr){3-6}
 benchmark & method & mean & median & min & max\\
 \midrule
-MS640 & starting presentation & $9.8$ & $9$ & $5$ & $17$\\
-& LENGTH & $10.3$ & $9$ & $5$ & $21$\\
-& $\SMK$ & $10.5$ & $9$ & $5$ & $23$\\
-& hybrid, search states & $14.5$ & $9$ & $5$ & $129$\\
-& hybrid, AC path & $29.7$ & $11$ & $5$ & $509$\\
-& CoV gate & $10.0$ & $9$ & $5$ & $19$\\
-& dual, single CoV & $10.0$ & $9$ & $5$ & $19$\\
-& dual, auto CoV & $10.0$ & $9$ & $5$ & $20$\\
-& triple & $10.0$ & $9$ & $5$ & $20$\\
+MS640 & starting presentation & $16.1$ & $15$ & $7$ & $25$\\
+ & LENGTH & $16.9$ & $16$ & $7$ & $31$\\
+ & $\SMK$ & $17.6$ & $16$ & $7$ & $35$\\
+ & hybrid, search states & $25.5$ & $16$ & $7$ & $255$\\
+ & hybrid, AC path & $55.1$ & $17$ & $7$ & $1{,}014$\\
+ & CoV gate & $16.2$ & $15$ & $7$ & $25$\\
+ & dual, single CoV & $16.2$ & $15$ & $7$ & $25$\\
+ & dual, auto CoV & $16.2$ & $15$ & $7$ & $25$\\
+ & triple & $16.2$ & $15$ & $7$ & $25$\\
 \midrule
-bench60 & starting presentation & $12.2$ & $13$ & $5$ & $17$\\
-& LENGTH & $13.6$ & $13$ & $5$ & $21$\\
-& $\SMK$ & $14.0$ & $14$ & $5$ & $23$\\
-& hybrid, search states & $31.9$ & $14$ & $5$ & $129$\\
-& hybrid, AC path & $110.9$ & $40$ & $5$ & $509$\\
-& CoV gate & $12.7$ & $13$ & $5$ & $19$\\
-& dual, single CoV & $12.7$ & $13$ & $5$ & $19$\\
-& dual, auto CoV & $12.8$ & $13$ & $5$ & $20$\\
-& triple & $12.8$ & $13$ & $5$ & $20$\\
+bench60 & starting presentation & $19.3$ & $20.5$ & $7$ & $25$\\
+ & LENGTH & $22.0$ & $22.5$ & $7$ & $31$\\
+ & $\SMK$ & $23.8$ & $23$ & $7$ & $35$\\
+ & hybrid, search states & $59.3$ & $21$ & $7$ & $255$\\
+ & hybrid, AC path & $214.8$ & $70.5$ & $7$ & $1{,}014$\\
+ & CoV gate & $19.3$ & $20.5$ & $7$ & $25$\\
+ & dual, single CoV & $19.4$ & $20.5$ & $7$ & $25$\\
+ & dual, auto CoV & $19.4$ & $20.5$ & $7$ & $25$\\
+ & triple & $19.4$ & $20.5$ & $7$ & $25$\\
 \midrule
-ladder100 & starting presentation & $12.5$ & $12$ & $5$ & $19$\\
-& LENGTH & $17.0$ & $17$ & $5$ & $23$\\
-& $\SMK$ & $17.8$ & $19$ & $5$ & $25$\\
-& hybrid, search states & $25.1$ & $13$ & $5$ & $129$\\
-& hybrid, AC path & $129.7$ & $79$ & $5$ & $509$\\
-& CoV gate & $13.3$ & $13$ & $5$ & $19$\\
-& dual, single CoV & $13.6$ & $13$ & $5$ & $19$\\
-& dual, auto CoV & $13.6$ & $13$ & $5$ & $20$\\
-& triple & $13.6$ & $13$ & $5$ & $20$\\
+ladder100 & starting presentation & $19.8$ & $19$ & $7$ & $25$\\
+ & LENGTH & $27.8$ & $28.5$ & $7$ & $39$\\
+ & $\SMK$ & $30.3$ & $31$ & $7$ & $43$\\
+ & hybrid, search states & $45.1$ & $21$ & $7$ & $255$\\
+ & hybrid, AC path & $242.1$ & $146$ & $7$ & $1{,}014$\\
+ & CoV gate & $20.4$ & $21$ & $7$ & $25$\\
+ & dual, single CoV & $20.5$ & $21$ & $7$ & $25$\\
+ & dual, auto CoV & $20.5$ & $21$ & $7$ & $25$\\
+ & triple & $20.5$ & $21$ & $7$ & $25$\\
 \bottomrule
 \end{tabular}
-\caption{The longest relator on the solution path, over the presentations each method solves (on ladder100: $80$ for
-LENGTH, $91$ for $\SMK$, all $100$ for the others). Starting presentation: the longest relator of the presentation
-itself, over all rows.}
+\caption{The largest total relator length on the solution path, over the presentations each method solves (on
+ladder100: $80$ for LENGTH, $91$ for $\SMK$, all $100$ for the others). Starting presentation: the total relator length
+of the presentation itself, over all rows.}
 \label{tab:maxrel}
 \end{table}
 
 The greedy searches and the searches with CoV moves stay close to the starting length: on MS640 the mean rises from
-$9.8$ to at most $10.5$, and no path of these searches holds a relator longer than $25$. The hybrid's search states
-rise further, to a mean of $14.5$ on MS640 and $25.1$ on ladder100 and at most $129$, and its AC paths further still,
-to at most $509$: a Nielsen map rewritten as AC moves lengthens the relators temporarily. Since the paths of the
+$16.1$ to at most $17.6$, and no path of these searches has a total length above $43$; a path of a search with CoV
+moves exceeds the total length of its starting presentation by at most $4$. The hybrid's search states rise further,
+to a mean of $25.5$ on MS640 and $45.1$ on ladder100 and at most $255$, and its AC paths further still, to at most
+$1{,}014$: a Nielsen map rewritten as AC moves lengthens the relators temporarily. Since the paths of the
 searches with CoV moves are not rewritten as AC moves, their figures compare with the hybrid's search states, not with
 its AC path.
 
 Figure~\ref{fig:maxrel_summary} shows the mean and the largest values of Table~\ref{tab:maxrel}, and
-Figure~\ref{fig:maxrel_example} follows the presentation on which the hybrid's AC path reaches a relator of length $509$.
+Figure~\ref{fig:maxrel_example} follows the presentation on which the hybrid's AC path reaches a total length of $1{,}014$.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{figures/maxrel_summary.png}
-\caption{The longest relator on the solution path (Table~\ref{tab:maxrel}): the mean (filled) and the largest value
-(open) over the presentations each method solves. The horizontal axis is logarithmic.}
+\caption{The largest total relator length on the solution path (Table~\ref{tab:maxrel}): the mean (filled) and the
+largest value (open) over the presentations each method solves. Dashed: the mean total length of the starting
+presentations. The horizontal axis is logarithmic.}
 \label{fig:maxrel_summary}
 \end{figure}
 
@@ -651,9 +653,9 @@ Figure~\ref{fig:maxrel_example} follows the presentation on which the hybrid's A
 \includegraphics[width=\textwidth]{figures/maxrel_example.png}
 \caption{The total relator length along the solution paths of LENGTH, $\SMK$, the hybrid, the CoV-gate search and
 the triple search on the MS640 presentation $\pres{x,y}{y^{-8}x^{-1}y^7x,\ y^{-3}x^{-1}y^{-1}xyx^{-1}}$, on which the
-hybrid's AC path reaches a relator of length $509$. (a) Each path step by step, a step being an S-move, a CoV move
+hybrid's AC path reaches a total relator length of $1{,}014$, with a relator of length $509$. (a) Each path step by step, a step being an S-move, a CoV move
 (black points) or a Nielsen map; the vertical axis is logarithmic. (b) The hybrid's path rewritten as AC moves on the
-original presentation ($2{,}783$ moves), along which the total length reaches $1{,}014$.}
+original presentation ($2{,}783$ moves).}
 \label{fig:maxrel_example}
 \end{figure}
 

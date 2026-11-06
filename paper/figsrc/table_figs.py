@@ -1,7 +1,7 @@
 """Figures that draw the tables of Section 2 from the per-row records in results/benchmark_rows/.
 
     scores_budget.png  presentations solved against the budget, all seven methods (tab:cov_search_solved)
-    maxrel_summary.png mean and largest longest relator on the path, all seven methods (tab:maxrel)
+    maxrel_summary.png mean and largest total relator length on the path, all seven methods (tab:maxrel)
 
     python paper/figsrc/table_figs.py
 """
@@ -59,36 +59,37 @@ def scores_budget(B):
 
 
 def maxrel_summary(B):
-    labels = ["starting presentation", "LENGTH", "S20_MK2", "hybrid, search states", "hybrid, AC path",
-              "CoV gate", "dual, single CoV", "dual, auto CoV", "triple"]
+    T = [json.loads(x) for x in (ROOT / "results/benchmark_rows/max_total.jsonl").read_text().splitlines()]
+    sets = {"MS640": [x for x in T if x["benchmark"] == "ms640"], "bench60": [x for x in T if x["bench60"]],
+            "ladder100": [x for x in T if x["benchmark"] == "ladder100"]}
+    keys = ["start_total", "LENGTH", "S20_MK2", "hybrid, search states", "hybrid, AC path", "CoV gate",
+            "dual, single CoV", "dual, auto CoV", "triple"]
+    labels = ["starting presentation"] + keys[1:]
     colors = [MUTED, COLORS["LENGTH"], COLORS["S20_MK2"], COLORS["hybrid"], COLORS["hybrid"]] + \
         [COLORS[m] for m in METHODS[3:]]
     fig, axes = plt.subplots(1, 3, figsize=(10, 3.9), sharey=True)
-    for ax, (name, rows) in zip(axes, B.items()):
-        for y, (lab, c) in enumerate(zip(labels, colors)):
-            if lab == "starting presentation":
-                v = [r["start_max_rel"] for r in rows]
-            elif lab.startswith("hybrid"):
-                key = "max_rel_search" if "search" in lab else "max_rel"
-                v = [r["methods"]["hybrid"][key] for r in rows if r["methods"]["hybrid"]["solved"]]
-            else:
-                v = [r["methods"][lab]["max_rel"] for r in rows if r["methods"][lab]["solved"]]
+    for ax, (name, rows) in zip(axes, sets.items()):
+        start = mean(x["start_total"] for x in rows)
+        ax.axvline(start, color=MUTED, lw=0.9, ls="--", zorder=0)
+        for y, (k, c) in enumerate(zip(keys, colors)):
+            v = [x[k] for x in rows if k in x]
             mu, mx = mean(v), max(v)
             ax.plot([mu, mx], [y, y], color=c, lw=1.2, zorder=1)
             ax.scatter([mu], [y], s=34, color=c, zorder=3, edgecolor="white", linewidth=0.8)
             ax.scatter([mx], [y], s=34, facecolor="white", edgecolor=c, linewidth=1.4, zorder=3)
-            ax.annotate(f"{mx}", (mx, y), xytext=(6, -3), textcoords="offset points", fontsize=7.5, color=INK)
+            ax.annotate(f"{mx:,}", (mx, y), xytext=(6, -3), textcoords="offset points", fontsize=7.5, color=INK)
         ax.set_xscale("log")
-        ax.set_xlim(4, 1500)
+        ax.set_xlim(6, 4000)
         ax.set_title(name)
-        ax.set_xlabel("longest relator on the path")
+        ax.set_xlabel("largest total relator length")
         style(ax)
     axes[0].set_yticks(range(len(labels)))
     axes[0].set_yticklabels(labels, fontsize=8.5)
     axes[0].invert_yaxis()
     fig.legend([Line2D([], [], ls="", marker="o", color=INK, markersize=6),
-                Line2D([], [], ls="", marker="o", markerfacecolor="white", markeredgecolor=INK, markersize=6)],
-               ["mean", "largest"], loc="upper center", ncol=2, frameon=False, fontsize=9)
+                Line2D([], [], ls="", marker="o", markerfacecolor="white", markeredgecolor=INK, markersize=6),
+                Line2D([], [], ls="--", color=MUTED, lw=0.9)],
+               ["mean", "largest", "mean at the start"], loc="upper center", ncol=3, frameon=False, fontsize=9)
     fig.tight_layout(rect=(0, 0, 1, 0.93))
     fig.savefig(OUT / "maxrel_summary.png", dpi=200)
 

@@ -46,3 +46,7 @@ reduced. CoV searches: the states on the path (the CoV images, not the intermedi
 | `hybrid` | `certificate`: Nielsen maps `{"aut": k}` and S-moves; `elementary`: packed AC moves (`acx.verify.pack`) | `replay(pres, unpack(elementary), cyclic=False, normalize=False)` |
 | `cov_gate` | `path`: states with the S-move or CoV step that reached each; `kind` (`ac_path` or `stable_cert`) | `benchmark/ryan/verify_full.py` (branch `paper`) |
 | `elliot` | `path`: states; `cov_used`: each CoV step; `moves`; `kind` | `benchmark/elliot/fullcov` (branch `paper`) |
+
+## max_total.jsonl
+
+Per row: `start_total`, the total relator length of the presentation, and for each solved method the largest total relator length (sum of the cyclically reduced relator lengths) over the states of its stored path, start included; the hybrid has `hybrid, search states` and `hybrid, AC path`. Built from `paths/` by `benchmark/relen/total_len.py`.
