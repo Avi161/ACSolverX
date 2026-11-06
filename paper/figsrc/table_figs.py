@@ -37,10 +37,12 @@ def style(ax):
 
 
 def scores_budget(B):
+    # dual, auto CoV is left out: it never solves more than dual, single CoV (Table 3)
+    SHOWN = [m for m in METHODS if m != "dual, auto CoV"]
     budgets = [10 ** k for k in range(3, 8)]
     fig, axes = plt.subplots(1, 3, figsize=(10, 3.6))
     for ax, (name, rows) in zip(axes, B.items()):
-        for m in METHODS:
+        for m in SHOWN:
             ys = [100 * sum(1 for r in rows if r["methods"][m]["solved"] and r["methods"][m]["units"] <= b) / len(rows)
                   for b in budgets]
             ax.plot(budgets, ys, color=COLORS[m], lw=1.8, marker="o", markersize=4.5,
@@ -52,8 +54,8 @@ def scores_budget(B):
         ax.set_ylim(0, 103)
         style(ax)
     axes[0].set_ylabel("% of presentations solved")
-    fig.legend([Line2D([], [], color=COLORS[m], lw=1.8, marker="o", markersize=4.5) for m in METHODS], METHODS,
-               loc="upper center", ncol=7, frameon=False, fontsize=8.5, handlelength=1.6, columnspacing=1.2)
+    fig.legend([Line2D([], [], color=COLORS[m], lw=1.8, marker="o", markersize=4.5) for m in SHOWN], SHOWN,
+               loc="upper center", ncol=6, frameon=False, fontsize=8.5, handlelength=1.6, columnspacing=1.2)
     fig.tight_layout(rect=(0, 0, 1, 0.9))
     fig.savefig(OUT / "scores_budget.png", dpi=200)
 
