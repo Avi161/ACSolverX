@@ -1,0 +1,11 @@
+{
+ "method": "greedy",
+ "benchmark": "ladder",
+ "search": {
+  "backend": "fast",
+  "priority": "length",
+  "budget": 1000000,
+  "cap": 48
+ },
+ "name": "relen_speedtest"
+}

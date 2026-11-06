@@ -1,0 +1,68 @@
+{
+ "name": "relen_speedtest",
+ "method": "greedy",
+ "benchmark": "ladder",
+ "rows": 1,
+ "solved": 1,
+ "ac_path": 1,
+ "aut_assisted": 0,
+ "stable_cert": 0,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "pops",
+  "total": 948266,
+  "on_solved": 948266
+ },
+ "cost_unit": "pops",
+ "cost_mean": 948266.0,
+ "cost_median": 948266,
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 1,
+    "sum": 84,
+    "mean": 84.0,
+    "median": 84,
+    "max": 84
+   },
+   "elem_moves": {
+    "n": 1,
+    "sum": 1079,
+    "mean": 1079.0,
+    "median": 1079,
+    "max": 1079
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": 48,
+   "rows": 1,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 102.8,
+ "row_seconds": 102.61,
+ "cpu_seconds": 102.009,
+ "us_per_cost": 107.574,
+ "config": {
+  "method": "greedy",
+  "benchmark": "ladder",
+  "search": {
+   "backend": "fast",
+   "priority": "length",
+   "budget": 1000000,
+   "cap": 48
+  },
+  "name": "relen_speedtest"
+ }
+}

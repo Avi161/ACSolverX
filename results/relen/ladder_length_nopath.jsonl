@@ -1,0 +1,11 @@
+{"id": "ac19_27683", "solved": true, "pops": 1238082, "expected": 1238082, "cap": 64, "path_length": 66, "start_max_rel": 13, "max_rel": 19, "max_total": 29, "seconds": 151.4}
+{"id": "ac19_72328", "solved": true, "pops": 1188217, "expected": 1188217, "cap": 64, "path_length": 291, "start_max_rel": 10, "max_rel": 23, "max_total": 33, "seconds": 190.4}
+{"id": "ac19_28930", "solved": true, "pops": 1077421, "expected": 1077421, "cap": 64, "path_length": 64, "start_max_rel": 13, "max_rel": 19, "max_total": 29, "seconds": 132.8}
+{"id": "ac19_30096", "solved": true, "pops": 948266, "expected": 948266, "cap": 48, "path_length": 84, "start_max_rel": 9, "max_rel": 18, "max_total": 29, "seconds": 101.7}
+{"id": "ac19_24836", "solved": true, "pops": 778018, "expected": 778018, "cap": 48, "path_length": 48, "start_max_rel": 11, "max_rel": 18, "max_total": 33, "seconds": 125.4}
+{"id": "ac19_50043", "solved": true, "pops": 652794, "expected": 652794, "cap": 48, "path_length": 88, "start_max_rel": 13, "max_rel": 18, "max_total": 31, "seconds": 86.3}
+{"id": "ac19_24379", "solved": true, "pops": 589661, "expected": 589661, "cap": 48, "path_length": 82, "start_max_rel": 13, "max_rel": 17, "max_total": 29, "seconds": 69.5}
+{"id": "ms_635", "solved": true, "pops": 574959, "expected": 574959, "cap": 24, "path_length": 80, "start_max_rel": 15, "max_rel": 17, "max_total": 29, "seconds": 28.0}
+{"id": "ms_634", "solved": true, "pops": 574348, "expected": 574348, "cap": 24, "path_length": 80, "start_max_rel": 15, "max_rel": 17, "max_total": 29, "seconds": 28.2}
+{"id": "ac19_3782", "solved": true, "pops": 508946, "expected": 508946, "cap": 48, "path_length": 70, "start_max_rel": 9, "max_rel": 17, "max_total": 29, "seconds": 60.0}
+{"id": "ac19_67077", "solved": true, "pops": 494148, "expected": 494148, "cap": 48, "path_length": 68, "start_max_rel": 11, "max_rel": 17, "max_total": 29, "seconds": 59.2}
