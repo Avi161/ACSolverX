@@ -112,7 +112,8 @@ $x\mapsto xy^{\pm1}$ and $y\mapsto yx^{\pm1}$. The solver has two parts (Figure~
   reads cyclically as $g^ah^pg^{-a}h^q$ and its pinch replacements bring the other relator to at most one $g$-block
   (Proposition~\ref{prop:pinch}).
   \item \emph{Search.} If the checks do not finish $P$, a best-first search with priority $\lambda$, on states taken
-  up to signed permutations of the generators. The children of a state are its S-move children and its four Nielsen images. Every new child goes through two filters that change nothing
+  up to signed permutations of the generators. The children of a state are its S-move children and its four Nielsen images, under
+  $x\mapsto xy$, $x\mapsto xy^{-1}$, $y\mapsto yx$ and $y\mapsto yx^{-1}$. Every new child goes through two filters that change nothing
   (Definition~\ref{def:filters}); a child that passes goes to the check they name, which then finishes it
   (Proposition~\ref{prop:filters}). The other children are pushed onto the heap.
 \end{enumerate}
