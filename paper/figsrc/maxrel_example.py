@@ -65,42 +65,41 @@ def main():
             break
     pres = parse_presentation(", ".join(rows[ROW]["pres"]))
     names = ["LENGTH", "S20_MK2", "hybrid", "CoV gate", "triple"]     # triple: the best of the dual and triple searches
-    colors = dict(zip(["LENGTH", "S20_MK2", "hybrid", "CoV gate", "dual, single CoV", "dual, auto CoV", "triple"], COLORS))
+    colors = {"LENGTH": COLORS[0], "S20_MK2": COLORS[1], "hybrid": COLORS[2], "CoV gate": COLORS[3], "triple": COLORS[6]}
     plt.rcParams.update({"font.family": "serif", "font.size": 9, "axes.edgecolor": MUTED, "axes.labelcolor": INK,
                          "xtick.color": MUTED, "ytick.color": MUTED})
-    fig, (a, b) = plt.subplots(1, 2, figsize=(10, 3.8), gridspec_kw={"width_ratios": [1.35, 1]})
-    # (a) every method in the steps of its own search: S-moves, CoV moves, Nielsen maps
-    for m in names:
-        ys, special = series(pres, m, r["paths"][m])
-        a.plot(range(len(ys)), ys, color=colors[m], lw=1.3 if m == "hybrid" else 1.0, label=m,
-               zorder=3 if m == "hybrid" else 2)
+    data = {m: series(pres, m, r["paths"][m]) for m in names}
+    start = data["LENGTH"][0][0]
+    xmax = max(len(ys) for ys, _ in data.values())
+    fig, axes = plt.subplots(len(names), 1, figsize=(7.5, 7.2), sharex=True, sharey=True)
+    for ax, m in zip(axes, names):
+        ys, special = data[m]
+        ax.axhline(start, color=MUTED, lw=0.8, ls="--", zorder=1)
+        ax.plot(range(len(ys)), ys, color=colors[m], lw=1.1, zorder=2)
         if m != "hybrid" and special:
-            a.scatter(special, [ys[i] for i in special], s=9, marker="o", color=INK, linewidth=0, zorder=4)
-    handles, labels = a.get_legend_handles_labels()
-    handles.append(Line2D([], [], ls="", marker="o", color=INK, markersize=3.5))
-    labels.append("CoV move")
-    a.legend(handles, labels, frameon=False, fontsize=7.5, loc="upper right")
-    a.set_yscale("log")
-    a.set_yticks([2, 5, 10, 20, 50, 100, 200])
-    a.set_yticklabels(["2", "5", "10", "20", "50", "100", "200"])
-    a.set_xlabel("steps along the path (S-moves, CoV moves and Nielsen maps)")
-    a.set_ylabel("total relator length")
-    a.set_title("(a) the five methods, step by step", loc="left", fontsize=9, color=INK)
-    # (b) the hybrid alone: its path rewritten as AC moves on the original presentation
-    st = replay(pres, unpack(r["paths"]["hybrid"]["elementary"]), cyclic=False, normalize=False)
-    hy = [total(s.rels) for s in st]
-    b.plot(range(len(hy)), hy, color=colors["hybrid"], lw=1.3)
-    mx = max(range(len(hy)), key=hy.__getitem__)
-    b.annotate(f"total length {hy[mx]},\nlongest relator {max(len(reduce(tuple(w))) for w in st[mx].rels)}", (mx, hy[mx]),
-               xytext=(-6, -16), textcoords="offset points", ha="right", fontsize=7.5, color=INK)
-    b.set_xlabel("AC moves along the hybrid's path")
-    b.set_title("(b) the hybrid's path as AC moves", loc="left", fontsize=9, color=INK)
-    for ax in (a, b):
+            ax.scatter(special, [ys[i] for i in special], s=8, marker="o", color=INK, linewidth=0, zorder=3)
+        ax.text(0.995, 0.92, f"{m}: {len(ys) - 1} steps, largest total length {max(ys)}", transform=ax.transAxes,
+                ha="right", va="top", fontsize=8.5, color=INK,
+                bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none"))
+        ax.set_yscale("log")
+        ax.set_ylim(1.6, 400)
+        ax.set_yticks([2, 10, 25, 100])
+        ax.set_yticklabels(["2", "10", "25", "100"])
+        ax.minorticks_off()
+        ax.set_xlim(-10, xmax + 10)
         ax.grid(True, color=GRID, lw=0.6)
         ax.set_axisbelow(True)
         for sp in ("top", "right"):
             ax.spines[sp].set_visible(False)
-    fig.tight_layout()
+    axes[-1].set_xlabel("steps along the path (S-moves, CoV moves and Nielsen maps)")
+    fig.supylabel("total relator length", fontsize=9, color=INK)
+    fig.suptitle(r"MS640 presentation $\langle x,y \mid y^{-8}x^{-1}y^{7}x,\ y^{-3}x^{-1}y^{-1}xyx^{-1}\rangle$",
+                 fontsize=10, color=INK)
+    axes[0].legend([Line2D([], [], ls="--", color=MUTED, lw=0.8),
+                    Line2D([], [], ls="", marker="o", color=INK, markersize=3.5)],
+                   [f"starting total length ({start})", "CoV move"], frameon=False, fontsize=8, loc="upper left",
+                   ncol=2, bbox_to_anchor=(0, 1.32))
+    fig.tight_layout(h_pad=0.6)
     out = ROOT / "paper/figures/maxrel_example.png"
     fig.savefig(out, dpi=300)
     print(out)
