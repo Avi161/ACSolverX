@@ -137,8 +137,11 @@ def main():
     # Summary over the solved rows, per benchmark (bench60 read off MS640).
     md = ["| benchmark | method | solved | units mean / median / max | path mean / median / max | longest relator mean / median / max |",
           "|---|---|---:|---|---|---|"]
+    def num(x):
+        return f"{x:,.1f}" if x != int(x) else f"{int(x):,}"   # a median of an even count can end in .5
+
     def s3(v, d=1):
-        return f"{st.mean(v):,.{d}f} / {st.median(v):,g} / {max(v):,}" if v else "-"
+        return f"{st.mean(v):,.{d}f} / {num(st.median(v))} / {max(v):,}" if v else "-"
     for bench, f, keep in (("MS640", "ms640", None), ("bench60", "ms640", b60), ("ladder100", "ladder100", None)):
         recs = jl(outdir / f"{f}.jsonl")
         recs = [r for r in recs if keep is None or r["id"] in keep]
