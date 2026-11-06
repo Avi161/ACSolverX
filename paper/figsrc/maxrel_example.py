@@ -64,47 +64,42 @@ def main():
         if r["id"] == ROW:
             break
     pres = parse_presentation(", ".join(rows[ROW]["pres"]))
-    names = ["LENGTH", "S20_MK2", "hybrid", "CoV gate", "dual, single CoV", "dual, auto CoV", "triple"]
-    plt.rcParams.update({"font.family": "serif", "font.size": 9, "axes.edgecolor": MUTED, "axes.labelcolor": INK, "xtick.color": MUTED,
-                         "ytick.color": MUTED})
-    fig, (a, b) = plt.subplots(1, 2, figsize=(10, 3.8), gridspec_kw={"width_ratios": [1, 1]})
-    data = {m: series(pres, m, r["paths"][m]) for m in names}
-    # the hybrid is drawn along its AC path: every Nielsen map rewritten as elementary AC moves
+    names = ["LENGTH", "S20_MK2", "hybrid", "CoV gate", "triple"]     # triple: the best of the dual and triple searches
+    colors = dict(zip(["LENGTH", "S20_MK2", "hybrid", "CoV gate", "dual, single CoV", "dual, auto CoV", "triple"], COLORS))
+    plt.rcParams.update({"font.family": "serif", "font.size": 9, "axes.edgecolor": MUTED, "axes.labelcolor": INK,
+                         "xtick.color": MUTED, "ytick.color": MUTED})
+    fig, (a, b) = plt.subplots(1, 2, figsize=(10, 3.8), gridspec_kw={"width_ratios": [1.35, 1]})
+    # (a) every method in the steps of its own search: S-moves, CoV moves, Nielsen maps
+    for m in names:
+        ys, special = series(pres, m, r["paths"][m])
+        a.plot(range(len(ys)), ys, color=colors[m], lw=1.3 if m == "hybrid" else 1.0, label=m,
+               zorder=3 if m == "hybrid" else 2)
+        if m != "hybrid" and special:
+            a.scatter(special, [ys[i] for i in special], s=9, marker="o", color=INK, linewidth=0, zorder=4)
+    handles, labels = a.get_legend_handles_labels()
+    handles.append(Line2D([], [], ls="", marker="o", color=INK, markersize=3.5))
+    labels.append("CoV move")
+    a.legend(handles, labels, frameon=False, fontsize=7.5, loc="upper right")
+    a.set_yscale("log")
+    a.set_yticks([2, 5, 10, 20, 50, 100, 200])
+    a.set_yticklabels(["2", "5", "10", "20", "50", "100", "200"])
+    a.set_xlabel("steps along the path (S-moves, CoV moves and Nielsen maps)")
+    a.set_ylabel("total relator length")
+    a.set_title("(a) the five methods, step by step", loc="left", fontsize=9, color=INK)
+    # (b) the hybrid alone: its path rewritten as AC moves on the original presentation
     st = replay(pres, unpack(r["paths"]["hybrid"]["elementary"]), cyclic=False, normalize=False)
     hy = [total(s.rels) for s in st]
-    others = [m for m in names if m != "hybrid"]
-    # (a) all seven methods on one scale
-    for c, m in zip(COLORS, names):
-        ys = hy if m == "hybrid" else data[m][0]
-        a.plot(range(len(ys)), ys, color=c, lw=1.4, label=m, zorder=3 if m == "hybrid" else 2)
+    b.plot(range(len(hy)), hy, color=colors["hybrid"], lw=1.3)
     mx = max(range(len(hy)), key=hy.__getitem__)
-    a.annotate(f"hybrid: total length {hy[mx]}, longest relator "
-               f"{max(len(reduce(tuple(w))) for w in st[mx].rels)}", (mx, hy[mx]), xytext=(-6, -2),
-               textcoords="offset points", ha="right", fontsize=7.5, color=INK)
-    a.set_xlabel("moves along the path (elementary AC moves for the hybrid)")
-    a.set_ylabel("total relator length")
-    a.set_title("(a) all seven methods", loc="left", fontsize=9, color=INK)
-    a.legend(frameon=False, fontsize=7.5, loc="upper left")
-    # (b) the six other methods, enlarged, with the CoV moves marked
-    top = 0
-    for c, m in zip(COLORS, names):
-        if m == "hybrid":
-            continue
-        ys, special = data[m]
-        top = max(top, max(ys))
-        b.plot(range(len(ys)), ys, color=c, lw=1.2, zorder=2)
-        if special:
-            b.scatter(special, [ys[i] for i in special], s=7, marker="o", color=INK, linewidth=0, zorder=3)
-    b.legend([Line2D([], [], ls="", marker="o", color=INK, markersize=3.5)], ["CoV move"],
-             frameon=False, fontsize=7.5, loc="upper right")
-    b.set_ylim(0, top * 1.25)
-    b.set_xlabel("moves along the path (S-moves and CoV moves)")
-    b.set_title("(b) the six other methods, enlarged", loc="left", fontsize=9, color=INK)
+    b.annotate(f"total length {hy[mx]},\nlongest relator {max(len(reduce(tuple(w))) for w in st[mx].rels)}", (mx, hy[mx]),
+               xytext=(-6, -16), textcoords="offset points", ha="right", fontsize=7.5, color=INK)
+    b.set_xlabel("AC moves along the hybrid's path")
+    b.set_title("(b) the hybrid's path as AC moves", loc="left", fontsize=9, color=INK)
     for ax in (a, b):
         ax.grid(True, color=GRID, lw=0.6)
         ax.set_axisbelow(True)
-        for s in ("top", "right"):
-            ax.spines[s].set_visible(False)
+        for sp in ("top", "right"):
+            ax.spines[sp].set_visible(False)
     fig.tight_layout()
     out = ROOT / "paper/figures/maxrel_example.png"
     fig.savefig(out, dpi=300)
