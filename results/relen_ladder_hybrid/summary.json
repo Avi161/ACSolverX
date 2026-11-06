@@ -1,0 +1,135 @@
+{
+ "name": "relen_ladder_hybrid",
+ "method": "hybrid",
+ "benchmark": "ladder",
+ "rows": 100,
+ "solved": 100,
+ "ac_path": 3,
+ "aut_assisted": 94,
+ "stable_cert": 3,
+ "skipped": 0,
+ "errors": 0,
+ "cost": {
+  "unit": "units",
+  "total": 13003,
+  "on_solved": 13003
+ },
+ "cost_unit": "units",
+ "cost_mean": 130.03,
+ "cost_median": 76.0,
+ "path_length": {
+  "ac_path": {
+   "sub_moves": {
+    "n": 3,
+    "sum": 84,
+    "mean": 28.0,
+    "median": 9,
+    "max": 74
+   },
+   "elem_moves": {
+    "n": 3,
+    "sum": 390,
+    "mean": 130.0,
+    "median": 46,
+    "max": 336
+   }
+  },
+  "aut_assisted": {
+   "sub_moves": {
+    "n": 94,
+    "sum": 4224,
+    "mean": 44.94,
+    "median": 22.0,
+    "max": 256
+   },
+   "elem_moves": {
+    "n": 94,
+    "sum": 49561,
+    "mean": 527.24,
+    "median": 372.5,
+    "max": 2783
+   }
+  },
+  "stable_cert": {
+   "sub_moves": {
+    "n": 3,
+    "sum": 50,
+    "mean": 16.67,
+    "median": 16,
+    "max": 19
+   },
+   "elem_moves": {
+    "n": 3,
+    "sum": 2190,
+    "mean": 730.0,
+    "median": 857,
+    "max": 863
+   }
+  }
+ },
+ "caps": {
+  "cap": {
+   "cap": "parent",
+   "rows": 100,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  },
+  "dyn_cap": {
+   "dyn_cap": 8,
+   "rows": 100,
+   "rows_dropped": 13,
+   "rows_would_pop": 11,
+   "raise_ids": [
+    "ac19_70845",
+    "ac19_24836",
+    "ac19_43611",
+    "ac19_39288",
+    "ac19_20270",
+    "ac19_15507",
+    "ac19_67987",
+    "ac19_28510",
+    "ac19_36350",
+    "ac19_65753",
+    "ac19_51034"
+   ],
+   "dropped": 408434,
+   "would_pop": 261,
+   "dropped_min_total": 15,
+   "first_bind_min": 54,
+   "needed_min": 9,
+   "needed_max": 13
+  },
+  "slack": {
+   "slack": 8,
+   "rows": 100,
+   "rows_dropped": 0,
+   "rows_would_pop": 0,
+   "raise_ids": [],
+   "dropped": 0,
+   "would_pop": 0,
+   "dropped_min_total": null,
+   "first_bind_min": null,
+   "needed_min": null,
+   "needed_max": null
+  }
+ },
+ "wall_seconds": 4.11,
+ "row_seconds": 7.35,
+ "cpu_seconds": 7.099,
+ "us_per_cost": 545.931,
+ "config": {
+  "method": "hybrid",
+  "benchmark": "ladder",
+  "hybrid": {
+   "budget": 10000
+  },
+  "name": "relen_ladder_hybrid"
+ }
+}

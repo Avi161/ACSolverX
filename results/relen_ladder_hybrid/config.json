@@ -1,0 +1,8 @@
+{
+ "method": "hybrid",
+ "benchmark": "ladder",
+ "hybrid": {
+  "budget": 10000
+ },
+ "name": "relen_ladder_hybrid"
+}
