@@ -4,6 +4,7 @@
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage[section]{placeins}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.17}
 \usepackage[hidelinks]{hyperref}
@@ -457,6 +458,7 @@ $\max(24,\ \text{longest relator}+16)$, $P$ with $24$.}
 The best image passes LENGTH at every budget, but the margin falls from $100$ to $6$, and finding the image costs more
 than the margin. A random image solves fewer presentations than LENGTH on $P$ at every budget.
 
+\FloatBarrier
 \paragraph{Searches with change-of-variables moves.} The searches below use the change of variables as a move inside
 a search rather than once at the start.
 
@@ -500,25 +502,44 @@ each S-move and each CoV move as one step. Every solve was replayed move by move
 \cmidrule(lr){3-7}
 benchmark & method & $10^3$ & $10^4$ & $10^5$ & $10^6$ & $10^7$\\
 \midrule
-MS640 & CoV gate & $596$ & $612$ & $626$ & $640$ & $640$\\
-(of $640$) & dual, single CoV & $612$ & $634$ & $640$ & $640$ & $640$\\
-& dual, auto CoV & $612$ & $627$ & $640$ & $640$ & $640$\\
-& triple & $612$ & $637$ & $640$ & $640$ & $640$\\
+MS640 & LENGTH & $554$ & $606$ & $634$ & $\mathbf{640}$ & $\mathbf{640}$\\
+(of $640$) & $\SMK$ & $574$ & $626$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
+ & hybrid & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
+ & CoV gate & $596$ & $612$ & $626$ & $\mathbf{640}$ & $\mathbf{640}$\\
+ & dual, single CoV & $612$ & $634$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
+ & dual, auto CoV & $612$ & $627$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
+ & triple & $612$ & $637$ & $\mathbf{640}$ & $\mathbf{640}$ & $\mathbf{640}$\\
 \midrule
-bench60 & CoV gate & $45$ & $49$ & $52$ & $60$ & $60$\\
-(of $60$) & dual, single CoV & $49$ & $57$ & $60$ & $60$ & $60$\\
-& dual, auto CoV & $49$ & $53$ & $60$ & $60$ & $60$\\
-& triple & $49$ & $58$ & $60$ & $60$ & $60$\\
+bench60 & LENGTH & $29$ & $40$ & $54$ & $\mathbf{60}$ & $\mathbf{60}$\\
+(of $60$) & $\SMK$ & $37$ & $52$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
+ & hybrid & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
+ & CoV gate & $45$ & $49$ & $52$ & $\mathbf{60}$ & $\mathbf{60}$\\
+ & dual, single CoV & $49$ & $57$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
+ & dual, auto CoV & $49$ & $53$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
+ & triple & $49$ & $58$ & $\mathbf{60}$ & $\mathbf{60}$ & $\mathbf{60}$\\
 \midrule
-ladder100 & CoV gate & $73$ & $89$ & $93$ & $100$ & $100$\\
-(of $100$) & dual, single CoV & $73$ & $98$ & $100$ & $100$ & $100$\\
-& dual, auto CoV & $72$ & $94$ & $100$ & $100$ & $100$\\
-& triple & $73$ & $97$ & $100$ & $100$ & $100$\\
+ladder100 & LENGTH & $11$ & $20$ & $40$ & $60$ & $80$\\
+(of $100$) & $\SMK$ & $23$ & $53$ & $69$ & $87$ & $91$\\
+ & hybrid & $\mathbf{99}$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$\\
+ & CoV gate & $73$ & $89$ & $93$ & $\mathbf{100}$ & $\mathbf{100}$\\
+ & dual, single CoV & $73$ & $98$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$\\
+ & dual, auto CoV & $72$ & $94$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$\\
+ & triple & $73$ & $97$ & $\mathbf{100}$ & $\mathbf{100}$ & $\mathbf{100}$\\
 \bottomrule
 \end{tabular}
-\caption{Presentations solved by the searches with CoV images.}
+\caption{Presentations solved by the searches with CoV images, with LENGTH, $\SMK$ and the hybrid
+(Section~\ref{sec:ac_results}) for comparison. The CoV-gate search has been run to $10^6$ units, by which it solves
+every presentation. In each benchmark, the largest number in each column is in bold.}
 \label{tab:cov_search_solved}
 \end{table}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/scores_budget.png}
+\caption{The numbers of Table~\ref{tab:cov_search_solved} as a percentage of each benchmark: presentations solved
+against the budget in units.}
+\label{fig:scores_budget}
+\end{figure}
 
 \begin{table}[ht]
 \centering
@@ -534,7 +555,7 @@ MS640 & CoV gate & $4{,}104$ & $10$ & $149{,}552$ & $20.5$ & $8$ & $375$\\
 & dual, auto CoV & $579$ & $8$ & $31{,}332$ & $40.2$ & $8$ & $907$\\
 & triple & $312$ & $8$ & $18{,}528$ & $39.2$ & $8$ & $842$\\
 \midrule
-bench60 & CoV gate & $21{,}827$ & $28$ & $149{,}552$ & $70.2$ & $16$ & $375$\\
+bench60 & CoV gate & $21{,}827$ & $27.5$ & $149{,}552$ & $70.2$ & $16.5$ & $375$\\
 & dual, single CoV & $1{,}576$ & $106$ & $19{,}544$ & $162.5$ & $25.5$ & $963$\\
 & dual, auto CoV & $3{,}055$ & $120$ & $31{,}016$ & $152.6$ & $25.5$ & $907$\\
 & triple & $1{,}657$ & $114$ & $18{,}528$ & $145.8$ & $32.5$ & $842$\\
@@ -545,10 +566,100 @@ ladder100 & CoV gate & $12{,}119$ & $96$ & $149{,}552$ & $50.4$ & $20$ & $375$\\
 & triple & $1{,}444$ & $403$ & $18{,}528$ & $113.2$ & $52$ & $842$\\
 \bottomrule
 \end{tabular}
-\caption{Units and path lengths of the searches with CoV images; every search solves every presentation of the three
-benchmarks.}
+\caption{Units and path lengths over the presentations each search solves (all of them, at $10^6$ units for the
+CoV-gate search).}
 \label{tab:cov_search_paths}
 \end{table}
+
+\FloatBarrier
+\subsection{Longest relator on a solution path}\label{sec:maxrel}
+
+A search may lengthen the relators of a presentation before it shortens them. For every solved presentation we
+record the length of the longest relator over all states of its solution path, the starting presentation included,
+each relator cyclically reduced. For LENGTH and $\SMK$ the states are those of the S-move path. For the hybrid we give
+two measures: over the states of its search, that is, the presentations after each S-move and each Nielsen map, and
+over the states of its AC path, in which each Nielsen map is rewritten as a sequence of AC moves on the original
+presentation. For the searches with CoV moves the states are the CoV images on the path; the intermediate
+presentations with three generators are not counted, and the paths are not rewritten as AC moves.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{llrrrr}
+\toprule
+& & \multicolumn{4}{c}{longest relator on the path}\\
+\cmidrule(lr){3-6}
+benchmark & method & mean & median & min & max\\
+\midrule
+MS640 & starting presentation & $9.8$ & $9$ & $5$ & $17$\\
+& LENGTH & $10.3$ & $9$ & $5$ & $21$\\
+& $\SMK$ & $10.5$ & $9$ & $5$ & $23$\\
+& hybrid, search states & $14.5$ & $9$ & $5$ & $129$\\
+& hybrid, AC path & $29.7$ & $11$ & $5$ & $509$\\
+& CoV gate & $10.0$ & $9$ & $5$ & $19$\\
+& dual, single CoV & $10.0$ & $9$ & $5$ & $19$\\
+& dual, auto CoV & $10.0$ & $9$ & $5$ & $20$\\
+& triple & $10.0$ & $9$ & $5$ & $20$\\
+\midrule
+bench60 & starting presentation & $12.2$ & $13$ & $5$ & $17$\\
+& LENGTH & $13.6$ & $13$ & $5$ & $21$\\
+& $\SMK$ & $14.0$ & $14$ & $5$ & $23$\\
+& hybrid, search states & $31.9$ & $14$ & $5$ & $129$\\
+& hybrid, AC path & $110.9$ & $40$ & $5$ & $509$\\
+& CoV gate & $12.7$ & $13$ & $5$ & $19$\\
+& dual, single CoV & $12.7$ & $13$ & $5$ & $19$\\
+& dual, auto CoV & $12.8$ & $13$ & $5$ & $20$\\
+& triple & $12.8$ & $13$ & $5$ & $20$\\
+\midrule
+ladder100 & starting presentation & $12.5$ & $12$ & $5$ & $19$\\
+& LENGTH & $17.0$ & $17$ & $5$ & $23$\\
+& $\SMK$ & $17.8$ & $19$ & $5$ & $25$\\
+& hybrid, search states & $25.1$ & $13$ & $5$ & $129$\\
+& hybrid, AC path & $129.7$ & $79$ & $5$ & $509$\\
+& CoV gate & $13.3$ & $13$ & $5$ & $19$\\
+& dual, single CoV & $13.6$ & $13$ & $5$ & $19$\\
+& dual, auto CoV & $13.6$ & $13$ & $5$ & $20$\\
+& triple & $13.6$ & $13$ & $5$ & $20$\\
+\bottomrule
+\end{tabular}
+\caption{The longest relator on the solution path, over the presentations each method solves (on ladder100: $80$ for
+LENGTH, $91$ for $\SMK$, all $100$ for the others). Starting presentation: the longest relator of the presentation
+itself, over all rows.}
+\label{tab:maxrel}
+\end{table}
+
+The greedy searches and the searches with CoV moves stay close to the starting length: on MS640 the mean rises from
+$9.8$ to at most $10.5$, and no path of these searches holds a relator longer than $25$. The hybrid's search states
+rise further, to a mean of $14.5$ on MS640 and $25.1$ on ladder100 and at most $129$, and its AC paths further still,
+to at most $509$: a Nielsen map rewritten as AC moves lengthens the relators temporarily. Since the paths of the
+searches with CoV moves are not rewritten as AC moves, their figures compare with the hybrid's search states, not with
+its AC path.
+
+Figure~\ref{fig:maxrel_summary} shows the mean and the largest values of Table~\ref{tab:maxrel}, and
+Figure~\ref{fig:maxrel_example} follows the presentation on which the hybrid's AC path reaches a relator of length $509$.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/maxrel_summary.png}
+\caption{The longest relator on the solution path (Table~\ref{tab:maxrel}): the mean (filled) and the largest value
+(open) over the presentations each method solves. The horizontal axis is logarithmic.}
+\label{fig:maxrel_summary}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/maxrel_example.png}
+\caption{The total relator length along the solution path of each method on the MS640 presentation
+$\pres{x,y}{y^{-8}x^{-1}y^7x,\ y^{-3}x^{-1}y^{-1}xyx^{-1}}$, on which the hybrid's AC path reaches a relator of length
+$509$ (total length $1{,}014$). (a) All seven methods; the hybrid is drawn along its AC path, in which each Nielsen map
+is rewritten as AC moves on the original presentation ($2{,}783$ moves). (b) The six other methods, enlarged; the
+black points mark the CoV moves.}
+\label{fig:maxrel_example}
+\end{figure}
+
+
+
+
 
 \clearpage
 \bibliographystyle{plain}
