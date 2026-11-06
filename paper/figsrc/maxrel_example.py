@@ -64,25 +64,29 @@ def main():
         if r["id"] == ROW:
             break
     pres = parse_presentation(", ".join(rows[ROW]["pres"]))
-    names = ["LENGTH", "S20_MK2", "hybrid", "CoV gate", "triple"]     # triple: the best of the dual and triple searches
-    colors = {"LENGTH": COLORS[0], "S20_MK2": COLORS[1], "hybrid": COLORS[2], "CoV gate": COLORS[3], "triple": COLORS[6]}
+    groups = [["LENGTH", "S20_MK2"], ["hybrid"], ["CoV gate"], ["dual, single CoV", "dual, auto CoV", "triple"]]
+    names = [m for g in groups for m in g]
+    colors = dict(zip(["LENGTH", "S20_MK2", "hybrid", "CoV gate", "dual, single CoV", "dual, auto CoV", "triple"], COLORS))
     plt.rcParams.update({"font.family": "serif", "font.size": 9, "axes.edgecolor": MUTED, "axes.labelcolor": INK,
                          "xtick.color": MUTED, "ytick.color": MUTED})
     data = {m: series(pres, m, r["paths"][m]) for m in names}
     start = data["LENGTH"][0][0]
     xmax = max(len(ys) for ys, _ in data.values())
-    fig, axes = plt.subplots(len(names), 1, figsize=(7.5, 7.2), sharex=True, sharey=True)
-    for ax, m in zip(axes, names):
-        ys, special = data[m]
+    fig, axes = plt.subplots(len(groups), 1, figsize=(7.5, 6.6), sharex=True, sharey=True)
+    for ax, g in zip(axes, groups):
         ax.axhline(start, color=MUTED, lw=0.8, ls="--", zorder=1)
-        ax.plot(range(len(ys)), ys, color=colors[m], lw=1.1, zorder=2)
-        if m != "hybrid" and special:
-            ax.scatter(special, [ys[i] for i in special], s=8, marker="o", color=INK, linewidth=0, zorder=3)
-        ax.text(0.995, 0.92, f"{m}: {len(ys) - 1} steps, largest total length {max(ys)}", transform=ax.transAxes,
-                ha="right", va="top", fontsize=8.5, color=INK,
-                bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none"))
+        handles, labels = [], []
+        for m in g:
+            ys, special = data[m]
+            h, = ax.plot(range(len(ys)), ys, color=colors[m], lw=1.1, zorder=2)
+            if m != "hybrid" and special:
+                ax.scatter(special, [ys[i] for i in special], s=7, marker="o", color=INK, linewidth=0, zorder=3)
+            handles.append(h)
+            labels.append(f"{m}: {len(ys) - 1} steps, largest {max(ys)}")
+        ax.legend(handles, labels, frameon=True, facecolor="white", edgecolor="none", framealpha=1, fontsize=8,
+                  loc="upper right", handlelength=1.5)
         ax.set_yscale("log")
-        ax.set_ylim(1.6, 400)
+        ax.set_ylim(1.6, 500)
         ax.set_yticks([2, 10, 25, 100])
         ax.set_yticklabels(["2", "10", "25", "100"])
         ax.minorticks_off()
@@ -95,11 +99,12 @@ def main():
     fig.supylabel("total relator length", fontsize=9, color=INK)
     fig.suptitle(r"MS640 presentation $\langle x,y \mid y^{-8}x^{-1}y^{7}x,\ y^{-3}x^{-1}y^{-1}xyx^{-1}\rangle$",
                  fontsize=10, color=INK)
-    axes[0].legend([Line2D([], [], ls="--", color=MUTED, lw=0.8),
-                    Line2D([], [], ls="", marker="o", color=INK, markersize=3.5)],
-                   [f"starting total length ({start})", "CoV move"], frameon=False, fontsize=8, loc="upper left",
-                   ncol=2, bbox_to_anchor=(0, 1.32))
-    fig.tight_layout(h_pad=0.6)
+    axes[0].legend_.set_zorder(5)
+    fig.legend([Line2D([], [], ls="--", color=MUTED, lw=0.8),
+                Line2D([], [], ls="", marker="o", color=INK, markersize=3.5)],
+               [f"starting total length ({start})", "CoV move"], frameon=False, fontsize=8, loc="upper center",
+               ncol=2, bbox_to_anchor=(0.5, 0.955))
+    fig.tight_layout(h_pad=0.6, rect=(0, 0, 1, 0.94))
     out = ROOT / "paper/figures/maxrel_example.png"
     fig.savefig(out, dpi=300)
     print(out)
