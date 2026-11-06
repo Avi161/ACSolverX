@@ -226,16 +226,16 @@ presentations each solves on the three benchmarks.
 benchmark & method & $10^3$ & $10^4$ & $10^5$ & $10^6$ & $10^7$\\
 \midrule
 MS640 & LENGTH & $554$ & $606$ & $634$ & $640$ & $640$\\
-(of $640$) & $\SMK$ & $574$ & $626$ & $640$ & $640$ & $640$\\
-& hybrid & $640$ & $640$ & $640$ & $640$ & $640$\\
+(of $640$) & $\SMK$ & $574$ & $626$ & \underline{$640$} & $640$ & $640$\\
+& hybrid & \underline{$640$} & \underline{$640$} & \underline{$640$} & $640$ & $640$\\
 \midrule
 bench60 & LENGTH & $29$ & $40$ & $54$ & $60$ & $60$\\
-(of $60$) & $\SMK$ & $37$ & $52$ & $60$ & $60$ & $60$\\
-& hybrid & $60$ & $60$ & $60$ & $60$ & $60$\\
+(of $60$) & $\SMK$ & $37$ & $52$ & \underline{$60$} & $60$ & $60$\\
+& hybrid & \underline{$60$} & \underline{$60$} & \underline{$60$} & $60$ & $60$\\
 \midrule
 ladder100 & LENGTH & $11$ & $20$ & $40$ & $60$ & $80$\\
 (of $100$) & $\SMK$ & $23$ & $53$ & $69$ & $87$ & $91$\\
-& hybrid & $99$ & $100$ & $100$ & $100$ & $100$\\
+& hybrid & \underline{$99$} & \underline{$100$} & \underline{$100$} & \underline{$100$} & \underline{$100$}\\
 \bottomrule
 \end{tabular}
  
@@ -256,22 +256,23 @@ S-moves. For the hybrid, each S-move and each Nielsen map counts as one unit; it
 \cmidrule(lr){3-5}\cmidrule(lr){6-8}
 benchmark & method & mean & median & max & mean & median & max\\
 \midrule
-MS640 & LENGTH & $4{,}963$ & $11$ & $574{,}959$ & $36.8$ & $9$ & $708$\\
- & $\SMK$ & $995$ & $11$ & $34{,}438$ & $42.9$ & $9$ & $787$\\
- & hybrid & $23$ & $11$ & $322$ & $21.2$ & $10$ & $262$\\
+MS640 & LENGTH & $4{,}963$ & $11$ & $574{,}959$ & $36.8$ & \underline{$9$} & $708$\\
+ & $\SMK$ & $995$ & $11$ & $34{,}438$ & $42.9$ & \underline{$9$} & $787$\\
+ & hybrid & \underline{$23$} & $11$ & \underline{$322$} & \underline{$21.2$} & $10$ & \underline{$262$}\\
 \midrule
 bench60 & LENGTH & $45{,}244$ & $1{,}311$ & $574{,}959$ & $142.6$ & $47$ & $708$\\
  & $\SMK$ & $4{,}685$ & $359$ & $34{,}438$ & $154.3$ & $42$ & $787$\\
- & hybrid & $67$ & $28$ & $322$ & $59.9$ & $22$ & $262$\\
+ & hybrid & \underline{$67$} & \underline{$28$} & \underline{$322$} & \underline{$59.9$} & \underline{$22$} & \underline{$262$}\\
 \midrule
 ladder100 & LENGTH & $975{,}165$ & $101{,}771$ & $8{,}204{,}360$ & $130.8$ & $69$ & $706$\\
  & $\SMK$ & $114{,}830$ & $6{,}073$ & $1{,}383{,}279$ & $133.9$ & $69$ & $787$\\
- & hybrid & $127$ & $53$ & $2{,}267$ & $49.7$ & $30$ & $262$\\
+ & hybrid & \underline{$127$} & \underline{$53$} & \underline{$2{,}267$} & \underline{$49.7$} & \underline{$30$} & \underline{$262$}\\
 \bottomrule
 \end{tabular}
  
 \smallskip
-\footnotesize Over the rows each method solves (on ladder100: $80$, $91$ and $100$).
+\footnotesize Over the rows each method solves (on ladder100: $80$, $91$ and $100$). The smallest number in each
+column of each benchmark is underlined.
 \end{center}
  
  
@@ -592,33 +593,34 @@ MS640 & LENGTH & $16.1$ & $16.9$ & $16$ & $31$\\
  & $\SMK$ & $16.1$ & $17.6$ & $16$ & $35$\\
  & hybrid, search states & $16.1$ & $25.5$ & $16$ & $255$\\
  & hybrid, AC path & $16.1$ & $55.1$ & $17$ & $1{,}014$\\
- & CoV gate & $16.1$ & $16.2$ & $15$ & $25$\\
- & dual, single CoV & $16.1$ & $16.2$ & $15$ & $25$\\
- & dual, auto CoV & $16.1$ & $16.2$ & $15$ & $25$\\
- & triple & $16.1$ & $16.2$ & $15$ & $25$\\
+ & CoV gate & $16.1$ & \underline{$16.2$} & \underline{$15$} & \underline{$25$}\\
+ & dual, single CoV & $16.1$ & \underline{$16.2$} & \underline{$15$} & \underline{$25$}\\
+ & dual, auto CoV & $16.1$ & \underline{$16.2$} & \underline{$15$} & \underline{$25$}\\
+ & triple & $16.1$ & \underline{$16.2$} & \underline{$15$} & \underline{$25$}\\
 \midrule
 bench60 & LENGTH & $19.3$ & $22.0$ & $22.5$ & $31$\\
  & $\SMK$ & $19.3$ & $23.8$ & $23$ & $35$\\
  & hybrid, search states & $19.3$ & $59.3$ & $21$ & $255$\\
  & hybrid, AC path & $19.3$ & $214.8$ & $70.5$ & $1{,}014$\\
- & CoV gate & $19.3$ & $19.3$ & $20.5$ & $25$\\
- & dual, single CoV & $19.3$ & $19.4$ & $20.5$ & $25$\\
- & dual, auto CoV & $19.3$ & $19.4$ & $20.5$ & $25$\\
- & triple & $19.3$ & $19.4$ & $20.5$ & $25$\\
+ & CoV gate & $19.3$ & \underline{$19.3$} & \underline{$20.5$} & \underline{$25$}\\
+ & dual, single CoV & $19.3$ & $19.4$ & \underline{$20.5$} & \underline{$25$}\\
+ & dual, auto CoV & $19.3$ & $19.4$ & \underline{$20.5$} & \underline{$25$}\\
+ & triple & $19.3$ & $19.4$ & \underline{$20.5$} & \underline{$25$}\\
 \midrule
 ladder100 & LENGTH & $19.8$ & $27.8$ & $28.5$ & $39$\\
  & $\SMK$ & $19.9$ & $30.3$ & $31$ & $43$\\
- & hybrid, search states & $19.8$ & $45.1$ & $21$ & $255$\\
+ & hybrid, search states & $19.8$ & $45.1$ & \underline{$21$} & $255$\\
  & hybrid, AC path & $19.8$ & $242.1$ & $146$ & $1{,}014$\\
- & CoV gate & $19.8$ & $20.4$ & $21$ & $25$\\
- & dual, single CoV & $19.8$ & $20.5$ & $21$ & $25$\\
- & dual, auto CoV & $19.8$ & $20.5$ & $21$ & $25$\\
- & triple & $19.8$ & $20.5$ & $21$ & $25$\\
+ & CoV gate & $19.8$ & \underline{$20.4$} & \underline{$21$} & \underline{$25$}\\
+ & dual, single CoV & $19.8$ & $20.5$ & \underline{$21$} & \underline{$25$}\\
+ & dual, auto CoV & $19.8$ & $20.5$ & \underline{$21$} & \underline{$25$}\\
+ & triple & $19.8$ & $20.5$ & \underline{$21$} & \underline{$25$}\\
 \bottomrule
 \end{tabular}
 \caption{The largest total relator length on the solution path, over the presentations each method solves (on
 ladder100: $80$ for LENGTH, $91$ for $\SMK$, all $100$ for the others). Start: the mean total relator length of the
-starting presentations, over the same presentations.}
+starting presentations, over the same presentations. In each benchmark, the smallest number in each column
+is underlined.}
 \label{tab:maxrel}
 \end{table}
 
